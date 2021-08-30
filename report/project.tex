@@ -1,0 +1,281 @@
+\documentclass[a4paper,11pt,twoside]{report}
+\overfullrule=5pt
+
+%\usepackage[utf8]{inputenc} % ignored with lualatex / xelatex (which are utf8-based)
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage[text]{esdiff} % text-mode derivatives in textstyle
+\usepackage{tensor}
+\usepackage[parfill]{parskip} % new paragraph: new line, no indent
+\usepackage[title]{appendix}
+\usepackage[hidelinks]{hyperref} % hide colored boxes around links
+\usepackage[noabbrev]{cleveref}
+
+\usepackage{unicode-math} % make code display utf8 characters properly
+\usepackage[cache=false]{minted}
+%\setmonofont{DejaVu Sans Mono} % will affect whole document, including URLs etc.
+\newfontfamily\codefont{DejaVu Sans Mono}[NFSSFamily=CodeFamily] % set mono font for minted code only
+\setminted{breaklines}
+\setminted{frame=single}
+\setminted{breakanywhere}
+\setminted{fontfamily=CodeFamily}
+
+\setlength{\headheight}{30pt}
+\setlength{\headsep}{15pt} % distance between header line and text block
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\textbf{\thepage}}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+\fancyfoot[CE,CO]{}
+
+%\fancypagestyle{plain}{\pagestyle{fancy}} % make chapter front pages, bibliography etc. use same style as other pages (see https://tex.stackexchange.com/a/10046)
+
+% make consistent style also on chapter first pages, bibliography etc.
+\fancypagestyle{plain}{
+	\fancyhf{}
+	\fancyhead[LE,RO]{\textbf{\thepage}}
+}
+
+\usepackage[style=alphabetic]{biblatex}
+\addbibresource{project.bib}
+
+\newcommand\dif{\mathop{}\!\mathrm{d}}
+
+% useful intro to Latex thesis: https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_1):_Basic_Structure
+
+\title{Project thesis}
+\author{Herman Sletmoen}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\chapter*{Notation and conventions} % do not number
+\addcontentsline{toc}{chapter}{Notation and conventions} % but still display in TOC (see https://tex.stackexchange.com/a/222961)
+%\markboth{NOTATION AND CONVENTIONS}{} % but still display correct header (see https://tex.stackexchange.com/a/78090)
+
+\section*{Metric signature}
+
+We use the $(-,+,+,+)$ metric signature.
+
+\section*{Units}
+
+We use natural units in which the speed of light $c = 1$.
+
+\section*{Summation convention}
+
+We use the Einstein summation convention, in which an index that appears once as a superscript and again as a subscript in the same term is to be summed over.
+If the index is roman, the sum runs from $1$ to $3$, and if it is greek, it also runs over $0$.
+For example,
+\begin{equation*}
+	T\indices{^\mu_\mu} = \sum_{\mu=0}^3 T\indices{^\mu_\mu}
+	\quad \text{and} \quad
+	T\indices{^i_i} = \sum_{i=1}^3 T\indices{^i_i}
+	.
+\end{equation*}
+
+\chapter{General relativity}
+\section{Tolman-Oppenheimer-Volkoff equation}
+
+To analyze astrophysical objects like stars, it is of considerable interest to relate the pressure $p(x)$ and energy density $\rho(x)$ at every position $x$ inside the object.
+We will derive the relativistic relation between these quantities from the \textbf{Einstein equation} \cite{ref:carroll}
+\begin{equation}
+	G\indices{_\mu_\nu} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 8 \pi G T_{\mu \nu} ,
+	\label{eq:einstein}
+\end{equation}
+It describes how the geometry of spacetime, described by the Ricci tensor $R\indices{_\mu_\nu}$ and Ricci scalar $R$ that are ultimately built from the metric $g\indices{_\mu_\nu}$ and encapsulated in the Einstein tensor $G\indices{_\mu_\nu}$ (see \cref{chap:gr_summary} for a summary), responds to the presence of energy-momentum in the energy-momentum tensor $T\indices{_\mu_\nu}$.
+Here, $G$ is the gravitational constant.
+
+Unless rotating very fast, stars are well approximated by spheres.
+For our purposes, we therefore consider the most general line element that exhibits spherical symmetry, namely \cite{ref:tolman}
+\begin{equation}
+	\dif s^2 = -e^{2 \alpha(r)} \dif t^2 + e^{2 \beta(r)} \dif r^2 + r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
+\end{equation}
+
+We model the interior of the star as a perfect fluid with energy-momentum \cite{ref:carroll}
+\begin{equation}
+	T\indices{_\mu_\nu} = (\rho+p) U_\mu U_\nu + p g\indices{_\mu_\nu}.
+\end{equation}
+For a static star whose fluid is at rest, $U_\mu = (U_0, \textbf{0})$ and the normalization condition $U_\mu U^\mu = -1$ requires $U_0 = \pm e^\alpha$.
+We choose the positive sign so the four-velocity lies in the future light cone, as we are interested in the evolution of the star.
+Then the energy-momentum tensor takes the diagonal form
+\begin{equation}
+T\indices{_\mu_\nu} =
+\begin{bmatrix}
+	\rho e^{2\alpha} &   &   &   \\
+	  & p e^{2\beta} &   &   \\
+	  &   & p r^2 &   \\
+	  &   &   & p r^2 \sin^2 \theta \\
+\end{bmatrix}
+\qquad \text{or} \qquad
+T\indices{_\mu^\nu} =
+\begin{bmatrix}
+	-\rho &   &   &   \\
+	  & p &   &   \\
+	  &   & p &   \\
+	  &   &   & p \\
+\end{bmatrix}
+.
+\label{eq:einstein_to_tov:T}
+\end{equation}
+
+Starting with the metric, it is now straightforward, although tedious, to compute the left side of \cref{eq:einstein} from \cref{eq:def_christoffel,eq:def_riemann_tensor,eq:def_ricci_tensor,eq:def_ricci_scalar}.
+For the details, refer to \cite{ref:carroll}.
+After inserting the energy-momentum tensor on the right and simplifying, we get the three independent equations
+(the fourth turns out proportional to the third)
+\begin{subequations}
+\begin{align}
+	\frac{1}{r^2} e^{-2 \beta} \left( 2 r \partial_r \beta - 1 + e^{2 \beta} \right)  &= 8 \pi G \rho                                                                                && (G\indices{_t_t} = 8 \pi G T\indices{_t_t}) \label{eq:einstein_to_tov:tt} \\
+	\frac{1}{r^2} e^{-2 \beta} \left( 2 r \partial_r \alpha + 1 - e^{2 \beta} \right) &= 8 \pi G p                                                                                   && (G\indices{_r_r} = 8 \pi G T\indices{_r_r}) \label{eq:einstein_to_tov:rr} \\
+	e^{-2 \beta} \left( \partial_r^2 \alpha + (\partial_r \alpha)^2 - (\partial_r \alpha) (\partial_r \beta) + \frac{1}{r} (\partial_r \alpha - \partial_r \beta) \right) &= 8 \pi G p . && (G\indices{_\theta_\theta} = 8 \pi G T\indices{_\theta_\theta}) \label{eq:einstein_to_tov:thetatheta}
+\end{align}
+\end{subequations}
+
+Next, let us introduce the mass of the star.
+Define $m(r)$ by
+\begin{equation}
+	e^{2 \beta} = \left( 1 - \frac{2 G m(r)}{r} \right)^{-1} ,
+	\label{eq:einstein_to_tov:def_m}
+\end{equation}
+so $g\indices{_r_r}$ resembles the Schwarzschild metric element.
+Then \cref{eq:einstein_to_tov:tt} becomes
+\begin{equation}
+	\diff{m}{r} = 4 \pi r^2 \rho(r) ,
+	\label{eq:einstein_to_tov:m_rho}
+\end{equation}
+directly relating $m(r)$ and $\rho(r)$.
+If we set $m(0) = 0$, we can integrate to get
+\begin{equation}
+	m(r) = \int_0^r \rho(r) 4 \pi r^2 \dif r .
+\end{equation}
+Thus, $m(r)$ is simply the volume integral of the energy density $\rho(r)$ inside the radius $r$ and can be interpreted as the mass of that shell.
+If the star extends only to $r = R$ and there is vacuum outside, the Schwarzschild mass for the metric outside the star must be $M = m(R)$.
+
+Meanwhile, definition \eqref{eq:einstein_to_tov:def_m} turns \cref{eq:einstein_to_tov:rr} into
+\begin{equation}
+	\diff{\alpha}{r} = \frac{G m(r) + 4 \pi G r^3 p}{r (r - 2 G m(r))} .
+	\label{eq:einstein_to_tov:dadr1}
+\end{equation}
+To finally eliminate $\alpha$, we can replace all occurences of $\partial_r \alpha$ and $\beta$ in the remaining \cref{eq:einstein_to_tov:thetatheta} with the expressions \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:def_m}.
+Doing so is straightforward, but cumbersome and most easily done by a computer algebra system.
+We show how to do this in \cref{sec:tov_cas_derivation}.
+An elegant, but more clever argument is to use local energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$, which is both physically reasonable and in fact possible to prove directly from the Einstein equation \eqref{eq:einstein}.
+For two different proofs, see \cite{ref:einstein_conservation_energy_momentum} and \cite{ref:mika_gr_notes}.
+Using \cref{eq:def_cov_deriv}, the $\nu=r$-component gives
+\begin{equation*}
+	0
+	= \nabla_\mu T\indices{^\mu_r}
+	= \partial_r T\indices{^r_r} + \Gamma^\sigma_{r \sigma} T\indices{^r_r} - \Gamma^\sigma_{r \mu} T\indices{^\mu_\sigma}
+	= \partial_r T\indices{^r_r} + \Gamma^0_{r0} T\indices{^r_r} + \sum_{i=1}^3 \Gamma^i_{ri} T\indices{^r_r} - \Gamma^0_{r0} T\indices{^0_0} - \sum_{i=1}^3 \Gamma^i_{ri} T\indices{^i_i}
+\end{equation*}
+Using $T\indices{^0_0} = -\rho$ and $T\indices{^1_1} = T\indices{^2_2} = T\indices{^3_3} = p$ from \cref{eq:einstein_to_tov:T}, the sums cancel, leaving
+\begin{equation}
+	\diff{\alpha}{r} = \frac{-1}{\rho+p} \diff{p}{r} .
+	\label{eq:einstein_to_tov:dadr2}
+\end{equation}
+Now $\alpha$ is easily eliminated by equating \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:dadr2}. 
+Whichever approach we follow, we end up with the \textbf{Tolman-Oppenheimer-Volkow (TOV) equation}
+\begin{equation}
+	\diff{p}{r} = -\frac{(\rho+p) (G m(r) + 4 \pi G r^3 p)}{r (r - 2 G m(r))} .
+	\label{eq:tov}
+\end{equation}
+It relates the pressure gradient $\diff{p}{r}$ and energy density $\rho$ at radius $r$ from the core of a spherical static star composed of a perfect fluid.
+\Cref{eq:einstein_to_tov:m_rho,eq:tov} constitute two equations for the three unknowns $p$, $\rho$ and $m$.
+To determine them, an additional equation of state $p = p(\rho)$ from the domain of thermodynamics and statistical physics is required.
+Given all three equations and the core pressure $p(0)$, we can integrate to find the pressure everywhere inside the star.
+
+The TOV equation was originally derived by \cite{ref:tov} using multiple results from \cite{ref:tolman}.
+
+\appendix
+
+\chapter{General relativity}
+\section{Summary of important quantities}
+\label{chap:gr_summary}
+
+In general relativity, the geometry of spacetime is described by the \textbf{metric} $g\indices{_\mu_\nu}$ and the \textbf{line element}
+\begin{equation}
+	\dif s^2 = g\indices{_\mu_\nu} \dif x^\mu \dif x^\nu .
+	\label{eq:def_line_elem}
+\end{equation}
+
+From the metric, we can construct the \textbf{Christoffel symbols}
+\begin{equation}
+	\Gamma^\sigma_{\mu \nu} = \frac{1}{2} g\indices{^\sigma^\rho} \left( 
+		\partial\indices{_\mu} g\indices{_\nu_\rho} + 
+		\partial\indices{_\nu} g\indices{_\rho_\mu} + 
+		\partial\indices{_\rho} g\indices{_\mu_\nu} 
+	\right) .
+	\label{eq:def_christoffel}
+\end{equation}
+
+They allow us to generalize the partial derivative of a contravariant vector $V^\nu$ or a covariant vector $V_\nu$ to the \textbf{covariant derivative}
+\begin{equation*}
+	\nabla_\mu V^\nu = \partial_\mu V^\nu + \Gamma_{\sigma \mu}^\nu V^\sigma
+	\qquad \text{or} \qquad
+	\nabla_\mu V_\nu = \partial_\mu V_\nu - \Gamma_{\nu \mu}^\sigma V_\sigma
+	.
+\end{equation*}
+For a general type $(r,s)$ tensor $T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s}$ (where we suppress the order of the indices),
+\begin{equation}
+\begin{split}
+	\nabla_\mu T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} &= \partial_\mu T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} \\
+	                                                                 &+ \Gamma^{\alpha_1}_{\sigma\mu} T^{\sigma \alpha_2 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} + \dots + \Gamma^{\alpha_r}_{\sigma\mu} T^{\alpha_1 \ldots \alpha_{r-1}\sigma}_{\beta_1 \ldots \beta_s} \\
+	                                                                 &- \Gamma^\sigma_{\beta_1 \mu} T^{\alpha_1 \ldots \alpha_r}_{\sigma \beta_2 \ldots \beta_s} - \cdots - \Gamma^\sigma_{\beta_s \mu} T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_{s-1} \sigma}.
+	\label{eq:def_cov_deriv}
+\end{split}
+\end{equation}
+\iffalse
+\begin{align}
+	\nabla_c T\indices{^{a_1 \ldots a_r}_{b_1 \ldots b_s}} &= \partial_c {T^{a_1 \ldots a_r}}_{b_1 \ldots b_s} \\
+	                                                       &+ \Gamma^{a_1}_{dc} T\indices{^{d a_2 \ldots a_r}_{b_1 \ldots b_s}} + \dots + \Gamma^{a_r}_{dc} T\indices{^{a_1 \ldots a_{r-1}d}_{b_1 \ldots b_s}} \\
+	                                                       &- {\Gamma^d}_{b_1 c} {T^{a_1 \ldots a_r}}_{d b_2 \ldots b_s} - \cdots - {\Gamma^d}_{b_s c} {T^{a_1 \ldots a_r}}_{b_1 \ldots b_{s-1} d}.
+	\label{eq:def_cov_deriv}
+\end{align}
+\fi
+That is, for each upper index $\alpha_i$, add $+\Gamma^{\alpha_i}_{\sigma \mu} T^{\alpha_1 \ldots \alpha_{i-1} \sigma \alpha_{i+1} \ldots \alpha_r}_{\beta_1 \ldots \beta_s}$,
+and for each lower index $\beta_i$, add $-\Gamma^{\sigma}_{\beta_i \mu} T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_{i-1} \sigma \beta_{i+1} \ldots \beta_s}$,
+As the name and notation suggests, $\nabla_\mu$ transforms covariantly, so the covariant derivative of a tensor is independent of coordinate system.
+
+The curvature of spacetime is expressed through the \textbf{Riemann curvature tensor}
+\begin{equation}
+	R\indices{^\rho_\sigma_\mu_\nu} = 
+	\partial\indices{_\mu} \Gamma^\rho_{\nu \sigma} - 
+	\partial\indices{_\nu} \Gamma^{\rho}_{\mu \sigma} + 
+	\Gamma^\rho_{\mu \lambda} \Gamma^{\lambda}_{\nu \sigma} - 
+	\Gamma^\rho_{\nu \lambda} \Gamma^{\lambda}_{\mu \sigma} .
+	\label{eq:def_riemann_tensor}
+\end{equation}
+
+The curvature tensor can be contracted to form the \textbf{Ricci tensor}
+\begin{equation}
+	R\indices{_\mu_\nu} = R\indices{^\lambda_\mu_\lambda_\nu},
+	\label{eq:def_ricci_tensor}
+\end{equation}
+whose trace is known as the \textbf{Ricci scalar}
+\begin{equation}
+	R = R\indices{^\mu_\mu} .
+	\label{eq:def_ricci_scalar}
+\end{equation}
+For more details, consult an introductory textbook on general relativity like \cite{ref:carroll}.
+
+\chapter{Code}
+
+\section{Deriving the Tolman-Oppenheimer-Volkoff equation from only the Einstein equation}
+\label{sec:tov_cas_derivation}
+
+When deriving \cref{eq:tov} analytically, we made use of energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$ instead of substituting our results into the unused \cref{eq:einstein_to_tov:thetatheta}.
+Here, we do the latter in the computer algebra system SAGE.
+
+\inputminted{python}{../code/einstein_to_tov/ein.sage}
+
+The output matches \cref{eq:tov} precisely.
+
+\printbibliography
+
+\end{document}
