@@ -80,11 +80,14 @@ For example,
 	.
 \end{equation*}
 
-\chapter{General relativity}
-\section{Tolman-Oppenheimer-Volkoff equation}
+\chapter{Tolman-Oppenheimer-Volkoff equation}
 
-To analyze astrophysical objects like stars, it is of considerable interest to relate the pressure $p(x)$ and energy density $\rho(x)$ at every position $x$ inside the object.
-We will derive the relativistic relation between these quantities from the \textbf{Einstein equation} \cite{ref:carroll}
+TODO: write intro after I know everything we should do in this section
+
+\section{Derivation from the Einstein field equations}
+
+To analyze astrophysical objects like stars, it is of considerable interest to relate the pressure $p(x)$ and energy density $\epsilon(x)$ at every position $x$ inside the object.
+We will derive the relativistic relation between these quantities from the \textbf{Einstein field equations} \cite{ref:carroll}
 \begin{equation}
 	G\indices{_\mu_\nu} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 8 \pi G T_{\mu \nu} ,
 	\label{eq:einstein}
@@ -100,7 +103,7 @@ For our purposes, we therefore consider the most general line element that exhib
 
 We model the interior of the star as a perfect fluid with energy-momentum \cite{ref:carroll}
 \begin{equation}
-	T\indices{_\mu_\nu} = (\rho+p) U_\mu U_\nu + p g\indices{_\mu_\nu}.
+	T\indices{_\mu_\nu} = (\epsilon+p) U_\mu U_\nu + p g\indices{_\mu_\nu}.
 \end{equation}
 For a static star whose fluid is at rest, $U_\mu = (U_0, \textbf{0})$ and the normalization condition $U_\mu U^\mu = -1$ requires $U_0 = \pm e^\alpha$.
 We choose the positive sign so the four-velocity lies in the future light cone, as we are interested in the evolution of the star.
@@ -108,18 +111,18 @@ Then the energy-momentum tensor takes the diagonal form
 \begin{equation}
 T\indices{_\mu_\nu} =
 \begin{bmatrix}
-	\rho e^{2\alpha} &   &   &   \\
-	  & p e^{2\beta} &   &   \\
-	  &   & p r^2 &   \\
-	  &   &   & p r^2 \sin^2 \theta \\
+	\epsilon e^{2\alpha} & 0            & 0     & 0                   \\
+	0                    & p e^{2\beta} & 0     & 0                   \\
+	0                    & 0            & p r^2 & 0                   \\
+	0                    & 0            & 0     & p r^2 \sin^2 \theta \\
 \end{bmatrix}
 \qquad \text{or} \qquad
 T\indices{_\mu^\nu} =
 \begin{bmatrix}
-	-\rho &   &   &   \\
-	  & p &   &   \\
-	  &   & p &   \\
-	  &   &   & p \\
+	-\epsilon & 0 & 0 & 0 \\
+	0         & p & 0 & 0 \\
+	0         & 0 & p & 0 \\
+	0         & 0 & 0 & p \\
 \end{bmatrix}
 .
 \label{eq:einstein_to_tov:T}
@@ -131,9 +134,12 @@ After inserting the energy-momentum tensor on the right and simplifying, we get 
 (the fourth turns out proportional to the third)
 \begin{subequations}
 \begin{align}
-	\frac{1}{r^2} e^{-2 \beta} \left( 2 r \partial_r \beta - 1 + e^{2 \beta} \right)  &= 8 \pi G \rho                                                                                && (G\indices{_t_t} = 8 \pi G T\indices{_t_t}) \label{eq:einstein_to_tov:tt} \\
-	\frac{1}{r^2} e^{-2 \beta} \left( 2 r \partial_r \alpha + 1 - e^{2 \beta} \right) &= 8 \pi G p                                                                                   && (G\indices{_r_r} = 8 \pi G T\indices{_r_r}) \label{eq:einstein_to_tov:rr} \\
-	e^{-2 \beta} \left( \partial_r^2 \alpha + (\partial_r \alpha)^2 - (\partial_r \alpha) (\partial_r \beta) + \frac{1}{r} (\partial_r \alpha - \partial_r \beta) \right) &= 8 \pi G p . && (G\indices{_\theta_\theta} = 8 \pi G T\indices{_\theta_\theta}) \label{eq:einstein_to_tov:thetatheta}
+	\frac{1}{r^2} e^{-2 \beta} \left( 2 r \beta' - 1 + e^{2 \beta} \right)  &= 8 \pi G \epsilon
+	&& (G\indices{_t_t} = 8 \pi G T\indices{_t_t})                     , \label{eq:einstein_to_tov:tt} \\
+	\frac{1}{r^2} e^{-2 \beta} \left( 2 r \alpha' + 1 - e^{2 \beta} \right) &= 8 \pi G p
+	&& (G\indices{_r_r} = 8 \pi G T\indices{_r_r})                     , \label{eq:einstein_to_tov:rr} \\
+	e^{-2 \beta} \left( \alpha'' + (\alpha')^2 - \alpha' \beta' + \frac{1}{r} (\alpha' - \beta') \right) &= 8 \pi G p
+	&& (G\indices{_\theta_\theta} = 8 \pi G T\indices{_\theta_\theta}) . \label{eq:einstein_to_tov:thetatheta}
 \end{align}
 \end{subequations}
 
@@ -146,15 +152,15 @@ Define $m(r)$ by
 so $g\indices{_r_r}$ resembles the Schwarzschild metric element.
 Then \cref{eq:einstein_to_tov:tt} becomes
 \begin{equation}
-	\diff{m}{r} = 4 \pi r^2 \rho(r) ,
+	\diff{m}{r} = 4 \pi r^2 \epsilon(r) ,
 	\label{eq:einstein_to_tov:m_rho}
 \end{equation}
-directly relating $m(r)$ and $\rho(r)$.
+directly relating $m(r)$ and $\epsilon(r)$.
 If we set $m(0) = 0$, we can integrate to get
 \begin{equation}
-	m(r) = \int_0^r \rho(r) 4 \pi r^2 \dif r .
+	m(r) = \int_0^r \epsilon(r) 4 \pi r^2 \dif r .
 \end{equation}
-Thus, $m(r)$ is simply the volume integral of the energy density $\rho(r)$ inside the radius $r$ and can be interpreted as the mass of that shell.
+Thus, $m(r)$ is simply the volume integral of the energy density $\epsilon(r)$ inside the radius $r$ and can be interpreted as the mass of that shell.
 If the star extends only to $r = R$ and there is vacuum outside, the Schwarzschild mass for the metric outside the star must be $M = m(R)$.
 
 Meanwhile, definition \eqref{eq:einstein_to_tov:def_m} turns \cref{eq:einstein_to_tov:rr} into
@@ -162,10 +168,10 @@ Meanwhile, definition \eqref{eq:einstein_to_tov:def_m} turns \cref{eq:einstein_t
 	\diff{\alpha}{r} = \frac{G m(r) + 4 \pi G r^3 p}{r (r - 2 G m(r))} .
 	\label{eq:einstein_to_tov:dadr1}
 \end{equation}
-To finally eliminate $\alpha$, we can replace all occurences of $\partial_r \alpha$ and $\beta$ in the remaining \cref{eq:einstein_to_tov:thetatheta} with the expressions \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:def_m}.
+To finally eliminate $\alpha$, we can replace all occurences of $\alpha'$ and $\beta$ in the remaining \cref{eq:einstein_to_tov:thetatheta} with the expressions \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:def_m}.
 Doing so is straightforward, but cumbersome and most easily done by a computer algebra system.
 We show how to do this in \cref{sec:tov_cas_derivation}.
-An elegant, but more clever argument is to use local energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$, which is both physically reasonable and in fact possible to prove directly from the Einstein equation \eqref{eq:einstein}.
+An elegant, but less straightforward argument is to use local energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$, which is both physically reasonable and in fact possible to prove directly from the Einstein field equations \eqref{eq:einstein}.
 For two different proofs, see \cite{ref:einstein_conservation_energy_momentum} and \cite{ref:mika_gr_notes}.
 Using \cref{eq:def_cov_deriv}, the $\nu=r$-component gives
 \begin{equation*}
@@ -174,20 +180,20 @@ Using \cref{eq:def_cov_deriv}, the $\nu=r$-component gives
 	= \partial_r T\indices{^r_r} + \Gamma^\sigma_{r \sigma} T\indices{^r_r} - \Gamma^\sigma_{r \mu} T\indices{^\mu_\sigma}
 	= \partial_r T\indices{^r_r} + \Gamma^0_{r0} T\indices{^r_r} + \sum_{i=1}^3 \Gamma^i_{ri} T\indices{^r_r} - \Gamma^0_{r0} T\indices{^0_0} - \sum_{i=1}^3 \Gamma^i_{ri} T\indices{^i_i}
 \end{equation*}
-Using $T\indices{^0_0} = -\rho$ and $T\indices{^1_1} = T\indices{^2_2} = T\indices{^3_3} = p$ from \cref{eq:einstein_to_tov:T}, the sums cancel, leaving
+Using $T\indices{^0_0} = -\epsilon$ and $T\indices{^1_1} = T\indices{^2_2} = T\indices{^3_3} = p$ from \cref{eq:einstein_to_tov:T}, the sums cancel, leaving
 \begin{equation}
-	\diff{\alpha}{r} = \frac{-1}{\rho+p} \diff{p}{r} .
+	\diff{\alpha}{r} = \frac{-1}{\epsilon+p} \diff{p}{r} .
 	\label{eq:einstein_to_tov:dadr2}
 \end{equation}
 Now $\alpha$ is easily eliminated by equating \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:dadr2}. 
 Whichever approach we follow, we end up with the \textbf{Tolman-Oppenheimer-Volkow (TOV) equation}
 \begin{equation}
-	\diff{p}{r} = -\frac{(\rho+p) (G m(r) + 4 \pi G r^3 p)}{r (r - 2 G m(r))} .
+	\diff{p}{r} = -\frac{(\epsilon+p) (G m(r) + 4 \pi G r^3 p)}{r (r - 2 G m(r))} .
 	\label{eq:tov}
 \end{equation}
-It relates the pressure gradient $\diff{p}{r}$ and energy density $\rho$ at radius $r$ from the core of a spherical static star composed of a perfect fluid.
-\Cref{eq:einstein_to_tov:m_rho,eq:tov} constitute two equations for the three unknowns $p$, $\rho$ and $m$.
-To determine them, an additional equation of state $p = p(\rho)$ from the domain of thermodynamics and statistical physics is required.
+It relates the pressure gradient $\diff{p}{r}$ and energy density $\epsilon$ at radius $r$ from the core of a spherical static star composed of a perfect fluid.
+\Cref{eq:einstein_to_tov:m_rho,eq:tov} constitute two equations for the three unknowns $p$, $\epsilon$ and $m$.
+To determine them, an additional equation of state $p = p(\epsilon)$ from the domain of thermodynamics and statistical physics is required.
 Given all three equations and the core pressure $p(0)$, we can integrate to find the pressure everywhere inside the star.
 
 The TOV equation was originally derived by \cite{ref:tov} using multiple results from \cite{ref:tolman}.
@@ -206,10 +212,10 @@ In general relativity, the geometry of spacetime is described by the \textbf{met
 
 From the metric, we can construct the \textbf{Christoffel symbols}
 \begin{equation}
-	\Gamma^\sigma_{\mu \nu} = \frac{1}{2} g\indices{^\sigma^\rho} \left( 
-		\partial\indices{_\mu} g\indices{_\nu_\rho} + 
-		\partial\indices{_\nu} g\indices{_\rho_\mu} + 
-		\partial\indices{_\rho} g\indices{_\mu_\nu} 
+	\Gamma^\sigma_{\mu \nu} = \frac{1}{2} g\indices{^\sigma^\epsilon} \left(
+		\partial\indices{_\mu} g\indices{_\nu_\epsilon} +
+		\partial\indices{_\nu} g\indices{_\epsilon_\mu} +
+		\partial\indices{_\epsilon} g\indices{_\mu_\nu}
 	\right) .
 	\label{eq:def_christoffel}
 \end{equation}
@@ -244,11 +250,11 @@ As the name and notation suggests, $\nabla_\mu$ transforms covariantly, so the c
 
 The curvature of spacetime is expressed through the \textbf{Riemann curvature tensor}
 \begin{equation}
-	R\indices{^\rho_\sigma_\mu_\nu} = 
-	\partial\indices{_\mu} \Gamma^\rho_{\nu \sigma} - 
-	\partial\indices{_\nu} \Gamma^{\rho}_{\mu \sigma} + 
-	\Gamma^\rho_{\mu \lambda} \Gamma^{\lambda}_{\nu \sigma} - 
-	\Gamma^\rho_{\nu \lambda} \Gamma^{\lambda}_{\mu \sigma} .
+	R\indices{^\epsilon_\sigma_\mu_\nu} =
+	\partial\indices{_\mu} \Gamma^\epsilon_{\nu \sigma} -
+	\partial\indices{_\nu} \Gamma^{\epsilon}_{\mu \sigma} +
+	\Gamma^\epsilon_{\mu \lambda} \Gamma^{\lambda}_{\nu \sigma} -
+	\Gamma^\epsilon_{\nu \lambda} \Gamma^{\lambda}_{\mu \sigma} .
 	\label{eq:def_riemann_tensor}
 \end{equation}
 
@@ -266,7 +272,7 @@ For more details, consult an introductory textbook on general relativity like \c
 
 \chapter{Code}
 
-\section{Deriving the Tolman-Oppenheimer-Volkoff equation from only the Einstein equation}
+\section{Derivation of the Tolman-Oppenheimer-Volkoff equation \texorpdfstring{\\}{} without using energy-momentum conservation}
 \label{sec:tov_cas_derivation}
 
 When deriving \cref{eq:tov} analytically, we made use of energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$ instead of substituting our results into the unused \cref{eq:einstein_to_tov:thetatheta}.
