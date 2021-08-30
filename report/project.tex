@@ -1,8 +1,13 @@
 \documentclass[a4paper,11pt,twoside]{report}
 \overfullrule=5pt
 
+\usepackage[
+	%showframe, % show frame for page margins etc.
+	scale=0.75, % fraction of page width/height to use
+	headheight=20pt,
+]{geometry}
+
 %\usepackage[utf8]{inputenc} % ignored with lualatex / xelatex (which are utf8-based)
-\usepackage{fullpage}
 \usepackage{amsmath}
 \usepackage[text]{esdiff} % text-mode derivatives in textstyle
 \usepackage{tensor}
@@ -19,9 +24,6 @@
 \setminted{frame=single}
 \setminted{breakanywhere}
 \setminted{fontfamily=CodeFamily}
-
-\setlength{\headheight}{30pt}
-\setlength{\headsep}{15pt} % distance between header line and text block
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
