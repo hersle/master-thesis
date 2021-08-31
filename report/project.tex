@@ -45,6 +45,7 @@
 \addbibresource{project.bib}
 
 \newcommand\dif{\mathop{}\!\mathrm{d}}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
 
 % useful intro to Latex thesis: https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_1):_Basic_Structure
 
@@ -86,6 +87,8 @@ For example,
 
 TODO: write intro after I know everything we should do in this section
 
+TODO: add page numbers to citations
+
 \section{Derivation from the Einstein field equations}
 
 To analyze astrophysical objects like stars, it is of considerable interest to relate the pressure $p(x)$ and energy density $\epsilon(x)$ at every position $x$ inside the object.
@@ -99,6 +102,7 @@ Here, $G$ is the gravitational constant.
 
 Unless rotating very fast, stars are well approximated by spheres.
 For our purposes, we therefore consider the most general line element that exhibits spherical symmetry, namely \cite{ref:tolman}
+TODO: do more general with $\gamma(r)$, as done in Carroll?
 \begin{equation}
 	\dif s^2 = -e^{2 \alpha(r)} \dif t^2 + e^{2 \beta(r)} \dif r^2 + r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
 \end{equation}
@@ -146,7 +150,7 @@ After inserting the energy-momentum tensor on the right and simplifying, we get 
 \end{subequations}
 
 Next, let us introduce the mass of the star.
-Define $m(r)$ by
+Define the function $m(r)$ by
 \begin{equation}
 	e^{2 \beta} = \left( 1 - \frac{2 G m(r)}{r} \right)^{-1} ,
 	\label{eq:einstein_to_tov:def_m}
@@ -159,11 +163,17 @@ Then \cref{eq:einstein_to_tov:tt} becomes
 \end{equation}
 directly relating $m(r)$ and $\epsilon(r)$.
 If we set $m(0) = 0$, we can integrate to get
+(TODO: can show this is required to make spacetime OK at $r=0$, see MTW chap. 23)
 \begin{equation}
-	m(r) = \int_0^r \epsilon(r) 4 \pi r^2 \dif r .
+	m(r) = \int_0^r \epsilon(r') 4 \pi r'^2 \dif r' .
+	\label{eq:einstein_to_tov:m_integral}
 \end{equation}
-Thus, $m(r)$ is simply the volume integral of the energy density $\epsilon(r)$ inside the radius $r$ and can be interpreted as the mass of that shell.
-If the star extends only to $r = R$ and there is vacuum outside, the Schwarzschild mass for the metric outside the star must be $M = m(R)$.
+Outside a star that extends only to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_r_r} = (1-2GM/r)^{-1}$ and Schwarzschild mass $M$.
+By comparison with \cref{eq:einstein_to_tov:def_m}, the Schwarzschild mass of the star must be
+\begin{equation}
+	M = m(R) = \int_0^R \epsilon(r) 4 \pi r^2 \dif r .
+	\label{eq:einstein_to_tov:schwarzschild_mass}
+\end{equation}
 
 Meanwhile, definition \eqref{eq:einstein_to_tov:def_m} turns \cref{eq:einstein_to_tov:rr} into
 \begin{equation}
@@ -199,6 +209,84 @@ To determine them, an additional equation of state $p = p(\epsilon)$ from the do
 Given all three equations and the core pressure $p(0)$, we can integrate to find the pressure everywhere inside the star.
 
 The TOV equation was originally derived by \cite{ref:tov} using multiple results from \cite{ref:tolman}.
+
+\section{Interpretation of mass}
+
+To understand that the Schwarzschild mass \eqref{eq:einstein_to_tov:schwarzschild_mass} really is the Newtonian mass of the star, it pays to look at the weak-field limit.
+In Newtonian gravity, the acceleration $\mathbf{a}$ of a body in the gravitational potential $V$ is
+\begin{equation}
+	\mathbf{a} = - \nabla V ,
+	\label{eq:interpretation_m:newton2}
+\end{equation}
+while the gravitational potential is the solution to the Poisson equation
+\begin{equation}
+	\nabla^2 V = 4 \pi G \rho
+	\label{eq:interpretation_m:poisson}
+\end{equation}
+subject to the source mass density $\rho$.
+
+In general relativity, particles characterized by their worldline $x^\mu(\tau)$ move along geodesics described by the geodesic equation
+\begin{equation*}
+	\diff[2]{x^\mu}{\tau} + \Gamma^\mu_{\rho \sigma} \diff{x^\rho}{\tau} \diff{x^\sigma}{\tau} = 0 .
+\end{equation*}
+If the particles move slowly, $\diff{x^i}{\tau} \ll \diff{t}{\tau}$, and the geodesic equation can be approximated by
+\begin{equation}
+	\diff[2]{x^\mu}{\tau} + \Gamma^\mu_{tt} \left( \diff{t}{\tau} \right)^2 = 0 .
+\end{equation}
+In a static field, $\partial_t g\indices{_\mu_\nu} = 0$ and the Christoffel symbols (REF) simplify to
+\begin{equation*}
+	\Gamma^\mu_{tt} = \frac{1}{2} g\indices{^\mu^\lambda} (\partial_t g\indices{_\lambda_t} + \partial_t g\indices{_t_\lambda} - \partial_\lambda g\indices{_t_t}) = -\frac{1}{2} g\indices{^\mu^\lambda} \partial_\lambda g\indices{_t_t} .
+\end{equation*}
+In a weak gravitational field, we can decompose the metric as a perturbation of Minkowski space,
+\begin{equation}
+	g\indices{_\mu_\nu} = \eta\indices{_\mu_\nu} + h\indices{_\mu_\nu} .
+\end{equation}
+The inverse metric $g\indices{^\mu^\nu}$ should satisfy $g\indices{^\mu^\nu} g\indices{_\nu_\sigma} = \delta^\mu_\sigma$, so to first order in $h$ we must have
+\begin{equation}
+	g\indices{^\mu^\nu} = \eta\indices{^\mu^\nu} - h\indices{^\mu^\nu} ,
+\end{equation}
+where $h\indices{^\mu^\nu} = \eta\indices{^\mu^\rho} \eta\indices{^\nu^\sigma} h\indices{_\rho_\sigma}$.
+After calculating the relevant Christoffel symbol, our geodesic equation becomes
+\begin{equation}
+	\diff[2]{x^\mu}{\tau} = \frac{1}{2} \eta\indices{^\mu^\lambda} \partial_\lambda h\indices{_t_t} \left( \diff{t}{\tau} \right)^2 ,
+	\quad \text{or} \quad
+	\diff[2]{x^i}{t} = \frac{1}{2} \partial_i h\indices{_t_t} .
+\end{equation}
+This is precisely \cref{eq:interpretation_m:newton2} if we identify $h\indices{_t_t} = -2 V$, or
+\begin{equation}
+	g\indices{_t_t} = -(1 + 2 V) .
+\end{equation}
+But the Schwarzschild metric has the element
+\begin{equation}
+	g\indices{_t_t} = -(1 + \frac{2 G M}{r}) .
+\end{equation}
+
+But $V = - G M / r$ is precisely the solution to Poisson's equation \eqref{eq:interpretation_m:poisson} for a spherical mass distribution, so general relativity is indeed sufficient to describe Newtonian gravity in the weak-field limit.
+Moreover, this shows that it does make sense to interpret the Schwarzschild mass $M$ as the Newtonian mass of a star.
+
+From the looks of \cref{eq:einstein_to_tov:schwarzschild_mass}, it is very tempting to also interpret $M$ as the volume integral of the energy density over the star.
+But $4 \pi r^2 \dif r$ is not a proper volume element.
+In a proper spatial integral, the volume element should be $\sqrt{\abs{\gamma}} \dif^3 x = e^\beta r^2 \sin \theta \dif r \dif \theta \dif \phi$, where $\gamma\indices{_i_j} = g\indices{_i_j}$ is the spatial part of the metric.
+So the true volume integral of the energy density is
+\begin{equation*}
+	\bar{M} = \int_0^R \epsilon(r) e^{\beta(r)} 4 \pi r^2 \dif r .
+\end{equation*}
+The difference
+\begin{equation*}
+	\bar{M} - M = \int_0^R \epsilon(r) \left( \left( 1-\frac{2Gm}{r} \right)^{-1/2} - 1 \right) 4 \pi r^2 \dif r > 0
+\end{equation*}
+is in fact the binding energy that arises due to the gravitational attraction between the individual fluid elements in the star.
+It is the energy that would be required to disperse all the matter in the star to infinity. \cite{ref:carroll}
+To support this claim, consider again the weak-field limit $m/r \ll 1$.
+\begin{equation}
+	\bar{M} - M \approx \int_0^R \epsilon(r) \frac{GM}{r} 4 \pi r^2 \dif r .
+\end{equation}
+As shown in \cite{ref:mtw} (exercise 23.7), this is precisely the energy one gets when constructing the star by sequentially placing thin shells $4 \pi r^2 \dif r$ on top of each other, each subject to the gravitational attraction of the shells placed below it.
+
+% confusion about M, \bar{M}, resources:
+% https://physics.stackexchange.com/q/196280/299916
+% see MTW p. 602-, box at p. 603, p. 453
+% see Schwarz p. 126
 
 \appendix
 
