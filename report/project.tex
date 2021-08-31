@@ -206,12 +206,24 @@ Whichever approach we follow, we end up with the \textbf{Tolman-Oppenheimer-Volk
 \end{equation}
 It relates the pressure gradient $\diff{p}{r}$ and energy density $\epsilon$ at radius $r$ from the core of a spherical static star composed of a perfect fluid.
 \Cref{eq:einstein_to_tov:m_rho,eq:tov} constitute two equations for the three unknowns $p$, $\epsilon$ and $m$.
-To determine them, an additional equation of state $p = p(\epsilon)$ from the domain of thermodynamics and statistical physics is required.
+To determine them, an additional equation of state like
+\begin{equation}
+	p = p(\epsilon)
+	\quad \text{or}
+	\epsilon = \epsilon(p)
+\end{equation}
+is required, typically obtained from the domain of thermodynamics and statistical physics.
 Given all three equations and the core pressure $p(0)$, we can integrate to find the pressure everywhere inside the star.
+We define the radius of the star to be the radius $R$ at which $p(R) = 0$.
+Carrying out this procedure for different values of $p(0)$, we can find a mass-radius relation $M(R)$ for stars parametrized by their core pressure $p(0)$.
 
 The TOV equation was originally derived by \cite{ref:tov} using multiple results from \cite{ref:tolman}.
 
 \section{Interpretation of mass}
+
+TODO: move everything about interpretation of mass, energy density integral etc. to one section which has one thing in common: we look at the weak-field limit
+
+TODO: do weak-field limit of TOV equation, too
 
 To understand that the Schwarzschild mass \eqref{eq:einstein_to_tov:schwarzschild_mass} really is the Newtonian mass of the star, it pays to look at the weak-field limit.
 In Newtonian gravity, the acceleration $\mathbf{a}$ of a body in the gravitational potential $V$ is
