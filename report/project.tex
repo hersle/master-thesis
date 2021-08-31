@@ -92,7 +92,7 @@ TODO: add page numbers to citations
 \section{Derivation from the Einstein field equations}
 
 To analyze astrophysical objects like stars, it is of considerable interest to relate the pressure $p(x)$ and energy density $\epsilon(x)$ at every position $x$ inside the object.
-We will derive the relativistic relation between these quantities from the \textbf{Einstein field equations} \cite{ref:carroll}
+We will derive the relativistic relation between these quantities from the \textbf{Einstein field equations} \cite[equation 4.44]{ref:carroll}
 \begin{equation}
 	G\indices{_\mu_\nu} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 8 \pi G T_{\mu \nu} ,
 	\label{eq:einstein}
@@ -101,13 +101,13 @@ It describes how the geometry of spacetime, described by the Ricci tensor $R\ind
 Here, $G$ is the gravitational constant.
 
 Unless rotating very fast, stars are well approximated by spheres.
-For our purposes, we therefore consider the most general line element that exhibits spherical symmetry, namely \cite{ref:tolman}
+For our purposes, we therefore consider the most general line element that exhibits spherical symmetry, namely \cite[§ 94-95]{ref:tolman}
 TODO: do more general with $\gamma(r)$, as done in Carroll?
 \begin{equation}
 	\dif s^2 = -e^{2 \alpha(r)} \dif t^2 + e^{2 \beta(r)} \dif r^2 + r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
 \end{equation}
 
-We model the interior of the star as a perfect fluid with energy-momentum \cite{ref:carroll}
+We model the interior of the star as a perfect fluid with energy-momentum \cite[equation 1.114]{ref:carroll}
 \begin{equation}
 	T\indices{_\mu_\nu} = (\epsilon+p) U_\mu U_\nu + p g\indices{_\mu_\nu}.
 \end{equation}
@@ -135,7 +135,7 @@ T\indices{_\mu^\nu} =
 \end{equation}
 
 Starting with the metric, it is now straightforward, although tedious, to compute the left side of \cref{eq:einstein} from \cref{eq:def_christoffel,eq:def_riemann_tensor,eq:def_ricci_tensor,eq:def_ricci_scalar}.
-For the details, refer to \cite{ref:carroll}.
+For the details, refer to \cite[equation 5.11-5.15]{ref:carroll}.
 After inserting the energy-momentum tensor on the right and simplifying, we get the three independent equations
 (the fourth turns out proportional to the third)
 \begin{subequations}
@@ -184,7 +184,7 @@ To finally eliminate $\alpha$, we can replace all occurences of $\alpha'$ and $\
 Doing so is straightforward, but cumbersome and most easily done by a computer algebra system.
 We show how to do this in \cref{sec:tov_cas_derivation}.
 An elegant, but less straightforward argument is to use local energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$, which is both physically reasonable and in fact possible to prove directly from the Einstein field equations \eqref{eq:einstein}.
-For two different proofs, see \cite{ref:einstein_conservation_energy_momentum} and \cite{ref:mika_gr_notes}.
+For two different proofs, see \cite{ref:einstein_conservation_energy_momentum} and \cite[section 8.3.2]{ref:mika_gr_notes}.
 Using \cref{eq:def_cov_deriv}, the $\nu=r$-component gives
 \begin{equation*}
 	0
@@ -281,8 +281,7 @@ To support this claim, consider again the weak-field limit $m/r \ll 1$.
 \begin{equation}
 	\bar{M} - M \approx \int_0^R \epsilon(r) \frac{GM}{r} 4 \pi r^2 \dif r .
 \end{equation}
-As shown in \cite{ref:mtw} (exercise 23.7), this is precisely the energy one gets when constructing the star by sequentially placing thin shells $4 \pi r^2 \dif r$ on top of each other, each subject to the gravitational attraction of the shells placed below it.
-
+As shown in \cite[exercise 23.7]{ref:mtw} this is precisely the energy one gets when constructing the star by sequentially placing thin shells $4 \pi r^2 \dif r$ on top of each other, each subject to the gravitational attraction of the shells placed below it.
 % confusion about M, \bar{M}, resources:
 % https://physics.stackexchange.com/q/196280/299916
 % see MTW p. 602-, box at p. 603, p. 453
