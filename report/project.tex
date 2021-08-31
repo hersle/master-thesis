@@ -4,7 +4,7 @@
 \usepackage[
 	%showframe, % show frame for page margins etc.
 	scale=0.75, % fraction of page width/height to use
-	headheight=20pt,
+	headheight=30pt,
 ]{geometry}
 
 %\usepackage[utf8]{inputenc} % ignored with lualatex / xelatex (which are utf8-based)
@@ -46,6 +46,7 @@
 
 \newcommand\dif{\mathop{}\!\mathrm{d}}
 \newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\integral}[4]{\int_{#3}^{#4} #1 \dif #2}
 
 % useful intro to Latex thesis: https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_1):_Basic_Structure
 
@@ -165,13 +166,13 @@ directly relating $m(r)$ and $\epsilon(r)$.
 If we set $m(0) = 0$, we can integrate to get
 (TODO: can show this is required to make spacetime OK at $r=0$, see MTW chap. 23)
 \begin{equation}
-	m(r) = \int_0^r \epsilon(r') 4 \pi r'^2 \dif r' .
+	m(r) = \integral{\epsilon(r') 4 \pi r'^2}{r'}{0}{r}
 	\label{eq:einstein_to_tov:m_integral}
 \end{equation}
 Outside a star that extends only to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_r_r} = (1-2GM/r)^{-1}$ and Schwarzschild mass $M$.
 By comparison with \cref{eq:einstein_to_tov:def_m}, the Schwarzschild mass of the star must be
 \begin{equation}
-	M = m(R) = \int_0^R \epsilon(r) 4 \pi r^2 \dif r .
+	M = m(R) = \integral{\epsilon(r) 4 \pi r^2}{r}{0}{R} .
 	\label{eq:einstein_to_tov:schwarzschild_mass}
 \end{equation}
 
@@ -269,17 +270,17 @@ But $4 \pi r^2 \dif r$ is not a proper volume element.
 In a proper spatial integral, the volume element should be $\sqrt{\abs{\gamma}} \dif^3 x = e^\beta r^2 \sin \theta \dif r \dif \theta \dif \phi$, where $\gamma\indices{_i_j} = g\indices{_i_j}$ is the spatial part of the metric.
 So the true volume integral of the energy density is
 \begin{equation*}
-	\bar{M} = \int_0^R \epsilon(r) e^{\beta(r)} 4 \pi r^2 \dif r .
+	\bar{M} = \integral{\epsilon(r) e^{\beta(r)} 4 \pi r^2}{r}{0}{R}.
 \end{equation*}
 The difference
 \begin{equation*}
-	\bar{M} - M = \int_0^R \epsilon(r) \left( \left( 1-\frac{2Gm}{r} \right)^{-1/2} - 1 \right) 4 \pi r^2 \dif r > 0
+	\bar{M} - M = \integral{\epsilon(r) \left( \left( 1-\frac{2Gm}{r} \right)^{-1/2} - 1 \right) 4 \pi r^2}{r}{0}{R} > 0
 \end{equation*}
 is in fact the binding energy that arises due to the gravitational attraction between the individual fluid elements in the star.
 It is the energy that would be required to disperse all the matter in the star to infinity. \cite{ref:carroll}
 To support this claim, consider again the weak-field limit $m/r \ll 1$.
 \begin{equation}
-	\bar{M} - M \approx \int_0^R \epsilon(r) \frac{GM}{r} 4 \pi r^2 \dif r .
+	\bar{M} - M \approx \integral{\epsilon(r) \frac{GM}{r} 4 \pi r^2}{r}{0}{R} .
 \end{equation}
 As shown in \cite[exercise 23.7]{ref:mtw} this is precisely the energy one gets when constructing the star by sequentially placing thin shells $4 \pi r^2 \dif r$ on top of each other, each subject to the gravitational attraction of the shells placed below it.
 % confusion about M, \bar{M}, resources:
