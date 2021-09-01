@@ -15,6 +15,7 @@
 \usepackage[title]{appendix}
 \usepackage[hidelinks]{hyperref} % hide colored boxes around links
 \usepackage[noabbrev]{cleveref}
+\usepackage[labelfont=bf]{caption} % figure title in bold
 
 \usepackage{unicode-math} % make code display utf8 characters properly
 \usepackage[cache=false]{minted}
@@ -32,6 +33,10 @@
 \fancyhead[RE]{\leftmark}
 \fancyhead[LO]{\rightmark}
 \fancyfoot[CE,CO]{}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepgfplotslibrary{groupplots}
 
 %\fancypagestyle{plain}{\pagestyle{fancy}} % make chapter front pages, bibliography etc. use same style as other pages (see https://tex.stackexchange.com/a/10046)
 
@@ -209,7 +214,7 @@ It relates the pressure gradient $\diff{p}{r}$ and energy density $\epsilon$ at 
 To determine them, an additional equation of state like
 \begin{equation}
 	p = p(\epsilon)
-	\quad \text{or}
+	\quad \text{or} \quad
 	\epsilon = \epsilon(p)
 \end{equation}
 is required, typically obtained from the domain of thermodynamics and statistical physics.
@@ -300,11 +305,101 @@ As shown in \cite[exercise 23.7]{ref:mtw} this is precisely the energy one gets 
 % see MTW p. 602-, box at p. 603, p. 453
 % see Schwarz p. 126
 
+\section{Solution for an incompressible star}
+
+% TODO: an incompressible star is unphysical
+
+Although it may sound unphysical from the outset, we can make a somewhat realistic model of a star by assuming that the fluid is incompressible, meaning the density is constant everywhere inside the star,
+\begin{equation}
+	\epsilon(r) = 
+	\begin{cases} 
+		\epsilon_0 & (r < R)   \\
+		0          & (r > R) . \\
+	\end{cases}
+\end{equation}
+Integrating \cref{eq:einstein_to_tov:m_integral} gives the mass
+\begin{equation}
+	m(r) = 
+	\begin{cases}
+		\frac{4}{3} \pi r^3 \epsilon_0     & (r < R)   \\
+		\frac{4}{3} \pi R^3 \epsilon_0 = M & (r > R) . \\
+	\end{cases}
+\end{equation}
+Inserting the inner density and mass into \cref{eq:tov}, $p$ and $r$ separate, giving
+\begin{equation*}
+	\int \frac{\dif p}{(\epsilon_0+p)(\epsilon_0+3p)} = - \int \frac{4 \pi G r \dif r}{3-8\pi G r^2 \epsilon_0} .
+\end{equation*}
+The left side can now be split by the partial fraction decomposition
+\begin{equation*}
+	\frac{1}{(\epsilon_0+p)(\epsilon_0+3p)} = \frac{1}{2p} \left( \frac{1}{\epsilon_0+p} + \frac{1}{\epsilon_0+3p} \right) .
+\end{equation*}
+Performing the integrals using
+\begin{equation*}
+	\int \frac{\dif x}{a x^2 + b x} = -\frac{1}{b} \log \left( a + \frac{b}{x} \right) + C
+	\quad \text{and} \quad
+	\int \frac{x \dif x}{a + b x^2} = +\frac{1}{2 b} \log \left( a + b x^2 \right) + C
+\end{equation*}
+and applying the boundary condition $p(R) = 0$ to determine the integration constant, we eventually find the radial pressure distribution
+\begin{equation}
+	% p(r) in terms of M, R, 
+	p(r) = \epsilon_0 \, \frac{\sqrt{1-\frac{2GMr^2}{R^3}} - \sqrt{1-\frac{2GM}{R}}}{3 \sqrt{1-\frac{2GM}{R}} - \sqrt{1-\frac{2GMr^2}{R^3}}} .
+	% p(r) in terms of p0, M, R
+	%p(r) = -\frac{M}{\frac{4}{3} \pi R^3} \frac{4 \pi R^{3} p_0 \left( \frac{1}{3} + \sqrt{1-\frac{2GMr^2}{R^3}} \right) + M \left( 1 + \sqrt{1-\frac{2GMr^2}{R^3}} \right)}
+	%                                           {4 \pi R^{3} p_0 \left( 1           + \sqrt{1-\frac{2GMr^2}{R^3}} \right) + M \left( 3 + \sqrt{1-\frac{2GMr^2}{R^3}} \right)}
+\end{equation}
+It is interesting to note that the pressure is positive for $M < 4R/9G$, but blows up at $M = 4R/9G$ and becomes negative for $M > 4R/9G$.
+Physically, this means that once a star with fixed radius becomes massive enough, it implodes and turns into a black hole (?).
+This is an example of a more general result -- \textbf{Buchdal's theorem} states that all static spherical stars composed of a perfect fluids must have $M < 4R/9G$ for any density distribution $\epsilon(r)$ that does not decrease outwards. \cite{ref:buchdal}
+The proof requires careful work, but we can still understand it intuitively by arguing that an object that saturates nature's law on distribution of mass, then that object must distribute the same density everywhere -- otherwise there would always be a ``hole'' available to fill without breaking the barrier.
+
+\iffalse
+Let $\epsilon_0$ and $p_0$ be free variables.
+Solving $p(0) = p_0$ and $M=\frac{4}{3} \pi R^3 \epsilon_0$ for $R$ and $M$, we get
+\begin{equation}
+	R = \sqrt{\frac{3}{4 \pi}} \sqrt{\frac{p_0}{(\epsilon_0 + 3 p_0) \epsilon_0 G}}
+	\quad \text{and} \quad
+	M = \frac{4}{3} \pi R^3 \epsilon_0
+\end{equation}
+\begin{equation}
+	M(R) = -\frac{4 \pi R^3}{3} \frac{3 \sqrt{1-\frac{2GM}{R}} + 1}{\sqrt{1-\frac{2GM}{R}} + 1} p_0
+\end{equation}
+\fi
+
+\begin{figure}[hb!]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1, horizontal sep=0.1\textwidth}, width=0.49\textwidth]
+	\nextgroupplot[xlabel=$R$, ylabel=$M(R)$, legend pos=north west, legend cell align=left, declare function={
+		G = 1;
+		M(\R,\E) = 4/3*pi*(\R)^3*\E;
+		Mmax(\R) = 4*\R/(9*G);
+	}]
+	\pgfplotsinvokeforeach{0.014, 0.010, 0.006} {
+		\addplot [domain=0:5, solid ] {M(x,#1)} node[pos=0.90, sloped, yshift=+5pt] {\scriptsize $\epsilon_0 = #1$};
+	}
+	\addplot [domain=0:5, dashed] {Mmax(x)} node[pos=0.2, pin=above:{$M_\text{max}(R)$}] {};
+	%\legend{$M(R) = 4 \pi R^3 \epsilon_0 / 3$, $M_\text{max}(R) = 4R/9G$};
+	\nextgroupplot[xlabel=$r/R$, ylabel=$p(r)/p(0)$, declare function={
+		G=1;
+		R=2;
+		p(\r,\M) = \M / (4/3*pi*R^3) * (sqrt(1-2*G*\M*(\r)^2/R^3) - sqrt(1-2*G*\M/R)) / (3*sqrt(1-2*G*\M/R) - sqrt(1-2*G*\M*(\r)^2/R^3));
+		Mmax = 4*R/(9*G);
+	}]
+	\pgfplotsinvokeforeach{0.9, 0.99, 0.999} {
+		\addplot [domain=0:1,samples=200] {p(x*R,#1*Mmax)/p(0,#1*Mmax)} node[pos=0.5, sloped, yshift=-8pt] {\scriptsize $M = #1 M_\text{max}$};
+	}
+\end{groupplot}
+\end{tikzpicture}
+\caption{Mass-radius relation $M(R)$ for stars of density $\epsilon_0 = 0.01$ compared to the maximum supported mass $M_\text{max}$ and pressure distribution $p(r)$ for particular stars with density $\epsilon_0=0.01$, radius $R=2$ and different masses $M$ approaching $M_\text{max}$.}
+\end{figure}
+
 \appendix
 
 \chapter{General relativity}
 \section{Summary of important quantities}
 \label{chap:gr_summary}
+
+TODO: derive from Einstein-Hilbert action?
 
 In general relativity, the geometry of spacetime is described by the \textbf{metric} $g\indices{_\mu_\nu}$ and the \textbf{line element}
 \begin{equation}
