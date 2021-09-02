@@ -206,7 +206,7 @@ Using $T\indices{^0_0} = -\epsilon$ and $T\indices{^1_1} = T\indices{^2_2} = T\i
 Now $\alpha$ is easily eliminated by equating \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:dadr2}. 
 Whichever approach we follow, we end up with the \textbf{Tolman-Oppenheimer-Volkow (TOV) equation}
 \begin{equation}
-	\diff{p}{r} = -\frac{(\epsilon+p) (G m(r) + 4 \pi G r^3 p)}{r (r - 2 G m(r))} .
+	\diff{p}{r} = -\frac{G m(r) \epsilon(r)}{r^2} \left( 1 + \frac{p(r)}{\epsilon(r)} \right) \left( 1 + \frac{4 \pi r^3 p(r)}{m(r)} \right) \left( 1 - \frac{2 G m(r)}{r} \right)^{-1} .
 	\label{eq:tov}
 \end{equation}
 It relates the pressure gradient $\diff{p}{r}$ and energy density $\epsilon$ at radius $r$ from the core of a spherical static star composed of a perfect fluid.
@@ -304,6 +304,27 @@ As shown in \cite[exercise 23.7]{ref:mtw} this is precisely the energy one gets 
 % https://physics.stackexchange.com/q/196280/299916
 % see MTW p. 602-, box at p. 603, p. 453
 % see Schwarz p. 126
+
+Newtonian pressure law: consider the element $\dif m = \epsilon(r) \dif A \dif r$ at radius $r$ spherical star.
+It is pulled upon by all the mass $m(r)$ inside the radius $r$, while the pull from the material outside $r$ vanishes due to spherical symmetry.
+Thus, its acted upon by the force $\dif F = G m(r) \dif m / r^2$.
+This force must be counteracted by the pressure difference,
+$\dif F = (p(r + \dif r) - p(r)) \dif A = (p + \dif p - p) \dif A = \dif p \dif A$.
+This gives
+\begin{equation}
+	\diff{p}{r} = -\frac{G m(r) \epsilon(r)}{r^2}
+	\label{eq:newtonian_pressure_gradient}
+\end{equation}
+Assume $G m(r) / r \ll 1$.
+Then for the star with uniform density $\epsilon_0$, $p(0) \simeq \frac{\epsilon_0}{2} \frac{G M}{R} \ll 1$.
+No star can have greater core pressure than this one (or something like this?).
+Also, for a star with non-increasing density $\epsilon(r)$,
+\begin{equation*}
+	\frac{r^3 p(r)}{m(r)} \leq \frac{r^3 p(r)}{\frac{4}{3} \pi r^3 \epsilon(r)}
+	                      =    \frac{3}{4 \pi} \frac{p(r)}{\epsilon(r)}
+						  \ll  1 .
+\end{equation*}
+In this limit, \cref{eq:tov} expands to \cref{eq:newtonian_pressure_gradient}.
 
 \section{Solution for an incompressible star}
 
