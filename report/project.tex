@@ -19,7 +19,7 @@
 \usepackage[labelfont=bf]{caption} % figure title in bold
 
 \usepackage{unicode-math} % make code display utf8 characters properly
-\usepackage[cache=false]{minted}
+\usepackage[cachedir=.cache_minted/]{minted}
 %\setmonofont{DejaVu Sans Mono} % will affect whole document, including URLs etc.
 \newfontfamily\codefont{DejaVu Sans Mono}[NFSSFamily=CodeFamily] % set mono font for minted code only
 \setminted{breaklines}
@@ -34,6 +34,10 @@
 \fancyhead[RE]{\leftmark}
 \fancyhead[LO]{\rightmark}
 \fancyfoot[CE,CO]{}
+
+\usepackage{tikz}
+\usetikzlibrary{external}
+\tikzexternalize[prefix=.cache_tikz/]
 
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.17}

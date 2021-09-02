@@ -1,4 +1,5 @@
 *.aux
+*.auxlock
 *.bbl
 *.bcf
 *.blg
@@ -11,4 +12,5 @@
 *.synctex.gz
 *.toc
 *.swp
-_minted-project
+.cache_minted
+.cache_tikz
