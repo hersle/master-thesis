@@ -1,0 +1,85 @@
+\appendix
+
+\chapter{General relativity}
+\section{Summary of important quantities}
+\label{chap:gr_summary}
+
+TODO: derive from Einstein-Hilbert action?
+
+In general relativity, the geometry of spacetime is described by the \textbf{metric} $g\indices{_\mu_\nu}$ and the \textbf{line element}
+\begin{equation}
+	\dif s^2 = g\indices{_\mu_\nu} \dif x^\mu \dif x^\nu .
+	\label{eq:def_line_elem}
+\end{equation}
+
+From the metric, we can construct the \textbf{Christoffel symbols}
+\begin{equation}
+	\Gamma^\sigma_{\mu \nu} = \frac{1}{2} g\indices{^\sigma^\epsilon} \left(
+		\partial\indices{_\mu} g\indices{_\nu_\epsilon} +
+		\partial\indices{_\nu} g\indices{_\epsilon_\mu} +
+		\partial\indices{_\epsilon} g\indices{_\mu_\nu}
+	\right) .
+	\label{eq:def_christoffel}
+\end{equation}
+
+They allow us to generalize the partial derivative of a contravariant vector $V^\nu$ or a covariant vector $V_\nu$ to the \textbf{covariant derivative}
+\begin{equation*}
+	\nabla_\mu V^\nu = \partial_\mu V^\nu + \Gamma_{\sigma \mu}^\nu V^\sigma
+	\qquad \text{or} \qquad
+	\nabla_\mu V_\nu = \partial_\mu V_\nu - \Gamma_{\nu \mu}^\sigma V_\sigma
+	.
+\end{equation*}
+For a general type $(r,s)$ tensor $T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s}$ (where we suppress the order of the indices),
+\begin{equation}
+\begin{split}
+	\nabla_\mu T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} &= \partial_\mu T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} \\
+	                                                                 &+ \Gamma^{\alpha_1}_{\sigma\mu} T^{\sigma \alpha_2 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} + \dots + \Gamma^{\alpha_r}_{\sigma\mu} T^{\alpha_1 \ldots \alpha_{r-1}\sigma}_{\beta_1 \ldots \beta_s} \\
+	                                                                 &- \Gamma^\sigma_{\beta_1 \mu} T^{\alpha_1 \ldots \alpha_r}_{\sigma \beta_2 \ldots \beta_s} - \cdots - \Gamma^\sigma_{\beta_s \mu} T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_{s-1} \sigma}.
+	\label{eq:def_cov_deriv}
+\end{split}
+\end{equation}
+\iffalse
+\begin{align}
+	\nabla_c T\indices{^{a_1 \ldots a_r}_{b_1 \ldots b_s}} &= \partial_c {T^{a_1 \ldots a_r}}_{b_1 \ldots b_s} \\
+	                                                       &+ \Gamma^{a_1}_{dc} T\indices{^{d a_2 \ldots a_r}_{b_1 \ldots b_s}} + \dots + \Gamma^{a_r}_{dc} T\indices{^{a_1 \ldots a_{r-1}d}_{b_1 \ldots b_s}} \\
+	                                                       &- {\Gamma^d}_{b_1 c} {T^{a_1 \ldots a_r}}_{d b_2 \ldots b_s} - \cdots - {\Gamma^d}_{b_s c} {T^{a_1 \ldots a_r}}_{b_1 \ldots b_{s-1} d}.
+	\label{eq:def_cov_deriv}
+\end{align}
+\fi
+That is, for each upper index $\alpha_i$, add $+\Gamma^{\alpha_i}_{\sigma \mu} T^{\alpha_1 \ldots \alpha_{i-1} \sigma \alpha_{i+1} \ldots \alpha_r}_{\beta_1 \ldots \beta_s}$,
+and for each lower index $\beta_i$, add $-\Gamma^{\sigma}_{\beta_i \mu} T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_{i-1} \sigma \beta_{i+1} \ldots \beta_s}$,
+As the name and notation suggests, $\nabla_\mu$ transforms covariantly, so the covariant derivative of a tensor is independent of coordinate system.
+
+The curvature of spacetime is expressed through the \textbf{Riemann curvature tensor}
+\begin{equation}
+	R\indices{^\epsilon_\sigma_\mu_\nu} =
+	\partial\indices{_\mu} \Gamma^\epsilon_{\nu \sigma} -
+	\partial\indices{_\nu} \Gamma^{\epsilon}_{\mu \sigma} +
+	\Gamma^\epsilon_{\mu \lambda} \Gamma^{\lambda}_{\nu \sigma} -
+	\Gamma^\epsilon_{\nu \lambda} \Gamma^{\lambda}_{\mu \sigma} .
+	\label{eq:def_riemann_tensor}
+\end{equation}
+
+The curvature tensor can be contracted to form the \textbf{Ricci tensor}
+\begin{equation}
+	R\indices{_\mu_\nu} = R\indices{^\lambda_\mu_\lambda_\nu},
+	\label{eq:def_ricci_tensor}
+\end{equation}
+whose trace is known as the \textbf{Ricci scalar}
+\begin{equation}
+	R = R\indices{^\mu_\mu} .
+	\label{eq:def_ricci_scalar}
+\end{equation}
+For more details, consult an introductory textbook on general relativity like \cite{ref:carroll}.
+
+\chapter{Code}
+
+\section{Derivation of the Tolman-Oppenheimer-Volkoff equation \texorpdfstring{\\}{} without using energy-momentum conservation}
+\label{sec:tov_cas_derivation}
+
+When deriving \cref{eq:tov} analytically, we made use of energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$ instead of substituting our results into the unused \cref{eq:einstein_to_tov:thetatheta}.
+Here, we do the latter in the computer algebra system SAGE.
+
+\inputminted{python}{../code/einstein_to_tov/ein.sage}
+
+The output matches \cref{eq:tov} precisely.

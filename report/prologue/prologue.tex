@@ -1,0 +1,23 @@
+\chapter*{Notation and conventions} % do not number
+\addcontentsline{toc}{chapter}{Notation and conventions} % but still display in TOC (see https://tex.stackexchange.com/a/222961)
+%\markboth{NOTATION AND CONVENTIONS}{} % but still display correct header (see https://tex.stackexchange.com/a/78090)
+
+\section*{Metric signature}
+
+We use the $(-,+,+,+)$ metric signature.
+
+\section*{Units}
+
+We use natural units in which the speed of light $c = 1$.
+
+\section*{Summation convention}
+
+We use the Einstein summation convention, in which an index that appears once as a superscript and again as a subscript in the same term is to be summed over.
+If the index is roman, the sum runs from $1$ to $3$, and if it is greek, it also runs over $0$.
+For example,
+\begin{equation*}
+	T\indices{^\mu_\mu} = \sum_{\mu=0}^3 T\indices{^\mu_\mu}
+	\quad \text{and} \quad
+	T\indices{^i_i} = \sum_{i=1}^3 T\indices{^i_i}
+	.
+\end{equation*}
