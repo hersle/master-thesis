@@ -18,7 +18,7 @@ Here, $G$ is the gravitational constant.
 
 Unless rotating very fast, stars are well approximated by spheres.
 For our purposes, we therefore consider the most general line element that exhibits spherical symmetry, namely \cite[§ 94-95]{ref:tolman}
-TODO: do more general with $\gamma(r)$, as done in Carroll?
+(TODO: do more general with $\gamma(r)$, as done in Carroll?)
 \begin{equation}
 	\dif s^2 = -e^{2 \alpha(r)} \dif t^2 + e^{2 \beta(r)} \dif r^2 + r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
 \end{equation}
@@ -79,11 +79,11 @@ Then \cref{eq:einstein_to_tov:tt} becomes
 \end{equation}
 directly relating $m(r)$ and $\epsilon(r)$.
 If we set $m(0) = 0$, we can integrate to get
-(TODO: can show this is required to make spacetime OK at $r=0$, see MTW chap. 23)
 \begin{equation}
-	m(r) = \integral{\epsilon(r') 4 \pi r'^2}{r'}{0}{r}
+	m(r) = \integral{\epsilon(r') 4 \pi r'^2}{r'}{0}{r} .
 	\label{eq:einstein_to_tov:m_integral}
 \end{equation}
+\cite[page 602]{ref:mtw} shows that setting $m(0) \neq 0$ creates a singularity at the origin, which is not physically acceptable.
 Outside a star that extends only to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_r_r} = (1-2GM/r)^{-1}$ and Schwarzschild mass $M$.
 By comparison with \cref{eq:einstein_to_tov:def_m}, the Schwarzschild mass of the star must be
 \begin{equation}
