@@ -1,8 +1,106 @@
 \appendix
 
 \chapter{General relativity}
+
+\section{Derivation of Einstein's field equations from Hilbert action}
+\label{sec:einstein_derivation}
+
+Hilbert action
+\begin{equation}
+	S = \int \dif^n x \sqrt{-g} R
+\end{equation}
+Will set $\variation{S} = \int \dif^n x \sqrt{-g} ( \ldots ) \variation{g^{\mu \nu}} = 0$.
+$g^{\mu \lambda} g_{\lambda \nu} = \delta^\mu_\nu$, so by the product rule
+\begin{equation}
+	\variation{g_{\mu \nu}} = -g_{\mu \rho} g_{\nu \sigma} \variation{g^{\rho \sigma}} ,
+\end{equation}
+meaning stationary points of upper/lower indices are the same.
+Using $R = R\indices{^\mu_\mu} = g^{\mu \nu} R_{\mu \nu}$ and varying the action, we get
+\begin{equation}
+\begin{split}
+	\variation{S} &= \int \dif^n x \sqrt{-g} g^{\mu \nu} \variation{R_{\mu \nu}} \\
+	              &+ \int \dif^n x \sqrt{-g} R_{\mu \nu} \variation{g^{\mu \nu}} \\
+	              &+ \int \dif^n x R \variation{\sqrt{-g}} \\
+\end{split}
+\end{equation}
+The Ricci tensor $R_{\mu \nu}$ is the contraction of the Riemann tensor
+\begin{equation}
+	R\indices{^\rho_\mu_\lambda_\nu} = \partial_\lambda \Gamma^{\rho}_{\nu \mu} + \Gamma^\rho_{\lambda \sigma} \Gamma^\sigma_{\nu \mu} - (\lambda \leftrightarrow \nu)
+\end{equation}
+The variation of the connection $\variation{\Gamma^\rho_{\nu \mu}}$ transforms as a tensor, since it is the difference between two connections (SOURCE).
+\begin{equation}
+	\nabla_\lambda \variation{\Gamma^\rho_{\nu \mu}} = \partial_\lambda \variation{\Gamma^\rho_{\nu \mu}} 
+	                                                 + \Gamma^\rho_{\lambda \sigma} \variation{\Gamma{^\sigma_{\nu \mu}}} 
+	                                                 - \Gamma^\sigma_{\lambda \nu} \variation{\Gamma{^\rho_{\sigma \mu}}} 
+	                                                 - \Gamma^\sigma_{\lambda \mu} \variation{\Gamma{^\rho_{\nu \sigma}}} 
+\end{equation}
+This gives
+\begin{equation}
+	\variation{R\indices{^\rho_\mu_\lambda_\nu}} = \nabla_\lambda \variation{\Gamma^\rho_{\nu \mu}}
+	                                             - \nabla_\nu \variation{\Gamma^\rho_{\lambda \mu}}
+\end{equation}
+With this, we get
+\begin{equation}
+\begin{split}
+	\variation{S}_1  = \int \dif^n x \sqrt{-g} g^{\mu \nu} \left( \nabla_\lambda \variation{\Gamma^\lambda_{\mu \nu}} - \nabla_\nu \variation{\Gamma^\lambda_{\lambda \mu}} \right) \\
+	                &= \int \dif^n x \sqrt{-g} \nabla_\sigma \left( g^{\mu \nu} \variation{\Gamma^\sigma_{\mu \nu}} - g^{\mu \sigma} \variation{\Gamma^\lambda_{\lambda \mu}} \right) \\
+\end{split}
+\end{equation}
+From definition of $\Gamma$ (DEF), we get
+\begin{equation}
+	\variation{\Gamma^\sigma_{\mu \nu}} = -\frac{1}{2} \left( 
+		g_{\lambda \mu} \nabla_\nu \variation{g^{\lambda \sigma}} +
+		g_{\lambda \nu} \nabla_\mu \variation{g^{\lambda \sigma}} -
+		g_{\mu \alpha} g_{\nu \beta} \nabla^\sigma \variation{g^{\alpha \beta}}
+	\right)
+\end{equation}
+With all of this, we get
+\begin{equation}
+	\variation{S}_1 = \int \dif^n x \sqrt{-g} \nabla_\sigma \left( g_{\mu \nu} \nabla^\sigma \variation{g^{\mu \nu}} - \nabla_\lambda \variation{g^{\sigma \lambda}} \right) = 0
+\end{equation}
+by Stokes theorem!
+
+Matrix identity:
+\begin{equation}
+	\log{\det{M}} = \trace{\log{M}}
+\end{equation}
+Variation of it gives
+\begin{equation}
+	\frac{\variation{\det{M}}}{\det{M}} = \trace{M^{-1} \variation{M}}
+\end{equation}
+Taking $M = g$, we get
+\begin{equation}
+	\variation{\sqrt{-g}} = \frac{-1}{2 \sqrt{-g}} \variation{g} = \frac{-1}{2} \sqrt{-g} g_{\mu \nu} \variation{g^{\mu \nu}}
+\end{equation}
+Thus, $\variation{S}_3 = \ldots$, and
+\begin{equation}
+	\variation{S} = \int \dif^n x \sqrt{-g} \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) \variation{g^{\mu \nu}} = 0
+\end{equation}
+gives Einstein's field equations in vacuum
+\begin{equation}
+	 R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 0
+\end{equation}
+
+To get Einstein's field equations in non-vacuum, we add a matter action $S_M$:
+\begin{equation}
+	S \rightarrow \frac{1}{16 \pi G} S + S_M
+\end{equation}
+where we normalize the action to get the right result.
+This gives
+\begin{equation}
+	\frac{1}{\sqrt{-g}} \frac{\variation{S}}{\variation{g^{\mu \nu}}} = \frac{1}{16 \pi G} \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) + \frac{1}{\sqrt{-g}} \frac{\variation{S_m}}{\variation{g^{\mu \nu}}} = 0
+\end{equation}
+Defining the energy-momentum tensor
+\begin{equation}
+	T_{\mu \nu} = \frac{-1}{2} \frac{1}{\sqrt{-g}} \frac{\variation{S_M}}{\variation{g^{\mu \nu}}} ,
+\end{equation}
+we get Einstein's field equations in non-vacuum,
+\begin{equation}
+	R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 8 \pi G T_{\mu \nu}
+\end{equation}
+
 \section{Summary of important quantities}
-\label{chap:gr_summary}
+\label{chap:gr_summary} % TODO: chap -> sec
 
 TODO: derive from Einstein-Hilbert action?
 
