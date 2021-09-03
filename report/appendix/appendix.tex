@@ -2,101 +2,176 @@
 
 \chapter{General relativity}
 
-\section{Derivation of Einstein's field equations from Hilbert action}
+\section{Derivation of the Einstein field equations from the principle of least action}
 \label{sec:einstein_derivation}
 
-Hilbert action
+Following \cite[section 4.3]{ref:carroll}, we will derive the Einstein field equations
 \begin{equation}
-	S = \int \dif^n x \sqrt{-g} R
+	R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 8 \pi G T_{\mu \nu}
 \end{equation}
-Will set $\variation{S} = \int \dif^n x \sqrt{-g} ( \ldots ) \variation{g^{\mu \nu}} = 0$.
-$g^{\mu \lambda} g_{\lambda \nu} = \delta^\mu_\nu$, so by the product rule
+from the principle of least action.
+We will postulate the action
+\begin{equation}
+	S[g_{\mu \nu}, \nabla_\sigma g_{\mu \nu}] = \int \dif^n x \lagr(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu})
+	                                          = \int \dif^n x \sqrt{-g} \hat{\lagr}(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu})
+\end{equation}
+that, when varied with respect to the metric $g_{\mu \nu}$ and subject to the principle of least action $\variation{S} = 0$, yields the Einstein field equations.
+As such a derivation is merely based on \emph{guessing} the correct action, it is not based on any physical first principles, so its consequences would ultimately have to be experimentally tested.
+Nevertheless, we will see that it is at the very least possible to narrow down the choice of action based on the selection of the quantities that are relevant for describing curved space.
+
+We postulate the \textbf{Hilbert action}
+\begin{equation}
+	S = \int \dif^n x \sqrt{-g} \, R .
+	\label{eq:einstein_derivation:hilbert_action}
+\end{equation}
+Had it been written directly in terms of the metric and its covariant derivatives, we could get the corresponding equation of motion by simply plugging it into the Euler-Lagrange equations
+\begin{equation}
+	\diffp{\hat{\lagr}}{\phi} - \nabla_\mu \left( \diffp{\hat{\lagr}}{{\nabla_\mu \phi}} \right) = 0 .
+\end{equation}
+But we are not that fortunate.
+Instead, we will vary it with respect to the metric and express it in the form 
+\begin{equation}
+	\variation{S} = \int \dif^n x \sqrt{-g} F(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu}) \, \variation{g^{\mu \nu}} = 0 .
+	\label{eq:einstein_derivation:action_form}
+\end{equation}
+Then we can conclude that the equation of motion is $F(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu}) = 0$.
+
+It may sound more natural to express the variation of the action in terms of the ordinary metric $g_{\mu \nu}$ instead of its inverse $g^{\mu \nu}$, like we did above.
+But since $g^{\mu \lambda} g_{\lambda \nu} = \delta^\mu_\nu$, varying both sides with the product rule gives
 \begin{equation}
 	\variation{g_{\mu \nu}} = -g_{\mu \rho} g_{\nu \sigma} \variation{g^{\rho \sigma}} ,
 \end{equation}
-meaning stationary points of upper/lower indices are the same.
-Using $R = R\indices{^\mu_\mu} = g^{\mu \nu} R_{\mu \nu}$ and varying the action, we get
+expressing the variations of the metric and its inverse in terms of each other.
+Thus, the stationary points are the same regardless of which one we vary with respect to.
+
+Using $R = R\indices{^\mu_\mu} = g^{\mu \nu} R_{\mu \nu}$ and varying the action \eqref{eq:einstein_derivation:hilbert_action} with the product rule, we get
 \begin{equation}
-\begin{split}
-	\variation{S} &= \int \dif^n x \sqrt{-g} g^{\mu \nu} \variation{R_{\mu \nu}} \\
-	              &+ \int \dif^n x \sqrt{-g} R_{\mu \nu} \variation{g^{\mu \nu}} \\
-	              &+ \int \dif^n x R \variation{\sqrt{-g}} \\
-\end{split}
+	\variation{S} = \underbrace{\int \dif^n x \sqrt{-g} g^{\mu \nu} \variation{R_{\mu \nu}}}_{\textstyle \variation{S}_1}
+	              + \underbrace{\int \dif^n x \sqrt{-g} R_{\mu \nu} \variation{g^{\mu \nu}}}_{\textstyle \variation{S}_2}
+	              + \underbrace{\int \dif^n x R \variation{\sqrt{-g}}                      }_{\textstyle \variation{S}_3}
+%\begin{split}
+%	                                                                                               \variation{S}_1 &= \int \dif^n x \sqrt{-g} g^{\mu \nu} \variation{R_{\mu \nu}} \\
+%	\variation{S} = \variation{S}_1 + \variation{S}_2 + \variation{S}_3 , \quad \text{where} \quad \variation{S}_2 &= \int \dif^n x \sqrt{-g} R_{\mu \nu} \variation{g^{\mu \nu}} \\
+%	                                                                                               \variation{S}_3 &= \int \dif^n x R \variation{\sqrt{-g}} \\
+%\end{split}
+%\begin{split}
+%	\variation{S} &= \int \dif^n x \sqrt{-g} g^{\mu \nu} \variation{R_{\mu \nu}} \\
+%	              &+ \int \dif^n x \sqrt{-g} R_{\mu \nu} \variation{g^{\mu \nu}} \\
+%	              &+ \int \dif^n x R \variation{\sqrt{-g}} \\
+%\end{split}
 \end{equation}
-The Ricci tensor $R_{\mu \nu}$ is the contraction of the Riemann tensor
-\begin{equation}
-	R\indices{^\rho_\mu_\lambda_\nu} = \partial_\lambda \Gamma^{\rho}_{\nu \mu} + \Gamma^\rho_{\lambda \sigma} \Gamma^\sigma_{\nu \mu} - (\lambda \leftrightarrow \nu)
-\end{equation}
-The variation of the connection $\variation{\Gamma^\rho_{\nu \mu}}$ transforms as a tensor, since it is the difference between two connections (SOURCE).
+The second term is already on the form \eqref{eq:einstein_derivation:action_form}, but we must work to bring $\variation{S}_1$ and $\variation{S}_3$ to the same form.
+
+% TODO: latex package glossary?
+
+Let us take care of $\variation{S}_1$ first.
+The Ricci tensor $R_{\mu \nu}$ is the contraction \eqref{eq:def_ricci_tensor} of the Riemann tensor \eqref{eq:def_riemann_tensor}.
+%\begin{equation}
+%	R\indices{^\rho_\mu_\lambda_\nu} = \partial_\lambda \Gamma^{\rho}_{\nu \mu} + \Gamma^\rho_{\lambda \sigma} \Gamma^\sigma_{\nu \mu} - (\lambda \leftrightarrow \nu)
+%\end{equation}
+To vary the Ricci tensor, we first need to vary the Christoffel symbols \eqref{eq:def_christoffel}.
+Although they do not transform as tensors \emph{themselves}, their \emph{variation} is the difference between two Christoffel symbols, which \emph{do} transform as a tensor.
+Using \cref{eq:def_cov_deriv}, it is therefore meaningful to take its covariant derivative
 \begin{equation}
 	\nabla_\lambda \variation{\Gamma^\rho_{\nu \mu}} = \partial_\lambda \variation{\Gamma^\rho_{\nu \mu}} 
 	                                                 + \Gamma^\rho_{\lambda \sigma} \variation{\Gamma{^\sigma_{\nu \mu}}} 
 	                                                 - \Gamma^\sigma_{\lambda \nu} \variation{\Gamma{^\rho_{\sigma \mu}}} 
-	                                                 - \Gamma^\sigma_{\lambda \mu} \variation{\Gamma{^\rho_{\nu \sigma}}} 
+	                                                 - \Gamma^\sigma_{\lambda \mu} \variation{\Gamma{^\rho_{\nu \sigma}}} .
+	\label{eq:einstein_derivation:christoffel_cov_deriv}
 \end{equation}
-This gives
+Taking the variation of the Riemann tensor \eqref{eq:def_riemann_tensor}, we get
+% TODO: do more intelligently by writing (\mu <-> \nu), etc.
+\begin{equation}
+	\variation{R\indices{^\rho_\sigma_\mu_\nu}} = \partial_\mu \variation{\Gamma^\rho_{\nu \sigma}}
+	                                            - \partial_\nu \variation{\Gamma^\rho_{\mu \sigma}}
+												+ (\variation{\Gamma^\rho_{\mu \lambda}}) \Gamma^\lambda_{\nu \sigma}
+												+ \Gamma^\rho_{\mu \lambda} (\variation{\Gamma^\lambda_{\nu \sigma})}
+												- (\variation{\Gamma^\rho_{\nu \lambda}}) \Gamma^\lambda_{\mu \sigma}
+												- \Gamma^\rho_{\nu \lambda} (\variation{\Gamma^\lambda_{\mu \sigma})}
+\end{equation}
+Flipping \cref{eq:einstein_derivation:christoffel_cov_deriv} around and substituting the expression for $\partial_\lambda \variation{\Gamma^\rho_{\nu \mu}}$ and using that the Christoffel symbols $\Gamma^\lambda_{\mu \nu} = \Gamma^\lambda_{\nu \mu}$ are symmetric in the lower indices, we are faced with an avalanche of cancellations, leaving only
 \begin{equation}
 	\variation{R\indices{^\rho_\mu_\lambda_\nu}} = \nabla_\lambda \variation{\Gamma^\rho_{\nu \mu}}
-	                                             - \nabla_\nu \variation{\Gamma^\rho_{\lambda \mu}}
+	                                             - \nabla_\nu \variation{\Gamma^\rho_{\lambda \mu}} .
+\end{equation}
+Thus, the variation of the Ricci tensor becomes
+\begin{equation}
+	\variation{R_{\mu \nu}} = \variation{R\indices{^\lambda_\mu_\lambda_\nu}} = \nabla_\lambda \variation{\Gamma^\lambda_{\nu \mu}}
+	                                                                          - \nabla_\nu \variation{\Gamma^\lambda_{\lambda \mu}} .
 \end{equation}
 With this, we get
 \begin{equation}
 \begin{split}
-	\variation{S}_1  = \int \dif^n x \sqrt{-g} g^{\mu \nu} \left( \nabla_\lambda \variation{\Gamma^\lambda_{\mu \nu}} - \nabla_\nu \variation{\Gamma^\lambda_{\lambda \mu}} \right) \\
-	                &= \int \dif^n x \sqrt{-g} \nabla_\sigma \left( g^{\mu \nu} \variation{\Gamma^\sigma_{\mu \nu}} - g^{\mu \sigma} \variation{\Gamma^\lambda_{\lambda \mu}} \right) \\
+	\variation{S}_1 &= \int \dif^n x \sqrt{-g} g^{\mu \nu} \left( \nabla_\lambda \variation{\Gamma^\lambda_{\mu \nu}} - \nabla_\nu \variation{\Gamma^\lambda_{\lambda \mu}} \right) \\
+	                &= \int \dif^n x \sqrt{-g} \nabla_\sigma \left( g^{\mu \nu} \variation{\Gamma^\sigma_{\mu \nu}} - g^{\mu \sigma} \variation{\Gamma^\lambda_{\lambda \mu}} \right) . \\
 \end{split}
 \end{equation}
-From definition of $\Gamma$ (DEF), we get
+To bring the metric variation of the metric into play, we vary the Christoffel symbols with respect to the metric using their definition \eqref{eq:def_christoffel}, giving
 \begin{equation}
 	\variation{\Gamma^\sigma_{\mu \nu}} = -\frac{1}{2} \left( 
 		g_{\lambda \mu} \nabla_\nu \variation{g^{\lambda \sigma}} +
 		g_{\lambda \nu} \nabla_\mu \variation{g^{\lambda \sigma}} -
 		g_{\mu \alpha} g_{\nu \beta} \nabla^\sigma \variation{g^{\alpha \beta}}
-	\right)
+	\right) .
 \end{equation}
-With all of this, we get
+Inserting this into our expression for $\variation{S}_1$, we get
 \begin{equation}
-	\variation{S}_1 = \int \dif^n x \sqrt{-g} \nabla_\sigma \left( g_{\mu \nu} \nabla^\sigma \variation{g^{\mu \nu}} - \nabla_\lambda \variation{g^{\sigma \lambda}} \right) = 0
+	\variation{S}_1 = \int \dif^n x \sqrt{-g} \nabla_\sigma \left( g_{\mu \nu} \nabla^\sigma \variation{g^{\mu \nu}} - \nabla_\lambda \variation{g^{\sigma \lambda}} \right).
 \end{equation}
-by Stokes theorem!
-
-Matrix identity:
+Our hard work will now pay off.
+By \textbf{Stokes theorem} \cite[equation 3.35]{ref:carroll}
 \begin{equation}
-	\log{\det{M}} = \trace{\log{M}}
+	\int_M \dif^n x \sqrt{\abs{g}} \nabla_\mu V^\mu = \int_{\partial M} \dif^{n-1} \sqrt{\abs{\gamma}} n_\mu V^\mu ,
 \end{equation}
-Variation of it gives
+our volume integral for $\variation{S}_1$ can be converted into a boundary integral.
+But the principle of least action asserts that there is no variation at the boundary, so
 \begin{equation}
-	\frac{\variation{\det{M}}}{\det{M}} = \trace{M^{-1} \variation{M}}
-\end{equation}
-Taking $M = g$, we get
-\begin{equation}
-	\variation{\sqrt{-g}} = \frac{-1}{2 \sqrt{-g}} \variation{g} = \frac{-1}{2} \sqrt{-g} g_{\mu \nu} \variation{g^{\mu \nu}}
-\end{equation}
-Thus, $\variation{S}_3 = \ldots$, and
-\begin{equation}
-	\variation{S} = \int \dif^n x \sqrt{-g} \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) \variation{g^{\mu \nu}} = 0
-\end{equation}
-gives Einstein's field equations in vacuum
-\begin{equation}
-	 R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 0
+	\variation{S}_1 = 0 !
 \end{equation}
 
+Let us now express $\variation{S}_3$ in terms of $\variation{g^{\mu \nu}}$.
+We will need the matrix identity
+\begin{equation}
+	\log{\det{M}} = \trace{\log{M}} .
+\end{equation}
+This is easy to prove for a diagonalizable matrix $M = P D P^{-1}$ with eigenvalues $D = \diag{\lambda_1, \lambda_2, \ldots}$ and determinant $\det(M) = \det(D) = \prod \lambda_i$.
+Using the properties $\det(AB) = \det(A) \det(B)$ and its immediate consequence $(\det{A^{-1}}) = (\det{A})^{-1}$, we find $\log(\det(M)) = \trace\log(D) = \trace\log(M)$.
+Varying both sides, we get (PROOF!)
+\begin{equation}
+	\frac{\variation{\det{M}}}{\det{M}} = \trace(M^{-1} \variation{M})
+\end{equation}
+Taking $M$ to be the metric $g$, we find
+\begin{equation}
+	\variation{\sqrt{-g}} = \frac{-\variation{g}}{2 \sqrt{-g}} = \frac{- \sqrt{-g} g_{\mu \nu}}{2} \variation{g^{\mu \nu}},
+\end{equation}
+so
+\begin{equation}
+	\variation{S}_3 = \int \dif^n x \sqrt{-g} \left( \frac{-1}{2} R g_{\mu \nu} \right) \variation{g^{\mu \nu}} .
+\end{equation}
+At last, we have brought the variation of the action to the form \cref{eq:einstein_derivation:action_form} with
+\begin{equation}
+	\variation{S} = \int \dif^n x \sqrt{-g} \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) \variation{g^{\mu \nu}} = 0 .
+\end{equation}
+Thus, we have found the \textbf{Einstein field equations in vacuum},
+\begin{equation}
+	 \frac{1}{\sqrt{-g}} \diffv{S}{g^{\mu \nu}} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 0 .
+\end{equation}
 To get Einstein's field equations in non-vacuum, we add a matter action $S_M$:
 \begin{equation}
 	S \rightarrow \frac{1}{16 \pi G} S + S_M
 \end{equation}
 where we normalize the action to get the right result.
-This gives
+Thus
 \begin{equation}
-	\frac{1}{\sqrt{-g}} \frac{\variation{S}}{\variation{g^{\mu \nu}}} = \frac{1}{16 \pi G} \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) + \frac{1}{\sqrt{-g}} \frac{\variation{S_m}}{\variation{g^{\mu \nu}}} = 0
+	\frac{1}{\sqrt{-g}} \diffv{S}{g^{\mu \nu}} \rightarrow \frac{1}{16 \pi G} \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) + \frac{1}{\sqrt{-g}} \frac{\variation{S_m}}{\variation{g^{\mu \nu}}} = 0
 \end{equation}
-Defining the energy-momentum tensor
+If we now \emph{define} the energy-momentum tensor
 \begin{equation}
 	T_{\mu \nu} = \frac{-1}{2} \frac{1}{\sqrt{-g}} \frac{\variation{S_M}}{\variation{g^{\mu \nu}}} ,
 \end{equation}
-we get Einstein's field equations in non-vacuum,
+we get \textbf{Einstein's field equations in non-vacuum},
 \begin{equation}
-	R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 8 \pi G T_{\mu \nu}
+	R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 8 \pi G T_{\mu \nu} .
 \end{equation}
 
 \section{Summary of important quantities}
@@ -112,10 +187,10 @@ In general relativity, the geometry of spacetime is described by the \textbf{met
 
 From the metric, we can construct the \textbf{Christoffel symbols}
 \begin{equation}
-	\Gamma^\sigma_{\mu \nu} = \frac{1}{2} g\indices{^\sigma^\epsilon} \left(
-		\partial\indices{_\mu} g\indices{_\nu_\epsilon} +
-		\partial\indices{_\nu} g\indices{_\epsilon_\mu} +
-		\partial\indices{_\epsilon} g\indices{_\mu_\nu}
+	\Gamma^\sigma_{\mu \nu} = \frac{1}{2} g\indices{^\sigma^\rho} \left(
+		\partial\indices{_\mu} g\indices{_\nu_\rho} +
+		\partial\indices{_\nu} g\indices{_\rho_\mu} -
+		\partial\indices{_\rho} g\indices{_\mu_\nu}
 	\right) .
 	\label{eq:def_christoffel}
 \end{equation}
@@ -150,11 +225,11 @@ As the name and notation suggests, $\nabla_\mu$ transforms covariantly, so the c
 
 The curvature of spacetime is expressed through the \textbf{Riemann curvature tensor}
 \begin{equation}
-	R\indices{^\epsilon_\sigma_\mu_\nu} =
-	\partial\indices{_\mu} \Gamma^\epsilon_{\nu \sigma} -
-	\partial\indices{_\nu} \Gamma^{\epsilon}_{\mu \sigma} +
-	\Gamma^\epsilon_{\mu \lambda} \Gamma^{\lambda}_{\nu \sigma} -
-	\Gamma^\epsilon_{\nu \lambda} \Gamma^{\lambda}_{\mu \sigma} .
+	R\indices{^\rho_\sigma_\mu_\nu} =
+	\partial\indices{_\mu} \Gamma^\rho_{\nu \sigma} -
+	\partial\indices{_\nu} \Gamma^{\rho}_{\mu \sigma} +
+	\Gamma^\rho_{\mu \lambda} \Gamma^{\lambda}_{\nu \sigma} -
+	\Gamma^\rho_{\nu \lambda} \Gamma^{\lambda}_{\mu \sigma} .
 	\label{eq:def_riemann_tensor}
 \end{equation}
 
