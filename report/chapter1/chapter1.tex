@@ -142,7 +142,7 @@ The TOV equation was originally derived by \cite{ref:tov} using multiple results
 
 % TODO: an incompressible star is unphysical
 
-Although it may sound unphysical from the outset, we can make a somewhat realistic model of a star by assuming that the fluid is incompressible, meaning the density
+Although it may sound unphysical from the outset, we can make a somewhat realistic model of a star by assuming that the fluid is incompressible, meaning the energy density
 \begin{equation}
 	\epsilon(r) = \epsilon_0
 \end{equation}
@@ -155,7 +155,7 @@ Anyway, integrating \cref{eq:einstein_to_tov:m_integral,eq:einstein_to_tov:schwa
 	M = m(R) = \frac{4}{3} \pi R^3 \epsilon_0 
 	.
 \end{equation}
-Inserting the density $\epsilon(r)$ and mass $m(r)$ into \cref{eq:tov}, $p$ and $r$ separate, giving
+Inserting the energy density $\epsilon(r)$ and mass $m(r)$ into \cref{eq:tov}, $p$ and $r$ separate, giving
 \begin{equation*}
 	\int \frac{\dif p}{(\epsilon_0+p)(\epsilon_0+3p)} = - \int \frac{4 \pi G r \dif r}{3-8\pi G r^2 \epsilon_0} .
 \end{equation*}
@@ -189,11 +189,11 @@ This is an example of a more general result -- \textbf{Buchdal's theorem} states
 	M < \frac{4R}{9G}
 	\label{eq:incompressible_star:buchdal}
 \end{equation}
-for any density distribution $\epsilon(r)$ that does not decrease outwards. \cite{ref:buchdal}
+for any energy density distribution $\epsilon(r)$ that does not decrease outwards. \cite{ref:buchdal}
 The proof requires careful work, but we can still understand the result intuitively.
-An object with a mass distribution that somehow satures the limit set by nature itself should have the same density everywhere.
+An object with a mass-energy distribution that somehow satures the limit set by nature itself should have the same density everywhere.
 If it does not, there will be a place with lower density than its surroundings, which in turn will generate a pressure gradient force that seeks to establish equilibrium by eliminating the difference in density.
-Thus, the bound we have found in our computation with constant density should be the most extreme bound.
+Thus, the bound we have found in our computation with constant energy density should be the most extreme bound.
 
 \begin{figure}[hb!]
 \centering
@@ -336,7 +336,7 @@ Setting $\dif \textbf{F}_1 + \dif \textbf{F}_2 = 0$ gives the \textbf{Newtonian 
 \end{equation}
 We recover this result from the relativistic TOV equation \eqref{eq:tov} if all the expressions inside the parentheses are close to $1$.
 The third parenthesis is close to $1$ due to the small parameter \eqref{eq:weak_field_limit:small_gmr}.
-In \cref{sec:incompressible_star}, we argued that a star with constant density $\epsilon_0$ is the one that can withstand the most extreme pressure.
+In \cref{sec:incompressible_star}, we argued that a star with constant energy density $\epsilon_0$ is the one that can withstand the most extreme pressure.
 Taylor expanding the central pressure \eqref{eq:incompressible_star:central_pressure} around \eqref{eq:weak_field_limit:small_gmr} evaluated at $r=R$ gives
 \begin{equation}
 	p(0) \simeq \frac{\epsilon_0}{2} \frac{G M}{R}.
@@ -346,7 +346,7 @@ Generalizing this result to other stars that cannot withstand such pressures, we
 	\frac{p}{\epsilon} \ll 1 .
 \end{equation}
 Thus, the first parenthesis of \cref{eq:tov} is also close to $1$.
-Finally, for a star with non-increasing density $\epsilon(r)$ away from the center $r=0$ -- which we deemed to be the only physical type of stars in \cref{sec:incompressible_star} -- we can pull the minimum density $\epsilon(r)$ outside the integral \eqref{eq:einstein_to_tov:m_integral} to get $m(r) \geq \frac{4}{3} \pi r^3 \epsilon(r)$, so
+Finally, for a star with non-increasing energy density $\epsilon(r)$ away from the center $r=0$ -- which we deemed to be the only physical type of stars in \cref{sec:incompressible_star} -- we can pull the minimum density $\epsilon(r)$ outside the integral \eqref{eq:einstein_to_tov:m_integral} to get $m(r) \geq \frac{4}{3} \pi r^3 \epsilon(r)$, so
 \begin{equation*}
 	\frac{r^3 p(r)}{m(r)} \leq    \frac{r^3 p(r)}{\frac{4}{3} \pi r^3 \epsilon(r)}
 	                      \propto \frac{p(r)}{\epsilon(r)}
