@@ -283,7 +283,7 @@ Calculating the relevant Christoffel symbols to first order in $h$, we find $\Ga
 	\quad \text{with spatial components} \quad
 	\diff[2]{x^i}{t} = \frac{1}{2} \partial_i h\indices{_t_t} .
 \end{equation*}
-This is precisely \cref{eq:interpretation_m:newton2} if we identify $h\indices{_t_t} = -2 V$, or $g\indices{_t_t} = -(1+2V)$, so a weak relativistic gravitational field $g\indices{_\mu_\nu} = \eta\indices{_\mu_\nu} + h\indices{_\mu_\nu}$ in fact describes classical motion in the classical gravitational potential $V = -\frac{1}{2} h\indices{_t_t}$!
+This is precisely \cref{eq:interpretation_m:newton2} if we identify $h\indices{_t_t} = -2 V$, or $g\indices{_t_t} = -(1+2V)$, so a weak relativistic gravitational field $g\indices{_\mu_\nu} = \eta\indices{_\mu_\nu} + h\indices{_\mu_\nu}$ in fact describes Newtonian motion in the gravitational potential $V = -\frac{1}{2} h\indices{_t_t}$!
 Moreover, the Schwarzschild metric has the element
 \begin{equation}
 	g\indices{_t_t} = - \left( 1 - \frac{2 G M}{r} \right)
@@ -324,7 +324,7 @@ This explains that $\bar{M} - M$ is indeed the binding energy that would be requ
 % see Schwarz p. 126
 
 Finally, we will verify that the TOV equation \eqref{eq:tov} reduces to the equivalent pressure gradient from Newtonian gravity.
-Consider the element $\dif m = \epsilon(r) \dif A \dif r$ at distance $r$ from the center of a classical star.
+Consider the element $\dif m = \epsilon(r) \dif A \dif r$ at distance $r$ from the center of a Newtonian star.
 By Gauss' law it is attracted to the mass $m(r)$ inside the radius $r$ as if it were concentrated at the center, but experiences no attraction whatsoever from the remaining mass outside $r$ due to symmetry.
 By Newton's law of gravity it is therefore pulled upon by the gravitational force
 \begin{equation}
@@ -337,7 +337,7 @@ If the star is in hydrostatic equilibrium, this force must be exactly cancelled 
 	\label{eq:weak_field_limit:force_pressure}
 \end{equation}
 arising from the pressue difference above and below the element.
-Setting $\dif \textbf{F}_1 + \dif \textbf{F}_2 = 0$ gives the \textbf{classical pressure gradient}
+Setting $\dif \textbf{F}_1 + \dif \textbf{F}_2 = 0$ gives the \textbf{Newtonian pressure gradient}
 \begin{equation}
 	\diff{p}{r} = -\frac{G m(r) \epsilon(r)}{r^2} .
 	\label{eq:weak_field_limit:newtonian_pressure_gradient}
@@ -361,4 +361,4 @@ Finally, for a star with non-increasing density $\epsilon(r)$ away from the core
 						  \ll  1 ,
 \end{equation*}
 so the second parenthesis of \cref{eq:tov} is also close to $1$.
-Thus, we do indeed recover the classical pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient} in the classical limit of \cref{eq:tov}.
+Thus, we do indeed recover the Newtonian pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient} in the Newtonian limit of \cref{eq:tov}.
