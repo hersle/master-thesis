@@ -122,7 +122,7 @@ Whichever approach we follow, we end up with the \textbf{Tolman-Oppenheimer-Volk
 	\diff{p}{r} = -\frac{G m(r) \epsilon(r)}{r^2} \left( 1 + \frac{p(r)}{\epsilon(r)} \right) \left( 1 + \frac{4 \pi r^3 p(r)}{m(r)} \right) \left( 1 - \frac{2 G m(r)}{r} \right)^{-1} .
 	\label{eq:tov}
 \end{equation}
-It relates the pressure gradient $\diff{p}{r}$ and energy density $\epsilon$ at radius $r$ from the core of a spherical static star composed of a perfect fluid.
+It relates the pressure gradient $\diff{p}{r}$ and energy density $\epsilon$ at radius $r$ from the center of a spherical static star composed of a perfect fluid.
 \Cref{eq:einstein_to_tov:m_rho,eq:tov} constitute two equations for the three unknowns $p$, $\epsilon$ and $m$.
 To determine them, an additional equation of state like
 \begin{equation}
@@ -131,9 +131,9 @@ To determine them, an additional equation of state like
 	\epsilon = \epsilon(p)
 \end{equation}
 is required, typically obtained from the domain of thermodynamics and statistical physics.
-Given all three equations and the core pressure $p(0)$, we can integrate to find the pressure everywhere inside the star.
+Given all three equations and the central pressure $p(0)$, we can integrate to find the pressure everywhere inside the star.
 We define the radius of the star to be the radius $R$ at which $p(R) = 0$.
-Carrying out this procedure for different values of $p(0)$, we can find a mass-radius relation $M(R)$ for stars parametrized by their core pressure $p(0)$.
+Carrying out this procedure for different values of $p(0)$, we can find a mass-radius relation $M(R)$ for stars parametrized by their central pressure $p(0)$.
 
 The TOV equation was originally derived by \cite{ref:tov} using multiple results from \cite{ref:tolman}.
 
@@ -183,7 +183,7 @@ and applying the boundary condition $p(R) = 0$ to determine the integration cons
 In particular, the central pressure is
 \begin{equation}
 	p(0) = \epsilon_0 \frac{1 - \sqrt{1 - \frac{2GM}{R}}}{3 \sqrt{1-\frac{2GM}{R}} - 1} .
-	\label{eq:incompressible_star:core_pressure}
+	\label{eq:incompressible_star:central_pressure}
 \end{equation}
 It is interesting to note that the pressure is positive for $M < 4R/9G$, but blows up at $M = 4R/9G$ and becomes negative for $M > 4R/9G$.
 Physically, this means that once a star with fixed radius becomes massive enough, it implodes and turns into a black hole.
@@ -340,7 +340,7 @@ Setting $\dif \textbf{F}_1 + \dif \textbf{F}_2 = 0$ gives the \textbf{Newtonian 
 We recover this result from the relativistic TOV equation \eqref{eq:tov} if all the expressions inside the parentheses are close to $1$.
 The third parenthesis is close to $1$ due to the small parameter \eqref{eq:weak_field_limit:small_gmr}.
 In \cref{sec:incompressible_star}, we argued that a star with constant density $\epsilon_0$ is the one that can withstand the most extreme pressure.
-Taylor expanding the core pressure \eqref{eq:incompressible_star:core_pressure} around \eqref{eq:weak_field_limit:small_gmr} evaluated at $r=R$ gives
+Taylor expanding the central pressure \eqref{eq:incompressible_star:central_pressure} around \eqref{eq:weak_field_limit:small_gmr} evaluated at $r=R$ gives
 \begin{equation}
 	p(0) \simeq \frac{\epsilon_0}{2} \frac{G M}{R}.
 \end{equation}
@@ -349,7 +349,7 @@ Generalizing this result to other stars that cannot withstand such pressures, we
 	\frac{p}{\epsilon} \ll 1 .
 \end{equation}
 Thus, the first parenthesis of \cref{eq:tov} is also close to $1$.
-Finally, for a star with non-increasing density $\epsilon(r)$ away from the core $r=0$ -- which we deemed to be the only physical type of stars in \cref{sec:incompressible_star} -- we can pull the minimum density $\epsilon(r)$ outside the integral \eqref{eq:einstein_to_tov:m_integral} to get $m(r) \geq \frac{4}{3} \pi r^3 \epsilon(r)$, so
+Finally, for a star with non-increasing density $\epsilon(r)$ away from the center $r=0$ -- which we deemed to be the only physical type of stars in \cref{sec:incompressible_star} -- we can pull the minimum density $\epsilon(r)$ outside the integral \eqref{eq:einstein_to_tov:m_integral} to get $m(r) \geq \frac{4}{3} \pi r^3 \epsilon(r)$, so
 \begin{equation*}
 	\frac{r^3 p(r)}{m(r)} \leq    \frac{r^3 p(r)}{\frac{4}{3} \pi r^3 \epsilon(r)}
 	                      \propto \frac{p(r)}{\epsilon(r)}
