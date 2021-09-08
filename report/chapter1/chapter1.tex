@@ -142,21 +142,17 @@ The TOV equation was originally derived by \cite{ref:tov} using multiple results
 
 % TODO: an incompressible star is unphysical
 
-Although it may sound unphysical from the outset, we can make a somewhat realistic model of a star by assuming that the fluid is incompressible, meaning the density is constant everywhere inside the star,
+Although it may sound unphysical from the outset, we can make a somewhat realistic model of a star by assuming that the fluid is incompressible, meaning the density
 \begin{equation}
-	\epsilon(r) = 
-	\begin{cases} 
-		\epsilon_0 & (r < R)   \\
-		0          & (r > R) . \\
-	\end{cases}
+	\epsilon(r) = \epsilon_0
 \end{equation}
-Integrating \cref{eq:einstein_to_tov:m_integral} gives the mass
+is constant inside the star.
+Integrating \cref{eq:einstein_to_tov:m_integral,eq:einstein_to_tov:schwarzschild_mass} yield the masses
 \begin{equation}
-	m(r) = 
-	\begin{cases}
-		\frac{4}{3} \pi r^3 \epsilon_0     & (r < R)   \\
-		\frac{4}{3} \pi R^3 \epsilon_0 = M & (r > R) . \\
-	\end{cases}
+	m(r) = \frac{4}{3} \pi r^3 \epsilon_0 
+	\quad \text{and} \quad
+	M = m(R) = \frac{4}{3} \pi R^3 \epsilon_0 
+	.
 \end{equation}
 Inserting the density $\epsilon(r)$ and mass $m(r)$ into \cref{eq:tov}, $p$ and $r$ separate, giving
 \begin{equation*}
