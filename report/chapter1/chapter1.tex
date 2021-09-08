@@ -186,22 +186,17 @@ In particular, the central pressure is
 	\label{eq:incompressible_star:core_pressure}
 \end{equation}
 It is interesting to note that the pressure is positive for $M < 4R/9G$, but blows up at $M = 4R/9G$ and becomes negative for $M > 4R/9G$.
-Physically, this means that once a star with fixed radius becomes massive enough, it implodes and turns into a black hole (?).
-This is an example of a more general result -- \textbf{Buchdal's theorem} states that all static spherical stars composed of perfect fluid must have $M < 4R/9G$ for any density distribution $\epsilon(r)$ that does not decrease outwards. \cite{ref:buchdal}
-The proof requires careful work, but we can still understand it intuitively by arguing that an object that saturates nature's law on distribution of mass, then that object must distribute the same density everywhere -- otherwise there would always be a ``hole'' available to fill without breaking the barrier.
-
-\iffalse
-Let $\epsilon_0$ and $p_0$ be free variables.
-Solving $p(0) = p_0$ and $M=\frac{4}{3} \pi R^3 \epsilon_0$ for $R$ and $M$, we get
+Physically, this means that once a star with fixed radius becomes massive enough, it implodes and turns into a black hole.
+This is an example of a more general result -- \textbf{Buchdal's theorem} states that all static spherical stars composed of perfect fluids must have
 \begin{equation}
-	R = \sqrt{\frac{3}{4 \pi}} \sqrt{\frac{p_0}{(\epsilon_0 + 3 p_0) \epsilon_0 G}}
-	\quad \text{and} \quad
-	M = \frac{4}{3} \pi R^3 \epsilon_0
+	M < \frac{4R}{9G}
+	\label{eq:incompressible_star:buchdal}
 \end{equation}
-\begin{equation}
-	M(R) = -\frac{4 \pi R^3}{3} \frac{3 \sqrt{1-\frac{2GM}{R}} + 1}{\sqrt{1-\frac{2GM}{R}} + 1} p_0
-\end{equation}
-\fi
+for any density distribution $\epsilon(r)$ that does not decrease outwards. \cite{ref:buchdal}
+The proof requires careful work, but we can still understand the result intuitively.
+An object with a mass distribution that somehow satures the limit set by nature itself should have the same density everywhere.
+If it does not, there will be a place with lower density than its surroundings, which in turn will generate a pressure gradient force that seeks to establish equilibrium by eliminating the difference in density.
+Thus, the bound we have found in our computation with constant density should be the most extreme bound.
 
 \begin{figure}[hb!]
 \centering
