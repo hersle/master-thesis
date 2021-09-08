@@ -387,6 +387,12 @@ Third, for a star with non-increasing energy density $\epsilon(r)$ away from the
 \end{equation*}
 by \cref{eq:weak_field_limit:small1}, and the middle correction in \cref{eq:tov} also vanishes.
 
-Thus, we do indeed recover the Newtonian pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient} from the relativistic pressure gradient \eqref{eq:tov} in the Newtonian limit.
-
-(TODO: $c = \infty$ argument)
+Thus, we do indeed recover the Newtonian pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient} from the relativistic pressure gradient \eqref{eq:tov} in the Newtonian limit!
+In fact, there is an alternative way to see it.
+If we restore units with $c \neq 1$ to \cref{eq:tov}, it becomes
+\begin{equation}
+	\diff{p}{r} = -\frac{G m(r) \epsilon(r)}{r^2} \left( 1 + \frac{p(r)}{\epsilon(r) c^2} \right) \left( 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right) \left( 1 - \frac{2 G m(r)}{r c^2} \right)^{-1} .
+	\label{eq:tov_units}
+\end{equation}
+The Newtonian limit corresponds to sending $c \rightarrow \infty$, as this reduces the Lorentz transformations of relativity to the Galilei transformations of Newtonian physics.
+But sending $c \rightarrow \infty$ kills all corrections in the three parentheses of \cref{eq:tov_units}, which restores the Newtonian pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient}!
