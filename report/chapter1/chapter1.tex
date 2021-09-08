@@ -84,7 +84,7 @@ If we set $m(0) = 0$, we can integrate to get
 	\label{eq:einstein_to_tov:m_integral}
 \end{equation}
 \cite[page 602]{ref:mtw} shows that setting $m(0) \neq 0$ creates a singularity at the origin, which is not physically acceptable.
-Outside a star that extends only to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_r_r} = (1-2GM/r)^{-1}$ and Schwarzschild mass $M$.
+Outside a star that extends to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_r_r} = (1-2GM/r)^{-1}$ and Schwarzschild mass $M$.
 By comparison with \cref{eq:einstein_to_tov:def_m}, the Schwarzschild mass of the star must be
 \begin{equation}
 	M = m(R) = \integral{\epsilon(r) 4 \pi r^2}{r}{0}{R} .
@@ -92,7 +92,7 @@ By comparison with \cref{eq:einstein_to_tov:def_m}, the Schwarzschild mass of th
 \end{equation}
 It is tempting to interpret \eqref{eq:einstein_to_tov:schwarzschild_mass} as the Newtonian mass of the star and \eqref{eq:einstein_to_tov:m_integral} as the volume integral of the energy density $\epsilon(r)$.
 But $4 \pi r^2$ is not a proper volume element, as it does not involve the full spatial metric determinant.
-We returns to this question in \cref{sec:weak_field_limit} after studying the incompressible star in \cref{sec:incompressible_star}, where we will see that the first interpretation is correct, while the latter is more subtle and differs by the binding energy of the star.
+We return to this question in \cref{sec:weak_field_limit} after studying incompressible stars in \cref{sec:incompressible_star}, where we will see that the first interpretation is correct, while the latter is more subtle and differs by the binding energy of the star.
 
 Meanwhile, definition \eqref{eq:einstein_to_tov:def_m} turns \cref{eq:einstein_to_tov:rr} into
 \begin{equation}
@@ -158,7 +158,7 @@ Integrating \cref{eq:einstein_to_tov:m_integral} gives the mass
 		\frac{4}{3} \pi R^3 \epsilon_0 = M & (r > R) . \\
 	\end{cases}
 \end{equation}
-Inserting the inner density and mass into \cref{eq:tov}, $p$ and $r$ separate, giving
+Inserting the density $\epsilon(r)$ and mass $m(r)$ into \cref{eq:tov}, $p$ and $r$ separate, giving
 \begin{equation*}
 	\int \frac{\dif p}{(\epsilon_0+p)(\epsilon_0+3p)} = - \int \frac{4 \pi G r \dif r}{3-8\pi G r^2 \epsilon_0} .
 \end{equation*}
@@ -172,7 +172,7 @@ Performing the integrals using
 	\quad \text{and} \quad
 	\int \frac{x \dif x}{a + b x^2} = +\frac{1}{2 b} \log \left( a + b x^2 \right) + C
 \end{equation*}
-and applying the boundary condition $p(R) = 0$ to determine the integration constant, we eventually find the radial pressure distribution
+and applying the boundary condition $p(R) = 0$ to determine the integration constant, we eventually find the radial pressure
 \begin{equation}
 	% p(r) in terms of M, R, 
 	p(r) = \epsilon_0 \, \frac{\sqrt{1-\frac{2GMr^2}{R^3}} - \sqrt{1-\frac{2GM}{R}}}{3 \sqrt{1-\frac{2GM}{R}} - \sqrt{1-\frac{2GMr^2}{R^3}}} .
@@ -180,14 +180,14 @@ and applying the boundary condition $p(R) = 0$ to determine the integration cons
 	%p(r) = -\frac{M}{\frac{4}{3} \pi R^3} \frac{4 \pi R^{3} p_0 \left( \frac{1}{3} + \sqrt{1-\frac{2GMr^2}{R^3}} \right) + M \left( 1 + \sqrt{1-\frac{2GMr^2}{R^3}} \right)}
 	%                                           {4 \pi R^{3} p_0 \left( 1           + \sqrt{1-\frac{2GMr^2}{R^3}} \right) + M \left( 3 + \sqrt{1-\frac{2GMr^2}{R^3}} \right)}
 \end{equation}
-In particular, the core pressure is
+In particular, the central pressure is
 \begin{equation}
 	p(0) = \epsilon_0 \frac{1 - \sqrt{1 - \frac{2GM}{R}}}{3 \sqrt{1-\frac{2GM}{R}} - 1} .
 	\label{eq:incompressible_star:core_pressure}
 \end{equation}
 It is interesting to note that the pressure is positive for $M < 4R/9G$, but blows up at $M = 4R/9G$ and becomes negative for $M > 4R/9G$.
 Physically, this means that once a star with fixed radius becomes massive enough, it implodes and turns into a black hole (?).
-This is an example of a more general result -- \textbf{Buchdal's theorem} states that all static spherical stars composed of a perfect fluids must have $M < 4R/9G$ for any density distribution $\epsilon(r)$ that does not decrease outwards. \cite{ref:buchdal}
+This is an example of a more general result -- \textbf{Buchdal's theorem} states that all static spherical stars composed of perfect fluid must have $M < 4R/9G$ for any density distribution $\epsilon(r)$ that does not decrease outwards. \cite{ref:buchdal}
 The proof requires careful work, but we can still understand it intuitively by arguing that an object that saturates nature's law on distribution of mass, then that object must distribute the same density everywhere -- otherwise there would always be a ``hole'' available to fill without breaking the barrier.
 
 \iffalse
@@ -292,7 +292,7 @@ Moreover, the Schwarzschild metric has the element
 	\label{eq:weak_field_limit:schwarzschild_metric_tt}
 \end{equation}
 and $V = -\frac{1}{2} h\indices{_t_t} = -G M / r$ is precisely the solution to Poisson's equation \eqref{eq:interpretation_m:poisson} for a spherical mass distribution, so general relativity does indeed describe Newtonian gravity in the weak-field limit!
-In conclusion, this shows that it does indeed make sense to interpret the Schwarzschild mass $M$ as the Newtonian mass of a star, as masses of distant stars are typically measured with Kepler's third law that follows from Newtonian gravity. \cite[box 23.1]{ref:mtw}
+In conclusion, this shows that it does make sense to interpret the Schwarzschild mass $M$ as the Newtonian mass of a star, as masses of distant stars are typically measured with Kepler's third law that follows from Newtonian gravity. \cite[box 23.1]{ref:mtw}
 
 From the looks of \cref{eq:einstein_to_tov:schwarzschild_mass}, it is very tempting to also interpret $M$ as the volume integral of the energy density over the star.
 But $4 \pi r^2 \dif r$ is not a proper volume element.
@@ -325,8 +325,8 @@ This explains that $\bar{M} - M$ is indeed the binding energy that would be requ
 
 Finally, we will verify that the TOV equation \eqref{eq:tov} reduces to the equivalent pressure gradient from Newtonian gravity.
 Consider the element $\dif m = \epsilon(r) \dif A \dif r$ at distance $r$ from the center of a classical star.
-By Gauss' law it is attracted to the mass $m(r)$ inside the radius $r$ as if it was concentrated at the center, but experiences no attraction whatsoever from the remaining mass outside $r$.
-By Newton's law of gravity, it is therefore pulled upon by the gravitational force 
+By Gauss' law it is attracted to the mass $m(r)$ inside the radius $r$ as if it were concentrated at the center, but experiences no attraction whatsoever from the remaining mass outside $r$ due to symmetry.
+By Newton's law of gravity it is therefore pulled upon by the gravitational force
 \begin{equation}
 	\dif \mathbf{F}_1 = \frac{G m(r) \dif m}{r^2} \hat{\textbf{r}} .
 	\label{eq:weak_field_limit:force_newton}
