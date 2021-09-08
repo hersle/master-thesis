@@ -176,6 +176,7 @@ and applying the boundary condition $p(R) = 0$ to determine the integration cons
 	% p(r) in terms of p0, M, R
 	%p(r) = -\frac{M}{\frac{4}{3} \pi R^3} \frac{4 \pi R^{3} p_0 \left( \frac{1}{3} + \sqrt{1-\frac{2GMr^2}{R^3}} \right) + M \left( 1 + \sqrt{1-\frac{2GMr^2}{R^3}} \right)}
 	%                                           {4 \pi R^{3} p_0 \left( 1           + \sqrt{1-\frac{2GMr^2}{R^3}} \right) + M \left( 3 + \sqrt{1-\frac{2GMr^2}{R^3}} \right)}
+	\label{eq:incompressible_star:pressure}
 \end{equation}
 In particular, the central pressure is
 \begin{equation}
@@ -194,6 +195,8 @@ The proof requires careful work, but we can still understand the result intuitiv
 An object with a mass-energy distribution that somehow satures the limit set by nature itself should have the same density everywhere.
 If it does not, there will be a place with lower density than its surroundings, which in turn will generate a pressure gradient force that seeks to establish equilibrium by eliminating the difference in density.
 Thus, the bound we have found in our computation with constant energy density should be the most extreme bound.
+
+In \cref{sec:weak_field_limit} we will see that Buchdal's mass-radius bound is a relativistic result and that no such bound arises from Newtonian gravity.
 
 \begin{figure}[hb!]
 \centering
@@ -315,6 +318,8 @@ This explains that $\bar{M} - M$ is indeed the binding energy that would be requ
 % see MTW p. 602-, box at p. 603, p. 453
 % see Schwarz p. 126
 
+(TODO: in the Newtonian case, the density is mass density and not energy density -- clarify this!)
+
 Finally, we will verify that the TOV equation \eqref{eq:tov} reduces to the equivalent pressure gradient from Newtonian gravity.
 Consider the element $\dif m = \epsilon(r) \dif A \dif r$ at distance $r$ from the center of a Newtonian star.
 By Gauss' law it is attracted to the mass $m(r)$ inside the radius $r$ as if it were concentrated at the center, but experiences no attraction whatsoever from the remaining mass outside $r$ due to symmetry.
@@ -340,6 +345,7 @@ In \cref{sec:incompressible_star}, we argued that a star with constant energy de
 Taylor expanding the central pressure \eqref{eq:incompressible_star:central_pressure} around \eqref{eq:weak_field_limit:small_gmr} evaluated at $r=R$ gives
 \begin{equation}
 	p(0) \simeq \frac{\epsilon_0}{2} \frac{G M}{R}.
+	\label{eq:weak_field_limit:central_pressure_newtonian}
 \end{equation}
 Generalizing this result to other stars that cannot withstand such pressures, we conclude that
 \begin{equation}
@@ -354,3 +360,16 @@ Finally, for a star with non-increasing energy density $\epsilon(r)$ away from t
 \end{equation*}
 so the second parenthesis of \cref{eq:tov} is also close to $1$.
 Thus, we do indeed recover the Newtonian pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient} in the Newtonian limit of \cref{eq:tov}.
+
+Finally, let us examine whether Newtonian gravity enforces any limitations on masses and radii of stars, like the Buchdal bound \eqref{eq:incompressible_star:buchdal}.
+Solving the Newtonian equation \eqref{eq:weak_field_limit:newtonian_pressure_gradient} for a star of constant mass density $\epsilon(r) = \epsilon_0$ like we solved the TOV equation \eqref{eq:tov} in \cref{sec:incompressible_star}, we get the pressures
+\begin{equation}
+	p(r) = \frac{\epsilon_0}{2} \frac{G M}{R} \left( 1 + \frac{r}{R} \right) \left( 1 - \frac{r}{R} \right)
+	\quad \text{and} \quad
+	p(0) = \frac{\epsilon_0}{2} \frac{GM}{R} .
+\end{equation}
+This is exactly the Taylor expansion of the relativistic pressure \eqref{eq:incompressible_star:pressure}, as we would expect -- the solution of a Taylor expanded differential equation should be the same as the Taylor expansion of the solution to a differential equation.
+In this case, the pressure is well-behaved for all $r$.
+This shows that the Buchdal mass-radius bound is a purely relativistic result, and that no such limitation arises in Newtonian gravity!
+
+(TODO: merge this Newtonian solution into the arguments made above of $GM/R \ll 1$, etc. by doing this solution first, then show the reduction to the Newtonian equation)
