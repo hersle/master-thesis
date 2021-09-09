@@ -58,11 +58,11 @@ After inserting the energy-momentum tensor on the right and simplifying, we get 
 \begin{subequations}
 \begin{align}
 	\frac{1}{r^2} e^{-2 \beta} \left( 2 r \beta' - 1 + e^{2 \beta} \right)                               &= \frac{8 \pi G}{c^4} \epsilon
-	&& \left( G\indices{_t_t} = \frac{8 \pi G}{c^4} T\indices{_t_t} \right)                     , \label{eq:einstein_to_tov:tt} \\
+	&& \left( G\indices{_0_0} = \frac{8 \pi G}{c^4} T\indices{_0_0} \right) , \label{eq:einstein_to_tov:tt} \\
 	\frac{1}{r^2} e^{-2 \beta} \left( 2 r \alpha' + 1 - e^{2 \beta} \right)                              &= \frac{8 \pi G}{c^4} p
-	&& \left( G\indices{_r_r} = \frac{8 \pi G}{c^4} T\indices{_r_r} \right)                     , \label{eq:einstein_to_tov:rr} \\
+	&& \left( G\indices{_1_1} = \frac{8 \pi G}{c^4} T\indices{_1_1} \right) , \label{eq:einstein_to_tov:rr} \\
 	e^{-2 \beta} \left( \alpha'' + (\alpha')^2 - \alpha' \beta' + \frac{1}{r} (\alpha' - \beta') \right) &= \frac{8 \pi G}{c^4} p
-	&& \left( G\indices{_\theta_\theta} = \frac{8 \pi G}{c^4} T\indices{_\theta_\theta} \right) . \label{eq:einstein_to_tov:thetatheta}
+	&& \left( G\indices{_2_2} = \frac{8 \pi G}{c^4} T\indices{_2_2} \right) . \label{eq:einstein_to_tov:thetatheta}
 \end{align}
 \end{subequations}
 
@@ -72,7 +72,7 @@ Define the function $m(r)$ by
 	e^{2 \beta} = \left( 1 - \frac{2 G m(r)}{r c^2} \right)^{-1} ,
 	\label{eq:einstein_to_tov:def_m}
 \end{equation}
-so $g\indices{_r_r}$ resembles the Schwarzschild metric element.
+so $g\indices{_1_1}$ resembles the Schwarzschild metric element.
 Then \cref{eq:einstein_to_tov:tt} becomes
 \begin{equation}
 	\diff{(m c^2)}{r} = 4 \pi r^2 \epsilon(r) ,
@@ -85,7 +85,7 @@ If we set $m(0) = 0$, we can integrate to get
 	\label{eq:einstein_to_tov:m_integral}
 \end{equation}
 \cite[page 602]{ref:mtw} shows that setting $m(0) \neq 0$ creates a singularity at the origin, which is not physically acceptable.
-Outside a star that extends to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_r_r} = (1-2GM/rc^2)^{-1}$ and Schwarzschild mass $M$.
+Outside a star that extends to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_1_1} = (1-2GM/rc^2)^{-1}$ and Schwarzschild mass $M$.
 By comparison with \cref{eq:einstein_to_tov:def_m}, the Schwarzschild mass of the star must be given by
 \begin{equation}
 	M c^2 = m(R) c^2 = \integral{\epsilon(r) 4 \pi r^2}{r}{0}{R} .
@@ -105,14 +105,13 @@ Doing so is straightforward, but cumbersome and most easily done by a computer a
 We show how to do this in \cref{sec:tov_cas_derivation}.
 An elegant, but less straightforward argument is to use local energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$, which is both physically reasonable and in fact possible to prove directly from the Einstein field equations \eqref{eq:einstein}.
 For two different proofs, see \cite{ref:einstein_conservation_energy_momentum} and \cite[section 8.3.2]{ref:mika_gr_notes}.
-Using \cref{eq:def_cov_deriv}, the $\nu=r$-component gives
+Using \cref{eq:def_cov_deriv}, the $\nu=1$-component gives
 \begin{equation*}
 	0
-	= \nabla_\mu T\indices{^\mu_r}
-	= \partial_r T\indices{^r_r} + \Gamma^\sigma_{r \sigma} T\indices{^r_r} - \Gamma^\sigma_{r \mu} T\indices{^\mu_\sigma}
-	= \partial_r T\indices{^r_r} + \Gamma^0_{r0} T\indices{^r_r} + \sum_{i=1}^3 \Gamma^i_{ri} T\indices{^r_r} - \Gamma^0_{r0} T\indices{^0_0} - \sum_{i=1}^3 \Gamma^i_{ri} T\indices{^i_i}
+	= \nabla_\mu T\indices{^\mu_1}
+	= \partial_1 T\indices{^1_1} + \Gamma^\sigma_{1 \sigma} T\indices{^1_1} - \Gamma^\sigma_{1 \mu} T\indices{^\mu_\sigma}
+	= \partial_1 T\indices{^1_1} + \Gamma^0_{10} T\indices{^1_1} + \sum_{i=1}^3 \Gamma^i_{1i} T\indices{^1_1} - \Gamma^0_{10} T\indices{^0_0} - \sum_{i=1}^3 \Gamma^i_{1i} T\indices{^i_i}
 \end{equation*}
-(TODO: replace $r,t$ indices with $0,1$ etc (after I have restored $c \neq 1$ units, it's impossible to use $ct$ as index, etc.))
 Using $T\indices{^0_0} = -\epsilon$ and $T\indices{^1_1} = T\indices{^2_2} = T\indices{^3_3} = p$ from \cref{eq:einstein_to_tov:T}, the sums cancel, leaving
 \begin{equation}
 	\diff{\alpha}{r} = \frac{-1}{\epsilon+p} \diff{p}{r} .
@@ -256,11 +255,11 @@ In general relativity, freely falling particles move along geodesics $x(\tau)$ t
 A \emph{slowly} moving particle has velocity $\diff{x^\mu}{\tau}$ with spatial component $\diff{x^i}{t} \ll c$ and is thus dominated by the spatial component $\diff{t}{\tau} \approx 1$.
 Then $\diff{x^i}{\tau} \ll c \diff{t}{\tau}$ and the geodesic equation can be approximated by
 \begin{equation*}
-	\diff[2]{x^\mu}{\tau} + \Gamma^\mu_{tt} \, c^2 \left( \diff{t}{\tau} \right)^2 = 0 .
+	\diff[2]{x^\mu}{\tau} + \Gamma^\mu_{00} \, c^2 \left( \diff{t}{\tau} \right)^2 = 0 .
 \end{equation*}
-A \emph{static} field has $\partial_t g\indices{_\mu_\nu} = 0$, so the Christoffel symbols \eqref{eq:def_christoffel} simplify to
+A \emph{static} field has $\partial_0 g\indices{_\mu_\nu} = 0$, so the Christoffel symbols \eqref{eq:def_christoffel} simplify to
 \begin{equation*}
-	\Gamma^\mu_{tt} = \frac{1}{2} g\indices{^\mu^\lambda} (\partial_t g\indices{_\lambda_t} + \partial_t g\indices{_t_\lambda} - \partial_\lambda g\indices{_t_t}) = -\frac{1}{2} g\indices{^\mu^\lambda} \partial_\lambda g\indices{_t_t} .
+	\Gamma^\mu_{00} = \frac{1}{2} g\indices{^\mu^\lambda} (\partial_0 g\indices{_\lambda_0} + \partial_0 g\indices{_0_\lambda} - \partial_\lambda g\indices{_0_0}) = -\frac{1}{2} g\indices{^\mu^\lambda} \partial_\lambda g\indices{_0_0} .
 \end{equation*}
 A \emph{weak} gravitational field can be written as a perturbation 
 \begin{equation}
@@ -275,21 +274,21 @@ The inverse metric $g\indices{^\mu^\nu}$ should satisfy $g\indices{^\mu^\nu} g\i
 	g\indices{^\mu^\nu} = \eta\indices{^\mu^\nu} - h\indices{^\mu^\nu} ,
 \end{equation*}
 where $h\indices{^\mu^\nu} = \eta\indices{^\mu^\rho} \eta\indices{^\nu^\sigma} h\indices{_\rho_\sigma}$ is raised with the Minkowski metric.
-Calculating the relevant Christoffel symbols to first order in $h$, we find $\Gamma^\mu_{tt} = -\frac{1}{2} \eta\indices{^\mu^\lambda} \partial_\lambda h\indices{_t_t}$, so the geodesic equation becomes
+Calculating the relevant Christoffel symbols to first order in $h$, we find $\Gamma^\mu_{00} = -\frac{1}{2} \eta\indices{^\mu^\lambda} \partial_\lambda h\indices{_0_0}$, so the geodesic equation becomes
 \begin{equation*}
-	\diff[2]{x^\mu}{\tau} = \frac{1}{2} c^2 \eta\indices{^\mu^\lambda} \partial_\lambda h\indices{_t_t} \left( \diff{t}{\tau} \right)^2
+	\diff[2]{x^\mu}{\tau} = \frac{1}{2} c^2 \eta\indices{^\mu^\lambda} \partial_\lambda h\indices{_0_0} \left( \diff{t}{\tau} \right)^2
 	\quad \text{with spatial components} \quad
-	\diff[2]{x^i}{t} = \frac{1}{2} c^2 \partial_i h\indices{_t_t} .
+	\diff[2]{x^i}{t} = \frac{1}{2} c^2 \partial_i h\indices{_0_0} .
 \end{equation*}
-This is precisely \cref{eq:interpretation_m:newton2} if we identify $h\indices{_t_t} = -2V/c^2$, or $g\indices{_t_t} = -(1+2V/c^2)$, so a weak relativistic gravitational field $g\indices{_\mu_\nu} = \eta\indices{_\mu_\nu} + h\indices{_\mu_\nu}$ in fact describes Newtonian motion in the gravitational potential $V = -c^2 h\indices{_t_t} / 2$!
+This is precisely \cref{eq:interpretation_m:newton2} if we identify $h\indices{_0_0} = -2V/c^2$, or $g\indices{_0_0} = -(1+2V/c^2)$, so a weak relativistic gravitational field $g\indices{_\mu_\nu} = \eta\indices{_\mu_\nu} + h\indices{_\mu_\nu}$ in fact describes Newtonian motion in the gravitational potential $V = -c^2 h\indices{_0_0} / 2$!
 Moreover, the Schwarzschild metric has the element
 \begin{equation}
-	g\indices{_t_t} = - \left( 1 - \frac{2 G M}{r c^2} \right)
+	g\indices{_0_0} = - \left( 1 - \frac{2 G M}{r c^2} \right)
 	\quad \text{with} \quad
-	h\indices{_t_t} = 2GM/rc^2 ,
+	h\indices{_0_0} = 2GM/rc^2 ,
 	\label{eq:weak_field_limit:schwarzschild_metric_tt}
 \end{equation}
-and $V = -c^2 h\indices{_t_t} / 2 = -G M / r$ is precisely the solution to Poisson's equation \eqref{eq:interpretation_m:poisson} for a spherical mass distribution, so general relativity does indeed describe Newtonian gravity in the weak-field limit!
+and $V = -c^2 h\indices{_0_0} / 2 = -G M / r$ is precisely the solution to Poisson's equation \eqref{eq:interpretation_m:poisson} for a spherical mass distribution, so general relativity does indeed describe Newtonian gravity in the weak-field limit!
 In conclusion, this shows that it does make sense to interpret the Schwarzschild mass $M$ as the Newtonian mass of a star, as masses of distant stars are typically measured with Kepler's third law that follows from Newtonian gravity. \cite[box 23.1]{ref:mtw}
 
 From the looks of \cref{eq:einstein_to_tov:schwarzschild_mass}, it is very tempting to also interpret $M c^2$ as the volume integral of the energy density over the star.
