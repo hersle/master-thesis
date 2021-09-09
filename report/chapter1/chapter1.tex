@@ -371,8 +371,7 @@ This shows that Buchdal's theorem \eqref{eq:incompressible_star:buchdal} is a pu
 % TODO: check limit
 
 Furthermore, we suspect that the relativistic pressure gradient \eqref{eq:tov} reduces to the Newtonian pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient} in the Newtonian limit.
-For example, the Newtonian pressures \eqref{eq:weak_field_limit:newtonian_pressure} are precisely the Taylor expansions of the relativistic pressures \eqref{eq:incompressible_star:pressure} and \eqref{eq:incompressible_star:central_pressure} for small $GM/Rc^2 \ll 1$.
-Comparing \cref{eq:tov} to \cref{eq:weak_field_limit:newtonian_pressure_gradient}, we see that the relativistic equation indeed reduces to the Newtonian one if all the corrections to $1$ in the three parentheses vanish.
+Comparing the two, we see that the relativistic equation indeed reduces to the Newtonian one if all the corrections to $1$ in the three parentheses vanish.
 Let us see that this is actually the case.
 
 First, note that by \cref{eq:weak_field_limit:small_gmr}, we have the small quantities
@@ -386,20 +385,28 @@ so the rightmost correction in \cref{eq:tov} vanishes.
 
 %By Taylor expanding the pressures \eqref{eq:incompressible_star:central_pressure} around the small parameter $GM/R \ll 1$, we get precisely the pressures in \cref{eq:weak_field_limit:newtonian_pressure}.
 Second, we argued in \cref{sec:incompressible_star} that a star with constant energy density $\epsilon_0$ is the one that can withstand the most extreme pressure.
-We also mentioned above that the pressure approaches the one in \cref{eq:weak_field_limit:newtonian_pressure} in the limit \eqref{eq:weak_field_limit:small3}.
-Using the central pressure $p(0)$ for this \emph{specific} case of a star of constant energy density $\epsilon_0$ as an upper bound, we therefore expect that for \emph{any} kind of star, the pressure $p(r)$ and energy density $\epsilon(r)$ satisfy
+%We also deemed all physical stars to have a non-increasing energy density $\epsilon(r)$ away from the center.
+A Taylor expansion of the relativistic central pressure \eqref{eq:incompressible_star:central_pressure} of an incompressible star in the limit \eqref{eq:weak_field_limit:small3} shows that it reduces precisely to the Newtonian central pressure $\epsilon_0 G M / 2 R c^2$ in \cref{eq:weak_field_limit:newtonian_pressure}.
+Using this central pressure as an upper bound for \emph{all} stars, we expect that the pressure $p(r)$ and energy density $\epsilon(r)$ will always satisfy
 \begin{equation}
-	\frac{p(r)}{\epsilon(r)} \leq \frac{p(0)}{\epsilon_0} = \frac{1}{2} \frac{GM}{Rc^2} \ll 1 .
+	%\frac{p(r)}{\epsilon(r)} \leq \frac{p(0)}{\epsilon_0} = \frac{1}{2} \frac{GM}{Rc^2} \ll 1 .
+	\frac{p(r)}{\epsilon(r)} \leq \frac{p(0)}{\epsilon(r)} 
+	                         \leq \frac12 \frac{\epsilon(0)}{\epsilon(r)} \frac{GM}{Rc^2} \ll 1
+	\qquad \text{(TODO: litt usikker på dette argumentet)}
 	\label{eq:weak_field_limit:small1}
 \end{equation}
-This causes the leftmost correction in \cref{eq:tov} to vanish, too.
+by \cref{eq:weak_field_limit:small3}, provided that the energy density ratio $\epsilon(0) / \epsilon(r)$ is well-behaved.
+To support this, we can argue that in a physical star, the speed of sound $v = c \sqrt{\difft{p}{\epsilon}}$ should not exceed $c$, so $\difft{p}{\epsilon} < 1$ and $p/\epsilon < 1$, denying the density ratio from diverging.
+We saw that the incompressible star had $v = \infty$, but then we still have $\epsilon(0)/\epsilon(r) = 1$ and $p/\epsilon \ll 1$.
+\Cref{eq:weak_field_limit:small1} causes the leftmost correction in \cref{eq:tov} to vanish, too.
 
 Third, for a star with non-increasing energy density $\epsilon(r)$ away from the center $r=0$ -- which we deemed to be the only physical type of stars in \cref{sec:incompressible_star} -- we can pull the minimum density $\epsilon(r)$ outside the integral \eqref{eq:einstein_to_tov:m_integral} to get $m(r) c^2 \geq \frac{4}{3} \pi r^3 \epsilon(r)$, so
-\begin{equation*}
+\begin{equation}
 	\frac{4 \pi r^3 p(r)}{m(r) c^2} \leq \frac{4 \pi r^3 p(r)}{\frac{4}{3} \pi r^3 \epsilon(r)}
 	                                =    \frac{3 p(r)}{\epsilon(r)}
 						            \ll  1
-\end{equation*}
+	\label{eq:weak_field_limit:small2}
+\end{equation}
 by \cref{eq:weak_field_limit:small1}, and the middle correction in \cref{eq:tov} also vanishes.
 
 Thus, we do indeed recover the Newtonian pressure gradient from the relativistic one in the Newtonian limit!
