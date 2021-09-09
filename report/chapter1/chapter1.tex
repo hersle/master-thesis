@@ -15,7 +15,7 @@ We will derive the relativistic relation between these quantities from the \text
 \end{equation}
 It describes how the geometry of spacetime, described by the Ricci tensor $R\indices{_\mu_\nu}$ and Ricci scalar $R$ that are ultimately built from the metric $g\indices{_\mu_\nu}$ and encapsulated in the Einstein tensor $G\indices{_\mu_\nu}$ (see \cref{chap:gr_summary} for a summary), responds to the presence of energy-momentum in the energy-momentum tensor $T\indices{_\mu_\nu}$.
 Here, $G$ is the gravitational constant and $c$ is the speed of light.
-As we later compare our findings to those of Newtonian gravity, it will be useful to connect the energy density to the mass density by the mass-energy equivalence relation
+As we later compare our findings to those of Newtonian gravity, it will be useful to connect the energy density to the mass density by the \textbf{mass-energy equivalence relation}
 \begin{equation}
 	\epsilon(x) = \rho(x) c^2 .
 	\label{eq:tov:mass_energy_equivalence}
@@ -100,7 +100,7 @@ If we set $m(0) = 0$, we can integrate to get
 \end{equation}
 \cite[page 602]{ref:mtw} shows that setting $m(0) \neq 0$ creates a singularity at the origin, which is not physically acceptable.
 Outside a star that extends to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_1_1} = (1-2GM/rc^2)^{-1}$ and Schwarzschild mass $M$.
-By comparison with \cref{eq:einstein_to_tov:def_m}, the Schwarzschild mass of the star must be
+By comparison with \cref{eq:einstein_to_tov:def_m}, the \textbf{Schwarzschild mass} of the star must be
 \begin{equation}
 	M = m(R) = \frac{1}{c^2} \integral{\epsilon(r) 4 \pi r^2}{r}{0}{R} = \integral{\rho(r) 4 \pi r^2}{r}{0}{R}.
 	\label{eq:einstein_to_tov:schwarzschild_mass}
@@ -139,14 +139,11 @@ Whichever approach we follow, we end up with the \textbf{Tolman-Oppenheimer-Volk
 \end{equation}
 It relates the pressure gradient $\diff{p}{r}$ and energy density $\epsilon$ at radius $r$ from the center of a spherical static star composed of a perfect fluid.
 \Cref{eq:einstein_to_tov:m_rho,eq:tov} constitute two equations for the three unknowns $p$, $\epsilon$ and $m$.
-To determine them, an additional equation of state like
-(TODO: F(x) = 0)
+To determine them, an additional \textbf{equation of state}
 \begin{equation}
-	p = p(\epsilon)
-	\quad \text{or} \quad
-	\epsilon = \epsilon(p)
+	F(p, \epsilon) = 0
 \end{equation}
-is required, typically obtained from the domain of thermodynamics and statistical physics.
+that relates the thermodynamic variables is required, typically obtained from statistical physics.
 Given all three equations and the central pressure $p(0)$, we can integrate to find the pressure everywhere inside the star.
 We define the radius of the star to be the radius $R$ at which $p(R) = 0$.
 Carrying out this procedure for different values of $p(0)$, we can find a mass-radius relation $M(R)$ for stars parametrized by their central pressure $p(0)$.
