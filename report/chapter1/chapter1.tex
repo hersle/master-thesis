@@ -213,19 +213,74 @@ In \cref{sec:weak_field_limit} we will see that Buchdal's theorem is a relativis
 
 \begin{figure}[hb!]
 \centering
+
+% TODO: cannot use JO length scale (it evolves ϵ, and i have different ϵ)
+% TODO: use sun mass and radius ?
+% how to center subcaptions under/over xlabel/plot area: 
+%   trim axis left/right: https://tex.stackexchange.com/a/134262
+% + hfil: https://tex.stackexchange.com/a/321476
+%   (not working properly)
+% ideal use of groupplot + subcaption: https://tex.stackexchange.com/a/310403
+\begin{subfigure}{0.49\textwidth}
+	\caption{\label{fig:incompressible_star:plot1}Mass-radius relation}
+	\begin{tikzpicture}
+	\begin{axis}[
+		width=1.00\textwidth, 
+		xlabel=$R \, / \, R_0$, ylabel=$M(R) \, / \, M(R_0)$, xtick distance=1, 
+		legend pos=north west, legend cell align=left, declare function={
+			G = 1;
+			M(\R,\E) = 4/3*pi*(\R)^3*\E;
+			Mmax(\R) = 4*\R/(9*G);
+		}
+	]
+		\pgfplotsinvokeforeach{0.006} {
+			\addplot [domain=0:5, solid ] {M(x,#1) / M(1,#1)}; % node[pos=0.90, sloped, yshift=+6pt] {\scriptsize $\epsilon_0 = #1$};
+			\addplot [domain=0:5, dashed] {Mmax(x) / M(1,#1)}; % node[pos=0.2, pin=above:{$M_\text{max}(R)$}] {};
+		}
+		\legend{$M(R)$, $M_\text{max}(R)$};
+	\end{axis}
+	\end{tikzpicture}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.49\textwidth}
+	\caption{\label{fig:incompressible_star:plot2}Pressure distribution}
+	\begin{tikzpicture}
+	\begin{axis}[
+		width=1.00\textwidth,
+		xlabel=$r\, /\, R_0$, ylabel=$p(r) \, / \, p(0)$, xtick distance=0.25, declare function={
+			G=1;
+			R=2;
+			p(\r,\M) = \M / (4/3*pi*R^3) * (sqrt(1-2*G*\M*(\r)^2/R^3) - sqrt(1-2*G*\M/R)) / (3*sqrt(1-2*G*\M/R) - sqrt(1-2*G*\M*(\r)^2/R^3));
+			Mmax = 4*R/(9*G);
+		}
+	]
+	\pgfplotsinvokeforeach{0.9, 0.99, 0.999} {
+		\addplot [domain=0:1,samples=200] {p(x*R,#1*Mmax)/p(0,#1*Mmax)} node[pos=0.54, sloped, yshift=+16pt] {\scriptsize $M = #1 M_\text{max}$};
+	}
+	\end{axis}
+	\end{tikzpicture}
+\end{subfigure}
+\caption{
+	\subref{fig:incompressible_star:plot1} Mass-radius relation $M(R) = 4 \pi R^3 \epsilon_0 / 3 c^2$ for a star of constant energy density $\epsilon_0$ compared to the maximum supported mass $M_\text{max}(R) = 4 c^2 R / 9 G$.
+	\subref{fig:incompressible_star:plot2} Pressure distribution $p(r)$ for stars of the same radius $R_0$, but different energy densities $\epsilon_0$ and masses $M$ approaching $M_\text{max}(R)$.
+	Here, $R_0 = \sqrt{c^4 / G \epsilon_0}$ is a length scale. % and $M_0 = 4 \pi R_0^3 \epsilon_0 / 3$ is a mass scale.
+}
+\iffalse
 \begin{tikzpicture}
 \begin{groupplot}[group style={group size=2 by 1, horizontal sep=0.1\textwidth}, width=0.49\textwidth]
-	\nextgroupplot[xlabel=$R$, ylabel=$M(R)$, xtick distance=1, legend pos=north west, legend cell align=left, declare function={
+	% TODO: cannot use JO length scale (it evolves ϵ, and i have different ϵ)
+	% TODO: use sun mass and radius ?
+	\nextgroupplot[xlabel=$R \, / \, R_0$, ylabel=$M(R) \, / \, M(R_0)$, xtick distance=1, legend pos=north west, legend cell align=left, declare function={
 		G = 1;
 		M(\R,\E) = 4/3*pi*(\R)^3*\E;
 		Mmax(\R) = 4*\R/(9*G);
 	}]
-	\pgfplotsinvokeforeach{0.009, 0.006, 0.003} {
-		\addplot [domain=0:5, solid ] {M(x,#1)} node[pos=0.90, sloped, yshift=+6pt] {\scriptsize $\epsilon_0 = #1$};
+	\pgfplotsinvokeforeach{0.006} {
+		\addplot [domain=0:5, solid ] {M(x,#1)}; % node[pos=0.90, sloped, yshift=+6pt] {\scriptsize $\epsilon_0 = #1$};
 	}
-	\addplot [domain=0:5, dashed] {Mmax(x)} node[pos=0.2, pin=above:{$M_\text{max}(R)$}] {};
-	%\legend{$M(R) = 4 \pi R^3 \epsilon_0 / 3$, $M_\text{max}(R) = 4R/9G$};
-	\nextgroupplot[xlabel=$r/R$, ylabel=$p(r)/p(0)$, xtick distance=0.25, declare function={
+	\addplot [domain=0:5, dashed] {Mmax(x)}; % node[pos=0.2, pin=above:{$M_\text{max}(R)$}] {};
+	\legend{$M(R)$, $M_\text{max}(R)$};
+	\nextgroupplot[xlabel=$r\, /\, R$, ylabel=$p(r) \, / \, p(0)$, xtick distance=0.25, declare function={
 		G=1;
 		R=2;
 		p(\r,\M) = \M / (4/3*pi*R^3) * (sqrt(1-2*G*\M*(\r)^2/R^3) - sqrt(1-2*G*\M/R)) / (3*sqrt(1-2*G*\M/R) - sqrt(1-2*G*\M*(\r)^2/R^3));
@@ -236,7 +291,10 @@ In \cref{sec:weak_field_limit} we will see that Buchdal's theorem is a relativis
 	}
 \end{groupplot}
 \end{tikzpicture}
-\caption{Mass-radius relation $M(R)$ for stars of constant densities $\epsilon_0$ compared to the maximum supported mass $M_\text{max}(R)$. Pressure distribution $p(r)$ for particular stars with radius $R=2$ and different masses $M$ approaching $M_\text{max}(R)$.}
+\caption{
+	Mass-radius relation $M(R) = 4 \pi R^3 \epsilon_0 / 3 c^2$ for a star of constant energy density $\epsilon_0$ compared to the maximum supported mass $M_\text{max}(R) = 4 c^2 R / 9 G$. Pressure distribution $p(r)$ for particular stars with radius $R=2$ and different masses $M$ approaching $M_\text{max}(R)$.}
+	Here, $R_0 = \sqrt{c^4 / G \epsilon_0}$ is a length scale. % and $M_0 = 4 \pi R_0^3 \epsilon_0 / 3$ is a mass scale.
+\fi
 \end{figure}
 
 \section{Weak-field limit and physical interpretation of mass}

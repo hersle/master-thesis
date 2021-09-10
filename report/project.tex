@@ -17,6 +17,10 @@
 \usepackage[hidelinks]{hyperref} % hide colored boxes around links
 \usepackage[noabbrev]{cleveref}
 \usepackage[labelfont=bf]{caption} % figure title in bold
+\usepackage[labelfont=bf]{subcaption} % figure title in bold
+\captionsetup{subrefformat=parens}
+\DeclareCaptionLabelFormat{bold}{\textbf{(#2)}}
+\captionsetup{subrefformat=bold}
 
 \usepackage{unicode-math} % make code display utf8 characters properly
 \usepackage[cachedir=.cache_minted/]{minted}
