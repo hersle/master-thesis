@@ -1,7 +1,5 @@
 #!/usr/bin/sage
 
-# Inspired by https://nbviewer.jupyter.org/github/sagemanifolds/SageManifolds/blob/master/Worksheets/v1.3/SM_TOV.ipynb
-
 c = var("c") # speed of light
 γ = var("γ", latex_name="\\gamma") # gravitational constant
 α(r) = function("α", latex_name="\\alpha")(r)
