@@ -109,20 +109,8 @@ Then the first term in the variation of the action becomes
 	\label{eq:einstein_derivation:ds1_intermediate}
 \end{split}
 \end{equation}
-To bring the metric variation into play, we vary the Christoffel symbols from their definition \eqref{eq:def_christoffel} with the product rule.
-Converting metric variations to inverse metric variations with \eqref{eq:einstein_derivation:var_g_ginv} and recognizing covariant derivatives from \cref{eq:def_cov_deriv}, we find
-\begin{equation}
-	\variation{\Gamma^\sigma_{\mu \nu}} = -\frac{1}{2} \left( 
-		g_{\lambda \mu} \nabla_\nu \variation{g^{\lambda \sigma}} +
-		g_{\lambda \nu} \nabla_\mu \variation{g^{\lambda \sigma}} -
-		g_{\mu \alpha} g_{\nu \beta} \nabla^\sigma \variation{g^{\alpha \beta}}
-	\right) .
-\end{equation}
-Inserting this into our expression for $\variation{S}_1$, we get
-\begin{equation}
-	\variation{S}_1 = \int \dif^n x \sqrt{-\det{g}} \, \nabla_\sigma \left( g_{\mu \nu} \nabla^\sigma \variation{g^{\mu \nu}} - \nabla_\lambda \variation{g^{\sigma \lambda}} \right).
-\end{equation}
-Our hard work has paid off -- by \textbf{Stokes theorem} \cite[equation 3.35]{ref:carroll}
+We still have not brought the variation to the form \eqref{eq:einstein_derivation:action_form}, but it does not matter.
+By \textbf{Stokes theorem} \cite[equation 3.35]{ref:carroll}
 \begin{equation}
 	\int_M \dif^n x \sqrt{\abs{g}} \nabla_\mu V^\mu = \int_{\partial M} \dif^{n-1} \sqrt{\abs{\gamma}} n_\mu V^\mu ,
 \end{equation}
@@ -131,7 +119,6 @@ But the variational method that we have used here asserts that there is no varia
 \begin{equation}
 	\variation{S}_1 = 0 !
 \end{equation}
-(SPØRSMÅL: kan jeg ikke si dette allerede etter \eqref{eq:einstein_derivation:ds1_intermediate}?)
 
 Let us now express $\variation{S}_3$ in terms of $\variation{g^{\mu \nu}}$.
 We will need the matrix identity
