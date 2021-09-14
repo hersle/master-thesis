@@ -16,6 +16,7 @@ We will \emph{postulate} the action
 	                                          = \int \dif^n x \sqrt{-\det{g}} \hat{\lagr}(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu})
 \end{equation}
 that, when varied with respect to the metric $g_{\mu \nu}$ and subject to the principle of least action $\variation{S} = 0$, yields the Einstein field equations.
+Here $\lagr$ and $\hat{\lagr}$ are Lagrangian densities with and without the metric determinant $\det{g} < 0$.
 As the strategy simply involves \emph{guessing} the correct action that produces the desired equations, this derivation is not based on any physical first principles, so its consequences would ultimately have to be experimentally verified.
 Nevertheless, \cite[page 160-161]{ref:carroll} explains how one can at the very least narrow down the choice of action based on scalar quantities that are relevant for describing curved space.
 
@@ -27,7 +28,7 @@ We postulate the \textbf{Hilbert action}
 	S_H = \frac{c^3}{16 \pi G} \int \dif^n x \sqrt{-\det{g}} \, R .
 	\label{eq:einstein_derivation:hilbert_action}
 \end{equation}
-Had it been written directly in terms of the metric and its covariant derivatives, we could get the corresponding equation of motion by simply plugging it into the Euler-Lagrange equations
+Had it been written directly in terms of the metric and its covariant derivatives, we could get the corresponding equations of motion by simply plugging it into the Euler-Lagrange equations
 \begin{equation}
 	\diffp{\hat{\lagr}}{\phi} - \nabla_\mu \left( \diffp{\hat{\lagr}}{{\left(\nabla_\mu \phi\right)}} \right) = 0 .
 \end{equation}
@@ -37,19 +38,18 @@ Instead, we will vary it with respect to the metric and express the variation in
 	\variation{S_H} = \int \dif^n x \sqrt{-\det{g}} F(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu}) \, \variation{g^{\mu \nu}} = 0 .
 	\label{eq:einstein_derivation:action_form}
 \end{equation}
-Then we can conclude that the equation of motion is $F(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu}) = 0$.
+Then we can conclude that the equations of motion are $F(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu}) = 0$.
 
 It may sound more natural to express the variation in terms of the ordinary metric $g_{\mu \nu}$ instead of its inverse $g^{\mu \nu}$, like we did above.
-But since $g^{\mu \lambda} g_{\lambda \nu} = \delta^\mu_\nu$, varying both sides with the product rule gives
+But since $g^{\mu \lambda} g_{\lambda \nu} = \delta^\mu_\nu$, varying both sides with the product rule relates the two by
 \begin{equation}
-	\variation{g_{\mu \nu}} = -g_{\mu \rho} g_{\nu \sigma} \variation{g^{\rho \sigma}} ,
+	\variation{g_{\mu \nu}} = -g_{\mu \rho} g_{\nu \sigma} \variation{g^{\rho \sigma}} .
 	\label{eq:einstein_derivation:var_g_ginv}
 \end{equation}
-expressing the variations of the metric and its inverse in terms of each other.
 Thus, the stationary points are the same regardless of which one we vary with respect to.
-We vary with respect to the inverse metric, as it makes the derivation flow a little more naturally.
+We vary with respect to the inverse metric, as it makes the derivation flow more naturally.
 
-Using $R = R\indices{^\mu_\mu} = g^{\mu \nu} R_{\mu \nu}$ and varying the action \eqref{eq:einstein_derivation:hilbert_action} with the product rule, we get
+Using $R = R\indices{^\mu_\mu} = g^{\mu \nu} R_{\mu \nu}$ and varying the action \eqref{eq:einstein_derivation:hilbert_action} with the product rule, we obtain
 \begin{equation}
 	\variation{S_H} = \frac{c^3}{16 \pi G} \left(
 	                  \underbrace{\int \dif^n x \sqrt{-\det{g}} \, g^{\mu \nu} \variation{R_{\mu \nu}}}_{\textstyle \variation{S}_1}
@@ -68,11 +68,11 @@ Using $R = R\indices{^\mu_\mu} = g^{\mu \nu} R_{\mu \nu}$ and varying the action
 %\end{split}
 	\label{eq:einstein_derivation:ds_split}
 \end{equation}
-The second term $\variation{S}_2$ is already on the desired form \eqref{eq:einstein_derivation:action_form}, but we must do some work to bring $\variation{S}_1$ and $\variation{S}_3$ to the same form.
+The second term $\variation{S}_2$ is already in the desired form \eqref{eq:einstein_derivation:action_form}, but we must do some work to bring $\variation{S}_1$ and $\variation{S}_3$ to the same form.
 
 % TODO: latex package glossary?
 
-First, let us take care of $\variation{S}_1$ by reexpressing $\variation{R_{\mu \nu}}$ in terms metric variations in a top-down manner.
+First, let us take care of $\variation{S}_1$ by reexpressing $\variation{R_{\mu \nu}}$ in terms of metric variations in a top-down manner.
 The Ricci tensor $R_{\mu \nu} = R\indices{^\lambda_\mu_\lambda_\nu}$ is the contraction of the Riemann tensor \eqref{eq:def_riemann_tensor}.
 Varying it, we get
 % TODO: do more intelligently by writing (\mu <-> \nu), etc.
@@ -87,7 +87,7 @@ Varying it, we get
 \end{equation}
 Now reexpress the variations of the Christoffel symbols.
 Instead of hammering straight through their definition \eqref{eq:def_christoffel}, we observe that while single Christoffel symbols do not transform as a tensor, their \emph{variation} is the difference between two Christoffel symbols and \emph{do} \cite[page 96,98]{ref:carroll}.
-It is therefore meaningful to take its covariant derivative using \cref{eq:def_cov_deriv}, giving
+It is therefore meaningful to use \cref{eq:def_cov_deriv} to take its covariant derivative
 \begin{equation}
 	\nabla_\lambda \variation{\Gamma^\rho_{\nu \mu}} = \partial_\lambda \variation{\Gamma^\rho_{\nu \mu}} 
 	                                                 + \Gamma^\rho_{\lambda \sigma} \variation{\Gamma{^\sigma_{\nu \mu}}} 
@@ -95,12 +95,12 @@ It is therefore meaningful to take its covariant derivative using \cref{eq:def_c
 	                                                 - \Gamma^\sigma_{\lambda \mu} \variation{\Gamma{^\rho_{\nu \sigma}}} .
 	\label{eq:einstein_derivation:christoffel_cov_deriv}
 \end{equation}
-Flipping this equation around for $\partial_\lambda \variation{\Gamma^\rho_{\nu \mu}}$ and substituting it into the variation of the Riemann tensor \eqref{eq:einstein_derivation:var_riemann}, we witness an avalance of cancellations, leaving only the two terms
+Flipping this equation around for $\partial_\lambda \variation{\Gamma^\rho_{\nu \mu}}$ and substituting the result into the variation of the Riemann tensor \eqref{eq:einstein_derivation:var_riemann}, we witness an avalanche of cancellations, leaving only the terms
 \begin{equation}
 	\variation{R\indices{^\rho_\mu_\lambda_\nu}} = \nabla_\lambda \variation{\Gamma^\rho_{\nu \mu}}
 	                                             - \nabla_\nu \variation{\Gamma^\rho_{\lambda \mu}} .
 \end{equation}
-The Ricci tensor follows by contracting $\rho$ and $\lambda$. 
+The variation of the Ricci tensor follows by contracting $\rho$ and $\lambda$. 
 Then the first term in the variation of the action becomes
 \begin{equation}
 \begin{split}
@@ -126,8 +126,8 @@ Our hard work has paid off -- by \textbf{Stokes theorem} \cite[equation 3.35]{re
 \begin{equation}
 	\int_M \dif^n x \sqrt{\abs{g}} \nabla_\mu V^\mu = \int_{\partial M} \dif^{n-1} \sqrt{\abs{\gamma}} n_\mu V^\mu ,
 \end{equation}
-our integral for $\variation{S}_1$ over $4$-space can be converted into a boundary integral over $3$-space at infinity.
-But the variational method that we have used here asserts that there is no variation at the boundary, so
+our integral for $\variation{S}_1$ over $n$-space can be converted into a boundary integral over $(n-1)$-space at infinity.
+But the variational method that we have used here asserts that there is no variation on the boundary, so
 \begin{equation}
 	\variation{S}_1 = 0 !
 \end{equation}
@@ -141,7 +141,7 @@ We will need the matrix identity
 \end{equation}
 This is trivial for diagonal matrices $M$.
 By using the property $\det{AB} = \det{A} \det{B}$, we can easily extend it to diagonalizable matrices $M = P D P^{-1}$.
-Varying both sides of \cref{eq:matrix_log_det_trace}, we get \cite{ref:matrix_ln_det_tr_exercise}
+Varying both sides of \cref{eq:matrix_log_det_trace}, we obtain \cite{ref:matrix_ln_det_tr_exercise}
 \begin{equation}
 	\frac{\variation{\det{M}}}{\det{M}} = \trace(M^{-1} \variation{M}) .
 \end{equation}
@@ -167,19 +167,19 @@ The variation of the integral can only vanish if the integrand vanishes, so we h
 \begin{equation}
 	 \frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \diffv{S_H}{g^{\mu \nu}} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 0 .
 \end{equation}
-To get the Einstein field equations in matter, we add another contribution $S_M$ to the action that represents matter, so the total action is
+To unveil the Einstein field equations in the presence of matter, we add a contribution $S_M = \int \dif^n x \sqrt{-\det{g}} \, \lagr_M$ that represents matter to a new total action
 \begin{equation}
 	S = S_H + S_M .
 \end{equation}
-Repeating the same procedure as above, we get the equation of motion
+Repeating the same procedure as above yields the equations of motion
 \begin{equation}
-	\frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \diffv{S}{g^{\mu \nu}} = \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) + \frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \frac{\variation{S_m}}{\variation{g^{\mu \nu}}} = 0 .
+	\frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \diffv{S}{g^{\mu \nu}} = \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) + \frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \frac{\variation{S_M}}{\variation{g^{\mu \nu}}} = 0 .
 \end{equation}
 If we now \emph{define} the energy-momentum tensor
 \begin{equation}
 	T_{\mu \nu} = \frac{-c}{2 \sqrt{-\det{g}}} \frac{\variation{S_M}}{\variation{g^{\mu \nu}}} ,
 \end{equation}
-we get the \textbf{Einstein field equations in matter},
+we uncover the \textbf{Einstein field equations in the presence of matter},
 \begin{equation}
 	R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = \frac{8 \pi G}{c^4} T_{\mu \nu} .
 \end{equation}
