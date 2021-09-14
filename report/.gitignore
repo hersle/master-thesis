@@ -12,5 +12,5 @@
 *.synctex.gz
 *.toc
 *.swp
-.cache_minted
-.cache_tikz
+.cacheminted
+.cachetikz
