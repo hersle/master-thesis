@@ -8,6 +8,7 @@
 	headheight=30pt,
 ]{geometry}
 
+\usepackage{ifdraft}
 %\usepackage[utf8]{inputenc} % ignored with lualatex / xelatex (which are utf8-based)
 \usepackage{amsmath}
 \usepackage[text]{esdiff} % text-mode derivatives in textstyle
@@ -22,15 +23,25 @@
 \DeclareCaptionLabelFormat{bold}{\textbf{(#2)}}
 \captionsetup{subrefformat=bold}
 
-\usepackage{unicode-math} % make code display utf8 characters properly
-\usepackage[cachedir=.cacheminted/]{minted}
+%\usepackage{unicode-math} % make code display utf8 characters properly (seems that only fontspec below is enough?)
 %\setmonofont{DejaVu Sans Mono} % will affect whole document, including URLs etc.
+\usepackage{fontspec}
 \newfontfamily\codefont{DejaVu Sans Mono}[NFSSFamily=CodeFamily] % set mono font for minted code only
-%\setminted{breaklines}
-\setminted{frame=single}
-\setminted{breakanywhere}
-\setminted{fontfamily=CodeFamily}
-\setminted{fontsize=\scriptsize}
+\ifdraft{
+	\usepackage{fancyvrb} % fast, but ugly
+	\fvset{fontfamily=CodeFamily}
+	\fvset{fontsize=\scriptsize}
+	\fvset{frame=single}
+	\newcommand{\codefile}[2]{\VerbatimInput{#2}}
+}{
+	\usepackage[cachedir=.cacheminted/]{minted} % nice, but slow
+	%\setminted{breaklines}
+	\setminted{frame=single}
+	\setminted{breakanywhere}
+	\setminted{fontfamily=CodeFamily}
+	\setminted{fontsize=\scriptsize}
+	\newcommand{\codefile}[2]{\inputminted{#1}{#2}}
+}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
