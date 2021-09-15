@@ -25,16 +25,16 @@ We postulate the \textbf{Hilbert action}
 	% i have x = (ct, x1, x2, x3), so I have a c "already" in the first component
 	% this is normal! see e.g. https://physics.stackexchange.com/a/322055/299916
 	% remember [R] = 1/m^2
-	S_H = \frac{c^3}{16 \pi G} \int \dif^n x \sqrt{-\det{g}} \, R ,
+	S_H = \frac{c^3}{16 \pi G} \int \dif^n x \sqrt{-\det{g}} \, R .
 	\label{eq:einstein_derivation:hilbert_action}
 \end{equation}
-where we have conventiently chosen the prefactor to get the correct result \eqref{eq:einstein_derivation:einstein_matter} in the end, which we saw in \cref{sec:einstein_to_poisson} led to Newtonian gravity in the Newtonian limit.
-Had the action been written directly in terms of the metric and its covariant derivatives, we could get the corresponding equations of motion by simply plugging it into the Euler-Lagrange equations
+The prefactor has been conventiently chosen yield correct result \eqref{eq:einstein_derivation:einstein_matter} in the end, which we saw in \cref{sec:einstein_to_poisson} led to Newtonian gravity in the Newtonian limit.
+We could get the corresponding equations of motion by plugging the Lagrangian density $\hat{\lagr} = R c^3 / 16 \pi G$ into the Euler-Lagrange equations
 \begin{equation}
 	\diffp{\hat{\lagr}}{\phi} - \nabla_\mu \left( \diffp{\hat{\lagr}}{{\left(\nabla_\mu \phi\right)}} \right) = 0 .
 \end{equation}
-But we are not that fortunate.
-Instead, we will vary it with respect to the metric and express the variation in the form 
+In fact Hilbert himself did this \cite{ref:hilbert_from_lagrange}, but doing so requires a great deal of effort.
+Instead, we will vary the action with respect to the metric and express the variation in the form 
 \begin{equation}
 	\variation{S_H} = \int \dif^n x \sqrt{-\det{g}} F(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu}) \, \variation{g^{\mu \nu}} = 0 .
 	\label{eq:einstein_derivation:action_form}
