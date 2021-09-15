@@ -98,7 +98,7 @@ If we set $m(0) = 0$, we can integrate to get
 	\label{eq:einstein_to_tov:m_integral}
 \end{equation}
 \cite[page 602]{ref:mtw} shows that setting $m(0) \neq 0$ creates a singularity at the origin, which is not physically acceptable.
-Outside a star that extends to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_1_1} = (1-2GM/rc^2)^{-1}$ and Schwarzschild mass $M$.
+Outside a star that extends to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_1_1} = (1-2GM/rc^2)^{-1}$ and Schwarzschild mass $M$ \cite[equation 5.1]{ref:carroll}.
 By comparison with \cref{eq:einstein_to_tov:def_m}, the \textbf{Schwarzschild mass} of the star must be
 \begin{equation}
 	M = m(R) = \frac{1}{c^2} \integral{\epsilon(r) 4 \pi r^2}{r}{0}{R} = \integral{\rho(r) 4 \pi r^2}{r}{0}{R}.
@@ -347,7 +347,7 @@ Upon insertion into the \cref{eq:weak_field_limit:geodesic_approximated}, we can
 	\odv[2]{x^\mu}{t} = \frac{1}{2} c^2 \eta\indices{^\mu^\lambda} \partial_\lambda h\indices{_0_0} .
 \end{equation*}
 The spatial components of this equation is precisely Newton's second law \cref{eq:interpretation_m:newton2} if we identify $h\indices{_0_0} = -2V/c^2$.
-Thus, a weak relativistic gravitational field with
+In conclusion, we have showed that a weak relativistic gravitational field with
 \begin{equation}
 	g\indices{_0_0} = -1 + h_{00} = - \left( 1 + \frac{2V}{c^2} \right)
 	\label{eq:weak_field_limit:metric_with_potential}
@@ -369,7 +369,7 @@ The energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid} simplifies to d
 \begin{equation}
 	T_{00} = \rho U_0 U_0 \taylor \epsilon
 	\qquad \text{and trace} \qquad
-	T = g^{00} T_{00} \taylor -\epsilon
+	T = T\indices{^\mu_\mu} = g^{00} T_{00} \taylor -\epsilon
 \end{equation}
 to lowest order, and the pressure components are negligible according to \cref{eq:weak_field_limit:small_pressure}.
 Now rewrite the Einstein field equations \eqref{eq:einstein} by taking the trace of both sides.
@@ -378,13 +378,13 @@ Using $g\indices{^\mu_\mu} = \delta\indices{^\mu_\mu} = 4$, we find that the Ric
 	R_{\mu \nu} = \frac{8 \pi G}{c^4} \left( T_{\mu \nu} - \frac12 T g_{\mu \nu} \right) .
 	\label{eq:einstein_rewritten}
 \end{equation}
-Inserting our results from above, we find the lowest nonzero order Ricci tensor element
+Inserting our results from above, we find the Ricci tensor element
 \begin{equation}
 	R_{00} = \frac{4 \pi G \rho}{c^2} .
 	\label{eq:weak_field_limit:ricci_from_energy_momentum}
 \end{equation}
 
-Instead of calculating the Ricci tensor from matter, we can attack the problem from the geometric point of view and find it from the Riemann curvature tensor
+Instead of calculating the Ricci tensor from the energy-momentum of matter, we can attack the problem from the geometric point of view and find it from the Riemann curvature tensor
 \begin{equation}
 	R\indices{^\rho_0_\mu_0} =
 	\partial\indices{_\mu} \Gamma^\rho_{0 0} -
@@ -404,12 +404,12 @@ Using the stationary Christoffel symbols \eqref{eq:weak_field_limit:static_chris
 	\label{eq:weak_field_limit:ricci_from_riemann}
 \end{equation}
 
-Inserting $h_{00} = -2V/c^2$ from \cref{eq:weak_field_limit:metric_with_potential} and comparing the result to \cref{eq:weak_field_limit:ricci_from_energy_momentum}, we have indeed found the Newtonian response \eqref{eq:interpretation_m:poisson}!
+Inserting $h_{00} = -2V/c^2$ from \cref{eq:weak_field_limit:metric_with_potential} and comparing the result to \cref{eq:weak_field_limit:ricci_from_energy_momentum}, we see that the Einstein field equations yield the Poisson equation \eqref{eq:interpretation_m:poisson} in the Newtonian limit!
 
 \subsection{Interpretation of mass and integrated energy density}
 
 When we introduced the Schwarzschild mass $M$ given by \cref{eq:einstein_to_tov:schwarzschild_mass} in \cref{sec:einstein_to_tov}, we did not find it obvious how to interpret it.
-Outside a star, spacetime is described by the Schwarzschild metric with the element
+Outside a star, spacetime is described by the Schwarzschild metric with the element \cite[equation 5.1]{ref:carroll}
 \begin{equation}
 	g\indices{_0_0} = - \left( 1 - \frac{2 G M}{r c^2} \right)
 	\quad \text{with} \quad
@@ -514,7 +514,7 @@ It follows from \cref{eq:weak_field_limit:small1} that
 Thus, all three corrections in \cref{eq:tov} vanish, so we do indeed recover the Newtonian pressure gradient from the relativistic one in the Newtonian limit!
 
 In fact, there is an alternative way to see it that requires much less work.
-Written with mass density $\rho$ in place of energy density $\epsilon$, \cref{eq:tov} takes the form
+Replacing energy density $\epsilon$ with mass density $\rho$ using \cref{eq:tov:mass_energy_equivalence}, \cref{eq:tov} takes the form
 \begin{equation}
 	\odv{p}{r} = -\frac{G m(r) \rho(r)}{r^2} \left( 1 + \frac{p(r)}{\rho(r) c^2} \right) \left( 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right) \left( 1 - \frac{2 G m(r)}{r c^2} \right)^{-1} .
 	\label{eq:tov_units}
