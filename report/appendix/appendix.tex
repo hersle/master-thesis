@@ -25,10 +25,11 @@ We postulate the \textbf{Hilbert action}
 	% i have x = (ct, x1, x2, x3), so I have a c "already" in the first component
 	% this is normal! see e.g. https://physics.stackexchange.com/a/322055/299916
 	% remember [R] = 1/m^2
-	S_H = \frac{c^3}{16 \pi G} \int \dif^n x \sqrt{-\det{g}} \, R .
+	S_H = \frac{c^3}{16 \pi G} \int \dif^n x \sqrt{-\det{g}} \, R ,
 	\label{eq:einstein_derivation:hilbert_action}
 \end{equation}
-Had it been written directly in terms of the metric and its covariant derivatives, we could get the corresponding equations of motion by simply plugging it into the Euler-Lagrange equations
+where we have conventiently chosen the prefactor to get the correct result \eqref{eq:einstein_derivation:einstein_matter} in the end, which we saw in \cref{sec:einstein_to_poisson} led to Newtonian gravity in the Newtonian limit.
+Had the action been written directly in terms of the metric and its covariant derivatives, we could get the corresponding equations of motion by simply plugging it into the Euler-Lagrange equations
 \begin{equation}
 	\diffp{\hat{\lagr}}{\phi} - \nabla_\mu \left( \diffp{\hat{\lagr}}{{\left(\nabla_\mu \phi\right)}} \right) = 0 .
 \end{equation}
@@ -153,6 +154,7 @@ At last, we have brought the variation of the action to the form \eqref{eq:einst
 The variation of the integral can only vanish if the integrand vanishes, so we have found the \textbf{Einstein field equations in vacuum},
 \begin{equation}
 	 \frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \diffv{S_H}{g^{\mu \nu}} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 0 .
+	\label{eq:einstein_derivation:einstein_vacuum}
 \end{equation}
 To unveil the Einstein field equations in the presence of matter, we add a contribution $S_M = \int \dif^n x \sqrt{-\det{g}} \, \lagr_M$ that represents matter to a new total action
 \begin{equation}
@@ -169,6 +171,7 @@ If we now \emph{define} the energy-momentum tensor
 we uncover the \textbf{Einstein field equations in the presence of matter},
 \begin{equation}
 	R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = \frac{8 \pi G}{c^4} T_{\mu \nu} .
+	\label{eq:einstein_derivation:einstein_matter}
 \end{equation}
 
 \section{Summary of important quantities}
