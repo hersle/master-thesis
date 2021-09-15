@@ -31,7 +31,7 @@ We postulate the \textbf{Hilbert action}
 The prefactor has been conventiently chosen yield correct result \eqref{eq:einstein_derivation:einstein_matter} in the end, which we saw in \cref{sec:einstein_to_poisson} led to Newtonian gravity in the Newtonian limit.
 We could get the corresponding equations of motion by plugging the Lagrangian density $\hat{\lagr} = R c^3 / 16 \pi G$ into the Euler-Lagrange equations
 \begin{equation}
-	\diffp{\hat{\lagr}}{\phi} - \nabla_\mu \left( \diffp{\hat{\lagr}}{{\left(\nabla_\mu \phi\right)}} \right) = 0 .
+	\pdv{\hat{\lagr}}{\phi} - \nabla_\mu \left( \pdv{\hat{\lagr}}{{\left(\nabla_\mu \phi\right)}} \right) = 0 .
 \end{equation}
 In fact Hilbert himself did this \cite{ref:hilbert_from_lagrange}, but doing so requires a great deal of effort.
 Instead, we will vary the action with respect to the metric and express the variation in the form 
@@ -153,7 +153,7 @@ At last, we have brought the variation of the action to the form \eqref{eq:einst
 \end{equation}
 The variation of the integral can only vanish if the integrand vanishes, so we have found the \textbf{Einstein field equations in vacuum},
 \begin{equation}
-	 \frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \diffv{S_H}{g^{\mu \nu}} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 0 .
+	 \frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \fdv{S_H}{g^{\mu \nu}} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 0 .
 	\label{eq:einstein_derivation:einstein_vacuum}
 \end{equation}
 To unveil the Einstein field equations in the presence of matter, we add a contribution $S_M = \int \dif^n x \sqrt{-\det{g}} \, \lagr_M$ that represents matter to a new total action
@@ -162,7 +162,7 @@ To unveil the Einstein field equations in the presence of matter, we add a contr
 \end{equation}
 Repeating the same procedure as above yields the equations of motion
 \begin{equation}
-	\frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \diffv{S}{g^{\mu \nu}} = \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) + \frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \frac{\variation{S_M}}{\variation{g^{\mu \nu}}} = 0 .
+	\frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \fdv{S}{g^{\mu \nu}} = \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) + \frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \frac{\variation{S_M}}{\variation{g^{\mu \nu}}} = 0 .
 \end{equation}
 If we now \emph{define} the energy-momentum tensor
 \begin{equation}

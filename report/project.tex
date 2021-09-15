@@ -11,7 +11,6 @@
 \usepackage{ifdraft}
 %\usepackage[utf8]{inputenc} % ignored with lualatex / xelatex (which are utf8-based)
 \usepackage{amsmath}
-\usepackage[text]{esdiff} % text-mode derivatives in textstyle
 \usepackage{tensor}
 \usepackage[parfill]{parskip} % new paragraph: new line, no indent
 %\usepackage[title]{appendix}
@@ -77,6 +76,10 @@
 \DeclareFieldFormat{urldate}{} % do not show URL access date TODO: do I have to show it?
 \addbibresource{project.bib}
 
+\usepackage{derivative}
+\derivset{\odv}[style-inf=\mathrm] % write normal derivatives with upright d
+%\derivset{\odv}[switch-/=true]
+
 \newcommand\dif{\mathop{}\!\mathrm{d}}
 \newcommand{\abs}[1]{\lvert #1 \rvert}
 \renewcommand{\det}[1]{\abs{#1}}
@@ -85,8 +88,6 @@
 \newcommand{\trace}[1]{\text{tr} #1}
 \newcommand{\lagr}{\mathcal{L}}
 \newcommand{\diag}[1]{\text{diag} \left( #1 \right)}
-\newcommand{\diffv}[2]{\frac{\variation{#1}}{\variation{#2}}}
-\newcommand{\difft}[2]{\dif #1 / \dif #2}
 \newcommand{\taylor}{\simeq}
 %\AtBeginDocument{\renewcommand{\vec}[1]{\mathbf{#1}}} % NB: need AtBeginDocument due to unicode-math: https://tex.stackexchange.com/a/457845
 \renewcommand{\vec}[1]{\mathbf{#1}} % don't need AtBeginDocument now that I use fontspec instead of unicode-math
