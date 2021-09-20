@@ -7,22 +7,23 @@
 
 \newcommand\pdvx[2]{\pdv{x^{#1}}{x^{#2}}}
 
-In this section, we review the geometrical aspects of general relativity.
+In this appendix, we review the geometrical aspects of general relativity.
 We make no attempt to be mathematically rigorous, but rather focus on listing important quantities and equations and the intuitive connection between them.
-For more details, refer to detailed books or notes on the subject, like \cite{ref:carroll}, \cite{ref:mika_gr_notes} and \cite{ref:mtw}, all of whom this summary is based on.
+For more details, we refer to detailed books and notes on the subject such as \cite{ref:carroll}, \cite{ref:mika_gr_notes} and \cite{ref:mtw}, all of whom this summary is based on.
 
 \subsection{Coordinates and tensors}
 
 In general relativity, $3$-dimensional space and $1$-dimensional time are no longer regarded separate as they are in Newtonian mechanics.
-They are rather intertwined into \emph{spacetime} -- a $(3+1)$-dimensional construct with coordinates given by a $4$-vector
+They are rather intertwined into \emph{spacetime} -- a $(3+1)$-dimensional construct with \textbf{coordinates}
+% position is just "coordinates", not a 4-vector: https://physics.stackexchange.com/questions/192886/does-spacetime-position-not-form-a-four-vector
 \begin{equation}
-	x^\mu = (\underbrace{x^0}_{\text{time}}, \underbrace{x^1, x^2, x^3}_{\text{space}}) .
+	x^\mu = (x^0, x^1, x^2, x^3) .
 \end{equation}
-In flat Euclidean space, the coordinates could be taken as $x^\mu = (ct, x, y, z)$.
-Mathematically, the geometry of spacetime is described by a \emph{Riemannian manifold} that generalizes flat Euclidean space to \emph{curved space}.
-At every point in such a manifold, spacetime locally resembles Euclidean space in the \emph{tangent space} located at that point, and all such tangent spaces vary in a smooth manner from point to point.
+In flat Minkowski space, the coordinates could be taken as $x^\mu = (ct, x, y, z)$.
+Mathematically, the geometry of spacetime is described by a \emph{Riemannian manifold} that generalizes flat Minkowski space to \emph{curved space}.
+At every point on such a manifold, spacetime locally resembles Minkowski space in the \emph{tangent space} located at that point, and all such tangent spaces vary in a smooth manner from point to point.
 For example, \cref{fig:tangent_space} pictures the tangent space at a point of the $2$-sphere manifold.
-Concepts like angles, lengths, area and volume apply locally at each Euclidean tangent space, and one can generalize such concepts to the full manifold by integrating the local contributions from one point in the manifold to another.
+Familiar concepts like angles, lengths, area and volume apply locally in the tangent space at each point in infinitesimal form, and one can generalize such concepts to the full manifold by integrating the local contributions from one point on the manifold to another.
 
 \begin{figure}
 \centering
@@ -48,33 +49,34 @@ Then the linear combination $\lincomboslash{}$ is also a perfectly good derivati
 \begin{equation}
 	\lincombo{}(fg) = \ldots = \lincombo{f} g + \lincombo{g} f .
 \end{equation}
-One can verify that the set of all differential operators, implicitly assumed to work on some scalar function, satisfy all criterions for being a vector space.
+One can verify that the set of all differential operators, implicitly assumed to work on some scalar function, satisfy all criteria for being a vector space.
 Thus, like one can regard $\vec{V} = V^\mu \vec{e}_\mu$ as a vector with components $V^\mu$ and basis vectors $\vec{e}_\mu$, one can regard
 \begin{equation}
 	\odv{}{\lambda} = \odv{x^{\mu}}{\lambda} \partial_{\mu} 
 \end{equation}
 as a vectorial object with components $\odv{x^{\mu}}/{\lambda}$ and basis vectors $\partial_\mu$.
-Under a change of coordinates $x^{\mu'} = x^{\mu'}(x^\mu)$, the directional derivative transforms like
+Under a change of coordinates $x^{\mu'} = x^{\mu'}(x^\mu)$, the directional derivative transforms as
 \begin{equation}
 	\odv{}{\lambda} = \odv{x^{\mu'}}{\lambda} \partial_{\mu'} = \underbrace{\Bigg( \odv{x^{\mu}}{\lambda} \pdvx{\mu'}{\mu} \Bigg)}_\text{components} \underbrace{\Bigg( \pdvx{\mu}{\mu'} \partial_{\mu} \Bigg)}_\text{basis} = \odv{x^{\mu}}{\lambda} \partial_{\mu} .
 \end{equation}
-We define a \textbf{covariant vector} as a tuple that transforms \emph{with} the change of basis, like
+We define an $n$-dimensional \textbf{covariant vector} as an $n$-tuple $V_\mu$ that transforms with the \emph{same} matrix $\pdv{x^{\mu}}/{x^{\mu'}}$ as the change of basis as
 \begin{equation}
 	V_{\mu'} = \pdv{x^{\mu}}{x^{\mu'}} V_\mu .
 	\label{eq:covariant_transformation}
 \end{equation}
-Oppositely, a \textbf{contravariant vector} is a tuple that transforms \emph{opposite to} the basis, like
+Oppositely, we define an $n$-dimensional \textbf{contravariant vector} as an $n$-tuple $V^\mu$ that transforms with the \emph{inverse} matrix $\pdv{x^{\mu'}}/{x^{\mu}}$ as
 \begin{equation}
 	V^{\mu'} = \pdv{x^{\mu'}}{x^\mu} V_\mu .
 	\label{eq:contravariant_transformation}
 \end{equation}
-More generally, we define a \textbf{tensor} of rank $(m,n)$ as an array composed of $m$ contravariant indices and $n$ covariant indices that transforms like
+More generally, we define a $n$-dimensional \textbf{tensor} of rank $(r,s)$ as an array composed of $r$ $n$-dimensional contravariant indices and $s$ $n$-dimensional covariant indices that transforms as
 \begin{equation}
-	T^{\mu_1' \dots \mu_m'}_{\nu_1' \dots \nu_n'} = \pdv{x^{\mu_1'}}{x^{\mu_1}} \cdots \pdv{x^{\mu_m'}}{x^{\mu_m}}
-	                                                \pdv{x^{\nu_1'}}{x^{\nu_1}} \cdots \pdv{x^{\nu_n'}}{x^{\nu_n}}
-												    T^{\mu_1 \dots \mu_m}_{\nu_1 \dots \nu_n}
+	T^{\mu_1' \dots \mu_r'}_{\nu_1' \dots \nu_s'} = \pdv{x^{\mu_1'}}{x^{\mu_1}} \cdots \pdv{x^{\mu_r'}}{x^{\mu_r}}
+	                                                \pdv{x^{\nu_1}}{x^{\nu_1'}} \cdots \pdv{x^{\nu_s}}{x^{\nu_s'}}
+												    T^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}
 	\label{eq:tensor_transformation}
 \end{equation}
+under a coordinate transformation $x^{\mu'} = x^{\mu'} (x^\mu)$.
 
 \iffalse
 We will work with vector fields $V^\mu(x)$ on manifolds.
@@ -127,21 +129,22 @@ The \textbf{metric tensor}
 \begin{equation}
 	g\indices{_\mu_\nu}(x) = \vec{e}_\mu(x) \cdot \vec{e}_\nu(x)
 \end{equation}
-contains inner products between basis vectors $\vec{e}_\mu$ that span the tangent spaces at each point $x$ in the manifold.
+is defined as the inner products between basis vectors $\vec{e}_\mu$ that span the tangent spaces at each point $x$ on the manifold.
 It thus encodes the lengths vectors of the basis vectors and angles between them and is a fundamental object that describes the geometry of the manifold.
 
-We define the \textbf{inverse metric tensor} $g^{\mu \nu}$ to satisfy the identity map
+We define the \textbf{inverse metric tensor} $g^{\mu \nu}$ as the inverse matrix satisfying
 \begin{equation}
 	g^{\mu \nu} g_{\nu \sigma} = \delta^\mu_\sigma .
 \end{equation}
 Using the metric and its inverse, we can \textbf{raise and lower indices} on tensors.
-For example, the object $g_{\mu \nu} V^\nu$, according to \cref{eq:tensor_transformation}, transforms like covariant vector
+For example, the object $g_{\mu \nu} V^\nu$, according to definition \eqref{eq:tensor_transformation}, transforms like a covariant vector
 \begin{equation}
 	g_{\mu' \nu'} V^{\nu'} = \left( \pdvx{\alpha}{\mu'} \pdvx{\beta}{\nu'} g_{\alpha \beta} \right) \left( \pdvx{\nu'}{\nu} V^{\nu} \right) = \pdvx{\alpha}{\mu'} g_{\alpha \nu} V^\nu ,
 \end{equation}
 so it is meaningful to label it as a covariant vector with a lower index $V_\mu = g_{\mu \nu} V^\nu$.
-Similarly, we could use the inverse metric $g^{\mu \nu}$ to raise indices.
-Any rank-$2$ tensor would suffice to raise and lower indices, but the metric is a natural choice because it is inherent to the manifold.
+Similarly, we can use the inverse metric $g^{\mu \nu}$ to raise indices.
+As this argument only relied on the defining transformation law \eqref{eq:tensor_transformation}, it is clear that any tensor of rank $(2,0)$ or $(0,2)$ would suffice to raise or lower indices.
+But the metric is the most natural choice, as it is inherent to the manifold and always available to us.
 
 \subsection{Line element and volume}
 
@@ -150,8 +153,8 @@ From the metric tensor, one defines the \textbf{line element}
 	\dif s = \sqrt{g\indices{_\mu_\nu} \dif x^\mu \dif x^\nu}
 	\label{eq:def_line_elem}
 \end{equation} 
-that extends the concept of distance locally to every point in the manifold.
-By integrating the line element from one point in the manifold to another, one can compute the total distance
+that extends the concept of distance locally to every point on the manifold.
+By integrating the line element from one point on the manifold to another, one can compute the total distance
 \begin{equation}
 	s = \int_1^2 \dif s = \int_1^2 \sqrt{g\indices{_\mu_\nu} \dif x^\mu \dif x^\nu}
 \end{equation}
@@ -161,7 +164,7 @@ Similarly, one can compute the \textbf{volume} of a region
 	V = \int \dif V = \int \sqrt{\det{\gamma}} \dif x^1 \dif x^2 \dif x^3 ,
 \end{equation}
 where $\gamma$ is the induced metric on the surface and $\det{\gamma}$ its determinant.
-The factor $\sqrt{\det{\gamma}}$ arises to make the volume element $\dif^n x \sqrt{\det{\gamma}}$ invariant between coordinate systems.
+The factor $\sqrt{\det{\gamma}}$ arises to make the volume element $\dif^n x \sqrt{\det{\gamma}}$ invariant under coordinate transformations.
 
 \subsection{Covariant derivatives and connection coefficients}
 
