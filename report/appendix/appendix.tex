@@ -2,6 +2,346 @@
 
 \chapter{General relativity}
 
+\section{The geometry of curved spacetime}
+\label{chap:gr_summary} % TODO: chap -> sec
+
+\newcommand\pdvx[2]{\pdv{x^{#1}}{x^{#2}}}
+
+In this section, we review the geometrical aspects of general relativity.
+We make no attempt to be mathematically rigorous, but rather focus on listing important quantities and equations and the intuitive connection between them.
+For more details, refer to detailed books or notes on the subject, like \cite{ref:carroll}, \cite{ref:mika_gr_notes} and \cite{ref:mtw}, all of whom this summary is based on.
+
+\subsection{Coordinates and tensors}
+
+In general relativity, $3$-dimensional space and $1$-dimensional time are no longer regarded separate as they are in Newtonian mechanics.
+They are rather intertwined into \emph{spacetime} -- a $(3+1)$-dimensional construct with coordinates given by a $4$-vector
+\begin{equation}
+	x^\mu = (\underbrace{x^0}_{\text{time}}, \underbrace{x^1, x^2, x^3}_{\text{space}}) .
+\end{equation}
+In flat Euclidean space, the coordinates could be taken as $x^\mu = (ct, x, y, z)$.
+Mathematically, the geometry of spacetime is described by a \emph{Riemannian manifold} that generalizes flat Euclidean space to \emph{curved space}.
+At every point in such a manifold, spacetime locally resembles Euclidean space in the \emph{tangent space} located at that point, and all such tangent spaces vary in a smooth manner from point to point.
+For example, \cref{fig:tangent_space} pictures the tangent space at a point of the $2$-sphere manifold.
+Concepts like angles, lengths, area and volume apply locally at each Euclidean tangent space, and one can generalize such concepts to the full manifold by integrating the local contributions from one point in the manifold to another.
+
+\begin{figure}
+\centering
+\includesvg[width=0.60\textwidth]{figures/tangent-space.svg}
+\caption{\label{fig:tangent_space}The tangent space at a point $x$ on the $2$-sphere manifold can be pictured as the tangent plane at that point. If a vector field $V^\mu(x^\nu)$ is placed on the manifold, the vector would lie in this tangent space.}
+% link: https://commons.wikimedia.org/wiki/File:Image_Tangent-plane.svg
+\end{figure}
+
+% transformation law inspiration: https://math.stackexchange.com/a/958524 and Wikipedia: "holonomic basis"
+
+\newcommand\lincombo[1]{\left( a \odv{#1}{\tau} + b \odv{#1}{\lambda} \right)}
+\newcommand\lincomboslash[1]{\left( a \odv{#1}/{\tau} + b \odv{#1}/{\lambda} \right)}
+We will place vector fields $V^\mu(x^\nu)$, and later tensor fields, that associate a vector $V^\mu$ to every point $x^\nu$ on a manifold.
+As explained in \cref{fig:tangent_space}, such a vector lies in the tangent vector space at every point on the manifold.
+To motivate the transformation properties of tensors on a manifold, we can use the fact that the set of directional derivatives constitute a vector space with basis vectors given by the partial derivatives. 
+Suppose $\phi(x)$ is a scalar function and $x(\tau)$ and $x(\lambda)$ are two paths on the manifold with directional derivatives given through the chain rule as
+\begin{equation}
+	\odv{\phi}{\tau} = \odv{x^\mu}{\tau} \partial_\mu \phi
+	\qquad \text{and} \qquad
+	\odv{\phi}{\lambda} = \odv{x^\mu}{\lambda} \partial_\mu \phi .
+\end{equation}
+Then the linear combination $\lincomboslash{}$ is also a perfectly good derivative operator, as it is both linear and satisfies the product rule
+\begin{equation}
+	\lincombo{}(fg) = \ldots = \lincombo{f} g + \lincombo{g} f .
+\end{equation}
+One can verify that the set of all differential operators, implicitly assumed to work on some scalar function, satisfy all criterions for being a vector space.
+Thus, like one can regard $\vec{V} = V^\mu \vec{e}_\mu$ as a vector with components $V^\mu$ and basis vectors $\vec{e}_\mu$, one can regard
+\begin{equation}
+	\odv{}{\lambda} = \odv{x^{\mu}}{\lambda} \partial_{\mu} 
+\end{equation}
+as a vectorial object with components $\odv{x^{\mu}}/{\lambda}$ and basis vectors $\partial_\mu$.
+Under a change of coordinates $x^{\mu'} = x^{\mu'}(x^\mu)$, the directional derivative transforms like
+\begin{equation}
+	\odv{}{\lambda} = \odv{x^{\mu'}}{\lambda} \partial_{\mu'} = \underbrace{\Bigg( \odv{x^{\mu}}{\lambda} \pdvx{\mu'}{\mu} \Bigg)}_\text{components} \underbrace{\Bigg( \pdvx{\mu}{\mu'} \partial_{\mu} \Bigg)}_\text{basis} = \odv{x^{\mu}}{\lambda} \partial_{\mu} .
+\end{equation}
+We define a \textbf{covariant vector} as a tuple that transforms \emph{with} the change of basis, like
+\begin{equation}
+	V_{\mu'} = \pdv{x^{\mu}}{x^{\mu'}} V_\mu .
+	\label{eq:covariant_transformation}
+\end{equation}
+Oppositely, a \textbf{contravariant vector} is a tuple that transforms \emph{opposite to} the basis, like
+\begin{equation}
+	V^{\mu'} = \pdv{x^{\mu'}}{x^\mu} V_\mu .
+	\label{eq:contravariant_transformation}
+\end{equation}
+More generally, we define a \textbf{tensor} of rank $(m,n)$ as an array composed of $m$ contravariant indices and $n$ covariant indices that transforms like
+\begin{equation}
+	T^{\mu_1' \dots \mu_m'}_{\nu_1' \dots \nu_n'} = \pdv{x^{\mu_1'}}{x^{\mu_1}} \cdots \pdv{x^{\mu_m'}}{x^{\mu_m}}
+	                                                \pdv{x^{\nu_1'}}{x^{\nu_1}} \cdots \pdv{x^{\nu_n'}}{x^{\nu_n}}
+												    T^{\mu_1 \dots \mu_m}_{\nu_1 \dots \nu_n}
+	\label{eq:tensor_transformation}
+\end{equation}
+
+\iffalse
+We will work with vector fields $V^\mu(x)$ on manifolds.
+To each point on $x$ on the manifold, we associate a tangent vector $V^\mu(x)$.
+How do vectors, and generally tensors, transform under a change of coordinates $x' = x'(x)$ on the manifold?
+First, note that \emph{directional derivatives} constitute a vector space when acting on scalar functions.
+Imagine two curves $x^\mu(\tau)$ and $x^\nu(\lambda)$ with directional derivatives $\odv{}/{\tau}$ and $\odv{}/{\lambda}$.
+The linear combination $a \odv{}/{\tau} + b \odv{}/{\lambda}$ is also in the same space, as
+\begin{equation}
+	\lincombo{}(fg) = \ldots = \lincombo{f} g + \lincombo{g} f
+\end{equation}
+so the Leibniz rule is satisfied and the linear combination is also a proper derivative operator.
+By the chain rule,
+\begin{equation}
+	\odv{}{\lambda} = \odv{x^\mu}{\lambda} \partial_\mu ,
+\end{equation}
+so the partial derivatives $\partial_\mu$ in fact constitute a natural basis for this vector space.
+Since these are the basis vectors, we can deduce the transformation laws by requiring that $V^\mu \partial_\mu$ be constant under a change of coordinates:
+\begin{equation}
+	V^\mu \partial_\mu = V^{\mu'} \partial_{\mu'} = V^{\mu'} \pdv{x^\mu}{x^{\mu'}} \partial_\mu ,
+\end{equation}
+so the general \textbf{transformation law for contravariant vectors} is
+\begin{equation}
+	V^{\mu'} = \pdv{x^{\mu'}}{x^\mu} V_\mu .
+\end{equation}
+
+To get the transformation law for covariant vectors, we make use of the gradient of a scalar function
+\begin{equation}
+	\nabla \phi = \partial_\mu \phi \vec{e}^\mu 
+\end{equation}
+Using the chain rule,
+\begin{equation}	
+	\partial_{\mu'} \phi = \pdv{x^\mu}{x^{\mu'}} \partial_\mu \phi ,
+\end{equation}
+so the \textbf{transformation law for covariant vectors} is
+\begin{equation}
+	V_{\mu'} = \pdv{x^{\mu}}{x^{\mu'}} V_\mu .
+\end{equation}
+This line of reasoning can be extended to find the \textbf{general transformation law for tensors} (where we suppress the ordering of the indices)
+\begin{equation}
+	T^{\mu_1' \dots \mu_m'}_{\nu_1' \dots \nu_n'} = \pdv{x^{\mu_1'}}{x^{\mu_1}} \cdots \pdv{x^{\mu_m'}}{x^{\mu_m}}
+	                                                \pdv{x^{\nu_1'}}{x^{\nu_1}} \cdots \pdv{x^{\nu_n'}}{x^{\nu_n}}
+												    T^{\mu_1 \dots \mu_m}_{\nu_1 \dots \nu_n}
+\end{equation}
+\fi
+
+\subsection{Metric tensor}
+
+The \textbf{metric tensor}
+\begin{equation}
+	g\indices{_\mu_\nu}(x) = \vec{e}_\mu(x) \cdot \vec{e}_\nu(x)
+\end{equation}
+contains inner products between basis vectors $\vec{e}_\mu$ that span the tangent spaces at each point $x$ in the manifold.
+It thus encodes the lengths vectors of the basis vectors and angles between them and is a fundamental object that describes the geometry of the manifold.
+
+We define the \textbf{inverse metric tensor} $g^{\mu \nu}$ to satisfy the identity map
+\begin{equation}
+	g^{\mu \nu} g_{\nu \sigma} = \delta^\mu_\sigma .
+\end{equation}
+Using the metric and its inverse, we can \textbf{raise and lower indices} on tensors.
+For example, the object $g_{\mu \nu} V^\nu$, according to \cref{eq:tensor_transformation}, transforms like covariant vector
+\begin{equation}
+	g_{\mu' \nu'} V^{\nu'} = \left( \pdvx{\alpha}{\mu'} \pdvx{\beta}{\nu'} g_{\alpha \beta} \right) \left( \pdvx{\nu'}{\nu} V^{\nu} \right) = \pdvx{\alpha}{\mu'} g_{\alpha \nu} V^\nu ,
+\end{equation}
+so it is meaningful to label it as a covariant vector with a lower index $V_\mu = g_{\mu \nu} V^\nu$.
+Similarly, we could use the inverse metric $g^{\mu \nu}$ to raise indices.
+Any rank-$2$ tensor would suffice to raise and lower indices, but the metric is a natural choice because it is inherent to the manifold.
+
+\subsection{Line element and volume}
+
+From the metric tensor, one defines the \textbf{line element}
+\begin{equation}
+	\dif s = \sqrt{g\indices{_\mu_\nu} \dif x^\mu \dif x^\nu}
+	\label{eq:def_line_elem}
+\end{equation} 
+that extends the concept of distance locally to every point in the manifold.
+By integrating the line element from one point in the manifold to another, one can compute the total distance
+\begin{equation}
+	s = \int_1^2 \dif s = \int_1^2 \sqrt{g\indices{_\mu_\nu} \dif x^\mu \dif x^\nu}
+\end{equation}
+between the points.
+Similarly, one can compute the \textbf{volume} of a region
+\begin{equation}
+	V = \int \dif V = \int \sqrt{\det{\gamma}} \dif x^1 \dif x^2 \dif x^3 ,
+\end{equation}
+where $\gamma$ is the induced metric on the surface and $\det{\gamma}$ its determinant.
+The factor $\sqrt{\det{\gamma}}$ arises to make the volume element $\dif^n x \sqrt{\det{\gamma}}$ invariant between coordinate systems.
+
+\subsection{Covariant derivatives and connection coefficients}
+
+Knowing how vectors and general tensors transform, let us generalize the notion of a derivative to curved space.
+By the transformation rules we have found so far, the normal partial derivative of a vector transforms like
+\begin{equation}
+	\partial_{\mu'} V^{\nu'} = \bigg( \pdvx{\mu}{\mu'} \partial_\mu \bigg) \bigg( \pdvx{\nu'}{\nu} V^\nu \bigg)
+	                       = \pdvx{\mu}{\mu'} \pdv{\nu'}{\nu} \partial_\mu V^\nu + \pdvx{\mu}{\mu'} \pdv{x^{\nu'}}{x^\mu, x^\nu} V^\nu .
+\end{equation}
+The first term respects the tensor transformation law \eqref{eq:tensor_transformation}, but the second does not, so $\partial_\mu V^\nu$ is \emph{not} a tensor.
+We define a tensorial derivative $\nabla_\mu$ that by demanding that it transforms like
+\begin{equation}
+	\nabla_{\mu'} V^{\nu'} = \pdvx{\mu}{\mu'} \pdvx{\nu'}{\nu} \nabla_\mu V^\nu .
+\end{equation}
+It turns out that we can fulfill this requirement if we define the \textbf{covariant derivative}
+\begin{equation}
+	\nabla_\mu V^\nu = \partial_\mu V^\nu + \Gamma_{\sigma \mu}^\nu V^\sigma ,
+	%\qquad \text{or} \qquad
+	%\nabla_\mu V_\nu = \partial_\mu V_\nu - \Gamma_{\nu \mu}^\sigma V_\sigma ,
+\end{equation}
+where we also define the \textbf{connection coefficients} $\Gamma_{\sigma _\mu}^\nu$ to transform according to
+\begin{equation}
+	\Gamma^{\nu'}_{\mu' \lambda'} = \pdvx{\mu}{\mu'} \pdvx{\lambda}{\lambda'} \pdvx{\nu'}{\nu}  \Gamma^{\nu}_{\mu \lambda} + \pdvx{\mu}{\mu'} \pdvx{\lambda}{\lambda'} \pdv{x^{\nu'}}{x^\mu, x^\lambda} .
+	\label{eq:connection_transformation}
+\end{equation}
+For a general rank-$(r,s)$ tensor $T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s}$ (where we suppress the order of the indices), the \textbf{covariant derivative} that respects the tensorial transformation law \eqref{eq:tensor_transformation} is
+\begin{equation}
+\begin{split}
+	\nabla_\mu T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} &= \partial_\mu T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} \\
+	                                                                 &+ \Gamma^{\alpha_1}_{\sigma\mu} T^{\sigma \alpha_2 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} + \dots + \Gamma^{\alpha_r}_{\sigma\mu} T^{\alpha_1 \ldots \alpha_{r-1}\sigma}_{\beta_1 \ldots \beta_s} \\
+	                                                                 &- \Gamma^\sigma_{\beta_1 \mu} T^{\alpha_1 \ldots \alpha_r}_{\sigma \beta_2 \ldots \beta_s} - \cdots - \Gamma^\sigma_{\beta_s \mu} T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_{s-1} \sigma} .
+	\label{eq:def_cov_deriv}
+\end{split}
+\end{equation}
+That is, for each upper index $\alpha_i$, add $+\Gamma^{\alpha_i}_{\sigma \mu} T^{\alpha_1 \ldots \alpha_{i-1} \sigma \alpha_{i+1} \ldots \alpha_r}_{\beta_1 \ldots \beta_s}$,
+and for each lower index $\beta_i$, add $-\Gamma^{\sigma}_{\beta_i \mu} T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_{i-1} \sigma \beta_{i+1} \ldots \beta_s}$,
+
+Note that the connection coefficients \emph{do not} transform like tensors -- the whole point was to stash the non-tensorial behavior into the connection coefficients so that the \emph{covariant derivative} transforms like a tensor.
+However, since $\nabla_\mu V^\nu$ and $\hat{\nabla}_\mu V^\nu$ for two different connection coefficients $\Gamma^\alpha_{\beta \mu}$ and $\hat{\Gamma}^\alpha_{\beta \mu}$ by definition are tensors, the \emph{difference}
+\begin{equation}
+	S\indices{^\alpha_\beta_\gamma} = \Gamma^\alpha_{\beta \gamma} - \hat{\Gamma}^\alpha_{\beta \gamma}
+\end{equation}
+between two connection coefficients \emph{does} transform like a tensor.
+
+There are many possible choices of the connection coefficients that satisfy \cref{eq:connection_transformation}.
+However, it turns out that we can find a set of \emph{unique} connection coefficients from the \emph{metric} if we impose two additional requirements.
+First, we demand that the \textbf{torsion tensor}
+\begin{equation}
+	T\indices{^\alpha_\beta_\gamma} = \Gamma^\alpha_{\beta\gamma} - \Gamma^\alpha_{\gamma\beta}
+	\label{eq:torsion_tensor}
+\end{equation}
+vanishes.
+Equivalently, the connection coefficients $ \Gamma^\alpha_{\beta\gamma} = \Gamma^\alpha_{\beta\gamma} $ are symmetric in the lower indices.
+Second, we require \textbf{metric compatibility}
+\begin{equation}
+	\nabla_\rho g_{\mu \nu} = 0 .
+\end{equation}
+This implies that
+\begin{equation}
+	g_{\mu \lambda} \nabla_\rho V^\lambda = \nabla_\rho (g_{\mu \lambda} V^\lambda) = \nabla_\rho V_\mu ,
+\end{equation}
+so we do not have to be overly careful regarding index placement when taking covariant derivatives.
+Using these assumptions, we can write out the metric compatibility requirements
+\newcommand\metriccompatibilityequation[3]{\nabla_{#1} g_{{#2}{#3}} &= \partial_{#1} g_{{#2}{#3}} - \Gamma^\lambda_{{#1}{#2}} g_{\lambda {#3}} - \Gamma^\lambda_{{#1}{#3}} g_{{#2} \lambda} = 0}
+\begin{align}
+	\metriccompatibilityequation{\rho}{\mu}{\nu} \\
+	\metriccompatibilityequation{\mu}{\nu}{\rho} \\
+	\metriccompatibilityequation{\nu}{\rho}{\mu} .
+\end{align}
+By subtracting the second and third equation from the first and solving the resulting equation for the connection, we find the \textbf{Christoffel symbols} or \textbf{metric connection}
+\begin{equation}
+	\Gamma^\sigma_{\mu \nu} = \frac{1}{2} g\indices{^\sigma^\rho} \left(
+		\partial\indices{_\mu} g\indices{_\nu_\rho} +
+		\partial\indices{_\nu} g\indices{_\rho_\mu} -
+		\partial\indices{_\rho} g\indices{_\mu_\nu}
+	\right) .
+	\label{eq:def_christoffel}
+\end{equation}
+In general relativity, we will \emph{always} use this unique representation of the connection coefficients given in terms of the metric only.
+\iffalse
+\begin{align}
+	\nabla_c T\indices{^{a_1 \ldots a_r}_{b_1 \ldots b_s}} &= \partial_c {T^{a_1 \ldots a_r}}_{b_1 \ldots b_s} \\
+	                                                       &+ \Gamma^{a_1}_{dc} T\indices{^{d a_2 \ldots a_r}_{b_1 \ldots b_s}} + \dots + \Gamma^{a_r}_{dc} T\indices{^{a_1 \ldots a_{r-1}d}_{b_1 \ldots b_s}} \\
+	                                                       &- {\Gamma^d}_{b_1 c} {T^{a_1 \ldots a_r}}_{d b_2 \ldots b_s} - \cdots - {\Gamma^d}_{b_s c} {T^{a_1 \ldots a_r}}_{b_1 \ldots b_{s-1} d}.
+	\label{eq:def_cov_deriv}
+\end{align}
+\fi
+
+\subsection{Parallell transport and geodesic equation}
+
+\begin{figure}
+\centering
+\includesvg[width=0.5\textwidth]{figures/parallel_transport.svg}
+\caption{\label{fig:parallel_transport}When a vector is parallel transpored around a closed loop on the $2$-sphere, its final direction depends on the path taken. Illustration by Fred the Oyster on Wikimedia Commons (\url{https://commons.wikimedia.org/wiki/File:Parallel_Transport.svg}), licensed under \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC BY-SA 4.0}}
+\end{figure}
+
+Now that we know how to take proper derivatives of vector fields on manifolds, we can discuss how to parallel transport vectors on the manifold.
+In flat space, we can move a vector around and keep its cartesian components constant to parallel transport it.
+But on a curved $2$-sphere, a vector that is parallel transported will end up being different depending on the route taken, as illustrated in \cref{fig:parallel_transport}.
+Generalizing the directional derivative $\odv{}/{\tau} = (\odv{x^\mu}/{\tau}) \partial_\mu$ from calculus, we define the \textbf{directional covariant derivative} along a path $x(\tau)$ as
+\begin{equation}
+	\frac{D}{\mathrm{d} \tau} = \odv{x^\mu}{\tau} \nabla_\mu
+\end{equation}
+We say that a tensor is parallel transported if its components are kept constant during transport, as expressed by
+\begin{equation}
+	\frac{D}{\mathrm{d} \tau} T^{\mu_1 \ldots \mu_m}_{\nu_1 \ldots \nu_n} = 0 .
+\end{equation}
+For the special case of a vector $V^\mu$ we get the \textbf{equation of parallel transport}
+\begin{equation}
+	\odv{V^\mu}{\tau} + \Gamma^{\mu}_{\sigma \rho} \odv{x^\sigma}{\tau} V^\rho = 0 .
+	\label{eq:parallel_transport}
+\end{equation}
+The solution of this first order differential equation is the continuation $V^\mu(\tau)$ from an initial vector $V^\mu(0)$ along the path such that its components are constant.
+
+In Euclidean space, a straight line is the shortest path between two points.
+In curved space, we call the shortest path between two points on a manifold a \textbf{geodesic}.
+An equivalent definition of both a straight line and a geodesic is that it is the path $x(\tau)$ that parallel transports its own tangent vector $\odv{x^\mu}/{\tau}$.
+Inserted into the equation of parallel transport \eqref{eq:parallel_transport}, we find the \textbf{geodesic equation}
+\begin{equation}
+	\odv[2]{x^\mu}{\tau} + \Gamma^\mu_{\rho \sigma} \odv{x^\rho}{\tau} \odv{x^\sigma}{\tau} = 0 .
+	\label{eq:geodesic}
+\end{equation}
+In flat space, it reduces to the equation of a straight line $\odv[2]{x^\mu}/{\tau} = 0$.
+One of Einstein's profound insights of general relativity was that gravity does not simply alter the path of a freely falling particle away from the straight line it would follow in Euclidean space in the abscence of gravity.
+Instead, gravity presents itself in the geometry of spacetime itself, as the presence of energy-momentum curves spacetime and lays geodesic ``tracks'' according to \cref{eq:geodesic} that any freely falling particle is destined to follow to whichever fate awaits at the end of the line.
+\emph{Gravity is geometry}.
+
+\subsection{Riemann curvature tensor, Ricci tensor and Ricci scalar}
+
+% motivate by connecting it to the metric? 
+% https://math.stackexchange.com/a/1213124 
+% https://math.stackexchange.com/q/884794 
+% https://math.stackexchange.com/q/2896648
+% https://en.wikipedia.org/wiki/Ricci_curvature#Direct_geometric_meaning (taylor expansion around normal coords) 
+
+So far we have used the term ``curvature'' quite informally -- let us now formalize this.
+We already saw that parallel transporting a vector along different paths on a curved manifold like the $2$-sphere yield different results.
+We have also seen that the covariant derivative measures the rate of change of a vector along some direction compared to what it would've been if it was parallel transported.
+Thus, the commutator $[ \nabla_\mu, \nabla_\nu ] V^\rho = \nabla_\mu V^\rho - \nabla_\nu V^\rho$ measures the difference of parallel transporting a vector along the two different directions.
+Using \cref{eq:def_cov_deriv}, it turns out we can write this as
+\begin{equation}
+	[ \nabla_\mu, \nabla_\nu ] V^\rho = R\indices{^\rho_{\sigma \mu \nu}} V^\sigma - T\indices{^\lambda_{\mu \nu}} \nabla_\lambda V^\rho
+\end{equation}
+where $T\indices{^\lambda_{\mu \nu}}$ is the torsion tensor \eqref{eq:torsion_tensor} that we assumed to vanish, and we defined the \textbf{Riemann curvature tensor}
+\begin{equation}
+	R\indices{^\rho_\sigma_\mu_\nu} =
+	\partial\indices{_\mu} \Gamma^\rho_{\nu \sigma} -
+	\partial\indices{_\nu} \Gamma^{\rho}_{\mu \sigma} +
+	\Gamma^\rho_{\mu \lambda} \Gamma^{\lambda}_{\nu \sigma} -
+	\Gamma^\rho_{\nu \lambda} \Gamma^{\lambda}_{\mu \sigma} .
+	\label{eq:def_riemann_tensor}
+\end{equation}
+We expect that if space is flat, then a parallel transported vector should not depend on the path, so the commutator and thus the Riemann tensor should vanish.
+If there exists \emph{any} choice of coordinates in which the curvature tensor vanishes, then it vanishes in \emph{all} coordinates by its tensorial nature, and this is our ultimate definition of \textbf{flat space}.
+In fact, it turns out that at any point $p$ we can find \textbf{locally intertial coordinates} $x^\mu$ in which the metric locally resembles that of flat space with $g_{\mu \nu} = \eta_{\mu \nu}$ and $\partial_\sigma g_{\mu \nu} = 0$ and to second order in the displacement is \cite{ref:metric_taylor_expansion}
+\begin{equation}
+	g_{\mu \nu}(x) = \eta_{\mu \nu} - \frac12 R_{\alpha \mu \beta \nu} (x^\alpha - p^\alpha) (x^\beta - p^\beta) .
+\end{equation}
+The Riemann curvature tensor is thus a \emph{very} appropriate measure of ``curvature''.
+
+% TODO: motivate
+% https://en.wikipedia.org/wiki/Introduction_to_the_mathematics_of_general_relativity#Curvature_tensor (need two indices to enter the Einstein field equations -- "geometry" = metric comes with 2 indices, and "energy-momentum" come with 2 indices, https://physics.stackexchange.com/a/220650)
+% see great motivation at https://physics.stackexchange.com/a/220650
+% and great motivation at https://physics.stackexchange.com/a/219682
+
+From the curvature tensor, we can form tensors of lower rank by contracting some of its indices.
+We know that the energy-momentum tensor $T^{\mu \nu}$ that enter the Einstein field equations \eqref{eq:einstein} are of second rank, so if it is to determine the curvature of spacetime by a tensor equation, then the curvature tensor must be contracted to form a tensor of equal rank.
+With the Christoffel connection \cref{eq:def_christoffel}, it turns out that the only independent contraction we can make is the \textbf{Ricci tensor}
+\begin{equation}
+	R\indices{_\mu_\nu} = R\indices{^\lambda_\mu_\lambda_\nu} .
+	\label{eq:def_ricci_tensor}
+\end{equation}
+The two other possible contractions either vanish or are related to the Ricci tensor.
+Thus, the simplest scalar quantity we can form that represents curvature is the \textbf{Ricci scalar}
+\begin{equation}
+	R = R\indices{^\mu_\mu} .
+	\label{eq:def_ricci_scalar}
+\end{equation}
+
+
 \section{Least-action derivation of the Einstein field equations}
 \label{sec:einstein_derivation}
 
@@ -174,76 +514,6 @@ we uncover the \textbf{Einstein field equations in the presence of matter},
 	\label{eq:einstein_derivation:einstein_matter}
 \end{equation}
 
-\section{Summary of important quantities}
-\label{chap:gr_summary} % TODO: chap -> sec
-
-TODO: rewrite / extend
-
-In general relativity, the geometry of spacetime is described by the \textbf{metric} $g\indices{_\mu_\nu}$ and the \textbf{line element}
-\begin{equation}
-	\dif s^2 = g\indices{_\mu_\nu} \dif x^\mu \dif x^\nu .
-	\label{eq:def_line_elem}
-\end{equation}
-
-From the metric, we can construct the \textbf{Christoffel symbols}
-\begin{equation}
-	\Gamma^\sigma_{\mu \nu} = \frac{1}{2} g\indices{^\sigma^\rho} \left(
-		\partial\indices{_\mu} g\indices{_\nu_\rho} +
-		\partial\indices{_\nu} g\indices{_\rho_\mu} -
-		\partial\indices{_\rho} g\indices{_\mu_\nu}
-	\right) .
-	\label{eq:def_christoffel}
-\end{equation}
-
-They allow us to generalize the partial derivative of a contravariant vector $V^\nu$ or a covariant vector $V_\nu$ to the \textbf{covariant derivative}
-\begin{equation*}
-	\nabla_\mu V^\nu = \partial_\mu V^\nu + \Gamma_{\sigma \mu}^\nu V^\sigma
-	\qquad \text{or} \qquad
-	\nabla_\mu V_\nu = \partial_\mu V_\nu - \Gamma_{\nu \mu}^\sigma V_\sigma
-	.
-\end{equation*}
-For a general type $(r,s)$ tensor $T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s}$ (where we suppress the order of the indices),
-\begin{equation}
-\begin{split}
-	\nabla_\mu T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} &= \partial_\mu T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} \\
-	                                                                 &+ \Gamma^{\alpha_1}_{\sigma\mu} T^{\sigma \alpha_2 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} + \dots + \Gamma^{\alpha_r}_{\sigma\mu} T^{\alpha_1 \ldots \alpha_{r-1}\sigma}_{\beta_1 \ldots \beta_s} \\
-	                                                                 &- \Gamma^\sigma_{\beta_1 \mu} T^{\alpha_1 \ldots \alpha_r}_{\sigma \beta_2 \ldots \beta_s} - \cdots - \Gamma^\sigma_{\beta_s \mu} T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_{s-1} \sigma}.
-	\label{eq:def_cov_deriv}
-\end{split}
-\end{equation}
-\iffalse
-\begin{align}
-	\nabla_c T\indices{^{a_1 \ldots a_r}_{b_1 \ldots b_s}} &= \partial_c {T^{a_1 \ldots a_r}}_{b_1 \ldots b_s} \\
-	                                                       &+ \Gamma^{a_1}_{dc} T\indices{^{d a_2 \ldots a_r}_{b_1 \ldots b_s}} + \dots + \Gamma^{a_r}_{dc} T\indices{^{a_1 \ldots a_{r-1}d}_{b_1 \ldots b_s}} \\
-	                                                       &- {\Gamma^d}_{b_1 c} {T^{a_1 \ldots a_r}}_{d b_2 \ldots b_s} - \cdots - {\Gamma^d}_{b_s c} {T^{a_1 \ldots a_r}}_{b_1 \ldots b_{s-1} d}.
-	\label{eq:def_cov_deriv}
-\end{align}
-\fi
-That is, for each upper index $\alpha_i$, add $+\Gamma^{\alpha_i}_{\sigma \mu} T^{\alpha_1 \ldots \alpha_{i-1} \sigma \alpha_{i+1} \ldots \alpha_r}_{\beta_1 \ldots \beta_s}$,
-and for each lower index $\beta_i$, add $-\Gamma^{\sigma}_{\beta_i \mu} T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_{i-1} \sigma \beta_{i+1} \ldots \beta_s}$,
-As the name and notation suggests, $\nabla_\mu$ transforms covariantly, so the covariant derivative of a tensor is independent of coordinate system.
-
-The curvature of spacetime is expressed through the \textbf{Riemann curvature tensor}
-\begin{equation}
-	R\indices{^\rho_\sigma_\mu_\nu} =
-	\partial\indices{_\mu} \Gamma^\rho_{\nu \sigma} -
-	\partial\indices{_\nu} \Gamma^{\rho}_{\mu \sigma} +
-	\Gamma^\rho_{\mu \lambda} \Gamma^{\lambda}_{\nu \sigma} -
-	\Gamma^\rho_{\nu \lambda} \Gamma^{\lambda}_{\mu \sigma} .
-	\label{eq:def_riemann_tensor}
-\end{equation}
-
-The curvature tensor can be contracted to form the \textbf{Ricci tensor}
-\begin{equation}
-	R\indices{_\mu_\nu} = R\indices{^\lambda_\mu_\lambda_\nu},
-	\label{eq:def_ricci_tensor}
-\end{equation}
-whose trace is known as the \textbf{Ricci scalar}
-\begin{equation}
-	R = R\indices{^\mu_\mu} .
-	\label{eq:def_ricci_scalar}
-\end{equation}
-For more details, consult an introductory textbook on general relativity like \cite{ref:carroll}.
 
 \chapter{Code}
 

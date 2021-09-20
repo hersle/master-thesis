@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 408 456" width="408" height="456" style="enable-background:new 0 0 408 456;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000;stroke-dasharray:1,1;}
+	.st1{fill:#C4C1E1;fill-opacity:0.4;stroke:#000;stroke-width:2;}
+	.st2{fill:none;stroke:#000;stroke-width:2;stroke-linecap:round;}
+	.st3{fill:none;stroke:#000;}
+	.st4{fill:none;stroke:#000;stroke-dasharray:2,4;}
+	.st5{fill:none;stroke:#000;stroke-dasharray:4,2,2,4;}
+	.st6{fill:none;stroke:#000;stroke-width:2;}
+	.st7{fill:none;stroke:#000;stroke-dasharray:1,1;}
+	.st8{font-family:'Liberation Sans','Arial','Sans';}
+	.st9{font-size:18px;}
+</style>
+<g id="diagram">
+	<g>
+		<path class="st0" d="M9.3,234.6c0,36.1,87.7,65.3,198.8,65.3s194.1-28.1,194.1-64.1s-83-66.5-194.1-66.5S9.3,198.5,9.3,234.6z"/>
+	</g>
+	<ellipse class="st1" cx="206" cy="231" rx="197" ry="199"/>
+	<g>
+		<g>
+			<path class="st2" d="M218.7,149.7c16.1,5.4,27.6,20.6,27.6,38.5c0,22.4-18.2,40.6-40.6,40.6s-40.6-18.2-40.6-40.6
+				c0-17.4,11-32.3,26.4-38.1"/>
+			<g>
+				<polygon points="188.8,157.1 189.7,150.8 185.8,145.7 200.9,147.8 				"/>
+			</g>
+		</g>
+	</g>
+	<path class="st2" d="M310.3,290.8c21.7-152-29.7-223.1-104.4-258.7c-78.7,61.1-91.3,153.2-77.6,262.7
+		C196.5,305.5,289.6,296.7,310.3,290.8z"/>
+	<g>
+		<g>
+			<line class="st3" x1="205.9" y1="8.4" x2="205.9" y2="10.4"/>
+			<line class="st4" x1="205.9" y1="12.4" x2="205.9" y2="16.4"/>
+			<line class="st5" x1="205.9" y1="18.4" x2="205.9" y2="444.3"/>
+			<line class="st3" x1="205.9" y1="446.3" x2="205.9" y2="448.3"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<polyline class="st2" points="116.6,229 128.2,294.8 194.6,283.7 			"/>
+			<g>
+				<polygon points="114.7,217.9 111,234.7 116.8,229.9 123.8,232.4 				"/>
+			</g>
+			<g>
+				<polygon points="205.8,281.8 191.1,290.9 193.8,283.8 189,278 				"/>
+			</g>
+		</g>
+	</g>
+	<path class="st2" d="M123.1,265.5c22.2-5,39.2,10.6,39.2,23.6"/>
+	<g>
+		<g>
+			<line class="st6" x1="122.5" y1="139" x2="123.8" y2="209"/>
+			<g>
+				<polygon points="122.3,124.8 114.5,144.9 122.5,140 130.7,144.6 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st2" x1="172.3" y1="47.2" x2="142.1" y2="115.9"/>
+			<g>
+				<polygon points="178,34.2 162.5,49.2 171.9,48.1 177.4,55.7 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st2" x1="310.9" y1="290.8" x2="374.5" y2="272.4"/>
+			<g>
+				<polygon points="385.4,269.2 371.9,279.9 373.7,272.6 368.3,267.4 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st2" x1="222.1" y1="299.6" x2="287.8" y2="281"/>
+			<g>
+				<polygon points="298.7,278 285.2,288.6 287,281.3 281.6,276 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st2" x1="314" y1="194.8" x2="377.6" y2="175.6"/>
+			<g>
+				<polygon points="388.4,172.4 375.1,183.2 376.8,175.9 371.3,170.7 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st2" x1="284.1" y1="99.3" x2="345" y2="75"/>
+			<g>
+				<polygon points="355.5,70.8 343.1,82.8 344.2,75.3 338.3,70.7 				"/>
+			</g>
+		</g>
+	</g>
+	<path class="st7" d="M128.2,294.8c3.8,64.9,30.6,113.1,77.6,135.1c40.6-18.6,81.8-49.2,104.4-139.1"/>
+</g>
+<g id="text">
+	<text transform="matrix(1 0 0 1 186 24)" class="st8 st9">N</text>
+	<text transform="matrix(1 0 0 1 186 451)" class="st8 st9">S</text>
+	<text transform="matrix(1 0 0 1 111 309)" class="st8 st9">A</text>
+	<text transform="matrix(1 0 0 1 314 309)" class="st8 st9">B</text>
+	<text transform="matrix(1 0 0 1 155 265)" class="st8 st9">α</text>
+</g>
+</svg>
