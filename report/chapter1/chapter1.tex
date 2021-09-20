@@ -457,9 +457,26 @@ Although we saw it was correct to interpret $M$ as the Newtonian mass of the sta
 Finally, let us compare the TOV equation \eqref{eq:tov} and findings for relativistic incompressible stars from \cref{sec:incompressible_star} to those of Newtonian gravity.
 To do so, we should first establish the Newtonian pressure gradient analogous to the relativistic one.
 
-(TODO: figure for the below stuff)
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\draw[dashed] (85:2.5) -- (85:3.0);
+\draw[dashed] (95:2.5) -- (95:3.0);
+\draw [->, thick] (90:2.75) -- (90:1.75) node [near end, right] {$\dif \vec{F}_1$};
+\draw [->, thick] (90:2.75) -- (90:3.75) node [near end, right] {$\dif \vec{F}_2$};
+\fill (90:2.75) circle [radius=0.1cm];
+\node[left=0.15cm] at (90:2.75) {$\dif m$};
+\draw[dashed] (0,0) circle [radius=3cm];
+\draw[dashed] (0,0) circle [radius=2.5cm];
+\draw (0,0) circle [radius=4.0cm];
+\fill (0,0) circle [radius=0.1cm];
+\draw (0,0) -- (-30:2.75) node [midway,above] {$r$};
+\draw (0,0) -- (210:4.0) node [midway,above] {$R$};
+\end{tikzpicture}
+\caption{\label{fig:hydrostatic_equilibrium_sphere}When a star of radius $R$ is in hydrostatic equilibrium, the gravitational force $\dif \vec{F}_1$ acting on a mass element  $\dif m$ at distance $r$ from the center must exactly cancel the pressure gradient force $\dif \vec{F}_2$.}
+\end{figure}
 
-Consider the mass element $\dif m = \rho(r) \dif A \dif r$ at distance $r$ from the center of a Newtonian star.
+Following \cref{fig:hydrostatic_equilibrium_sphere}, consider the mass element $\dif m = \rho(r) \dif A \dif r$ at distance $r$ from the center of a Newtonian star.
 By Gauss' law it is attracted to the mass $m(r)$ inside the radius $r$ as if it were concentrated at the center, but experiences no attraction whatsoever from the remaining mass outside $r$ due to symmetry.
 By Newton's law of gravity it is therefore pulled upon by the force
 \begin{equation}
