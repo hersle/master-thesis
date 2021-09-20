@@ -270,7 +270,7 @@ In turn, matter respond to the field as particles are accelerated by
 \end{equation}
 Given the initial distribution and velocities of matter, these two coupled differential equations determine its movement forever and thus contain all of Newtonian gravity.
 Here we will show that general relativity is reducible to Newtonian gravity in the \textbf{Newtonian limit} characterized by \emph{slow movement} and a \emph{static} and \emph{weak} gravitational field.
-In particular, we will demonstrate that the response of matter to the field \eqref{eq:interpretation_m:newton2} follows from the geodesic equation (TODO: ref), and similarly that the response of the field to matter \eqref{eq:interpretation_m:poisson} follows from the Einstein field equations \eqref{eq:einstein}.
+In particular, we will demonstrate that the response of matter to the field \eqref{eq:interpretation_m:newton2} follows from the geodesic equation \eqref{eq:geodesic}, and similarly that the response of the field to matter \eqref{eq:interpretation_m:poisson} follows from the Einstein field equations \eqref{eq:einstein}.
 Having established this correspondence, we move on to interpret the ``mass'' $M$ and ``energy'' $Mc^2$ that we encountered in \cref{eq:einstein_to_tov:schwarzschild_mass} but struggled to understand the meaning of.
 Finally, we derive the Newtonian pressure gradient analogous to the relativistic gradient \eqref{eq:tov} and show that the latter reduces to the former in the Newtonian limit.
 
@@ -320,12 +320,13 @@ where $h\indices{^\mu^\nu} = \eta\indices{^\mu^\rho} \eta\indices{^\nu^\sigma} h
 
 \subsection{Newtonian limit of the response of matter to the field}
 
-In general relativity, matter responds to the gravitational field by moving along geodesics $x(\tau)$ that satisfy the \textbf{geodesic equation} \cite[equation 3.44]{ref:carroll}
+In general relativity, matter responds to the gravitational field by moving along geodesics $x(\tau)$ that satisfy the \textbf{geodesic equation}
 \begin{equation}
 	\odv[2]{x^\mu}{\tau} + \Gamma^\mu_{\rho \sigma} \odv{x^\rho}{\tau} \odv{x^\sigma}{\tau} = 0 .
-	\label{eq:geodesic}
+	\label{eq:geodesic_duplicate}
 \end{equation}
-Let us show that we recover the Newtonian response \eqref{eq:interpretation_m:newton2} in the Newtonian limit.
+We explain the origin of the geodesic equation in \cref{sec:geodesic}, where we show that moving along geodesics corresponds to taking the shortest possible path between points in spacetime.
+Let us now show that we recover the Newtonian response \eqref{eq:interpretation_m:newton2} in the Newtonian limit.
 
 The criterion of slow movement \cref{eq:weak_field_limit:small_velocity} implies that a particle with velocity $\odv{x^\mu}/{\tau}$ has spatial components $\odv{x^i}/{t} \ll c$ and must be dominated by the temporal component $c \odv{t}/{\tau} \approx c$.
 Then $\odv{x^i}/{\tau} \ll \odv{x^0}/{\tau}$ and the geodesic equation can be approximated by
