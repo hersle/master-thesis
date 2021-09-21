@@ -196,7 +196,7 @@ In particular, the central pressure is
 \end{equation}
 It is interesting to note that the pressure is positive for $GM/Rc^2 < 4/9$, but explodes at $GM/Rc^2 = 4/9$ and becomes negative for $GM/Rc^2 > 4/9$.
 The pressure profile of stars approaching this limit is shown in \cref{fig:incompressible_star:plot2}.
-Physically, this means that once a star with fixed radius becomes massive enough, it implodes and turns into a black hole.
+Physically, this means that any star compressed to this limit could only be supported by an unattainable infinite central pressure, so it would have no other choice than to collapse.
 This is an example of a more general result -- \textbf{Buchdal's theorem} states that all static spherical stars composed of perfect fluids must have
 \begin{equation}
 	M(R) < M_\text{max}(R) = \frac{4c^2}{9G} R
@@ -204,12 +204,20 @@ This is an example of a more general result -- \textbf{Buchdal's theorem} states
 \end{equation}
 for any energy density profile $\epsilon(r)$ that does not decrease outwards \cite{ref:buchdal}.
 The proof requires careful work, but we can still understand the result intuitively.
-An object with a mass-energy profile that somehow satures the limit set by nature itself should have the same density everywhere.
-If it does not, there will be a region with lower density than its surroundings, which in turn will generate a pressure gradient force that seeks to establish equilibrium by eliminating the difference in density.
+If there is a maximum density that is supported by nature, then the most massive object we can make would necessarily have that density everywhere.
 Thus, the bound we have found in our computation with constant energy density should be the most extreme bound.
 In \cref{fig:incompressible_star:plot1}, we compare the mass-radius relation to this maximum supported mass.
 
-(TODO: introduce Schwarzschild radius $R_S = 2 G M / c^2$)
+Another way of looking at the Buchdal's theorem is that the radius of a star must satisfy
+\begin{equation}
+	R > \frac94 \frac{G M}{c^2} = \frac98 R_S ,
+\end{equation}
+where $R_S = 2 G M / c^2$ is the \textbf{Schwarzschild radius} of the star.
+In general relativity, it is a well known result of the spherical Schwarzschild solution that anything that falls into $r < R_S$ outside a massive body $M$ can never escape back out to $r > R_S$ \cite[section 5.6]{ref:carroll}.
+Such a one-way gate is called an event horizon, and any object whose physical radius is smaller than its Schwarzschild radius is called a \textbf{black hole}.
+Not even light can escape from a black hole, so it is completely invisible for outside observers -- hence the name.
+Thus, a stable star that satisfies the Buchdal bound $R > 9 G M / 4 c^2$ is not a black hole.
+If we somehow \emph{do} manage to compress a star to the radius $R = 9 G M / 4 c^2$, it would be unsustainable, implode and turn into a black hole.
 
 In \cref{sec:weak_field_limit} we will see that Buchdal's theorem is a relativistic result and that no such bound arises from Newtonian gravity.
 
