@@ -190,7 +190,7 @@ Knowing how vectors and general tensors transform, let us generalize the notion 
 By the transformation rules we have found so far, the normal partial derivative of a vector transforms like
 \begin{equation}
 	\partial_{\mu'} V^{\nu'} = \bigg( \pdvx{\mu}{\mu'} \partial_\mu \bigg) \bigg( \pdvx{\nu'}{\nu} V^\nu \bigg)
-	                       = \pdvx{\mu}{\mu'} \pdv{\nu'}{\nu} \partial_\mu V^\nu + \pdvx{\mu}{\mu'} \pdv{x^{\nu'}}{x^\mu, x^\nu} V^\nu .
+	                         = \pdvx{\mu}{\mu'} \pdvx{\nu'}{\nu} \partial_\mu V^\nu + \pdvx{\mu}{\mu'} \pdv{x^{\nu'}}{x^\mu, x^\nu} V^\nu .
 \end{equation}
 The first term respects the tensor transformation law \eqref{eq:tensor_transformation}, but the second does not, so $\partial_\mu V^\nu$ is \emph{not} a tensor.
 We define a tensorial derivative $\nabla_\mu$ that by demanding that it transforms like
