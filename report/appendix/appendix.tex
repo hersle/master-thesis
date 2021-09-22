@@ -13,8 +13,6 @@ For more details, we refer to detailed books and notes on the subject such as \c
 
 \subsection{Coordinates and tensors}
 
-(TODO: $x^{\mu'} \rightarrow x'^\mu$)
-
 In general relativity, $3$-dimensional space and $1$-dimensional time are no longer regarded separate as they are in Newtonian mechanics.
 They are rather intertwined into \emph{spacetime} -- a $(3+1)$-dimensional construct with \textbf{coordinates}
 % position is just "coordinates", not a 4-vector: https://physics.stackexchange.com/questions/192886/does-spacetime-position-not-form-a-four-vector
@@ -56,11 +54,29 @@ Thus, like one can regard $\vec{V} = V^\mu \vec{e}_\mu$ as a vector with compone
 \begin{equation}
 	\odv{}{\lambda} = \odv{x^{\mu}}{\lambda} \partial_{\mu} 
 \end{equation}
-as a vectorial object with components $\odv{x^{\mu}}/{\lambda}$ and basis vectors $\partial_\mu$.
-Under a change of coordinates $x^{\mu'} = x^{\mu'}(x^\mu)$, the directional derivative transforms as
+as a vector with components $\odv{x^{\mu}}/{\lambda}$ and basis vectors $\partial_\mu$.
+To see this clearly, make a coordinate transformation
 \begin{equation}
-	\odv{}{\lambda} = \odv{x^{\mu'}}{\lambda} \partial_{\mu'} = \underbrace{\Bigg( \odv{x^{\mu}}{\lambda} \pdvx{\mu'}{\mu} \Bigg)}_\text{components} \underbrace{\Bigg( \pdvx{\mu}{\mu'} \partial_{\mu} \Bigg)}_\text{basis} = \odv{x^{\mu}}{\lambda} \partial_{\mu} .
+	x \rightarrow x'(x)
+	\qquad \text{with inverse} \qquad
+	x' \rightarrow x(x')
+	\qquad \text{and Jacobians} \qquad
+	\pdv{x'^{\alpha}}{x^\gamma} \pdv{x^{\gamma}}{x'^{\beta}} = \delta^{\alpha}_{\beta} .
+	\label{eq:gr_summary:coordinate_transformation}
 \end{equation}
+Using the chain rule and the Jacobian property, the directional derivative transforms as
+\begin{equation}
+	\odv{}{\lambda} = \odv{x^{\mu'}}{\lambda} \partial_{\mu'} = \underbrace{\Bigg( \odv{x^{\alpha}}{\lambda} \pdvx{\mu'}{\alpha} \Bigg)}_\text{components} \underbrace{\Bigg( \pdvx{\beta}{\mu'} \partial_{\beta} \Bigg)}_\text{basis} = \odv{x^{\mu}}{\lambda} \partial_{\mu} .
+\end{equation}
+We see that the transformation of the components and the basis vectors exactly cancel each other, so the directional derivative is unchanged -- consistent with it being a vector.
+
+Note that we adopted the convention $x^{\mu'} = x'^\mu$ of placing the prime on the \emph{index} rather than the underlying object, but defined to mean the same.
+The benefit is that an index transforms with the partial derivative that has the primed coordinate in the \emph{same position as the index}, so we can always deduce the right transformation by simply staring at the expression.
+%If there is a prime on an index, it means that a coordinate transformation has been applied to that index.
+%The benefit of this is that an index transforms with the partial derivative that has the primed coordinate in the \emph{same position as the index} -- upper indices go with primed coordinates in the numerator, and lower indices with primes in the denominator.
+%In addition, we are free to ``reuse'' the same index twice -- once as a free index, and once for the contraction.
+%With this convention, we can always deduce the correct transformation laws from the index position, and we can place remaining indices so that they are contracted to yield an expression with the right number of free indices.
+
 We define an $n$-dimensional \textbf{covariant vector} as an $n$-tuple $V_\mu$ that transforms with the \emph{same} matrix $\pdv{x^{\mu}}/{x^{\mu'}}$ as the change of basis as
 \begin{equation}
 	V_{\mu'} = \pdv{x^{\mu}}{x^{\mu'}} V_\mu .
@@ -78,7 +94,7 @@ More generally, we define a $n$-dimensional \textbf{tensor} of rank $(r,s)$ as a
 												    T^{\mu_1 \dots \mu_r}_{\nu_1 \dots \nu_s}
 	\label{eq:tensor_transformation}
 \end{equation}
-under a coordinate transformation $x^{\mu'} = x^{\mu'} (x^\mu)$.
+under the coordinate transformation \eqref{eq:gr_summary:coordinate_transformation}.
 
 \iffalse
 We will work with vector fields $V^\mu(x)$ on manifolds.
