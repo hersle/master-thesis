@@ -70,7 +70,7 @@ We model the interior of the star as a perfect fluid with energy-momentum \cite[
 	T\indices{_\mu_\nu} = \frac{1}{c^2} (\epsilon+p) U_\mu U_\nu + p g\indices{_\mu_\nu}.
 	\label{eq:tov:energy_momentum_perfect_fluid}
 \end{equation}
-For a static star whose fluid is at rest, $U_\mu = (U_0, \textbf{0})$ and the normalization condition $U_\mu U^\mu = -c^2$ requires $U_0 = \pm e^\alpha c$.
+The analysis is simplest in the rest frame of the fluid, where $U_\mu = (U_0, \textbf{0})$ and the normalization condition $U_\mu U^\mu = -c^2$ requires $U_0 = \pm e^\alpha c$.
 We choose the positive sign so the four-velocity lies in the future light cone, as we are interested in the evolution of the star.
 Then the energy-momentum tensor takes the diagonal form
 \begin{equation}
@@ -94,7 +94,7 @@ T\indices{_\mu^\nu} =
 \end{equation}
 
 Starting with the metric, it is now straightforward, although tedious, to compute the left side of \cref{eq:einstein} from \cref{eq:def_christoffel,eq:def_riemann_tensor,eq:def_ricci_tensor,eq:def_ricci_scalar}.
-For the details, refer to \cite[equation 5.11-5.15]{ref:carroll}.
+For the details, refer to \cite[equation 5.11-5.15]{ref:carroll} or \cref{sec:tov_cas_derivation}.
 After inserting the energy-momentum tensor on the right and simplifying, we get the three independent equations
 (the fourth turns out proportional to the third)
 \begin{subequations}
@@ -126,7 +126,7 @@ If we set $m(0) = 0$, we can integrate to get
 	m(r) c^2 = \integral{\epsilon(r') 4 \pi r'^2}{r'}{0}{r} .
 	\label{eq:einstein_to_tov:m_integral}
 \end{equation}
-\cite[page 602]{ref:mtw} shows that setting $m(0) \neq 0$ creates a singularity at the origin, which is not physically acceptable.
+In \cite[page 602]{ref:mtw} it is shown that setting $m(0) \neq 0$ creates a singularity at the origin, which is not physically acceptable.
 Outside a star that extends to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_1_1} = (1-2GM/rc^2)^{-1}$ and Schwarzschild mass $M$ \cite[equation 5.1]{ref:carroll}.
 By comparison with \cref{eq:einstein_to_tov:def_m}, the \textbf{Schwarzschild mass} of the star must be
 \begin{equation}
@@ -147,7 +147,7 @@ Doing so is straightforward, but cumbersome and most easily done by a computer a
 We show how to do this in \cref{sec:tov_cas_derivation}.
 An elegant, but less straightforward argument is to use local energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$, which is both physically reasonable and in fact possible to prove directly from the Einstein field equations \eqref{eq:einstein}.
 For two different proofs, see \cite{ref:einstein_conservation_energy_momentum} and \cite[section 8.3.2]{ref:mika_gr_notes}.
-Using \cref{eq:def_cov_deriv}, the $\nu=1$-component gives
+Using \cref{eq:def_cov_deriv}, the component $\nu=1$ gives
 \begin{equation*}
 	0
 	= \nabla_\mu T\indices{^\mu_1}
@@ -236,24 +236,11 @@ If there is a maximum density that is supported by nature, then the most massive
 Thus, the bound we have found in our computation with constant energy density should be the most extreme bound.
 In \cref{fig:incompressible_star:plot1}, we compare the mass-radius relation to this maximum supported mass.
 
-Another way of looking at the Buchdal's theorem is that the radius of a star must satisfy
-\begin{equation}
-	R > \frac94 \frac{G M}{c^2} = \frac98 R_S ,
-\end{equation}
-where $R_S = 2 G M / c^2$ is the \textbf{Schwarzschild radius} of the star.
-In general relativity, it is a well known result of the spherical Schwarzschild solution that anything that falls into $r < R_S$ outside a massive body $M$ can never escape back out to $r > R_S$ \cite[section 5.6]{ref:carroll}.
-Such a one-way gate is called an event horizon, and any object whose physical radius is smaller than its Schwarzschild radius is called a \textbf{black hole}.
-Not even light can escape from a black hole, so it is completely invisible for outside observers -- hence the name.
-Thus, a stable star that satisfies the Buchdal bound $R > 9 G M / 4 c^2$ is not a black hole.
-If we somehow \emph{do} manage to compress a star to the radius $R = 9 G M / 4 c^2$, it would be unsustainable, implode and turn into a black hole.
-
-In \cref{sec:weak_field_limit} we will see that Buchdal's theorem is a relativistic result and that no such bound arises from Newtonian gravity.
-
 % Ideal use of groupplot + subcaption:
 % * use title={\subcaption{...}} for subcaptions (https://tex.stackexchange.com/a/310403)
 % * set title style text width automatically (https://tex.stackexchange.com/a/276214)
 % * another example (https://tex.stackexchange.com/a/69729)
-\begin{figure}[hb!]
+\begin{figure}[ht!]
 	\centering
 	\begin{tikzpicture}[declare function={
 		G = 1;
@@ -287,6 +274,19 @@ In \cref{sec:weak_field_limit} we will see that Buchdal's theorem is a relativis
 	}
 \end{figure}
 
+Another way of looking at the Buchdal's theorem is that the radius of a star must satisfy
+\begin{equation}
+	R > \frac94 \frac{G M}{c^2} = \frac98 R_S ,
+\end{equation}
+where $R_S = 2 G M / c^2$ is the \textbf{Schwarzschild radius} of the star.
+In general relativity, it is a well known result of the spherical Schwarzschild solution that anything that falls into $r < R_S$ outside a massive body $M$ can never escape back out to $r > R_S$ \cite[section 5.6]{ref:carroll}.
+Such a one-way gate is called an event horizon, and any object whose physical radius is smaller than its Schwarzschild radius is called a \textbf{black hole}.
+Not even light can escape from a black hole, so it is completely invisible for outside observers -- hence the name.
+Thus, a stable star that satisfies the Buchdal bound $R > 9 G M / 4 c^2$ is not a black hole.
+If we somehow \emph{do} manage to compress a star to the radius $R = 9 G M / 4 c^2$, it would be unsustainable, implode and turn into a black hole.
+
+In \cref{sec:weak_field_limit} we will see that Buchdal's theorem is a relativistic result and that no such bound arises from Newtonian gravity.
+
 \section{Newtonian limit and physical interpretation of mass}
 \label{sec:weak_field_limit}
 
@@ -306,7 +306,7 @@ In turn, matter respond to the field as particles are accelerated by
 Given the initial distribution and velocities of matter, these two coupled differential equations determine its movement forever and thus contain all of Newtonian gravity.
 Here we will show that general relativity is reducible to Newtonian gravity in the \textbf{Newtonian limit} characterized by \emph{slow movement} and a \emph{static} and \emph{weak} gravitational field.
 In particular, we will demonstrate that the response of matter to the field \eqref{eq:interpretation_m:newton2} follows from the geodesic equation \eqref{eq:geodesic}, and similarly that the response of the field to matter \eqref{eq:interpretation_m:poisson} follows from the Einstein field equations \eqref{eq:einstein}.
-Having established this correspondence, we move on to interpret the ``mass'' $M$ and ``energy'' $Mc^2$ that we encountered in \cref{eq:einstein_to_tov:schwarzschild_mass} but struggled to understand the meaning of.
+Having established this correspondence, we move on to interpret the ``mass'' $M$ and ``energy'' $Mc^2$ that we encountered in \cref{eq:einstein_to_tov:schwarzschild_mass}, but struggled to understand the meaning of.
 Finally, we derive the Newtonian pressure gradient analogous to the relativistic gradient \eqref{eq:tov} and show that the latter reduces to the former in the Newtonian limit.
 
 Before we set out, however, let us make the Newtonian limit mathematically precise.

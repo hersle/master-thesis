@@ -28,7 +28,7 @@ Familiar concepts like angles, lengths, area and volume apply locally in the tan
 \begin{figure}
 \centering
 \includesvg[width=0.60\textwidth]{figures/tangent-space.svg}
-\caption{\label{fig:tangent_space}The tangent space at a point $x$ on the $2$-sphere manifold can be pictured as the tangent plane at that point. If a vector field $V^\mu(x^\nu)$ is placed on the manifold, the vector would lie in this tangent space.}
+\caption{\label{fig:tangent_space}The tangent space at a point on the $2$-sphere manifold can be pictured as the tangent plane at that point. If a vector field is placed on the manifold, the vector would lie in this tangent space.}
 % link: https://commons.wikimedia.org/wiki/File:Image_Tangent-plane.svg
 \end{figure}
 
@@ -310,7 +310,7 @@ Inserted into the equation of parallel transport \eqref{eq:parallel_transport}, 
 \end{equation}
 In flat space, it reduces to the equation of a straight line $\odv[2]{x^\mu}/{\tau} = 0$.
 One of Einstein's profound insights of general relativity was that gravity does not simply alter the path of a freely falling particle away from the straight line it would follow in Euclidean space in the abscence of gravity.
-Instead, gravity presents itself in the geometry of spacetime itself, as the presence of energy-momentum curves spacetime and lays geodesic ``tracks'' according to \cref{eq:geodesic} that any freely falling particle is destined to follow to whichever fate awaits at the end of the line.
+Instead, gravity presents itself in the geometry of spacetime itself, as the presence of energy-momentum curves spacetime and lays geodesic ``tracks'' according to \cref{eq:geodesic} that any freely falling particle is destined to follow.
 \emph{Gravity is geometry}.
 
 \subsection{Riemann curvature tensor, Ricci tensor and Ricci scalar}
@@ -392,7 +392,9 @@ We postulate the \textbf{Hilbert action}
 	S_H = \frac{c^3}{16 \pi G} \int \dif^n x \sqrt{-\det{g}} \, R .
 	\label{eq:einstein_derivation:hilbert_action}
 \end{equation}
-The prefactor has been conventiently chosen yield correct result \eqref{eq:einstein_derivation:einstein_matter} in the end, which we saw in \cref{sec:einstein_to_poisson} led to Newtonian gravity in the Newtonian limit.
+As the Lagrangian is a scalar quantity and we showed that the simplest scalar quantity we could create is the Ricci scalar \eqref{eq:def_ricci_scalar}, it is not an unreasonable guess.
+The prefactor has been conventiently chosen to yield correct result \eqref{eq:einstein_derivation:einstein_matter} in the end, which we saw in \cref{sec:einstein_to_poisson} led to Newtonian gravity in the Newtonian limit.
+From an ignorant point of view, we could instead regard it as an arbitrary constant at this point, and eventually replace it with the right combination of constants that reproduce Newtonian gravity in the Newtonian limit.
 We could get the corresponding equations of motion by plugging the Lagrangian density $\hat{\lagr} = R c^3 / 16 \pi G$ into the Euler-Lagrange equations
 \begin{equation}
 	\pdv{\hat{\lagr}}{\phi} - \nabla_\mu \left( \pdv{\hat{\lagr}}{{\left(\nabla_\mu \phi\right)}} \right) = 0 .
