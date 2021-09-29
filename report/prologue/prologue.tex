@@ -18,4 +18,19 @@ For example,
 	.
 \end{equation*}
 
+\section*{Fourier transformation}
+
+We use the Fourier transformation convention
+\begin{equation}
+	f(k) = \int \dif x \, e^{i k x} f(x)
+	\qquad \text{and} \qquad
+	f(x) = \int \frac{\dif k}{2 \pi} \, e^{-i k x} f(k) .
+\end{equation}
+With this convention, the delta function $\delta(x' - x)$ is given by the highlighted part of
+\begin{equation}
+	f(x) = \int \frac{\dif k}{2 \pi} \, e^{-i k x} f(k)
+	     = \int \dif x' \underbrace{\int \frac{\dif k}{2 \pi} \, e^{i k (x'-x)}}_{\displaystyle \delta(x'-x)} f(k) .
+\label{eq:pre:delta_function}
+\end{equation}
+
 (TODO: table over all constants and notation, so I don't have to write everything in the text)

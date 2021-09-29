@@ -70,12 +70,12 @@ Choosing the solution with prefactor $1$, we obtain
 \end{equation}
 
 The momentum states are also orthogonal and complete, but with slightly different factors.
-Due to our Fourier transformation convention (TODO: ref), orthogonality takes the form
+Due to our convention \eqref{eq:pre:delta_function} for the delta function, orthogonality takes the form
 \begin{equation}
 \begin{split}
 	\braket{\pi_a | \pi_b} &= \int \dif \phi \braket{\pi_a | \phi} \braket{\phi | \pi_b} \\
 	                       &= \int \dif \phi \exp \left( i \int \dif^3 x \, (\pi_b(\vec{x}) - \pi_a(\vec{x})) \phi(\vec{x}) / \hbar \right) \\
-						   &= 2 \pi \hbar \delta(\pi_a(\vec{x}) - \pi_b(\vec{x})) .
+						   &= 2 \pi \hbar \, \delta(\pi_a(\vec{x}) - \pi_b(\vec{x})) .
 \end{split}
 \end{equation}
 To find the completeness relation, we postulate it up to a constant $B$.
