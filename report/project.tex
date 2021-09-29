@@ -57,7 +57,18 @@
 
 \usepackage{tikz}
 \usetikzlibrary{external}
-\tikzexternalize[prefix=.cachetikz/] % DO NOT USE DIRECTORY NAME WITH _ (. seems ok after changing .latexmkrc)
+
+% OLD. I did this before. But did not play well after adding -output-directory option.
+% \tikzexternalize[prefix=.cachetikz/] % DO NOT USE DIRECTORY NAME WITH _ (. seems ok after changing .latexmkrc)
+
+% NEW. Dirty fix for using -output-directory option. From https://tex.stackexchange.com/a/338560
+\tikzexternalize
+\tikzset{%
+external/system call={xelatex \tikzexternalcheckshellescape --halt-on-error --interaction=batchmode --output-directory=./.cachelatex --jobname "\image" "\texsource"},
+	/pgf/images/include external/.code={%
+		\includegraphics{.cachelatex/#1}%
+	},
+}
 
 \usepackage{pgfplots}
 % NOTE: externalization does NOT recompile when only the global options below are changed
