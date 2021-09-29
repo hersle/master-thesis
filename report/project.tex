@@ -12,10 +12,12 @@
 %\usepackage[utf8]{inputenc} % ignored with lualatex / xelatex (which are utf8-based)
 \usepackage{amsmath}
 \usepackage{tensor}
+\usepackage{braket}
 \usepackage[parfill]{parskip} % new paragraph: new line, no indent
 %\usepackage[title]{appendix}
 \usepackage[hidelinks]{hyperref} % hide colored boxes around links
 \usepackage[noabbrev]{cleveref}
+
 \usepackage[labelfont=bf]{caption} % figure title in bold
 \usepackage[labelfont=bf]{subcaption} % figure title in bold
 %\captionsetup{subrefformat=parens}
@@ -90,11 +92,16 @@
 \newcommand{\variation}[1]{\delta #1}
 \newcommand{\trace}[1]{\text{tr} #1}
 \newcommand{\lagr}{\mathcal{L}}
+\newcommand{\ham}{\mathcal{H}}
 \newcommand{\diag}[1]{\text{diag} \left( #1 \right)}
 \newcommand{\taylor}{\simeq}
 %\AtBeginDocument{\renewcommand{\vec}[1]{\mathbf{#1}}} % NB: need AtBeginDocument due to unicode-math: https://tex.stackexchange.com/a/457845
 \renewcommand{\vec}[1]{\mathbf{#1}} % don't need AtBeginDocument now that I use fontspec instead of unicode-math
 \newcommand{\bigo}{\mathcal{O}}
+\newcommand\pathintdif{\mathcal{D}}
+\newcommand{\pathint}[2]{\int \pathintdif #1 \, #2}
+\newcommand{\comm}[2]{[ #1 , #2 ]}
+\newcommand{\acomm}[2]{\{ #1 , #2 \}}
 
 % useful intro to Latex thesis: https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_1):_Basic_Structure
 
@@ -108,6 +115,7 @@
 \tableofcontents
 \input{prologue/prologue.tex}
 \input{chapter1/chapter1.tex}
+\input{chapter2/chapter2.tex}
 \input{appendix/appendix.tex}
 
 \printbibliography
