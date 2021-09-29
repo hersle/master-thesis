@@ -4,6 +4,8 @@
 
 \section{Summary of quantization of quantum fields}
 
+(TODO: should i have a $t$ as in $\ket{\phi(t)}$ ?)
+
 Consider a quantum field theory with Schrödinger-picture field operators $\hat{\phi}(\vec{x})$ and conjugate momenta $\hat{\pi}(\vec{x})$ and Hamiltonian operator
 \begin{equation}
 	\hat{H} = \int \dif^3 x \, \ham(\hat{\pi}(\vec{x}), \hat{\phi}(\vec{x})) .
@@ -175,7 +177,7 @@ We have swept the diverging factor $(2 \pi \hbar)^N$ under the rug, arguing that
 With all of these steps, the transition amplitude takes the form of the path integral
 \begin{equation}
 \begin{split}
-	\transampl &=      \int \pathintdif \pi \int_{\phi_A(\vec{x}, 0)}^{\phi_B(\vec{x}, T)} \pathintdif \phi \\
+	\transampl &=      \int \pathintdif \pi \int_{\phi_A(\vec{x})}^{\phi_B(\vec{x})} \pathintdif \phi \\
 	           &\times \exp \left( i \int_0^T \dif t \int \dif^3 x \left( \pi(\vec{x}, t) \dot{\phi}(\vec{x}, t) - \ham(\pi(\vec{x}, t), \phi(\vec{x}, t)) \right) \right) .
 \end{split}
 \label{eq:tft:path_integral_hamiltonian}
@@ -185,12 +187,40 @@ Thus, we might as well express the transition amplitude as the \textbf{path inte
 %	\transampl = \int \pathintdif \pi \int_{\phi_A(\vec{x}, 0)}^{\phi_B(\vec{x}, T)} \pathintdif \phi \\
 %	             \exp \left( i \int_0^T \dif t \int \dif^3 x \, \left( \lagr(\pi(\vec{x}, t), \phi(\vec{x}, t)) \right) \right) .
 \begin{equation}
-	\transampl = \int \pathintdif \pi \int_{\phi_A(\vec{x}, 0)}^{\phi_B(\vec{x}, T)} \pathintdif \phi \, \exp \big( i S \left[ \pi(\vec{x}, t), \phi(\vec{x}, t) \right] \big) ,
+	\transampl = \int \pathintdif \pi \int_{\phi_A(\vec{x})}^{\phi_B(\vec{x})} \pathintdif \phi \, \exp \big( i S \left[ \pi(\vec{x}, t), \phi(\vec{x}, t) \right] \big) ,
 \label{eq:tft:path_integral_lagrangian}
 \end{equation}
 where the \textbf{action} is
 \begin{equation}
 	S \left[ \pi(\vec{x}, t), \phi(\vec{x}, t) \right] = \int_0^T \dif t \int \dif^3 x \, \lagr \left( \pi(\vec{x}, t), \phi(\vec{x}, t) \right) .
+\label{eq:tft:action}
 \end{equation}
 The path integral expresses the transition amplitude for the process $A \rightarrow B$ as a sum over all possible paths through phase space, each weighted by the value on the unit circle with phase corresponding to the action of the path.
 Note that the position integral $\int \pathintdif \phi$ is constrained at the start and the end, but the momentum integral $\int \pathintdif \pi$ is not.
+
+\section{Partition function}
+
+We will now see that there is an elegant mathematical analogy between the path integral for the transition amplitude and the partition function of statistical mechanics.
+In a quantum system, the partition function is
+\begin{equation}
+	Z = \trace \left( e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} \right) ,
+\end{equation}
+where $\beta = 1 / k_B T$, $\mu_i$ are chemical potentials, $\hat{N}_i$ are number operators and the trace can be evaluated in any basis.
+We could, of course, evaluate it in the basis of fields $\ket{\phi}$, where
+\begin{equation}
+	Z = \int \dif \phi_0 \braket{\phi_0 | e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} | \phi_0} .
+\end{equation}
+This is precisely an integral over transition amplitudes \eqref{eq:tft:path_integral_lagrangian}, but with equal start and end states $\ket{\phi_A} = \ket{\phi_B} = \ket{\phi_0}$, the Hamiltonian $\hat{H} - \mu_i \hat{N}_i$ and a purely imaginary time variable $t = -i \tau$ with $\tau$ running from $0$ to $\beta$.
+The change from a real time variable to an imaginary time variable can be accomplished by a Wick rotation, and is legal because it does not change the value of the integral.
+Thus we can simply copy our former result with these substitutions.
+This yields the partition function
+\begin{equation}
+	Z = \int \dif \phi_0 \int \pathintdif \pi \oint_{\phi_0(\vec{x})}^{\phi_0(\vec{x})} \pathintdif \phi \, \exp \big( -S\left[ \pi(\vec{x}, \tau), \phi(\vec{x}, \tau) \right] \big) ,
+\end{equation}
+where the original action \eqref{eq:tft:action} is modified to
+\begin{equation}
+	S_E \left[ \pi(\vec{x}, \tau), \phi(\vec{x}, \tau) \right] = 
+	\int_0^\beta \dif \tau \int \dif^3 x \, \lagr \left( \pi(\vec{x}, \tau), \phi(\vec{x}, \tau) \right)
+\end{equation}
+and the field $\phi(\vec{x}, 0) = \phi(\vec{x}, \beta) = \phi_0(\vec{x})$ is \emph{periodic} at the ``beginning'' $\tau = 0$ and the ``end'' $\tau = \beta$.
+Thus, statistical mechanics for quantum fields at a finite temperature $T$ is equivalent to a Wick rotation of quantum field theory at zero temperature with temperature-dependent time and periodic fields.
