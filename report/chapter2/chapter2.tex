@@ -1,17 +1,17 @@
 \chapter{Thermal field theory}
 
-\newcommand{\transampl}{\braket{\phi_B | e^{- i \hat{H} T} | \phi_A}}
+\newcommand{\transampl}{\braket{\phi_B | e^{- i \hat{H} T / \hbar} | \phi_A}}
 
 \section{Summary of quantization of quantum fields}
 
-(TODO: should i have a $t$ as in $\ket{\phi(t)}$ ?)
+%TODO: should i have a $t$ as in $\ket{\phi(t)}$ ?)
 
 Consider a quantum field theory with Schrödinger-picture field operators $\hat{\phi}(\vec{x})$ and conjugate momenta $\hat{\pi}(\vec{x})$ and Hamiltonian operator
 \begin{equation}
 	\hat{H} = \int \dif^3 x \, \ham(\hat{\pi}(\vec{x}), \hat{\phi}(\vec{x})) .
 \end{equation}
-In analogy with position $x$ and momentum $p$ in classical mechanics, we will refer to $\hat\phi(\vec{x})$ and $\hat\pi(\vec{x})$ as operators in ``position-space'' and ``momentum-space'', too.
-Whether ``position'' refers to $\vec{x}$ or $\phi(\vec{x})$ will therefore depend on context.
+In analogy with position $x$ and momentum $p$ in classical mechanics, we will refer to $\hat\phi(\vec{x})$ and $\hat\pi(\vec{x})$ as operators in ``position-space'' and ``momentum-space''.
+%Whether ``position'' refers to $\vec{x}$ or $\phi(\vec{x})$ will therefore depend on context.
 
 The field operators $\hat{\phi}(\vec{x})$ and $\hat{\pi}(\vec{x})$ have eigenstates $\ket{\phi}$ and $\ket{\pi}$ with corresponding eigenvalues $\phi(\vec{x})$ and $\pi(\vec{x})$ at every point $\vec{x}$, as expressed by the eigenvalue equations
 \begin{equation}
@@ -57,7 +57,7 @@ If we find the inner product $\braket{\phi | \pi}$, we can use it together with 
 	\qquad \text{or} \qquad
 	\ket\phi = \int \dif \pi \ket\pi \braket{\pi | \phi} . %= \int \dif \phi \mompos{\pi}{\phi} .
 \end{equation}
-To do so, let us use the position-space representation $\hat{\pi} = -i \hbar \fdv{}/{\phi}$ of the momentum operator.
+To do so, let us use the position-space representation $\hat{\pi} = (\hbar / i) \fdv{}/{\phi}$ of the momentum operator.
 This gives us a first-order differential equation
 \begin{equation}
 	\braket{\phi | \hat{\pi} | \pi} = \pi(\vec{x}) \braket{\phi | \pi} = \frac{\hbar}{i} \fdv*{\braket{\phi | \pi}}{\phi}
@@ -79,7 +79,8 @@ Due to our convention \eqref{eq:pre:delta_function} for the delta function, orth
 \end{split}
 \end{equation}
 To find the completeness relation, we postulate it up to a constant $B$.
-Inserting a complete set of both position and momentum states and using the inner product \eqref{eq:tft:inner_product_position_momentum}, consider
+Consider
+%Inserting a complete set of both position and momentum states and using the inner product \eqref{eq:tft:inner_product_position_momentum}, consider
 \begin{equation}
 \begin{split}
 	1 &= \int \frac{\dif \pi(\vec{x})}{B} \ket{\pi} \bra{\pi} \\
@@ -95,64 +96,68 @@ This would be inconsistent unless $B = 2 \pi \hbar$, so completeness in momentum
 
 \section{Path integral formulation}
 
-(TODO: am I assuming $H$ to be time independent (which is always the case in statistical mechanics)?)
-
-During the time $T$, a system evolves from the state $\ket{\phi_A}$ to the state $e^{-i \hat{H} T} \ket{\phi_A}$, as the Hamiltonian is the generator of time translations \cite[equation 2.22]{ref:sakurai}.
-The transition amplitude for going from the state $\ket{\phi_A}$ to a different state $\ket{\phi_B}$ is therefore
+When the Hamiltonian $\hat{H}$ is independent of time, a quantum system evolves from an initial state $\ket{\phi_A}$ to the state $e^{-i \hat{H} T / \hbar} \ket{\phi_A}$ during the time $T$ \cite[equation 2.28]{ref:sakurai}.
+Later we will study statistical mechanics for a star in thermal equilibrium -- then the Hamiltonian is always independent of time, otherwise the system would not be in equilibrium.
+The transition amplitude for going from the state $\ket{\phi_A}$ to a different state $\ket{\phi_B}$ in the time $T$ is therefore
 \begin{equation}
 	\transampl \qquad (A \rightarrow B) .
 	\label{eq:tft:transition_amplitude_intro}
 \end{equation}
 Let us demonstrate how this transition amplitude can be written as a path integral.
-First, split the time interval $T$ into $N \gg 1$ tiny intervals $\Delta t = T / N$, and decompose the evolution operator $e^{- i \hat{H} T}$ into equally many products of $e^{- i \hat{H} \Delta t}$ to write
+First, split the time interval $T$ into $N$ intervals $\Delta t = T / N$, and decompose the evolution operator $e^{- i \hat{H} T / \hbar}$ into equally many products of $e^{- i \hat{H} \Delta t / \hbar}$ to write
 \newcommand\pointarrow[1]{\underset{\underset{\displaystyle #1}{\displaystyle \uparrow}}{}}
 \begin{equation}
-	\transampl = \braket{\phi_B | e^{- i \hat{H} \Delta t} \cdots e^{- i \hat{H} \Delta t} \cdots e^{- i \hat{H} \Delta t} | \phi_A} .
+	\transampl = \braket{\phi_B | e^{- i \hat{H} \Delta t / \hbar} \cdots e^{- i \hat{H} \Delta t / \hbar} \cdots e^{- i \hat{H} \Delta t / \hbar} | \phi_A} .
 \end{equation}
 %\transampl = \braket{\phi_b | \pointarrow{4} e^{- i H \Delta t} \,\, \cdots \pointarrow{3} e^{- i H \Delta t} \pointarrow{2} \cdots \,\, e^{- i H \Delta t} \pointarrow{1} | \phi_a}
-Now take a deep breath and do the following.
+We will take the limit $N \rightarrow \infty$ in the end, so we assume that each interval $\Delta t$ is very small.
+Now comes the most important trick.
 \begin{itemize}
 \item Insert $N$ complete sets of \emph{momentum} states $1 = \int \dif \pi_n / (2 \pi \hbar) \ket{\pi_n} \bra{\pi_n}$ to the \emph{left} of every exponential, including the rightmost one, with $n$ increasing from right to left.
-\item Insert $N-1$ complete sets of \emph{position} states $1 = \int \dif \phi_n \ket{\phi_n} \bra{\phi_n}$ to the \emph{right} of every exponential, except the rightmost one, with $n$ increasing from right to left.
+\item Insert $N-1$ complete sets of \emph{position} states $1 = \int \dif \phi_n \ket{\phi_n} \bra{\phi_n}$ to the \emph{right} of every exponential, excluding the rightmost one, with $n$ increasing from right to left.
 \end{itemize}
-Now exhale.
-With this trick, the transition amplitude is simply the product
+With this trick, the transition amplitude can be written as the product
 \begin{equation}
 	\transampl = \prod_{n=0}^{N} \int \frac{\dif \phi_n \dif \pi_n}{2 \pi \hbar} 
-	             \braket{\phi_{n+1} | \pi_n} \braket{\pi_n | e^{- i \hat{H} \Delta t} | \phi_n} ,
+	             \braket{\phi_{n+1} | \pi_n} \braket{\pi_n | e^{- i \hat{H} \Delta t / \hbar} | \phi_n} ,
+\label{eq:tft:transition_amplitude_product}
 \end{equation}
 where we have defined $\ket{\phi_0} = \ket{\phi_A}$ and $\ket{\phi_{N+1}} = \ket{\phi_B}$.
-The inner products $\braket{\phi_{n+1} | \pi_n}$ can simply be replaced by the exponential \eqref{eq:tft:inner_product_position_momentum}, so let us turn our attention to the matrix elements $\braket{\pi_n | e^{- i \hat{H} \Delta t} | \phi_n}$.
-Since the time step $\Delta t$ is assumed small, we can expand the exponential $e^{- i \hat{H} \Delta t} \taylor 1 - i \hat{H} \Delta t$ to first order in time.
+The inner products $\braket{\phi_{n+1} | \pi_n}$ can simply be replaced by the exponential \eqref{eq:tft:inner_product_position_momentum}, so let us turn our attention to the matrix elements $\braket{\pi_n | e^{- i \hat{H} \Delta t / \hbar} | \phi_n}$.
+Since the time step $\Delta t$ is assumed small, we can expand the exponential $e^{- i \hat{H} \Delta t / \hbar} \taylor 1 - i \hat{H} \Delta t / \hbar$ to first order in time.
 Under the assumption that the Hamiltonian $\hat{H}$ is a sum of terms with all \emph{position}-space operators $\hat{\phi}$ on the \emph{right} and all \emph{momentum}-space operators $\hat{\pi}$ on the \emph{left}, we can pull it out of the product at the additional benefit of replacing its operators by their eigenvalues.
-Hence, we obtain
+We then obtain
 \begin{equation}
 \begin{split}
-	\braket{\pi_n | e^{- i \hat{H} \Delta t} | \phi_n} &\taylor \braket{\pi_n | (1 - i \hat{H} \Delta t) | \phi_n} \\
-	                                                   &=       \braket{\pi_n | \phi_n} (1 - i H_n \Delta t) \\
-	                                                   &\taylor \braket{\pi_n | \phi_n} e^{- i H_n \Delta t}, \\
+	\braket{\pi_n | e^{- i \hat{H} \Delta t / \hbar} | \phi_n} &\taylor \braket{\pi_n | (1 - i \hat{H} \Delta t / \hbar) | \phi_n} \\
+	                                                   &=       \braket{\pi_n | \phi_n} (1 - i H_n \Delta t / \hbar) \\
+	                                                   &\taylor \braket{\pi_n | \phi_n} e^{- i H_n \Delta t / \hbar}, \\
 \end{split}
 \label{eq:tft:path_integral_hamiltonian_assumption}
 \end{equation}
-where we now have the \emph{scalar} Hamiltonian at the $n$-th timestep
+where we no longer have any operators, but only the Hamiltonian eigenvalue at the $n$-th timestep
 \begin{equation}
 	H_n = \int \dif^3 x \, \ham(\pi_n(\vec{x}), \phi_n(\vec{x})) .
 \label{eq:tft:hamiltonian_eigenvalues}
 \end{equation}
-Note the importance of expanding the exponential to first order only.
-If the Hamiltonian contained \emph{any} mixed sequence of operators such as $H \propto \hat{\pi} \hat{\phi}$, then higher powers like $\hat{H}^2 \propto \hat{\pi} \hat{\phi} \hat{\pi} \hat{\phi}$ in the power series expansion of the exponential would not be in the correct order.
+Note the importance of expanding the exponential to first order in timeonly.
+If the Hamiltonian contained \emph{any} mixed sequence of operators such as $H \propto \hat{\pi} \hat{\phi}$, then higher powers like $\hat{H}^2 \propto \hat{\pi} \hat{\phi} \hat{\pi} \hat{\phi}$ in the power series expansion of the time evolution operator would not be in the assumed left-right order.
 
+(TODO: spør Jens Oluf om et alternativt argument her -- kan ikke bare operatorer i $\hat{H}$ kommuteres inntil man får den ønskede rekkefølgen, samtidig som ekstra konstanter medfører en fysisk ubetydelig fase?)
+
+\iffalse
 (TODO: If the Hamiltonian is \emph{not} in the order we assumed above, we could always bring it into this order by commuting operators using the commutation relation \eqref{eq:tft:boson_field_commutators}.
 But such terms would appear only as a constant phase on the right side of \eqref{eq:tft:path_integral_hamiltonian_assumption} that would not depend on the dynamics of the process.
 AHence, we can relax this assumption by absorbing this physically irrelevant phase into the transition amplitude. ER DETTE RIKTIG? INGEN LÆREBØKER NEVNER DETTE.)
 
 (TODO: if this argument holds, then it can be applied for any $\hat{H}^n$, and there is no reason to expand to first order in time, either)
+\fi
 
-Substituting \cref{eq:tft:inner_product_position_momentum,eq:tft:path_integral_hamiltonian_assumption,eq:tft:hamiltonian_eigenvalues}, the transition amplitude becomes
+Substituting \cref{eq:tft:inner_product_position_momentum,eq:tft:path_integral_hamiltonian_assumption,eq:tft:hamiltonian_eigenvalues}, the transition amplitude \eqref{eq:tft:transition_amplitude_product} becomes
 \begin{equation}
 \begin{split}
 	\transampl &=      \left( \prod_{n=1}^N \int \frac{\dif \phi_n \dif \pi_n}{2 \pi \hbar} \right) \\
-	           &\times \exp \left( i \Delta t \sum_{n=1}^N \int \dif^3 x \left( \pi_n(\vec{x}) \frac{\phi_{n+1}(\vec{x}) - \phi_n(\vec{x})}{\Delta t} - \ham(\pi_n(\vec{x}), \phi_n(\vec{x})) \right)
+	           &\times \exp \left( \frac{i \Delta t}{\hbar} \sum_{n=1}^N \int \dif^3 x \left( \pi_n(\vec{x}) \frac{\phi_{n+1}(\vec{x}) - \phi_n(\vec{x})}{\Delta t} - \ham(\pi_n(\vec{x}), \phi_n(\vec{x})) \right)
 	\right)
 \end{split}
 \end{equation}
@@ -165,20 +170,19 @@ to be the values of the fields at each timestep $t_n$.
 Both become continuous functions of time in the continuum limit.
 We also use the finite difference definition of the derivative to turn the fraction in the exponential into a partial derivative $\dot{\phi}(\vec{x},t) = \pdv{\phi(\vec{x},t)}/{t}$.
 Similarly, we use the Riemann sum definition of the integral to turn the sum $\sum \Delta t$ into an integral $\int \dif t$.
-The integrals over the fields now become \textbf{functional integrals} defined as
+We also define the \textbf{functional integrals}
 \begin{equation}
 	\int \pathintdif \phi = \lim_{N \rightarrow \infty} \prod_{n=1}^{N} \int \dif \phi_n
 	\qquad \text{and} \qquad
 	\int \pathintdif \pi = \lim_{N \rightarrow \infty} \prod_{n=1}^{N} \int \frac{\dif \pi_n}{2 \pi \hbar} .
 \end{equation}
-We have swept the diverging factor $(2 \pi \hbar)^N$ under the rug, arguing that it contains no physical information about the dynamics of the process and can be ignored, unlike the other factors.
-(TODO: is this important)
-(TODO: can integrate out momentum with gaussian integral if it appears as $p^2$)
+%We have swept the diverging factor $(2 \pi \hbar)^N$ under the rug, arguing that it contains no physical information about the dynamics of the process and can be ignored, unlike the other factors.
+%TODO: can integrate out momentum with gaussian integral if it appears as $p^2$)
 With all of these steps, the transition amplitude takes the form of the path integral
 \begin{equation}
 \begin{split}
-	\transampl &=      \int \pathintdif \pi \int_{\phi_A(\vec{x})}^{\phi_B(\vec{x})} \pathintdif \phi \\
-	           &\times \exp \left( i \int_0^T \dif t \int \dif^3 x \left( \pi(\vec{x}, t) \dot{\phi}(\vec{x}, t) - \ham(\pi(\vec{x}, t), \phi(\vec{x}, t)) \right) \right) .
+	\transampl &=      \int \pathintdif \pi \int_{\phi(\vec{x}, 0)=\phi_A(\vec{x})}^{\phi(\vec{x},T)=\phi_B(\vec{x})} \pathintdif \phi \\
+	           &\times \exp \left( \frac{i}{\hbar} \int_0^T \dif t \int \dif^3 x \left( \pi(\vec{x}, t) \dot{\phi}(\vec{x}, t) - \ham(\pi(\vec{x}, t), \phi(\vec{x}, t)) \right) \right) .
 \end{split}
 \label{eq:tft:path_integral_hamiltonian}
 \end{equation}
@@ -187,40 +191,75 @@ Thus, we might as well express the transition amplitude as the \textbf{path inte
 %	\transampl = \int \pathintdif \pi \int_{\phi_A(\vec{x}, 0)}^{\phi_B(\vec{x}, T)} \pathintdif \phi \\
 %	             \exp \left( i \int_0^T \dif t \int \dif^3 x \, \left( \lagr(\pi(\vec{x}, t), \phi(\vec{x}, t)) \right) \right) .
 \begin{equation}
-	\transampl = \int \pathintdif \pi \int_{\phi_A(\vec{x})}^{\phi_B(\vec{x})} \pathintdif \phi \, \exp \big( i S \left[ \pi(\vec{x}, t), \phi(\vec{x}, t) \right] \big) ,
+	\transampl = \int \pathintdif \pi \int_{\phi_A(\vec{x})}^{\phi_B(\vec{x})} \pathintdif \phi \, \exp \big( i S \left[ \pi(\vec{x}, t), \phi(\vec{x}, t) \right] / \hbar \big) ,
 \label{eq:tft:path_integral_lagrangian}
 \end{equation}
-where the \textbf{action} is
+with the action
 \begin{equation}
-	S \left[ \pi(\vec{x}, t), \phi(\vec{x}, t) \right] = \int_0^T \dif t \int \dif^3 x \, \lagr \left( \pi(\vec{x}, t), \phi(\vec{x}, t) \right) .
+	S \left[ \pi(\vec{x}, t), \phi(\vec{x}, t) \right] = \int_0^T \dif t \int \dif^3 x \, \lagr \left( \pi(\vec{x}, t), \phi(\vec{x}, t) \right) . \qquad \text{TODO: factor $c$?}
 \label{eq:tft:action}
 \end{equation}
 The path integral expresses the transition amplitude for the process $A \rightarrow B$ as a sum over all possible paths through phase space, each weighted by the value on the unit circle with phase corresponding to the action of the path.
-Note that the position integral $\int \pathintdif \phi$ is constrained at the start and the end, but the momentum integral $\int \pathintdif \pi$ is not.
+Note that the position-space integral $\int \pathintdif \phi$ is constrained to start and end in the initial and final states, but the momentum integral $\int \pathintdif \pi$ has no such constraint at the endpoints.
+
+\iffalse
+\begin{figure}[t]
+\begin{tikzpicture}
+	\draw[step=1cm] (0,0) grid (10,4);
+	\foreach \a in {0,1,2,3,4} {
+		\draw (0,2) -- (1,\a);
+	}
+	\foreach \a in {1,2,3,4,5,6,7,8} {
+		\foreach \b in {0,1,2,3,4} {
+			\foreach \c in {0,1,2,3,4} {
+				\draw (\a,\b) -- (\a+1,\c);
+			}
+		}
+	}
+	\foreach \a in {0,1,2,3,4} {
+		\draw (9,\a) -- (10,2);
+	}
+\end{tikzpicture}
+\end{figure}
+\fi
 
 \section{Partition function}
 
 We will now see that there is an elegant mathematical analogy between the path integral for the transition amplitude and the partition function of statistical mechanics.
-In a quantum system, the partition function is
+In a quantum system, the partition function in the grand canonical ensemble is
 \begin{equation}
-	Z = \trace \left( e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} \right) ,
+	Z = \trace \left( e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} \right) = e^{-\beta \Omega} ,
 \end{equation}
-where $\beta = 1 / k_B T$, $\mu_i$ are chemical potentials, $\hat{N}_i$ are number operators and the trace can be evaluated in any basis.
-We could, of course, evaluate it in the basis of fields $\ket{\phi}$, where
+where $\beta = 1 / k_B T$, $\mu_i$ are chemical potentials, $\hat{N}_i$ are number operators, $\Omega = -k_B T \log{Z}$ is the grand potential and the trace can be evaluated in any basis.
+If we can find the partition function, we can obtain thermodynamic information such as \cite[chapter 5]{ref:jensoluf}
+\begin{align}
+	%\text{the entropy}                     \quad \thermalavg{S}   &= -\pdv{\Omega}{T} \\
+	           & \text{the average number of particles} & \thermalavg{N_i} & = k_B T \pdv{\log{Z}}{\mu_i},                    & \\
+	           & \text{the average energy}              & \thermalavg{E}   & = \mu_i \thermalavg{N_i} - \pdv{\log{Z}}{\beta}  & \\ % \Omega + T S + \mu_i \thermalavg{N_i} \\
+	\text{and} & \text{the average pressure}            & \thermalavg{P}   & = P = \frac{k_B T \log{Z}}{V}.                   &    % -\pdv{\Omega}{V}
+\end{align}
+This is exactly what we eventually want to insert into the TOV equation \eqref{eq:tov}.
+We could, of course, evaluate the partition function in the basis of fields $\ket{\phi_0}$, where
 \begin{equation}
 	Z = \int \dif \phi_0 \braket{\phi_0 | e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} | \phi_0} .
 \end{equation}
-This is precisely an integral over transition amplitudes \eqref{eq:tft:path_integral_lagrangian}, but with equal start and end states $\ket{\phi_A} = \ket{\phi_B} = \ket{\phi_0}$, the Hamiltonian $\hat{H} - \mu_i \hat{N}_i$ and a purely imaginary time variable $t = -i \tau$ with $\tau$ running from $0$ to $\beta$.
-The change from a real time variable to an imaginary time variable can be accomplished by a Wick rotation, and is legal because it does not change the value of the integral.
-Thus we can simply copy our former result with these substitutions.
-This yields the partition function
+This is precisely an integral over transition amplitudes \eqref{eq:tft:path_integral_lagrangian}, but now with 
+\begin{itemize}
+\item equal start and end states $\ket{\phi_A} = \ket{\phi_B} = \ket{\phi_0}$, 
+\item the Hamiltonian $\hat{H} - \mu_i \hat{N}_i$ and 
+\item a purely imaginary time variable $t = -i \tau$ with $\tau$ running from $0$ to $\beta$.
+\end{itemize}
+The change from a real to imaginary time variable can be accomplished by a Wick rotation that does not change the value of the integral.
+Thus, we can express the partition function as path integrals \eqref{eq:tft:path_integral_lagrangian} with these substitutions!
+This yields
 \begin{equation}
-	Z = \int \dif \phi_0 \int \pathintdif \pi \oint_{\phi_0(\vec{x})}^{\phi_0(\vec{x})} \pathintdif \phi \, \exp \big( -S\left[ \pi(\vec{x}, \tau), \phi(\vec{x}, \tau) \right] \big) ,
+	Z = \int \dif \phi_0 \int \pathintdif \pi \oint_{\phi_0(\vec{x})}^{\phi_0(\vec{x})} \pathintdif \phi \, \exp \big( -S_E \left[ \pi(\vec{x}, \tau), \phi(\vec{x}, \tau) \right] / \hbar \big) ,
 \end{equation}
-where the original action \eqref{eq:tft:action} is modified to
+where the original action \eqref{eq:tft:action} has been modified to
 \begin{equation}
 	S_E \left[ \pi(\vec{x}, \tau), \phi(\vec{x}, \tau) \right] = 
 	\int_0^\beta \dif \tau \int \dif^3 x \, \lagr \left( \pi(\vec{x}, \tau), \phi(\vec{x}, \tau) \right)
+	\qquad \text{TODO: factor $c$?}
 \end{equation}
 and the field $\phi(\vec{x}, 0) = \phi(\vec{x}, \beta) = \phi_0(\vec{x})$ is \emph{periodic} at the ``beginning'' $\tau = 0$ and the ``end'' $\tau = \beta$.
-Thus, statistical mechanics for quantum fields at a finite temperature $T$ is equivalent to a Wick rotation of quantum field theory at zero temperature with temperature-dependent time and periodic fields.
+Thus, thermal field theory -- statistical mechanics for quantum fields at finite temperature -- is essentially equivalent to ordinary quantum field theory with temperature-dependent time and periodic fields!
