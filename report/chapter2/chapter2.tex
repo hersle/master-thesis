@@ -153,6 +153,45 @@ AHence, we can relax this assumption by absorbing this physically irrelevant pha
 (TODO: if this argument holds, then it can be applied for any $\hat{H}^n$, and there is no reason to expand to first order in time, either)
 \fi
 
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	clip=false,
+	view={-75}{20}, 
+	%xtick=\empty, ytick=\empty, ztick=\empty, 
+	xticklabel=\empty, yticklabel=\empty, zticklabel=\empty,
+	xlabel=$\pi(\vec{x})$, ylabel=$\phi(\vec{x})$, zlabel=$t$, zlabel style={rotate=-90},
+	%x label style={at={(axis description cs:0.5,0.0)},anchor=north},
+	%y label style={at={(axis description cs:0.5,0.0)},anchor=north},
+	%z label style={at={(axis description cs:0.5,0.0)},anchor=north},
+	xmin=0, xmax=1, ymin=0, ymax=1, zmin=0, zmax=5,
+	xtick distance=0.1, ytick distance=0.1, ztick distance=0.5, grid=major, grid style={solid, thin, black!10!white},
+	%extra x ticks={0j
+	declare function={
+		phi1 = 0.5;
+		phi2 = 0.8;
+		randbetween(\a,\b) = \a + (\b - \a) / 2 * rand;
+		%randradius(\x, \rmin, \rmax) = randbetween(\rmin, \rmax) * (\x-0) * (\x-1);
+		randfunc(\x,\rmin,\rmax) = randbetween(\rmin,\rmax) * (\x-0)*(\x-1) * 4; % and(x>=0.01, x<=0.99); %(\x-0) * (\x-1);
+	},
+]
+\addplot3 [domain=0:1, samples=2, very thick] ({x}, {phi1}, {0}) node [pos=0.0,pin={-8:$\phi_A(\vec{x})$}] {};
+\addplot3 [domain=0:1, samples=2, very thick] ({x}, {phi2}, {5}) node [pos=1.0,pin={+5:$\phi_B(\vec{x})$}] {};
+\pgfplotsinvokeforeach{0.0, 0.2, ..., 1.0} {
+	\addplot3 [domain=0:1, samples=10, domain y=0:1, samples y=1, black!60!white]  ({max(0, min(1, #1+randbetween(-0.1,0.1))}, {phi1 + (phi2-phi1)*x + randfunc(x,-0.2,-0.3)}, {5*x});
+	\addplot3 [domain=0:1, samples=10, domain y=0:1, samples y=1, black!80!white]  ({max(0, min(1, #1+randbetween(-0.1,0.1))}, {phi1 + (phi2-phi1)*x + randfunc(x,-0.0,-0.1)}, {5*x});
+	\addplot3 [domain=0:1, samples=10, domain y=0:1, samples y=1, black!100!white] ({max(0, min(1, #1+randbetween(-0.1,0.1))}, {phi1 + (phi2-phi1)*x + randfunc(x,+0.0,+0.1)}, {5*x});
+	\addplot3 [domain=0:1, samples=10, domain y=0:1, samples y=1, black!80!white]  ({max(0, min(1, #1+randbetween(-0.1,0.1))}, {phi1 + (phi2-phi1)*x + randfunc(x,+0.2,+0.3)}, {5*x});
+	\addplot3 [domain=0:1, samples=10, domain y=0:1, samples y=1, black!60!white]  ({max(0, min(1, #1+randbetween(-0.1,0.1))}, {phi1 + (phi2-phi1)*x + randfunc(x,+0.4,+0.5)}, {5*x});
+	\addplot3 [domain=0:1, samples=10, domain y=0:1, samples y=1, black!40!white]  ({max(0, min(1, #1+randbetween(-0.1,0.1))}, {phi1 + (phi2-phi1)*x + randfunc(x,+0.6,+0.7)}, {5*x});
+	%\addplot3 [domain=0:1, samples=10, domain y=0:1, samples y=1] ({#1+randfunc(x,0.2,0.3)}, {phi1 + (phi2-phi1)*x + randfunc(x,0.1,0.2)}, {5*x});
+}
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:phase_space}A quantum system that evolves from the initial field $\phi_A(\vec{x})$ to the final field $\phi_B(\vec{x})$ can take all possible paths through phase space, but some are more likely than others. The conjugate momentum field $\pi(\vec{x})$ does not need to be the same at the start and the end.}
+\end{figure}
+
 Substituting \cref{eq:tft:inner_product_position_momentum,eq:tft:path_integral_hamiltonian_assumption,eq:tft:hamiltonian_eigenvalues}, the transition amplitude \eqref{eq:tft:transition_amplitude_product} becomes
 \begin{equation}
 \begin{split}
@@ -200,28 +239,8 @@ with the action
 \label{eq:tft:action}
 \end{equation}
 The path integral expresses the transition amplitude for the process $A \rightarrow B$ as a sum over all possible paths through phase space, each weighted by the value on the unit circle with phase corresponding to the action of the path.
+This interpretation is illustrated in \cref{fig:phase_space}.
 Note that the position-space integral $\int \pathintdif \phi$ is constrained to start and end in the initial and final states, but the momentum integral $\int \pathintdif \pi$ has no such constraint at the endpoints.
-
-\iffalse
-\begin{figure}[t]
-\begin{tikzpicture}
-	\draw[step=1cm] (0,0) grid (10,4);
-	\foreach \a in {0,1,2,3,4} {
-		\draw (0,2) -- (1,\a);
-	}
-	\foreach \a in {1,2,3,4,5,6,7,8} {
-		\foreach \b in {0,1,2,3,4} {
-			\foreach \c in {0,1,2,3,4} {
-				\draw (\a,\b) -- (\a+1,\c);
-			}
-		}
-	}
-	\foreach \a in {0,1,2,3,4} {
-		\draw (9,\a) -- (10,2);
-	}
-\end{tikzpicture}
-\end{figure}
-\fi
 
 \section{Partition function}
 
