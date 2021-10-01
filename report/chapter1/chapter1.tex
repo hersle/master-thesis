@@ -1,31 +1,35 @@
 \chapter{Tolman-Oppenheimer-Volkoff equation}
 
-In 1687, Sir Isaac Newton sparked a revolution in the field of physics as he described motion of bodies with the concept of forces and modeled gravity as an attractive force
+In 1687, Sir Isaac Newton sparked a revolution in the field of physics when he described motion of bodies with the concept of forces and modeled gravity as an attractive force
 \cite{ref:newton}
 \begin{equation*}
 	\vec{F} = G \frac{m_1 m_2}{r^2} \vec{\hat{r}} .
 \end{equation*}
-For a long time, his three laws of motion and law of gravity seemed to accurately explain all observable macroscopic motion, in particular the planetary motion in the solar system.
+For a long time, his three laws of motion and law of gravity seemed to accurately explain all observable macroscopic motion.
+In particular, his laws provided an explanation for the three laws of planetary motion that Johannes Kepler found by empirical observation many years earlier in 1609 \cite{ref:kepler1} and 1619 \cite{ref:kepler2}.
 
-However, in 1859, Urbain Le Verrier reported a discrepancy in Mercury's orbit that could not be explained by Newton's laws \cite{ref:le_verrier}.
-The resolution came half a century later, as Albert Einstein proposed his theory of special relativity in 1905 \cite{ref:einstein_special} and incorporated gravity into this framework with the theory of general relativity ten years later \cite{ref:einstein_general}.
+However, in 1859, Urbain Le Verrier observed that Mercury's orbit deviates from the one predicted by Kepler's and Newton's laws \cite{ref:le_verrier}.
+The resolution came half a century later, when Albert Einstein proposed his theory of special relativity in 1905 \cite{ref:einstein_special} and ten years later incorporated gravity into this framework with the theory of general relativity \cite{ref:einstein_general}.
 %Newton: gravity affects body, body does not move along straight path
 %Einstein: gravity affects space, body moves along straight path
-While Newton thought gravity disturbs a \emph{body} from moving straight through spacetime, Einstein explained gravity as curvature of \emph{spacetime} that reshapes the straight paths along which a body moves.
-Mass and energy curves spacetime according to the Einstein field equations
+While Newton thought gravity \emph{disturbs a body} from moving straight through spacetime, Einstein explained gravity as \emph{curvature of spacetime} that instead reshapes the straight paths along which a body moves.
+Such a ``curved straight path'' is called a \emph{geodesic}.
 %While Newton thought gravity affects a body and disturbs its straight motion through flat space, Einstein instead thought gravity \emph{curves} space and thus changes the straight paths along which bodies move.
 %Instead of describing gravity as a force that disturbs straight motion through flat space, Einstein argued that gravity rather \emph{curves} space and time and thus alters the paths along which straight motion occurs.
 %Instead of describing gravity as a force that disturbs straight motion through flat space, Einstein explained that gravity \emph{curves} space and time and alters the paths along which straight motion occurs.
 %Einstein argued that bodies \emph{do} move along straight paths through space and time that have been \emph{curved} by the presence of mass and energy according to the Einstein field equations
+Spacetime is curved according to the Einstein field equations
 \begin{equation*}
-	G\indices{_\mu_\nu} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = \frac{8 \pi G}{c^4} T_{\mu \nu} .
+	G\indices{_\mu_\nu} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = \frac{8 \pi G}{c^4} T_{\mu \nu} ,
 \end{equation*}
-The most vital product of this chapter will be the Tolman-Oppenheimer-Volkoff equation
+expressing how energy and momentum on the rightmost side -- such as mass and light -- determine the geometry of spacetime on the left side.
+
+The most important result of this chapter will be the Tolman-Oppenheimer-Volkoff equation
 \begin{equation*}
 	\odv{p}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left( 1 + \frac{p(r)}{\epsilon(r)} \right) \left( 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right) \left( 1 - \frac{2 G m(r)}{r c^2} \right)^{-1} ,
 \end{equation*}
 which we will derive from the Einstein field equations.
-With this equation, we can find the pressure profile and radii of a star once we have an equation of state that relates the pressure and energy of the material inside.
+With this equation, we can find the pressure profile and radius of a star once we have an equation of state that relates the pressure and energy of the material inside.
 This will be an essential tool for our following analysis of different equations of state.
 The equation was originally derived in 1939 by Robert Oppenheimer and George Volkoff \cite{ref:tov}, building on earlier work of Richard Tolman \cite{ref:tolman}.
 
