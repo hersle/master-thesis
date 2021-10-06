@@ -286,3 +286,67 @@ where the original action \eqref{eq:tft:action} has been modified to
 \end{equation}
 and the field $\phi(\vec{x}, 0) = \phi(\vec{x}, \beta) = \phi_0(\vec{x})$ is \emph{periodic} at the ``beginning'' $\tau = 0$ and the ``end'' $\tau = \beta$.
 Thus, thermal field theory -- statistical mechanics for quantum fields at finite temperature -- is essentially equivalent to ordinary quantum field theory with temperature-dependent time and periodic fields!
+
+\section{Bosons}
+
+\begin{equation}
+	\lagr = \frac12 (\partial_\mu \phi) (\partial^\mu \phi) - \frac12 m^2 \phi^2
+	      = \frac12 \dot{\phi}^2 - \frac12 (\nabla \phi)^2 - \frac12 m^2 \phi^2
+\end{equation}
+
+\begin{equation}
+	\pi = \pdv{\lagr}{\dot{\phi}} = \dot{\phi}
+\end{equation}
+
+\begin{equation}
+	\ham = \pi \dot{\phi} - \lagr = \frac12 \pi^2 + \frac12 (\nabla \phi)^2 + \frac12 m^2 \phi^2
+\end{equation}
+
+\begin{equation}
+\begin{split}
+	Z & = \int \pathintdif \pi \int \pathintdif \phi \exp \left( \int \dif \tau \int \dif^3 x \, \left( i \pi \dot{\phi} - \ham(\pi, \phi) \right) \right) \\
+	  & = \int \pathintdif \pi \int \pathintdif \phi \exp \left( \int \dif \tau \int \dif^3 x \, \left( i \pi \dot{\phi} - \frac12 \pi^2 - \frac12 (\nabla \phi)^2 - \frac12 m^2 \phi^2 \right) \right) \\
+	  & = \int \pathintdif \pi \int \pathintdif \phi \exp \left( \int \dif \tau \int \dif^3 x \, \left( -\frac12 (\pi - i \phi)^2 - \frac12 \dot{\phi}^2 - \frac12 (\nabla \phi)^2 - \frac12 m^2 \phi^2 \right) \right) \\
+	  & = C                    \int \pathintdif \phi \exp \left( \int \dif \tau \int \dif^3 x \, \left(                           - \frac12 \dot{\phi}^2 - \frac12 (\nabla \phi)^2 - \frac12 m^2 \phi^2 \right) \right) \\
+	  & = C                    \int \pathintdif \phi \exp \left( -\frac12 \int \dif \tau \int \dif^3 x \, \phi \left( - \pdv[2]{}{\tau} - \nabla^2 + m^2 \right) \phi \right) \\
+\end{split}
+\end{equation}
+
+Fourier expansion of periodic field
+\begin{equation}
+	\phi(\vec{x}, \tau) = \sum_{n=-\infty}^{+\infty} \sum_{\vec{p}} e^{i \vec{p} \cdot \vec{x} + \omega_n \tau} \phi_n(\vec{p})
+\end{equation}
+Then the operator
+\begin{equation}
+	\pdv[2]{}{\tau} - \nabla^2 + m^2 \rightarrow 
+	\omega_n^2 + \vec{p}^2 + m^2 = 
+	\omega_n^2 + \omega^2
+\end{equation}
+and
+\begin{equation}
+	Z = C \int \pathintdif \phi \exp \left( -\frac12 \sum_{n} \sum_{\vec{p}} \int \dif \tau \int \dif^3 x \, \left( \omega_n^2 + \omega^2 \right) \abs{\phi_n(\vec{p})}^2 \right) \\
+\end{equation}
+	% Z = \prod_n \prod_\vec{p} \left(  \right)^{-1/2}
+\begin{equation}
+\begin{split}
+	\log Z & = -\frac12 \sum_n \sum_{\vec{p}} \log \left( \omega_n^2 + \omega^2 \right) \\
+\end{split}
+\end{equation}
+
+Identities
+\begin{equation}
+	\int_a^b \frac{\dif x}{x + y} = \log \frac{y + b}{y + a}
+	\qquad \text{and} \qquad
+	\sum_{n=-\infty}^{+\infty} \frac{1}{n^2 + x^2} = \frac{\pi}{x} \left( 1 + \frac{2}{e^{2 \pi x} - 1} \right)
+\end{equation}
+
+Identity
+\begin{equation}
+	\log \left( (2 \pi n)^2 + (\beta \omega)^2 \right) = \int_1^{(\beta \omega)^2} \frac{\dif \theta^2}{\theta^2 + (2 \pi n)^2} + \log \left( 1 + (2 \pi n)^2 \right)
+\end{equation}
+
+Blabla, continuum limit of $\vec{p}$, so
+\begin{equation}
+	\log Z = \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left( -\frac12 \beta \omega - \log(1 - e^{-\beta \omega}) \right)
+\end{equation}
+and we are done and can differentiate to get $P$, $E$ , etc.
