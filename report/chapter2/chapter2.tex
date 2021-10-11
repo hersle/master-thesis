@@ -327,9 +327,8 @@ First, the trace is
 \label{eq:tft:trace_grassmann}
 \end{equation}
 while completeness takes the form
-(TODO: don't do the $n+1$ trick, but rather integrate by parts in time later -- more transparent?)
 \begin{equation}
-	\int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{-\int \dif^3 x \, \psi_{n+1}^\dagger(\vec{x}) \psi_{n+1}(\vec{x}) \right\} \ket{\psi} \bra{\psi} = 1 .
+	\int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{-\int \dif^3 x \, \psi_{n}^\dagger(\vec{x}) \psi_{n}(\vec{x}) \right\} \ket{\psi} \bra{\psi} = 1 .
 \label{eq:tft:completeness_grassmann}
 \end{equation}
 
@@ -339,19 +338,19 @@ The partition function (TODO: ref) follows from the trace \eqref{eq:tft:trace_gr
 \end{equation}
 Breaking up the operator $e^{\ldots}$ as in (TODO: ref) and inserting one Grassmann completeness relation \eqref{eq:tft:completeness_grassmann} between every factor, the partition function becomes
 \begin{equation}
-	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\psi_{n+1}^\dagger \psi_{n+1}} \braket{\psi_{n+1} | e^{-(\hat{H} - \mu \hat{N}) \Delta \tau / \hbar} | \psi_n} ,
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\psi_{n}^\dagger \psi_{n}} \braket{\psi_{n+1} | e^{-(\hat{H} - \mu \hat{N}) \Delta \tau / \hbar} | \psi_n} ,
 \end{equation}
 where we define $\bra{\psi_{N+1}} = \bra{-\psi_0}$ -- \emph{note the minus sign!}
 Next, expand the Hamiltonian to first order as in \eqref{eq:tft:path_integral_hamiltonian_assumption}.
 Then we obtain
 \begin{equation}
-	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\psi_{n+1}^\dagger \psi_{n+1}} \braket{\psi_{n+1} | \psi_n} e^{-(H_n - \mu N) \Delta \tau / \hbar} .
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\psi_{n}^\dagger \psi_{n}} \braket{\psi_{n+1} | \psi_n} e^{-(H_n - \mu N) \Delta \tau / \hbar} .
 \end{equation}
 Now use the Grassmann inner product (TODO: ref) to write
 \begin{equation}
-	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{ -\frac{\Delta t}{\hbar} \sum_n \int \dif^3 x \left( \psi^\dagger_{n+1} \frac{\psi_{n+1} - \psi_n}{\Delta t} + \ham - \mu \numdensity \right) \right\} .
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{ \frac{\Delta \tau}{\hbar} \sum_n \int \dif^3 x \left( \frac{\psi^\dagger_{n+1} - \psi^\dagger_n}{\Delta t} \psi_{n} - \ham + \mu \numdensity \right) \right\} .
 \end{equation}
-Finally, introduce the functional integrals to get the \textbf{fermionic partition function}
+Finally, take the continuous limit (TODO: ref), introduce the functional integrals and integrate $\int \dif \tau \, \dot{\psi^\dagger} \psi = -\int \dif \tau \, \psi^\dagger \dot{\psi}$ by parts to obtain the \textbf{fermionic partition function}
 \begin{equation}
 	Z = \oint_- \pathintdif \psi^\dagger \oint_- \pathintdif \psi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\psi^\dagger(\vec{x},\tau) \dot{\psi}(\vec{x},\tau) - \ham \left( \psi^\dagger(\vec{x},\tau), \psi(\vec{x},\tau) \right) + \mu \numdensity \right) \right\} ,
 \end{equation}
