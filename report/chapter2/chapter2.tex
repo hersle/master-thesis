@@ -602,17 +602,18 @@ Partition function
 Action
 \begin{equation}
 \begin{split}
-	S & = \frac{1}{V} \sum_{m,n} \sum_{\vec{p},\vec{q}}         \psi_m(\vec{q})^\dagger \gamma^0 \left[ -\hbar \gamma^0 i \omega_n + i \hbar c \vec{\gamma} \cdot i \vec{k} - m c^2 + \mu \gamma^0 \right] \psi_n(\vec{p}) \int_0^{\beta \hbar} \dif \tau e^{i(\omega_n-\omega_m)\tau} \int \dif^3 x e^{i(\vec{p}-\vec{q})\cdot\vec{x}/\hbar} \\
+	S & = \frac{1}{V} \sum_{m,n} \sum_{\vec{p},\vec{q}}         \psi_m(\vec{q})^\dagger \gamma^0 \left[ -\hbar \gamma^0 i \omega_n + i \hbar c \vec{\gamma} \cdot i \vec{k} - m c^2 + \mu \gamma^0 \right] \psi_n(\vec{p}) \\
+	  & \times \int_0^{\beta \hbar} \dif \tau e^{i(\omega_n-\omega_m)\tau} \int \dif^3 x e^{i(\vec{p}-\vec{q})\cdot\vec{x}/\hbar} \\
 	  & = \beta       \sum_{n}   \sum_{\vec{p}}         i \hbar \psi_m(\vec{q})^\dagger          \left[ -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i m c^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \\
 \end{split}
 \end{equation}
 so
 \begin{equation}
 \begin{split}
-	Z & = \prod_n \prod_\vec{p} \int \pathintdif [i \hbar \psi_n(\vec{p})^\dagger] \int \pathintdif \psi_n(\vec{p})
-	      \exp \left\{ \frac{\beta}{\hbar} i \hbar \psi_n(\vec{q})^\dagger \left[ -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \right\} \\
-	  & = \prod_n \prod_\vec{p} \int \dif [i \psi_n(\vec{p})^\dagger] \int \dif \psi_n(\vec{p})
-	      \exp \left\{ i \psi_n(\vec{q})^\dagger \left[ \beta( -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu ) \right] \psi_n(\vec{p}) \right\} \\
+	Z & = \prod_n \prod_\vec{p} \int \pathintdif [i \hbar \psi_n(\vec{p})^\dagger] \int \pathintdif \psi_n(\vec{p}) \\
+	  & \times \exp \left\{ \frac{\beta}{\hbar} i \hbar \psi_n(\vec{q})^\dagger \left[ -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \right\} \\
+	  & = \prod_n \prod_\vec{p} \int \dif [i \psi_n(\vec{p})^\dagger] \int \dif \psi_n(\vec{p}) \\
+	  & \times \exp \left\{ i \psi_n(\vec{q})^\dagger \left[ \beta( -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu ) \right] \psi_n(\vec{p}) \right\} \\
 	  & = \prod_n \prod_\vec{p} \tdet D_n(\vec{p})
 \end{split}
 \end{equation}
