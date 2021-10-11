@@ -4,6 +4,29 @@
 
 \newcommand{\transampl}{\braket{\phi_B | e^{- i \hat{H} T / \hbar} | \phi_A}}
 
+In this chapter, we will develop a theory for studying quantum fields at finite temperature $T$.
+We will see that there is an elegant mathematical analogy between the path integral for the transition amplitude of a process and the partition function $Z$ of statistical mechanics, allowing us to express the latter in terms of the former.
+
+In a quantum system in the grand canonical ensemble, the partition function is 
+\begin{equation}
+	Z = \trace \left( e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} \right) = e^{-\beta \Omega} ,
+\end{equation}
+where $\hat{H}$ is the Hamiltonian operator $\beta = 1 / k_B T$, $\mu$ is the chemical potential, $\hat{N}_i$ are number operators, $\Omega = -k_B T \log{Z}$ is the grand potential, $k_B$ is the Boltzmann constant and the trace can be evaluated in any basis.
+If we can find the partition function, we can obtain all thermodynamic information about the system, such as \cite[chapter 5]{ref:jensoluf}
+\begin{align}
+	%\text{the entropy}                     \quad \thermalavg{S}   &= -\pdv{\Omega}{T} \\
+	           & \text{the average number of particles} & \thermalavg{N_i} & = k_B T \pdv{\log{Z}}{\mu_i},                    & \\
+	           & \text{the average energy}              & \thermalavg{E}   & = \mu_i \thermalavg{N_i} - \pdv{\log{Z}}{\beta}  & \\ % \Omega + T S + \mu_i \thermalavg{N_i} \\
+	\text{and} & \text{the average pressure}            & \thermalavg{P}   & = \frac{k_B T}{V} \log{Z}.                       &    % -\pdv{\Omega}{V}
+\end{align}
+This is exactly what we eventually want to insert into the TOV equation \eqref{eq:tov}.
+As all relevant information about a system can be derived from the partition function, we say that we have ``solved the system completely'' once we have found $Z$.
+
+First, we will review how the transition amplitude for a process can be expressed as a path integral.
+Then we will show how a few adjustments can be made to the path integral in order for it to express the partition function $Z$.
+We will show that the path integral expression for the partition function turns out to be the same for bosonic and fermionic fields, although their mathematical fundament is quite different.
+Finally, we will consider the specific case of a fermionic gas and find its partition function.
+
 \section{Summary of quantization of quantum fields}
 
 %TODO: should i have a $t$ as in $\ket{\phi(t)}$ ?)
@@ -96,7 +119,7 @@ This would be inconsistent unless $B = 2 \pi \hbar$, so completeness in momentum
 	\int \frac{\dif \pi(\vec{x})}{2 \pi \hbar} \ket{\pi} \bra{\pi} = 1 .
 \end{equation}
 
-\section{Path integral formulation}
+\section{Path integral for bosonic partition function}
 
 When the Hamiltonian $\hat{H}$ is independent of time, a quantum system evolves from an initial state $\ket{\phi_A}$ to the state $e^{-i \hat{H} T / \hbar} \ket{\phi_A}$ during the time $T$ \cite[equation 2.28]{ref:sakurai}.
 Later we will study statistical mechanics for a star in thermal equilibrium -- then the Hamiltonian is always independent of time, otherwise the system would not be in equilibrium.
@@ -252,6 +275,27 @@ Note that the position-space integral $\int \pathintdif \phi$ is constrained to 
 
 (TODO: the only ``correct'' way is to do this AGAIN for fermions!)
 
+Why have we spent so much time on this transition amplitude, when we really are only interested in the partition function (TODO: ref)?
+If we evaluate the trace (TODO: ref) in the basis of fields $\ket{\phi_0}$, we obtain
+\begin{equation}
+	Z = \int \dif \phi_0 \braket{\phi_0 | e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} | \phi_0} .
+\end{equation}
+This is precisely an integral over transition amplitudes \eqref{eq:tft:path_integral_hamiltonian}, but now with 
+\begin{itemize}
+\item equal start and end states $\ket{\phi_A} = \ket{\phi_B} = \ket{\phi_0}$, 
+\item the Hamiltonian $\hat{H} - \mu_i \hat{N}_i$ and 
+\item a purely imaginary time variable $t = -i \tau$ with $\tau$ running from $0$ to $\beta \hbar$.
+\end{itemize}
+The change from a real to imaginary time variable can be accomplished by a Wick rotation that does not change the value of the integral (TODO: true?).
+Thus, we can express the partition function as path integrals \eqref{eq:tft:path_integral_hamiltonian} with these substitutions!
+This yields
+\begin{equation}
+	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \, \exp \left( \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( i \pi(\vec{x}, \tau) \dot{\phi}(\vec{x}, \tau) - \ham(\pi(\vec{x}, \tau), \phi(\vec{x}, \tau)) \right) \right)
+\label{eq:tft:partition_function}
+\end{equation}
+where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintdif \phi$ and write $\oint_+$ to indicate that we integrate over all fields $\phi(x, \tau) = \phi(x, \tau + \beta \hbar)$ that are \emph{periodic} in ``imaginary time'' $\tau$, due to the equal start and end states $\phi_A(\vec{x}) = \phi_B(\vec{x})$ in \cref{eq:tft:path_integral_hamiltonian}.
+Thus, thermal field theory -- statistical mechanics for quantum fields at finite temperature -- is essentially equivalent to ordinary quantum field theory with temperature-dependent time and periodic fields, and the partition function is obtained by integrating along closed paths in phase space!
+
 \section{Path integral for fermions}
 
 %(TODO: see random_note_1.pdf)
@@ -283,6 +327,7 @@ First, the trace is
 \label{eq:tft:trace_grassmann}
 \end{equation}
 while completeness takes the form
+(TODO: don't do the $n+1$ trick, but rather integrate by parts in time later -- more transparent?)
 \begin{equation}
 	\int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{-\int \dif^3 x \, \psi_{n+1}^\dagger(\vec{x}) \psi_{n+1}(\vec{x}) \right\} \ket{\psi} \bra{\psi} = 1 .
 \label{eq:tft:completeness_grassmann}
@@ -326,44 +371,6 @@ The partition function is therefore
 \end{split}
 \end{equation}
 \fi
-
-\section{Partition function}
-
-We will now see that there is an elegant mathematical analogy between the path integral for the transition amplitude and the partition function of statistical mechanics.
-In a quantum system, the partition function in the grand canonical ensemble is
-\begin{equation}
-	Z = \trace \left( e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} \right) = e^{-\beta \Omega} ,
-\end{equation}
-where $\beta = 1 / k_B T$, $\mu_i$ are chemical potentials, $\hat{N}_i$ are number operators, $\Omega = -k_B T \log{Z}$ is the grand potential and the trace can be evaluated in any basis.
-If we can find the partition function, we can obtain thermodynamic information such as \cite[chapter 5]{ref:jensoluf}
-\begin{align}
-	%\text{the entropy}                     \quad \thermalavg{S}   &= -\pdv{\Omega}{T} \\
-	           & \text{the average number of particles} & \thermalavg{N_i} & = k_B T \pdv{\log{Z}}{\mu_i},                    & \\
-	           & \text{the average energy}              & \thermalavg{E}   & = \mu_i \thermalavg{N_i} - \pdv{\log{Z}}{\beta}  & \\ % \Omega + T S + \mu_i \thermalavg{N_i} \\
-	\text{and} & \text{the average pressure}            & \thermalavg{P}   & = \frac{k_B T}{V} \log{Z}.                       &    % -\pdv{\Omega}{V}
-\end{align}
-This is exactly what we eventually want to insert into the TOV equation \eqref{eq:tov}.
-We could, of course, evaluate the partition function in the basis of fields $\ket{\phi_0}$, where
-\begin{equation}
-	Z = \int \dif \phi_0 \braket{\phi_0 | e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} | \phi_0} .
-\end{equation}
-This is precisely an integral over transition amplitudes \eqref{eq:tft:path_integral_hamiltonian}, but now with 
-\begin{itemize}
-\item equal start and end states $\ket{\phi_A} = \ket{\phi_B} = \ket{\phi_0}$, 
-\item the Hamiltonian $\hat{H} - \mu_i \hat{N}_i$ and 
-\item a purely imaginary time variable $t = -i \tau$ with $\tau$ running from $0$ to $\beta \hbar$.
-\end{itemize}
-The change from a real to imaginary time variable can be accomplished by a Wick rotation that does not change the value of the integral (TODO: true?).
-Thus, we can express the partition function as path integrals \eqref{eq:tft:path_integral_hamiltonian} with these substitutions!
-This yields
-\begin{equation}
-	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \, \exp \left( \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( i \pi(\vec{x}, \tau) \dot{\phi}(\vec{x}, \tau) - \ham(\pi(\vec{x}, \tau), \phi(\vec{x}, \tau)) \right) \right)
-\label{eq:tft:partition_function}
-\end{equation}
-where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintdif \phi$ and write $\oint$ to indicate that we integrate over all fields $\phi(x, \tau) = \phi(x, \tau + \beta \hbar) \, e^{i \theta}$ that are \emph{periodic} in imaginary time, due to the equal start and end states $\phi_A(\vec{x}) = \phi_B(\vec{x})$ in \cref{eq:tft:path_integral_hamiltonian}.
-We take a general approach by allowing periodicity up to an arbitrary phase factor $e^{i \theta}$ -- we will see shortly that $e^{i \theta} = +1$ for bosonic fields and $e^{i \theta} = -1$ for fermionic fields.
-(TODO: this is bullshit, the integral explicitly says the field should be ``normal-periodic'' -- the only way to show this properly is by doing the path integral again for fermions)
-Thus, thermal field theory -- statistical mechanics for quantum fields at finite temperature -- is essentially equivalent to ordinary quantum field theory with temperature-dependent time and periodic fields, and the partition function is obtained by integrating along closed paths in phase space!
 
 \section{Matsubara frequencies}
 
