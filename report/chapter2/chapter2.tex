@@ -412,6 +412,7 @@ where $L \rightarrow \infty$ is the ``periodicity'' of the field along either ax
 Ultimately, then, we can expand
 \begin{equation}
 	\psi(x, \tau) = \sum_n \sum_\vec{p} \psi_n(\vec{p}) e^{i (\vec{p} \cdot \vec{x} / \hbar + \omega_n \tau)}
+\label{eq:tft:fourier_series}
 \end{equation}
 with the Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
 To be more compatible with the notation that will follow, we write
@@ -467,27 +468,18 @@ We can thus write it in the form
 	  & = \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \phi \left[ \frac{1}{2c^2} \pdv[2]{}{\tau} + \frac12 \nabla^2 - \frac12 \frac{m^2 c^2}{\hbar^2} \right] \phi .
 \end{split}
 \end{equation}
-To proceed, let us use periodicity of the field to expand it in a Fourier series
+To proceed, let us use the periodicity of the field to expand it in a Fourier series of the form \eqref{eq:tft:fourier_series}.
+For our real field $\psi(\vec{x},\tau) = \psi(\vec{x},\tau)^*$, we can write
 \begin{equation}
 \begin{split}
 	\phi(\vec{x}, \tau) & = \hbar c \, \sqrt{\frac{\beta}{V}} \sum_{n=-\infty}^{+\infty} \sum_{\vec{p}}       \phi_n(\vec{p})  e^{+i (\vec{p} \cdot \vec{x} / \hbar + \omega_n \tau)} \\
-	                    & = \hbar c \, \sqrt{\frac{\beta}{V}} \sum_{n=-\infty}^{+\infty} \sum_{\vec{p}} \conj{\phi_n(\vec{p})} e^{-i (\vec{p} \cdot \vec{x} / \hbar + \omega_n \tau)} .
+	                    & = \hbar c \, \sqrt{\frac{\beta}{V}} \sum_{n=-\infty}^{+\infty} \sum_{\vec{p}} \conj{\phi_n(\vec{p})} e^{-i (\vec{p} \cdot \vec{x} / \hbar + \omega_n \tau)} ,
 \end{split}
 \end{equation}
-The prefactor $\hbar c \sqrt{\beta/V}$ is chosen to have the same dimension as the position-space field $\phi(\vec{x}, \tau)$, so the Fourier amplitudes $\phi_n(\vec{p})$ are dimensionless.
+where we have pulled out a prefactor $\hbar c \sqrt{\beta/V}$ chosen to have the same dimension as the field $\phi(\vec{x}, \tau)$, so the Fourier amplitudes $\phi_n(\vec{p})$ are dimensionless.
 Without it, the Gaussian integral that we will end up computing in \cref{eq:tft:boson_gaussian_integral} would make the partition function $Z$ dimensionful, which would formally make it meaningless to take its logarithm.
 
 (TODO: make a ``checkpoint'' here by noting that the partition function can always be written as a functional determinant, so always restart here instead of restarting the game every time)
-
-Perhaps deceptively, we made it look like we represented the positional part of $\psi(\vec{x}, \tau)$ by a Fourier series too, suggesting it is periodic.
-But it is \emph{not} -- it is only the imaginary \emph{time} that we showed was periodic.
-What we \emph{actually} do is to represent it by a Fourier transform, but we \emph{write} it as a discrete Fourier sum.
-We really mean to take the continumm limit
-\begin{equation}
-	\sum_\vec{p} = \int \frac{\dif^3 p}{\Delta p} = V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} ,
-\end{equation}
-where the volume $\Delta p = (2 \pi \hbar)^3 / V$ of the cells $\rightarrow 0$.
-The summation signs will make everything more ``compatible'' with the products that will show up shortly.
 
 (TODO: better argument for prefactor? best argument I have: $Z$ in the end should be dimensionless by its definition, so we must add prefactors here to make it so, thus the prefactors in Gale's book!)
 
@@ -538,7 +530,10 @@ The logarithm is
 	\log Z = -\frac12 \sum_n \sum_\vec{p} 
 	         \log \left[ \beta^2 \hbar^2 \left( \omega_n^2 + \omega(\vec{p})^2 \right) \right]
 \end{equation}
-This expression may look pretty enough on its own, but we can push further.
+
+(TODO: turns out it is easier to sum the derivative, then integrate it, rather than straight up summing -- do Matsubara frequency sum)
+
+This expression may look neat enough on its own, but we can push further.
 First, use the definite integral
 \begin{equation}
 	\int_{a^2}^{b^2} \frac{\dif x^2}{x^2 + c^2} = \log(b^2 + c^2) - \log(a^2 + c^2)
