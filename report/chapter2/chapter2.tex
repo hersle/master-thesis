@@ -248,6 +248,8 @@ The path integral expresses the transition amplitude for the process $A \rightar
 This interpretation is illustrated in \cref{fig:phase_space}.
 Note that the position-space integral $\int \pathintdif \phi$ is constrained to start and end in the initial and final states, but the momentum integral $\int \pathintdif \pi$ has no such constraint at the endpoints.
 
+(TODO: the only ``correct'' way is to do this AGAIN for fermions!)
+
 \section{Partition function}
 
 We will now see that there is an elegant mathematical analogy between the path integral for the transition amplitude and the partition function of statistical mechanics.
@@ -281,8 +283,45 @@ This yields
 	Z = \int \pathintdif \pi \oint \pathintdif \phi \, \exp \left( \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( i \pi(\vec{x}, \tau) \dot{\phi}(\vec{x}, \tau) - \ham(\pi(\vec{x}, \tau), \phi(\vec{x}, \tau)) \right) \right)
 \label{eq:tft:partition_function}
 \end{equation}
-where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintdif \phi$ and write $\oint$ to indicate that we integrate over all fields $\phi(x, \tau) = \phi(x, \tau + \beta \hbar)$ that are \emph{periodic} in imaginary time, due to the equal start and end states $\phi_A(\vec{x}) = \phi_B(\vec{x})$ in \cref{eq:tft:path_integral_hamiltonian}.
-Thus, thermal field theory -- statistical mechanics for quantum fields at finite temperature -- is essentially equivalent to ordinary quantum field theory with temperature-dependent time and periodic fields!
+where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintdif \phi$ and write $\oint$ to indicate that we integrate over all fields $\phi(x, \tau) = \phi(x, \tau + \beta \hbar) \, e^{i \theta}$ that are \emph{periodic} in imaginary time, due to the equal start and end states $\phi_A(\vec{x}) = \phi_B(\vec{x})$ in \cref{eq:tft:path_integral_hamiltonian}.
+We take a general approach by allowing periodicity up to an arbitrary phase factor $e^{i \theta}$ -- we will see shortly that $e^{i \theta} = +1$ for bosonic fields and $e^{i \theta} = -1$ for fermionic fields.
+(TODO: this is bullshit, the integral explicitly says the field should be ``normal-periodic'' -- the only way to show this properly is by doing the path integral again for fermions)
+Thus, thermal field theory -- statistical mechanics for quantum fields at finite temperature -- is essentially equivalent to ordinary quantum field theory with temperature-dependent time and periodic fields, and the partition function is obtained by integrating along closed paths in phase space!
+
+\section{Matsubara frequencies}
+
+The periodicity $\psi(x, 0) = \psi(x, \beta \hbar) \, e^{i \theta}$ in time ensures that we can expand the field as a Fourier series
+\begin{equation}
+	\psi(x, \tau) = \sum_n \psi_n(x) e^{i \omega_n \tau}
+\end{equation}
+
+The \textbf{Matsubara frequencies} $\omega_n$ are restricted by the bosonic or fermionic nature of the field.
+To see this, consider the (TODO: thermal?) Green's function
+\begin{equation}
+	G_\pm (\vec{x}, \vec{y}, \tau_1, \tau_2) = Z^{-1} \, \trace{\left\{ e^{-\beta (\hat{H} - \mu \hat{N})} \right\}} = \ldots
+\end{equation}
+To see this, write commutators generally by
+\begin{equation}
+	\comm{A}{B}_\pm = \ldots
+\end{equation}
+The Matsubara frequencies are thus
+\begin{equation}
+	\omega_n = \begin{cases}
+			       2 \pi n / \beta \hbar    & \text{(bosons)} \\
+				   (2n+1) \pi / \beta \hbar & \text{(fermions)} \\
+	           \end{cases}
+\end{equation}
+
+The field is not periodic in \emph{space}, but we can still take the Fourier \emph{transform}
+\begin{equation}
+	\psi_n(x) = \int \frac{\dif^3 p}{(2 \pi \hbar / L)^3} \, \psi_n(\vec{p}) e^{i \vec{p} \cdot \vec{x} / \hbar}
+\end{equation}
+Thus, we can expand
+\begin{equation}
+	\psi(x, \tau) = \sum_n \sum_\vec{p} \psi_n(\vec{p}) e^{i (\vec{p} \cdot \vec{x} / \hbar + \omega_n \tau)}
+	\qquad \text{where} \qquad
+	\sum_\vec{p} = V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} .
+\end{equation}
 
 (TODO: general Matsubara frequencies for bosons/fermions!)
 
