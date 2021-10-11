@@ -299,16 +299,11 @@ This yields
 where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintdif \phi$ and write $\oint_+$ to indicate that we integrate over all fields $\phi(x, \tau) = \phi(x, \tau + \beta \hbar)$ that are \emph{periodic} in ``imaginary time'' $\tau$, due to the equal start and end states $\phi_A(\vec{x}) = \phi_B(\vec{x})$ in \cref{eq:tft:path_integral_hamiltonian}.
 Thus, thermal field theory -- statistical mechanics for quantum fields at finite temperature -- is essentially equivalent to ordinary quantum field theory with temperature-dependent time and periodic fields, and the partition function is obtained by integrating along closed paths in phase space!
 
+(TODO: add chemical potential $\mu$. why should it be the conserved charge or something?)
+
 \section{Path integral for fermions}
 
 %(TODO: see random_note_1.pdf)
-
-(TODO: )
-Inner product
-\begin{equation}
-	\braket{\pi | \phi} \rightarrow \braket{\psi | \psi} = \exp \left\{ \int \dif^3 x \, \psi^\dagger(\vec{x}) \psi(\vec{x}) \right\}
-\label{eq:tft:grassmann_inner_product}
-\end{equation}
 
 For fermions, commutators are replaced by anticommutators, and so eigenvalues no longer commute, but anticommute!
 To obtain the path integral formulation of the fermionic partition function, we must therefore use anticommuting \textbf{Grassmann numbers} instead of commuting complex numbers.
@@ -326,12 +321,19 @@ so, perhaps confusingly, we are instructed to treat the field and its conjugate 
 
 To evaluate the bosonic partition function, we inserted completeness relations for both the field and the conjugate momentum, and we took the trace by integration over fields.
 For fermionic fields and Grassmann numbers, these properties are different.
-First, the trace is
+
+(TODO: show/refer all these)
+First, the inner product between two states is
 \begin{equation}
-	\int \dif \psi^\dagger \int \dif \psi \, e^{-\psi^\dagger \psi} \braket{-\psi | A | \psi} = \trace{A} ,
+	\braket{\psi_1 | \psi_2} = \exp \left\{ \int \dif^3 x \, \psi_1^\dagger(\vec{x}) \psi_2(\vec{x}) \right\} .
+\label{eq:tft:grassmann_inner_product}
+\end{equation}
+Second, the trace is
+\begin{equation}
+	\int \dif \psi^\dagger \int \dif \psi \, e^{-\psi^\dagger \psi} \braket{-\psi | A | \psi} = \trace{A} .
 \label{eq:tft:trace_grassmann}
 \end{equation}
-while completeness takes the form
+Third, completeness takes the form
 \begin{equation}
 	\int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{-\int \dif^3 x \, \psi_{n}^\dagger(\vec{x}) \psi_{n}(\vec{x}) \right\} \ket{\psi} \bra{\psi} = 1 .
 \label{eq:tft:completeness_grassmann}
