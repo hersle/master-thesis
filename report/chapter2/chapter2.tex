@@ -10,6 +10,7 @@ We will see that there is an elegant mathematical analogy between the path integ
 In a quantum system in the grand canonical ensemble, the partition function is 
 \begin{equation}
 	Z = \trace \left( e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} \right) = e^{-\beta \Omega} ,
+\label{eq:tft:partition_function}
 \end{equation}
 where $\hat{H}$ is the Hamiltonian operator $\beta = 1 / k_B T$, $\mu$ is the chemical potential, $\hat{N}_i$ are number operators, $\Omega = -k_B T \log{Z}$ is the grand potential, $k_B$ is the Boltzmann constant and the trace can be evaluated in any basis.
 If we can find the partition function, we can obtain all thermodynamic information about the system, such as \cite[chapter 5]{ref:jensoluf}
@@ -133,6 +134,7 @@ First, split the time interval $T$ into $N$ intervals $\Delta t = T / N$, and de
 \newcommand\pointarrow[1]{\underset{\underset{\displaystyle #1}{\displaystyle \uparrow}}{}}
 \begin{equation}
 	\transampl = \braket{\phi_B | e^{- i \hat{H} \Delta t / \hbar} \cdots e^{- i \hat{H} \Delta t / \hbar} \cdots e^{- i \hat{H} \Delta t / \hbar} | \phi_A} .
+\label{eq:tft:time_evolution_splitting}
 \end{equation}
 %\transampl = \braket{\phi_b | \pointarrow{4} e^{- i H \Delta t} \,\, \cdots \pointarrow{3} e^{- i H \Delta t} \pointarrow{2} \cdots \,\, e^{- i H \Delta t} \pointarrow{1} | \phi_a}
 We will take the limit $N \rightarrow \infty$ in the end, so we assume that each interval $\Delta t$ is small.
@@ -240,6 +242,7 @@ We also define the \textbf{functional integrals}
 	\int \pathintdif \phi = \lim_{N \rightarrow \infty} \prod_{n=1}^{N} \int \dif \phi_n
 	\qquad \text{and} \qquad
 	\int \pathintdif \pi = \lim_{N \rightarrow \infty} \prod_{n=1}^{N} \int \frac{\dif \pi_n}{2 \pi \hbar} .
+\label{eq:tft:functional_integral}
 \end{equation}
 %We have swept the diverging factor $(2 \pi \hbar)^N$ under the rug, arguing that it contains no physical information about the dynamics of the process and can be ignored, unlike the other factors.
 %TODO: can integrate out momentum with gaussian integral if it appears as $p^2$)
@@ -275,8 +278,8 @@ Note that the position-space integral $\int \pathintdif \phi$ is constrained to 
 
 (TODO: the only ``correct'' way is to do this AGAIN for fermions!)
 
-Why have we spent so much time on this transition amplitude, when we really are only interested in the partition function (TODO: ref)?
-If we evaluate the trace (TODO: ref) in the basis of fields $\ket{\phi_0}$, we obtain
+Why have we spent so much time on this transition amplitude, when we really are only interested in the partition function \eqref{eq:tft:partition_function}?
+If we evaluate the trace \eqref{eq:tft:partition_function} in the basis of fields $\ket{\phi_0}$, we obtain
 \begin{equation}
 	Z = \int \dif \phi_0 \braket{\phi_0 | e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} | \phi_0} .
 \end{equation}
@@ -291,7 +294,7 @@ Thus, we can express the partition function as path integrals \eqref{eq:tft:path
 This yields
 \begin{equation}
 	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \, \exp \left( \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( i \pi(\vec{x}, \tau) \dot{\phi}(\vec{x}, \tau) - \ham(\pi(\vec{x}, \tau), \phi(\vec{x}, \tau)) \right) \right)
-\label{eq:tft:partition_function}
+\label{eq:tft:bosonic_partition_function}
 \end{equation}
 where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintdif \phi$ and write $\oint_+$ to indicate that we integrate over all fields $\phi(x, \tau) = \phi(x, \tau + \beta \hbar)$ that are \emph{periodic} in ``imaginary time'' $\tau$, due to the equal start and end states $\phi_A(\vec{x}) = \phi_B(\vec{x})$ in \cref{eq:tft:path_integral_hamiltonian}.
 Thus, thermal field theory -- statistical mechanics for quantum fields at finite temperature -- is essentially equivalent to ordinary quantum field theory with temperature-dependent time and periodic fields, and the partition function is obtained by integrating along closed paths in phase space!
@@ -304,6 +307,7 @@ Thus, thermal field theory -- statistical mechanics for quantum fields at finite
 Inner product
 \begin{equation}
 	\braket{\pi | \phi} \rightarrow \braket{\psi | \psi} = \exp \left\{ \int \dif^3 x \, \psi^\dagger(\vec{x}) \psi(\vec{x}) \right\}
+\label{eq:tft:grassmann_inner_product}
 \end{equation}
 
 For fermions, commutators are replaced by anticommutators, and so eigenvalues no longer commute, but anticommute!
@@ -313,9 +317,10 @@ For concreteness, consider fermions described by the Dirac Lagrangian
 \begin{equation}
 	\lagr = \bar{\psi} (i \hbar c \slashed\partial - m c^2) \psi .
 \end{equation}
-Here, the canonical momentum turns out to be
+Here, the conjugate momentum turns out to be
 \begin{equation}
 	\pi = \fdv{\lagr}{\dot\psi} = i \hbar \psi^\dagger ,
+\label{eq:tft:dirac_conjugate_momentum}
 \end{equation}
 so, perhaps confusingly, we are instructed to treat the field and its conjugate as independent variables in the path integral.
 
@@ -332,11 +337,11 @@ while completeness takes the form
 \label{eq:tft:completeness_grassmann}
 \end{equation}
 
-The partition function (TODO: ref) follows from the trace \eqref{eq:tft:trace_grassmann} with $A = e^{-\beta (\hat{H} - \mu \hat{N})}$ as
+The partition function \eqref{eq:tft:partition_function} follows from the trace \eqref{eq:tft:trace_grassmann} with $A = e^{-\beta (\hat{H} - \mu \hat{N})}$ as
 \begin{equation}
 	Z = \int \dif \psi_0^\dagger \int \dif \psi_0 \, e^{-\psi_{0}^\dagger \psi_{0}} \braket{-\psi_0 | e^{-\beta(\hat{H} - \mu \hat{N})} | \psi_0} .
 \end{equation}
-Breaking up the operator $e^{\ldots}$ as in (TODO: ref) and inserting one Grassmann completeness relation \eqref{eq:tft:completeness_grassmann} between every factor, the partition function becomes
+Breaking up the operator $e^{\ldots}$ as in \cref{eq:tft:time_evolution_splitting} and inserting one Grassmann completeness relation \eqref{eq:tft:completeness_grassmann} between every factor, the partition function becomes
 \begin{equation}
 	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\psi_{n}^\dagger \psi_{n}} \braket{\psi_{n+1} | e^{-(\hat{H} - \mu \hat{N}) \Delta \tau / \hbar} | \psi_n} ,
 \end{equation}
@@ -346,16 +351,16 @@ Then we obtain
 \begin{equation}
 	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\psi_{n}^\dagger \psi_{n}} \braket{\psi_{n+1} | \psi_n} e^{-(H_n - \mu N) \Delta \tau / \hbar} .
 \end{equation}
-Now use the Grassmann inner product (TODO: ref) to write
+Now use the Grassmann inner product \eqref{eq:tft:grassmann_inner_product} to write
 \begin{equation}
 	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{ \frac{\Delta \tau}{\hbar} \sum_n \int \dif^3 x \left( \frac{\psi^\dagger_{n+1} - \psi^\dagger_n}{\Delta t} \psi_{n} - \ham + \mu \numdensity \right) \right\} .
 \end{equation}
-Finally, take the continuous limit (TODO: ref), introduce the functional integrals and integrate $\int \dif \tau \, \dot{\psi^\dagger} \psi = -\int \dif \tau \, \psi^\dagger \dot{\psi}$ by parts to obtain the \textbf{fermionic partition function}
+Finally, take the continuum limit, introduce the functional integrals \eqref{eq:tft:functional_integral} and integrate $\int \dif \tau \, \dot{\psi^\dagger} \psi = -\int \dif \tau \, \psi^\dagger \dot{\psi}$ by parts to obtain the \textbf{fermionic partition function}
 \begin{equation}
 	Z = \oint_- \pathintdif \psi^\dagger \oint_- \pathintdif \psi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\psi^\dagger(\vec{x},\tau) \dot{\psi}(\vec{x},\tau) - \ham \left( \psi^\dagger(\vec{x},\tau), \psi(\vec{x},\tau) \right) + \mu \numdensity \right) \right\} ,
 \end{equation}
 where $\oint_-$ means to integrate over \emph{antiperiodic} fields $\psi(\vec{x}, 0) = -\psi(\vec{x}, \beta \hbar)$, naturally extending the symbol $\oint_+$ we introduced for bosonic fields that were \emph{periodic}.
-Apart from the difference in periodicity, this result is -- remarkably -- exactly the same as the bosonic partition function \eqref{eq:tft:partition_function}, with canonical momentum (TODO: ref)!
+Apart from the difference in periodicity, this result is -- remarkably -- exactly the same as the bosonic partition function \eqref{eq:tft:bosonic_partition_function}, with canonical momentum \eqref{eq:tft:dirac_conjugate_momentum}!
 But the similarity in facade were achieved by a drastically different mathematical fundament.
 
 \iffalse
@@ -373,7 +378,7 @@ The partition function is therefore
 
 \section{Matsubara frequencies}
 
-We have just witnessed how the partition function for bosons can be expressed by the path integral \eqref{eq:tft:partition_function} with fields that are periodic in imaginary time.
+We have just witnessed how the partition function for bosons can be expressed by the path integral \eqref{eq:tft:bosonic_partition_function} with fields that are periodic in imaginary time.
 For Dirac fermions, we have showed that we can ``naively'' use the same result by substituting the canonical momentum $\pi = i \hbar \psi^\dagger$ and integrate over antiperiodic fields.
 In summary, the field $\psi(\vec{x}, \tau)$ -- here regarded as \emph{either} a bosonic or fermionic field -- satisfies the (anti)periodicity
 \begin{equation}
@@ -433,7 +438,7 @@ The Hamiltonian density is therefore
 	\ham = \pi \dot{\phi} - \lagr = \frac12 c^2 \pi^2 + \frac12 (\nabla \phi)^2 + \frac12 \frac{m^2 c^2}{\hbar^2} \phi^2 .
 \label{eq:tft:boson_hamiltonian}
 \end{equation}
-We can now calculate the partition function \eqref{eq:tft:partition_function}.
+We can now calculate the partition function \eqref{eq:tft:bosonic_partition_function}.
 Substituting the Hamiltonian density \eqref{eq:tft:boson_hamiltonian} gives
 \begin{equation}
 	Z = \int \pathintdif \pi \oint \pathintdif \phi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left[ i \pi \dot{\phi} - \frac12 c^2 \pi^2 - \frac12 (\nabla \phi)^2 - \frac12 \frac{m^2 c^2}{\hbar^2} \phi^2 \right] \right\} .
