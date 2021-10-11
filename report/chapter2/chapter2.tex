@@ -288,8 +288,11 @@ Thus, thermal field theory -- statistical mechanics for quantum fields at finite
 
 \section{Bosons}
 
+(TODO: do Bose-Einstein with complex scalar field instead of real scalar field for more ``symmetry'' to the fermionic case?)
+
 For a real scalar field, the Lagrangian is 
 (TODO: does this define the unit of $\phi$ is such that unit of $\lagr$ is $\text{energy} / \text{volume}$?, i.e. $[\phi] = \sqrt{E/M}$?)
+(TODO: did something wrong with time derivative -- with or without $c$?)
 \begin{equation}
 	\lagr = \frac{1}{2 c^2} (\partial_\mu \phi) (\partial^\mu \phi) - \frac12 \frac{m^2 c^2}{\hbar^2} \phi^2
 	      = \frac{1}{2 c^2} \dot{\phi}^2 - \frac12 (\nabla \phi)^2 - \frac12 \frac{m^2 c^2}{\hbar^2} \phi^2 .
@@ -405,6 +408,7 @@ This expression may look pretty enough on its own, but we can push further.
 First, use the definite integral
 \begin{equation}
 	\int_{a^2}^{b^2} \frac{\dif x^2}{x^2 + c^2} = \log(b^2 + c^2) - \log(a^2 + c^2)
+\label{eq:tft:integral_trick}
 \end{equation}
 with $c = \hbar \beta \omega_n$, $b = \hbar \beta \omega$ and any value of $a$ to convert the logarithm into an integral.
 Next, recall that $\omega_n = 2 \pi n / \beta \hbar = n \omega_1$ and use
@@ -433,3 +437,118 @@ Finally, we take the continuous limit in which $\sum_\vec{p} \rightarrow V \int 
 (TODO: use functional determinant instead?)
 
 (TODO: $\omega = 2 \pi n / \beta \hbar$ ?)
+
+\section{Fermions}
+
+Dirac lagrangian
+\begin{equation}
+	\lagr = \bar\psi (i \hbar c \slashed\partial - m c^2) \psi
+\end{equation}
+where $\psi$ is the basic field and $\bar\psi = \psi^\dagger \gamma^0$.
+(TODO: gamma matrices)
+
+Conjugate momentum
+\begin{equation}
+	\pi = \pdv{\lagr}{\dot{\psi}} = i \hbar \psi^\dagger
+\end{equation}
+
+Hamiltonian density
+\begin{equation}
+	\ham = \pi \dot\psi - \lagr = \bar\psi ( -i \hbar c \, \vec{\gamma} \cdot \vec{\nabla} + m c^2 ) \psi
+\end{equation}
+
+Fourier series
+\begin{equation}
+	\psi_\alpha(\vec{x}, \tau) = \frac{1}{\sqrt{V}} \sum_n \sum_\vec{p} e^{i (\vec{p} \cdot \vec{x} / \hbar + \omega_n \tau)} \psi_{\alpha, n}(\vec{p})
+\end{equation}
+with $\omega_n = (2n+1) \pi / \beta \hbar$.
+
+Partition function
+(TODO: conserved current)
+\begin{equation}
+	Z = \int \pathintdif [i \hbar \psi^\dagger] \int \pathintdif 
+	    \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \bar\psi \left[ -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \vec{\gamma} \cdot \vec{\nabla} - mc^2 + \mu \gamma^0 \right] \psi \right\}
+\end{equation}
+
+Action
+\begin{equation}
+\begin{split}
+	S & = \frac{1}{V} \sum_{m,n} \sum_{\vec{p},\vec{q}}         \psi_m(\vec{q})^\dagger \gamma^0 \left[ -\hbar \gamma^0 i \omega_n + i \hbar c \vec{\gamma} \cdot i \vec{k} - m c^2 + \mu \gamma^0 \right] \psi_n(\vec{p}) \int_0^{\beta \hbar} \dif \tau e^{i(\omega_n-\omega_m)\tau} \int \dif^3 x e^{i(\vec{p}-\vec{q})\cdot\vec{x}/\hbar} \\
+	  & = \beta       \sum_{n}   \sum_{\vec{p}}         i \hbar \psi_m(\vec{q})^\dagger          \left[ -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i m c^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \\
+\end{split}
+\end{equation}
+so
+\begin{equation}
+\begin{split}
+	Z & = \prod_n \prod_\vec{p} \int \pathintdif [i \hbar \psi_n(\vec{p})^\dagger] \int \pathintdif \psi_n(\vec{p})
+	      \exp \left\{ \frac{\beta}{\hbar} i \hbar \psi_n(\vec{q})^\dagger \left[ -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \right\} \\
+	  & = \prod_n \prod_\vec{p} \int \dif [i \psi_n(\vec{p})^\dagger] \int \dif \psi_n(\vec{p})
+	      \exp \left\{ i \psi_n(\vec{q})^\dagger \left[ \beta( -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu ) \right] \psi_n(\vec{p}) \right\} \\
+	  & = \prod_n \prod_\vec{p} \tdet D_n(\vec{p})
+\end{split}
+\end{equation}
+(TODO: $\dif$ or $\pathintdif$ ??)
+
+Using $\int \dif \bar\eta \int \dif \eta e^{\eta^\dagger D \eta} = \det{D}$, we get
+\begin{equation}
+	\log Z = \trace{\log{D}}
+\end{equation}
+
+Determinant
+\begin{equation}
+\begin{split}
+	\tdet D  & = \tdet \left\{ -\beta \hbar \omega_n - i \beta \mu + i \beta m c^2 \gamma^0 + i \beta c \gamma^0 \vec{\gamma} \cdot \vec{p} \right\} \\
+	         & = \tdet \begin{pmatrix} 
+	                 -\beta \hbar \omega_n - i \beta \mu + i \beta m c^2           & i \beta c \vec{\sigma} \cdot \vec{p}                \\ 
+	                 i \beta c \vec{\sigma} \cdot \vec{p}                          & -\beta \hbar \omega_n - i \beta \mu - i \beta m c^2 \\ 
+	             \end{pmatrix} \\
+	         & = \tdet \left\{ (-\beta \hbar \omega_n - i \beta \mu + i \beta mc^2) (-\beta \hbar \omega_n - i \beta \mu - i \beta m c^2) + \beta^2 c^2 (\vec{\sigma} \cdot \vec{p})^2 \right\} \\
+	         & = \tdet \left\{ (-\beta \hbar \omega_n - i \beta \mu)^2 + (\beta m c^2)^2 + \beta^2 c^2 \underbrace{(\vec{\sigma} \cdot \vec{p})^2}_{\vec{p}^2} \right\} \\
+	         & = \tdet \left\{ \beta^2 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] \right\} \\
+	         & = \beta^4 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right]^2
+\end{split}
+\end{equation}
+(TODO: to 4th or 2nd power when taking determinant of diagonal matrix?)
+
+Now
+\begin{equation}
+\begin{split}
+	\log Z & = \sum_n \sum_\vec{p} \tdet D_n(\vec{p}) \\
+	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right]^2 \\
+	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] \left[ (-\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] \\
+	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ \hbar^2 \omega_n^2 + 2 i \hbar \omega_n \mu - \mu^2 + \hbar^2 \omega^2 \right] \left[ \hbar^2 \omega_n^2 - 2 i \hbar \omega_n \mu - \mu^2 + \hbar^2 \omega^2 \right] \\
+	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ \hbar \omega_n + i (\hbar \omega + \mu) \right] 
+		                                        \left[ \hbar \omega_n + i (\hbar \omega - \mu) \right]
+		                                        \left[ \hbar \omega_n - i (\hbar \omega + \mu) \right]
+		                                        \left[ \hbar \omega_n - i (\hbar \omega - \mu) \right] \\
+	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ \hbar^2 \omega_n^2 + (\hbar \omega - \mu)^2 \right] 
+		                                        \left[ \hbar^2 \omega_n^2 + (\hbar \omega + \mu)^2 \right] \\
+	       & = \sum_n \sum_\vec{p} \left\{ \log \beta^2 \left[ \hbar^2 \omega_n^2 + (\hbar \omega - \mu)^2 \right] +
+		                                   \log \beta^2 \left[ \hbar^2 \omega_n^2 + (\hbar \omega + \mu)^2 \right] \right\}
+\end{split}
+\end{equation}
+(got rid of the weird $i \mu$ in the beginning)
+
+(can do this ``trickery'' since we sum over all frequencies $\sum_n \omega_n = 0$ and $\sum_n F(\omega_n) = \sum_n F(-\omega_n)$)
+
+Now again use \eqref{eq:tft:integral_trick} with $c = \hbar \beta \omega_n$, $b = \beta ( \hbar \omega \pm \mu )$ and any value of $a$.
+(TODO: generalize Matsubara frequency sum)
+Next, use
+\begin{equation}
+	\sum_{n=-\infty}^{+\infty} \frac{1}{(2n+1)^2\pi^2 + x^2} = \frac{1}{2x} \left( 1 - \frac{2}{e^x+1} \right)
+\end{equation}
+Then
+\begin{equation}
+\begin{split}
+	\log Z_\pm & = \sum_n \sum_\vec{p} \int^{\beta^2 (\hbar \omega \pm \mu)^2} \frac{\dif x^2}{x^2 + (2n+1)^2\pi^2} \\
+	           & =        \sum_\vec{p} \int^{\beta^2 (\hbar \omega \pm \mu)^2} \frac{\dif x^2}{2 x} \left( 1 - \frac{2}{e^x +1} \right) \\
+	           & =        \sum_\vec{p} \int^{\beta   (\hbar \omega \pm \mu)  }       \dif x         \left( 1 - \frac{2}{e^x +1} \right) \\
+	           & =        \sum_\vec{p} \left[ -(\hbar \omega \pm \mu) + 2 \log \left( e^{\beta (\hbar \omega \pm \mu)} + 1 \right) \right]    \\
+	           & =        \sum_\vec{p} \left[ +(\hbar \omega \pm \mu) + 2 \log \left( 1 + e^{-(\beta (\hbar \omega \pm \mu))} \right) \right] \\
+\end{split}
+\end{equation}
+and
+\begin{equation}
+	\log Z %= \log Z_+ + \log Z_-
+	       = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left[ \hbar \omega + \log \left( 1 + e^{-\beta (\hbar \omega + \mu)} \right) + \log \left( 1 + e^{-\beta (\hbar \omega - \mu)} \right) \right]
+\end{equation}

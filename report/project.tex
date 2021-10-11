@@ -13,6 +13,7 @@
 \usepackage{amsmath}
 \usepackage{tensor}
 \usepackage{braket}
+\usepackage{slashed}
 \usepackage[parfill]{parskip} % new paragraph: new line, no indent
 %\usepackage[title]{appendix}
 \usepackage[hidelinks]{hyperref} % hide colored boxes around links
@@ -99,6 +100,7 @@ external/system call={xelatex \tikzexternalcheckshellescape --halt-on-error --in
 \newcommand\dif{\mathop{}\!\mathrm{d}}
 \newcommand{\abs}[1]{\lvert #1 \rvert}
 \renewcommand{\det}[1]{\abs{#1}}
+\newcommand{\tdet}{\text{det}}
 \newcommand{\integral}[4]{\int_{#3}^{#4} #1 \dif #2}
 \newcommand{\variation}[1]{\delta #1}
 \newcommand{\trace}[1]{\text{tr} #1}
