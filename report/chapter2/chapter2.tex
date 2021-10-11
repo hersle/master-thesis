@@ -1,5 +1,7 @@
 \chapter{Thermal field theory}
 
+(TODO: need to study coherent states for bosons and ferimons???)
+
 \newcommand{\transampl}{\braket{\phi_B | e^{- i \hat{H} T / \hbar} | \phi_A}}
 
 \section{Summary of quantization of quantum fields}
@@ -250,6 +252,81 @@ Note that the position-space integral $\int \pathintdif \phi$ is constrained to 
 
 (TODO: the only ``correct'' way is to do this AGAIN for fermions!)
 
+\section{Path integral for fermions}
+
+%(TODO: see random_note_1.pdf)
+
+(TODO: )
+Inner product
+\begin{equation}
+	\braket{\pi | \phi} \rightarrow \braket{\psi | \psi} = \exp \left\{ \int \dif^3 x \, \psi^\dagger(\vec{x}) \psi(\vec{x}) \right\}
+\end{equation}
+
+For fermions, commutators are replaced by anticommutators, and so eigenvalues no longer commute, but anticommute!
+To obtain the path integral formulation of the fermionic partition function, we must therefore use anticommuting \textbf{Grassmann numbers} instead of commuting complex numbers.
+
+For concreteness, consider fermions described by the Dirac Lagrangian
+\begin{equation}
+	\lagr = \bar{\psi} (i \hbar c \slashed\partial - m c^2) \psi .
+\end{equation}
+Here, the canonical momentum turns out to be
+\begin{equation}
+	\pi = \fdv{\lagr}{\dot\psi} = i \hbar \psi^\dagger ,
+\end{equation}
+so, perhaps confusingly, we are instructed to treat the field and its conjugate as independent variables in the path integral.
+
+To evaluate the bosonic partition function, we inserted completeness relations for both the field and the conjugate momentum, and we took the trace by integration over fields.
+For fermionic fields and Grassmann numbers, these properties are different.
+First, the trace is
+\begin{equation}
+	\int \dif \psi^\dagger \int \dif \psi \, e^{-\psi^\dagger \psi} \braket{-\psi | A | \psi} = \trace{A} ,
+\label{eq:tft:trace_grassmann}
+\end{equation}
+while completeness takes the form
+\begin{equation}
+	\int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{-\int \dif^3 x \, \psi_{n+1}^\dagger(\vec{x}) \psi_{n+1}(\vec{x}) \right\} \ket{\psi} \bra{\psi} = 1 .
+\label{eq:tft:completeness_grassmann}
+\end{equation}
+
+The partition function (TODO: ref) follows from the trace \eqref{eq:tft:trace_grassmann} with $A = e^{-\beta (\hat{H} - \mu \hat{N})}$ as
+\begin{equation}
+	Z = \int \dif \psi_0^\dagger \int \dif \psi_0 \, e^{-\psi_{0}^\dagger \psi_{0}} \braket{-\psi_0 | e^{-\beta(\hat{H} - \mu \hat{N})} | \psi_0} .
+\end{equation}
+Breaking up the operator $e^{\ldots}$ as in (TODO: ref) and inserting one Grassmann completeness relation \eqref{eq:tft:completeness_grassmann} between every factor, the partition function becomes
+\begin{equation}
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\psi_{n+1}^\dagger \psi_{n+1}} \braket{\psi_{n+1} | e^{-(\hat{H} - \mu \hat{N}) \Delta \tau / \hbar} | \psi_n} ,
+\end{equation}
+where we define $\bra{\psi_{N+1}} = \bra{-\psi_0}$ -- \emph{note the minus sign!}
+Next, expand the Hamiltonian to first order as in \eqref{eq:tft:path_integral_hamiltonian_assumption}.
+Then we obtain
+\begin{equation}
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\psi_{n+1}^\dagger \psi_{n+1}} \braket{\psi_{n+1} | \psi_n} e^{-(H_n - \mu N) \Delta \tau / \hbar} .
+\end{equation}
+Now use the Grassmann inner product (TODO: ref) to write
+\begin{equation}
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{ -\frac{\Delta t}{\hbar} \sum_n \int \dif^3 x \left( \psi^\dagger_{n+1} \frac{\psi_{n+1} - \psi_n}{\Delta t} + \ham - \mu \numdensity \right) \right\} .
+\end{equation}
+Finally, introduce the functional integrals to get the \textbf{fermionic partition function}
+\begin{equation}
+	Z = \oint_- \pathintdif \psi^\dagger \oint_- \pathintdif \psi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\psi^\dagger(\vec{x},\tau) \dot{\psi}(\vec{x},\tau) - \ham \left( \psi^\dagger(\vec{x},\tau), \psi(\vec{x},\tau) \right) + \mu \numdensity \right) \right\} ,
+\end{equation}
+where $\oint_-$ means to integrate over \emph{antiperiodic} fields $\psi(\vec{x}, 0) = -\psi(\vec{x}, \beta \hbar)$, naturally extending the symbol $\oint_+$ we introduced for bosonic fields that were \emph{periodic}.
+Apart from the difference in periodicity, this result is -- remarkably -- exactly the same as the bosonic partition function \eqref{eq:tft:partition_function}, with canonical momentum (TODO: ref)!
+But the similarity in facade were achieved by a drastically different mathematical fundament.
+
+\iffalse
+The partition function is therefore
+\begin{equation}
+\begin{split}
+	Z &= \int \dif \psi_0^\dagger \int \dif \psi_0 \, e^{-\psi_{n+1}^\dagger \psi_{n+1}} \braket{-\psi_0 | e^{-\beta(\hat{H} - \mu \hat{N})} | \psi_0} \\
+	  &= \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\psi_{n+1}^\dagger \psi_{n+1}} \braket{\psi_{n+1} | e^{-(\hat{H} - \mu \hat{N}) \Delta \tau / \hbar} | \psi_n} \\
+	  &= \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\psi_{n+1}^\dagger \psi_{n+1}} \braket{\psi_{n+1} | \psi_n} e^{-(H_n - \mu N) \Delta \tau / \hbar} \\
+	  &= \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{ -\frac{\Delta t}{\hbar} \sum_n \int \dif^3 x \left( \psi^\dagger_{n+1} \frac{\psi_{n+1} - \psi_n}{\Delta t} + \ham - \mu \numdensity \right) \right\} \\
+	  &= \oint_- \pathintdif \psi^\dagger \oint_- \pathintdif \psi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\psi^\dagger(\vec{x},\tau) \dot{\psi}(\vec{x},\tau) - \ham \left( \psi^\dagger(\vec{x},\tau), \psi(\vec{x},\tau) \right) + \mu \numdensity \right) \right\} \\
+\end{split}
+\end{equation}
+\fi
+
 \section{Partition function}
 
 We will now see that there is an elegant mathematical analogy between the path integral for the transition amplitude and the partition function of statistical mechanics.
@@ -280,7 +357,7 @@ The change from a real to imaginary time variable can be accomplished by a Wick 
 Thus, we can express the partition function as path integrals \eqref{eq:tft:path_integral_hamiltonian} with these substitutions!
 This yields
 \begin{equation}
-	Z = \int \pathintdif \pi \oint \pathintdif \phi \, \exp \left( \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( i \pi(\vec{x}, \tau) \dot{\phi}(\vec{x}, \tau) - \ham(\pi(\vec{x}, \tau), \phi(\vec{x}, \tau)) \right) \right)
+	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \, \exp \left( \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( i \pi(\vec{x}, \tau) \dot{\phi}(\vec{x}, \tau) - \ham(\pi(\vec{x}, \tau), \phi(\vec{x}, \tau)) \right) \right)
 \label{eq:tft:partition_function}
 \end{equation}
 where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintdif \phi$ and write $\oint$ to indicate that we integrate over all fields $\phi(x, \tau) = \phi(x, \tau + \beta \hbar) \, e^{i \theta}$ that are \emph{periodic} in imaginary time, due to the equal start and end states $\phi_A(\vec{x}) = \phi_B(\vec{x})$ in \cref{eq:tft:path_integral_hamiltonian}.
