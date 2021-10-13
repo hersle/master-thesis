@@ -548,6 +548,197 @@ we uncover the \textbf{Einstein field equations in the presence of matter},
 \end{equation}
 
 
+\chapter{Matsubara frequency summation}
+
+When doing thermal field theory, one often encounters sums
+\begin{equation}
+	S = \sum_{n=-\infty}^{+\infty} s(\omega_n)
+\label{eq:matsum:sum}
+\end{equation}
+over all \textbf{Matsubara frequencies}
+\begin{equation}
+	\omega_n = \begin{dcases}
+	               2 \pi n / \beta \hbar           & \text{for bosons}    \\
+				   2 \pi \left( n+\frac12 \right) / \beta \hbar & \text{for fermions} .\\
+			   \end{dcases}
+\end{equation}
+For example, we encountered the sum
+\begin{equation}
+	S = \sum_{n=-\infty}^{+\infty} \frac{1}{\omega_n^2 + \omega^2}
+\label{eq:matsum:motivating_example}
+\end{equation}
+in \cref{eq:tft:matsubara_sum_bosons} and \cref{eq:tft:matsubara_sum_fermions}.
+In this appendix we will demonstrate an elegant general method for computing such sums by contour integration in the complex plane.
+
+First, we define the complex functions
+\begin{equation}
+	n_\pm(z) = \frac{1}{e^{\beta z} \mp 1}
+	         = \begin{dcases}
+		           \displaystyle \frac{1}{e^{\beta z} - 1} & \text{for bosons}     \\
+		           \displaystyle \frac{1}{e^{\beta z} + 1} & \text{for fermions} . \\
+	           \end{dcases}
+\label{eq:matsum:distribution}
+\end{equation}
+Here and below, upper signs and upper parts of braces correspond to bosons, while lower ones correspond to fermions.
+These are the familiar Bose-Einstein distribution $n_+(z)$ for bosons and Fermi-Dirac distribution $n_-(z)$ for fermions.
+Importantly, they have simple poles at all imaginary Matsubara frequencies $z = i \omega_n$.
+
+% Draw cross from https://tex.stackexchange.com/questions/123760/draw-crosses-in-tikz
+\usetikzlibrary{decorations.markings}
+
+\def\r{1.7}
+\def\w{0.3}
+\def\n{16}
+\def\drawpoles{
+	\path[blue, decoration={markings, mark=between positions 0.01 and 1 step 3mm with {\cross}}, postaction={decorate}] (0, -\r+\w/2) -- (0, +\r-\w/2) node [black, right=0.1cm, yshift=-0.5cm] {\scriptsize $i \omega_n$};
+	\path[blue, decoration={markings, mark=between positions 0 and 1 step 1.0 with {\cross}}, postaction={decorate}] (-\r/2, 0) node[black, above] {\scriptsize $-\omega$} -- (+\r/2, 0) node [black, above] {\scriptsize $+\omega$};
+}
+\def\drawaxes{
+	\draw[->, black!50!white, thin] (-1.25*\r, 0) -- (+1.25*\r, 0.0) node [above, black] {\scriptsize $\text{Re}(z)$};
+	\draw[->, black!50!white, thin] (0, -1.25*\r) -- (0, +1.25*\r) node [right, black] {\scriptsize $\text{Im}(z)$};
+}
+\def\cross{
+	\draw (-2pt,-2pt) -- (+2pt,+2pt);
+	\draw (+2pt,-2pt) -- (-2pt,+2pt);
+}
+
+\begin{figure}
+\centering
+\begin{subfigure}{0.32\textwidth}
+\centering
+\begin{tikzpicture}
+\draw[very thick, red, decoration={markings, mark=at position 0.4 with {\arrow{latex}}}, postaction={decorate}] 
+      (+\w/2, -\r+\w/2) -- 
+      (+\w/2, +\r-\w/2) arc [start angle=0, end angle=180, radius=\w/2] --
+      (-\w/2, -\r+\w/2) arc [start angle=180, end angle=360, radius=\w/2];
+\drawaxes
+\drawpoles
+\end{tikzpicture}
+\caption{\label{fig:matsum:contourA}Contour $C_A$}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\centering
+\begin{tikzpicture}
+\drawaxes
+\drawpoles
+\draw[very thick, red, decoration={
+	markings,
+	mark=at position 0.125 with {\arrowreversed{latex}},
+}, postaction={decorate}] (0, 0) circle [radius=\r];
+\end{tikzpicture}
+\caption{\label{fig:matsum:contourB}Contour $C_B$}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\centering
+\begin{tikzpicture}
+\drawaxes
+\drawpoles
+\draw[
+	decoration={
+		markings, 
+		mark=at position 0.6 with {\arrow{latex}},
+	}, postaction={decorate}, 
+	very thick, red
+] (+\w/2, -\r+\w/2) -- (+\w/2, +\r-\w/2) arc [start angle=+90, end angle=-90, radius=\r-\w/2];
+\draw [
+	decoration={
+		markings, 
+		mark=at position 0.9 with {\arrow{latex}},
+	}, postaction={decorate}, 
+	very thick, red
+] (-\w/2, +\r-\w/2) -- (-\w/2, -\r+\w/2) arc [start angle=270, end angle=90, radius=\r-\w/2];
+\end{tikzpicture}
+\caption{\label{fig:matsum:contourC}Contour $C_C$}
+\end{subfigure}
+\caption{\label{fig:matsum:contours}%
+	To evaluate a Matsubara sum \eqref{eq:matsum:sum}, we can transform it into a complex integral \eqref{eq:matsum:sum_as_contour_integral} along the contour $C_A$ that encloses infinitely many imaginary Matsubara frequencies.
+	If the integral vanishes on the circular contour $C_B$ of infinite radius, we can superpose $C_B$ and $C_A$ into the contour $C_C$ that usually encloses only a \emph{finite} number of poles.
+	Then we can evaluate the Matsubara sum with the residue theorem as the finite sum \eqref{eq:matsum:sum_finite_residues}.
+}
+\end{figure}
+
+For reasons that will soon be clear, consider the contour integral
+\begin{equation}
+	\oint_{C_A} \dif z \, s(-iz) n_\pm(z)
+\label{eq:matsum:contour_integral}
+\end{equation}
+along the contour in \cref{fig:matsum:contourA} that encloses the poles of $n_\pm(z)$ and is closed at $z = i \infty$ and $z = -i \infty$.
+To see how it relates to the Matsubara sum \eqref{eq:matsum:sum}, first recall the \textbf{residue theorem} 
+\cite[theorem 1 in section 16.3]{ref:kreyszig}
+(TODO: write residues as $\res_{z=z_n} f(z)$, but with $z=z_n$ \emph{below} the $\res$ symbol?, see operatorname: \url{https://en.wikibooks.org/wiki/LaTeX/Advanced_Mathematics#Custom_operators}, also do this for other operators!)
+\begin{equation}
+	\oint_C \dif z \, f(z) = 2 \pi i \sum_n \res[f(z_n)] ,
+\label{eq:matsum:residue_theorem}
+\end{equation}
+where the sum runs over all poles $z_n$ of $f(z)$ inside the area enclosed by the contour $C$.
+Second, recall that the \textbf{residue of a quotient function} $f(z) / g(z)$ at a simple pole $z = z_n$ where $g(z_n) = 0$, but $g'(z_n) \neq 0$ is 
+\cite[equation 4 in section 16.3]{ref:kreyszig}
+\begin{equation}
+	\res \left[ \frac{f(z_n)}{g(z_n)} \right] = \frac{f(z_n)}{g'(z_n)} .
+\label{eq:matsum:residue_quotient}
+\end{equation}
+Let us apply this with $f(z) = s(-iz)$ and $g(z) = n_\pm(z)^{-1} = e^{\beta z} \mp 1$,.
+We then find that the residues of the integrand in the contour integral \eqref{eq:matsum:contour_integral} are
+\begin{equation}
+	\res[s(-iz_n) n_\pm(z_n)]_{z_n = i \omega_n} = \pm \frac{1}{\beta} s(\omega_n) ,
+\end{equation}
+By the residue theorem \eqref{eq:matsum:residue_theorem}, the contour integral \eqref{eq:matsum:contour_integral} is then
+\begin{equation}
+	\oint_{C_A} \dif z \, s(-iz) n_\pm(z) = 2 \pi i \sum_i \res[s(-i z_n) n_\pm(z_n)]_{z_n = i \omega_n}
+	                                  = \pm \frac{2 \pi i}{\beta} \sum_n s(\omega_n)
+									  = \pm \frac{2 \pi i}{\beta} S .
+\label{eq:matsum:connection_integral_sum}
+\end{equation}
+In other words, the Matsubara sum \eqref{eq:matsum:sum} is given by the contour integral
+\begin{equation}
+	S = \pm \frac{\beta}{2 \pi i} \oint_{C_A} \dif z \, s(-iz) n_\pm(z) ,
+\label{eq:matsum:sum_as_contour_integral}
+\end{equation}
+where we have weighted the sum function $s(-iz)$ by the auxiliary function $n_\pm(z)$.
+
+What is the use of transforming a simple sum into a complex (in both senses) contour integral?
+\textbf{Assume} that $s(-i z)$ -- as in our motivating example \eqref{eq:matsum:motivating_example} -- satisfies
+\begin{equation}
+	\abs{s(-iz) n_\pm(z)} < \frac{1}{\abs{z}} \quad \text{as} \quad \abs{z} \rightarrow \infty .
+\end{equation}
+Then the integral vanishes on the infinite circle contour $C_B$ in \cref{fig:matsum:contourB},
+and integrating along $C_A$ in the contour integral \eqref{eq:matsum:contour_integral} is the same as integrating along $C_A$ \emph{and} $C_B$.
+But superposing the contour $C_B$ on $C_A$ is equivalent to opening the closures at $z = i \infty$ and $z = -i \infty$ and closing the contour with half circles in the real half planes, resulting in the contour $C_C$ in \cref{fig:matsum:contourC}.
+Now we can apply the residue theorem again with the new contour $C_C$ to obtain
+\begin{equation}
+	S = \frac{\pm \beta}{2 \pi i} \oint_{C_C} \dif z \, s(-iz) n_\pm(z) = \mp \beta \sum_n \res[s(-iz_n) n_\pm(z_n)] ,
+\label{eq:matsum:sum_finite_residues}
+\end{equation}
+\emph{where the sum now runs over the poles of $s(-iz)$ in the real half planes, and not the poles of $n_\pm(z)$ like in \cref{eq:matsum:connection_integral_sum}}.
+Note also that the sign change following the clockwise orientation of $C_C$.
+Like in our example \eqref{eq:matsum:motivating_example}, most $s(-iz)$ will have a \emph{finite} number of poles, in stark contrast to the infinite number of poles of $n_\pm(z)$.
+We have thus transformed the Matsubara sum over an infinite number of residues of $n_\pm(z)$ to a sum over a finite number of residues of $s(-iz)$ -- a much more manageable task.
+This is our proclaimed elegant and general method of evaluating the Matsubara sum \eqref{eq:matsum:sum}.
+
+Let us use now use this technique to evaluate the \textbf{example} sum \eqref{eq:matsum:motivating_example} with
+\begin{equation}
+	s(-iz) = \frac{1}{-z^2 + \omega^2} .
+\end{equation}
+It has poles at $z = \omega$ and $z = -\omega$.
+Using \cref{eq:matsum:residue_quotient} with $f(z) = n_\pm(z)$ and $g(z) = f(-iz)^{-1}$, we obtain the residues
+\begin{equation}
+	\res[s(-iz) n_\pm(z)]_{z =  \omega} = -\frac{1}{2 \omega} n_\pm(+\omega) 
+	\qquad \text{and} \qquad
+	\res[s(-iz) n_\pm(z)]_{z = -\omega} =  \frac{1}{2 \omega} n_\pm( \omega) .
+\end{equation}
+Using our main result \eqref{eq:matsum:sum_finite_residues}, the Matsubara sum \eqref{eq:matsum:motivating_example} is therefore
+\begin{equation}
+	S = \sum_{n=-\infty}^{+\infty} \frac{1}{\omega_n^2 + \omega^2}
+	  = \mp \beta \sum_i \res[s(-i z_n) n_\pm(z_n)]
+	  = \mp \frac{\beta}{2 \omega} \left( n_\pm(-\omega) - n_\pm(\omega) \right) .
+\end{equation}
+We can now evaluate the sum explicitly by inserting the Bose-Einstein distribution and the Fermi-Dirac distribution \eqref{eq:matsum:distribution}.
+After some simplification, we obtain
+\begin{equation}
+	S = \frac{\beta}{2 \omega} \left( 1 \pm \frac{2}{e^{\beta \omega} \mp 1} \right)
+	  = \frac{\beta}{2 \omega} \left( 1 \pm 2 n_\pm(\omega) \right) .
+\end{equation}
+
 \chapter{Code}
 
 \section{Derivation of the Tolman-Oppenheimer-Volkoff equation \texorpdfstring{\\}{} without using energy-momentum conservation}

@@ -301,7 +301,7 @@ Thus, thermal field theory -- statistical mechanics for quantum fields at finite
 
 (TODO: add chemical potential $\mu$. why should it be the conserved charge or something?)
 
-\section{Path integral for fermions}
+\section{Path integral for fermionic partition function}
 
 %(TODO: see random_note_1.pdf)
 
@@ -544,6 +544,7 @@ Next, recall that $\omega_n = 2 \pi n / \beta \hbar = n \omega_1$ and use
 \begin{equation}
 	\sum_{n=-\infty}^{+\infty} \frac{1}{(2 \pi n)^2 + x^2} = \frac{1}{2 x} \left( 1 + \frac{2}{e^x - 1} \right)
 	%\sum_{n=-\infty}^{+\infty} \frac{1}{n^2 + x^2} = \frac{\pi}{x} \left( 1 + \frac{2}{e^{2 \pi x} - 1} \right)
+\label{eq:tft:matsubara_sum_bosons}
 \end{equation}
 to rewrite the integrand.
 (TODO: drop second log term)
@@ -666,6 +667,7 @@ Now again use \eqref{eq:tft:integral_trick} with $c = \hbar \beta \omega_n$, $b 
 Next, use
 \begin{equation}
 	\sum_{n=-\infty}^{+\infty} \frac{1}{(2n+1)^2\pi^2 + x^2} = \frac{1}{2x} \left( 1 - \frac{2}{e^x+1} \right)
+\label{eq:tft:matsubara_sum_fermions}
 \end{equation}
 Then
 \begin{equation}
