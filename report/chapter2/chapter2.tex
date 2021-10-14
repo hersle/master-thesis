@@ -325,45 +325,49 @@ For fermionic fields and Grassmann numbers, these properties are different.
 (TODO: show/refer all these)
 First, the inner product between two states is
 \begin{equation}
-	\braket{\psi_1 | \psi_2} = \exp \left\{ \int \dif^3 x \, \psi_1^\dagger(\vec{x}) \psi_2(\vec{x}) \right\} .
+	\braket{\eta_1 | \eta_2} = \exp \left\{ \int \dif^3 x \, \eta_1^\dagger(\vec{x}) \eta_2(\vec{x}) \right\} .
 \label{eq:tft:grassmann_inner_product}
 \end{equation}
 Second, the trace is
 \begin{equation}
-	\int \dif \psi^\dagger \int \dif \psi \, e^{-\psi^\dagger \psi} \braket{-\psi | A | \psi} = \trace{A} .
+	\int \dif \eta^\dagger \int \dif \eta \, e^{-\eta^\dagger \eta} \braket{-\eta | A | \eta} = \trace{A} .
 \label{eq:tft:trace_grassmann}
 \end{equation}
 Third, completeness takes the form
 \begin{equation}
-	\int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{-\int \dif^3 x \, \psi_{n}^\dagger(\vec{x}) \psi_{n}(\vec{x}) \right\} \ket{\psi} \bra{\psi} = 1 .
+	\int \dif \eta^\dagger \int \dif \eta \, \exp \left\{-\int \dif^3 x \, \eta^\dagger(\vec{x}) \eta(\vec{x}) \right\} \ket{\eta} \bra{\eta} = 1 .
 \label{eq:tft:completeness_grassmann}
 \end{equation}
 
 The partition function \eqref{eq:tft:partition_function} follows from the trace \eqref{eq:tft:trace_grassmann} with $A = e^{-\beta (\hat{H} - \mu \hat{N})}$ as
 \begin{equation}
-	Z = \int \dif \psi_0^\dagger \int \dif \psi_0 \, e^{-\psi_{0}^\dagger \psi_{0}} \braket{-\psi_0 | e^{-\beta(\hat{H} - \mu \hat{N})} | \psi_0} .
+	Z = \int \dif \psi_0^\dagger \int \dif \psi_0 \, e^{-\int \dif^3 x \, \psi_{0}^\dagger(\vec{x}) \psi_{0}(\vec{x})} \braket{-\psi_0 | e^{-\beta(\hat{H} - \mu \hat{N})} | \psi_0} .
 \end{equation}
 Breaking up the operator $e^{\ldots}$ as in \cref{eq:tft:time_evolution_splitting} and inserting one Grassmann completeness relation \eqref{eq:tft:completeness_grassmann} between every factor, the partition function becomes
 \begin{equation}
-	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\psi_{n}^\dagger \psi_{n}} \braket{\psi_{n+1} | e^{-(\hat{H} - \mu \hat{N}) \Delta \tau / \hbar} | \psi_n} ,
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\int \dif^3 x \, \psi_{n}^\dagger(\vec{x}) \psi_{n}(\vec{x})} \braket{\psi_{n+1} | e^{-(\hat{H} - \mu \hat{N}) \Delta \tau / \hbar} | \psi_n} ,
 \end{equation}
 where we define $\bra{\psi_{N+1}} = \bra{-\psi_0}$ -- \emph{note the minus sign!}
-Next, expand the Hamiltonian to first order as in \eqref{eq:tft:path_integral_hamiltonian_assumption}.
+Next, expand the Hamiltonian to first order as in \cref{eq:tft:path_integral_hamiltonian_assumption}.
 Then we obtain
 \begin{equation}
-	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\psi_{n}^\dagger \psi_{n}} \braket{\psi_{n+1} | \psi_n} e^{-(H_n - \mu N) \Delta \tau / \hbar} .
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\int \dif^3 x \, \psi_{n}^\dagger(\vec{x}) \psi_{n}(\vec{x})} \braket{\psi_{n+1} | \psi_n} e^{-(H_n - \mu N) \Delta \tau / \hbar} .
 \end{equation}
 Now use the Grassmann inner product \eqref{eq:tft:grassmann_inner_product} to write
 \begin{equation}
-	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{ \frac{\Delta \tau}{\hbar} \sum_n \int \dif^3 x \left( \frac{\psi^\dagger_{n+1} - \psi^\dagger_n}{\Delta t} \psi_{n} - \ham + \mu \numdensity \right) \right\} .
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{ \frac{\Delta \tau}{\hbar} \sum_n \int \dif^3 x \left( \hbar \frac{\psi^\dagger_{n+1} - \psi^\dagger_n}{\Delta \tau} \psi_{n} - \ham + \mu \numdensity \right) \right\} .
 \end{equation}
-Finally, take the continuum limit, introduce the functional integrals \eqref{eq:tft:functional_integral} and integrate $\int \dif \tau \, \dot{\psi^\dagger} \psi = -\int \dif \tau \, \psi^\dagger \dot{\psi}$ by parts to obtain the \textbf{fermionic partition function}
+Finally, take the continuum limit and integrate $\int \dif \tau \, \dot{\psi^\dagger} \psi = -\int \dif \tau \, \psi^\dagger \dot{\psi}$ by parts (TODO: why is this valid for Grassmann numbers?).
+As in \eqref{eq:tft:functional_integral}, introduce the functional integrals $\pathintdif \psi = \lim_{N \rightarrow \infty} \prod_n \dif \psi_n$ and $\pathintdif [i \hbar \psi^\dagger] = \lim_{N \rightarrow \infty} \prod_n \psi^\dagger$, where we absorb some physically irrelevant prefactors into the latter to preserve similarity between the conjugate momentum $\pi$ and $i \hbar \psi^\dagger$. 
+We then obtain the \textbf{fermionic partition function}
 \begin{equation}
-	Z = \oint_- \pathintdif \psi^\dagger \oint_- \pathintdif \psi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\psi^\dagger(\vec{x},\tau) \dot{\psi}(\vec{x},\tau) - \ham \left( \psi^\dagger(\vec{x},\tau), \psi(\vec{x},\tau) \right) + \mu \numdensity \right) \right\} ,
+	Z = \oint_- \pathintdif [i \hbar \psi^\dagger] \oint_- \pathintdif \psi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\hbar \psi^\dagger(\vec{x},\tau) \dot{\psi}(\vec{x},\tau) - \ham \left( \psi^\dagger(\vec{x},\tau), \psi(\vec{x},\tau) \right) + \mu \numdensity \right) \right\} ,
 \end{equation}
 where $\oint_-$ means to integrate over \emph{antiperiodic} fields $\psi(\vec{x}, 0) = -\psi(\vec{x}, \beta \hbar)$, naturally extending the symbol $\oint_+$ we introduced for bosonic fields that were \emph{periodic}.
 Apart from the difference in periodicity, this result is -- remarkably -- exactly the same as the bosonic partition function \eqref{eq:tft:bosonic_partition_function}, with canonical momentum \eqref{eq:tft:dirac_conjugate_momentum}!
 But the similarity in facade were achieved by a drastically different mathematical fundament.
+
+(TODO: do for general $\psi \rightarrow \eta$ as in random note 1 on the web, then specialize later to Dirac?)
 
 \iffalse
 The partition function is therefore
