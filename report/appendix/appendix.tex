@@ -735,8 +735,10 @@ Using our main result \eqref{eq:matsum:sum_finite_residues}, the Matsubara sum \
 We can now evaluate the sum explicitly by inserting the Bose-Einstein distribution and the Fermi-Dirac distribution \eqref{eq:matsum:distribution}.
 After some simplification, we obtain
 \begin{equation}
-	S = \frac{\beta}{2 \omega} \left( 1 \pm \frac{2}{e^{\beta \omega} \mp 1} \right)
+	S = \sum_{n=-\infty}^{+\infty} \frac{1}{\omega_n^2 + \omega^2}
+	  = \frac{\beta}{2 \omega} \left( 1 \pm \frac{2}{e^{\beta \omega} \mp 1} \right)
 	  = \frac{\beta}{2 \omega} \left( 1 \pm 2 n_\pm(\omega) \right) .
+\label{eq:matsum:example_result}
 \end{equation}
 
 \chapter{Code}

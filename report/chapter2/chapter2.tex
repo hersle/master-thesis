@@ -362,6 +362,7 @@ As in \eqref{eq:tft:functional_integral}, introduce the functional integrals $\p
 We then obtain the \textbf{fermionic partition function}
 \begin{equation}
 	Z = \oint_- \pathintdif [i \hbar \psi^\dagger] \oint_- \pathintdif \psi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\hbar \psi^\dagger(\vec{x},\tau) \dot{\psi}(\vec{x},\tau) - \ham \left( \psi^\dagger(\vec{x},\tau), \psi(\vec{x},\tau) \right) + \mu \numdensity \right) \right\} ,
+\label{eq:tft:fermion_partition_function}
 \end{equation}
 where $\oint_-$ means to integrate over \emph{antiperiodic} fields $\psi(\vec{x}, 0) = -\psi(\vec{x}, \beta \hbar)$, naturally extending the symbol $\oint_+$ we introduced for bosonic fields that were \emph{periodic}.
 Apart from the difference in periodicity, this result is -- remarkably -- exactly the same as the bosonic partition function \eqref{eq:tft:bosonic_partition_function}, with canonical momentum \eqref{eq:tft:dirac_conjugate_momentum}!
@@ -392,6 +393,7 @@ In summary, the field $\psi(\vec{x}, \tau)$ -- here regarded as \emph{either} a 
 						      + \phi(\vec{x}, \tau + \beta \hbar) & \text{for bosons} \\
 						      - \phi(\vec{x}, \tau + \beta \hbar) & \text{for fermions} .
 	                      \end{cases}
+\label{eq:tft:periodicity}
 \end{equation}
 Accordingly, we can expand either field in a Fourier series
 \begin{equation}
@@ -422,6 +424,7 @@ with the Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
 To be more compatible with the notation that will follow, we write
 \begin{equation}
 	V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} = \sum_\vec{p}
+\label{eq:tft:continuous_limit}
 \end{equation}
 with a normal summation sign, but really mean the integral.
 
@@ -479,6 +482,7 @@ For our real field $\psi(\vec{x},\tau) = \psi(\vec{x},\tau)^*$, we can write
 	\phi(\vec{x}, \tau) & = \hbar c \, \sqrt{\frac{\beta}{V}} \sum_{n=-\infty}^{+\infty} \sum_{\vec{p}}       \phi_n(\vec{p})  e^{+i (\vec{p} \cdot \vec{x} / \hbar + \omega_n \tau)} \\
 	                    & = \hbar c \, \sqrt{\frac{\beta}{V}} \sum_{n=-\infty}^{+\infty} \sum_{\vec{p}} \conj{\phi_n(\vec{p})} e^{-i (\vec{p} \cdot \vec{x} / \hbar + \omega_n \tau)} ,
 \end{split}
+\label{eq:tft:boson_fourier_series}
 \end{equation}
 where we have pulled out a prefactor $\hbar c \sqrt{\beta/V}$ chosen to have the same dimension as the field $\phi(\vec{x}, \tau)$, so the Fourier amplitudes $\phi_n(\vec{p})$ are dimensionless.
 Without it, the Gaussian integral that we will end up computing in \cref{eq:tft:boson_gaussian_integral} would make the partition function $Z$ dimensionful, which would formally make it meaningless to take its logarithm.
@@ -572,64 +576,120 @@ Finally, we take the continuous limit in which $\sum_\vec{p} \rightarrow V \int 
 
 (TODO: $\omega = 2 \pi n / \beta \hbar$ ?)
 
-\section{Fermions}
+\section{Partition function for non-interacting Dirac fermions}
 
-Dirac lagrangian
+Let us now find the partition function \eqref{eq:tft:fermion_partition_function} for \textbf{free Dirac fermions} with the Lagrangian density
 \begin{equation}
-	\lagr = \bar\psi (i \hbar c \slashed\partial - m c^2) \psi
+	\lagr = \bar\psi (i \hbar c \slashed\partial - m c^2) \psi .
+\label{eq:tft:dirac_lagrangian}
 \end{equation}
-where $\psi$ is the basic field and $\bar\psi = \psi^\dagger \gamma^0$.
-(TODO: gamma matrices)
-
-Conjugate momentum
+Here, $\psi$ is the basic field and $\psi^\dagger$ its conjugate, while $\bar\psi = \psi^\dagger \gamma^0$ and $\slashed\partial = \gamma^\mu \partial_\mu$, where $\gamma^\mu$ are the $4 \times 4$ \textbf{Gamma matrices} defined by the Clifford algebra
 \begin{equation}
-	\pi = \pdv{\lagr}{\dot{\psi}} = i \hbar \psi^\dagger
+	\acomm{\gamma^\mu}{\gamma^\nu} = 2 \eta^{\mu \nu} .
 \end{equation}
-
-Hamiltonian density
+Of the multiple possible explicit representations of the Gamma matrices, we will use the \textbf{Dirac basis} where
 \begin{equation}
-	\ham = \pi \dot\psi - \lagr = \bar\psi ( -i \hbar c \, \vec{\gamma} \cdot \vec{\nabla} + m c^2 ) \psi
+	\gamma^0 = \begin{bmatrix} I_2 & 0 \\ 0 & I_2 \\ \end{bmatrix}
+	\qquad \text{and} \qquad
+	\gamma^0 = \begin{bmatrix} 0 & \sigma^i \\ -\sigma^i & 0 \\ \end{bmatrix} ,
+\label{eq:tft:gamma_dirac_basis}
 \end{equation}
-
-Fourier series
+where $\sigma^i$ are the \textbf{Pauli matrices}
 \begin{equation}
-	\psi_\alpha(\vec{x}, \tau) = \frac{1}{\sqrt{V}} \sum_n \sum_\vec{p} e^{i (\vec{p} \cdot \vec{x} / \hbar + \omega_n \tau)} \psi_{\alpha, n}(\vec{p})
+	\sigma^1 = \begin{bmatrix} 0 & 1 \\ 1 & 0 \\ \end{bmatrix} ,
+	\qquad
+	\sigma^2 = \begin{bmatrix} 0 & -i \\ i & 0 \\ \end{bmatrix}
+	\qquad \text{and} \qquad
+	\sigma^3 = \begin{bmatrix} 1 & 0 \\ 0 & -1 \\ \end{bmatrix} .
 \end{equation}
-with $\omega_n = (2n+1) \pi / \beta \hbar$.
 
-Partition function
-(TODO: conserved current)
+(TODO: what to do about this below? do fermionic path integral generally, then remark here that this is what we would get in the bosonic case with $\pi = i \hbar \psi^\dagger$?)
+
+The conjugate momentum of the field $\psi$ is
+\begin{equation}
+	\pi = \pdv{\lagr}{\dot{\psi}} = i \hbar \psi^\dagger ,
+\end{equation}
+so the Hamiltonian density is (TODO: bold vectors)
+\begin{equation}
+	\ham = \pi \dot\psi - \lagr = \bar\psi ( -i \hbar c \, \vec{\gamma} \cdot \vec{\nabla} + m c^2 ) \psi .
+\label{eq:tft:dirac_hamiltonian}
+\end{equation}
+In addition, the Dirac Lagrangian admits a conserved current (TODO: derive?)
+\begin{equation}
+	j^\mu = \bar\psi \gamma^\mu \psi .
+\label{eq:tft:dirac_conserved_current}
+\end{equation}
+We should replace $\numdensity$ by $j^0 = \bar\psi \gamma^0 \psi$. (TODO: why?)
+
+Inserting the Hamiltonian density \eqref{eq:tft:dirac_hamiltonian} and the conserved density $\numdensity = j^0 = \bar\psi \gamma^0 \psi$ (TODO: why?) in the path integral \eqref{eq:tft:fermion_partition_function}, we find the fermionic partition function
 \begin{equation}
 	Z = \int \pathintdif [i \hbar \psi^\dagger] \int \pathintdif 
-	    \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \bar\psi \left[ -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \vec{\gamma} \cdot \vec{\nabla} - mc^2 + \mu \gamma^0 \right] \psi \right\}
+	    \exp \left\{ \frac{1}{\hbar} \underbrace{\int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \bar\psi \left[ -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \vec{\gamma} \cdot \vec{\nabla} - mc^2 + \mu \gamma^0 \right] \psi}_{S} \right\} .
+\label{eq:tft:dirac_partition_function_first}
 \end{equation}
 
-Action
+The fermionic antiperiodicity \eqref{eq:tft:periodicity} enables us to expand the Dirac field in the Fourier series
+\begin{equation}
+	\psi(\vec{x}, \tau) = \frac{1}{\sqrt{V}} \sum_n \sum_\vec{p} e^{i (\vec{p} \cdot \vec{x} / \hbar + \omega_n \tau)} \psi_{n}(\vec{p})
+\label{eq:tft:dirac_fourier_series}
+\end{equation}
+with fermionic Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
+As with the bosonic field, we have made the Fourier amplitudes $\psi(\vec{p})$ dimensionless by pulling out a factor $1/\sqrt{V}$.
+The factor differs from the one in the bosonic Fourier series \eqref{eq:tft:boson_fourier_series} due to the different dimension of the fermionic field $\psi(\vec{x}, \tau)$ and the bosonic field $\phi(\vec{x}, \tau)$.
+(TODO: refer to gaussian integral)
+
+With the Fourier series \eqref{eq:tft:dirac_fourier_series}, the action in the partition function \eqref{eq:tft:dirac_partition_function_first} becomes
 \begin{equation}
 \begin{split}
 	S & = \frac{1}{V} \sum_{m,n} \sum_{\vec{p},\vec{q}}         \psi_m(\vec{q})^\dagger \gamma^0 \left[ -\hbar \gamma^0 i \omega_n + i \hbar c \vec{\gamma} \cdot i \vec{k} - m c^2 + \mu \gamma^0 \right] \psi_n(\vec{p}) \\
-	  & \times \int_0^{\beta \hbar} \dif \tau e^{i(\omega_n-\omega_m)\tau} \int \dif^3 x e^{i(\vec{p}-\vec{q})\cdot\vec{x}/\hbar} \\
+	  & \times \underbrace{\int_0^{\beta \hbar} \dif \tau \, e^{i(\omega_n-\omega_m)\tau}}_{\delta_{m,n} \beta \hbar} \underbrace{\int \dif^3 x \, e^{i(\vec{p}-\vec{q})\cdot\vec{x}/\hbar}}_{\delta(\vec{p} - \vec{q}) V} \\
 	  & = \beta       \sum_{n}   \sum_{\vec{p}}         i \hbar \psi_m(\vec{q})^\dagger          \left[ -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i m c^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \\
 \end{split}
 \end{equation}
-so
-\begin{equation}
-\begin{split}
-	Z & = \prod_n \prod_\vec{p} \int \pathintdif [i \hbar \psi_n(\vec{p})^\dagger] \int \pathintdif \psi_n(\vec{p}) \\
-	  & \times \exp \left\{ \frac{\beta}{\hbar} i \hbar \psi_n(\vec{q})^\dagger \left[ -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \right\} \\
-	  & = \prod_n \prod_\vec{p} \int \dif [i \psi_n(\vec{p})^\dagger] \int \dif \psi_n(\vec{p}) \\
-	  & \times \exp \left\{ i \psi_n(\vec{q})^\dagger \left[ \beta( -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu ) \right] \psi_n(\vec{p}) \right\} \\
-	  & = \prod_n \prod_\vec{p} \tdet D_n(\vec{p})
-\end{split}
-\end{equation}
+The partition function \eqref{eq:tft:dirac_partition_function_first} now becomes 
+(TODO: change of variables from $\psi$ to $\psi_n(\vec{p})$)
+(TODO: what factors to have in $\dif (i) (\hbar) \psi$)
+(TODO: $\dif^4 \, \psi_n(\vec{p})$ ?)
 (TODO: $\dif$ or $\pathintdif$ ??)
-
-Using $\int \dif \bar\eta \int \dif \eta e^{\eta^\dagger D \eta} = \det{D}$, we get
 \begin{equation}
-	\log Z = \trace{\log{D}}
+	Z %& = \prod_n \prod_\vec{p} \int \pathintdif [i \hbar \psi_n(\vec{p})^\dagger] \int \pathintdif \psi_n(\vec{p}) \\
+	  %& \times \exp \left\{ \frac{\beta}{\hbar} i \hbar \psi_n(\vec{q})^\dagger \left[ -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \right\} \\
+	  = \prod_n \prod_\vec{p} \int \dif \psi_n(\vec{p})^\dagger \int \dif \psi_n(\vec{p}) 
+	  \exp \left\{ \psi_n(\vec{q})^\dagger \left[ \beta( -i \hbar \omega_n - c \gamma^0 \vec{\gamma} \cdot \vec{p} - mc^2 \gamma^0 + \mu ) \right] \psi_n(\vec{p}) \right\} \\
+	  %& = \prod_n \prod_\vec{p} \tdet D_n(\vec{p})
 \end{equation}
 
-Determinant
+Using the Grassmann exponential integral $\int \dif \bar\eta \int \dif \eta \, e^{-\eta^\dagger D \eta} = \tdet{D}$, we obtain
+\begin{equation}
+	Z = \prod_n \prod_\vec{p} \tdet{D_n(\vec{p})}
+	\qquad \text{with} \qquad
+	D_n(\vec{p}) = [i \beta( -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu )].
+\end{equation}
+The obvious thing to do is to try to calculate the determinant of the $4 \times 4$ matrices $D_n(\vec{p})$.
+First, let us use the Dirac basis representation \eqref{eq:tft:gamma_dirac_basis} of the Gamma matrices to write the $4 \times 4$ matrix as a block matrix of $2 \times 2$ matrices.
+This gives the block matrix
+\begin{equation}
+	D_n(\vec{p}) = i \beta \begin{bmatrix}
+	                           -\hbar \omega_n - i \mu + i m c^2 & i c \vec{\sigma} \cdot \vec{p}    \\ 
+	                           i c \vec{\sigma} \cdot \vec{p}    & -\hbar \omega_n - i \mu - i m c^2 \\ 
+	                       \end{bmatrix} .
+\end{equation}
+Calculating the determinant becomes twice as easy by applying the formula
+(TODO: math operator, write in determinant properly)
+\begin{equation}
+	\tdet{} \begin{bmatrix} A & B \\ C & D \\ \end{bmatrix} = \tdet{(AD - BC)}
+\end{equation}
+for a block matrix where $CD = DC$, which is applicable to our case where $D$ is diagonal.
+Without $i \beta$, which we take care of using $\tdet{(AB)} = \tdet{A} \tdet{B}$ and $\tdet{i \beta} = (i \beta)^4 = \beta^4$, we get
+$AD = (\hbar \omega_n + i \mu)^2 + (mc^2)^2$ and $BC = - (\vec{\sigma} \cdot \vec{p})^2 c^2$.
+Using the property $(\vec{\sigma} \cdot \vec{p})^2 = \vec{p}^2$ and the definition $(\hbar \omega)^2 = \vec{p}^2 c^2 + (mc^2)^2$, we get the simple diagonal $2 \times 2$ matrix
+$AD - BC = (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega(\vec{p})^2$.
+The determinant then becomes
+\begin{equation}
+	\tdet D_n(\vec{p}) = \beta^4 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right]^2 .
+\end{equation}
+
+\iffalse
 \begin{equation}
 \begin{split}
 	\tdet D  & = \tdet \left\{ -\beta \hbar \omega_n - i \beta \mu + i \beta m c^2 \gamma^0 + i \beta c \gamma^0 \vec{\gamma} \cdot \vec{p} \right\} \\
@@ -644,47 +704,79 @@ Determinant
 \end{split}
 \end{equation}
 (TODO: to 4th or 2nd power when taking determinant of diagonal matrix?)
+\fi
 
-Now
+The logarithm of the partition function is now the sum
 \begin{equation}
 \begin{split}
 	\log Z & = \sum_n \sum_\vec{p} \tdet D_n(\vec{p}) \\
 	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right]^2 \\
-	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] \left[ (-\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] \\
-	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ \hbar^2 \omega_n^2 + 2 i \hbar \omega_n \mu - \mu^2 + \hbar^2 \omega^2 \right] \left[ \hbar^2 \omega_n^2 - 2 i \hbar \omega_n \mu - \mu^2 + \hbar^2 \omega^2 \right] \\
-	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ \hbar \omega_n + i (\hbar \omega + \mu) \right] 
+	       %& = \sum_n \sum_\vec{p} \left\{ \log \beta^2 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] +
+	                                       %\log \beta^2 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] \right\} . \\
+\end{split}
+\end{equation}
+The $i$ in front of $\mu$ is awkward and can certainly not appear the physical quantities that are derived from $\log Z$.
+Let us see if we can cast a magic spell and make it disappear.
+The logarithm involves a sum of the type $\sum_n f(\omega_n)$ over all integers $n$.
+Because the Matsubara frequencies \eqref{eq:tft:matsubara_frequencies} satisfy $\omega_n = -\omega_{-n}$, we have
+$\sum_n f(\omega_n) = \sum_n f(\omega_{-n}) = \sum_n f(-\omega_n)$.
+We can then split up the logarithm of the square into two logarithms and exchange $\omega_n \rightarrow -\omega_n$ in one of them.
+More precisely,
+\begin{equation}
+\begin{split}
+	\log Z & = \sum_n \sum_\vec{p} \log \beta^4 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right]^2 \\
+	       & = \sum_n \sum_\vec{p} \log \beta^2 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] 
+	         + \sum_n \sum_\vec{p} \log \beta^2 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] \\
+	       & = \sum_n \sum_\vec{p} \log \beta^2 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right]
+	         + \sum_n \sum_\vec{p} \log \beta^2 \left[ (-\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] \\
+	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] 
+	                                            \left[ (-\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] . \\
+\end{split}
+\label{eq:tft:dirac_partition_function_splitting}
+\end{equation}
+If you are reading this on paper, you can use some of the whitespace to verify that
+\begin{equation}
+	(\pm \hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 = (\hbar \omega_n \pm i (\omega + \mu)) (\hbar \omega_n \mp i(\omega - \mu))
+\end{equation}
+by expanding all parentheses.
+After applying this to the two products in the partiton function \eqref{eq:tft:dirac_partition_function_splitting}, we find that it can be written
+\begin{equation}
+\begin{split}
+	\log Z & = \sum_n \sum_\vec{p} \log \beta^4 \left[ \hbar \omega_n + i (\hbar \omega + \mu) \right] 
 		                                        \left[ \hbar \omega_n + i (\hbar \omega - \mu) \right]
 		                                        \left[ \hbar \omega_n - i (\hbar \omega + \mu) \right]
 		                                        \left[ \hbar \omega_n - i (\hbar \omega - \mu) \right] \\
-	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ \hbar^2 \omega_n^2 + (\hbar \omega - \mu)^2 \right] 
-		                                        \left[ \hbar^2 \omega_n^2 + (\hbar \omega + \mu)^2 \right] \\
-	       & = \sum_n \sum_\vec{p} \left\{ \log \beta^2 \left[ \hbar^2 \omega_n^2 + (\hbar \omega - \mu)^2 \right] +
-		                                   \log \beta^2 \left[ \hbar^2 \omega_n^2 + (\hbar \omega + \mu)^2 \right] \right\}
+	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ \hbar^2 \omega_n^2 + (\hbar \omega - \mu)^2 \right]
+	                                            \left[ \hbar^2 \omega_n^2 + (\hbar \omega + \mu)^2 \right] \\
+	       & = \sum_n \sum_\vec{p} \log \beta^2 \left[ \hbar^2 \omega_n^2 + (\hbar \omega - \mu)^2 \right]
+	         + \sum_n \sum_\vec{p} \log \beta^2 \left[ \hbar^2 \omega_n^2 + (\hbar \omega + \mu)^2 \right] \\
 \end{split}
 \end{equation}
-(got rid of the weird $i \mu$ in the beginning)
-
-(can do this ``trickery'' since we sum over all frequencies $\sum_n \omega_n = 0$ and $\sum_n F(\omega_n) = \sum_n F(-\omega_n)$)
-
-Now again use \eqref{eq:tft:integral_trick} with $c = \hbar \beta \omega_n$, $b = \beta ( \hbar \omega \pm \mu )$ and any value of $a$.
-(TODO: generalize Matsubara frequency sum)
-Next, use
+We have accomplished our mission of showing that the partition function is a real quantity.
+To evaluate the sum over $n$, it is actually easier to rather sum a \emph{derivative} of $\log Z$ and then integrate back to $\log Z$.
+Define $\tilde \omega = \omega - \mu / \hbar$ and take the derivative
 \begin{equation}
-	\sum_{n=-\infty}^{+\infty} \frac{1}{(2n+1)^2\pi^2 + x^2} = \frac{1}{2x} \left( 1 - \frac{2}{e^x+1} \right)
-\label{eq:tft:matsubara_sum_fermions}
+	\odv{\log Z}{\tilde \omega^2} = \sum_n \sum_\vec{p} \left[ \frac{1}{\omega_n^2 + (\omega - \mu/\hbar)^2} +
+	                                                      \frac{1}{\omega_n^2 + (\omega + \mu/\hbar)^2} \right] .
 \end{equation}
-Then
+Then we can perform the sum over $n$ with the Matsubara frequency sum \eqref{eq:matsum:example_result} to write
 \begin{equation}
-\begin{split}
-	\log Z_\pm & = \sum_n \sum_\vec{p} \int^{\beta^2 (\hbar \omega \pm \mu)^2} \frac{\dif x^2}{x^2 + (2n+1)^2\pi^2} \\
-	           & =        \sum_\vec{p} \int^{\beta^2 (\hbar \omega \pm \mu)^2} \frac{\dif x^2}{2 x} \left( 1 - \frac{2}{e^x +1} \right) \\
-	           & =        \sum_\vec{p} \int^{\beta   (\hbar \omega \pm \mu)  }       \dif x         \left( 1 - \frac{2}{e^x +1} \right) \\
-	           & =        \sum_\vec{p} \left[ -(\hbar \omega \pm \mu) + 2 \log \left( e^{\beta (\hbar \omega \pm \mu)} + 1 \right) \right]    \\
-	           & =        \sum_\vec{p} \left[ +(\hbar \omega \pm \mu) + 2 \log \left( 1 + e^{-(\beta (\hbar \omega \pm \mu))} \right) \right] \\
-\end{split}
+	\odv{\log Z}{\tilde \omega^2} = \sum_\vec{p} \frac{\beta \hbar}{\tilde \omega} \left( 1 - \frac{1}{e^{\beta (\hbar \omega - \mu)} + 1}
+	                                                                                        - \frac{1}{e^{\beta (\hbar \omega + \mu)} + 1} \right) .
 \end{equation}
-and
+By the chain rule,
+(TODO: missing some factor $\hbar$ here! should operate with $E = \hbar \omega$ in the appendix!)
 \begin{equation}
-	\log Z %= \log Z_+ + \log Z_-
-	       = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left[ \hbar \omega + \log \left( 1 + e^{-\beta (\hbar \omega + \mu)} \right) + \log \left( 1 + e^{-\beta (\hbar \omega - \mu)} \right) \right]
+	\odv{\log Z}{\tilde \omega} = 2 \tilde\omega \odv{\log Z}{\tilde \omega^2}
+	                            = 2 \beta \hbar \sum_\vec{p} \left( 1 - \frac{1}{e^{\beta (\hbar \omega - \mu)} + 1}
+	                                                                  - \frac{1}{e^{\beta (\hbar \omega + \mu)} + 1} \right) .
+\end{equation}
+Integrating back, we find
+\begin{equation}
+	\log Z = 2 \sum_\vec{p} \left( \beta \hbar \tilde\omega + \log\left[ e^{-\beta \hbar \tilde\omega}+1 \right] + \log\left[ e^{-\beta \hbar \tilde\omega} + 1\right] \right) .
+\end{equation}
+Writing out our continuous definition \eqref{eq:tft:continuous_limit} of $\sum_\vec{p}$, we finally obtain the \textbf{partition function for Dirac fermions}
+\begin{equation}
+	\log Z = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left( \beta \hbar \tilde\omega + \log\left[ e^{-\beta \hbar \tilde\omega_+}+1 \right] + \log\left[ e^{-\beta \hbar \tilde\omega_-} + 1\right] \right) .
+\label{eq:tft:dirac_partition_function}
 \end{equation}
