@@ -295,13 +295,20 @@ The change from a real to imaginary time variable can be accomplished by a Wick 
 Thus, we can express the partition function as path integrals \eqref{eq:tft:path_integral_hamiltonian} with these substitutions!
 This yields
 \begin{equation}
-	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \, \exp \left( \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( i \pi(\vec{x}, \tau) \dot{\phi}(\vec{x}, \tau) - \ham(\pi(\vec{x}, \tau), \phi(\vec{x}, \tau)) \right) \right)
+	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \, \exp \left( \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( i \pi \dot{\phi} - \ham + \mu \numdensity) \right) \right)
 \label{eq:tft:bosonic_partition_function}
 \end{equation}
 where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintdif \phi$ and write $\oint_+$ to indicate that we integrate over all fields $\phi(x, \tau) = \phi(x, \tau + \beta \hbar)$ that are \emph{periodic} in ``imaginary time'' $\tau$, due to the equal start and end states $\phi_A(\vec{x}) = \phi_B(\vec{x})$ in \cref{eq:tft:path_integral_hamiltonian}.
 Thus, thermal field theory -- statistical mechanics for quantum fields at finite temperature -- is essentially equivalent to ordinary quantum field theory with temperature-dependent time and periodic fields, and the partition function is obtained by integrating along closed paths in phase space!
 
-(TODO: add chemical potential $\mu$. why should it be the conserved charge or something?)
+We have not yet discussed the appearance of the chemical potential $\mu$ and the number density $\numdensity$ in the path integral.
+If the theory admits a conserved current $j^\mu$ with $\partial_\mu j^\mu$ by Noether's theorem, then $Q = \int \dif^3 x \, j^0$ is a conserved charge which we can associate with a chemical potential, and we should include $\numdensity = j^0$ in the path integral.
+For a theory with particles and antiparticles, for example, such a conserved charge typically corresponds to the difference between the number of particles and antiparticles in the system.
+The chemical potential can then be interpreted as a knob with which we can regulate the balance between particles and antiparticles in the system.
+We will later see examples of theories both with and without conserved charges.
+
+(TODO: i don't understand properly how all this works)
+
 
 \section{Path integral for fermionic partition function}
 
