@@ -552,19 +552,19 @@ we uncover the \textbf{Einstein field equations in the presence of matter},
 
 When doing thermal field theory, one often encounters sums
 \begin{equation}
-	S = \sum_{n=-\infty}^{+\infty} s(\omega_n)
+	S = \sum_{n=-\infty}^{+\infty} s(E_n)
 \label{eq:matsum:sum}
 \end{equation}
-over all \textbf{Matsubara frequencies}
+over all \textbf{Matsubara energies}
 \begin{equation}
-	\omega_n = \begin{dcases}
-	               2 \pi n / \beta \hbar           & \text{for bosons}    \\
-				   2 \pi \left( n+\frac12 \right) / \beta \hbar & \text{for fermions} .\\
-			   \end{dcases}
+	E_n = \begin{cases}
+	          2 \pi n / \beta                        & \text{for bosons}    \\
+	          2 \pi \left( n+\frac12 \right) / \beta & \text{for fermions} .\\
+	      \end{cases}
 \end{equation}
-For example, we encountered the sum
+For example, we encountered sums in the form
 \begin{equation}
-	S = \sum_{n=-\infty}^{+\infty} \frac{1}{\omega_n^2 + \omega^2}
+	S = \sum_{n=-\infty}^{+\infty} \frac{1}{E_n^2 + E^2}
 \label{eq:matsum:motivating_example}
 \end{equation}
 in \cref{eq:tft:matsubara_sum_bosons} and \cref{eq:tft:matsubara_sum_fermions}.
@@ -580,8 +580,8 @@ First, we define the complex functions
 \label{eq:matsum:distribution}
 \end{equation}
 Here and below, upper signs and upper parts of braces correspond to bosons, while lower ones correspond to fermions.
-These are the familiar Bose-Einstein distribution $n_+(z)$ for bosons and Fermi-Dirac distribution $n_-(z)$ for fermions.
-Importantly, they have simple poles at all imaginary Matsubara frequencies $z = i \omega_n$.
+This is the familiar Bose-Einstein distribution $n_+(z)$ for bosons and the Fermi-Dirac distribution $n_-(z)$ for fermions.
+Importantly, they have simple poles at all imaginary Matsubara frequencies $z = i E_n$, as indicated by blue crosses in \cref{fig:matsum:contours}.
 
 % Draw cross from https://tex.stackexchange.com/questions/123760/draw-crosses-in-tikz
 \usetikzlibrary{decorations.markings}
@@ -590,8 +590,8 @@ Importantly, they have simple poles at all imaginary Matsubara frequencies $z = 
 \def\w{0.3}
 \def\n{16}
 \def\drawpoles{
-	\path[blue, decoration={markings, mark=between positions 0.01 and 1 step 3mm with {\cross}}, postaction={decorate}] (0, -\r+\w/2) -- (0, +\r-\w/2) node [black, right=0.1cm, yshift=-0.5cm] {\scriptsize $i \omega_n$};
-	\path[blue, decoration={markings, mark=between positions 0 and 1 step 1.0 with {\cross}}, postaction={decorate}] (-\r/2, 0) node[black, above] {\scriptsize $-\omega$} -- (+\r/2, 0) node [black, above] {\scriptsize $+\omega$};
+	\path[blue, decoration={markings, mark=between positions 0.01 and 1 step 3mm with {\cross}}, postaction={decorate}] (0, -\r+\w/2) -- (0, +\r-\w/2) node [black, right=0.15cm, yshift=-0.5cm] {\scriptsize $i E_n$};
+	\path[blue, decoration={markings, mark=between positions 0 and 1 step 1.0 with {\cross}}, postaction={decorate}] (-\r/2, 0) node[black, above] {\scriptsize $-E$} -- (+\r/2, 0) node [black, above] {\scriptsize $+E$};
 }
 \def\drawaxes{
 	\draw[->, black!50!white, thin] (-1.25*\r, 0) -- (+1.25*\r, 0.0) node [above, black] {\scriptsize $\text{Re}(z)$};
@@ -662,8 +662,8 @@ For reasons that will soon be clear, consider the contour integral
 	\oint_{C_A} \dif z \, s(-iz) n_\pm(z)
 \label{eq:matsum:contour_integral}
 \end{equation}
-along the contour in \cref{fig:matsum:contourA} that encloses the poles of $n_\pm(z)$ and is closed at $z = i \infty$ and $z = -i \infty$.
-To see how it relates to the Matsubara sum \eqref{eq:matsum:sum}, first recall the \textbf{residue theorem} 
+along the contour $C_A$ drawn in \cref{fig:matsum:contourA} that surrounds all poles of $n_\pm(z)$ and is closed at $z = i \infty$ and $z = -i \infty$.
+To see how it relates to the Matsubara sum \eqref{eq:matsum:sum}, first recall the \textbf{residue theorem}
 \cite[theorem 1 in section 16.3]{ref:kreyszig}
 \TODO{write residues as $\res_{z=z_n} f(z)$, but with $z=z_n$ \emph{below} the $\res$ symbol?, see operatorname: WikiBooks Latex Advanced Mathematics Custom Operators also do this for other operators!}
 \begin{equation}
@@ -677,24 +677,23 @@ Second, recall that the \textbf{residue of a quotient function} $f(z) / g(z)$ at
 	\res \left[ \frac{f(z_n)}{g(z_n)} \right] = \frac{f(z_n)}{g'(z_n)} .
 \label{eq:matsum:residue_quotient}
 \end{equation}
-Let us apply this with $f(z) = s(-iz)$ and $g(z) = n_\pm(z)^{-1} = e^{\beta z} \mp 1$,.
+Let us apply this to our integral \eqref{eq:matsum:contour_integral} with $f(z) = s(-iz)$ and $g(z) = n_\pm(z)^{-1} = e^{\beta z} \mp 1$,.
 We then find that the residues of the integrand in the contour integral \eqref{eq:matsum:contour_integral} are
 \begin{equation}
-	\res[s(-iz_n) n_\pm(z_n)]_{z_n = i \omega_n} = \pm \frac{1}{\beta} s(\omega_n) ,
+	\res[s(-iz_n) n_\pm(z_n)]_{z_n = i E_n} = \pm \frac{1}{\beta} s(E_n) ,
 \end{equation}
 By the residue theorem \eqref{eq:matsum:residue_theorem}, the contour integral \eqref{eq:matsum:contour_integral} is then
 \begin{equation}
-	\oint_{C_A} \dif z \, s(-iz) n_\pm(z) = 2 \pi i \sum_i \res[s(-i z_n) n_\pm(z_n)]_{z_n = i \omega_n}
-	                                  = \pm \frac{2 \pi i}{\beta} \sum_n s(\omega_n)
+	\oint_{C_A} \dif z \, s(-iz) n_\pm(z) = 2 \pi i \sum_i \res[s(-i z_n) n_\pm(z_n)]_{z_n = i E_n}
+	                                  = \pm \frac{2 \pi i}{\beta} \sum_n s(E_n)
 									  = \pm \frac{2 \pi i}{\beta} S .
 \label{eq:matsum:connection_integral_sum}
 \end{equation}
 In other words, the Matsubara sum \eqref{eq:matsum:sum} is given by the contour integral
 \begin{equation}
-	S = \pm \frac{\beta}{2 \pi i} \oint_{C_A} \dif z \, s(-iz) n_\pm(z) ,
+	S = \pm \frac{\beta}{2 \pi i} \oint_{C_A} \dif z \, s(-iz) n_\pm(z) !
 \label{eq:matsum:sum_as_contour_integral}
 \end{equation}
-where we have weighted the sum function $s(-iz)$ by the auxiliary function $n_\pm(z)$.
 
 What is the use of transforming a simple sum into a complex (in both senses) contour integral?
 \textbf{Assume} that $s(-i z)$ -- as in our motivating example \eqref{eq:matsum:motivating_example} -- satisfies
@@ -702,8 +701,8 @@ What is the use of transforming a simple sum into a complex (in both senses) con
 	\abs{s(-iz) n_\pm(z)} < \frac{1}{\abs{z}} \quad \text{as} \quad \abs{z} \rightarrow \infty .
 \end{equation}
 Then the integral vanishes on the infinite circle contour $C_B$ in \cref{fig:matsum:contourB},
-and integrating along $C_A$ in the contour integral \eqref{eq:matsum:contour_integral} is the same as integrating along $C_A$ \emph{and} $C_B$.
-But superposing the contour $C_B$ on $C_A$ is equivalent to opening the closures at $z = i \infty$ and $z = -i \infty$ and closing the contour with half circles in the real half planes, resulting in the contour $C_C$ in \cref{fig:matsum:contourC}.
+and we can superpose the contour $C_B$ on $C_A$ in the integral \eqref{eq:matsum:contour_integral} without changing its value.
+Glancing back at \cref{fig:matsum:contours}, we see that this is equivalent to opening the closures in $C_A$ at $z = i \infty$ and $z = -i \infty$, and re-closing the contour with half circles in the real half planes, resulting in the contour $C_C$ in \cref{fig:matsum:contourC}.
 Now we can apply the residue theorem again with the new contour $C_C$ to obtain
 \begin{equation}
 	S = \frac{\pm \beta}{2 \pi i} \oint_{C_C} \dif z \, s(-iz) n_\pm(z) = \mp \beta \sum_n \res[s(-iz_n) n_\pm(z_n)] ,
@@ -717,27 +716,27 @@ This is our proclaimed elegant and general method of evaluating the Matsubara su
 
 Let us use now use this technique to evaluate the \textbf{example} sum \eqref{eq:matsum:motivating_example} with
 \begin{equation}
-	s(-iz) = \frac{1}{-z^2 + \omega^2} .
+	s(-iz) = \frac{1}{-z^2 + E^2} .
 \end{equation}
-It has poles at $z = \omega$ and $z = -\omega$.
+It has poles at $z = E$ and $z = -E$.
 Using \cref{eq:matsum:residue_quotient} with $f(z) = n_\pm(z)$ and $g(z) = f(-iz)^{-1}$, we obtain the residues
 \begin{equation}
-	\res[s(-iz) n_\pm(z)]_{z =  \omega} = -\frac{1}{2 \omega} n_\pm(+\omega) 
+	\res[s(-iz) n_\pm(z)]_{z =  E} = -\frac{1}{2 E} n_\pm(+E) 
 	\qquad \text{and} \qquad
-	\res[s(-iz) n_\pm(z)]_{z = -\omega} =  \frac{1}{2 \omega} n_\pm( \omega) .
+	\res[s(-iz) n_\pm(z)]_{z = -E} =  \frac{1}{2 E} n_\pm( E) .
 \end{equation}
 Using our main result \eqref{eq:matsum:sum_finite_residues}, the Matsubara sum \eqref{eq:matsum:motivating_example} is therefore
 \begin{equation}
-	S = \sum_{n=-\infty}^{+\infty} \frac{1}{\omega_n^2 + \omega^2}
+	S = \sum_{n=-\infty}^{+\infty} \frac{1}{E_n^2 + E^2}
 	  = \mp \beta \sum_i \res[s(-i z_n) n_\pm(z_n)]
-	  = \mp \frac{\beta}{2 \omega} \left( n_\pm(-\omega) - n_\pm(\omega) \right) .
+	  = \mp \frac{\beta}{2 E} \left( n_\pm(-E) - n_\pm(E) \right) .
 \end{equation}
 We can now evaluate the sum explicitly by inserting the Bose-Einstein distribution and the Fermi-Dirac distribution \eqref{eq:matsum:distribution}.
 After some simplification, we obtain
 \begin{equation}
-	S = \sum_{n=-\infty}^{+\infty} \frac{1}{\omega_n^2 + \omega^2}
-	  = \frac{\beta}{2 \omega} \left( 1 \pm \frac{2}{e^{\beta \omega} \mp 1} \right)
-	  = \frac{\beta}{2 \omega} \left( 1 \pm 2 n_\pm(\omega) \right) .
+	S = \sum_{n=-\infty}^{+\infty} \frac{1}{E_n^2 + E^2}
+	  = \frac{\beta}{2 E} \left( 1 \pm \frac{2}{e^{\beta E} \mp 1} \right)
+	  = \frac{\beta}{2 E} \left( 1 \pm 2 n_\pm(E) \right) .
 \label{eq:matsum:example_result}
 \end{equation}
 

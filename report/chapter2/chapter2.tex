@@ -574,6 +574,7 @@ To evaluate the sum over $n$, it actually turns out to be easier to differentiat
 Take the derivative
 \begin{equation}
 	\odv{\log Z}{E(\vec{p})^2} = -\frac12 \sum_n \sum_\vec{p} \frac{1}{E_n^2 + E(\vec{p})^2} .
+\label{eq:tft:matsubara_sum_bosons}
 \end{equation}
 We can now use the Matsubara frequency sum \eqref{eq:matsum:example_result}.
 The result is
@@ -784,6 +785,7 @@ Define $\tilde \omega = \omega - \mu / \hbar$ and take the derivative
 \begin{equation}
 	\odv{\log Z}{\tilde \omega^2} = \sum_n \sum_\vec{p} \left[ \frac{1}{\omega_n^2 + (\omega - \mu/\hbar)^2} +
 	                                                      \frac{1}{\omega_n^2 + (\omega + \mu/\hbar)^2} \right] .
+\label{eq:tft:matsubara_sum_fermions}
 \end{equation}
 Then we can perform the sum over $n$ with the Matsubara frequency sum \eqref{eq:matsum:example_result} to write
 \begin{equation}
