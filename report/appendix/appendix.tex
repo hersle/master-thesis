@@ -665,26 +665,25 @@ For reasons that will soon be clear, consider the contour integral
 along the contour $C_A$ drawn in \cref{fig:matsum:contourA} that surrounds all poles of $n_\pm(z)$ and is closed at $z = i \infty$ and $z = -i \infty$.
 To see how it relates to the Matsubara sum \eqref{eq:matsum:sum}, first recall the \textbf{residue theorem}
 \cite[theorem 1 in section 16.3]{ref:kreyszig}
-\TODO{write residues as $\res_{z=z_n} f(z)$, but with $z=z_n$ \emph{below} the $\res$ symbol?, see operatorname: WikiBooks Latex Advanced Mathematics Custom Operators also do this for other operators!}
 \begin{equation}
-	\oint_C \dif z \, f(z) = 2 \pi i \sum_n \res[f(z_n)] ,
+	\oint_C \dif z \, f(z) = 2 \pi i \sum_n \res_{z=z_n} [f(z)] ,
 \label{eq:matsum:residue_theorem}
 \end{equation}
 where the sum runs over all poles $z_n$ of $f(z)$ inside the area enclosed by the contour $C$.
-Second, recall that the \textbf{residue of a quotient function} $f(z) / g(z)$ at a simple pole $z = z_n$ where $g(z_n) = 0$, but $g'(z_n) \neq 0$ is 
+Second, recall that the \textbf{residue of a quotient function} $f(z) / g(z)$ at a simple pole $z = z_0$ where $g(z_0) = 0$, but $g'(z_0) \neq 0$ is 
 \cite[equation 4 in section 16.3]{ref:kreyszig}
 \begin{equation}
-	\res \left[ \frac{f(z_n)}{g(z_n)} \right] = \frac{f(z_n)}{g'(z_n)} .
+	\res_{z=z_0} \left[ \frac{f(z)}{g(z)} \right] = \frac{f(z_0)}{g'(z_0)} .
 \label{eq:matsum:residue_quotient}
 \end{equation}
 Let us apply this to our integral \eqref{eq:matsum:contour_integral} with $f(z) = s(-iz)$ and $g(z) = n_\pm(z)^{-1} = e^{\beta z} \mp 1$,.
 We then find that the residues of the integrand in the contour integral \eqref{eq:matsum:contour_integral} are
 \begin{equation}
-	\res[s(-iz_n) n_\pm(z_n)]_{z_n = i E_n} = \pm \frac{1}{\beta} s(E_n) ,
+	\res_{z = i E_n} [s(-iz) n_\pm(z)] = \pm \frac{1}{\beta} s(E_n) ,
 \end{equation}
 By the residue theorem \eqref{eq:matsum:residue_theorem}, the contour integral \eqref{eq:matsum:contour_integral} is then
 \begin{equation}
-	\oint_{C_A} \dif z \, s(-iz) n_\pm(z) = 2 \pi i \sum_i \res[s(-i z_n) n_\pm(z_n)]_{z_n = i E_n}
+	\oint_{C_A} \dif z \, s(-iz) n_\pm(z) = 2 \pi i \sum_i \res_{z = i E_n}[s(-i z) n_\pm(z)]
 	                                  = \pm \frac{2 \pi i}{\beta} \sum_n s(E_n)
 									  = \pm \frac{2 \pi i}{\beta} S .
 \label{eq:matsum:connection_integral_sum}
@@ -705,7 +704,7 @@ and we can superpose the contour $C_B$ on $C_A$ in the integral \eqref{eq:matsum
 Glancing back at \cref{fig:matsum:contours}, we see that this is equivalent to opening the closures in $C_A$ at $z = i \infty$ and $z = -i \infty$, and re-closing the contour with half circles in the real half planes, resulting in the contour $C_C$ in \cref{fig:matsum:contourC}.
 Now we can apply the residue theorem again with the new contour $C_C$ to obtain
 \begin{equation}
-	S = \frac{\pm \beta}{2 \pi i} \oint_{C_C} \dif z \, s(-iz) n_\pm(z) = \mp \beta \sum_n \res[s(-iz_n) n_\pm(z_n)] ,
+	S = \frac{\pm \beta}{2 \pi i} \oint_{C_C} \dif z \, s(-iz) n_\pm(z) = \mp \beta \sum_n \res_{z=z_n} [s(-iz) n_\pm(z)] ,
 \label{eq:matsum:sum_finite_residues}
 \end{equation}
 \emph{where the sum now runs over the poles of $s(-iz)$ in the real half planes, and not the poles of $n_\pm(z)$ like in \cref{eq:matsum:connection_integral_sum}}.
@@ -721,14 +720,14 @@ Let us use now use this technique to evaluate the \textbf{example} sum \eqref{eq
 It has poles at $z = E$ and $z = -E$.
 Using \cref{eq:matsum:residue_quotient} with $f(z) = n_\pm(z)$ and $g(z) = f(-iz)^{-1}$, we obtain the residues
 \begin{equation}
-	\res[s(-iz) n_\pm(z)]_{z =  E} = -\frac{1}{2 E} n_\pm(+E) 
+	\res_{z =  E}[s(-iz) n_\pm(z)] = -\frac{1}{2 E} n_\pm(+E) 
 	\qquad \text{and} \qquad
-	\res[s(-iz) n_\pm(z)]_{z = -E} =  \frac{1}{2 E} n_\pm( E) .
+	\res_{z = -E}[s(-iz) n_\pm(z)] =  \frac{1}{2 E} n_\pm( E) .
 \end{equation}
 Using our main result \eqref{eq:matsum:sum_finite_residues}, the Matsubara sum \eqref{eq:matsum:motivating_example} is therefore
 \begin{equation}
 	S = \sum_{n=-\infty}^{+\infty} \frac{1}{E_n^2 + E^2}
-	  = \mp \beta \sum_i \res[s(-i z_n) n_\pm(z_n)]
+	  = \mp \beta \sum_i \res_{z=z_n}[s(-i z) n_\pm(z)]
 	  = \mp \frac{\beta}{2 E} \left( n_\pm(-E) - n_\pm(E) \right) .
 \end{equation}
 We can now evaluate the sum explicitly by inserting the Bose-Einstein distribution and the Fermi-Dirac distribution \eqref{eq:matsum:distribution}.
