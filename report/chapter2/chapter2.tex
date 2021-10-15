@@ -276,9 +276,7 @@ with the action
 \fi
 The path integral expresses the transition amplitude for the process $A \rightarrow B$ as a sum over all possible paths through phase space, each weighted by the value on the unit circle with phase corresponding to the action of the path.
 This interpretation is illustrated in \cref{fig:phase_space}.
-Note that the position-space integral $\int \pathintdif \phi$ is constrained to start and end in the initial and final states, but the momentum integral $\int \pathintdif \pi$ has no such constraint at the endpoints.
-
-\TODO{the only ``correct'' way is to do this AGAIN for fermions!}
+Note that the position-space integral $\int \pathintdif \phi$ is constrained to start and end in the initial and final states, but the momentum integral $\int \pathintdif \pi$ has no such constraint.
 
 Why have we spent so much time on this transition amplitude, when we really are only interested in the partition function \eqref{eq:tft:partition_function}?
 If we evaluate the trace \eqref{eq:tft:partition_function} in the basis of fields $\ket{\phi_0}$, we obtain
@@ -302,13 +300,18 @@ where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintd
 Thus, thermal field theory -- statistical mechanics for quantum fields at finite temperature -- is essentially equivalent to ordinary quantum field theory with temperature-dependent time and periodic fields, and the partition function is obtained by integrating along closed paths in phase space!
 
 We have not yet discussed the appearance of the chemical potential $\mu$ and the number density $\numdensity$ in the path integral.
-If the theory admits a conserved current $j^\mu$ with $\partial_\mu j^\mu$ by Noether's theorem, then $Q = \int \dif^3 x \, j^0$ is a conserved charge which we can associate with a chemical potential, and we should include $\numdensity = j^0$ in the path integral.
-For a theory with particles and antiparticles, for example, such a conserved charge typically corresponds to the difference between the number of particles and antiparticles in the system.
+If the theory admits one or more conserved conserved currents $j_i^\mu$ with $\partial_\mu j_i^\mu$ by Noether's theorem, there are associated conserved charges $Q_i = \int \dif^3 x \, j_i^0$.
+For every such conserved charge, we can associate a chemical potential $\mu_i$ and include the term
+\begin{equation}
+	\mu_i \numdensity_i = \mu_i j_i^0
+\label{eq:tft:chemical_potential}
+\end{equation}
+in the path integral.
+For example, if the theory has particles and antiparticles, then a conserved charge typically corresponds to the difference between the number of particles and antiparticles in the system.
 The chemical potential can then be interpreted as a knob with which we can regulate the balance between particles and antiparticles in the system.
 We will later see examples of theories both with and without conserved charges.
 
-\TODO{i do not understand properly how all this works}
-
+\TODO{i do not understand properly how the chemical potential works and why we can include it}
 
 \section{Path integral for fermionic partition function}
 
@@ -444,7 +447,6 @@ with a normal summation sign, but really mean the integral.
 As a first example, we apply the path integral formalism to find the partition function for a non-interacting real scalar field representing spin-$0$ bosons.
 Its Lagrangian density is
 \TODO{does this define the unit of $\phi$ is such that unit of $\lagr$ is $\text{energy} / \text{volume}$?, i.e. $[\phi] = \sqrt{E/M}$?}
-\TODO{did something wrong with time derivative -- with or without $c$?}
 \begin{equation}
 	\lagr = \frac{1}{2} (\partial_\mu \phi) (\partial^\mu \phi) - \frac12 \frac{m^2 c^2}{\hbar^2} \, \phi^2
 	      = \frac{1}{2 c^2} \dot{\phi}^2 - \frac12 (\nabla \phi)^2  - \frac12 \frac{m^2 c^2}{\hbar^2} \, \phi^2 .
@@ -524,7 +526,6 @@ Note that either of the two expansions we have written is as good as the other, 
 \TODO{better argument for prefactor? best argument I have: $Z$ in the end should be dimensionless by its definition, so we must add prefactors here to make it so, thus the prefactors in Gale's book!}
 
 In Fourier space, then, the Euclidean action \eqref{eq:tft:boson_euclidean_action_nice} becomes
-\TODO{is underbrace with $\delta$ and $V$ correct?}
 \begin{equation}
 \begin{split}
 	S_E & = -\frac12 \frac{\hbar^2 c^2 \beta}{V}
@@ -601,6 +602,8 @@ Finally, take the continuous limit \eqref{eq:tft:continuous_limit} to obtain the
 
 \section{Partition function for non-interacting Dirac fermions}
 
+\TODO{make the derivation ``symmetric'' with the boson one}
+
 Let us now find the partition function \eqref{eq:tft:fermion_partition_function} for \textbf{free Dirac fermions} with the Lagrangian density
 \begin{equation}
 	\lagr = \bar\psi (i \hbar c \slashed\partial - m c^2) \psi .
@@ -642,9 +645,9 @@ In addition, the Dirac Lagrangian admits a conserved current \TODO{derive?}
 	j^\mu = \bar\psi \gamma^\mu \psi .
 \label{eq:tft:dirac_conserved_current}
 \end{equation}
-We should replace $\numdensity$ by $j^0 = \bar\psi \gamma^0 \psi$. \TODO{why?}
 
-Inserting the Hamiltonian density \eqref{eq:tft:dirac_hamiltonian} and the conserved density $\numdensity = j^0 = \bar\psi \gamma^0 \psi$ \TODO{why?} in the path integral \eqref{eq:tft:fermion_partition_function}, we find the fermionic partition function
+Let us now find the fermionic partition function \eqref{eq:tft:fermion_partition_function}.
+Inserting the Hamiltonian density \eqref{eq:tft:dirac_hamiltonian}, and as discussed around \cref{eq:tft:chemical_potential}, the conserved number density $\numdensity = j^0 = \bar\psi \gamma^0 \psi$, the partition function is
 \begin{equation}
 	Z = \int \pathintdif [i \hbar \psi^\dagger] \int \pathintdif 
 	    \exp \left\{ \frac{1}{\hbar} \underbrace{\int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \bar\psi \left[ -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \vec{\gamma} \cdot \vec{\nabla} - mc^2 + \mu \gamma^0 \right] \psi}_{S} \right\} .
