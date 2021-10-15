@@ -101,6 +101,8 @@ external/system call={xelatex \tikzexternalcheckshellescape --halt-on-error --in
 \derivset{\odv}[style-inf=\mathrm] % write normal derivatives with upright d
 %\derivset{\odv}[switch-/=true]
 
+\usepackage{bm}
+
 \newcommand\dif{\mathop{}\!\mathrm{d}}
 \newcommand{\abs}[1]{\lvert #1 \rvert}
 \renewcommand{\det}[1]{\abs{#1}}
@@ -114,7 +116,7 @@ external/system call={xelatex \tikzexternalcheckshellescape --halt-on-error --in
 \newcommand{\diag}[1]{\text{diag} \left( #1 \right)}
 \newcommand{\taylor}{\simeq}
 %\AtBeginDocument{\renewcommand{\vec}[1]{\mathbf{#1}}} % NB: need AtBeginDocument due to unicode-math: https://tex.stackexchange.com/a/457845
-\renewcommand{\vec}[1]{\mathbf{#1}} % don't need AtBeginDocument now that I use fontspec instead of unicode-math
+\renewcommand{\vec}[1]{{\bm{#1}}} % don't need AtBeginDocument now that I use fontspec instead of unicode-math
 \newcommand{\bigo}{\mathcal{O}}
 \newcommand\pathintdif{\mathcal{D}}
 \newcommand{\pathint}[2]{\int \pathintdif #1 \, #2}
