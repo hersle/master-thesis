@@ -714,14 +714,13 @@ This gives the block matrix
 	                       \end{bmatrix} .
 \end{equation}
 Calculating the determinant becomes twice as easy by applying the formula
-\TODO{math operator, write in determinant properly}
 \begin{equation}
-	\tdet{} \begin{bmatrix} A & B \\ C & D \\ \end{bmatrix} = \tdet{(AD - BC)}
+	\tdet \left( \begin{bmatrix} A & B \\ C & D \\ \end{bmatrix} \right) = \tdet{(AD - BC)}
 \end{equation}
 for a block matrix where $CD = DC$, which is applicable to our case where $D$ is diagonal.
 Without $i \beta$, which we take care of using $\tdet{(AB)} = \tdet{A} \tdet{B}$ and $\tdet{i \beta} = (i \beta)^4 = \beta^4$, we get
 $AD = (E_n + i \mu)^2 + (mc^2)^2$ and $BC = - (\vec{\sigma} \cdot \vec{p})^2 c^2$.
-Using the property $(\vec{\sigma} \cdot \vec{p})^2 = \vec{p}^2$ and again the relativistic dispersion relation $E(\vec{p})^2 = \vec{p}^2 c^2 + (mc^2)^2$, we get the simple diagonal $2 \times 2$ matrix
+Using the property $(\vec{\sigma} \cdot \vec{p})^2 = \vec{p}^2$ \TODO{ref?} and again the relativistic dispersion relation $E(\vec{p})^2 = \vec{p}^2 c^2 + (mc^2)^2$, we get the simple diagonal $2 \times 2$ matrix
 $AD - BC = (E_n + i \mu)^2 + E(\vec{p})^2$.
 The determinant then becomes
 \begin{equation}

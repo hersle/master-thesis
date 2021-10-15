@@ -106,7 +106,8 @@ external/system call={xelatex \tikzexternalcheckshellescape --halt-on-error --in
 \newcommand\dif{\mathop{}\!\mathrm{d}}
 \newcommand{\abs}[1]{\lvert #1 \rvert}
 \renewcommand{\det}[1]{\abs{#1}}
-\newcommand{\tdet}{\text{det}}
+%\newcommand{\tdet}{\text{det}}
+\DeclareMathOperator{\tdet}{det}
 \newcommand{\integral}[4]{\int_{#3}^{#4} #1 \dif #2}
 \newcommand{\variation}[1]{\delta #1}
 \newcommand{\trace}[1]{\text{tr} #1}
