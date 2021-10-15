@@ -257,6 +257,8 @@ With all of these steps, the transition amplitude takes the form of the \textbf{
 
 (TODO: mention/do Legendre transformation to $\lagr = \pi \dot{\phi} - \ham$?)
 
+(TODO: write just $\ham$ etc. instead to make notation lighter, then write in text the arguments?)
+
 \iffalse
 Note that the combination of the Hamiltonian and the fields in the exponential is precisely the Legendre transformation that converts between the Hamiltonian density $\ham$ and the Lagrangian density $\lagr$.
 Thus, we might as well express the transition amplitude as the \textbf{path integral}
@@ -428,18 +430,20 @@ To be more compatible with the notation that will follow, we write
 \end{equation}
 with a normal summation sign, but really mean the integral.
 
-\section{Bosons}
+\section{Partition function for non-interacting bosonic real scalar field}
 
 (TODO: do Bose-Einstein with complex scalar field instead of real scalar field for more ``symmetry'' to the fermionic case?)
 
-For a real scalar field, the Lagrangian is 
+As a first example, we apply the path integral formalism to find the partition function for a non-interacting real scalar field representing spin-$0$ bosons.
+Its Lagrangian density is
 (TODO: does this define the unit of $\phi$ is such that unit of $\lagr$ is $\text{energy} / \text{volume}$?, i.e. $[\phi] = \sqrt{E/M}$?)
 (TODO: did something wrong with time derivative -- with or without $c$?)
 \begin{equation}
-	\lagr = \frac{1}{2 c^2} (\partial_\mu \phi) (\partial^\mu \phi) - \frac12 \frac{m^2 c^2}{\hbar^2} \phi^2
-	      = \frac{1}{2 c^2} \dot{\phi}^2 - \frac12 (\nabla \phi)^2 - \frac12 \frac{m^2 c^2}{\hbar^2} \phi^2 .
+	\lagr = \frac{1}{2} (\partial_\mu \phi) (\partial^\mu \phi) - \frac12 \frac{m^2 c^2}{\hbar^2} \, \phi^2
+	      = \frac{1}{2 c^2} \dot{\phi}^2 - \frac12 (\nabla \phi)^2  - \frac12 \frac{m^2 c^2}{\hbar^2} \, \phi^2 .
+\label{eq:tft:boson_lagrangian}
 \end{equation}
-The conjugate momentum is defined as
+The conjugate momentum (TODO: ref some general formula?) is
 \begin{equation}
 	\pi = \pdv{\lagr}{\dot{\phi}} = \frac{1}{c^2} \dot{\phi} .
 \end{equation}
@@ -448,35 +452,57 @@ The Hamiltonian density is therefore
 	\ham = \pi \dot{\phi} - \lagr = \frac12 c^2 \pi^2 + \frac12 (\nabla \phi)^2 + \frac12 \frac{m^2 c^2}{\hbar^2} \phi^2 .
 \label{eq:tft:boson_hamiltonian}
 \end{equation}
-We can now calculate the partition function \eqref{eq:tft:bosonic_partition_function}.
-Substituting the Hamiltonian density \eqref{eq:tft:boson_hamiltonian} gives
-\begin{equation}
-	Z = \int \pathintdif \pi \oint \pathintdif \phi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left[ i \pi \dot{\phi} - \frac12 c^2 \pi^2 - \frac12 (\nabla \phi)^2 - \frac12 \frac{m^2 c^2}{\hbar^2} \phi^2 \right] \right\} .
-\end{equation}
-We can integrate away the momenta with a Gaussian integral by completing the square for $i \pi \dot{\phi} - \frac12 c^2 \pi^2 = -\frac12 c^2 (\pi - i \phi / c^2)^2 - \frac12 \frac{1}{c^2} \dot{\phi}^2$ and then shifting $\pi \rightarrow \pi - i \phi / c^2 = \pi'$.
-More precisely,
+We now calculate the partition function \eqref{eq:tft:bosonic_partition_function}.
+To do so, we need the combination
 \begin{equation}
 \begin{split}
-	Z & =       \int \pathintdif \pi  \oint \pathintdif \phi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left[ -\frac{c^2}{2} \left( \pi - \frac{i \phi}{c^2}\right )^2 - \frac{1}{2 c^2} \dot{\phi}^2 - \frac12 (\nabla \phi)^2 - \frac12 \frac{m^2 c^2}{\hbar^2} \phi^2 \right] \right\} \\
-	  & =       \int \pathintdif \pi' \oint \pathintdif \phi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left[ -\frac{c^2}{2} \pi'^2                                    - \frac{1}{2 c^2} \dot{\phi}^2 - \frac12 (\nabla \phi)^2 - \frac12 \frac{m^2 c^2}{\hbar^2} \phi^2 \right] \right\} \\
-	  & \propto                       \oint \pathintdif \phi \exp \left\{ \frac{1}{\hbar} \underbrace{\int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left[                                              - \frac{1}{2 c^2} \dot{\phi}^2 - \frac12 (\nabla \phi)^2 - \frac12 \frac{m^2 c^2}{\hbar^2} \phi^2 \right] }_{S} \right\} .
+	i \pi \dot\phi - \ham &= i \pi \dot\phi - \frac{1}{2} c^2 \pi^2 - \frac12 (\nabla \phi)^2 - \frac{1}{2} \frac{m^2 c^2}{\hbar^2} \phi^2 \\
+	                      &= -\frac{1}{2} c^2 \left( \pi - \frac{i}{c^2} \dot\phi \right)^2 - \frac{1}{2 c^2} \dot\phi^2 - \frac{1}{2} (\nabla \phi)^2 - \frac{1}{2} \frac{m^2 c^2}{\hbar^2} \phi^2 \\
+	                      &= -\frac{1}{2} c^2 \tilde\pi^2 + \lagr_E . \\
 \end{split}
+\label{eq:tft:boson_field_combination}
+\end{equation}
+We completed the square by defining the shifted field $\tilde\pi = \pi - i \dot\phi / c^2$, for reasons that soon will be apparent.
+Remember that the Legendre transformation \eqref{eq:tft:boson_hamiltonian} exchanges the independent variable $\dot\phi$ in $\lagr = \lagr(\phi, \dot\phi, \nabla\phi)$ to $\pi$ in $\ham = \ham(\phi, \pi, \nabla\phi)$.
+Thus, the shift can be regarded as a shift by a \emph{constant}.
+We also defined the remaining terms as the Lagrangian density $\lagr_E$.
+It is exactly the original Lagrangian density \eqref{eq:tft:boson_lagrangian}, only with $\tau \rightarrow i \tau$.
+This can be interpreted as a change from Minkowski space to Euclidean space, and we therefore call $\lagr_E(\tau) = \lagr(i \tau)$ the Euclidean Lagrangian density.
+The path integral \eqref{eq:tft:bosonic_partition_function} is then
+\begin{equation}
+	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left[ - \frac12 c^2 \tilde\pi^2 + \lagr_E \right] \right\} .
+\end{equation}
+Since $\tilde\pi$ can be regarded as a constant shift of the field $\pi$, we can now exploit that $\int \pathintdif \tilde\pi = \int \pathintdif \pi$ and then \emph{integrate out} the momentum using the Gaussian integral $\int_{-\infty}^{+\infty} \dif x \, e^{-x^2} = \sqrt{\pi}$ with a suitable rescaling of $x$ (where $\pi \approx 3.1415$, of course -- not the conjugate momentum).
+We do not bother keeping track of this constant or any other constants in front of the partition function, as the physical quantities only contain derivatives of the logarithm of $Z$ 
+
+(TODO: ref. integral?)
+
+(TODO: but the pressure contains $\log Z$, not a derivative, so we should not drop terms! is the resolution that, in the end, assuming all ``ghosted terms'' are infinites, we can fix it by cherry picking the non-divergent term for the pressure?)
+
+Thus it only remains to tackle the $\phi$-integral
+\begin{equation}
+	Z = \oint_+ \pathintdif \phi \exp \left\{ \frac{S_E}{\hbar} \right\} ,
 \label{eq:tft:boson_partition_function_momentum_out}
 \end{equation}
-In the last line we used the Gaussian integral $\int_{-\infty}^{+\infty} \dif x \, e^{-x^2} = \sqrt{\pi}$ with a suitable rescaling of $x$ (where $\pi \approx 3.1415$, of course -- not the conjugate momentum).
-We do not bother keeping track of this constant or any other constants in front of the partition function, as the physical quantities only contain derivatives of the logarithm of $Z$ (TODO: ref. but this statement is not true for the pressure!).
-Thus it only remains to tackle the position-space integral over $\phi$.
-
-The action in the exponent of the partition function \eqref{eq:tft:boson_partition_function_momentum_out} has no variation at the boundaries, so we can integrate it by parts and forget about boundary terms.
-We can thus write it in the form
+with the Euclidean action
 \begin{equation}
 \begin{split}
-	S & = \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left[ - \frac{1}{2c^2} \pdv{\phi}{\tau}^2 - \frac12 (\nabla \phi)^2 - \frac12 \frac{m^2 c^2}{\hbar^2} \phi^2 \right] \\
-	  & = \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \phi \left[ \frac{1}{2c^2} \pdv[2]{}{\tau} + \frac12 \nabla^2 - \frac12 \frac{m^2 c^2}{\hbar^2} \right] \phi .
+	S_E &= \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \lagr_E \\
+	    &= \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left[ - \frac{1}{2c^2} \pdv{\phi}{\tau}^2 - \frac12 (\nabla \phi)^2 - \frac12 \frac{m^2 c^2}{\hbar^2} \phi^2 \right] .
+	   %= \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \phi \left[ \frac{1}{2c^2} \pdv[2]{}{\tau} + \frac12 \nabla^2 - \frac12 \frac{m^2 c^2}{\hbar^2} \right] \phi .
 \end{split}
+\label{eq:tft:boson_euclidean_action_definition}
 \end{equation}
-To proceed, let us use the periodicity of the field to expand it in a Fourier series of the form \eqref{eq:tft:fourier_series}.
-For our real field $\psi(\vec{x},\tau) = \psi(\vec{x},\tau)^*$, we can write
+The action has no variation at the boundaries, so we can integrate by parts to convert $\pdv{\phi}/{\tau}^2$ into $-\phi \pdv[2]{\phi}/{\tau}$ and forget the boundary term.
+It then becomes
+\begin{equation}
+	S_E = \frac12 \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \phi \left[ \frac{1}{c^2} \pdv[2]{}{\tau} + \nabla^2 - \frac{m^2 c^2}{\hbar^2} \right] \phi .
+\label{eq:tft:boson_euclidean_action_nice}
+\end{equation}
+(TODO: make a ``checkpoint'' here by noting that the partition function can always be written as a functional determinant, so always restart here instead of restarting the game every time)
+
+At this point it is useful to Fourier expand the field as in \eqref{eq:tft:fourier_series} with bosonic Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
+However, we include a prefactor and write
 \begin{equation}
 \begin{split}
 	\phi(\vec{x}, \tau) & = \hbar c \, \sqrt{\frac{\beta}{V}} \sum_{n=-\infty}^{+\infty} \sum_{\vec{p}}       \phi_n(\vec{p})  e^{+i (\vec{p} \cdot \vec{x} / \hbar + \omega_n \tau)} \\
@@ -484,97 +510,87 @@ For our real field $\psi(\vec{x},\tau) = \psi(\vec{x},\tau)^*$, we can write
 \end{split}
 \label{eq:tft:boson_fourier_series}
 \end{equation}
-where we have pulled out a prefactor $\hbar c \sqrt{\beta/V}$ chosen to have the same dimension as the field $\phi(\vec{x}, \tau)$, so the Fourier amplitudes $\phi_n(\vec{p})$ are dimensionless.
+The prefactor $\hbar c \sqrt{\beta/V}$ is chosen to have the same dimension as the field $\phi(\vec{x}, \tau)$, so the Fourier amplitudes $\phi_n(\vec{p})$ are dimensionless.
 Without it, the Gaussian integral that we will end up computing in \cref{eq:tft:boson_gaussian_integral} would make the partition function $Z$ dimensionful, which would formally make it meaningless to take its logarithm.
-
-(TODO: make a ``checkpoint'' here by noting that the partition function can always be written as a functional determinant, so always restart here instead of restarting the game every time)
+Note that either of the two expansions we have written is as good as the other, since the we have assumed a \emph{real} scalar field $\psi(\vec{x},\tau) = \psi(\vec{x},\tau)^*$.
 
 (TODO: better argument for prefactor? best argument I have: $Z$ in the end should be dimensionless by its definition, so we must add prefactors here to make it so, thus the prefactors in Gale's book!)
 
-In Fourier space, then, the action becomes
+In Fourier space, then, the Euclidean action \eqref{eq:tft:boson_euclidean_action_nice} becomes
 (TODO: is underbrace with $\delta$ and $V$ correct?)
 \begin{equation}
 \begin{split}
-	S & = -\frac12 \frac{\hbar^2 c^2 \beta}{V}
-	      \sum_{n,m} \sum_{\vec{p},\vec{q}} 
-	  	  \phi_m(\vec{q}) 
-	  	  \left[ \frac{\omega_n^2}{c^2} + \vec{k}^2 + \frac{m^2 c^2}{\hbar^2} \right] 
-		  \phi_{n}(\vec{p})
-		  \underbrace{\int \dif^3 x \, e^{i (\vec{p} - \vec{q}) \cdot \vec{x} / \hbar}}_{\delta(\vec{p}-\vec{q}) V}
-	      \underbrace{\int_0^{\beta \hbar} \dif \tau \, e^{i (\omega_n - \omega_m) \tau}}_{\delta_{m,n} \beta \hbar}
-		  \\
-	  & = -\frac12 \hbar^3 \beta^2
-	      \sum_n \sum_\vec{p}
-	  	  \left[ \omega_n^2 + \omega(\vec{p})^2 \right] 
-		  \abs{\phi_{n}(\vec{p})}^2 ,
+	S_E & = -\frac12 \frac{\hbar^2 c^2 \beta}{V}
+	        \sum_{n,m} \sum_{\vec{p},\vec{q}} 
+	    	  \phi_m(\vec{q}) 
+	    	  \left[ \frac{\omega_n^2}{c^2} + \vec{k}^2 + \frac{m^2 c^2}{\hbar^2} \right] 
+	  	  \phi_{n}(\vec{p})
+	  	  \underbrace{\int \dif^3 x \, e^{i (\vec{p} - \vec{q}) \cdot \vec{x} / \hbar}}_{\delta(\vec{p}-\vec{q}) V}
+	        \underbrace{\int_0^{\beta \hbar} \dif \tau \, e^{i (\omega_n - \omega_m) \tau}}_{\delta_{m,n} \beta \hbar}
+	  	  \\
+	    & = -\frac12 \hbar \beta^2
+	        \sum_n \sum_\vec{p}
+	  	    \left[ E_n^2 + E(\vec{p})^2 \right] 
+		    \abs{\phi_{n}(\vec{p})}^2 ,
 \end{split}
 \end{equation}
-where we defined $\omega(\vec{p})$ by $\hbar \omega(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4}$.
+where we defined the Matsubara energies $E_n = \hbar \omega_n$ and the relativistic dispersion relation $E(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4}$.
 As we insert this action into the path integral \eqref{eq:tft:boson_partition_function_momentum_out}, it factors into the Gaussian integrals
 \begin{equation}
 \begin{split}
-	Z & \propto 
+	Z & =
 	\prod_{n} \prod_{\vec{p}}
-	\left\{
-		\int \dif \phi_n(\vec{p}) \,
-		\exp \left[
-			-\frac12 \hbar^2 \beta^2 \left(
-				\omega_n^2 + \omega(\vec{p})^2
-			\right)
-			\abs{\phi_n(\vec{p})}^2
-		\right]
-	\right\} \\
-	  & \propto
+	\int \dif \phi_n(\vec{p}) \,
+	\exp \left[
+		-\frac12 \beta^2 \left(
+			E_n^2 + E(\vec{p})^2
+		\right)
+		\abs{\phi_n(\vec{p})}^2
+	\right] \\
+	  & =
 	\prod_{n} \prod_{\vec{p}} \left[ 
-		\hbar^2 \beta^2 \left( 
-			\omega_n^2 + \omega(\vec{p})^2
+		\beta^2 \left( 
+			E_n^2 + E(\vec{p})^2
 		\right)
 	\right]^{-1/2}
 \end{split}
 \label{eq:tft:boson_gaussian_integral}
 \end{equation}
-The logarithm is
+(TODO: split in two, make appendix with gaussian integrals?)
+The time has come to instead start looking at the logarithm
 \begin{equation}
 	\log Z = -\frac12 \sum_n \sum_\vec{p} 
-	         \log \left[ \beta^2 \hbar^2 \left( \omega_n^2 + \omega(\vec{p})^2 \right) \right]
+	         \log \left[ \beta^2 \left( E_n^2 + E(\vec{p})^2 \right) \right] .
+\end{equation}
+To evaluate the sum over $n$, it actually turns out to be easier to differentiate $\log Z$, sum the derivative and integrate back to $\log Z$.
+Take the derivative
+\begin{equation}
+	\odv{\log Z}{E(\vec{p})^2} = -\frac12 \sum_n \sum_\vec{p} \frac{1}{E_n^2 + E(\vec{p})^2} .
+\end{equation}
+We can now use the Matsubara frequency sum \eqref{eq:matsum:example_result}.
+The result is
+\begin{equation}
+	\odv{\log Z}{E(\vec{p})^2} = -\frac{\beta}{4} \sum_\vec{p} \frac{1}{E(\vec{p})} \left( 1 + \frac{2}{e^{\beta E(\vec{p})} - 1} \right) .
+\end{equation}
+Having evaluated the sum, let us integrate back.
+By the chain rule,
+\begin{equation}
+	\odv{\log Z}{E(\vec{p})} = 
+	2 E(\vec{p}) \odv{\log Z}{E(\vec{p})^2} = 
+	-\frac{\beta}{2} \sum_{\vec{p}} \left( 1 + \frac{2}{e^{\beta E(\vec{p})} - 1} \right) .
+\end{equation}
+Integration then gives
+\begin{equation}
+	\log Z = -\frac{1}{2} \sum_\vec{p} \left( \beta E(\vec{p}) + 2 \log \left[ e^{-\beta E(\vec{p})} - 1 \right] \right) .
+\end{equation}
+Finally, take the continuous limit \eqref{eq:tft:continuous_limit} to obtain the \textbf{partition function for a real scalar field}
+\begin{equation}
+	\log Z = -\frac{1}{2} V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left( \beta E(\vec{p}) + 2 \log \left[ e^{-\beta E(\vec{p})} - 1 \right] \right) .
 \end{equation}
 
-(TODO: turns out it is easier to sum the derivative, then integrate it, rather than straight up summing -- do Matsubara frequency sum)
-
-This expression may look neat enough on its own, but we can push further.
-First, use the definite integral
-\begin{equation}
-	\int_{a^2}^{b^2} \frac{\dif x^2}{x^2 + c^2} = \log(b^2 + c^2) - \log(a^2 + c^2)
-\label{eq:tft:integral_trick}
-\end{equation}
-with $c = \hbar \beta \omega_n$, $b = \hbar \beta \omega$ and any value of $a$ to convert the logarithm into an integral.
-Next, recall that $\omega_n = 2 \pi n / \beta \hbar = n \omega_1$ and use
-\begin{equation}
-	\sum_{n=-\infty}^{+\infty} \frac{1}{(2 \pi n)^2 + x^2} = \frac{1}{2 x} \left( 1 + \frac{2}{e^x - 1} \right)
-	%\sum_{n=-\infty}^{+\infty} \frac{1}{n^2 + x^2} = \frac{\pi}{x} \left( 1 + \frac{2}{e^{2 \pi x} - 1} \right)
-\label{eq:tft:matsubara_sum_bosons}
-\end{equation}
-to rewrite the integrand.
-(TODO: drop second log term)
-Then
-\begin{equation}
-\begin{split}
-	\log Z & = -\frac12 \sum_\vec{p} \sum_n \int^{\beta^2 \hbar^2 \omega^2} \frac{\dif x^2}{x^2 + (2 \pi n)^2} \\
-	       & = -\frac12 \sum_\vec{p}        \int^{\beta^2 \hbar^2 \omega^2} \frac{\dif x^2}{2 x} \left( 1 + \frac{2}{e^x - 1} \right) \\
-	       & = -\frac12 \sum_\vec{p}        \int^{\beta   \hbar   \omega  }       \dif x         \left( 1 + \frac{2}{e^x - 1} \right) \\
-	       & =          \sum_\vec{p}        \left[  \frac12 \beta \hbar \omega - \log(e^{\beta \hbar \omega} - 1) \right] \\
-	       & =          \sum_\vec{p}        \left[ -\frac12 \beta \hbar \omega - \log(1 - e^{-\beta \hbar \omega}) \right] \\
-\end{split}
-\end{equation}
-Finally, we take the continuous limit in which $\sum_\vec{p} \rightarrow V \int \dif^3 p / (2 \pi \hbar)^3$, so
-\begin{equation}
-	\log Z = V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left[ -\frac12 \beta \hbar \omega - \log(e^{-\beta \hbar \omega}) \right] .
-	\qquad \text{TODO: $V$ how?}
-\end{equation}
+(TODO: order of things and signs depend on whether $e^{\beta m c^2}$ is greater/smaller than $1$?, i.e. the ratio $mc^2 / k_B T$?)
 
 (TODO: use functional determinant instead?)
-
-(TODO: $\omega = 2 \pi n / \beta \hbar$ ?)
 
 \section{Partition function for non-interacting Dirac fermions}
 
