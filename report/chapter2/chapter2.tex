@@ -1,6 +1,6 @@
 \chapter{Thermal field theory}
 
-(TODO: need to study coherent states for bosons and ferimons???)
+\TODO{need to study coherent states for bosons and ferimons???}
 
 \newcommand{\transampl}{\braket{\phi_B | e^{- i \hat{H} T / \hbar} | \phi_A}}
 
@@ -171,7 +171,7 @@ where we no longer have any operators, but only the Hamiltonian eigenvalue at th
 Note the importance of expanding the exponential to first order in timeonly.
 If the Hamiltonian contained \emph{any} mixed sequence of operators such as $H \propto \hat{\pi} \hat{\phi}$, then higher powers like $\hat{H}^2 \propto \hat{\pi} \hat{\phi} \hat{\pi} \hat{\phi}$ in the power series expansion of the time evolution operator would not be in the assumed left-right order.
 
-(TODO: spør Jens Oluf om et alternativt argument her -- kan ikke bare operatorer i $\hat{H}$ kommuteres inntil man får den ønskede rekkefølgen, samtidig som ekstra konstanter medfører en fysisk ubetydelig fase? F.eks. $\hat{H} = \hat{p} \hat{q} = \hat{q} \hat{p} \pm i \hbar$, men de to har forskjellige egenverdier $pq$ og $pq \pm i \hbar$??? Men dette er alltid en fysisk ubetydelig fase?)
+\TODO{spør Jens Oluf om et alternativt argument her -- kan ikke bare operatorer i $\hat{H}$ kommuteres inntil man får den ønskede rekkefølgen, samtidig som ekstra konstanter medfører en fysisk ubetydelig fase? F.eks. $\hat{H} = \hat{p} \hat{q} = \hat{q} \hat{p} \pm i \hbar$, men de to har forskjellige egenverdier $pq$ og $pq \pm i \hbar$??? Men dette er alltid en fysisk ubetydelig fase?}
 
 \iffalse
 (TODO: If the Hamiltonian is \emph{not} in the order we assumed above, we could always bring it into this order by commuting operators using the commutation relation \eqref{eq:tft:boson_field_commutators}.
@@ -255,9 +255,9 @@ With all of these steps, the transition amplitude takes the form of the \textbf{
 \label{eq:tft:path_integral_hamiltonian}
 \end{equation}
 
-(TODO: mention/do Legendre transformation to $\lagr = \pi \dot{\phi} - \ham$?)
+\TODO{mention/do Legendre transformation to $\lagr = \pi \dot{\phi} - \ham$?}
 
-(TODO: write just $\ham$ etc. instead to make notation lighter, then write in text the arguments?)
+\TODO{write just $\ham$ etc. instead to make notation lighter, then write in text the arguments?}
 
 \iffalse
 Note that the combination of the Hamiltonian and the fields in the exponential is precisely the Legendre transformation that converts between the Hamiltonian density $\ham$ and the Lagrangian density $\lagr$.
@@ -278,7 +278,7 @@ The path integral expresses the transition amplitude for the process $A \rightar
 This interpretation is illustrated in \cref{fig:phase_space}.
 Note that the position-space integral $\int \pathintdif \phi$ is constrained to start and end in the initial and final states, but the momentum integral $\int \pathintdif \pi$ has no such constraint at the endpoints.
 
-(TODO: the only ``correct'' way is to do this AGAIN for fermions!)
+\TODO{the only ``correct'' way is to do this AGAIN for fermions!}
 
 Why have we spent so much time on this transition amplitude, when we really are only interested in the partition function \eqref{eq:tft:partition_function}?
 If we evaluate the trace \eqref{eq:tft:partition_function} in the basis of fields $\ket{\phi_0}$, we obtain
@@ -291,7 +291,7 @@ This is precisely an integral over transition amplitudes \eqref{eq:tft:path_inte
 \item the Hamiltonian $\hat{H} - \mu_i \hat{N}_i$ and 
 \item a purely imaginary time variable $t = -i \tau$ with $\tau$ running from $0$ to $\beta \hbar$.
 \end{itemize}
-The change from a real to imaginary time variable can be accomplished by a Wick rotation that does not change the value of the integral (TODO: true?).
+The change from a real to imaginary time variable can be accomplished by a Wick rotation that does not change the value of the integral \TODO{true?}.
 Thus, we can express the partition function as path integrals \eqref{eq:tft:path_integral_hamiltonian} with these substitutions!
 This yields
 \begin{equation}
@@ -307,7 +307,7 @@ For a theory with particles and antiparticles, for example, such a conserved cha
 The chemical potential can then be interpreted as a knob with which we can regulate the balance between particles and antiparticles in the system.
 We will later see examples of theories both with and without conserved charges.
 
-(TODO: i don't understand properly how all this works)
+\TODO{i do not understand properly how all this works}
 
 
 \section{Path integral for fermionic partition function}
@@ -331,7 +331,7 @@ so, perhaps confusingly, we are instructed to treat the field and its conjugate 
 To evaluate the bosonic partition function, we inserted completeness relations for both the field and the conjugate momentum, and we took the trace by integration over fields.
 For fermionic fields and Grassmann numbers, these properties are different.
 
-(TODO: show/refer all these)
+\TODO{show/refer all these}
 First, the inner product between two states is
 \begin{equation}
 	\braket{\eta_1 | \eta_2} = \exp \left\{ \int \dif^3 x \, \eta_1^\dagger(\vec{x}) \eta_2(\vec{x}) \right\} .
@@ -366,7 +366,7 @@ Now use the Grassmann inner product \eqref{eq:tft:grassmann_inner_product} to wr
 \begin{equation}
 	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{ \frac{\Delta \tau}{\hbar} \sum_n \int \dif^3 x \left( \hbar \frac{\psi^\dagger_{n+1} - \psi^\dagger_n}{\Delta \tau} \psi_{n} - \ham + \mu \numdensity \right) \right\} .
 \end{equation}
-Finally, take the continuum limit and integrate $\int \dif \tau \, \dot{\psi^\dagger} \psi = -\int \dif \tau \, \psi^\dagger \dot{\psi}$ by parts (TODO: why is this valid for Grassmann numbers?).
+Finally, take the continuum limit and integrate $\int \dif \tau \, \dot{\psi^\dagger} \psi = -\int \dif \tau \, \psi^\dagger \dot{\psi}$ by parts \TODO{why is this valid for Grassmann numbers?}.
 As in \eqref{eq:tft:functional_integral}, introduce the functional integrals $\pathintdif \psi = \lim_{N \rightarrow \infty} \prod_n \dif \psi_n$ and $\pathintdif [i \hbar \psi^\dagger] = \lim_{N \rightarrow \infty} \prod_n \psi^\dagger$, where we absorb some physically irrelevant prefactors into the latter to preserve similarity between the conjugate momentum $\pi$ and $i \hbar \psi^\dagger$. 
 We then obtain the \textbf{fermionic partition function}
 \begin{equation}
@@ -377,7 +377,7 @@ where $\oint_-$ means to integrate over \emph{antiperiodic} fields $\psi(\vec{x}
 Apart from the difference in periodicity, this result is -- remarkably -- exactly the same as the bosonic partition function \eqref{eq:tft:bosonic_partition_function}, with canonical momentum \eqref{eq:tft:dirac_conjugate_momentum}!
 But the similarity in facade were achieved by a drastically different mathematical fundament.
 
-(TODO: do for general $\psi \rightarrow \eta$ as in random note 1 on the web, then specialize later to Dirac?)
+\TODO{do for general $\psi \rightarrow \eta$ as in random note 1 on the web, then specialize later to Dirac?}
 
 \iffalse
 The partition function is therefore
@@ -439,18 +439,18 @@ with a normal summation sign, but really mean the integral.
 
 \section{Partition function for non-interacting bosonic real scalar field}
 
-(TODO: do Bose-Einstein with complex scalar field instead of real scalar field for more ``symmetry'' to the fermionic case?)
+\TODO{do Bose-Einstein with complex scalar field instead of real scalar field for more ``symmetry'' to the fermionic case?}
 
 As a first example, we apply the path integral formalism to find the partition function for a non-interacting real scalar field representing spin-$0$ bosons.
 Its Lagrangian density is
-(TODO: does this define the unit of $\phi$ is such that unit of $\lagr$ is $\text{energy} / \text{volume}$?, i.e. $[\phi] = \sqrt{E/M}$?)
-(TODO: did something wrong with time derivative -- with or without $c$?)
+\TODO{does this define the unit of $\phi$ is such that unit of $\lagr$ is $\text{energy} / \text{volume}$?, i.e. $[\phi] = \sqrt{E/M}$?}
+\TODO{did something wrong with time derivative -- with or without $c$?}
 \begin{equation}
 	\lagr = \frac{1}{2} (\partial_\mu \phi) (\partial^\mu \phi) - \frac12 \frac{m^2 c^2}{\hbar^2} \, \phi^2
 	      = \frac{1}{2 c^2} \dot{\phi}^2 - \frac12 (\nabla \phi)^2  - \frac12 \frac{m^2 c^2}{\hbar^2} \, \phi^2 .
 \label{eq:tft:boson_lagrangian}
 \end{equation}
-The conjugate momentum (TODO: ref some general formula?) is
+The conjugate momentum \TODO{ref some general formula?} is
 \begin{equation}
 	\pi = \pdv{\lagr}{\dot{\phi}} = \frac{1}{c^2} \dot{\phi} .
 \end{equation}
@@ -482,9 +482,9 @@ The path integral \eqref{eq:tft:bosonic_partition_function} is then
 Since $\tilde\pi$ can be regarded as a constant shift of the field $\pi$, we can now exploit that $\int \pathintdif \tilde\pi = \int \pathintdif \pi$ and then \emph{integrate out} the momentum using the Gaussian integral $\int_{-\infty}^{+\infty} \dif x \, e^{-x^2} = \sqrt{\pi}$ with a suitable rescaling of $x$ (where $\pi \approx 3.1415$, of course -- not the conjugate momentum).
 We do not bother keeping track of this constant or any other constants in front of the partition function, as the physical quantities only contain derivatives of the logarithm of $Z$ 
 
-(TODO: ref. integral?)
+\TODO{ref. integral?}
 
-(TODO: but the pressure contains $\log Z$, not a derivative, so we should not drop terms! is the resolution that, in the end, assuming all ``ghosted terms'' are infinites, we can fix it by cherry picking the non-divergent term for the pressure?)
+\TODO{but the pressure contains $\log Z$, not a derivative, so we should not drop terms! is the resolution that, in the end, assuming all ``ghosted terms'' are infinites, we can fix it by cherry picking the non-divergent term for the pressure?}
 
 Thus it only remains to tackle the $\phi$-integral
 \begin{equation}
@@ -506,7 +506,7 @@ It then becomes
 	S_E = \frac12 \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \phi \left[ \frac{1}{c^2} \pdv[2]{}{\tau} + \nabla^2 - \frac{m^2 c^2}{\hbar^2} \right] \phi .
 \label{eq:tft:boson_euclidean_action_nice}
 \end{equation}
-(TODO: make a ``checkpoint'' here by noting that the partition function can always be written as a functional determinant, so always restart here instead of restarting the game every time)
+\TODO{make a ``checkpoint'' here by noting that the partition function can always be written as a functional determinant, so always restart here instead of restarting the game every time}
 
 At this point it is useful to Fourier expand the field as in \eqref{eq:tft:fourier_series} with bosonic Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
 However, we include a prefactor and write
@@ -521,10 +521,10 @@ The prefactor $\hbar c \sqrt{\beta/V}$ is chosen to have the same dimension as t
 Without it, the Gaussian integral that we will end up computing in \cref{eq:tft:boson_gaussian_integral} would make the partition function $Z$ dimensionful, which would formally make it meaningless to take its logarithm.
 Note that either of the two expansions we have written is as good as the other, since the we have assumed a \emph{real} scalar field $\psi(\vec{x},\tau) = \psi(\vec{x},\tau)^*$.
 
-(TODO: better argument for prefactor? best argument I have: $Z$ in the end should be dimensionless by its definition, so we must add prefactors here to make it so, thus the prefactors in Gale's book!)
+\TODO{better argument for prefactor? best argument I have: $Z$ in the end should be dimensionless by its definition, so we must add prefactors here to make it so, thus the prefactors in Gale's book!}
 
 In Fourier space, then, the Euclidean action \eqref{eq:tft:boson_euclidean_action_nice} becomes
-(TODO: is underbrace with $\delta$ and $V$ correct?)
+\TODO{is underbrace with $\delta$ and $V$ correct?}
 \begin{equation}
 \begin{split}
 	S_E & = -\frac12 \frac{\hbar^2 c^2 \beta}{V}
@@ -563,7 +563,7 @@ As we insert this action into the path integral \eqref{eq:tft:boson_partition_fu
 \end{split}
 \label{eq:tft:boson_gaussian_integral}
 \end{equation}
-(TODO: split in two, make appendix with gaussian integrals?)
+\TODO{split in two, make appendix with gaussian integrals?}
 The time has come to instead start looking at the logarithm
 \begin{equation}
 	\log Z = -\frac12 \sum_n \sum_\vec{p} 
@@ -595,9 +595,9 @@ Finally, take the continuous limit \eqref{eq:tft:continuous_limit} to obtain the
 	\log Z = -\frac{1}{2} V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left( \beta E(\vec{p}) + 2 \log \left[ e^{-\beta E(\vec{p})} - 1 \right] \right) .
 \end{equation}
 
-(TODO: order of things and signs depend on whether $e^{\beta m c^2}$ is greater/smaller than $1$?, i.e. the ratio $mc^2 / k_B T$?)
+\TODO{order of things and signs depend on whether $e^{\beta m c^2}$ is greater/smaller than $1$?, i.e. the ratio $mc^2 / k_B T$?}
 
-(TODO: use functional determinant instead?)
+\TODO{use functional determinant instead?}
 
 \section{Partition function for non-interacting Dirac fermions}
 
@@ -626,25 +626,25 @@ where $\sigma^i$ are the \textbf{Pauli matrices}
 	\sigma^3 = \begin{bmatrix} 1 & 0 \\ 0 & -1 \\ \end{bmatrix} .
 \end{equation}
 
-(TODO: what to do about this below? do fermionic path integral generally, then remark here that this is what we would get in the bosonic case with $\pi = i \hbar \psi^\dagger$?)
+\TODO{what to do about this below? do fermionic path integral generally, then remark here that this is what we would get in the bosonic case with $\pi = i \hbar \psi^\dagger$?}
 
 The conjugate momentum of the field $\psi$ is
 \begin{equation}
 	\pi = \pdv{\lagr}{\dot{\psi}} = i \hbar \psi^\dagger ,
 \end{equation}
-so the Hamiltonian density is (TODO: bold vectors)
+so the Hamiltonian density is \TODO{bold vectors}
 \begin{equation}
 	\ham = \pi \dot\psi - \lagr = \bar\psi ( -i \hbar c \, \vec{\gamma} \cdot \vec{\nabla} + m c^2 ) \psi .
 \label{eq:tft:dirac_hamiltonian}
 \end{equation}
-In addition, the Dirac Lagrangian admits a conserved current (TODO: derive?)
+In addition, the Dirac Lagrangian admits a conserved current \TODO{derive?}
 \begin{equation}
 	j^\mu = \bar\psi \gamma^\mu \psi .
 \label{eq:tft:dirac_conserved_current}
 \end{equation}
-We should replace $\numdensity$ by $j^0 = \bar\psi \gamma^0 \psi$. (TODO: why?)
+We should replace $\numdensity$ by $j^0 = \bar\psi \gamma^0 \psi$. \TODO{why?}
 
-Inserting the Hamiltonian density \eqref{eq:tft:dirac_hamiltonian} and the conserved density $\numdensity = j^0 = \bar\psi \gamma^0 \psi$ (TODO: why?) in the path integral \eqref{eq:tft:fermion_partition_function}, we find the fermionic partition function
+Inserting the Hamiltonian density \eqref{eq:tft:dirac_hamiltonian} and the conserved density $\numdensity = j^0 = \bar\psi \gamma^0 \psi$ \TODO{why?} in the path integral \eqref{eq:tft:fermion_partition_function}, we find the fermionic partition function
 \begin{equation}
 	Z = \int \pathintdif [i \hbar \psi^\dagger] \int \pathintdif 
 	    \exp \left\{ \frac{1}{\hbar} \underbrace{\int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \bar\psi \left[ -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \vec{\gamma} \cdot \vec{\nabla} - mc^2 + \mu \gamma^0 \right] \psi}_{S} \right\} .
@@ -659,7 +659,7 @@ The fermionic antiperiodicity \eqref{eq:tft:periodicity} enables us to expand th
 with fermionic Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
 As with the bosonic field, we have made the Fourier amplitudes $\psi(\vec{p})$ dimensionless by pulling out a factor $1/\sqrt{V}$.
 The factor differs from the one in the bosonic Fourier series \eqref{eq:tft:boson_fourier_series} due to the different dimension of the fermionic field $\psi(\vec{x}, \tau)$ and the bosonic field $\phi(\vec{x}, \tau)$.
-(TODO: refer to gaussian integral)
+\TODO{refer to gaussian integral}
 
 With the Fourier series \eqref{eq:tft:dirac_fourier_series}, the action in the partition function \eqref{eq:tft:dirac_partition_function_first} becomes
 \begin{equation}
@@ -670,10 +670,10 @@ With the Fourier series \eqref{eq:tft:dirac_fourier_series}, the action in the p
 \end{split}
 \end{equation}
 The partition function \eqref{eq:tft:dirac_partition_function_first} now becomes 
-(TODO: change of variables from $\psi$ to $\psi_n(\vec{p})$)
-(TODO: what factors to have in $\dif (i) (\hbar) \psi$)
-(TODO: $\dif^4 \, \psi_n(\vec{p})$ ?)
-(TODO: $\dif$ or $\pathintdif$ ??)
+\TODO{change of variables from $\psi$ to $\psi_n(\vec{p})$}
+\TODO{what factors to have in $\dif (i) (\hbar) \psi$}
+\TODO{$\dif^4 \, \psi_n(\vec{p})$ ?}
+\TODO{$\dif$ or $\pathintdif$ ??}
 \begin{equation}
 	Z %& = \prod_n \prod_\vec{p} \int \pathintdif [i \hbar \psi_n(\vec{p})^\dagger] \int \pathintdif \psi_n(\vec{p}) \\
 	  %& \times \exp \left\{ \frac{\beta}{\hbar} i \hbar \psi_n(\vec{q})^\dagger \left[ -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \right\} \\
@@ -698,7 +698,7 @@ This gives the block matrix
 	                       \end{bmatrix} .
 \end{equation}
 Calculating the determinant becomes twice as easy by applying the formula
-(TODO: math operator, write in determinant properly)
+\TODO{math operator, write in determinant properly}
 \begin{equation}
 	\tdet{} \begin{bmatrix} A & B \\ C & D \\ \end{bmatrix} = \tdet{(AD - BC)}
 \end{equation}
@@ -788,7 +788,7 @@ Then we can perform the sum over $n$ with the Matsubara frequency sum \eqref{eq:
 	                                                                                        - \frac{1}{e^{\beta (\hbar \omega + \mu)} + 1} \right) .
 \end{equation}
 By the chain rule,
-(TODO: missing some factor $\hbar$ here! should operate with $E = \hbar \omega$ in the appendix!)
+\TODO{missing some factor $\hbar$ here! should operate with $E = \hbar \omega$ in the appendix!}
 \begin{equation}
 	\odv{\log Z}{\tilde \omega} = 2 \tilde\omega \odv{\log Z}{\tilde \omega^2}
 	                            = 2 \beta \hbar \sum_\vec{p} \left( 1 - \frac{1}{e^{\beta (\hbar \omega - \mu)} + 1}

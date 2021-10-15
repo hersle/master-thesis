@@ -6,7 +6,10 @@
 	%showframe, % show frame for page margins etc.
 	scale=0.75, % fraction of page width/height to use
 	headheight=30pt,
+	%marginpar=2cm, % define to avoid \marginpar{} from overflowing
 ]{geometry}
+\newcommand\TODO[1]{\textcolor{red}{(\textbf{TODO:} #1)}}
+\newcommand\TODOM[1]{\marginpar{\TODO{#1}}}
 
 \usepackage{ifdraft}
 %\usepackage[utf8]{inputenc} % ignored with lualatex / xelatex (which are utf8-based)
