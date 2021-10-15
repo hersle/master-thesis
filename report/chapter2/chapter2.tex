@@ -255,7 +255,11 @@ With all of these steps, the transition amplitude takes the form of the \textbf{
 \label{eq:tft:path_integral_hamiltonian}
 \end{equation}
 
-\TODO{mention/do Legendre transformation to $\lagr = \pi \dot{\phi} - \ham$?}
+It is tempting to recognize $\pi \dot\phi - \ham$ as the Legendre transformation that converts to the Lagrangian density and write $\lagr$ in its place.
+But we should be careful -- the Legendre transformation converts the independent variable $\dot\phi$ in $\lagr(\phi, \dot\phi, \nabla\phi)$ to $\pi$ in $\ham(\phi, \pi, \nabla\phi)$.
+We are integrating over $\pi$ and should therefore not lose track of it by writing $\lagr = \lagr(\phi, \dot\phi, \nabla\phi)$.
+Thus, we do not modify the integral further.
+\TODO{does this make sense?}
 
 \TODO{write just $\ham$ etc. instead to make notation lighter, then write in text the arguments?}
 
