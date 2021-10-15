@@ -1,5 +1,7 @@
 \chapter{Thermal field theory}
 
+\TODO{add sources of inspiration)
+
 \TODO{need to study coherent states for bosons and ferimons???}
 
 \newcommand{\transampl}{\braket{\phi_B | e^{- i \hat{H} T / \hbar} | \phi_A}}
@@ -338,7 +340,7 @@ so, perhaps confusingly, we are instructed to treat the field and its conjugate 
 To evaluate the bosonic partition function, we inserted completeness relations for both the field and the conjugate momentum, and we took the trace by integration over fields.
 For fermionic fields and Grassmann numbers, these properties are different.
 
-\TODO{show/refer all these}
+\TODO{show/refer all these, appendix on Grassmann numbers / coherent fermion states?}
 First, the inner product between two states is
 \begin{equation}
 	\braket{\eta_1 | \eta_2} = \exp \left\{ \int \dif^3 x \, \eta_1^\dagger(\vec{x}) \eta_2(\vec{x}) \right\} .
@@ -539,7 +541,7 @@ The prefactor $\hbar c \sqrt{\beta/V}$ is chosen to have the same dimension as t
 Without it, the Gaussian integral that we will end up computing in \cref{eq:tft:boson_gaussian_integral} would make the partition function $Z$ dimensionful, which would formally make it meaningless to take its logarithm.
 Note that either of the two expansions we have written is as good as the other, since the we have assumed a \emph{real} scalar field $\psi(\vec{x},\tau) = \psi(\vec{x},\tau)^*$.
 
-\TODO{better argument for prefactor? best argument I have: $Z$ in the end should be dimensionless by its definition, so we must add prefactors here to make it so, thus the prefactors in Gale's book!}
+\TODO{better argument for prefactor?}
 
 In Fourier space, then, the Euclidean action \eqref{eq:tft:boson_euclidean_action_nice} becomes
 \begin{equation}
