@@ -373,7 +373,7 @@ Finally, take the continuum limit and integrate $\int \dif \tau \, \dot{\psi^\da
 As in \eqref{eq:tft:functional_integral}, introduce the functional integrals $\pathintdif \psi = \lim_{N \rightarrow \infty} \prod_n \dif \psi_n$ and $\pathintdif [i \hbar \psi^\dagger] = \lim_{N \rightarrow \infty} \prod_n \psi^\dagger$, where we absorb some physically irrelevant prefactors into the latter to preserve similarity between the conjugate momentum $\pi$ and $i \hbar \psi^\dagger$. 
 We then obtain the \textbf{fermionic partition function}
 \begin{equation}
-	Z = \oint_- \pathintdif [i \hbar \psi^\dagger] \oint_- \pathintdif \psi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\hbar \psi^\dagger(\vec{x},\tau) \dot{\psi}(\vec{x},\tau) - \ham \left( \psi^\dagger(\vec{x},\tau), \psi(\vec{x},\tau) \right) + \mu \numdensity \right) \right\} ,
+	Z = \oint_- \pathintdif [i \hbar \psi^\dagger] \oint_- \pathintdif \psi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\hbar \psi^\dagger \dot{\psi} - \ham ( \psi^\dagger, \psi ) + \mu \numdensity \right) \right\} ,
 \label{eq:tft:fermion_partition_function}
 \end{equation}
 where $\oint_-$ means to integrate over \emph{antiperiodic} fields $\psi(\vec{x}, 0) = -\psi(\vec{x}, \beta \hbar)$, naturally extending the symbol $\oint_+$ we introduced for bosonic fields that were \emph{periodic}.
@@ -458,7 +458,7 @@ In anticipation of this, we define the corresponding momentum and Matsubara ener
 
 As a first example, we apply the path integral formalism to find the partition function for a non-interacting real scalar field representing spin-$0$ bosons.
 Its Lagrangian density is
-\TODO{does this define the unit of $\phi$ is such that unit of $\lagr$ is $\text{energy} / \text{volume}$?, i.e. $[\phi] = \sqrt{E/M}$?}
+% note: unit of phi is sqrt(energy / length)
 \begin{equation}
 	\lagr = \frac{1}{2} (\partial_\mu \phi) (\partial^\mu \phi) - \frac12 \frac{m^2 c^2}{\hbar^2} \, \phi^2
 	      = \frac{1}{2 c^2} \dot{\phi}^2 - \frac12 (\nabla \phi)^2  - \frac12 \frac{m^2 c^2}{\hbar^2} \, \phi^2 .
