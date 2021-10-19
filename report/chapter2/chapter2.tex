@@ -346,6 +346,45 @@ so, perhaps confusingly, we are instructed to treat the field and its conjugate 
 To evaluate the bosonic partition function, we inserted completeness relations for both the field and the conjugate momentum, and we took the trace by integration over fields.
 For fermionic fields and Grassmann numbers, these properties are different.
 
+In order to find (over)completeness and trace, this time it is more useful to consider the operators $a$, $a^\dagger$ instead of $\hat{\phi}$, $\hat{\pi}$, as we did for bosons.
+Anticommutation relations for operators
+\begin{equation}
+	\acomm{a}{a^\dagger} = 1 ,
+	\quad
+	\acomm{a}{a} = \acomm{a^\dagger}{a^\dagger} = 0
+\end{equation}
+Also Grassmann numbers anticommute with the operators and themselves
+
+Let $\ket{0}$ be the vacuum state.
+Define $\ket{1} = a^\dagger \ket{0}$.
+Then $a \ket{1} = a a^\dagger \ket{0} = (1 - a^\dagger a) \ket{0} = \ket{0}$. \TODO{show $a \ket{0} = 0$}
+and $a^\dagger \ket{1} = a^\dagger a^\dagger \ket{0} = 0$.
+
+Define the ``coherent state'' $\ket{c} = e^{-c a^\dagger} \ket{0} = (1 - c a^\dagger) \ket{0}$.
+Then $a \ket{c} = c \ket{c}$.
+
+Now $\braket{c | c'} = \braket{0 | (1 - \conj c a) | (1 - c' a^\dagger) | 0} = \braket{0 | 0} + \braket{0 | a \conj{c} c' a^\dagger | 0} = 1 + \conj{c} c' = e^{\conj{c} c'}$.
+
+Now the unit operator is
+\begin{equation}
+\begin{split}
+	\int \dif \conj{c} \int \dif c \, e^{-\conj{c} c} \ket{c} \bra{c} &= \int \dif \conj{c} \int \dif c \, (1 - \conj{c} c) (1 - c a^\dagger) \ket{0} \bra{0} (1 - a \conj{c}) \\
+	                                                                  &= \int \dif \conj{c} \int \dif c \, (-\conj{c} c) \ket{0} \bra{0} + \int \dif \conj{c} \int \dif c \, (-c a^\dagger) \ket{0} \bra{0} (-a \conj{c}) \\
+	                                                                  &= \int \dif \conj{c} \int \dif c \, c \conj{c} \ket{0} \bra{0} + \int \dif \conj{c} \int \dif c \, c \conj{c} \ket{1} \bra{1} \\
+	                                                                  &= \ket{0} \bra{0} + \ket{1} \bra{1} = \hat{1} . \\
+\end{split}
+\end{equation}
+The trace operation is
+\begin{equation}
+\begin{split}
+	\int \dif \conj{c} \int \dif c \, e^{-\conj{c} c} \braket{-c | \hat{A} | c} &= \int \dif \conj{c} \int \dif c \, (1 - \conj{c} c) \braket{0 | (1 + a \conj{c}) \hat{A} (1 - c a^\dagger) | 0} \\
+	                                                                            &= \int \dif \conj{c} \int \dif c \left[ (-\conj{c} c) \braket{0 | \hat{A} | 0} + \braket{0 | a \conj{c} \hat{A} (-c a^\dagger) | 0} \right] \\
+	                                                                            &= \int \dif \conj{c} \int \dif c \left[ c \conj{c} \braket{0 | \hat{A} | 0} + c \conj{c} \braket{1 | \hat{A} | 1} \right] \\
+																				&= \braket{0 | \hat{A} | 0} + \braket{1 | \hat{A} | 1} = \trace{\hat{A}} . \\
+\end{split}
+\end{equation}
+where we assumed $\hat{A}$ to be a ``bosonic'' operator such as the Hamiltonian \TODO{?}.
+
 \TODO{show/refer all these, appendix on Grassmann numbers / coherent fermion states?}
 First, the inner product between two states is
 \begin{equation}
