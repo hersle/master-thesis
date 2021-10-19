@@ -346,44 +346,102 @@ so, perhaps confusingly, we are instructed to treat the field and its conjugate 
 To evaluate the bosonic partition function, we inserted completeness relations for both the field and the conjugate momentum, and we took the trace by integration over fields.
 For fermionic fields and Grassmann numbers, these properties are different.
 
+%\newcommand\creat[1]{\hat\psi^\dagger(\vec{#1})}
+%\newcommand\destr[1]{\hat\psi        (\vec{#1})}
+\newcommand\creat{\hat\psi^\dagger}
+\newcommand\destr{\hat\psi        }
+
 In order to find (over)completeness and trace, this time it is more useful to consider the operators $a$, $a^\dagger$ instead of $\hat{\phi}$, $\hat{\pi}$, as we did for bosons.
 Anticommutation relations for operators
 \begin{equation}
-	\acomm{a}{a^\dagger} = 1 ,
+	\acomm{\destr{x}}{\creat{y}} = \delta(\vec{x}-\vec{y}) ,
 	\quad
-	\acomm{a}{a} = \acomm{a^\dagger}{a^\dagger} = 0
+	\acomm{\destr{x}}{\destr{y}} = 
+	\acomm{\creat{x}}{\creat{y}} = 0
 \end{equation}
 Also Grassmann numbers anticommute with the operators and themselves
 
-Let $\ket{0}$ be the vacuum state.
-Define $\ket{1} = a^\dagger \ket{0}$.
-Then $a \ket{1} = a a^\dagger \ket{0} = (1 - a^\dagger a) \ket{0} = \ket{0}$. \TODO{show $a \ket{0} = 0$}
-and $a^\dagger \ket{1} = a^\dagger a^\dagger \ket{0} = 0$.
-
-Define the ``coherent state'' $\ket{c} = e^{-c a^\dagger} \ket{0} = (1 - c a^\dagger) \ket{0}$.
-Then $a \ket{c} = c \ket{c}$.
-
-Now $\braket{c | c'} = \braket{0 | (1 - \conj c a) | (1 - c' a^\dagger) | 0} = \braket{0 | 0} + \braket{0 | a \conj{c} c' a^\dagger | 0} = 1 + \conj{c} c' = e^{\conj{c} c'}$.
+Define the
+\begin{equation}
+	\text{vacuum state} \quad \ket{0}
+	\qquad \text{one-particle state} \qquad
+	\ket{1} = \creat \ket{0} .
+\end{equation}
+Then
+\begin{equation}
+	\destr \ket{1} = \destr \creat \ket{0} = (1 - \creat \destr) \ket{0} = \ket{0}
+\end{equation}
+\TODO{show $a \ket{0} = 0$}
+and
+\begin{equation}
+	\creat \ket{1} = \creat \creat \ket{0} = 0 .
+\end{equation}
+Define the \textbf{coherent state}
+\begin{equation}
+	\ket{\psi} = e^{-\psi \creat \ket{0}} = ( 1 - \psi \creat ) \ket{0}
+\end{equation}
+Then
+\begin{equation}
+	\destr \ket{\psi} = \psi \ket{0} = \psi \ket{\psi} \quad \text{(last because $\psi^2=0$)}
+\end{equation}
+Inner product
+\begin{equation}
+\begin{split}
+	\braket{\psi | \psi'} &= \braket{0 | (1 - \destr \conj\psi) (1 - \psi' \creat) | 0} \\
+	                      &= \braket{0 | 0} + \braket{1 | \conj\psi \psi' | 1} \\
+						  &= 1 + \conj\psi \psi' = e^{\conj\psi \psi'}
+\end{split}
+\end{equation}
 
 Now the unit operator is
 \begin{equation}
 \begin{split}
-	\int \dif \conj{c} \int \dif c \, e^{-\conj{c} c} \ket{c} \bra{c} &= \int \dif \conj{c} \int \dif c \, (1 - \conj{c} c) (1 - c a^\dagger) \ket{0} \bra{0} (1 - a \conj{c}) \\
-	                                                                  &= \int \dif \conj{c} \int \dif c \, (-\conj{c} c) \ket{0} \bra{0} + \int \dif \conj{c} \int \dif c \, (-c a^\dagger) \ket{0} \bra{0} (-a \conj{c}) \\
-	                                                                  &= \int \dif \conj{c} \int \dif c \, c \conj{c} \ket{0} \bra{0} + \int \dif \conj{c} \int \dif c \, c \conj{c} \ket{1} \bra{1} \\
-	                                                                  &= \ket{0} \bra{0} + \ket{1} \bra{1} = \hat{1} . \\
+	\int \dif \conj{\psi} \int \dif \psi \, e^{-\conj\psi \psi} \ket{\psi} \bra{\psi} &= \int \dif \conj{\psi} \int \dif \psi \, (1 - \conj{\psi} \psi) (1 - \psi \hat\psi^\dagger) \ket{0} \bra{0} (1 - \hat\psi \conj{\psi}) \\
+	                                                                                  &= \int \dif \conj{\psi} \int \dif \psi \left[ (-\conj{\psi} \psi) \ket{0} \bra{0} + (-\psi \hat\psi^\dagger) \ket{0} \bra{0} (-\hat\psi \conj{\psi}) \right] \\
+	                                                                                  &= \int \dif \conj{\psi} \int \dif \psi \left[ \psi \conj{\psi} \ket{0} \bra{0} + \psi \conj{\psi} \ket{1} \bra{1} \right] \\
+	                                                                                  &= \ket{0} \bra{0} + \ket{1} \bra{1} = \hat{1} . \\
 \end{split}
 \end{equation}
 The trace operation is
 \begin{equation}
 \begin{split}
-	\int \dif \conj{c} \int \dif c \, e^{-\conj{c} c} \braket{-c | \hat{A} | c} &= \int \dif \conj{c} \int \dif c \, (1 - \conj{c} c) \braket{0 | (1 + a \conj{c}) \hat{A} (1 - c a^\dagger) | 0} \\
-	                                                                            &= \int \dif \conj{c} \int \dif c \left[ (-\conj{c} c) \braket{0 | \hat{A} | 0} + \braket{0 | a \conj{c} \hat{A} (-c a^\dagger) | 0} \right] \\
-	                                                                            &= \int \dif \conj{c} \int \dif c \left[ c \conj{c} \braket{0 | \hat{A} | 0} + c \conj{c} \braket{1 | \hat{A} | 1} \right] \\
-																				&= \braket{0 | \hat{A} | 0} + \braket{1 | \hat{A} | 1} = \trace{\hat{A}} . \\
+	\int \dif \conj{\psi} \int \dif \psi \, e^{-\conj{\psi} \psi} \braket{-\psi | \hat{A} | \psi} &= \int \dif \conj{\psi} \int \dif \psi \, (1 - \conj{\psi} \psi) \braket{0 | (1 + \hat\psi \conj{\psi}) \hat{A} (1 - \psi \hat\psi^\dagger) | 0} \\
+	                                                                                              &= \int \dif \conj{\psi} \int \dif \psi \left[ (-\conj{\psi} \psi) \braket{0 | \hat{A} | 0} + \braket{0 | \hat\psi \conj{\psi} \hat{A} (-\psi \hat\psi^\dagger) | 0} \right] \\
+	                                                                                              &= \int \dif \conj{\psi} \int \dif \psi \left[ \psi \conj{\psi} \braket{0 | \hat{A} | 0} + \psi \conj{\psi} \braket{1 | \hat{A} | 1} \right] \\
+																				                  &= \braket{0 | \hat{A} | 0} + \braket{1 | \hat{A} | 1} = \trace{\hat{A}} . \\
 \end{split}
 \end{equation}
 where we assumed $\hat{A}$ to be a ``bosonic'' operator such as the Hamiltonian \TODO{?}.
+
+A more general situation is, instead of considering one $\psi$, multiple $\psi_i$ together with multiple creation and annihilation operators $\hat\psi_i$.
+In this case, we instead define the coherent state
+\begin{equation}
+	\ket{\psi} = e^{-\sum_i \psi_i \hat\psi_i^\dagger} \ket{0} .
+\end{equation}
+The unit operator turns out to be
+\begin{equation}
+	\int \dif \conj\psi \int \dif \psi \, e^{-\sum_i \conj\psi_i \psi_i} \ket{\psi} \bra{\psi} = \hat{1} ,
+\end{equation}
+while the trace becomes
+\begin{equation}
+	\int \dif \conj\psi \int \dif \psi \, e^{-\sum_i \conj\psi_i \psi_i} \braket{-\psi | \hat{A} | \psi} = \trace{A}
+\end{equation}
+
+But we are still not quite there.
+We have \emph{functions} $\psi(\vec{x})$.
+In the functional generalization, we rather define the coherent state
+\begin{equation}
+	\ket{\psi} = e^{-\int \dif^3 x\, \psi(\vec{x}) \hat\psi^\dagger(\vec{x})} \ket{0} .
+\end{equation}
+The unit operator is then
+\begin{equation}
+	\int \dif \conj\psi \int \dif \psi \, e^{-\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x})} \ket{\psi} \bra{\psi} = \hat{1} ,
+\end{equation}
+and the trace is
+\begin{equation}
+	\int \dif \conj\psi \int \dif \psi \, e^{-\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x})} \braket{-\psi | \hat{A} | \psi} = \trace{A} .
+\end{equation}
+
 
 \TODO{show/refer all these, appendix on Grassmann numbers / coherent fermion states?}
 First, the inner product between two states is
