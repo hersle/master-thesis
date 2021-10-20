@@ -517,7 +517,7 @@ Now use the Grassmann inner product \eqref{eq:tft:grassmann_inner_product} to wr
 \begin{equation}
 	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{ \frac{\Delta \tau}{\hbar} \sum_n \int \dif^3 x \left( \hbar \frac{\psi^\dagger_{n+1} - \psi^\dagger_n}{\Delta \tau} \psi_{n} - \ham + \mu \numdensity \right) \right\} .
 \end{equation}
-Finally, take the continuum limit and integrate $\int \dif \tau \, \dot{\psi^\dagger} \psi = -\int \dif \tau \, \psi^\dagger \dot{\psi}$ by parts \TODO{why is this valid for Grassmann numbers? Can one e.g. show that $\pdv{\phi^\dagger \phi}{\tau} = 0$?}.
+Finally, take the continuum limit and integrate $\int \dif \tau \, \dot{\psi^\dagger} \psi = -\int \dif \tau \, \psi^\dagger \dot{\psi}$ by parts \TODO{why is this valid for Grassmann numbers? Can one e.g. show that $\pdv{\phi^\dagger \phi}{\tau} = 0$?, change order/use int by parts correctly}.
 As in \eqref{eq:tft:functional_integral}, introduce the functional integrals $\pathintdif \psi = \lim_{N \rightarrow \infty} \prod_n \dif \psi_n$ and $\pathintdif [i \hbar \psi^\dagger] = \lim_{N \rightarrow \infty} \prod_n \psi^\dagger$, where we absorb some physically irrelevant prefactors into the latter to preserve similarity between the conjugate momentum $\pi$ and $i \hbar \psi^\dagger$. 
 We then obtain the \textbf{fermionic partition function}
 \begin{equation}
