@@ -556,6 +556,7 @@ The algebra of a set of $N$ Grassmann numbers $\psi_i$ and their conjugates $\co
 	\acomm{\psi_i}{\conj\psi_j} = 
 	\acomm{\conj\psi_i}{\conj\psi_j} = 
 	0 .
+\label{eq:gnums:anticommutators}
 \end{equation}
 In particular, this implies that $\psi_i^2 = 0$, so $\psi_i^n = 0$ for any $n \geq 2$.
 
@@ -564,9 +565,10 @@ The property $\psi_i^2 = 0$ will always terminate the Taylor series after a fini
 The most general function can therefore be written
 \begin{equation}
 \begin{split}
-	f(\psi) &= a + \sum_i a_i \psi_i + \sum_i b_i \psi^\dagger_i + \sum_{i,j} a_{ij} \psi_i \psi_j + \sum_{i,j} b_{ij} \psi_i \psi^\dagger_j + \sum_{i,j} c_{i,j} \psi^\dagger_i \psi^\dagger_j \\
-	        &+ \ldots + d \psi^\dagger_1 \psi_1 \cdots \psi^\dagger_N \psi_N
+	f(\psi) &= A + \sum_i A_i \psi_i + \sum_i B_i \conj\psi_i + \sum_{i,j} a_{ij} \psi_i \psi_j + \sum_{i,j} B_{ij} \psi_i \conj\psi_j + \sum_{i,j} C_{i,j} \conj\psi_i \conj\psi_j \\
+	        &+ \ldots + Z_{1 \cdots N} (\psi_1 \cdots \psi_N) (\conj\psi_1 \cdots \conj\psi_N)
 \end{split}
+\label{eq:gnums:function_taylor_series}
 \end{equation}
 For example, we \emph{define} the exponential of one Grassmann number $\psi$ to mean
 \begin{equation}
@@ -579,18 +581,14 @@ Differentiation and integration of Grassmann numbers are \emph{defined} as
 	\pdv{1}{\psi_i} = \int \dif \psi_i \, 1 = 0 \\
 	\pdv{\psi_j}{\psi_i} = \int \dif \psi_i \, \psi_j = \delta_{ij} . \\
 \end{split}
+\label{eq:gnums:integration_differentiation}
 \end{equation}
 Note that $\int \dif \psi \, f(\psi) = \int \dif \psi \, [f(0) + f'(0) \psi] = f'(0) = \pdv{f(\psi)}/{\psi}$, so integration and differentiation are effectively identical operations.
-Also note that the product rule
+Note that if one integrates the function \eqref{eq:gnums:function_taylor_series} over all Grassmann numbers and their conjugates, the only term that survives
 \begin{equation}
-\begin{split}
-	\pdv{f(\psi) g(\psi)}{\psi} &= \pdv*{[f(0) + f'(0) \psi][g(0) + g'(0) \psi]}{\psi} \\
-	                            &= f(0) g'(0) + f'(0) g(0) \\
-	                            &= f(\psi) \pdv{g(\psi)}{\psi} + \pdv{f(\psi)}{\psi} g(\psi) \\
-\end{split}
+	\int \dif^N \conj\psi \int \dif^N \psi \, (\psi_1 \cdots \psi_N) (\conj\psi_1 \cdots \conj\psi_N) = 1 .
 \end{equation}
-works out as we are used to with complex numbers.
-\TODO{wrong!}
+
 
 \begin{equation}
 \begin{split}
