@@ -471,24 +471,42 @@ We can work out that the unit operator $\hat{1}$ can be represented by the integ
 	\fi
 	 & \int \dif \conj{\psi} \int \dif \psi \, \exp \left( -\sum_i \conj\psi_i \psi_i \right) \ket{\psi} \bra{\psi} \\
 	=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i \left( 1 + \psi_i \conj{\psi}_i \right) \prod_j \left( 1 - \psi_j \creat_j \right) \ket{0} \bra{0} \prod_k \left( 1 - \destr_k \conj\psi_k \right) \\
-	=& \sum_{n_1=0}^1 \sum_{n_2=0}^1\cdots \sum_{n_N=0}^1 \ket{n_1, n_2, \ldots, n_N} \bra{n_1, n_2, \ldots, n_N} = \hat{1} \\
+	=& \sum_{n_1=0}^1 \sum_{n_2=0}^1\cdots \sum_{n_N=0}^1 \ket{n_1, n_2, \ldots, n_N} \bra{n_1, n_2, \ldots, n_N} = \hat{1} . \\
 \end{split}
 \end{equation}
 To make the big leap across the second equality sign, stare intensely at the middle line as you follow the next argument.
 To get a non-zero contribution from the integral, the parentheses must be multiplied out in a way such that one gets the particular combination
 \begin{equation}
-	\int \dif \conj\psi \int \dif \psi \, \prod_{i=1}^N (\psi_i \conj\psi_i) = 1 .
+	\int \dif \conj\psi \int \dif \psi \, \psi_1 \conj\psi_1 \cdots \psi_N \conj\psi_N = 1 .
 \end{equation}
 All other terms would give zero because of $\psi_i^2 = 0$ or $\int \dif \psi_i \, 1 = 0$.
-To get this combination when multiplying out the parentheses, one must
 \TODO{make a ``logic branch'' tree instead?}
+It follows that
+\begin{enumerate}
+\item if one picks the factor $1$ in the first parenthesis for some particular value of $i$,
+\item then one must pick the factor $-\psi_j \creat_j$ for $j = i$ in the second parenthesis to include the factor $\psi_i$ in the integral \TODO{ref},
+\item and similarly one must pick the factor $-\psi_k \creat_k$ for $k = j = i$ in the third parenthesis to include the conjugate factor $\conj\psi_i$ in the integral \TODO{ref}.
+\end{enumerate}
+Conversely,
+\begin{enumerate}
+\item if one picks the factor $\psi_i \conj \psi_i$ in the first parenthesis for some particular value of $i$,
+\item then one must pick the factor $1$ for $j = i$ in the second parenthesis to avoid a factor $\psi_i^2 = 0$ in the integral \TODO{ref},
+\item and similarly one must pick the factor $1$ in the third parenthesis for $k = j = i$ to avoid a factor $(\conj{\psi_i})^2 = 0$ in the integral \TODO{ref}.
+\end{enumerate}
+Following these rules, the first parenthesis expands to $2^N$ terms.
+For any of these terms, there is exactly one legal choice in the second and third parentheses.
+This evaluates to $2^N$ terms with all possible combinations of $N_j = N_k$ creation and annihilation operators in the second and third parentheses and $N_i = N - N_j$ Grassmann numbers in the first parnethesis.
+\emph{These terms are therefore precisely all the possible states \TODO{ref} in the system!}
+This explains the transition to the final line.
+\iffalse
 \begin{itemize}
 \item choose $k = j$ in the third parenthesis in order to pair $\psi_j$ with $\conj\psi_j$, and
 \item for every factor $\psi_i \conj\psi_i$ one chooses from the first parenthesis, one must choose the factor $1$ from the second and third parentheses in order to avoid $\psi_i^2=0$, and conversely,
 \item for every factor $1$ one chooses from the first parenthesis, one must choose the factor $-\psi_j \creat_j$ and $-\destr_k \conj\psi_k$ from the second and third parentheses in order to not miss a factor $\psi_i \conj\psi_i$ in the product \TODO{ref}.
 \end{itemize}
 Following these rules is equivalent to iterating over all $2^N$ combinations with $N_j$ creation and destruction operators in the second and third parentheses and $N_i = N - N_j$ Grassmann numbers in the first parenthesis.
-To be clear, the final equality follows because $\ket{0}$ and $\ket{1_j}$ are all the states in the system.
+\fi
+Also, to be clear, the very last equality follows because the sum goes over all states \TODO{ref} in the system.
 
 \TODO{correct this}
 Similarly, we can work out that the trace of an operator $\hat{A}$ can be written
