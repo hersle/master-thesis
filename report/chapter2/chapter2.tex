@@ -326,10 +326,33 @@ We will later see examples of theories both with and without conserved charges.
 
 \section{Path integral for fermionic partition function}
 
+%\newcommand\creat[1]{\hat\psi^\dagger(\vec{#1})}
+%\newcommand\destr[1]{\hat\psi        (\vec{#1})}
+\newcommand\creat{\hat\psi^\dagger}
+\newcommand\destr{\hat\psi        }
+
 %(TODO: see random_note_1.pdf)
 
-For fermions, commutators are replaced by anticommutators, and so eigenvalues no longer commute, but anticommute! \TODO{show this in more detail}
-To obtain the path integral formulation of the fermionic partition function, we must therefore use anticommuting \textbf{Grassmann numbers} instead of commuting complex numbers.
+Fermionic field operators $\destr(\vec{x})$ and $\creat(\vec{x})$ do not obey the bosonic commutation relation \eqref{eq:tft:boson_field_commutators}, but rather the fermionic \textbf{anticommutation relations}
+\begin{equation}
+\begin{split}
+	\acomm{\destr(\vec{x})}{\creat(\vec{y})} = \acomm{\creat(\vec{y})}{\destr(\vec{x})} &= \delta(\vec{x}-\vec{y}) , \\
+	\acomm{\creat(\vec{x})}{\creat(\vec{y})} = \acomm{\destr(\vec{x})}{\destr(\vec{y})} &= 0 .
+\end{split}
+\end{equation}
+
+A distinguishing feature of these anticommutation relations is that it requires their eigenvalues to anticommute.
+For example,
+\begin{equation}
+\begin{split}
+	\text{if}   \quad & \destr \ket{\psi} = \psi \ket{\psi} , \\
+	\text{then} \quad & \braket{\psi | \creat \destr | \psi} = \braket{\psi | \conj\psi \psi | \psi} = -\braket{\psi | \psi \conj\psi | \psi} = -\braket{\psi | \destr \creat | \psi} , \\
+	\text{so}  \quad & \acomm{\psi}{\conj\psi} = 0 . \\
+\end{split}
+\end{equation}
+Similarly, one can deduce the requirements $\acomm{\psi}{\creat} = \acomm{\psi}{\destr} = 0$.
+
+To compute the fermionic path integral, we must therefore replace the algebra of commuting complex numbers in the bosonic case with the algebra of anticommuting \textbf{Grassmann numbers}.
 
 For concreteness, consider fermions described by the Dirac Lagrangian
 \begin{equation}
@@ -345,11 +368,6 @@ so, perhaps confusingly, we are instructed to treat the field and its conjugate 
 
 To evaluate the bosonic partition function, we inserted completeness relations for both the field and the conjugate momentum, and we took the trace by integration over fields.
 For fermionic fields and Grassmann numbers, these properties are different.
-
-%\newcommand\creat[1]{\hat\psi^\dagger(\vec{#1})}
-%\newcommand\destr[1]{\hat\psi        (\vec{#1})}
-\newcommand\creat{\hat\psi^\dagger}
-\newcommand\destr{\hat\psi        }
 
 In order to find (over)completeness and trace, this time it is more useful to consider the operators $a$, $a^\dagger$ instead of $\hat{\phi}$, $\hat{\pi}$, as we did for bosons.
 Anticommutation relations for operators
