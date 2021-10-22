@@ -629,14 +629,14 @@ so integration by parts takes the form
 \end{equation}
 
 
-\chapter{Matsubara frequency summation}
+\chapter{Matsubara energy summation}
 
 When doing thermal field theory, one often encounters sums
 \begin{equation}
 	S = \sum_{n=-\infty}^{+\infty} s(E_n)
 \label{eq:matsum:sum}
 \end{equation}
-over all \textbf{Matsubara energies}
+of functions $s(E_n)$ over all \textbf{Matsubara energies}
 \begin{equation}
 	E_n = \begin{cases}
 	          2 \pi n / \beta                        & \text{for bosons}    \\
@@ -660,9 +660,9 @@ First, we define the complex functions
 	           \end{dcases}
 \label{eq:matsum:distribution}
 \end{equation}
-Here and below, upper signs and upper parts of braces correspond to bosons, while lower ones correspond to fermions.
+Here and below, the upper and lower signs correspond to bosons and fermions, respectively.
 This is the familiar Bose-Einstein distribution $n_+(z)$ for bosons and the Fermi-Dirac distribution $n_-(z)$ for fermions.
-Importantly, they have simple poles at all imaginary Matsubara frequencies $z = i E_n$, as indicated by blue crosses in \cref{fig:matsum:contours}.
+Importantly, they have simple poles at all imaginary Matsubara frequencies $z = i E_n$, as indicated by blue crosses in \cref{fig:matsum:contours}. \TODO{big F in Figure, etc.?}
 
 % Draw cross from https://tex.stackexchange.com/questions/123760/draw-crosses-in-tikz
 \usetikzlibrary{decorations.markings}
@@ -744,20 +744,18 @@ For reasons that will soon be clear, consider the contour integral
 \label{eq:matsum:contour_integral}
 \end{equation}
 along the contour $C_A$ drawn in \cref{fig:matsum:contourA} that surrounds all poles of $n_\pm(z)$ and is closed at $z = i \infty$ and $z = -i \infty$.
-To see how it relates to the Matsubara sum \eqref{eq:matsum:sum}, first recall the \textbf{residue theorem}
-\cite[theorem 1 in section 16.3]{ref:kreyszig}
+To see how it relates to the Matsubara sum \eqref{eq:matsum:sum}, first recall the residue theorem
 \begin{equation}
 	\oint_C \dif z \, f(z) = 2 \pi i \sum_n \res_{z=z_n} [f(z)] ,
 \label{eq:matsum:residue_theorem}
 \end{equation}
-where the sum runs over all poles $z_n$ of $f(z)$ inside the area enclosed by the contour $C$.
-Second, recall that the \textbf{residue of a quotient function} $f(z) / g(z)$ at a simple pole $z = z_0$ where $g(z_0) = 0$, but $g'(z_0) \neq 0$ is 
-\cite[equation 4 in section 16.3]{ref:kreyszig}
+where the sum runs over all poles $z_n$ of $f(z)$ inside the region enclosed by the contour $C$.
+Second, recall that the residue of a quotient function $f(z) / g(z)$ at a simple pole $z = z_0$ where $g(z_0) = 0$, but $g'(z_0) \neq 0$ is 
 \begin{equation}
 	\res_{z=z_0} \left[ \frac{f(z)}{g(z)} \right] = \frac{f(z_0)}{g'(z_0)} .
 \label{eq:matsum:residue_quotient}
 \end{equation}
-Let us apply this to our integral \eqref{eq:matsum:contour_integral} with $f(z) = s(-iz)$ and $g(z) = n_\pm(z)^{-1} = e^{\beta z} \mp 1$,.
+Let us apply this to our integral \eqref{eq:matsum:contour_integral} with $f(z) = s(-iz)$ and $g(z) = n_\pm(z)^{-1} = e^{\beta z} \mp 1$.
 We then find that the residues of the integrand in the contour integral \eqref{eq:matsum:contour_integral} are
 \begin{equation}
 	\res_{z = i E_n} [s(-iz) n_\pm(z)] = \pm \frac{1}{\beta} s(E_n) ,
@@ -771,18 +769,18 @@ By the residue theorem \eqref{eq:matsum:residue_theorem}, the contour integral \
 \end{equation}
 In other words, the Matsubara sum \eqref{eq:matsum:sum} is given by the contour integral
 \begin{equation}
-	S = \pm \frac{\beta}{2 \pi i} \oint_{C_A} \dif z \, s(-iz) n_\pm(z) !
+	S = \pm \frac{\beta}{2 \pi i} \oint_{C_A} \dif z \, s(-iz) n_\pm(z) .
 \label{eq:matsum:sum_as_contour_integral}
 \end{equation}
 
 What is the use of transforming a simple sum into a complex (in both senses) contour integral?
-\textbf{Assume} that $s(-i z)$ -- as in our motivating example \eqref{eq:matsum:motivating_example} -- satisfies
+Assume that $s(-i z)$ -- like in our motivating example \eqref{eq:matsum:motivating_example} -- satisfies
 \begin{equation}
 	\abs{s(-iz) n_\pm(z)} < \frac{1}{\abs{z}} \quad \text{as} \quad \abs{z} \rightarrow \infty .
 \end{equation}
-Then the integral vanishes on the infinite circle contour $C_B$ in \cref{fig:matsum:contourB},
-and we can superpose the contour $C_B$ on $C_A$ in the integral \eqref{eq:matsum:contour_integral} without changing its value.
-Glancing back at \cref{fig:matsum:contours}, we see that this is equivalent to opening the closures in $C_A$ at $z = i \infty$ and $z = -i \infty$, and re-closing the contour with half circles in the real half planes, resulting in the contour $C_C$ in \cref{fig:matsum:contourC}.
+Then the integral vanishes on the infinite circular contour $C_B$ in \cref{fig:matsum:contourB},
+and we can superpose \TODO{?} the contour $C_B$ on $C_A$ in the integral \eqref{eq:matsum:contour_integral} without changing its value.
+Glancing back at \cref{fig:matsum:contours}, we see that this is equivalent to opening the closures \TODO{different word} in $C_A$ at $z = i \infty$ and $z = -i \infty$, and re-closing the contour with half circles in the real half planes, \TODO{semi instead of half? multiple places} resulting in the contour $C_C$ in \cref{fig:matsum:contourC}.
 Now we can apply the residue theorem again with the new contour $C_C$ to obtain
 \begin{equation}
 	S = \frac{\pm \beta}{2 \pi i} \oint_{C_C} \dif z \, s(-iz) n_\pm(z) = \mp \beta \sum_n \res_{z=z_n} [s(-iz) n_\pm(z)] ,
@@ -793,6 +791,8 @@ Note also that the sign change following the clockwise orientation of $C_C$.
 Like in our example \eqref{eq:matsum:motivating_example}, most $s(-iz)$ will have a \emph{finite} number of poles, in stark contrast to the infinite number of poles of $n_\pm(z)$.
 We have thus transformed the Matsubara sum over an infinite number of residues of $n_\pm(z)$ to a sum over a finite number of residues of $s(-iz)$ -- a much more manageable task.
 This is our proclaimed elegant and general method of evaluating the Matsubara sum \eqref{eq:matsum:sum}.
+
+\TODO{revise argument for changing contour. try to avoid the intermediate circle. instead argue that (1) in the infinity limit, we lose nothing by opening the contours at top and bottom because the summand must go to zero in this limit for the sum to converge, and (2) that integrals along the half circles also vanish by our assumption}
 
 Let us use now use this technique to evaluate the \textbf{example} sum \eqref{eq:matsum:motivating_example} with
 \begin{equation}
@@ -809,14 +809,14 @@ Using our main result \eqref{eq:matsum:sum_finite_residues}, the Matsubara sum \
 \begin{equation}
 	S = \sum_{n=-\infty}^{+\infty} \frac{1}{E_n^2 + E^2}
 	  = \mp \beta \sum_i \res_{z=z_n}[s(-i z) n_\pm(z)]
-	  = \mp \frac{\beta}{2 E} \left( n_\pm(-E) - n_\pm(E) \right) .
+	  = \mp \frac{\beta}{2 E} \left[ n_\pm(-E) - n_\pm(E) \right] .
 \end{equation}
 We can now evaluate the sum explicitly by inserting the Bose-Einstein distribution and the Fermi-Dirac distribution \eqref{eq:matsum:distribution}.
 After some simplification, we obtain
 \begin{equation}
 	S = \sum_{n=-\infty}^{+\infty} \frac{1}{E_n^2 + E^2}
 	  = \frac{\beta}{2 E} \left( 1 \pm \frac{2}{e^{\beta E} \mp 1} \right)
-	  = \frac{\beta}{2 E} \left( 1 \pm 2 n_\pm(E) \right) .
+	  = \frac{\beta}{2 E} \left[ 1 \pm 2 n_\pm(E) \right] .
 \label{eq:matsum:example_result}
 \end{equation}
 
