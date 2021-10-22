@@ -388,8 +388,6 @@ Here, the conjugate momentum turns out to be
 so, perhaps confusingly, we are instructed to treat the field and its conjugate as independent variables in the path integral.
 \fi
 
-\TODO{take into account \url{https://physics.stackexchange.com/questions/163592/multivariable-functions-of-grassmann-numbers}, see Altland Simons ``4.5 Problems''}
-
 Let us get to work.
 Suppose we have a finite number $N$ of Grassmann numbers $\psi_i$ and equally many creation and destruction operators $\creat_i$ and $\destr_i$.
 Following the discussion around \cref{eq:tft:eigenvalues_must_anticommute} and the definition of Grassmann numbers in \cref{chap:grassmann_numbers}, we have, by assumption, all the anticommutators
@@ -561,36 +559,36 @@ while the trace \eqref{eq:tft:trace_grassmann_discrete} would turn out to be
 \end{equation}
 The most important thing to note is the negative sign in $\bra{-\psi}$ of the trace \eqref{eq:tft:trace_grassmann} -- we will see that this requires fermionic fields to be \emph{antiperiodic} in imaginary time, in contrast to the periodic bosonic fields.
 
+Let us now build the path integral for the fermionic partition function using \cref{eq:tft:grassmann_inner_product,eq:tft:completeness_grassmann,eq:tft:trace_grassmann} as our toolbox.
 The partition function \eqref{eq:tft:partition_function} follows from the trace \eqref{eq:tft:trace_grassmann} with $\hat{A} = e^{-\beta (\hat{H} - \mu \hat{N})}$ as
 \begin{equation}
 	Z = \int \dif \psi_0^\dagger \int \dif \psi_0 \, e^{-\int \dif^3 x \, \psi_{0}^\dagger(\vec{x}) \psi_{0}(\vec{x})} \braket{-\psi_0 | e^{-\beta(\hat{H} - \mu \hat{N})} | \psi_0} .
+\label{eq:tft:fermion_path_integral_after_completeness}
 \end{equation}
-Breaking up the operator $e^{\ldots}$ as in \cref{eq:tft:time_evolution_splitting} and inserting one Grassmann completeness relation \eqref{eq:tft:completeness_grassmann} between every factor, the partition function becomes
+Breaking up the operator $e^{-\beta (\hat{H} - \mu \hat{N})}$ as in \cref{eq:tft:time_evolution_splitting} with small times $\Delta \tau = \beta \hbar / N$ and inserting one Grassmann completeness relation \eqref{eq:tft:completeness_grassmann} between every factor, the partition function becomes
 \begin{equation}
-	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\int \dif^3 x \, \psi_{n}^\dagger(\vec{x}) \psi_{n}(\vec{x})} \braket{\psi_{n+1} | e^{-(\hat{H} - \mu \hat{N}) \Delta \tau / \hbar} | \psi_n} ,
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\int \dif^3 x \, \psi_{n+1}^\dagger(\vec{x}) \psi_{n+1}(\vec{x})} \braket{\psi_{n+1} | e^{-(\hat{H} - \mu \hat{N}) \Delta \tau / \hbar} | \psi_n} ,
 \end{equation}
 where we define $\bra{\psi_{N+1}} = \bra{-\psi_0}$ -- \emph{note the minus sign!}
 Next, expand the Hamiltonian to first order as in \cref{eq:tft:path_integral_hamiltonian_assumption}.
 Then we obtain
 \begin{equation}
-	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\int \dif^3 x \, \psi_{n}^\dagger(\vec{x}) \psi_{n}(\vec{x})} \braket{\psi_{n+1} | \psi_n} e^{-(H_n - \mu N) \Delta \tau / \hbar} .
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\int \dif^3 x \, \psi_{n+1}^\dagger(\vec{x}) \psi_{n+1}(\vec{x})} \braket{\psi_{n+1} | \psi_n} e^{-(H_n - \mu N) \Delta \tau / \hbar} .
 \end{equation}
 Now use the Grassmann inner product \eqref{eq:tft:grassmann_inner_product} to write
 \begin{equation}
-	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{ \frac{\Delta \tau}{\hbar} \sum_n \int \dif^3 x \left( \hbar \frac{\psi^\dagger_{n+1} - \psi^\dagger_n}{\Delta \tau} \psi_{n} - \ham + \mu \numdensity \right) \right\} .
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{ \frac{\Delta \tau}{\hbar} \sum_n \int \dif^3 x \left( -\hbar \psi^\dagger_{n+1} \frac{\psi_{n+1} - \psi_n}{\Delta \tau} \psi_{n} - \ham + \mu \numdensity \right) \right\} .
 \end{equation}
-Finally, take the continuum limit and integrate $\int \dif \tau \, \dot{\psi^\dagger} \psi = -\int \dif \tau \, \psi^\dagger \dot{\psi}$ by parts \TODO{why is this valid for Grassmann numbers? Can one e.g. show that $\pdv{\phi^\dagger \phi}{\tau} = 0$?, change order/use int by parts correctly}.
-As in \eqref{eq:tft:functional_integral}, introduce the functional integrals $\pathintdif \psi = \lim_{N \rightarrow \infty} \prod_n \dif \psi_n$ and $\pathintdif [i \hbar \psi^\dagger] = \lim_{N \rightarrow \infty} \prod_n \psi^\dagger$, where we absorb some physically irrelevant prefactors into the latter to preserve similarity between the conjugate momentum $\pi$ and $i \hbar \psi^\dagger$. 
+% integrate by parts? %why is this valid for Grassmann numbers? Can one e.g. show that $\pdv{\phi^\dagger \phi}{\tau} = 0$?, change order/use int by parts correctly % TODO: don't need this, should rather be careful about index placement above (especially the exp(.. n+1 ..) from completeness)
+Finally, take the continuum limit and introduce the functional integrals $\pathintdif \psi = \lim_{N \rightarrow \infty} \prod_n \dif \psi_n$ and $\pathintdif [i \hbar \psi^\dagger] = \lim_{N \rightarrow \infty} \prod_n \dif \psi^\dagger$, where we absorb some physically irrelevant prefactors into the latter to preserve similarity between the conjugate momentum $\pi$ and $i \hbar \psi^\dagger$. 
 We then obtain the \textbf{fermionic partition function}
 \begin{equation}
 	Z = \oint_- \pathintdif [i \hbar \psi^\dagger] \oint_- \pathintdif \psi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\hbar \psi^\dagger \dot{\psi} - \ham ( \psi^\dagger, \psi ) + \mu \numdensity \right) \right\} ,
 \label{eq:tft:fermion_partition_function}
 \end{equation}
 where $\oint_-$ means to integrate over \emph{antiperiodic} fields $\psi(\vec{x}, 0) = -\psi(\vec{x}, \beta \hbar)$, naturally extending the symbol $\oint_+$ we introduced for bosonic fields that were \emph{periodic}.
-Apart from the difference in periodicity, this result is -- remarkably -- exactly the same as the bosonic partition function \eqref{eq:tft:bosonic_partition_function}, with canonical momentum \eqref{eq:tft:dirac_conjugate_momentum}!
-But the similarity in facade were achieved by a drastically different mathematical fundament.
-
-\TODO{do for general $\psi \rightarrow \eta$ as in random note 1 on the web, then specialize later to Dirac?}
+Here, antiperiodicity follows from the negative sign in $\bra{-\psi}$ in \cref{eq:tft:trace_grassmann} that we hid in $\bra{\psi_{N+1}} = \bra{-\psi_0}$ right after \cref{eq:tft:fermion_path_integral_after_completeness}.
+Remarkably, this result looks identical to the bosonic partition function \eqref{eq:tft:bosonic_partition_function} with canonical momentum $\pi = i \hbar \psi^\dagger$, but here we integrate over Grassmann fields that are antiperiodic.
 
 \iffalse
 The partition function is therefore
@@ -665,8 +663,6 @@ In anticipation of this, we define the corresponding momentum and Matsubara ener
 \end{equation}
 
 \section{Partition function for free bosonic real scalar field}
-
-\TODO{do Bose-Einstein with complex scalar field instead of real scalar field for more ``symmetry'' to the fermionic case?}
 
 As a first example, we apply the path integral formalism to find the partition function for a free real scalar field representing spin-zero bosons.
 Its Lagrangian density is
