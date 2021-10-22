@@ -14,9 +14,9 @@ where $\hat{H}$ is the Hamiltonian operator $\beta = 1 / k_B T$, $\mu$ is the c
 If we can find the partition function, we can obtain all thermodynamic information about the system, such as \cite[chapter 5]{ref:jensoluf}
 \begin{align}
 	%\text{the entropy}                     \quad \thermalavg{S}   &= -\pdv{\Omega}{T} \\
-	           & \text{the average number of particles} & \thermalavg{N_i} & = k_B T \pdv{\log{Z}}{\mu_i},                    & \\
-	           & \text{the average energy}              & \thermalavg{E}   & = \mu_i \thermalavg{N_i} - \pdv{\log{Z}}{\beta}  & \\ % \Omega + T S + \mu_i \thermalavg{N_i} \\
-	\text{and} & \text{the average pressure}            & \thermalavg{P}   & = \frac{k_B T}{V} \log{Z}.                       &    % -\pdv{\Omega}{V}
+	           & \text{the average number of particles} & \thermalavg{N_i} & = k_B T \pdv{\log{Z}}{\mu_i},                    & \label{eq:tft:average_number} \\
+	           & \text{the average energy}              & \thermalavg{E}   & = \mu_i \thermalavg{N_i} - \pdv{\log{Z}}{\beta}  & \label{eq:tft:average_energy} \\ % \Omega + T S + \mu_i \thermalavg{N_i} \\
+	\text{and} & \text{the average pressure}            & \thermalavg{P}   & = \frac{k_B T}{V} \log{Z}.                       & \label{eq:tft:average_pressure} % -\pdv{\Omega}{V}
 \end{align}
 This is exactly what we eventually want to insert into the TOV equation \eqref{eq:tov}.
 As all relevant information about a system can be derived from the partition function, we say that we have ``solved the system completely'' once we have found $Z$.
@@ -701,11 +701,12 @@ The path integral \eqref{eq:tft:bosonic_partition_function} is then
 	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left[ - \frac12 c^2 \tilde\pi^2 + \lagr_E \right] \right\} .
 \end{equation}
 Since $\tilde\pi$ can be regarded as a constant shift of the field $\pi$, we can now exploit that $\int \pathintdif \tilde\pi = \int \pathintdif \pi$ and then \emph{integrate out} the momentum using the Gaussian integral $\int_{-\infty}^{+\infty} \dif x \, e^{-x^2} = \sqrt{\pi}$ with a suitable rescaling of $x$ (where $\pi \approx 3.1415$, of course -- not the conjugate momentum).
-We do not bother keeping track of this constant or any other constants in front of the partition function, as the physical quantities only involve derivatives of the logarithm of $Z$.
+We do not bother keeping track of this constant or any other constants in front of the partition function.
+Physical quantities like the energy \eqref{eq:tft:average_energy} only involve derivatives of $\log Z$ and would be unaffected by such constants.
+The pressure \eqref{eq:tft:average_pressure}, however, contains $\log Z$ without derivatives and would really be shifted by an infinite constant.
+It is most correct, therefore, to disregard constants in $Z$ with the attitude that we would have to renormalize the physical quantities in the end to get rid of infinites.
 
 \TODO{ref. integral?}
-
-\TODO{but the pressure contains $\log Z$, not a derivative, so we should not drop terms! is the resolution that, in the end, assuming all ``ghosted terms'' are infinites, we can fix it by cherry picking the non-divergent term for the pressure?}
 
 Thus it only remains to tackle the $\phi$-integral
 \begin{equation}
