@@ -481,7 +481,7 @@ Next, we can work out that the unit operator $\hat{1}$ can be represented by the
 \end{split}
 \label{eq:tft:completeness_grassmann_discrete}
 \end{equation}
-To make the big leap across the second equality sign, stare intensely at the middle line as you follow the next argument.
+To make the big leap across the second equality sign, stare intensely at the middle line while following the next argument.
 To get a non-zero contribution from the integral, the parentheses must be multiplied out in a way such that one gets terms with the particular combination
 \begin{equation}
 	\int \dif \conj\psi \int \dif \psi \, \psi_1 \conj\psi_1 \cdots \psi_N \conj\psi_N = 1 .
@@ -490,18 +490,20 @@ To get a non-zero contribution from the integral, the parentheses must be multip
 Any term with duplicate fields $\psi_i^2 = -\psi_i^2 = 0$ will yield zero, and so will terms with products that do not include \emph{all} $\psi_i$ and $\conj\psi_i$ due to the integration properties \eqref{eq:gnums:integration_differentiation} and the discussion surrounding \cref{eq:gnums:integration_over_all}.
 Based on this, we can derive three rules for what combinations of factors we can choose when multiplying out the three parentheses.
 \begin{enumerate}
-\item \textbf{For any $i$ in the first parenthesis:} We are free to choose either the factor $1$ or $\psi_i \conj\psi_i$. \label{eq:tft:logic_tree_one}
+\item \textbf{For any $i$ in the first parenthesis:} Given that we follow the two next rules, we are free to choose either the factor $1$ or $\psi_i \conj\psi_i$. \label{eq:tft:logic_tree_one}
 \item \textbf{For $j=i$ in the second parenthesis:} 
 If we choose $\psi_i \conj\psi_i$ in the first parenthesis, we \emph{must} choose $1$ in the second to avoid a duplicate factor $\psi_i^2 = 0$.
 Conversely, if we choose $1$ in the first, we \emph{must} choose $-\psi_j \creat_j$ in the second to ``saturate'' the field product.
 \item \textbf{For $k = j = i$ in the third parenthesis:} 
 If we choose $-\psi_j \creat_j$ in the second, we \emph{must} choose $-\psi_k \creat_k$ in the third to get $\psi_j \conj\psi_j$ in the field product.
-Conversely, if we choose $1$ in the second, then we have already included $\psi_i \conj\psi_i$ from rule \ref{eq:tft:logic_tree_one}, and we \emph{must} choose $1$ in the third to not ``oversaturate'' the field product.
+Conversely, if we choose $1$ in the second, then we have already included $\psi_i \conj\psi_i$ from rule \ref{eq:tft:logic_tree_one}, and we \emph{must} choose $1$ in the third to not ``oversaturate'' the field product. \label{eq:tft:logic_tree_three}
 \end{enumerate}
 Following these rules, the first parenthesis expands to all possible $2^N$ terms.
 For every one of these terms, there is precisely one legal combination of factors to choose in the second and third parentheses.
 This evaluates to $2^N$ terms with all possible combinations of $N_j = N_k$ creation and annihilation operators and $N_i = N - N_j$ Grassmann numbers.
-\emph{These $2^N$ terms are therefore precisely all the $2^N$ states \eqref{eq:tft:fermion_all_states} in the system!}
+\emph{These $2^N$ terms are therefore precisely all the $2^N$ states \eqref{eq:tft:fermion_all_states} in the Fock space!}
+The sign ambiguity following different orders of operators in the state \eqref{eq:tft:fermionic_many_particle_state} does not cause any problems with signs in the sum over all the states, either.
+To understand why, note that rule \ref{eq:tft:logic_tree_three} forces us to apply the same sequence of operators to both $\ket{0}$ and $\bra{0}$, and any ordering that does not follow definition \eqref{eq:tft:fermionic_many_particle_state} can be made to do so, because anticommuting the same operators in each sequence would introduce \emph{two} negative signs that cancel.
 This explains the transition to the final line.
 \iffalse
 \begin{itemize}
@@ -511,7 +513,7 @@ This explains the transition to the final line.
 \end{itemize}
 Following these rules is equivalent to iterating over all $2^N$ combinations with $N_j$ creation and destruction operators in the second and third parentheses and $N_i = N - N_j$ Grassmann numbers in the first parenthesis.
 \fi
-To be clear, the very last equality follows because the sum goes over all states \eqref{eq:tft:fermion_all_states} in the system.
+To be clear, the very last equality follows because the sum goes over all states \eqref{eq:tft:fermion_all_states} in the Fock space.
 
 With the same reasoning, we can work out that the trace of an operator $\hat{A}$ can be written
 \begin{equation}
