@@ -631,9 +631,10 @@ Although the field is not periodic in space, we can still represent it by its Fo
 	\psi_n(\vec{x}) = \int \frac{\dif^3 k}{(2 \pi / L)^3} \, \psi_n(\vec{k}) e^{i \vec{k} \cdot \vec{x}},
 \label{eq:tft:mathematical_fourier_expansion}
 \end{equation}
-where $L \rightarrow \infty$ is the ``periodicity'' of the field along either axis that is sent to infinity in the Fourier transform, and $V = L^3 \rightarrow \infty$ the corresponding volume.
+where $L \rightarrow \infty$ is the periodicity of the field along either axis that is sent to infinity as one derives the Fourier transform from a finite Fourier series, and $V = L^3 \rightarrow \infty$ the corresponding volume.
 It will be important to have a ficticious finite volume to work with when we want to convert ``extensive'' observables like the energy $\thermalavg{E}$ into ``intensive'' observables like the energy \emph{density} $\epsilon = \thermalavg{E} / V$ in preparation for using the TOV equation \eqref{eq:tov}.
-\TODO{say that $\phi_n(x)$ is periodic in $\vec{x}$ or $V$ instead (``(periodic) quantization volume''), then take $V \rightarrow \infty$}
+Alternatively, one can imagine working with a periodic field $\psi(\vec{x})$ in a finite, but large ``quantization volume'' $V$, ignoring what happens at very large distances $\abs{\vec{x}}$ or, equivalently, at very small momenta $\abs{\vec{p}}$. 
+\TODO{does the discussion about ``quantization volume'' make sense?}
 
 Ultimately, then, we can expand
 \begin{equation}
@@ -641,7 +642,7 @@ Ultimately, then, we can expand
 \label{eq:tft:fourier_series}
 \end{equation}
 with the Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
-To be more compatible with the notation that will follow, we write
+To be more compatible with the notation that will follow, we wrote
 \begin{equation}
 	V \int \frac{\dif^3 k}{(2 \pi)^3} = \sum_\vec{k}
 \label{eq:tft:continuum_limit}
