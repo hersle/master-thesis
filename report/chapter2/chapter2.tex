@@ -700,13 +700,11 @@ The path integral \eqref{eq:tft:bosonic_partition_function} is then
 \begin{equation}
 	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left[ - \frac12 c^2 \tilde\pi^2 + \lagr_E \right] \right\} .
 \end{equation}
-Since $\tilde\pi$ can be regarded as a constant shift of the field $\pi$, we can now exploit that $\int \pathintdif \tilde\pi = \int \pathintdif \pi$ and then \emph{integrate out} the momentum using the Gaussian integral $\int_{-\infty}^{+\infty} \dif x \, e^{-x^2} = \sqrt{\pi}$ with a suitable rescaling of $x$ (where $\pi \approx 3.1415$, of course -- not the conjugate momentum).
-We do not bother keeping track of this constant or any other constants in front of the partition function.
+Since $\tilde\pi$ can be regarded as a constant shift of the field $\pi$, we can now use the Gaussian integral \eqref{eq:integrals:gaussian_sqrtpi} with a suitable rescaling of $x$ to \emph{integrate out} the momentum. 
+We do not bother keeping track of the resulting constant or any other constants in front of the partition function.
 Physical quantities like the energy \eqref{eq:tft:average_energy} only involve derivatives of $\log Z$ and would be unaffected by such constants.
-The pressure \eqref{eq:tft:average_pressure}, however, contains $\log Z$ without derivatives and would really be shifted by an infinite constant.
-It is most correct, therefore, to disregard constants in $Z$ with the attitude that we would have to renormalize the physical quantities in the end to get rid of infinites.
-
-\TODO{ref. integral?}
+The pressure \eqref{eq:tft:average_pressure}, however, contains $\log Z$ without derivatives and would really be shifted by an infinite constant, due to the infinite number of integrals in the functional integral \eqref{eq:tft:functional_integral}.
+It is most correct, therefore, to disregard constants in $Z$ with the attitude that we would have to renormalize the physical quantities in the end anyway, in order to get rid of infinites.
 
 Thus it only remains to tackle the $\phi$-integral
 \begin{equation}
