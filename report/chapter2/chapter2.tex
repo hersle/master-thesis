@@ -669,6 +669,8 @@ Its Lagrangian density is
 	      = \frac{1}{2 c^2} \dot{\phi}^2 - \frac12 (\nabla \phi)^2  - \frac12 \frac{m^2 c^2}{\hbar^2} \, \phi^2 .
 \label{eq:tft:boson_lagrangian}
 \end{equation}
+To be clear, we now denote time by $\tau$, regard the field as a function $\phi(\vec{x}, \tau)$ and denote the time derivative by $\dot{\phantom{\phi}} = \pdv{}/{\tau}$.
+There is no $t$ anymore, only the $\tau$ of the path integral \eqref{eq:tft:bosonic_partition_function}.
 The conjugate momentum \eqref{eq:tft:conjugate_mometum_definition} is
 \begin{equation}
 	\pi = \pdv{\lagr}{\dot{\phi}} = \frac{1}{c^2} \dot{\phi} .
@@ -693,7 +695,6 @@ Remember that the Legendre transformation \eqref{eq:tft:boson_hamiltonian} excha
 Thus, the shift can be regarded as a shift by a \emph{constant}.
 We also defined the remaining terms as the Lagrangian density $\lagr_E$.
 It is exactly the original Lagrangian density \eqref{eq:tft:boson_lagrangian}, only with $\tau \rightarrow i \tau$.
-\TODO{``correct'' if we always use $\tau$ as time variable. Make more clear by saying that the initial field is a function of $t$, then let $t \rightarrow i \tau$ and define $\tau$ as the new time variable, with e.g. $\dot f = \pdv{f}/{\tau}$?}
 This can be interpreted as a change from Minkowski space to Euclidean space, and we therefore call $\lagr_E(\tau) = \lagr(i \tau)$ the Euclidean Lagrangian density.
 The path integral \eqref{eq:tft:bosonic_partition_function} is then
 \begin{equation}
