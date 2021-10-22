@@ -264,8 +264,6 @@ We are integrating over $\pi$ and should therefore not lose track of it by writi
 Thus, we do not modify the integral further.
 \TODO{does this make sense?}
 
-\TODO{write just $\ham$ etc. instead to make notation lighter, then write in text the arguments?}
-
 \iffalse
 Note that the combination of the Hamiltonian and the fields in the exponential is precisely the Legendre transformation that converts between the Hamiltonian density $\ham$ and the Lagrangian density $\lagr$.
 Thus, we might as well express the transition amplitude as the \textbf{path integral}
@@ -298,13 +296,14 @@ This is precisely an integral over transition amplitudes \eqref{eq:tft:path_inte
 \end{itemize}
 The change from a real to imaginary time variable can be accomplished by a Wick rotation that does not change the value of the integral \TODO{true?}.
 Thus, we can express the partition function as path integrals \eqref{eq:tft:path_integral_hamiltonian} with these substitutions!
-This yields
-\TODO{clarify that $i \int \dif t \rightarrow i \int (-i) \dif \tau = 1 \int \dif \tau$ and $\dot\phi(x,t) = \pdv{\phi(x,t)}/{t} \rightarrow \pdv{\phi(x,\tau)}{-i \tau} \phi(x,\tau) = i \pdv{\phi(x,\tau)}{\tau}$?}
+We redefine the field $\phi(\vec{x}, t) \rightarrow \phi(\vec{x}, \tau)$ to be functions of the new ``time'' $\tau$.
+Therefore, we substitute $i \int \dif t \rightarrow \int \dif \tau$ and $\dot\phi(x, t) = \pdv{\phi(\vec{x},t)}/{t} \rightarrow \pdv{\phi(\vec{x},\tau)}/{(-i \tau)} = i \dot\phi(\vec{x},\tau)$.
+Omitting the arguments of the fields from now, we obtain
 \begin{equation}
 	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \, \exp \left( \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( i \pi \dot{\phi} - \ham + \mu \numdensity) \right) \right)
 \label{eq:tft:bosonic_partition_function}
 \end{equation}
-where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintdif \phi$ and write $\oint_+$ to indicate that we integrate over all fields $\phi(x, \tau) = \phi(x, \tau + \beta \hbar)$ that are \emph{periodic} in ``imaginary time'' $\tau$, due to the equal start and end states $\phi_A(\vec{x}) = \phi_B(\vec{x})$ in \cref{eq:tft:path_integral_hamiltonian}.
+where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintdif \phi$ and write $\oint_+$ to indicate that we integrate over all fields $\phi(x, \tau) = \phi(x, \tau + \beta \hbar)$ that are \emph{periodic} in $\tau$, due to the equal start and end states $\phi_A(\vec{x}) = \phi_B(\vec{x})$ in \cref{eq:tft:path_integral_hamiltonian}.
 Thus, thermal field theory -- statistical mechanics for quantum fields at finite temperature -- is essentially equivalent to ordinary quantum field theory with temperature-dependent time and periodic fields, and the partition function is obtained by integrating along closed paths in phase space!
 
 We have not yet discussed the appearance of the chemical potential $\mu$ and the number density $\numdensity$ in the path integral.
