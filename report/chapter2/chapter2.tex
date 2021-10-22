@@ -744,7 +744,7 @@ Note that either of the two expansions we have written is as good as the other f
 \TODO{below: use $p = (p^0, \vec{p}) = (E/C, \vec{p})$ ?}
 
 By inserting one of each Fourier expansion, we can rewrite the Euclidean action \eqref{eq:tft:boson_euclidean_action_nice} as
-\TODO{ref to Fourier conventions to show that we only get factor $V$ etc.}
+\TODO{ref to Fourier conventions to show that we only get factor $V$ etc. should i really have a $(2 \pi)^3$ etc? just ignore it as an overall factor in $Z$?}
 \begin{equation}
 \begin{split}
 	S_E & = -\frac12 \frac{\hbar^2 c^2 \beta}{V}
@@ -790,7 +790,7 @@ The time has come to instead start looking at the logarithm
 	         \log \left[ \beta^2 \left( E_n^2 + E^2(\vec{p}) \right) \right] .
 \end{equation}
 To evaluate the sum over $n$, it actually turns out to be easier to differentiate $\log Z$, sum the derivative and integrate back to $\log Z$.
-Take the derivative \TODO{... w.r.t $E^2(\vec{p})$?}
+Take the derivative with respect to $E^2(\vec{p})$,
 \begin{equation}
 	\odv{\log Z}{E^2(\vec{p})} = -\frac12 \sum_n \sum_\vec{p} \frac{1}{E_n^2 + E^2(\vec{p})} .
 \label{eq:tft:matsubara_sum_bosons}
@@ -848,6 +848,7 @@ where $\sigma^i$ are the \textbf{Pauli matrices}
 	\sigma^2 = \begin{bmatrix} 0 & -i \\ i & 0 \\ \end{bmatrix}
 	\qquad \text{and} \qquad
 	\sigma^3 = \begin{bmatrix} 1 & 0 \\ 0 & -1 \\ \end{bmatrix} .
+\label{eq:tft:pauli_matrices}
 \end{equation}
 
 \TODO{what to do about this below? do fermionic path integral generally, then remark here that this is what we would get in the bosonic case with $\pi = i \hbar \psi^\dagger$?}
@@ -928,7 +929,7 @@ Calculating the determinant becomes twice as easy by applying the formula
 for a block matrix where $CD = DC$, which is applicable to our case where $D$ is diagonal.
 Without $i \beta$, which we take care of using $\tdet{(AB)} = \tdet{A} \tdet{B}$ and $\tdet{i \beta} = (i \beta)^4 = \beta^4$, we get
 $AD = (E_n + i \mu)^2 + (mc^2)^2$ and $BC = - (\vec{\sigma} \cdot \vec{p})^2 c^2$.
-Using the property $(\vec{\sigma} \cdot \vec{p})^2 = \vec{p}^2$ \TODO{ref?} and again the relativistic dispersion relation $E^2(\vec{p}) = \vec{p}^2 c^2 + (mc^2)^2$, we get the simple diagonal $2 \times 2$ matrix
+Using the property $(\vec{\sigma} \cdot \vec{p})^2 = \vec{p}^2$, which is straightforward to verify from the Pauli matrices \eqref{eq:tft:pauli_matrices}, and again the relativistic dispersion relation $E^2(\vec{p}) = \vec{p}^2 c^2 + (mc^2)^2$, we get the simple diagonal $2 \times 2$ matrix
 $AD - BC = (E_n + i \mu)^2 + E^2(\vec{p})$.
 The determinant then becomes
 \begin{equation}
@@ -982,17 +983,22 @@ More precisely,
 \end{equation}
 You can verify by multiplying out all parentheses that
 \begin{equation}
-	(\pm E_n + i \mu)^2 + E^2(\vec{p}) = (E_n \pm i (E(\vec{p}) + \mu)) (E_n \mp i(E(\vec{p}) - \mu)) .
+	\left[ \pm E_n + i \mu)^2 + E^2(\vec{p} \right] = \left[ E_n \pm i (E(\vec{p}) + \mu) \right] \left[ E_n \mp i(E(\vec{p}) - \mu) \right] .
 \end{equation}
-After applying this to the two products in the partiton function \eqref{eq:tft:dirac_partition_function_splitting}, we find that it can be written
-\TODO{fix spacing}
+We can use this to rewrite the product in the partition function \eqref{eq:tft:dirac_partition_function_splitting} as
 \begin{equation}
-\begin{aligned}
-	\log Z & = \sum_n \sum_\vec{p} \log \beta^4   && \left[ E_n + i (E(\vec{p}) + \mu) \right] \left[ E_n + i (E(\vec{p}) - \mu) \right] \\
-		   & \times \phantom{\sum_n \sum_\vec{p}} && \left[ E_n - i (E(\vec{p}) + \mu) \right] \left[ E_n - i (E(\vec{p}) - \mu) \right] \\
-	       & = \sum_n \sum_\vec{p} \log \beta^4   && \left[ E_n^2 + (E(\vec{p}) - \mu)^2 \right] \left[ E_n^2 + (E(\vec{p}) + \mu)^2 \right] \\
-	       & = \sum_n \sum_\vec{p} \log \beta^2   && \left[ E_n^2 + (E(\vec{p}) - \mu)^2 \right] + \sum_n \sum_\vec{p} \log \beta^2 \left[ E_n^2 + (E(\vec{p}) + \mu)^2 \right] \\
-\end{aligned}
+\begin{split}
+	 & \left[ (E_n + i \mu)^2 + E^2(\vec{p}) \right] \left[ (-E_n + i \mu)^2 + E^2(\vec{p}) \right] \\
+	=& \left[ E_n + i (E(\vec{p}) + \mu) \right] \left[ E_n + i (E(\vec{p}) - \mu) \right] \left[ E_n - i (E(\vec{p}) + \mu) \right] \left[ E_n - i (E(\vec{p}) - \mu) \right] \\
+	=& \left[ E_n^2 + (E(\vec{p}) - \mu)^2 \right] \left[ E_n^2 + (E(\vec{p}) + \mu)^2 \right] . \\
+\end{split}
+\end{equation}
+Inserting this back into the partiton function \eqref{eq:tft:dirac_partition_function_splitting}, we find that it can be written
+\begin{equation}
+\begin{split}
+	\log Z & = \sum_n \sum_\vec{p} \log \beta^4 \left[ E_n^2 + (E(\vec{p}) - \mu)^2 \right] \left[ E_n^2 + (E(\vec{p}) + \mu)^2 \right] \\
+	       & = \sum_n \sum_\vec{p} \log \beta^2 \left[ E_n^2 + (E(\vec{p}) - \mu)^2 \right] + \sum_n \sum_\vec{p} \log \beta^2 \left[ E_n^2 + (E(\vec{p}) + \mu)^2 \right] \\
+\end{split}
 \end{equation}
 We have accomplished our mission of showing that the partition function is a real quantity.
 To evaluate the sum over $n$, it is actually easier to rather sum a \emph{derivative} of $\log Z$ and then integrate back to $\log Z$.
