@@ -2,12 +2,6 @@
 
 \TODO{add sources of inspiration!!}
 
-\TODO{%
-need to study coherent states for bosons and ferimons??? See Altland and Simons
-see \url{https://physics.stackexchange.com/questions/224329/why-use-coherent-state-path-integral-what-is-its-motivation-or-goal}?
-see \url{https://www.google.com/search?q=path+integral+coherent+state}
-}
-
 \newcommand{\transampl}{\braket{\phi_B | e^{- i \hat{H} T / \hbar} | \phi_A}}
 
 In this chapter, we will develop a theory for studying quantum fields at finite temperature $T$.
@@ -34,14 +28,27 @@ Then we will show how a few adjustments can be made to the path integral in orde
 We will show that the path integral expression for the partition function turns out to be the same for bosonic and fermionic fields, although their mathematical fundament is quite different.
 Finally, we will consider the specific case of a fermionic gas and find its partition function.
 
-\section{Summary of quantization of quantum fields}
+\section{Path integral for bosonic partition function}
+\label{sec:tft:path_integral_boson}
 
 %TODO: should i have a $t$ as in $\ket{\phi(t)}$ ?)
 
-Consider a quantum field theory with Schrödinger-picture field operators $\hat{\phi}(\vec{x})$ and conjugate momenta $\hat{\pi}(\vec{x})$ and Hamiltonian operator
+In this section, we will find a path integral representation of the partition function \eqref{eq:tft:partition_function} for bosons.
+First, we will review some elementary properties of the bosonic field $\phi(\vec{x})$ and the conjugate momentum field $\pi(\vec{x})$.
+Then we will review how the transition amplitude between two states can be written as a path integral.
+Finally, we will show that we can connect the transition amplitude to the partition function and thereby obtain a path integral representation of it.
+
+Consider a quantum field theory for some field $\phi$ with Lagrangian density $\lagr$.
+The conjugate momentum field is defined as
 \begin{equation}
-	\hat{H} = \int \dif^3 x \, \ham(\hat{\pi}(\vec{x}), \hat{\phi}(\vec{x})) .
+	\pi = \fdv{\lagr}{\dot\phi} .
+\label{eq:tft:conjugate_mometum_definition}
 \end{equation}
+In the Schrödinger picture, the quantized fields have field operators $\hat{\phi}(\vec{x})$ and $\hat{\pi}(\vec{x})$, and the Hamiltonian operator is
+\begin{equation}
+	\hat{H} = \int \dif^3 x \, \ham(\hat{\pi}(\vec{x}), \hat{\phi}(\vec{x})) ,
+\end{equation}
+where $\ham = \pi \dot\phi - \lagr$ is the Hamiltonian density obtained from a Legendre transformation of the Lagrangian density.
 In analogy with position $x$ and momentum $p$ in classical mechanics, we will refer to $\hat\phi(\vec{x})$ and $\hat\pi(\vec{x})$ as operators in ``position-space'' and ``momentum-space''.
 %Whether ``position'' refers to $\vec{x}$ or $\phi(\vec{x})$ will therefore depend on context.
 
@@ -53,31 +60,22 @@ The field operators $\hat{\phi}(\vec{x})$ and $\hat{\pi}(\vec{x})$ have eigensta
 \label{eq:tft:field_eigenvalue_equations}
 \end{equation}
 
-By assumption, the field and the momentum satisfy the commutation relations
+By assumption, the field and the momentum satisfy the bosonic commutation relations
 \begin{equation}
 	\comm{\hat{\phi}(\vec{x})}{\hat{\pi}(\vec{y})} = i \hbar \delta(\vec{x} - \vec{y})
 	\qquad \text{and} \qquad
 	\comm{\hat{\phi}(\vec{x})}{\hat{\phi}(\vec{y})} = 
-	\comm{\hat{\pi}(\vec{x})}{\hat{\pi}(\vec{y)}} = 
-	0
-\label{eq:tft:boson_field_commutators}
-\end{equation}
-for bosons, while for fermions they instead satisfy the anticommutation relations
-\begin{equation}
-	\acomm{\hat{\phi}(\vec{x})}{\hat{\pi}(\vec{y})} = i \hbar \delta(\vec{x} - \vec{y})
-	\qquad \text{and} \qquad
-	\acomm{\hat{\phi}(\vec{x})}{\hat{\phi}(\vec{y})} = 
-	\acomm{\hat{\pi}(\vec{x})}{\hat{\pi}(\vec{y)}} = 
+	\comm{\hat{\pi}(\vec{x})}{\hat{\pi}(\vec{y})} = 
 	0 .
-\label{eq:tft:fermion_field_anticommutators}
+\label{eq:tft:boson_field_commutators}
 \end{equation}
 % peskin eq. 2.20: in Heisenberg picture, these hold at *equal times*
 
-The position-space eigenstates are orthogonal and complete in the sense
+We take the position-space eigenstates to be orthogonal and complete in the sense
 \begin{equation}
 	\braket{\phi | \phi'} = \prod_{\vec{x}} \delta(\phi(\vec{x}) - \phi'(\vec{x}))
 	\qquad \text{and} \qquad
-	\int \dif \phi \ket{\phi} \bra{\phi} = 1 .
+	\int \dif \phi \ket{\phi} \bra{\phi} = \hat{1} .
 	\label{eq:tft:orthogonality_completeness_position}
 \end{equation}
 
@@ -126,18 +124,15 @@ This would be inconsistent unless $B = 2 \pi \hbar$, so completeness in momentum
 	\int \frac{\dif \pi(\vec{x})}{2 \pi \hbar} \ket{\pi} \bra{\pi} = 1 .
 \end{equation}
 
-\section{Path integral for bosonic partition function}
-\label{sec:tft:path_integral_boson}
-
-When the Hamiltonian $\hat{H}$ is independent of time, a quantum system evolves from an initial state $\ket{\phi_A}$ to the state $e^{-i \hat{H} T / \hbar} \ket{\phi_A}$ during the time $T$ \cite[equation 2.28]{ref:sakurai}.
+Let us use these properties to demonstrate how a transition amplitude between two states can be written as a path integral.
+When the Hamiltonian $\hat{H}$ is independent of time, a quantum system evolves from an initial state $\ket{\phi_A}$ to the state $e^{-i \hat{H} T / \hbar} \ket{\phi_A}$ during the time $T$ \cite[equation 2.28]{ref:sakurai}.
 Later we will study statistical mechanics for a star in thermal equilibrium -- then the Hamiltonian is always independent of time, otherwise the system would not be in equilibrium.
-The transition amplitude for going from the state $\ket{\phi_A}$ to a different state $\ket{\phi_B}$ in the time $T$ is therefore
+The transition amplitude for going from the state $\ket{\phi_A}$ to a different state $\ket{\phi_B}$ in the time $T$ is therefore
 \begin{equation}
 	\transampl \qquad (A \rightarrow B) .
 	\label{eq:tft:transition_amplitude_intro}
 \end{equation}
-Let us demonstrate how this transition amplitude can be written as a path integral.
-First, split the time interval $T$ into $N$ intervals $\Delta t = T / N$, and decompose the evolution operator $e^{- i \hat{H} T / \hbar}$ into equally many products of $e^{- i \hat{H} \Delta t / \hbar}$ to write
+Now split the time interval $T$ into $N$ intervals $\Delta t = T / N$, and decompose the evolution operator $e^{- i \hat{H} T / \hbar}$ into equally many products of $e^{- i \hat{H} \Delta t / \hbar}$ to write
 \newcommand\pointarrow[1]{\underset{\underset{\displaystyle #1}{\displaystyle \uparrow}}{}}
 \begin{equation}
 	\transampl = \braket{\phi_B | e^{- i \hat{H} \Delta t / \hbar} \cdots e^{- i \hat{H} \Delta t / \hbar} \cdots e^{- i \hat{H} \Delta t / \hbar} | \phi_A} .
@@ -153,7 +148,7 @@ Now comes the most important trick -- take a deep breath and do the following.
 Now exhale.
 With this trick, the transition amplitude can be written as the product
 \begin{equation}
-	\transampl = \prod_{n=0}^{N} \int \frac{\dif \phi_n \dif \pi_n}{2 \pi \hbar} 
+	\transampl = \prod_{n=0}^{N} \int \dif \phi_n \int \frac{\dif \pi_n}{2 \pi \hbar} 
 	             \braket{\phi_{n+1} | \pi_n} \braket{\pi_n | e^{- i \hat{H} \Delta t / \hbar} | \phi_n} ,
 \label{eq:tft:transition_amplitude_product}
 \end{equation}
@@ -170,7 +165,7 @@ We then obtain
 \end{split}
 \label{eq:tft:path_integral_hamiltonian_assumption}
 \end{equation}
-where we no longer have any operators, but only the Hamiltonian eigenvalue at the $n$-th timestep
+where we no longer have any operators, but only the Hamiltonian eigenvalue at the $n$-th timestep,
 \begin{equation}
 	H_n = \int \dif^3 x \, \ham(\pi_n(\vec{x}), \phi_n(\vec{x})) .
 \label{eq:tft:hamiltonian_eigenvalues}
@@ -230,7 +225,7 @@ AHence, we can relax this assumption by absorbing this physically irrelevant pha
 Substituting \cref{eq:tft:inner_product_position_momentum,eq:tft:path_integral_hamiltonian_assumption,eq:tft:hamiltonian_eigenvalues}, the transition amplitude \eqref{eq:tft:transition_amplitude_product} becomes
 \begin{equation}
 \begin{split}
-	\transampl &=      \left( \prod_{n=1}^N \int \frac{\dif \phi_n \dif \pi_n}{2 \pi \hbar} \right) \\
+	\transampl &=      \left( \prod_{n=1}^N \int \dif \phi_n \int \frac{\dif \pi_n}{2 \pi \hbar} \right) \\
 	           &\times \exp \left( \frac{i \Delta t}{\hbar} \sum_{n=1}^N \int \dif^3 x \left( \pi_n(\vec{x}) \frac{\phi_{n+1}(\vec{x}) - \phi_n(\vec{x})}{\Delta t} - \ham(\pi_n(\vec{x}), \phi_n(\vec{x})) \right)
 	\right)
 \end{split}
@@ -243,7 +238,7 @@ $\pi(\vec{x}, t_n) = \pi_n(\vec{x}, t_n)$
 to be the values of the fields at each timestep $t_n$.
 Both become continuous functions of time in the continuum limit.
 We also use the finite difference definition of the derivative to turn the fraction in the exponential into a partial derivative $\dot{\phi}(\vec{x},t) = \pdv{\phi(\vec{x},t)}/{t}$.
-Similarly, we use the Riemann sum definition of the integral to turn the sum $\sum \Delta t$ into an integral $\int \dif t$.
+Similarly, we use the Riemann sum definition of the integral to turn the sum $\Delta t\sum$ into an integral $\int \dif t$.
 We also define the \textbf{functional integrals}
 \begin{equation}
 	\int \pathintdif \phi = \lim_{N \rightarrow \infty} \prod_{n=1}^{N} \int \dif \phi_n
@@ -287,7 +282,7 @@ with the action
 \fi
 The path integral expresses the transition amplitude for the process $A \rightarrow B$ as a sum over all possible paths through phase space, each weighted by the value on the unit circle with phase corresponding to the action of the path.
 This interpretation is illustrated in \cref{fig:phase_space}.
-Note that the position-space integral $\int \pathintdif \phi$ is constrained to start and end in the initial and final states, but the momentum integral $\int \pathintdif \pi$ has no such constraint.
+Note that the position-space integral $\int \pathintdif \phi$ is constrained to start and end in the initial and final states due to the leftmost and righmost products with $\bra{\phi_B}$ and $\ket{\phi_A}$, but the momentum integral $\int \pathintdif \pi$ has no such constraint.
 
 Why have we spent so much time on this transition amplitude, when we really are only interested in the partition function \eqref{eq:tft:partition_function}?
 If we evaluate the trace \eqref{eq:tft:partition_function} in the basis of fields $\ket{\phi_0}$, we obtain
