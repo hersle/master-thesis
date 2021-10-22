@@ -612,7 +612,7 @@ In summary, the field $\psi(\vec{x}, \tau)$ -- here regarded as \emph{either} a 
 \end{equation}
 Accordingly, we can expand either field in a Fourier series
 \begin{equation}
-	\psi(x, \tau) = \sum_n \psi_n(x) e^{i \omega_n \tau}
+	\psi(\vec{x}, \tau) = \sum_n \psi_n(\vec{x}) e^{i \omega_n \tau}
 \end{equation}
 with \textbf{Matsubara frequencies} 
 \begin{equation}
@@ -626,17 +626,16 @@ The offset $+\pi / \beta \hbar$ makes the fermionic field antiperiodic at $\tau 
 
 Although the field is not periodic in space, we can still represent it by its Fourier transform as
 \begin{equation}
-	\psi_n(x) = \int \frac{\dif^3 k}{(2 \pi / L)^3} \, \psi_n(\vec{k}) e^{i \vec{k} \cdot \vec{x}},
+	\psi_n(\vec{x}) = \int \frac{\dif^3 k}{(2 \pi / L)^3} \, \psi_n(\vec{k}) e^{i \vec{k} \cdot \vec{x}},
 \label{eq:tft:mathematical_fourier_expansion}
 \end{equation}
 where $L \rightarrow \infty$ is the ``periodicity'' of the field along either axis that is sent to infinity in the Fourier transform, and $V = L^3 \rightarrow \infty$ the corresponding volume.
 It will be important to have a ficticious finite volume to work with when we want to convert ``extensive'' observables like the energy $\thermalavg{E}$ into ``intensive'' observables like the energy \emph{density} $\epsilon = \thermalavg{E} / V$ in preparation for using the TOV equation \eqref{eq:tov}.
 \TODO{say that $\phi_n(x)$ is periodic in $\vec{x}$ or $V$ instead (``(periodic) quantization volume''), then take $V \rightarrow \infty$}
-\TODO{use bold vector on $x \rightarrow \vec{x}$ everywhere?}
 
 Ultimately, then, we can expand
 \begin{equation}
-	\psi(x, \tau) = \sum_n \sum_\vec{k} \psi_n(\vec{k}) e^{i (\vec{k} \cdot \vec{x} + \omega_n \tau)}
+	\psi(\vec{x}, \tau) = \sum_n \sum_\vec{k} \psi_n(\vec{k}) e^{i (\vec{k} \cdot \vec{\vec{x}} + \omega_n \tau)}
 \label{eq:tft:fourier_series}
 \end{equation}
 with the Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
