@@ -332,28 +332,28 @@ We will later see examples of theories both with and without conserved charges.
 \newcommand\creat{\hat\psi^\dagger}
 \newcommand\destr{\hat\psi        }
 
-We will now develop a path integral for fermionic fields.
-Consider a fermionic field $\psi(\vec{x})$, for example the Dirac field with the Lagrangian $\lagr = \bar{\psi} (i \hbar c \slashed\partial - m c^2) \psi$ .
-Here, the conjugate momentum is $\pi = \fdv{\lagr}/{\dot\psi} = i \hbar \psi^\dagger$, so we are instructed to treat the field $\psi$ and its conjugate $i \hbar \conj\psi$ separately.
-This is not a peculiarity of fermionic fields -- for a complex scalar field, for example, we would also be instructed to treat $\phi$ and $\conj\psi$ separately. 
+We will now develop a path integral for a fermionic field $\psi(\vec{x})$.
+For example, the Dirac Lagrangian is $\lagr = \bar{\psi} (i \hbar c \slashed\partial - m c^2) \psi$ with conjugate momentum $\pi = \fdv{\lagr}/{\dot\psi} = i \hbar \psi^\dagger$, so we are instructed to treat the field and its conjugate independently in the path integral.
+This is not a peculiarity of fermionic fields only -- for a complex scalar field $\phi$, for example, we would also be instructed to treat $\phi$ and $\conj\phi$ separately. 
 
-In the derivation of the bosonic path integral \eqref{eq:tft:bosonic_partition_function}, we treated the eigenvalues $\phi$ and $\pi$ of the operators $\hat\phi$ and $\hat\pi$ as ordinary numbers.
-With fermions, however, things are not as simple.
-Fermionic field operators do not obey the bosonic commutation relation \eqref{eq:tft:boson_field_commutators}, but rather the fermionic \textbf{anticommutation relations}
+Why do we need to derive the path integral for fermions separately -- can we not just use the bosonic path integral \eqref{eq:tft:bosonic_partition_function} with the appropriate conjugate momentum?
+By assumption, the fermion field operator $\destr(\vec{x})$ and its conjugate $\creat(\vec{x})$ obey the fermionic \textbf{anticommutation relations}
 \begin{equation}
 \begin{split}
 	\acomm{\destr(\vec{x})}{\creat(\vec{y})} = \acomm{\creat(\vec{y})}{\destr(\vec{x})} &= \delta(\vec{x}-\vec{y}) , \\
-	\acomm{\creat(\vec{x})}{\creat(\vec{y})} = \acomm{\destr(\vec{x})}{\destr(\vec{y})} &= 0 .
+	\acomm{\creat(\vec{x})}{\creat(\vec{y})} = \acomm{\destr(\vec{x})}{\destr(\vec{y})} &= 0 ,
 \end{split}
 \label{eq:tft:fermion_anticommutators}
 \end{equation}
-A distinguishing feature of these anticommutation relations is that it requires their eigenvalues to \emph{anticommute}.
+in contrast to the bosonic commutators \eqref{eq:tft:boson_field_commutators}.
+In the derivation of the bosonic path integral \eqref{eq:tft:bosonic_partition_function}, we treated the eigenvalues $\phi$ and $\pi$ of the operators $\hat\phi$ and $\hat\pi$ as ordinary numbers.
+However, the anticommutators \eqref{eq:tft:fermion_anticommutators} of the fermionic field operators in fact requires their eigenvalues to anticommute!
 For example,
 \begin{equation}
 \begin{split}
 	\text{if}   \quad & \destr \ket{\psi} = \psi \ket{\psi} , \\
-	\text{then} \quad & \braket{\psi | \creat \destr | \psi} = \braket{\psi | \conj\psi \psi | \psi} = -\braket{\psi | \psi \conj\psi | \psi} = -\braket{\psi | \destr \creat | \psi} , \\
-	\text{so}  \quad & \acomm{\psi}{\conj\psi} = 0 . \\
+	\text{then} \quad & \braket{\psi | \creat \destr | \psi} = \braket{\psi | \conj\psi \psi | \psi} = -\braket{\psi | \psi \conj\psi | \psi} = -\braket{\psi | \destr \creat | \psi} \quad \text{by \eqref{eq:tft:fermion_anticommutators}}, \\
+	\text{so}   \quad & \acomm{\psi}{\conj\psi} = 0 . \\
 \end{split}
 \label{eq:tft:eigenvalues_must_anticommute}
 \end{equation}
@@ -363,8 +363,8 @@ The bosonic path integral \eqref{eq:tft:bosonic_partition_function} and its deri
 To develop the fermionic path integral, we therefore replace the algebra of ordinary commuting numbers in the bosonic case with anticommuting \textbf{Grassmann numbers}.
 Assuming most readers have encountered them before, we define and derive all properties of Grassmann numbers that will be useful to us in \cref{chap:grassmann_numbers} and will only refer to them in this section.
 
-In the derivation of the bosonic path integral \eqref{eq:tft:bosonic_partition_function}, we relied heavily on using the eigenstates of the system to take the trace in \eqref{eq:tft:partition_function}, insert completeness relations and take the inner product between eigenstates.
-To find analogous ways of doing this with fermionic fields, we will consider \textbf{fermionic coherent states}.
+In the derivation of the bosonic path integral \eqref{eq:tft:bosonic_partition_function}, we relied heavily on using eigenstates of the system to take the trace in \eqref{eq:tft:partition_function}, insert completeness relations and take inner products between eigenstates.
+To find analogous ways of doing this with fermionic fields, we will introduce \textbf{fermionic coherent states}.
 
 \iffalse
 To compute the fermionic path integral, we must therefore replace the algebra of commuting complex numbers in the bosonic case with the algebra of anticommuting \textbf{Grassmann numbers}.
@@ -392,39 +392,43 @@ so, perhaps confusingly, we are instructed to treat the field and its conjugate 
 
 Let us get to work.
 Suppose we have a finite number $N$ of Grassmann numbers $\psi_i$ and equally many creation and destruction operators $\creat_i$ and $\destr_i$.
-Following the discussion around \cref{eq:tft:eigenvalues_must_anticommute} and the definition of Grassmann numbers in \cref{chap:grassmann_numbers}, we have, by assumption, the anticommutators
+Following the discussion around \cref{eq:tft:eigenvalues_must_anticommute} and the definition of Grassmann numbers in \cref{chap:grassmann_numbers}, we have, by assumption, all the anticommutators
 \begin{equation}
 \begin{split}
-	\acomm{\psi_i}{\psi_j} = \acomm{\destr_i}{\destr_j} = \acomm{\creat_i}{\creat_j} = \acomm{\psi_i}{\destr_j} = \acomm{\psi_i}{\creat_j} &= 0 , \\
-	                                                                               \acomm{\destr_i}{\creat_j} = \acomm{\creat_j}{\destr_i} &= \delta_{i j} . \\
+	\acomm{\psi_i}{\psi_j} = \acomm{\psi_i}{\conj\psi_j} = \acomm{\conj\psi_i}{\conj\psi_j}                             &= 0            , \\
+	\acomm{\psi_i}{\destr_j} = \acomm{\psi_i}{\creat_j} = \acomm{\conj\psi_i}{\destr_j} = \acomm{\conj\psi_i}{\creat_j} &= 0            , \\
+	\acomm{\destr_i}{\destr_j} = \acomm{\creat_i}{\creat_j}                                                             &= 0            , \\
+	\acomm{\destr_i}{\creat_j} = \acomm{\creat_j}{\destr_i}                                                             &= \delta_{i j} . \\
 \end{split}
 \label{eq:tft:fermionic_all_anticommutators}
 \end{equation}
-The anticommutators of the field operators $\creat_i$ and $\destr_i$ are the discrete analogues of \eqref{eq:tft:fermion_anticommutators}.
-It will be less painful to describe the formalism of fermionic coherent states in the discrete case and then take the continuum limit in the end.
+In other words, all field operators and all Grassmann numbers anticommute with themselves and each other.
+The anticommutators \eqref{eq:tft:fermionic_all_anticommutators} of the field operators $\creat_i$ and $\destr_i$ are the discrete analogues of \eqref{eq:tft:fermion_anticommutators}.
+It will be less painful to describe the formalism of fermionic coherent states in the discrete case and then take the continuum limit $\psi_i \rightarrow \psi(\vec{x})$ in the end.
 
-The system has a \textbf{ground state} or \textbf{vacuum state} that we denote by
+The Fock space of the fermionic field has a \textbf{ground state} or \textbf{vacuum state} that we denote by
 \begin{equation}
 	\ket{0, 0, \ldots, 0} = \ket{0}. \\
 \end{equation}
-We can apply any sequence of $n = \sum_i n_i$ \emph{different} creation operators to it to build an \textbf{$n$-particle state}
+We can apply any sequence of $n = \sum_i n_i$ different creation operators to it to build an \textbf{$n$-particle state}
 \begin{equation}
 	\ket{n_1, n_2, \ldots, n_N} = \left( \creat_1 \right)^{n_1} \cdots \left( \creat_N \right)^{n_N} \ket{0} .
 \label{eq:tft:fermionic_many_particle_state}
 \end{equation}
 This results in a non-zero state only if $n_i \in \{0, 1\}$ for all $i$, because $(\creat_i)^2 \ket{0} = -(\creat_i)^2 \ket{0} = 0$ by the anticommutator \eqref{eq:tft:fermionic_all_anticommutators}.
+Note that shuffling the sequence of operators in \cref{eq:tft:fermionic_many_particle_state} can change the sign -- we define the $n$-particle state to have operators with indices that increase from left to right.
 In particular, we can build the \textbf{one-particle state}
 \begin{equation}
 	\ket{1_i} = \ket{(n_1=0), \ldots, (n_i=1), \ldots, (n_N=0)} = \creat_i \ket{0} .
 \end{equation}
-Note that $\creat_i \ket{1_i} = (\creat_i)^2 \ket{0} = -(\creat_i)^2 \ket{0} = 0$, also by the anticommutator \eqref{eq:tft:fermionic_all_anticommutators}.
-Then we have
+Note also that $\creat_i \ket{1_i} = (\creat_i)^2 \ket{0} = -(\creat_i)^2 \ket{0} = 0$.
+Therefore we have
 \begin{equation}
 	\destr_i \ket{1_i} = \destr_i \creat_i \ket{0} = (1 - \creat_i \destr_i) \ket{0} = \ket{0} .
 \end{equation}
-The interpretation of this analysis is that the \textbf{creation operators} $\creat_i$ and \textbf{destruction operators} $\destr_i$ respectively create and destroy particles when applied to the state \eqref{eq:tft:fermionic_many_particle_state}.
-The restriction that $n_i \in \{0, 1\}$ implies that there can be at most one particle in the every one-particle state of the total $n$-particle state and is consistent with the Pauli exclusion principle.
-In particular, note that the system has a total of $2^N$ distinct states
+The interpretation of this analysis is that the \textbf{creation operator} $\creat_i$ adds a particle in the state $i$, while the \textbf{destruction operators} $\destr_i$ removes a particle from the same state.
+The restriction that $n_i \in \{0, 1\}$ implies that there can be at most one particle in every state, consistent with the Pauli exclusion principle.
+Note that the Fock space has a total of $2^N$ distinct states
 \begin{equation}
 	\ket{n_1, n_2, \ldots, n_N} \qquad \text{where } n_i \in \{0, 1\} \text{ for all } i = 1, \ldots, N .
 \label{eq:tft:fermion_all_states}
@@ -435,18 +439,19 @@ Next, define the \textbf{coherent state}
 	\ket{\psi} = \exp \left( -\sum_i \psi_i \creat_i \right) \ket{0} = \prod_i \exp \left( -\psi_i \creat_i \right) \ket{0} = \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} .
 \end{equation}
 In the last line, we made use of the Taylor expansion \eqref{eq:gnums:function_taylor_series} of functions of Grassmann numbers.
-Then
+Applying a destruction operator to this state gives
 \begin{equation}
+\begin{aligned}
 	%\destr_j \ket{\psi} = \psi_j \ket{0} = \psi_j \ket{\psi} \quad \text{(last because $\psi_j^2=0$)}
-	\destr_j \ket{\psi} = \destr_j \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} = + \psi_j \destr_j \creat_j \ket{0} = \psi_j \ket{0} .
+	%\destr_j \ket{\psi} = \destr_j \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} = + \psi_j \destr_j \creat_j \ket{0} = \psi_j \ket{0} .
+	\destr_j \ket{\psi} &= \destr_j \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} = \prod_{i \neq j} \left( 1 - \psi_i \creat_i \right) \destr_j \left( 1 - \psi_j \creat_j \right) \ket{0} \\
+	                    &= \prod_{i \neq j} \left( 1 - \psi_i \creat_i \right) \psi_j \ket{0} = \prod_{i \neq j} \left( 1 - \psi_i \creat_i \right) \psi_j \left( 1 - \psi_j \creat_j \right) \ket{0}   \\
+	                    &= \psi_j \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} = \psi_j \ket{\psi} . \\
+\end{aligned}
 \end{equation}
-But we also have $\psi_j \ket{\psi} = \psi_j \prod_i (1 - \psi_i \creat_i) \ket{0} = \psi_j \ket{0}$.
-Thus, the coherent states are \textbf{eigenvectors of the destruction operators} with eigenvalues $\psi_j$,
-\begin{equation}
-	\destr_j \ket{\psi} = \psi_j \ket{\psi} .
-\end{equation}
-
-This is analogous to the bosonic eigenequation \eqref{eq:tft:field_eigenvalue_equations}, and it is the coherent states that we wish to use when taking the trace, inner product and inserting identity operators in the path integral.
+In other words, the coherent state $\ket{\psi}$ is an eigenstate of every destruction operator $\destr_j$ with eigenvalue $\psi_j$!
+This is analogous to the bosonic eigenequation \eqref{eq:tft:field_eigenvalue_equations}.
+It is the coherent states that we wish to use when taking the trace, inner product and inserting identity operators in the path integral.
 
 First, let us find the inner product between two coherent states.
 It is
@@ -460,7 +465,7 @@ It is
 						   = 1 + \sum_i \conj\psi_i \psi'_i = \exp \left( \sum_i \conj\psi_i \psi'_i \right) .
 	\fi
 	\braket{\psi | \psi'} &= \braket{\psi | \prod_i (1 - \psi'_i \creat_i) | 0} = \braket{\psi | \prod_i (1 + \creat_i \psi'_i) | 0} = \braket{\psi | \prod_i (1 + \conj\psi_i \psi'_i) | 0} \\
-						  &= \braket{0 | 0} \prod_i (1 + \conj\psi_i \psi'_i) = \prod_i \exp(\conj\psi_i \psi'_i) = \exp \left( \sum_i \conj\psi_i \psi'_i \right) .
+						  &= \underbrace{\braket{0 | 0}}_{1} \prod_i (1 + \conj\psi_i \psi'_i) = \prod_i \exp(\conj\psi_i \psi'_i) = \exp \left( \sum_i \conj\psi_i \psi'_i \right) .
 \end{split}
 \label{eq:tft:grassmann_inner_product_discrete}
 \end{equation}
@@ -556,7 +561,7 @@ while the trace \eqref{eq:tft:trace_grassmann_discrete} would turn out to be
 \end{equation}
 The most important thing to note is the negative sign in $\bra{-\psi}$ of the trace \eqref{eq:tft:trace_grassmann} -- we will see that this requires fermionic fields to be \emph{antiperiodic} in imaginary time, in contrast to the periodic bosonic fields.
 
-The partition function \eqref{eq:tft:partition_function} follows from the trace \eqref{eq:tft:trace_grassmann} with $A = e^{-\beta (\hat{H} - \mu \hat{N})}$ as
+The partition function \eqref{eq:tft:partition_function} follows from the trace \eqref{eq:tft:trace_grassmann} with $\hat{A} = e^{-\beta (\hat{H} - \mu \hat{N})}$ as
 \begin{equation}
 	Z = \int \dif \psi_0^\dagger \int \dif \psi_0 \, e^{-\int \dif^3 x \, \psi_{0}^\dagger(\vec{x}) \psi_{0}(\vec{x})} \braket{-\psi_0 | e^{-\beta(\hat{H} - \mu \hat{N})} | \psi_0} .
 \end{equation}
