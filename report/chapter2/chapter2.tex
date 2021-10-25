@@ -1,6 +1,6 @@
 \chapter{Thermal field theory}
 
-\newcommand{\transampl}{\braket{\phi_B | e^{- i \hat{H} T / \hbar} | \phi_A}}
+\newcommand{\transampl}{\Braket{\phi_B | e^{- i \hat{H} T / \hbar} | \phi_A}}
 
 In this chapter, we will develop a theory for studying quantum fields at finite temperature $T$.
 We will see that there is an elegant mathematical analogy between the path integral for the transition amplitude of a process and the partition function $Z$ of statistical mechanics, allowing us to express the latter in terms of the former.
@@ -136,7 +136,7 @@ The transition amplitude for going from the state $\ket{\phi_A}$ to a different 
 Now split the time interval $T$ into $N$ intervals $\Delta t = T / N$, and decompose the evolution operator $e^{- i \hat{H} T / \hbar}$ into equally many products of $e^{- i \hat{H} \Delta t / \hbar}$ to write
 \newcommand\pointarrow[1]{\underset{\underset{\displaystyle #1}{\displaystyle \uparrow}}{}}
 \begin{equation}
-	\transampl = \braket{\phi_B | e^{- i \hat{H} \Delta t / \hbar} \cdots e^{- i \hat{H} \Delta t / \hbar} \cdots e^{- i \hat{H} \Delta t / \hbar} | \phi_A} .
+	\transampl = \Braket{\phi_B | e^{- i \hat{H} \Delta t / \hbar} \cdots e^{- i \hat{H} \Delta t / \hbar} \cdots e^{- i \hat{H} \Delta t / \hbar} | \phi_A} .
 \label{eq:tft:time_evolution_splitting}
 \end{equation}
 %\transampl = \braket{\phi_b | \pointarrow{4} e^{- i H \Delta t} \,\, \cdots \pointarrow{3} e^{- i H \Delta t} \pointarrow{2} \cdots \,\, e^{- i H \Delta t} \pointarrow{1} | \phi_a}
@@ -150,7 +150,7 @@ Now exhale.
 With this trick, the transition amplitude can be written as the product
 \begin{equation}
 	\transampl = \prod_{n=0}^{N} \int \dif \phi_n \int \frac{\dif \pi_n}{2 \pi \hbar} 
-	             \braket{\phi_{n+1} | \pi_n} \braket{\pi_n | e^{- i \hat{H} \Delta t / \hbar} | \phi_n} ,
+	             \Braket{\phi_{n+1} | \vphantom{e^{\hat{H}}} \pi_n} \Braket{\pi_n | e^{- i \hat{H} \Delta t / \hbar} | \phi_n} ,
 \label{eq:tft:transition_amplitude_product}
 \end{equation}
 where we have defined $\ket{\phi_0} = \ket{\phi_A}$ and $\ket{\phi_{N+1}} = \ket{\phi_B}$.
@@ -160,9 +160,9 @@ Under the assumption that the Hamiltonian $\hat{H}$ is a sum of terms with all 
 We then obtain
 \begin{equation}
 \begin{split}
-	\braket{\pi_n | e^{- i \hat{H} \Delta t / \hbar} | \phi_n} &\taylor \braket{\pi_n | (1 - i \hat{H} \Delta t / \hbar) | \phi_n} \\
-	                                                   &=       \braket{\pi_n | \phi_n} (1 - i H_n \Delta t / \hbar) \\
-	                                                   &\taylor \braket{\pi_n | \phi_n} e^{- i H_n \Delta t / \hbar}, \\
+	\Braket{\pi_n | e^{- i \hat{H} \Delta t / \hbar} | \phi_n} &\taylor \Braket{\pi_n | (1 - i \hat{H} \Delta t / \hbar) | \phi_n} \\
+	                                                   &=       \Braket{\pi_n | \phi_n} (1 - i H_n \Delta t / \hbar) \\
+	                                                   &\taylor \Braket{\pi_n | \phi_n} e^{- i H_n \Delta t / \hbar}, \\
 \end{split}
 \label{eq:tft:path_integral_hamiltonian_assumption}
 \end{equation}
@@ -286,7 +286,7 @@ Note that the position-space integral $\int \pathintdif \phi$ is constrained to 
 Why have we spent so much time on this transition amplitude, when we really are only interested in the partition function \eqref{eq:tft:partition_function}?
 If we evaluate the trace \eqref{eq:tft:partition_function} in the basis of fields $\ket{\phi_0}$, we obtain
 \begin{equation}
-	Z = \int \dif \phi_0 \braket{\phi_0 | e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} | \phi_0} .
+	Z = \int \dif \phi_0 \Braket{\phi_0 | e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} | \phi_0} .
 \end{equation}
 This is precisely an integral over transition amplitudes \eqref{eq:tft:path_integral_hamiltonian}, but now with 
 \begin{itemize}
@@ -457,8 +457,8 @@ It is
 	                      &= \braket{0 | 0} + \sum_{i  } \conj\psi_i \psi'_i
 						   = 1 + \sum_i \conj\psi_i \psi'_i = \exp \left( \sum_i \conj\psi_i \psi'_i \right) .
 	\fi
-	\braket{\psi | \psi'} &= \braket{\psi | \prod_i (1 - \psi'_i \creat_i) | 0} = \braket{\psi | \prod_i (1 + \creat_i \psi'_i) | 0} = \braket{\psi | \prod_i (1 + \conj\psi_i \psi'_i) | 0} \\
-						  &= \underbrace{\braket{0 | 0}}_{1} \prod_i (1 + \conj\psi_i \psi'_i) = \prod_i \exp(\conj\psi_i \psi'_i) = \exp \left( \sum_i \conj\psi_i \psi'_i \right) .
+	\Braket{\psi | \psi'} &= \Braket{\psi | \prod_i (1 - \psi'_i \creat_i) | 0} = \Braket{\psi | \prod_i (1 + \creat_i \psi'_i) | 0} = \Braket{\psi | \prod_i (1 + \conj\psi_i \psi'_i) | 0} \\
+						  &= \underbrace{\Braket{0 | 0}}_{1} \prod_i (1 + \conj\psi_i \psi'_i) = \prod_i \exp(\conj\psi_i \psi'_i) = \exp \left( \sum_i \conj\psi_i \psi'_i \right) .
 \end{split}
 \label{eq:tft:grassmann_inner_product_discrete}
 \end{equation}
@@ -518,14 +518,14 @@ To be clear, the very last equality follows because the sum goes over all states
 With the same reasoning, we can work out that the trace of an operator $\hat{A}$ can be written
 \begin{equation}
 \begin{split}
-	 & \int \dif \conj{\psi} \int \dif \psi \, \exp \left( -\sum_i \conj{\psi}_i \psi_i \right) \braket{-\psi | \hat{A} | \psi} \\
-	=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i (1 + \conj\psi_i \psi_i) \braket{0 | \prod_j (1 + \destr_j \conj\psi_j) \hat{A} \prod_k (1 - \psi_k \creat_k) | 0} \\
-	=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i (1 + \conj\psi_i \psi_i) \braket{0 | \prod_j (1 + \destr_j \conj\psi_j) \hat{A} (1 - \psi_j \creat_j) | 0} \\
-	%=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i (1 + \conj\psi_i \psi_i) \prod_j \conj\psi_j \psi_j \braket{0 | (1 + \destr_j \psi_j) \hat{A} (1 + \conj\psi_j \creat_j) | 0} \\
-	=& \sum_{n_1=0}^1 \sum_{n_2=0}^1\cdots \sum_{n_N=0}^1 \braket{n_1, n_2, \ldots, n_N | \hat{A} | n_1, n_2, \ldots, n_N} = \trace{\hat{A}} . \\
-	%=& \int \dif \conj{\psi} \int \dif \psi \left[ (-\sum_i \conj\psi_i \psi_i) \braket{0 | \hat{A} | 0} + \braket{0 | (+\sum_j \destr_j \conj\psi_j) \hat{A} (-\sum_k \psi_k \creat_k) | 0} \right] \\
-	%=& \int \dif \conj{\psi} \int \dif \psi \left[ \sum_i \psi_i \conj\psi_i \braket{0 | \hat{A} | 0} + \sum_{j,k} \psi_k \conj\psi_j \braket{1_j | \hat{A} | 1_k} \right] \\
-	%=& \braket{0 | \hat{A} | 0} + \sum_j \braket{1_j | \hat{A} | 1_j} = \trace{\hat{A}} . \\
+	 & \int \dif \conj{\psi} \int \dif \psi \, \exp \left( -\sum_i \conj{\psi}_i \psi_i \right) \Braket{-\psi | \hat{A} | \psi} \\
+	=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i (1 + \conj\psi_i \psi_i) \Braket{0 | \prod_j (1 + \destr_j \conj\psi_j) \hat{A} \prod_k (1 - \psi_k \creat_k) | 0} \\
+	=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i (1 + \conj\psi_i \psi_i) \Braket{0 | \prod_j (1 + \destr_j \conj\psi_j) \hat{A} (1 - \psi_j \creat_j) | 0} \\
+	%=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i (1 + \conj\psi_i \psi_i) \prod_j \conj\psi_j \psi_j \Braket{0 | (1 + \destr_j \psi_j) \hat{A} (1 + \conj\psi_j \creat_j) | 0} \\
+	=& \sum_{n_1=0}^1 \sum_{n_2=0}^1\cdots \sum_{n_N=0}^1 \Braket{n_1, n_2, \ldots, n_N | \hat{A} | n_1, n_2, \ldots, n_N} = \trace{\hat{A}} . \\
+	%=& \int \dif \conj{\psi} \int \dif \psi \left[ (-\sum_i \conj\psi_i \psi_i) \Braket{0 | \hat{A} | 0} + \Braket{0 | (+\sum_j \destr_j \conj\psi_j) \hat{A} (-\sum_k \psi_k \creat_k) | 0} \right] \\
+	%=& \int \dif \conj{\psi} \int \dif \psi \left[ \sum_i \psi_i \conj\psi_i \Braket{0 | \hat{A} | 0} + \sum_{j,k} \psi_k \conj\psi_j \Braket{1_j | \hat{A} | 1_k} \right] \\
+	%=& \Braket{0 | \hat{A} | 0} + \sum_j \Braket{1_j | \hat{A} | 1_j} = \trace{\hat{A}} . \\
 \end{split}
 \label{eq:tft:trace_grassmann_discrete}
 \end{equation}
@@ -551,7 +551,7 @@ The identity operator \eqref{eq:tft:grassmann_inner_product_discrete} would then
 \end{equation}
 while the trace \eqref{eq:tft:trace_grassmann_discrete} would turn out to be
 \begin{equation}
-	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \braket{-\psi | \hat{A} | \psi} = \trace{A} .
+	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \Braket{-\psi | \hat{A} | \psi} = \trace{A} .
 \label{eq:tft:trace_grassmann}
 \end{equation}
 The most important thing to note is the negative sign in $\bra{-\psi}$ of the trace \eqref{eq:tft:trace_grassmann} -- we will see that this requires fermionic fields to be \emph{antiperiodic} in imaginary time, in contrast to the periodic bosonic fields.
@@ -559,12 +559,12 @@ The most important thing to note is the negative sign in $\bra{-\psi}$ of the tr
 Let us now build the path integral for the fermionic partition function using \cref{eq:tft:grassmann_inner_product,eq:tft:completeness_grassmann,eq:tft:trace_grassmann} as our toolbox.
 The partition function \eqref{eq:tft:partition_function} follows from the trace \eqref{eq:tft:trace_grassmann} with $\hat{A} = e^{-\beta (\hat{H} - \mu \hat{N})}$ as
 \begin{equation}
-	Z = \int \dif \psi_0^\dagger \int \dif \psi_0 \, e^{-\int \dif^3 x \, \psi_{0}^\dagger(\vec{x}) \psi_{0}(\vec{x})} \braket{-\psi_0 | e^{-\beta(\hat{H} - \mu \hat{N})} | \psi_0} .
+	Z = \int \dif \psi_0^\dagger \int \dif \psi_0 \, e^{-\int \dif^3 x \, \psi_{0}^\dagger(\vec{x}) \psi_{0}(\vec{x})} \Braket{-\psi_0 | e^{-\beta(\hat{H} - \mu \hat{N})} | \psi_0} .
 \label{eq:tft:fermion_path_integral_after_completeness}
 \end{equation}
 Breaking up the operator $e^{-\beta (\hat{H} - \mu \hat{N})}$ as in \cref{eq:tft:time_evolution_splitting} with small times $\Delta \tau = \beta \hbar / N$ and inserting one Grassmann completeness relation \eqref{eq:tft:completeness_grassmann} between every factor, the partition function becomes
 \begin{equation}
-	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\int \dif^3 x \, \psi_{n+1}^\dagger(\vec{x}) \psi_{n+1}(\vec{x})} \braket{\psi_{n+1} | e^{-(\hat{H} - \mu \hat{N}) \Delta \tau / \hbar} | \psi_n} ,
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, e^{-\int \dif^3 x \, \psi_{n+1}^\dagger(\vec{x}) \psi_{n+1}(\vec{x})} \Braket{\psi_{n+1} | e^{-(\hat{H} - \mu \hat{N}) \Delta \tau / \hbar} | \psi_n} ,
 \end{equation}
 where we define $\bra{\psi_{N+1}} = \bra{-\psi_0}$ -- \emph{note the minus sign!}
 Next, expand the Hamiltonian to first order as in \cref{eq:tft:path_integral_hamiltonian_assumption}.
@@ -808,7 +808,6 @@ By the chain rule,
 	-\frac{\beta}{2} \sum_{\vec{p}} \left[ 1 + \frac{2}{e^{\beta E(\vec{p})} - 1} \right] .
 \end{equation}
 Integration then gives
-\TODO{use big BraKet commands}
 \begin{equation}
 	\log Z = -\frac{1}{2} \sum_\vec{p} \left\{ \beta E(\vec{p}) + 2 \log \left[ e^{-\beta E(\vec{p})} - 1 \right] \right\} .
 \end{equation}
