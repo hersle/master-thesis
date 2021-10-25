@@ -820,28 +820,29 @@ We can convert this product into a sum by instead focusing on the logarithm
 	\log Z = -\frac12 \sum_n \sum_\vec{p} 
 	         \log \left\{ \beta^2 \left[ E_n^2 + E^2(\vec{p}) \right] \right\} .
 \end{equation}
-To evaluate the sum over $n$, it actually turns out to be easier to differentiate $\log Z$, sum the derivative and integrate back to $\log Z$.
-Take the derivative with respect to $E^2(\vec{p})$,
-\TODO{someething iffy about taking derivative with respect to one term in the sum ?!?!?}
+To evaluate the sum over $n$, it actually turns out to be easier to differentiate every term in the sum, sum the derivatives and then integrate back to undo the differentiation.
+More precisely, we differentiate every term with respect to $E^2(\vec{p})$ and will integrate back, but first we interchange the order of summation and differentiation.
+This procedure gives
 \begin{equation}
-	\odv{\log Z}{E^2(\vec{p})} = -\frac12 \sum_n \sum_\vec{p} \frac{1}{E_n^2 + E^2(\vec{p})} .
+\begin{split}
+	\log Z &= -\frac12 \sum_n \sum_\vec{p} \log \left\{ \beta^2 \left[ E_n^2 + E^2(\vec{p}) \right] \right\} \\
+	       &= -\frac12 \sum_n \sum_\vec{p} \int \dif E^2(\vec{p}) \pdv*{\log \left\{ \beta^2 \left[ E_n^2 + E^2(\vec{p}) \right] \right\}}{E^2(\vec{p})} \\
+	       &= -\frac12 \sum_\vec{p} \int \dif E^2(\vec{p}) \sum_n \pdv*{\log \left\{ \beta^2 \left[ E_n^2 + E^2(\vec{p}) \right] \right\}}{E^2(\vec{p})} \\
+	       &= -\frac12 \sum_\vec{p} \int \dif E^2(\vec{p}) \sum_n \frac{1}{E_n^2 + E^2(\vec{p})} . \\
+\end{split}
 \label{eq:tft:matsubara_sum_bosons}
 \end{equation}
-We can now use the Matsubara frequency sum \eqref{eq:matsum:example_result}.
-The result is
+We can now use the Matsubara frequency sum \eqref{eq:matsum:example_result} to evaluate the sum over $n$, resulting in
 \begin{equation}
-	\odv{\log Z}{E^2(\vec{p})} = -\frac{\beta}{4} \sum_\vec{p} \frac{1}{E(\vec{p})} \left[ 1 + \frac{2}{e^{\beta E(\vec{p})} - 1} \right] .
+	\log Z = -\frac{\beta}{2} \sum_\vec{p} \int \dif E^2(\vec{p}) \, \frac{1}{2 E(\vec{p})} \left[ 1 + \frac{2}{e^{\beta E(\vec{p})} - 1} \right] .
 \end{equation}
-Having evaluated the sum, let us integrate back.
-By the chain rule,
+The integral can be evaluated by using $\dif E^2(\vec{p}) = 2 E(\vec{p}) \dif E(\vec{p})$.
+We then find
 \begin{equation}
-	\odv{\log Z}{E(\vec{p})} = 
-	2 E(\vec{p}) \odv{\log Z}{E^2(\vec{p})} = 
-	-\frac{\beta}{2} \sum_{\vec{p}} \left[ 1 + \frac{2}{e^{\beta E(\vec{p})} - 1} \right] .
-\end{equation}
-Integration then gives
-\begin{equation}
-	\log Z = \sum_\vec{p} \left\{ -\frac12 \beta E(\vec{p}) - \log \left[ 1 - e^{-\beta E(\vec{p})} \right] \right\} .
+\begin{split}
+	\log Z &= -\frac{\beta}{2} \sum_\vec{p} \int \dif E  (\vec{p}) \, \left[ 1 + \frac{2}{e^{\beta E(\vec{p})} - 1} \right] \\
+	       &= -\frac{\beta}{2} \sum_\vec{p} \left\{ -E(\vec{p}) + \frac{2}{\beta} \log \left[ 1 - e^{-\beta E(\vec{p})} \right] \right\} .
+\end{split}
 \end{equation}
 Finally, take the continuum limit \eqref{eq:tft:continuum_limit} to obtain the \textbf{partition function for a real scalar field}
 \begin{equation}
@@ -1030,6 +1031,7 @@ Inserting this back into the partiton function \eqref{eq:tft:dirac_partition_fun
 \end{split}
 \end{equation}
 We have accomplished our mission of showing that the partition function is a real quantity.
+\TODO{fix differentiation by doing it the same way as for bosons}
 To evaluate the sum over $n$, it is actually easier to rather sum a \emph{derivative} of $\log Z$ and then integrate back to $\log Z$.
 Define the energy $\tilde E(\vec{p}) = E(\vec{p}) - \mu$ relative to the chemical potential and take the derivative
 \begin{equation}
