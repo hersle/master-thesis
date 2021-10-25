@@ -578,6 +578,7 @@ The most general function can therefore be written
 For example, we \emph{define} the exponential of one Grassmann number $\psi$ to mean
 \begin{equation}
 	\exp(\psi) = 1 + \psi .
+\label{eq:gnums:exponential_taylor_series}
 \end{equation}
 
 Differentiation and integration of Grassmann numbers are \emph{defined} as
@@ -830,9 +831,60 @@ After some simplification, we obtain
 
 \TODO{write integrals with proofs OR references here, to keep text to the point?}
 
-\begin{align}
-	\int_{-\infty}^{+\infty} \dif x \, e^{-x^2} = \sqrt{\pi} \label{eq:integrals:gaussian_sqrtpi} \\
-\end{align}
+\newcommand\formulawithcomment[4]{%
+\textbf{#1:}
+#2
+\textbf{#3:} #4
+}
+
+\newcommand\formulawithproof[3]{\formulawithcomment{#1}{#2}{Proof}{#3}}
+\newcommand\formulawithreference[3]{\formulawithcomment{#1}{#2}{Reference}{#3}}
+
+\formulawithproof{Scaled Gaussian integral}{
+	\begin{equation}
+		\int_{-\infty}^{+\infty} \dif x \, e^{-x^2} = \sqrt{\pi}
+	\label{eq:integrals:gaussian_sqrtpi}
+	\end{equation}
+}{
+	Convert to spherical coordinates $(r, \theta)$ and take the square of the two-dimensional integral
+	\begin{equation}
+	\begin{split}
+			\left[ \int_{-\infty}^{+\infty} \dif x \, e^{-x^2} \right]^2 &= \int_{-\infty}^{+\infty} \dif x \int_{-\infty}^{+\infty} \dif y \, e^{-(x^2 + y^2)} \\
+		                                                             &= \int_{0}^{2 \pi} \dif \theta \int_{0}^{\infty} \dif r \, r e^{-r^2} \\
+																	 &= 2 \pi \left[ -\frac12 e^{-r^2} \right]_{r=0}^{r=\infty} = \pi . \\
+	\end{split}
+	\end{equation}
+}
+
+\formulawithproof{Rescaled Gaussian integral}{
+	\begin{equation*}
+	\int_{-\infty}^{+\infty} \dif x \, e^{-ax^2} = \sqrt{\frac{\pi}{a}}
+	\label{eq:integrals:gaussian_ax2}
+	\end{equation*}
+}{
+	Change the integration variable to $y = \sqrt{a} x$ with $\dif y = \sqrt{a} \dif x$ and use integral \eqref{eq:integrals:gaussian_sqrtpi} to obtain
+	\begin{equation*}
+		\int_{-\infty}^{+\infty} \dif x \, e^{-ax^2} = 
+		\int_{-\infty}^{+\infty} \frac{\dif y}{\sqrt{a}} \, e^{-y^2} = 
+		\sqrt{\frac{\pi}{a}} .
+	\end{equation*}
+}
+
+\formulawithproof{Gaussian integral over Grassmann numbers}{
+	\begin{equation}
+		\int \dif \conj\psi \int \dif \psi \, e^{-\conj\psi a \psi} = a
+		\qquad \text{for real $a$ and Grassmann numbers $(\psi, \conj\psi)$} .
+	\label{eq:integrals:gaussian_grassmann}
+	\end{equation}
+}{
+	Using the Taylor expansion \eqref{eq:gnums:exponential_taylor_series}, definiton \eqref{eq:gnums:integration_differentiation} for integration over Grassmann numbers and the anticommutator \eqref{eq:gnums:anticommutators},
+	\begin{equation*}
+	\begin{split}
+		\int \dif \conj\psi \int \dif \psi \, e^{-\conj\psi a \psi} = \int \dif \conj\psi \int \dif \psi \, (1 - \conj\psi a \psi)
+		                                                            = a \int \dif \conj\psi \int \dif \psi \, \psi \conj\psi = a .
+	\end{split}
+	\end{equation*}
+}
 
 \chapter{Code}
 
