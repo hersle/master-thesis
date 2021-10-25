@@ -732,18 +732,22 @@ At this point it is useful to Fourier expand the field as in \eqref{eq:tft:fouri
 However, we include a prefactor and write
 \begin{equation}
 \begin{split}
-	\phi(\vec{x}, \tau) & = \hbar c \, \sqrt{\frac{\beta}{V}} \sum_{n=-\infty}^{+\infty} \sum_{\vec{k}}      \phi_n(\vec{k})  e^{+i (\vec{k} \cdot \vec{x} + \omega_n \tau)} \\
-	                    & = \hbar c \, \sqrt{\frac{\beta}{V}} \sum_{n=-\infty}^{+\infty} \sum_{\vec{k}} \conj\phi_n(\vec{k}) e^{-i (\vec{k} \cdot \vec{x} + \omega_n \tau)} ,
+	\phi(\vec{x}, \tau) & = \hbar c \, \sqrt{\frac{\beta}{V}} \sum_{n=-\infty}^{+\infty} \sum_{\vec{k}}      \phi_n(\vec{k})  e^{+i (\vec{k} \cdot \vec{x} + \omega_n \tau)} . \\
+	                    %& = \hbar c \, \sqrt{\frac{\beta}{V}} \sum_{n=-\infty}^{+\infty} \sum_{\vec{k}} \conj\phi_n(\vec{k}) e^{-i (\vec{k} \cdot \vec{x} + \omega_n \tau)} ,
 \end{split}
 \label{eq:tft:boson_fourier_series}
 \end{equation}
 The prefactor $\hbar c \sqrt{\beta/V}$ is chosen to have the same dimension as the field $\phi(\vec{x}, \tau)$, so the Fourier amplitudes $\phi_n(\vec{k})$ are dimensionless.
 Without it, the Gaussian integral that we will end up computing in \cref{eq:tft:boson_gaussian_integral} would make the partition function $Z$ dimensionful, which would formally make it meaningless to take its logarithm.
-Note that either of the two expansions we have written is as good as the other for our \emph{real} scalar field $\psi(\vec{x},\tau) = \conj\psi(\vec{x},\tau)$.
+%Note that either of the two expansions we have written is as good as the other for our \emph{real} scalar field $\phi(\vec{x},\tau) = \conj\phi(\vec{x},\tau)$.
+Note that the reality $\phi(\vec{x}, \tau) = \conj\phi(\vec{x}, \tau)$ requires Fourier amplitudes with $\conj\phi_n(\vec{k}) = \phi_{-n}(-\vec{k})$.
 
 \TODO{below: use $p = (p^0, \vec{p}) = (E/C, \vec{p})$ ?}
 
-By inserting one of each Fourier expansion, we can rewrite the Euclidean action \eqref{eq:tft:boson_euclidean_action_nice} as
+We now rewrite the Euclidean action \eqref{eq:tft:boson_euclidean_action_nice} by inserting the Fourier expansion \eqref{eq:tft:boson_fourier_series}.
+Exploiting the reality $\phi(\vec{x}, \tau) = \conj\phi(\vec{x}, \tau)$, we insert one Fourier expansion for the rightmost field and another with all quantities complex conjugated for the leftmost field.
+The action then becomes
+%By inserting one of each Fourier expansion, we can rewrite the Euclidean action \eqref{eq:tft:boson_euclidean_action_nice} as
 \TODO{ref to Fourier conventions to show that we only get factor $V$ etc. should i really have a $(2 \pi)^3$ etc? just ignore it as an overall factor in $Z$?}
 \begin{equation}
 \begin{split}
@@ -760,9 +764,20 @@ By inserting one of each Fourier expansion, we can rewrite the Euclidean action 
 	  	    \left( E_n^2 + E^2(\vec{p}) \right)
 		    \abs{\phi_{n}(\vec{p})}^2 ,
 \end{split}
+\label{eq:tft:boson_action_fourier}
 \end{equation}
 where $E_n$ are the Matsubara energies we defined in \cref{eq:tft:matsubara_energies}, and $E(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4}$ is the relativistic dispersion relation.
-As we insert this action into the path integral \eqref{eq:tft:boson_partition_function_momentum_out}, it factors into the Gaussian integrals
+The change of variables \eqref{eq:tft:boson_fourier_series} is a unitary transformation with Jacobian $1$, so the integral measure becomes
+\begin{equation}
+	\pathintdif \phi(x) =
+	\prod_i \dif \phi(x_i) =
+	%\prod_{n>0} \dif \real \phi(k_n) \dif \imag \phi(k_n) =
+	%\pathintdif \real \phi(k) \pathintdif \imag \phi(k)
+	\prod_n \prod_\vec{p} \dif \phi_n(\vec{p}) .
+\label{eq:tft:boson_integral_new_variables}
+\end{equation}
+
+Integrating over the new variables \eqref{eq:tft:boson_integral_new_variables} and inserting the action \eqref{eq:tft:boson_action_fourier} into the path integral \eqref{eq:tft:boson_partition_function_momentum_out}, it factors into the Gaussian integrals
 \begin{equation}
 \begin{split}
 	Z & =
@@ -773,8 +788,15 @@ As we insert this action into the path integral \eqref{eq:tft:boson_partition_fu
 			E_n^2 + E^2(\vec{p})
 		\right]
 		\abs{\phi_n(\vec{p})}^2
-	\right\} \\
-	  & =
+	\right\} . \\
+\end{split}
+\end{equation}
+The integrand depends only on the magnitude of $\phi_n(\vec{p}) = \abs{\phi_n(\vec{p})} e^{i \theta_n(\vec{p})}$.
+The reality of the field $\phi(\vec{x}, \tau) = \conj\phi(\vec{x}, \tau)$ implies that $\conj\phi_n(\vec{p}) = \phi_{-n}(-\vec{p})$ and consequently that $\theta_{-n}(-\vec{p}) = -\theta_n(\vec{p})$, so all phases cancel after taking the product over all $n$ and $\vec{p}$.
+Thus, we can carry out the Gaussian integrals using formula \eqref{eq:integrals:gaussian_sqrtpi} \TODO{need one with $-ax^2$} after a rescaling to obtain
+\begin{equation}
+\begin{split}
+	Z & =
 	\prod_{n} \prod_{\vec{p}} \left\{
 		\beta^2 \left[
 			E_n^2 + E^2(\vec{p})
@@ -783,8 +805,19 @@ As we insert this action into the path integral \eqref{eq:tft:boson_partition_fu
 \end{split}
 \label{eq:tft:boson_gaussian_integral}
 \end{equation}
-\TODO{split in two, make appendix with Gaussian integrals?}
-The time has come to instead start looking at the logarithm
+\iffalse
+More careful way (???):
+\begin{equation}
+\begin{split}
+	Z &= \int \prod_i \dif \phi(x_i) \exp \left( -\frac12 \sum_n \sum_\vec{p} f_n(\vec{p}) \abs{\tilde\phi_n(\vec{p})}^2 \right) \\
+	  &= \int \prod_{n>0} \prod_\vec{p} \dif \tilde\phi_n^R(\vec{p}) \dif \tilde\phi_n^I \exp \left\{ -\sum_{n>0} \sum_\vec{p} f_n(\vec{p}) [(\tilde\phi_n^R)^2 + (\tilde\phi_n^I)^2] \right\} \\
+	  &= \prod_{n>0} \prod_\vec{p} \int \dif \tilde\phi_n^R(\vec{p}) \exp \left\{ -f_n(\vec{p}) (\tilde\phi_n^R)^2 \right\} \prod_{n>0} \prod_\vec{p} \int \dif \tilde\phi_n^I \exp \left\{ -f_n(\vec{p}) (\tilde\phi_n^I)^2 \right\} \\
+	  &= \prod_{n>0} \prod_\vec{p} (f^2_n(\vec{p}))^{-1/2} \prod_{n>0} \prod_\vec{p} (f^2_n(\vec{p}))^{-1/2} \\
+	  &= \prod_n (\prod_\vec{p})^2 (E_n^2)^{-1/2} \qquad \text{???} \\
+\end{split}
+\end{equation}
+\fi
+We can convert this product into a sum by instead focusing on the logarithm
 \begin{equation}
 	\log Z = -\frac12 \sum_n \sum_\vec{p} 
 	         \log \left\{ \beta^2 \left[ E_n^2 + E^2(\vec{p}) \right] \right\} .
