@@ -26,7 +26,7 @@ expressing how energy and momentum on the rightmost side -- such as mass and lig
 
 The most important result of this chapter will be the Tolman-Oppenheimer-Volkoff equation
 \begin{equation*}
-	\odv{p}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left( 1 + \frac{p(r)}{\epsilon(r)} \right) \left( 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right) \left( 1 - \frac{2 G m(r)}{r c^2} \right)^{-1} ,
+	\odv{p}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left[ 1 + \frac{p(r)}{\epsilon(r)} \right] \left[ 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} ,
 \end{equation*}
 which we will derive from the Einstein field equations.
 With this equation, we can find the pressure profile and radius of a star once we have an equation of state that relates the pressure and energy of the material inside.
@@ -117,7 +117,7 @@ After inserting the energy-momentum tensor on the right and simplifying, we get 
 Next, let us introduce the mass of the star.
 Define the function $m(r)$ by
 \begin{equation}
-	e^{2 \beta} = \left( 1 - \frac{2 G m(r)}{r c^2} \right)^{-1} ,
+	e^{2 \beta} = \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} ,
 	\label{eq:einstein_to_tov:def_m}
 \end{equation}
 so $g\indices{_1_1}$ resembles the Schwarzschild metric element.
@@ -168,7 +168,7 @@ Using $T\indices{^0_0} = -\epsilon$ and $T\indices{^1_1} = T\indices{^2_2} = T\i
 Now $\alpha$ is easily eliminated by equating \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:dadr2}. 
 Whichever approach we follow, we end up with the \textbf{Tolman-Oppenheimer-Volkow (TOV) equation}
 \begin{equation}
-	\odv{p}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left( 1 + \frac{p(r)}{\epsilon(r)} \right) \left( 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right) \left( 1 - \frac{2 G m(r)}{r c^2} \right)^{-1} .
+	\odv{p}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left[ 1 + \frac{p(r)}{\epsilon(r)} \right] \left[ 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
 	\label{eq:tov}
 \end{equation}
 It relates the pressure gradient $\odv{p}/{r}$ and energy density $\epsilon$ at radius $r$ from the center of a spherical static star composed of a perfect fluid.
@@ -472,7 +472,7 @@ So the true volume integral of the energy density is really
 \end{equation*}
 The difference
 \begin{equation*}
-	\bar{M} c^2 - M c^2 = \integral{\epsilon(r) \left( \left( 1-\frac{2Gm}{rc^2} \right)^{-1/2} - 1 \right) 4 \pi r^2}{r}{0}{R} > 0
+	\bar{M} c^2 - M c^2 = \integral{\epsilon(r) \left[ \left( 1-\frac{2Gm(r)}{rc^2} \right)^{-1/2} - 1 \right] 4 \pi r^2}{r}{0}{R} > 0
 \end{equation*}
 is in fact the binding energy that arises due to the gravitational attraction between the individual fluid elements in the star.
 To see this, consider again the weak-field limit.
@@ -527,7 +527,7 @@ By Newton's law of gravity it is therefore pulled upon by the force
 \end{equation}
 If the star is in hydrostatic equilibrium, this force must be exactly cancelled by the force
 \begin{equation}
-	\dif \textbf{F}_2 = - \Big( p(r + \dif r) - p(r) \Big) \dif A \, \hat{\textbf{r}} = -\dif p \dif A \, \hat{\textbf{r}}
+	\dif \textbf{F}_2 = - \Big[ p(r + \dif r) - p(r) \Big] \dif A \, \hat{\textbf{r}} = -\dif p \dif A \, \hat{\textbf{r}}
 	\label{eq:weak_field_limit:force_pressure}
 \end{equation}
 that arises from the pressure difference above and below the element.
@@ -577,7 +577,7 @@ Thus, all three corrections in \cref{eq:tov} vanish, so we do indeed recover the
 In fact, there is an alternative way to see it that requires much less work.
 Replacing energy density $\epsilon$ with mass density $\rho$ using \cref{eq:tov:mass_energy_equivalence}, \cref{eq:tov} takes the form
 \begin{equation}
-	\odv{p}{r} = -\frac{G m(r) \rho(r)}{r^2} \left( 1 + \frac{p(r)}{\rho(r) c^2} \right) \left( 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right) \left( 1 - \frac{2 G m(r)}{r c^2} \right)^{-1} .
+	\odv{p}{r} = -\frac{G m(r) \rho(r)}{r^2} \left[ 1 + \frac{p(r)}{\rho(r) c^2} \right] \left[ 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
 	\label{eq:tov_units}
 \end{equation}
 The Newtonian limit corresponds to sending $c \rightarrow \infty$, as this reduces the Lorentz transformations of relativity to the Galilei transformations of Newtonian physics.

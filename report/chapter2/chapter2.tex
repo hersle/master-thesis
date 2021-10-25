@@ -7,7 +7,7 @@ We will see that there is an elegant mathematical analogy between the path integ
 
 In a quantum system in the grand canonical ensemble, the partition function is 
 \begin{equation}
-	Z = \trace \left( e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} \right) = e^{-\beta \Omega} ,
+	Z = \trace \left[ e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} \right] = e^{-\beta \Omega} ,
 \label{eq:tft:partition_function}
 \end{equation}
 where $\hat{H}$ is the Hamiltonian operator $\beta = 1 / k_B T$, $\mu$ is the chemical potential, $\hat{N}_i$ are number operators, $\Omega = -k_B T \log{Z}$ is the grand potential, $k_B$ is the Boltzmann constant and the trace can be evaluated in any basis.
@@ -47,7 +47,7 @@ The conjugate momentum field is defined as
 \end{equation}
 In the Schrödinger picture, the quantized fields have field operators $\hat{\phi}(\vec{x})$ and $\hat{\pi}(\vec{x})$, and the Hamiltonian operator is
 \begin{equation}
-	\hat{H} = \int \dif^3 x \, \ham(\hat{\pi}(\vec{x}), \hat{\phi}(\vec{x})) ,
+	\hat{H} = \int \dif^3 x \, \ham \left( \hat{\pi}(\vec{x}), \hat{\phi}(\vec{x}) \right) ,
 \end{equation}
 where $\ham = \pi \dot\phi - \lagr$ is the Hamiltonian density obtained from a Legendre transformation of the Lagrangian density.
 In analogy with position $x$ and momentum $p$ in classical mechanics, we will refer to $\hat\phi(\vec{x})$ and $\hat\pi(\vec{x})$ as operators in ``position-space'' and ``momentum-space''.
@@ -74,13 +74,13 @@ By assumption, the field and the momentum satisfy the bosonic commutation relati
 
 We take the position-space eigenstates to be orthogonal and complete in the sense
 \begin{equation}
-	\braket{\phi | \phi'} = \prod_{\vec{x}} \delta(\phi(\vec{x}) - \phi'(\vec{x}))
+	\braket{\phi | \phi'} = \prod_{\vec{x}} \delta \left( \phi(\vec{x}) - \phi'(\vec{x}) \right)
 	\qquad \text{and} \qquad
 	\int \dif \phi \ket{\phi} \bra{\phi} = \hat{1} .
 	\label{eq:tft:orthogonality_completeness_position}
 \end{equation}
 
-\newcommand{\posmom}[2]{\exp \left(  \frac{i}{\hbar} \int \dif^3 x \, #2(\vec{x}) #1(\vec{x}) \right)}
+\newcommand{\posmom}[2]{\exp \left[  \frac{i}{\hbar} \int \dif^3 x \, #2(\vec{x}) #1(\vec{x}) \right]}
 \newcommand{\mompos}[2]{\exp \left( -\frac{i}{\hbar} \int \dif^3 x \, #1(\vec{x}) #2(\vec{x}) \right)}
 If we find the inner product $\braket{\phi | \pi}$, we can use it together with the completeness relation \eqref{eq:tft:orthogonality_completeness_position} to express position-space states and momentum-space states in terms of each other through
 \begin{equation}
@@ -105,8 +105,8 @@ Due to our convention \eqref{eq:pre:delta_function} for the delta function, orth
 \begin{equation}
 \begin{split}
 	\braket{\pi_a | \pi_b} &= \int \dif \phi \braket{\pi_a | \phi} \braket{\phi | \pi_b} \\
-	                       &= \int \dif \phi \exp \left( i \int \dif^3 x \, (\pi_b(\vec{x}) - \pi_a(\vec{x})) \phi(\vec{x}) / \hbar \right) \\
-						   &= 2 \pi \hbar \, \delta(\pi_a(\vec{x}) - \pi_b(\vec{x})) .
+	                       &= \int \dif \phi \exp \left\{ \frac{i}{\hbar} \int \dif^3 x \, \left[ \pi_b(\vec{x}) - \pi_a(\vec{x}) \right] \phi(\vec{x}) \right\} \\
+						   &= 2 \pi \hbar \, \delta \left( \pi_a(\vec{x}) - \pi_b(\vec{x}) \right) .
 \end{split}
 \end{equation}
 To find the completeness relation, we postulate it up to a constant $B$.
@@ -116,7 +116,7 @@ Consider
 \begin{split}
 	1 &= \int \frac{\dif \pi(\vec{x})}{B} \ket{\pi} \bra{\pi} \\
 	  &= \int \frac{\dif \pi(\vec{x})}{B} \ket{\pi} \int \frac{\dif \pi'(\vec{x})}{B} \int \dif \phi(\vec{x}) \braket{\pi | \phi} \braket{\phi | \pi'} \bra{\pi'} \\
-	  &= \int \frac{\dif \pi(\vec{x})}{B} \ket{\pi} \int \frac{\dif \pi'(\vec{x})}{B} \underbrace{\int \dif \phi(\vec{x}) \exp \left( \frac{i}{\hbar} \int \dif^3 x \, \left( \pi'(\vec{x}) - \pi(\vec{x}) \right) \phi(\vec{x}) \right)}_{2 \pi \hbar \, \delta(\pi'(\vec{x}) - \pi(\vec{x}))} \bra{\pi'} \\
+	  &= \int \frac{\dif \pi(\vec{x})}{B} \ket{\pi} \int \frac{\dif \pi'(\vec{x})}{B} \underbrace{\int \dif \phi(\vec{x}) \exp \left\{ \frac{i}{\hbar} \int \dif^3 x \, \left[ \pi'(\vec{x}) - \pi(\vec{x}) \right] \phi(\vec{x}) \right\}}_{2 \pi \hbar \, \delta \left( \pi'(\vec{x}) - \pi(\vec{x}) \right)} \bra{\pi'} \\
 	  &= \frac{2 \pi \hbar}{B} \underbrace{\int \frac{\dif \pi(\vec{x})}{B} \ket{\pi} \bra{\pi}}_{1} .
 \end{split}
 \end{equation}
@@ -168,7 +168,7 @@ We then obtain
 \end{equation}
 where we no longer have any operators, but only the Hamiltonian eigenvalue at the $n$-th timestep,
 \begin{equation}
-	H_n = \int \dif^3 x \, \ham(\pi_n(\vec{x}), \phi_n(\vec{x})) .
+	H_n = \int \dif^3 x \, \ham \left( \pi_n(\vec{x}), \phi_n(\vec{x}) \right) .
 \label{eq:tft:hamiltonian_eigenvalues}
 \end{equation}
 Note the importance of expanding the exponential to first order in timeonly.
@@ -227,8 +227,8 @@ Substituting \cref{eq:tft:inner_product_position_momentum,eq:tft:path_integral_h
 \begin{equation}
 \begin{split}
 	\transampl &=      \left( \prod_{n=1}^N \int \dif \phi_n \int \frac{\dif \pi_n}{2 \pi \hbar} \right) \\
-	           &\times \exp \left( \frac{i \Delta t}{\hbar} \sum_{n=1}^N \int \dif^3 x \left( \pi_n(\vec{x}) \frac{\phi_{n+1}(\vec{x}) - \phi_n(\vec{x})}{\Delta t} - \ham(\pi_n(\vec{x}), \phi_n(\vec{x})) \right)
-	\right)
+	           &\times \exp \left\{ \frac{i \Delta t}{\hbar} \sum_{n=1}^N \int \dif^3 x \left[ \pi_n(\vec{x}) \frac{\phi_{n+1}(\vec{x}) - \phi_n(\vec{x})}{\Delta t} - \ham \left( \pi_n(\vec{x}), \phi_n(\vec{x}) \right) \right]
+	\right\}
 \end{split}
 \end{equation}
 Finally, we take the continuum limit by sending $N \rightarrow \infty$.
@@ -253,7 +253,7 @@ With all of these steps, the transition amplitude takes the form of the \textbf{
 \begin{equation}
 \begin{split}
 	\transampl &=      \int \pathintdif \pi \int_{\phi(\vec{x}, 0)=\phi_A(\vec{x})}^{\phi(\vec{x},T)=\phi_B(\vec{x})} \pathintdif \phi \\
-	           &\times \exp \left( \frac{i}{\hbar} \int_0^T \dif t \int \dif^3 x \left( \pi(\vec{x}, t) \dot{\phi}(\vec{x}, t) - \ham(\pi(\vec{x}, t), \phi(\vec{x}, t)) \right) \right) .
+	           &\times \exp \left\{ \frac{i}{\hbar} \int_0^T \dif t \int \dif^3 x \left[ \pi(\vec{x}, t) \dot{\phi}(\vec{x}, t) - \ham \left( \pi(\vec{x}, t), \phi(\vec{x}, t) \right) \right] \right\} .
 \end{split}
 \label{eq:tft:path_integral_hamiltonian}
 \end{equation}
@@ -300,7 +300,7 @@ We redefine the field $\phi(\vec{x}, t) \rightarrow \phi(\vec{x}, \tau)$ to be f
 Therefore, we substitute $i \int \dif t \rightarrow \int \dif \tau$ and $\dot\phi(x, t) = \pdv{\phi(\vec{x},t)}/{t} \rightarrow \pdv{\phi(\vec{x},\tau)}/{(-i \tau)} = i \dot\phi(\vec{x},\tau)$.
 Omitting the arguments of the fields from now, we obtain
 \begin{equation}
-	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \, \exp \left( \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( i \pi \dot{\phi} - \ham + \mu \numdensity) \right) \right)
+	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \, \exp \left[ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( i \pi \dot{\phi} - \ham + \mu \numdensity \right) \right]
 \label{eq:tft:bosonic_partition_function}
 \end{equation}
 where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintdif \phi$ and write $\oint_+$ to indicate that we integrate over all fields $\phi(x, \tau) = \phi(x, \tau + \beta \hbar)$ that are \emph{periodic} in $\tau$, due to the equal start and end states $\phi_A(\vec{x}) = \phi_B(\vec{x})$ in \cref{eq:tft:path_integral_hamiltonian}.
@@ -537,21 +537,21 @@ We are studying fields $\psi(\vec{x})$ and $\conj\psi(\vec{x})$ with an infinite
 Our results carry over with the substitutions $\psi_i \rightarrow \psi(\vec{x})$, as if every Grassmann number corresponds to the field at one position, and $\sum_i \rightarrow \int \dif^3 x$.
 For example, we would rather define the coherent state
 \begin{equation}
-	\ket{\psi} = \exp \left( -\int \dif^3 x\, \psi(\vec{x}) \hat\psi^\dagger(\vec{x}) \right) \ket{0} .
+	\ket{\psi} = \exp \left[ -\int \dif^3 x\, \psi(\vec{x}) \hat\psi^\dagger(\vec{x}) \right] \ket{0} .
 \end{equation}
 The inner product \eqref{eq:tft:grassmann_inner_product_discrete} between two coherent states would then become
 \begin{equation}
-	\braket{\psi | \psi'} = \exp \left( \int \dif^3 x \, \conj\psi(\vec{x}) \psi'(\vec{x}) \right)
+	\braket{\psi | \psi'} = \exp \left[ \int \dif^3 x \, \conj\psi(\vec{x}) \psi'(\vec{x}) \right]
 \label{eq:tft:grassmann_inner_product}
 \end{equation}
 The identity operator \eqref{eq:tft:grassmann_inner_product_discrete} would then become
 \begin{equation}
-	\int \dif \conj\psi \int \dif \psi \, \exp \left( -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right) \ket{\psi} \bra{\psi} = \hat{1} ,
+	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \ket{\psi} \bra{\psi} = \hat{1} ,
 \label{eq:tft:completeness_grassmann}
 \end{equation}
 while the trace \eqref{eq:tft:trace_grassmann_discrete} would turn out to be
 \begin{equation}
-	\int \dif \conj\psi \int \dif \psi \, \exp \left( -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right) \braket{-\psi | \hat{A} | \psi} = \trace{A} .
+	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \braket{-\psi | \hat{A} | \psi} = \trace{A} .
 \label{eq:tft:trace_grassmann}
 \end{equation}
 The most important thing to note is the negative sign in $\bra{-\psi}$ of the trace \eqref{eq:tft:trace_grassmann} -- we will see that this requires fermionic fields to be \emph{antiperiodic} in imaginary time, in contrast to the periodic bosonic fields.
@@ -574,13 +574,13 @@ Then we obtain
 \end{equation}
 Now use the Grassmann inner product \eqref{eq:tft:grassmann_inner_product} to write
 \begin{equation}
-	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left\{ \frac{\Delta \tau}{\hbar} \sum_n \int \dif^3 x \left( -\hbar \psi^\dagger_{n+1} \frac{\psi_{n+1} - \psi_n}{\Delta \tau} \psi_{n} - \ham + \mu \numdensity \right) \right\} .
+	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left[ \frac{\Delta \tau}{\hbar} \sum_n \int \dif^3 x \left( -\hbar \psi^\dagger_{n+1} \frac{\psi_{n+1} - \psi_n}{\Delta \tau} \psi_{n} - \ham + \mu \numdensity \right) \right] .
 \end{equation}
 % integrate by parts? %why is this valid for Grassmann numbers? Can one e.g. show that $\pdv{\phi^\dagger \phi}{\tau} = 0$?, change order/use int by parts correctly % TODO: don't need this, should rather be careful about index placement above (especially the exp(.. n+1 ..) from completeness)
 Finally, take the continuum limit and introduce the functional integrals $\pathintdif \psi = \lim_{N \rightarrow \infty} \prod_n \dif \psi_n$ and $\pathintdif [i \hbar \psi^\dagger] = \lim_{N \rightarrow \infty} \prod_n \dif \psi^\dagger$, where we absorb some physically irrelevant prefactors into the latter to preserve similarity between the conjugate momentum $\pi$ and $i \hbar \psi^\dagger$. 
 We then obtain the \textbf{fermionic partition function}
 \begin{equation}
-	Z = \oint_- \pathintdif [i \hbar \psi^\dagger] \oint_- \pathintdif \psi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\hbar \psi^\dagger \dot{\psi} - \ham ( \psi^\dagger, \psi ) + \mu \numdensity \right) \right\} ,
+	Z = \oint_- \pathintdif [i \hbar \psi^\dagger] \oint_- \pathintdif \psi \exp \left[ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\hbar \psi^\dagger \dot{\psi} - \ham \left( \psi^\dagger, \psi \right) + \mu \numdensity \right) \right] ,
 \label{eq:tft:fermion_partition_function}
 \end{equation}
 where $\oint_-$ means to integrate over \emph{antiperiodic} fields $\psi(\vec{x}, 0) = -\psi(\vec{x}, \beta \hbar)$, naturally extending the symbol $\oint_+$ we introduced for bosonic fields that were \emph{periodic}.
@@ -708,7 +708,7 @@ It is most correct, therefore, to disregard constants in $Z$ with the attitude t
 
 Thus it only remains to tackle the $\phi$-integral
 \begin{equation}
-	Z = \oint_+ \pathintdif \phi \exp \left\{ \frac{S_E}{\hbar} \right\} ,
+	Z = \oint_+ \pathintdif \phi \exp \left( \frac{S_E}{\hbar} \right) ,
 \label{eq:tft:boson_partition_function_momentum_out}
 \end{equation}
 with the Euclidean action
@@ -723,7 +723,7 @@ with the Euclidean action
 The action has no variation on the boundaries, so we can integrate by parts to convert $\pdv{\phi}/{\tau}^2$ into $-\phi \pdv[2]{\phi}/{\tau}$ and forget the boundary term.
 It then becomes
 \begin{equation}
-	S_E = \frac12 \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \phi \left[ \frac{1}{c^2} \pdv[2]{}{\tau} + \nabla^2 - \frac{m^2 c^2}{\hbar^2} \right] \phi .
+	S_E = \frac12 \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \phi \left( \frac{1}{c^2} \pdv[2]{}{\tau} + \nabla^2 - \frac{m^2 c^2}{\hbar^2} \right) \phi .
 \label{eq:tft:boson_euclidean_action_nice}
 \end{equation}
 \TODO{make a ``checkpoint'' here by noting that the partition function can always be written as a functional determinant, so always restart here instead of restarting the game every time}
@@ -750,14 +750,14 @@ By inserting one of each Fourier expansion, we can rewrite the Euclidean action 
 	S_E & = -\frac12 \frac{\hbar^2 c^2 \beta}{V}
 	        \sum_{n,n'} \sum_{\vec{k},\vec{k'}} 
 	    	  \conj\phi_{n'}(\vec{k'}) 
-	    	  \left[ \frac{\omega_n^2}{c^2} + \vec{k}^2 + \frac{m^2 c^2}{\hbar^2} \right] 
+	    	  \left( \frac{\omega_n^2}{c^2} + \vec{k}^2 + \frac{m^2 c^2}{\hbar^2} \right)
 	  	  \phi_{n}(\vec{k})
 	  	  \underbrace{\int \dif^3 x \, e^{i (\vec{k} - \vec{k'}) \cdot \vec{x}}}_{\delta(\vec{k}-\vec{k'}) V}
 	      \underbrace{\int_0^{\beta \hbar} \dif \tau \, e^{i (\omega_n - \omega_{n'}) \tau}}_{\delta_{n,n'} \beta \hbar}
 	  	  \\
 	    & = -\frac12 \hbar \beta^2
 	        \sum_n \sum_\vec{p}
-	  	    \left[ E_n^2 + E^2(\vec{p}) \right] 
+	  	    \left( E_n^2 + E^2(\vec{p}) \right)
 		    \abs{\phi_{n}(\vec{p})}^2 ,
 \end{split}
 \end{equation}
@@ -768,18 +768,18 @@ As we insert this action into the path integral \eqref{eq:tft:boson_partition_fu
 	Z & =
 	\prod_{n} \prod_{\vec{p}}
 	\int \dif \phi_n(\vec{p}) \,
-	\exp \left[
-		-\frac12 \beta^2 \left(
+	\exp \left\{
+		-\frac12 \beta^2 \left[
 			E_n^2 + E^2(\vec{p})
-		\right)
+		\right]
 		\abs{\phi_n(\vec{p})}^2
-	\right] \\
+	\right\} \\
 	  & =
-	\prod_{n} \prod_{\vec{p}} \left[ 
-		\beta^2 \left( 
+	\prod_{n} \prod_{\vec{p}} \left\{
+		\beta^2 \left[
 			E_n^2 + E^2(\vec{p})
-		\right)
-	\right]^{-1/2} .
+		\right]
+	\right\}^{-1/2} .
 \end{split}
 \label{eq:tft:boson_gaussian_integral}
 \end{equation}
@@ -787,7 +787,7 @@ As we insert this action into the path integral \eqref{eq:tft:boson_partition_fu
 The time has come to instead start looking at the logarithm
 \begin{equation}
 	\log Z = -\frac12 \sum_n \sum_\vec{p} 
-	         \log \left[ \beta^2 \left( E_n^2 + E^2(\vec{p}) \right) \right] .
+	         \log \left\{ \beta^2 \left[ E_n^2 + E^2(\vec{p}) \right] \right\} .
 \end{equation}
 To evaluate the sum over $n$, it actually turns out to be easier to differentiate $\log Z$, sum the derivative and integrate back to $\log Z$.
 Take the derivative with respect to $E^2(\vec{p})$,
@@ -798,23 +798,23 @@ Take the derivative with respect to $E^2(\vec{p})$,
 We can now use the Matsubara frequency sum \eqref{eq:matsum:example_result}.
 The result is
 \begin{equation}
-	\odv{\log Z}{E^2(\vec{p})} = -\frac{\beta}{4} \sum_\vec{p} \frac{1}{E(\vec{p})} \left( 1 + \frac{2}{e^{\beta E(\vec{p})} - 1} \right) .
+	\odv{\log Z}{E^2(\vec{p})} = -\frac{\beta}{4} \sum_\vec{p} \frac{1}{E(\vec{p})} \left[ 1 + \frac{2}{e^{\beta E(\vec{p})} - 1} \right] .
 \end{equation}
 Having evaluated the sum, let us integrate back.
 By the chain rule,
 \begin{equation}
 	\odv{\log Z}{E(\vec{p})} = 
 	2 E(\vec{p}) \odv{\log Z}{E^2(\vec{p})} = 
-	-\frac{\beta}{2} \sum_{\vec{p}} \left( 1 + \frac{2}{e^{\beta E(\vec{p})} - 1} \right) .
+	-\frac{\beta}{2} \sum_{\vec{p}} \left[ 1 + \frac{2}{e^{\beta E(\vec{p})} - 1} \right] .
 \end{equation}
 Integration then gives
-\TODO{parentheses order, whole document, $\{ [ ($ !}
+\TODO{use big BraKet commands}
 \begin{equation}
-	\log Z = -\frac{1}{2} \sum_\vec{p} \left( \beta E(\vec{p}) + 2 \log \left[ e^{-\beta E(\vec{p})} - 1 \right] \right) .
+	\log Z = -\frac{1}{2} \sum_\vec{p} \left\{ \beta E(\vec{p}) + 2 \log \left[ e^{-\beta E(\vec{p})} - 1 \right] \right\} .
 \end{equation}
 Finally, take the continuum limit \eqref{eq:tft:continuum_limit} to obtain the \textbf{partition function for a real scalar field}
 \begin{equation}
-	\log Z = -\frac{1}{2} V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left( \beta E(\vec{p}) + 2 \log \left[ e^{-\beta E(\vec{p})} - 1 \right] \right) .
+	\log Z = -\frac{1}{2} V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ \beta E(\vec{p}) + 2 \log \left[ e^{-\beta E(\vec{p})} - 1 \right\} \right) .
 \end{equation}
 
 \TODO{order of things and signs depend on whether $e^{\beta m c^2}$ is greater/smaller than $1$?, i.e. the ratio $mc^2 / k_B T$?}
@@ -871,8 +871,8 @@ In addition, the Dirac Lagrangian admits a conserved current \TODO{derive?}
 Let us now find the fermionic partition function \eqref{eq:tft:fermion_partition_function}.
 Inserting the Hamiltonian density \eqref{eq:tft:dirac_hamiltonian}, and as discussed around \cref{eq:tft:chemical_potential}, the conserved number density $\numdensity = j^0 = \bar\psi \gamma^0 \psi$, the partition function is
 \begin{equation}
-	Z = \int \pathintdif [i \hbar \psi^\dagger] \int \pathintdif 
-	    \exp \left\{ \frac{1}{\hbar} \underbrace{\int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \bar\psi \left[ -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \vec{\gamma} \cdot \vec{\nabla} - mc^2 + \mu \gamma^0 \right] \psi}_{S} \right\} .
+	Z = \int \pathintdif [i \hbar \psi^\dagger] \int \pathintdif \psi
+	    \exp \left[ \frac{1}{\hbar} \underbrace{\int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \bar\psi \left( -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \vec{\gamma} \cdot \vec{\nabla} - mc^2 + \mu \gamma^0 \right) \psi}_{S} \right] .
 \label{eq:tft:dirac_partition_function_first}
 \end{equation}
 
@@ -889,9 +889,9 @@ The factor differs from the one in the bosonic Fourier series \eqref{eq:tft:boso
 With the Fourier series \eqref{eq:tft:dirac_fourier_series}, the action in the partition function \eqref{eq:tft:dirac_partition_function_first} becomes
 \begin{equation}
 \begin{split}
-	S & = \frac{1}{V} \sum_{n,n'} \sum_{\vec{k},\vec{k'}} \psi^\dagger_{n'}(\vec{k'}) \gamma^0 \left[ -\hbar \gamma^0 i \omega_n + i \hbar c \vec{\gamma} \cdot i \vec{k} - m c^2 + \mu \gamma^0 \right] \psi_n(\vec{k}) \\
+	S & = \frac{1}{V} \sum_{n,n'} \sum_{\vec{k},\vec{k'}} \psi^\dagger_{n'}(\vec{k'}) \gamma^0 \left( -\hbar \gamma^0 i \omega_n + i \hbar c \vec{\gamma} \cdot i \vec{k} - m c^2 + \mu \gamma^0 \right) \psi_n(\vec{k}) \\
 	  & \times \underbrace{\int_0^{\beta \hbar} \dif \tau \, e^{i(\omega_n-\omega_{n'})\tau}}_{\delta_{n,n'} \beta \hbar} \underbrace{\int \dif^3 x \, e^{i(\vec{k}-\vec{k'})\cdot\vec{x}}}_{\delta(\vec{k} - \vec{k'}) V} \\
-	  & = \beta       \sum_{n}   \sum_{\vec{p}}         i \hbar \psi^\dagger_n(\vec{p})          \left[ -E_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i m c^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \\
+	  & = \beta       \sum_{n}   \sum_{\vec{p}}         i \hbar \psi^\dagger_n(\vec{p})          \left( -E_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i m c^2 \gamma^0 - i \mu \right) \psi_n(\vec{p}) \\
 \end{split}
 \end{equation}
 The partition function \eqref{eq:tft:dirac_partition_function_first} now becomes 
@@ -924,7 +924,7 @@ This gives the block matrix
 \end{equation}
 Calculating the determinant becomes twice as easy by applying the formula
 \begin{equation}
-	\tdet \left( \begin{bmatrix} A & B \\ C & D \\ \end{bmatrix} \right) = \tdet{(AD - BC)}
+	\tdet \begin{bmatrix} A & B \\ C & D \\ \end{bmatrix} = \tdet{(AD - BC)}
 \end{equation}
 for a block matrix where $CD = DC$, which is applicable to our case where $D$ is diagonal.
 Without $i \beta$, which we take care of using $\tdet{(AB)} = \tdet{A} \tdet{B}$ and $\tdet{i \beta} = (i \beta)^4 = \beta^4$, we get
@@ -957,7 +957,7 @@ The logarithm of the partition function is now the sum
 \begin{equation}
 \begin{split}
 	\log Z & = \sum_n \sum_\vec{p} \tdet D_n(\vec{p}) \\
-	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ (E_n + i \mu)^2 + E^2(\vec{p}) \right]^2 \\
+	       & = \sum_n \sum_\vec{p} \log \left\{ \beta^4 \left[ (E_n + i \mu)^2 + E^2(\vec{p}) \right]^2 \right\} \\
 	       %& = \sum_n \sum_\vec{p} \left\{ \log \beta^2 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] +
 	                                       %\log \beta^2 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] \right\} . \\
 \end{split}
@@ -971,19 +971,19 @@ We can then split up the logarithm of the square into two logarithms and exchang
 More precisely,
 \begin{equation}
 \begin{split}
-	\log Z & = \sum_n \sum_\vec{p} \log \beta^4 \left[ (E_n + i \mu)^2 + E^2(\vec{p}) \right]^2 \\
-	       & = \sum_n \sum_\vec{p} \log \beta^2 \left[ (E_n + i \mu)^2 + E^2(\vec{p}) \right] 
-	         + \sum_n \sum_\vec{p} \log \beta^2 \left[ (E_n + i \mu)^2 + E^2(\vec{p}) \right] \\
-	       & = \sum_n \sum_\vec{p} \log \beta^2 \left[ (E_n + i \mu)^2 + E^2(\vec{p}) \right]
-	         + \sum_n \sum_\vec{p} \log \beta^2 \left[ (-E_n + i \mu)^2 + E^2(\vec{p}) \right] \\
-	       & = \sum_n \sum_\vec{p} \log \beta^4 \left[ (E_n + i \mu)^2 + E^2(\vec{p}) \right] 
-	                                            \left[ (-E_n + i \mu)^2 + E^2(\vec{p}) \right] . \\
+	\log Z & = \sum_n \sum_\vec{p} \log \left\{ \beta^4 \left[ (E_n + i \mu)^2 + E^2(\vec{p})  \right]^2 \right\}   \\
+	       & = \sum_n \sum_\vec{p} \log \left\{ \beta^2 \left[ (E_n + i \mu)^2 + E^2(\vec{p})  \right]   \right\}
+	         + \sum_n \sum_\vec{p} \log \left\{ \beta^2 \left[ (E_n + i \mu)^2 + E^2(\vec{p})  \right]   \right\}   \\
+	       & = \sum_n \sum_\vec{p} \log \left\{ \beta^2 \left[ (E_n + i \mu)^2 + E^2(\vec{p})  \right]   \right\}
+	         + \sum_n \sum_\vec{p} \log \left\{ \beta^2 \left[ (-E_n + i \mu)^2 + E^2(\vec{p}) \right]   \right\}   \\
+	       & = \sum_n \sum_\vec{p} \log \left\{ \beta^4 \left[ (E_n + i \mu)^2 + E^2(\vec{p})  \right] 
+	                                                    \left[ (-E_n + i \mu)^2 + E^2(\vec{p}) \right]   \right\} . \\
 \end{split}
 \label{eq:tft:dirac_partition_function_splitting}
 \end{equation}
 You can verify by multiplying out all parentheses that
 \begin{equation}
-	\left[ \pm E_n + i \mu)^2 + E^2(\vec{p} \right] = \left[ E_n \pm i (E(\vec{p}) + \mu) \right] \left[ E_n \mp i(E(\vec{p}) - \mu) \right] .
+	\left[ \pm E_n + i \mu)^2 + E^2(\vec{p}) \right] = \left[ E_n \pm i (E(\vec{p}) + \mu) \right] \left[ E_n \mp i(E(\vec{p}) - \mu) \right] .
 \end{equation}
 We can use this to rewrite the product in the partition function \eqref{eq:tft:dirac_partition_function_splitting} as
 \begin{equation}
@@ -996,8 +996,8 @@ We can use this to rewrite the product in the partition function \eqref{eq:tft:d
 Inserting this back into the partiton function \eqref{eq:tft:dirac_partition_function_splitting}, we find that it can be written
 \begin{equation}
 \begin{split}
-	\log Z & = \sum_n \sum_\vec{p} \log \beta^4 \left[ E_n^2 + (E(\vec{p}) - \mu)^2 \right] \left[ E_n^2 + (E(\vec{p}) + \mu)^2 \right] \\
-	       & = \sum_n \sum_\vec{p} \log \beta^2 \left[ E_n^2 + (E(\vec{p}) - \mu)^2 \right] + \sum_n \sum_\vec{p} \log \beta^2 \left[ E_n^2 + (E(\vec{p}) + \mu)^2 \right] \\
+	\log Z & = \sum_n \sum_\vec{p} \log \left\{ \beta^4 \left[ E_n^2 + (E(\vec{p}) - \mu)^2 \right] \left[ E_n^2 + (E(\vec{p}) + \mu)^2 \right] \right\} \\
+	       & = \sum_n \sum_\vec{p} \log \left\{ \beta^2 \left[ E_n^2 + (E(\vec{p}) - \mu)^2 \right] \right\} + \sum_n \sum_\vec{p} \log \left\{ \beta^2 \left[ E_n^2 + (E(\vec{p}) + \mu)^2 \right] \right\} \\
 \end{split}
 \end{equation}
 We have accomplished our mission of showing that the partition function is a real quantity.
@@ -1010,24 +1010,28 @@ Define the energy $\tilde E(\vec{p}) = E(\vec{p}) - \mu$ relative to the chemica
 \end{equation}
 Then we can perform the sums over $n$ with the Matsubara frequency sum \eqref{eq:matsum:example_result} to write
 \begin{equation}
-	\odv{\log Z}{\tilde E^2(\vec{p})} = \sum_\vec{p} \frac{\beta}{\tilde E} \left( 1 - \frac{1}{e^{\beta \tilde E(\vec{p})} + 1}
-	                                                                                 - \frac{1}{e^{\beta \tilde E(\vec{p})} + 1} \right) .
+	\odv{\log Z}{\tilde E^2(\vec{p})} = \sum_\vec{p} \frac{\beta}{\tilde E} \left[ 1 - \frac{1}{e^{\beta \tilde E(\vec{p})} + 1}
+	                                                                                 - \frac{1}{e^{\beta \tilde E(\vec{p})} + 1} \right] .
 \end{equation}
 By the chain rule,
 \begin{equation}
 	\odv{\log Z}{\tilde E} = 2 \tilde E(\vec{p}) \odv{\log Z}{\tilde E^2(\vec{p})}
-	                       = 2 \beta \sum_\vec{p} \left( 1 - \frac{1}{e^{\beta \tilde E(\vec{p})} + 1}
-	                                                       - \frac{1}{e^{\beta \tilde E(\vec{p})} + 1} \right) .
+	                       = 2 \beta \sum_\vec{p} \left[ 1 - \frac{1}{e^{\beta \tilde E(\vec{p})} + 1}
+	                                                       - \frac{1}{e^{\beta \tilde E(\vec{p})} + 1} \right] .
 \end{equation}
 Integrating back, we find
 \begin{equation}
-	\log Z = 2 \sum_\vec{p} \left( \beta \tilde E(\vec{p}) + \log\left[ e^{-\beta \tilde E(\vec{p})}+1 \right] + \log\left[ e^{-\beta \tilde E(\vec{p})} + 1\right] \right) .
+	\log Z = 2 \sum_\vec{p} \left\{ \beta \tilde E(\vec{p}) + \log\left[ e^{-\beta \tilde E(\vec{p})}+1 \right] + \log\left[ e^{-\beta \tilde E(\vec{p})} + 1\right] \right\} .
 \end{equation}
 Writing out our continuum definition \eqref{eq:tft:continuum_limit}, we finally obtain the \textbf{partition function for Dirac fermions}
 \begin{equation}
-	\log Z = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left( \beta (E(\vec{p}) - \mu) + \log\left[ e^{-\beta (E(\vec{p}) - \mu)}+1 \right] + \log\left[ e^{-\beta (E(\vec{p}) + \mu)} + 1\right] \right) .
+	\log Z = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ \beta [E(\vec{p}) - \mu] + \log\left[ e^{-\beta (E(\vec{p}) - \mu)}+1 \right] + \log\left[ e^{-\beta (E(\vec{p}) + \mu)} + 1\right] \right\} .
 \label{eq:tft:dirac_partition_function}
 \end{equation}
+
+\TODO{sum over $\tilde E$ or $E$ in first term?}
+
+\TODO{need $\tilde E_+$ and $\tilde E_-$}
 
 \TODO{$\int E(p) e$}
 
