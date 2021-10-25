@@ -822,6 +822,7 @@ We can convert this product into a sum by instead focusing on the logarithm
 \end{equation}
 To evaluate the sum over $n$, it actually turns out to be easier to differentiate $\log Z$, sum the derivative and integrate back to $\log Z$.
 Take the derivative with respect to $E^2(\vec{p})$,
+\TODO{someething iffy about taking derivative with respect to one term in the sum ?!?!?}
 \begin{equation}
 	\odv{\log Z}{E^2(\vec{p})} = -\frac12 \sum_n \sum_\vec{p} \frac{1}{E_n^2 + E^2(\vec{p})} .
 \label{eq:tft:matsubara_sum_bosons}
@@ -840,14 +841,12 @@ By the chain rule,
 \end{equation}
 Integration then gives
 \begin{equation}
-	\log Z = -\frac{1}{2} \sum_\vec{p} \left\{ \beta E(\vec{p}) + 2 \log \left[ e^{-\beta E(\vec{p})} - 1 \right] \right\} .
+	\log Z = \sum_\vec{p} \left\{ -\frac12 \beta E(\vec{p}) - \log \left[ 1 - e^{-\beta E(\vec{p})} \right] \right\} .
 \end{equation}
 Finally, take the continuum limit \eqref{eq:tft:continuum_limit} to obtain the \textbf{partition function for a real scalar field}
 \begin{equation}
-	\log Z = -\frac{1}{2} V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ \beta E(\vec{p}) + 2 \log \left[ e^{-\beta E(\vec{p})} - 1 \right\} \right) .
+	\log Z = V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ -\frac12 \beta E(\vec{p}) - \log \left[ 1 - e^{-\beta E(\vec{p})} \right] \right\} .
 \end{equation}
-
-\TODO{order of things and signs depend on whether $e^{\beta m c^2}$ is greater/smaller than $1$?, i.e. the ratio $mc^2 / k_B T$?}
 
 \TODO{use functional determinant instead?}
 
@@ -1058,6 +1057,8 @@ Writing out our continuum definition \eqref{eq:tft:continuum_limit}, we finally 
 	\log Z = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ \beta [E(\vec{p}) - \mu] + \log\left[ e^{-\beta (E(\vec{p}) - \mu)}+1 \right] + \log\left[ e^{-\beta (E(\vec{p}) + \mu)} + 1\right] \right\} .
 \label{eq:tft:dirac_partition_function}
 \end{equation}
+
+\TODO{control integrals and signs with Kapusta}
 
 \TODO{sum over $\tilde E$ or $E$ in first term?}
 
