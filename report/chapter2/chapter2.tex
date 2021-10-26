@@ -895,7 +895,12 @@ so the Hamiltonian density is
 	\ham = \pi \dot\psi - \lagr = \bar\psi ( -i \hbar c \, \vec{\gamma} \cdot \vec{\nabla} + m c^2 ) \psi .
 \label{eq:tft:dirac_hamiltonian}
 \end{equation}
-In addition, the Dirac Lagrangian admits a conserved current \TODO{derive?}
+In addition, the Dirac Lagrangian is invariant under the symmetry transformation $\psi_\alpha \rightarrow \psi_\alpha e^{i \theta} \taylor \psi_\alpha - i \theta \psi_\alpha = \psi_\alpha + \delta\psi_\alpha$.
+By Noether's theorem \cite[equation 5.7]{ref:kachelriess}, there is a corresponding conserved current
+\begin{equation}
+	j^\mu \propto \fdv{\lagr}{\partial_\mu \psi_\alpha} \delta \psi_\alpha = \bar\psi_\beta i \hbar c (\gamma^\mu)_{\beta \alpha} (-i \theta \psi_\alpha) = \hbar c \, \bar\psi \gamma^\mu \psi .
+\end{equation}
+Ignoring the constant factors, we take the conserved current to be
 \begin{equation}
 	j^\mu = \bar\psi \gamma^\mu \psi .
 \label{eq:tft:dirac_conserved_current}
