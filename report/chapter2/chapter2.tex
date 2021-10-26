@@ -996,7 +996,7 @@ The $i$ in front of $\mu$ is awkward and can certainly not appear in the physica
 Let us see if we can make it disappear.
 The logarithm involves a sum of the type $\sum_n f(E_n)$ over all integers $n$.
 Because the Matsubara energies satisfy $E_n = -E_{-n}$ by the definitions \eqref{eq:tft:matsubara_frequencies} and \eqref{eq:tft:matsubara_energies}, we have
-$\sum_n f(E_n) = \sum_n f(E_{-n}) = \sum_n f(-E_n)$.
+$\sum_n s(E_n) = \sum_n s(E_{-n}) = \sum_n s(-E_n)$ for any function $s(E_n)$ of the energies.
 We can then split up the logarithm of the square into two logarithms and exchange $E_n \rightarrow -E_n$ in one sum without changing its value.
 More precisely,
 \begin{equation}
@@ -1013,7 +1013,7 @@ More precisely,
 \end{equation}
 You can verify by multiplying out all parentheses that
 \begin{equation}
-	\left[ \pm E_n + i \mu)^2 + E^2(\vec{p}) \right] = \left[ E_n \pm i (E(\vec{p}) + \mu) \right] \left[ E_n \mp i(E(\vec{p}) - \mu) \right] .
+	\left[ (\pm E_n + i \mu)^2 + E^2(\vec{p}) \right] = \left[ E_n \pm i (E(\vec{p}) + \mu) \right] \left[ E_n \mp i(E(\vec{p}) - \mu) \right] .
 \end{equation}
 We can use this to rewrite the product in the partition function \eqref{eq:tft:dirac_partition_function_splitting} as
 \begin{equation}
@@ -1031,40 +1031,33 @@ Inserting this back into the partiton function \eqref{eq:tft:dirac_partition_fun
 \end{split}
 \end{equation}
 We have accomplished our mission of showing that the partition function is a real quantity.
-\TODO{fix differentiation by doing it the same way as for bosons}
-To evaluate the sum over $n$, it is actually easier to rather sum a \emph{derivative} of $\log Z$ and then integrate back to $\log Z$.
-Define the energy $\tilde E(\vec{p}) = E(\vec{p}) - \mu$ relative to the chemical potential and take the derivative
+Moreover, the two sums over $n$ are in the same form as the one bosonic sum \eqref{eq:tft:matsubara_sum_bosons}, but this time over fermionic Matsubara energies.
+Defining the energies $\tilde E_\pm(\vec{p}) = E(\vec{p}) \pm \mu$ relative to the chemical potential, we can use the same method as we did back there to rewrite it as the two integrals
 \begin{equation}
-	\odv{\log Z}{\tilde E^2(\vec{p})} = \sum_n \sum_\vec{p} \left[ \frac{1}{E_n^2 + \tilde E^2(\vec{p})} +
-	                                                               \frac{1}{E_n^2 + \tilde E^2(\vec{p})} \right] .
+	\log Z = \sum_\vec{p} \left[ \int \dif \tilde E_+^2(\vec{p}) \sum_n \frac{1}{E_n^2 + \tilde E_+^2(\vec{p})} +
+	                             \int \dif \tilde E_-^2(\vec{p}) \sum_n \frac{1}{E_n^2 + \tilde E_-^2(\vec{p})} \right] .
 \label{eq:tft:matsubara_sum_fermions}
 \end{equation}
-Then we can perform the sums over $n$ with the Matsubara frequency sum \eqref{eq:matsum:example_result} to write
+The sums over $n$ can again be performed using the Matsubara frequency sum \eqref{eq:matsum:example_result}.
+Then the integrals become
 \begin{equation}
-	\odv{\log Z}{\tilde E^2(\vec{p})} = \sum_\vec{p} \frac{\beta}{\tilde E} \left[ 1 - \frac{1}{e^{\beta \tilde E(\vec{p})} + 1}
-	                                                                                 - \frac{1}{e^{\beta \tilde E(\vec{p})} + 1} \right] .
-\end{equation}
-By the chain rule,
-\begin{equation}
-	\odv{\log Z}{\tilde E} = 2 \tilde E(\vec{p}) \odv{\log Z}{\tilde E^2(\vec{p})}
-	                       = 2 \beta \sum_\vec{p} \left[ 1 - \frac{1}{e^{\beta \tilde E(\vec{p})} + 1}
-	                                                       - \frac{1}{e^{\beta \tilde E(\vec{p})} + 1} \right] .
-\end{equation}
-Integrating back, we find
-\begin{equation}
-	\log Z = 2 \sum_\vec{p} \left\{ \beta \tilde E(\vec{p}) + \log\left[ e^{-\beta \tilde E(\vec{p})}+1 \right] + \log\left[ e^{-\beta \tilde E(\vec{p})} + 1\right] \right\} .
+\begin{split}
+	\log Z &= \beta \sum_\vec{p} \left\{ \int \frac{\dif \tilde E_+^2(\vec{p})}{2 \tilde E_+(\vec{p})} \left[ 1 - \frac{2}{e^{\beta \tilde E_+(\vec{p})} + 1} \right] +
+	                                     \int \frac{\dif \tilde E_-^2(\vec{p})}{2 \tilde E_-(\vec{p})} \left[ 1 - \frac{2}{e^{\beta \tilde E_-(\vec{p})} + 1} \right] \right\} \\
+	       &= \beta \sum_\vec{p} \left\{ \int \dif \tilde E_+(\vec{p}) \left[ 1 - \frac{2}{e^{\beta \tilde E_+(\vec{p})} + 1} \right] +
+	                                     \int \dif \tilde E_-(\vec{p}) \left[ 1 - \frac{2}{e^{\beta \tilde E_-(\vec{p})} + 1} \right] \right\} \\
+	       &= \beta \sum_\vec{p} \left\{ E_+(\vec{p}) + \frac{2}{\beta} \log \left[ 1 + e^{-\beta E_+(\vec{p})} \right] +
+	                                     E_-(\vec{p}) + \frac{2}{\beta} \log \left[ 1 + e^{-\beta E_-(\vec{p})} \right] \right\} \\
+	       &=       \sum_\vec{p} \left\{ 2 \beta E(\vec{p}) + 2 \log \left[ 1 + e^{-\beta E_+(\vec{p})} \right] + 2 \log \left[ 1 + e^{-\beta E_-(\vec{p})} \right] \right\} . \\
+\end{split}
 \end{equation}
 Writing out our continuum definition \eqref{eq:tft:continuum_limit}, we finally obtain the \textbf{partition function for Dirac fermions}
 \begin{equation}
-	\log Z = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ \beta [E(\vec{p}) - \mu] + \log\left[ e^{-\beta (E(\vec{p}) - \mu)}+1 \right] + \log\left[ e^{-\beta (E(\vec{p}) + \mu)} + 1\right] \right\} .
+	\log Z = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ \beta E(\vec{p}) + \log \left[ e^{-\beta (E(\vec{p}) - \mu)}+1 \right] + \log \left[ e^{-\beta (E(\vec{p}) + \mu)} + 1\right] \right\} .
 \label{eq:tft:dirac_partition_function}
 \end{equation}
 
-\TODO{control integrals and signs with Kapusta}
-
-\TODO{sum over $\tilde E$ or $E$ in first term?}
-
-\TODO{need $\tilde E_+$ and $\tilde E_-$}
+\TODO{make some remarks? compare with boson case?}
 
 \TODO{$\int E(p) e$}
 
@@ -1073,5 +1066,3 @@ Writing out our continuum definition \eqref{eq:tft:continuum_limit}, we finally 
 \TODO{$H = \hbar \omega (a^\dagger a + \frac12)$}
 
 \TODO{$\braket{0 | H | 0} = \frac12 \hbar \omega$}
-
-\TODO{har ikke snakket muntlig om disse tilbakemeldingene, see written feedback for more context}
