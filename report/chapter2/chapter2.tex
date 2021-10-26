@@ -662,6 +662,7 @@ In anticipation of this, we define the corresponding momentum and Matsubara ener
 As a first example, we apply the path integral formalism to find the partition function for a free real scalar field representing spin-zero bosons.
 Its Lagrangian density is
 % note: unit of phi is sqrt(energy / length)
+\TODO{wrong metric sign convention, not the one i state i use in preface!}
 \begin{equation}
 	\lagr = \frac{1}{2} (\partial_\mu \phi) (\partial^\mu \phi) - \frac12 \frac{m^2 c^2}{\hbar^2} \, \phi^2
 	      = \frac{1}{2 c^2} \dot{\phi}^2 - \frac12 (\nabla \phi)^2  - \frac12 \frac{m^2 c^2}{\hbar^2} \, \phi^2 .
@@ -697,6 +698,7 @@ This can be interpreted as a change from Minkowski space to Euclidean space, and
 The path integral \eqref{eq:tft:bosonic_partition_function} is then
 \begin{equation}
 	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left[ - \frac12 c^2 \tilde\pi^2 + \lagr_E \right] \right\} .
+\label{eq:tft:boson_integrate_out_momentum}
 \end{equation}
 Since $\tilde\pi$ can be regarded as a constant shift of the field $\pi$, we can now use the Gaussian integral \eqref{eq:integrals:gaussian_ax2} to \emph{integrate out} the momentum. 
 We do not bother keeping track of the resulting constant or any other constants in front of the partition function.
@@ -855,11 +857,11 @@ Finally, take the continuum limit \eqref{eq:tft:continuum_limit} to obtain the \
 
 \section{Partition function for free Dirac fermions}
 
-\TODO{make the derivation ``symmetric'' with the boson one}
-
 Let us now find the partition function \eqref{eq:tft:fermion_partition_function} for \textbf{free Dirac fermions} with half spin and Lagrangian density
+\TODO{wrong sign convention!}
 \begin{equation}
-	\lagr = \bar\psi (i \hbar c \slashed\partial - m c^2) \psi .
+	\lagr = \bar\psi \left( i \hbar c \, \slashed\partial - m c^2 \right) \psi
+	      = \bar\psi \left( i \hbar \gamma^0 \pdv{}{\tau} + i \hbar c \, \vec{\gamma} \cdot \nabla - m c^2 \right) \psi .
 \label{eq:tft:dirac_lagrangian}
 \end{equation}
 Here, the four-component Dirac spinor $\psi = [ \psi_1, \psi_2, \psi_3, \psi_4] $ is the basic field and $\psi^\dagger$ is its conjugate, while $\bar\psi = \psi^\dagger \gamma^0$ and $\slashed\partial = \gamma^\mu \partial_\mu$, where $\gamma^\mu$ are the $4 \times 4$ \textbf{Gamma matrices} defined by the Clifford algebra
@@ -907,34 +909,58 @@ Ignoring the constant factors, we take the conserved current to be
 \end{equation}
 
 Let us now find the fermionic partition function \eqref{eq:tft:fermion_partition_function}.
-Inserting the Hamiltonian density \eqref{eq:tft:dirac_hamiltonian}, and as discussed around \cref{eq:tft:chemical_potential}, the conserved number density $\numdensity = j^0 = \bar\psi \gamma^0 \psi$, the partition function is
+We need the combination
 \begin{equation}
-	Z = \int \pathintdif [i \hbar \psi^\dagger] \int \pathintdif \psi
-	    \exp \left[ \frac{1}{\hbar} \underbrace{\int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \bar\psi \left( -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \vec{\gamma} \cdot \vec{\nabla} - mc^2 + \mu \gamma^0 \right) \psi}_{S} \right] .
+	-\hbar \psi^\dagger \dot\psi - \ham =
+	\bar\psi \left( -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \, \vec{\gamma} \cdot \vec{\nabla} - mc^2 \right) \psi =
+	\lagr_E ,
+\label{eq:tft:dirac_lagrangian_euclidean}
+\end{equation}
+which we define as the Euclidean Lagrangian density $\lagr_E$ for reasons similar to the bosonic case that we will soon discuss.
+As explained around \cref{eq:tft:chemical_potential}, we must also include the conserved current \eqref{eq:tft:dirac_conserved_current}.
+Inserting this into the partition function \eqref{eq:tft:fermion_partition_function}, it becomes
+\begin{equation}
+	Z = \oint_- \pathintdif [i \hbar \psi^\dagger] \oint_- \pathintdif \psi
+	    \exp \left( \frac{S_E}{\hbar} \right)
 \label{eq:tft:dirac_partition_function_first}
 \end{equation}
+with the Euclidean action
+\begin{equation}
+\begin{split}
+	S_E &= \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \left( \lagr_E + \mu j^0 \right) \\
+	    &= \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \bar\psi \left( -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \vec{\gamma} \cdot \vec{\nabla} - mc^2 + \mu \gamma^0 \right) \psi .
+\end{split}
+\label{eq:tft:dirac_action_euclidean}
+\end{equation}
+Comparing the combination \eqref{eq:tft:dirac_lagrangian_euclidean} to the original Lagrangian \eqref{eq:tft:dirac_lagrangian}, we see that it is exactly the original Lagrangian, only with $\tau \rightarrow i \tau$, and we therefore call it the Euclidean Lagrangian density $\lagr_E(\tau) = \lagr(i \tau)$.
+We encountered a similar situation in the bosonic case in \cref{eq:tft:boson_field_combination}, but with an additional contribution from a shifted momentum that we integrated out from the path integral \eqref{eq:tft:boson_integrate_out_momentum}.
+This time, however, the correspondence to the Euclidean Lagrangian occurs immediately without need of integrating out any fields.
+Notice in particular the similarity of the fermionic path integral \eqref{eq:tft:dirac_partition_function_first} to the bosonic path integral \eqref{eq:tft:boson_partition_function_momentum_out}.
 
+As in the bosonic case, we now Fourier expand the field.
 The fermionic antiperiodicity \eqref{eq:tft:periodicity} enables us to expand the Dirac field in the Fourier series
 \begin{equation}
-	\psi(\vec{x}, \tau) = \frac{1}{\sqrt{V}} \sum_n \sum_\vec{k} e^{i (\vec{k} \cdot \vec{x} + \omega_n \tau)} \psi_{n}(\vec{k})
+\begin{split}
+	\psi(\vec{x}, \tau)         &= \frac{1}{\sqrt{V}} \sum_n \sum_\vec{k} e^{i (\vec{k} \cdot \vec{x} + \omega_n \tau)} \psi_{n}(\vec{k}) \\
+	\psi^\dagger(\vec{x}, \tau) &= \frac{1}{\sqrt{V}} \sum_n \sum_\vec{k} e^{-i (\vec{k} \cdot \vec{x} + \omega_n \tau)} \psi_{n}^\dagger(\vec{k}) .
 \label{eq:tft:dirac_fourier_series}
+\end{split}
 \end{equation}
 with fermionic Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
 As with the bosonic field, we have made the Fourier amplitudes $\psi_n(\vec{k})$ dimensionless by pulling out a factor $1/\sqrt{V}$.
 The factor differs from the one in the bosonic Fourier series \eqref{eq:tft:boson_fourier_series} due to the different dimension of the fermionic field $\psi(\vec{x}, \tau)$ and the bosonic field $\phi(\vec{x}, \tau)$.
 Note that we are expanding each component of the four-component Dirac spinor $\psi(\vec{x}, \tau)$, so the Fourier amplitudes $\psi_n(\vec{k})$ are also vectors with four components.
-
-With the Fourier series \eqref{eq:tft:dirac_fourier_series}, the action in the partition function \eqref{eq:tft:dirac_partition_function_first} becomes
+With the Fourier series, the Euclidean action \eqref{eq:tft:dirac_action_euclidean} can be rewritten
 \begin{equation}
 \begin{split}
-	S & = \frac{1}{V} \sum_{n,n'} \sum_{\vec{k},\vec{k'}} \psi^\dagger_{n'}(\vec{k'}) \gamma^0 \left( -\hbar \gamma^0 i \omega_n + i \hbar c \vec{\gamma} \cdot i \vec{k} - m c^2 + \mu \gamma^0 \right) \psi_n(\vec{k}) \\
+	S & = \frac{1}{V} \sum_{n,n'} \sum_{\vec{k},\vec{k'}} \psi^\dagger_{n'}(\vec{k'}) \gamma^0 \left( -\hbar \gamma^0 i \omega_n + i \hbar c \, \vec{\gamma} \cdot i \vec{k} - m c^2 + \mu \gamma^0 \right) \psi_n(\vec{k}) \\
 	  & \times \underbrace{\int_0^{\beta \hbar} \dif \tau \, e^{i(\omega_n-\omega_{n'})\tau}}_{\delta_{n,n'} \beta \hbar} \underbrace{\int \dif^3 x \, e^{i(\vec{k}-\vec{k'})\cdot\vec{x}}}_{\delta(\vec{k} - \vec{k'}) V} \\
-	  & = \beta       \sum_{n}   \sum_{\vec{p}}         i \hbar \psi^\dagger_n(\vec{p})          \left( -E_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i m c^2 \gamma^0 - i \mu \right) \psi_n(\vec{p}) \\
+	  & = \beta       \sum_{n}   \sum_{\vec{p}}         i \hbar \psi^\dagger_n(\vec{p})          \left( -E_n + i c \, \gamma^0 \vec{\gamma} \cdot \vec{p} + i m c^2 \gamma^0 - i \mu \right) \psi_n(\vec{p}) . \\
 \end{split}
 \end{equation}
-We now change variables from $\psi(\vec{x}, \tau)$ and $\conj\psi(\vec{x}, \tau)$ to $\psi_n(\vec{k})$ and $\conj\psi_n(\vec{k})$ as in the bosonic case \eqref{eq:tft:boson_integral_new_variables}.
+We now change variables from $\psi(\vec{x}, \tau)$ and $\psi^\dagger(\vec{x}, \tau)$ to $\psi_n(\vec{k})$ and $\psi^\dagger_n(\vec{k})$ as in the bosonic case \eqref{eq:tft:boson_integral_new_variables}.
 To be consistent with treating the field and its conjugate as independent variables, we continue to treat the Fourier amplitudes and their conjugates independently.
-The partition function \eqref{eq:tft:dirac_partition_function_first} then becomes 
+The partition function \eqref{eq:tft:dirac_partition_function_first} now becomes 
 \TODO{what factors to have in $\dif (i) (\hbar) \psi$}
 \TODO{$\dif^4 \, \psi_n(\vec{p})$ ?}
 \TODO{$\dif$ or $\pathintdif$ ??}
@@ -943,18 +969,19 @@ The partition function \eqref{eq:tft:dirac_partition_function_first} then become
 	Z %& = \prod_n \prod_\vec{p} \int \pathintdif [i \hbar \psi_n(\vec{p})^\dagger] \int \pathintdif \psi_n(\vec{p}) \\
 	  %& \times \exp \left\{ \frac{\beta}{\hbar} i \hbar \psi_n(\vec{q})^\dagger \left[ -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \right\} \\
 	  = \prod_n \prod_\vec{p} \int \dif \psi^\dagger_n(\vec{p}) \int \dif \psi_n(\vec{p}) 
-	  \exp \left\{ \psi^\dagger_n(\vec{p}) \left[ \beta( -i E_n - c \gamma^0 \vec{\gamma} \cdot \vec{p} - mc^2 \gamma^0 + \mu ) \right] \psi_n(\vec{p}) \right\} . \\
+	  \exp \left\{ \psi^\dagger_n(\vec{p}) \left[ \beta( -i E_n - c \gamma^0 \vec{\gamma} \cdot \vec{p} - mc^2 \gamma^0 + \mu ) \right] \psi_n(\vec{p}) \right\} , \\
 	  %& = \prod_n \prod_\vec{p} \tdet D_n(\vec{p})
 \label{eq:tft:fermion_gaussian_integral}
 \end{equation}
-Do not forget that $\psi^\dagger_n(\vec{p})$ and $\psi_n(\vec{p})$ are four-vectors, sandwiching a matrix to create a scalar action in the exponent!
+analogous to the bosonic Gaussian integral \eqref{eq:tft:boson_gaussian_integral}.
+Do not forget that $\psi^\dagger_n(\vec{p})$ and $\psi_n(\vec{p})$ are four-vectors, sandwiching the matrix to create a scalar action in the exponent!
 Using the Grassmann exponential integral \eqref{eq:integrals:gaussian_grassmann_multiple}, we obtain
 \begin{equation}
 	Z = \prod_n \prod_\vec{p} \tdet{D_n(\vec{p})}
 	\qquad \text{with} \qquad
 	D_n(\vec{p}) = [i \beta( -E_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu )].
 \end{equation}
-The next obvious thing to do is to try to calculate the determinant of the $4 \times 4$ matrices $D_n(\vec{p})$.
+Let us calculate the determinant of the $4 \times 4$ matrices $D_n(\vec{p})$ explicitly.
 First, let us use the Dirac basis representation \eqref{eq:tft:gamma_dirac_basis} of the Gamma matrices to write the $4 \times 4$ matrix as a block matrix of $2 \times 2$ matrices.
 This gives the block matrix
 \begin{equation}
@@ -965,10 +992,11 @@ This gives the block matrix
 \end{equation}
 Calculating the determinant becomes twice as easy by applying the formula
 \begin{equation}
-	\tdet \begin{bmatrix} A & B \\ C & D \\ \end{bmatrix} = \tdet{(AD - BC)}
+	\tdet \begin{bmatrix} A & B \\ C & D \\ \end{bmatrix} = \tdet{(AD - BC)} ,
 \end{equation}
-for a block matrix where $CD = DC$, which is applicable to our case where $D$ is diagonal.
-Without $i \beta$, which we take care of using $\tdet{(AB)} = \tdet{A} \tdet{B}$ and $\tdet{i \beta} = (i \beta)^4 = \beta^4$, we get
+which is familiar for a $2 \times 2$, but in fact also valid for a block matrix where $CD = DC$, which is applicable to our case where $D$ is diagonal.
+\TODO{reference?}
+Without $i \beta$, which we take care of using $\tdet{(AB)} = \tdet{A} \tdet{B}$ and $\tdet{i \beta} = (i \beta)^4 = \beta^4$, we get \TODO{without is weird wording}
 $AD = (E_n + i \mu)^2 + (mc^2)^2$ and $BC = - (\vec{\sigma} \cdot \vec{p})^2 c^2$.
 Using the property $(\vec{\sigma} \cdot \vec{p})^2 = \vec{p}^2$, which is straightforward to verify from the Pauli matrices \eqref{eq:tft:pauli_matrices}, and again the relativistic dispersion relation $E^2(\vec{p}) = \vec{p}^2 c^2 + (mc^2)^2$, we get the simple diagonal $2 \times 2$ matrix
 $AD - BC = (E_n + i \mu)^2 + E^2(\vec{p})$.
@@ -998,14 +1026,16 @@ The logarithm of the partition function is now the sum
 \begin{equation}
 \begin{split}
 	\log Z & = \sum_n \sum_\vec{p} \tdet D_n(\vec{p}) \\
-	       & = \sum_n \sum_\vec{p} \log \left\{ \beta^4 \left[ (E_n + i \mu)^2 + E^2(\vec{p}) \right]^2 \right\} \\
+	       & = \sum_n \sum_\vec{p} \log \left\{ \beta^4 \left[ (E_n + i \mu)^2 + E^2(\vec{p}) \right]^2 \right\} , \\
 	       %& = \sum_n \sum_\vec{p} \left\{ \log \beta^2 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] +
 	                                       %\log \beta^2 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] \right\} . \\
 \end{split}
 \end{equation}
+not too different from the bosonic logarithm \eqref{eq:tft:matsubara_sum_bosons}, but the Grassmann Gaussian integral has produced the prefactor $1$ instead of $-1/2$.
+
 The $i$ in front of $\mu$ is awkward and can certainly not appear in the physical quantities that are derived from $\log Z$.
 Let us see if we can make it disappear.
-The logarithm involves a sum of the type $\sum_n f(E_n)$ over all integers $n$.
+The logarithm involves a sum of the type $\sum_n s(E_n)$ of some function $s(E_n)$ over all Matsubara energies $E_n$.
 Because the Matsubara energies satisfy $E_n = -E_{-n}$ by the definitions \eqref{eq:tft:matsubara_frequencies} and \eqref{eq:tft:matsubara_energies}, we have
 $\sum_n s(E_n) = \sum_n s(E_{-n}) = \sum_n s(-E_n)$ for any function $s(E_n)$ of the energies.
 We can then split up the logarithm of the square into two logarithms and exchange $E_n \rightarrow -E_n$ in one sum without changing its value.
