@@ -700,7 +700,7 @@ The path integral \eqref{eq:tft:bosonic_partition_function} is then
 	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left[ - \frac12 c^2 \tilde\pi^2 + \lagr_E \right] \right\} .
 \label{eq:tft:boson_integrate_out_momentum}
 \end{equation}
-Since $\tilde\pi$ can be regarded as a constant shift of the field $\pi$, we can now use the Gaussian integral \eqref{eq:integrals:gaussian_ax2} to \emph{integrate out} the momentum. 
+Since $\tilde\pi$ can be regarded as a constant shift of the field $\pi$, we can now use the Gaussian integral \eqref{eq:integrals:gaussian_axx} to \emph{integrate out} the momentum. 
 We do not bother keeping track of the resulting constant or any other constants in front of the partition function.
 Physical quantities like the energy \eqref{eq:tft:average_energy} only involve derivatives of $\log Z$ and would be unaffected by such constants.
 The pressure \eqref{eq:tft:average_pressure}, however, contains $\log Z$ without derivatives and would really be shifted by an infinite constant, due to the infinite number of integrals in the functional integral \eqref{eq:tft:functional_integral}.
@@ -794,7 +794,7 @@ Integrating over the new variables \eqref{eq:tft:boson_integral_new_variables} a
 \end{equation}
 The integrand depends only on the magnitude of $\phi_n(\vec{p}) = \abs{\phi_n(\vec{p})} e^{i \theta_n(\vec{p})}$.
 The reality of the field $\phi(\vec{x}, \tau) = \conj\phi(\vec{x}, \tau)$ implies that $\conj\phi_n(\vec{p}) = \phi_{-n}(-\vec{p})$ and consequently that $\theta_{-n}(-\vec{p}) = -\theta_n(\vec{p})$, so all phases cancel after taking the product over all $n$ and $\vec{p}$.
-Thus, we can carry out the Gaussian integrals using formula \eqref{eq:integrals:gaussian_ax2} \TODO{fix this reference (and others to it?)!} after a rescaling to obtain
+Thus, we can carry out the Gaussian integrals using formula \eqref{eq:integrals:gaussian_axx} after a rescaling to obtain
 \begin{equation}
 \begin{split}
 	Z & =
