@@ -994,8 +994,7 @@ Calculating the determinant becomes twice as easy by applying the formula
 \begin{equation}
 	\tdet \begin{bmatrix} A & B \\ C & D \\ \end{bmatrix} = \tdet{(AD - BC)} ,
 \end{equation}
-which is familiar for a $2 \times 2$, but in fact also valid for a block matrix where $CD = DC$, which is applicable to our case where $D$ is diagonal.
-\TODO{reference?}
+which is familiar for a $2 \times 2$, but in fact also valid for a block matrix where $CD = DC$, which is applicable to our case where $D$ is diagonal \cite[theorem 3]{ref:determinant_block_matrix}.
 Without $i \beta$, which we take care of using $\tdet{(AB)} = \tdet{A} \tdet{B}$ and $\tdet{i \beta} = (i \beta)^4 = \beta^4$, we get \TODO{without is weird wording}
 $AD = (E_n + i \mu)^2 + (mc^2)^2$ and $BC = - (\vec{\sigma} \cdot \vec{p})^2 c^2$.
 Using the property $(\vec{\sigma} \cdot \vec{p})^2 = \vec{p}^2$, which is straightforward to verify from the Pauli matrices \eqref{eq:tft:pauli_matrices}, and again the relativistic dispersion relation $E^2(\vec{p}) = \vec{p}^2 c^2 + (mc^2)^2$, we get the simple diagonal $2 \times 2$ matrix
