@@ -990,14 +990,16 @@ This gives the block matrix
 	                           i c \, \vec{\sigma} \cdot \vec{p} & -E_n - i \mu - i m c^2 \\ 
 	                       \end{bmatrix} .
 \end{equation}
-Calculating the determinant becomes twice as easy by applying the formula
+Calculating the determinant becomes easier by applying the formula
+\cite[theorem 3]{ref:determinant_block_matrix}
 \begin{equation}
 	\tdet \begin{bmatrix} A & B \\ C & D \\ \end{bmatrix} = \tdet{(AD - BC)} ,
 \end{equation}
-which is familiar for a $2 \times 2$, but in fact also valid for a block matrix where $CD = DC$, which is applicable to our case where $D$ is diagonal \cite[theorem 3]{ref:determinant_block_matrix}.
-Without $i \beta$, which we take care of using $\tdet{(AB)} = \tdet{A} \tdet{B}$ and $\tdet{i \beta} = (i \beta)^4 = \beta^4$, we get \TODO{without is weird wording}
+which is familiar for a $2 \times 2$ matrix, but in fact also valid for a block matrix where $CD = DC$, which is applicable to our case where $D$ is diagonal.
+Ignoring the factor $i \beta$ for now and taking care of it later using $\tdet AB  = \tdet{A} \tdet{B}$ and $\tdet{i \beta} = (i \beta)^4 = \beta^4$, we get
 $AD = (E_n + i \mu)^2 + (mc^2)^2$ and $BC = - (\vec{\sigma} \cdot \vec{p})^2 c^2$.
-Using the property $(\vec{\sigma} \cdot \vec{p})^2 = \vec{p}^2$, which is straightforward to verify from the Pauli matrices \eqref{eq:tft:pauli_matrices}, and again the relativistic dispersion relation $E^2(\vec{p}) = \vec{p}^2 c^2 + (mc^2)^2$, we get the simple diagonal $2 \times 2$ matrix
+From the Pauli matrices \eqref{eq:tft:pauli_matrices}, it is straightforward to verify the property $(\vec{\sigma} \cdot \vec{p})^2 = \vec{p}^2$.
+Introducing the relativistic dispersion relation $E^2(\vec{p}) = \vec{p}^2 c^2 + (mc^2)^2$ again, we then get the simple diagonal $2 \times 2$ matrix
 $AD - BC = (E_n + i \mu)^2 + E^2(\vec{p})$.
 The determinant then becomes
 \begin{equation}
