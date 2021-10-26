@@ -862,7 +862,8 @@ Let us now find the partition function \eqref{eq:tft:fermion_partition_function}
 	\lagr = \bar\psi (i \hbar c \slashed\partial - m c^2) \psi .
 \label{eq:tft:dirac_lagrangian}
 \end{equation}
-Here, $\psi$ is the basic field and $\psi^\dagger$ its conjugate, while $\bar\psi = \psi^\dagger \gamma^0$ and $\slashed\partial = \gamma^\mu \partial_\mu$, where $\gamma^\mu$ are the $4 \times 4$ \textbf{Gamma matrices} defined by the Clifford algebra
+Here, the four-component Dirac spinor $\psi = [ \psi_1, \psi_2, \psi_3, \psi_4] $ is the basic field and $\psi^\dagger$ is its conjugate, while $\bar\psi = \psi^\dagger \gamma^0$ and $\slashed\partial = \gamma^\mu \partial_\mu$, where $\gamma^\mu$ are the $4 \times 4$ \textbf{Gamma matrices} defined by the Clifford algebra
+\TODO{should have dagger with vectors and conjugate with numbers}
 \begin{equation}
 	\acomm{\gamma^\mu}{\gamma^\nu} = 2 \eta^{\mu \nu} .
 \end{equation}
@@ -914,8 +915,9 @@ The fermionic antiperiodicity \eqref{eq:tft:periodicity} enables us to expand th
 \label{eq:tft:dirac_fourier_series}
 \end{equation}
 with fermionic Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
-As with the bosonic field, we have made the Fourier amplitudes $\psi(\vec{k})$ dimensionless by pulling out a factor $1/\sqrt{V}$.
+As with the bosonic field, we have made the Fourier amplitudes $\psi_n(\vec{k})$ dimensionless by pulling out a factor $1/\sqrt{V}$.
 The factor differs from the one in the bosonic Fourier series \eqref{eq:tft:boson_fourier_series} due to the different dimension of the fermionic field $\psi(\vec{x}, \tau)$ and the bosonic field $\phi(\vec{x}, \tau)$.
+Note that we are expanding each component of the four-component Dirac spinor $\psi(\vec{x}, \tau)$, so the Fourier amplitudes $\psi_n(\vec{k})$ are also vectors with four components.
 
 With the Fourier series \eqref{eq:tft:dirac_fourier_series}, the action in the partition function \eqref{eq:tft:dirac_partition_function_first} becomes
 \begin{equation}
@@ -925,8 +927,9 @@ With the Fourier series \eqref{eq:tft:dirac_fourier_series}, the action in the p
 	  & = \beta       \sum_{n}   \sum_{\vec{p}}         i \hbar \psi^\dagger_n(\vec{p})          \left( -E_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i m c^2 \gamma^0 - i \mu \right) \psi_n(\vec{p}) \\
 \end{split}
 \end{equation}
-The partition function \eqref{eq:tft:dirac_partition_function_first} now becomes 
-\TODO{change of variables from $\psi$ to $\psi_n(\vec{p})$}
+We now change variables from $\psi(\vec{x}, \tau)$ and $\conj\psi(\vec{x}, \tau)$ to $\psi_n(\vec{k})$ and $\conj\psi_n(\vec{k})$ as in the bosonic case \eqref{eq:tft:boson_integral_new_variables}.
+To be consistent with treating the field and its conjugate as independent variables, we continue to treat the Fourier amplitudes and their conjugates independently.
+The partition function \eqref{eq:tft:dirac_partition_function_first} then becomes 
 \TODO{what factors to have in $\dif (i) (\hbar) \psi$}
 \TODO{$\dif^4 \, \psi_n(\vec{p})$ ?}
 \TODO{$\dif$ or $\pathintdif$ ??}
@@ -935,12 +938,12 @@ The partition function \eqref{eq:tft:dirac_partition_function_first} now becomes
 	Z %& = \prod_n \prod_\vec{p} \int \pathintdif [i \hbar \psi_n(\vec{p})^\dagger] \int \pathintdif \psi_n(\vec{p}) \\
 	  %& \times \exp \left\{ \frac{\beta}{\hbar} i \hbar \psi_n(\vec{q})^\dagger \left[ -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \right\} \\
 	  = \prod_n \prod_\vec{p} \int \dif \psi^\dagger_n(\vec{p}) \int \dif \psi_n(\vec{p}) 
-	  \exp \left\{ \psi^\dagger_n(\vec{p}) \left[ \beta( -i E_n - c \gamma^0 \vec{\gamma} \cdot \vec{p} - mc^2 \gamma^0 + \mu ) \right] \psi_n(\vec{p}) \right\} \\
+	  \exp \left\{ \psi^\dagger_n(\vec{p}) \left[ \beta( -i E_n - c \gamma^0 \vec{\gamma} \cdot \vec{p} - mc^2 \gamma^0 + \mu ) \right] \psi_n(\vec{p}) \right\} . \\
 	  %& = \prod_n \prod_\vec{p} \tdet D_n(\vec{p})
 \label{eq:tft:fermion_gaussian_integral}
 \end{equation}
-
-Using the Grassmann exponential integral \eqref{eq:integrals:gaussian_grassmann}, we obtain
+Do not forget that $\psi^\dagger_n(\vec{p})$ and $\psi_n(\vec{p})$ are four-vectors, sandwiching a matrix to create a scalar action in the exponent!
+Using the Grassmann exponential integral \eqref{eq:integrals:gaussian_grassmann_multiple}, we obtain
 \begin{equation}
 	Z = \prod_n \prod_\vec{p} \tdet{D_n(\vec{p})}
 	\qquad \text{with} \qquad
@@ -1066,9 +1069,10 @@ Having evaluated $\log Z$ for both a real scalar field and Dirac fermions, it is
 \item The path integrals \eqref{eq:tft:bosonic_partition_function} and \eqref{eq:tft:fermion_partition_function} that we started with looked very similar on the outside, yet were very different on the inside due to the algebra of commuting complex numbers being replaced by anticommuting Grassmann numbers in the fermionic case.
 \item The periodicity of the bosonic field and the antiperiodicity of the fermionic field allowed us to expand both as Fourier series, but with differing Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
 \item Only the Dirac field had a conserved charge that let us introduce a chemical potential $\mu$.
-\item In the bosonic case, we could integrate out the conjugate momentum $\pi$, leaving the Gaussian integrals \eqref{eq:tft:boson_gaussian_integral} over \emph{one} variable that we tackled using $\int \dif x \, e^{-ax^2} \propto a^{-1/2}$.
-      In the fermionic case, we could not integrate out the conjugate momentum $\pi = i \hbar \conj\psi$.
-      This resulted in the Gaussian integrals \eqref{eq:tft:fermion_gaussian_integral} over \emph{two} Grassmann numbers that we handled with $\int \dif \conj\psi \int \dif \psi \, e^{-\conj\psi a \psi} = a$.
+\item In the bosonic case, we could integrate out the momentum $\pi$, leaving the Gaussian integrals \eqref{eq:tft:boson_gaussian_integral} over \emph{one} variable that we tackled using $\int \dif x \, e^{-ax^2} \propto a^{-1/2}$.
+      In the fermionic case, we could not integrate out the momentum $\pi = i \hbar \conj\psi$.
+      This resulted in the Gaussian integrals \eqref{eq:tft:fermion_gaussian_integral} over \emph{pairs} of Grassmann numbers that we handled with $\int \dif \psi^\dagger \int \dif \psi \, e^{-\psi^\dagger A \psi} = \tdet A$.
+	  The integrals effectively differ by the power $-1/2$.
 \item We managed to bring $\log Z$ into the similar sums \eqref{eq:tft:boson_log_sum} and \eqref{eq:tft:fermion_log_sum} over the Matsubara energies $E_n$ in both cases.
       In \cref{chap:matsum} described a general framework for computing both sums, with the Bose-Einstein and Fermi-Dirac distributions $1 / [e^{\beta E(\vec{p})} \mp 1]$ arising naturally in the bosonic and fermionic case, respectively.
 	  \TODO{weight this more when introduced in the text, it is important!}

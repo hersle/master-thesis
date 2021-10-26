@@ -869,11 +869,11 @@ After some simplification, we obtain
 	\end{equation*}
 }
 
-\formulawithproof{Gaussian integral over Grassmann numbers}{
+\formulawithproof{Gaussian integral over two Grassmann numbers}{
 	\begin{equation}
 		\int \dif \conj\psi \int \dif \psi \, e^{-\conj\psi a \psi} = a
 		\qquad \text{for real $a$ and Grassmann numbers $(\psi, \conj\psi)$} .
-	\label{eq:integrals:gaussian_grassmann}
+	\label{eq:integrals:gaussian_grassmann_one}
 	\end{equation}
 }{
 	Using the Taylor expansion \eqref{eq:gnums:exponential_taylor_series}, definiton \eqref{eq:gnums:integration_differentiation} for integration over Grassmann numbers and the anticommutator \eqref{eq:gnums:anticommutators},
@@ -881,6 +881,29 @@ After some simplification, we obtain
 	\begin{split}
 		\int \dif \conj\psi \int \dif \psi \, e^{-\conj\psi a \psi} = \int \dif \conj\psi \int \dif \psi \, (1 - \conj\psi a \psi)
 		                                                            = a \int \dif \conj\psi \int \dif \psi \, \psi \conj\psi = a .
+	\end{split}
+	\end{equation*}
+}
+
+\formulawithproof{Gaussian integral over multiple pairs of Grassmann numbers}{
+	\begin{equation}
+		\int \dif \psi^\dagger \int \dif \psi \, e^{-\psi^\dagger A \psi} = \tdet A
+		\qquad \text{for Hermitean $A$ and Grassmann numbers $(\psi, \psi^\dagger)$} .
+	\label{eq:integrals:gaussian_grassmann_multiple}
+	\end{equation}
+}{
+	The Hermitean matrix $A$ can be diagonalized by a unitary transformation $U$ as $A = U^\dagger D U$, where $D$ is a diagonal matrix with the eigenvalues of $A$ on its diagonal.
+	Thus, 
+	\begin{equation*}
+		\psi^\dagger A \psi = \psi^\dagger U^\dagger D U \psi = (U \psi)^\dagger D (U \psi) = \tilde\psi^\dagger D \tilde\psi, \quad \text{where } \tilde\psi = U \psi.
+	\end{equation*}
+	The unitary transformation has $\abs{\tdet U} = 1$, so the integration measure $\dif \psi = \dif \tilde\psi$ is unchanged upon changing variables.
+	A Hermitean matrix has real eigenvalues, so we can use integral \eqref{eq:integrals:gaussian_grassmann_one} to show that
+	\begin{equation*}
+	\begin{split}
+		\int \dif \psi^\dagger \int \dif \psi \, e^{-\psi^\dagger A \psi} &= \int \dif \tilde\psi^\dagger \int \dif \tilde\psi \, e^{-\tilde\psi^\dagger D \tilde\psi} \\
+		                                                                  &= \prod_i \int \dif \tilde\psi^*_i \int \dif \tilde\psi_i \, e^{-\tilde\psi^*_i \lambda_i \tilde\psi_i} \\ 
+																		  &= \prod_i \lambda_i = \tdet A . \\
 	\end{split}
 	\end{equation*}
 }
