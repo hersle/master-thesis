@@ -788,10 +788,11 @@ Integrating over the new variables \eqref{eq:tft:boson_integral_new_variables} a
 		\abs{\phi_n(\vec{p})}^2
 	\right\} . \\
 \end{split}
+\label{eq:tft:boson_gaussian_integral}
 \end{equation}
 The integrand depends only on the magnitude of $\phi_n(\vec{p}) = \abs{\phi_n(\vec{p})} e^{i \theta_n(\vec{p})}$.
 The reality of the field $\phi(\vec{x}, \tau) = \conj\phi(\vec{x}, \tau)$ implies that $\conj\phi_n(\vec{p}) = \phi_{-n}(-\vec{p})$ and consequently that $\theta_{-n}(-\vec{p}) = -\theta_n(\vec{p})$, so all phases cancel after taking the product over all $n$ and $\vec{p}$.
-Thus, we can carry out the Gaussian integrals using formula \eqref{eq:integrals:gaussian_ax2} after a rescaling to obtain
+Thus, we can carry out the Gaussian integrals using formula \eqref{eq:integrals:gaussian_ax2} \TODO{fix this reference (and others to it?)!} after a rescaling to obtain
 \begin{equation}
 \begin{split}
 	Z & =
@@ -801,7 +802,6 @@ Thus, we can carry out the Gaussian integrals using formula \eqref{eq:integrals:
 		\right]
 	\right\}^{-1/2} .
 \end{split}
-\label{eq:tft:boson_gaussian_integral}
 \end{equation}
 \iffalse
 More careful way (???):
@@ -819,6 +819,7 @@ We can convert this product into a sum by instead focusing on the logarithm
 \begin{equation}
 	\log Z = -\frac12 \sum_n \sum_\vec{p} 
 	         \log \left\{ \beta^2 \left[ E_n^2 + E^2(\vec{p}) \right] \right\} .
+\label{eq:tft:boson_log_sum}
 \end{equation}
 To evaluate the sum over $n$, it actually turns out to be easier to differentiate every term in the sum, sum the derivatives and then integrate back to undo the differentiation.
 More precisely, we differentiate every term with respect to $E^2(\vec{p})$ and will integrate back, but first we interchange the order of summation and differentiation.
@@ -847,6 +848,7 @@ We then find
 Finally, take the continuum limit \eqref{eq:tft:continuum_limit} to obtain the \textbf{partition function for a real scalar field}
 \begin{equation}
 	\log Z = V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ -\frac12 \beta E(\vec{p}) - \log \left[ 1 - e^{-\beta E(\vec{p})} \right] \right\} .
+\label{eq:tft:real_scalar_field_partition_function}
 \end{equation}
 
 \TODO{use functional determinant instead?}
@@ -935,6 +937,7 @@ The partition function \eqref{eq:tft:dirac_partition_function_first} now becomes
 	  = \prod_n \prod_\vec{p} \int \dif \psi^\dagger_n(\vec{p}) \int \dif \psi_n(\vec{p}) 
 	  \exp \left\{ \psi^\dagger_n(\vec{p}) \left[ \beta( -i E_n - c \gamma^0 \vec{\gamma} \cdot \vec{p} - mc^2 \gamma^0 + \mu ) \right] \psi_n(\vec{p}) \right\} \\
 	  %& = \prod_n \prod_\vec{p} \tdet D_n(\vec{p})
+\label{eq:tft:fermion_gaussian_integral}
 \end{equation}
 
 Using the Grassmann exponential integral \eqref{eq:integrals:gaussian_grassmann}, we obtain
@@ -1029,6 +1032,7 @@ Inserting this back into the partiton function \eqref{eq:tft:dirac_partition_fun
 	\log Z & = \sum_n \sum_\vec{p} \log \left\{ \beta^4 \left[ E_n^2 + (E(\vec{p}) - \mu)^2 \right] \left[ E_n^2 + (E(\vec{p}) + \mu)^2 \right] \right\} \\
 	       & = \sum_n \sum_\vec{p} \log \left\{ \beta^2 \left[ E_n^2 + (E(\vec{p}) - \mu)^2 \right] \right\} + \sum_n \sum_\vec{p} \log \left\{ \beta^2 \left[ E_n^2 + (E(\vec{p}) + \mu)^2 \right] \right\} \\
 \end{split}
+\label{eq:tft:fermion_log_sum}
 \end{equation}
 We have accomplished our mission of showing that the partition function is a real quantity.
 Moreover, the two sums over $n$ are in the same form as the one bosonic sum \eqref{eq:tft:matsubara_sum_bosons}, but this time over fermionic Matsubara energies.
@@ -1057,7 +1061,22 @@ Writing out our continuum definition \eqref{eq:tft:continuum_limit}, we finally 
 \label{eq:tft:dirac_partition_function}
 \end{equation}
 
-\TODO{make some remarks? compare with boson case?}
+Having evaluated $\log Z$ for both a real scalar field and Dirac fermions, it is insightful to conclude this chapter by comparing the similarities and differences of the two cases.
+\begin{itemize}
+\item The path integrals \eqref{eq:tft:bosonic_partition_function} and \eqref{eq:tft:fermion_partition_function} that we started with looked very similar on the outside, yet were very different on the inside due to the algebra of commuting complex numbers being replaced by anticommuting Grassmann numbers in the fermionic case.
+\item The periodicity of the bosonic field and the antiperiodicity of the fermionic field allowed us to expand both as Fourier series, but with differing Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
+\item Only the Dirac field had a conserved charge that let us introduce a chemical potential $\mu$.
+\item In the bosonic case, we could integrate out the conjugate momentum $\pi$, leaving the Gaussian integrals \eqref{eq:tft:boson_gaussian_integral} over \emph{one} variable that we tackled using $\int \dif x \, e^{-ax^2} \propto a^{-1/2}$.
+      In the fermionic case, we could not integrate out the conjugate momentum $\pi = i \hbar \conj\psi$.
+      This resulted in the Gaussian integrals \eqref{eq:tft:fermion_gaussian_integral} over \emph{two} Grassmann numbers that we handled with $\int \dif \conj\psi \int \dif \psi \, e^{-\conj\psi a \psi} = a$.
+\item We managed to bring $\log Z$ into the similar sums \eqref{eq:tft:boson_log_sum} and \eqref{eq:tft:fermion_log_sum} over the Matsubara energies $E_n$ in both cases.
+      In \cref{chap:matsum} described a general framework for computing both sums, with the Bose-Einstein and Fermi-Dirac distributions $1 / [e^{\beta E(\vec{p})} \mp 1]$ arising naturally in the bosonic and fermionic case, respectively.
+	  \TODO{weight this more when introduced in the text, it is important!}
+\item Apart from the chemical potential, the results \eqref{eq:tft:real_scalar_field_partition_function} and \eqref{eq:tft:dirac_partition_function} for $\log Z$ have very similar structure.
+      Essentially, they differ by the factor $-1/2$ due to the different powers of the Gaussian integrals and by the different signs in the logarithms due to the Bose-Einstein and Fermi-Dirac distributions.
+\end{itemize}
+
+\TODO{a word about divergence and renormalization? do this in parallell with next chapter?}
 
 \TODO{$\int E(p) e$}
 
