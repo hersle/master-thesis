@@ -75,7 +75,7 @@ We take the position-space eigenstates to be orthogonal and complete in the sens
 \begin{equation}
 	\braket{\phi | \phi'} = \prod_{\vec{x}} \delta \left( \phi(\vec{x}) - \phi'(\vec{x}) \right)
 	\qquad \text{and} \qquad
-	\int \dif \phi \ket{\phi} \bra{\phi} = \hat{1} .
+	\int \dif \phi \ket{\phi} \bra{\phi} = \1 .
 	\label{eq:tft:orthogonality_completeness_position}
 \end{equation}
 
@@ -462,21 +462,21 @@ It is
 \label{eq:tft:grassmann_inner_product_discrete}
 \end{equation}
 
-Next, we can work out that the unit operator $\hat{1}$ \TODO{use cool font} can be represented by the integral
+Next, we can work out that the unit operator $\1$ can be represented by the integral
 \begin{equation}
 \begin{split}
 	 \iffalse
 	 & \int \dif \conj{\psi} \int \dif \psi \, e^{-\sum_i \conj\psi_i \psi_i} \ket{\psi} \bra{\psi} \\
 	=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i \left( 1 + \psi_i \conj{\psi}_i \right) \prod_j \left( 1 - \psi_j \creat_j \right) \ket{0} \bra{0} \prod_k \left( 1 - \destr_k \conj\psi_k \right) \\
 	=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i \left( 1 + \psi_i \conj{\psi}_i \right) \prod_j \left( 1 - \psi_j \creat_j \right) \ket{0} \bra{0} \left( 1 - \destr_j \conj\psi_j \right) \\
-	=& \sum_{n_1=0}^1 \sum_{n_2=0}^1\cdots \sum_{n_N=0}^1 \ket{n_1, n_2, \ldots, n_N} \bra{n_1, n_2, \ldots, n_N} = \hat{1} \\
+	=& \sum_{n_1=0}^1 \sum_{n_2=0}^1\cdots \sum_{n_N=0}^1 \ket{n_1, n_2, \ldots, n_N} \bra{n_1, n_2, \ldots, n_N} = \1 \\
 	=& \int \dif \conj{\psi} \int \dif \psi \left[ \left( -\sum_i \conj{\psi}_i \psi_i \right) \ket{0} \bra{0} + \left( -\sum_j \psi_j \creat_j \right) \ket{0} \bra{0} \left( -\sum_k \destr_k \conj\psi_k \right) \right] \\
 	=& \int \dif \conj{\psi} \int \dif \psi \left[ \sum_i \psi_i \conj\psi_i \ket{0} \bra{0} + \sum_{j,k} \psi_j \conj\psi_k \ket{1_j} \bra{1_k} \right] \\
-	=& \ket{0} \bra{0} + \sum_j \ket{1_j} \bra{1_j} = \hat{1} . \\
+	=& \ket{0} \bra{0} + \sum_j \ket{1_j} \bra{1_j} = \1 . \\
 	\fi
 	 & \int \dif \conj{\psi} \int \dif \psi \, \exp \left( -\sum_i \conj\psi_i \psi_i \right) \ket{\psi} \bra{\psi} \\
 	=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i \left( 1 + \psi_i \conj{\psi}_i \right) \prod_j \left( 1 - \psi_j \creat_j \right) \ket{0} \bra{0} \prod_k \left( 1 - \destr_k \conj\psi_k \right) \\
-	=& \sum_{n_1=0}^1 \sum_{n_2=0}^1\cdots \sum_{n_N=0}^1 \ket{n_1, n_2, \ldots, n_N} \bra{n_1, n_2, \ldots, n_N} = \hat{1} . \\
+	=& \sum_{n_1=0}^1 \sum_{n_2=0}^1\cdots \sum_{n_N=0}^1 \ket{n_1, n_2, \ldots, n_N} \bra{n_1, n_2, \ldots, n_N} = \1 . \\
 \end{split}
 \label{eq:tft:completeness_grassmann_discrete}
 \end{equation}
@@ -548,10 +548,9 @@ The inner product \eqref{eq:tft:grassmann_inner_product_discrete} between two co
 \end{equation}
 The identity operator \eqref{eq:tft:grassmann_inner_product_discrete} would then become
 \begin{equation}
-	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \ket{\psi} \bra{\psi} = \hat{1} ,
+	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \ket{\psi} \bra{\psi} = \1 ,
 \label{eq:tft:completeness_grassmann}
 \end{equation}
-\TODO{cool font for 1}
 while the trace \eqref{eq:tft:trace_grassmann_discrete} would turn out to be
 \begin{equation}
 	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \Braket{-\psi | \hat{A} | \psi} = \trace{A} .
