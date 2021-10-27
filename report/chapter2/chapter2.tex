@@ -26,7 +26,7 @@ Then we will show how a few adjustments can be made to the path integral in orde
 We will show that the path integral expression for the partition function turns out to be the same for bosonic and fermionic fields, although their mathematical fundament is quite different.
 Finally, we will consider the specific case of a fermionic gas and find its partition function.
 
-\textit{This chapter is inspired by the references \cite{ref:kapusta}, \cite{ref:altland_simons}, \cite{ref:tft_basics} and \cite{ref:tft_random_note_1}.}
+\textit{This chapter is inspired by references \cite{ref:kapusta}, \cite{ref:altland_simons}, \cite{ref:tft_basics} and \cite{ref:tft_random_note_1}.}
 
 \section{Path integral for bosonic partition function}
 \label{sec:tft:path_integral_boson}
@@ -443,7 +443,7 @@ Applying an annihilation operator to this state gives
 \end{aligned}
 \end{equation}
 In other words, the coherent state $\ket{\psi}$ is an eigenstate of every annihilation operator $\destr_j$ with eigenvalue $\psi_j$!
-This is analogous to the bosonic eigenequation \TODO{eigen equation?} \eqref{eq:tft:field_eigenvalue_equations}.
+This is analogous to the bosonic eigenvalue equation \eqref{eq:tft:field_eigenvalue_equations}.
 It is the coherent states that we wish to use when taking the trace, inner product and inserting identity operators in the path integral.
 
 First, let us find the inner product between two coherent states.
@@ -499,7 +499,7 @@ If we choose $-\psi_j \creat_j$ in the second, we \emph{must} choose $-\psi_k \c
 Conversely, if we choose $1$ in the second, then we have already included $\psi_i \conj\psi_i$ from rule \ref{eq:tft:logic_tree_one}, and we \emph{must} choose $1$ in the third to not ``oversaturate'' the field product. \label{eq:tft:logic_tree_three}
 \end{enumerate}
 Following these rules, the first parenthesis expands to all possible $2^N$ terms.
-For every one of these terms, there is precisely one legal \TODO{different word, it is ``legal''..} combination of factors to choose in the second and third parentheses.
+For every one of these terms, there is precisely one combination of factors in the second and third parentheses that yields a nonzero contribution.
 This evaluates to $2^N$ terms with all possible combinations of $N_j = N_k$ creation and annihilation operators and $N_i = N - N_j$ Grassmann numbers.
 \emph{These $2^N$ terms are therefore precisely all the $2^N$ states \eqref{eq:tft:fermion_all_states} in the Fock space!}
 The sign ambiguity following different orders of operators in the state \eqref{eq:tft:fermionic_many_particle_state} does not cause any problems with signs in the sum over all the states, either.
@@ -547,7 +547,7 @@ The inner product \eqref{eq:tft:grassmann_inner_product_discrete} between two co
 	\braket{\psi | \psi'} = \exp \left[ \int \dif^3 x \, \conj\psi(\vec{x}) \psi'(\vec{x}) \right]
 \label{eq:tft:grassmann_inner_product}
 \end{equation}
-The identity operator \eqref{eq:tft:grassmann_inner_product_discrete} would then become
+The identity operator \eqref{eq:tft:completeness_grassmann_discrete} would then become
 \begin{equation}
 	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \ket{\psi} \bra{\psi} = \1 ,
 \label{eq:tft:completeness_grassmann}
@@ -559,7 +559,7 @@ while the trace \eqref{eq:tft:trace_grassmann_discrete} would turn out to be
 \end{equation}
 The most important thing to note is the negative sign in $\bra{-\psi}$ of the trace \eqref{eq:tft:trace_grassmann} -- we will see that this requires fermionic fields to be \emph{antiperiodic} in imaginary time, in contrast to the periodic bosonic fields.
 
-Let us now build \TODO{build?} the path integral for the fermionic partition function using \cref{eq:tft:grassmann_inner_product,eq:tft:completeness_grassmann,eq:tft:trace_grassmann} as our toolbox. \TODO{... FROM our toolbox eq 123 ...?}
+Using equations \eqref{eq:tft:grassmann_inner_product}, \eqref{eq:tft:completeness_grassmann} and \eqref{eq:tft:trace_grassmann} as our toolbox, let us now construct the path integral for the fermionic partition function.
 The partition function \eqref{eq:tft:partition_function} follows from the trace \eqref{eq:tft:trace_grassmann} with $\hat{A} = e^{-\beta (\hat{H} - \mu \hat{N})}$ as
 \begin{equation}
 	Z = \int \dif \psi_0^\dagger \int \dif \psi_0 \, e^{-\int \dif^3 x \, \psi_{0}^\dagger(\vec{x}) \psi_{0}(\vec{x})} \Braket{-\psi_0 | e^{-\beta(\hat{H} - \mu \hat{N})} | \psi_0} .
