@@ -550,91 +550,6 @@ we uncover the \textbf{Einstein field equations in the presence of matter},
 \end{equation}
 
 
-\chapter{Grassmann numbers}
-\label{chap:grassmann_numbers}
-
-\textit{This appendix is based on reference \cite{ref:altland_simons}.}
-
-The algebra of a set of $N$ Grassmann numbers $\psi_i$ and their conjugates $\conj\psi_i$ is defined by the anticommutators
-\begin{equation}
-	\acomm{\psi_i}{\psi_j} = 
-	\acomm{\psi_i}{\conj\psi_j} = 
-	\acomm{\conj\psi_i}{\conj\psi_j} = 
-	0 .
-\label{eq:gnums:anticommutators}
-\end{equation}
-In particular, this implies that $\psi_i^2 = 0$, so $\psi_i^n = 0$ for any $n \geq 2$.
-
-Functions of Grassmann numbers are \emph{defined} by their Taylor expansion \TODO{cannot read comment. follows from or something? ask}.
-The property $\psi_i^2 = 0$ will always terminate the Taylor series after a finite number of term.
-The most general function can therefore be written
-\begin{equation}
-\begin{split}
-	f(\psi) &= A + \sum_i A_i \psi_i + \sum_i B_i \conj\psi_i + \sum_{i,j} a_{ij} \psi_i \psi_j + \sum_{i,j} B_{ij} \psi_i \conj\psi_j + \sum_{i,j} C_{i,j} \conj\psi_i \conj\psi_j \\
-	        &+ \ldots + Z_{1 \cdots N} \psi_1 \conj\psi_1 \cdots \psi_N \conj\psi_N .
-\end{split}
-\label{eq:gnums:function_taylor_series}
-\end{equation}
-\TODO{unreadable comment: ? around $Z_1$}
-For example, we \emph{define} \TODO{no emph?} the exponential of one Grassmann number $\psi$ to mean
-\begin{equation}
-	\exp(\psi) = 1 + \psi .
-\label{eq:gnums:exponential_taylor_series}
-\end{equation}
-
-Differentiation and integration of Grassmann numbers are \emph{defined} as
-\begin{equation}
-\begin{split}
-	\pdv{1}{\psi_i} = \int \dif \psi_i \, 1 = 0 \\
-	\pdv{\psi_j}{\psi_i} = \int \dif \psi_i \, \psi_j = \delta_{ij} . \\
-\end{split}
-\label{eq:gnums:integration_differentiation}
-\end{equation}
-Note that $\int \dif \psi \, f(\psi) = \int \dif \psi \, [f(0) + f'(0) \psi] = f'(0) = \pdv{f(\psi)}/{\psi}$, so integration and differentiation are effectively identical operations.
-Note that if one integrates the function \eqref{eq:gnums:function_taylor_series} over all Grassmann numbers and their conjugates, the only term that survives is
-\begin{equation}
-	\int \dif^N \conj\psi \int \dif^N \psi \, \psi_1 \conj\psi_1 \cdots \psi_N \conj\psi_N = 1 .
-\label{eq:gnums:integration_over_all}
-\end{equation}
-
-
-\begin{equation}
-\begin{split}
-	\partial_i (\psi_j \psi_i) = -\underbrace{\partial_i (\psi_i}_{1} \psi_j) = -\psi_j & \qquad (i \neq j) \\
-	\partial_i (\psi_i \psi_i) = -\partial_i (\psi_i \psi_i) = 0                        & \qquad (i \neq j) \\
-\end{split}
-\end{equation}
-So
-\begin{equation}
-\begin{split}
-	         & \partial_i (\psi_j \psi_i) = (\delta_{ij} - 1) \psi_j \\
-	\implies & \partial_i (\psi_j \psi_i) + \psi_j \underbrace{\partial_i \psi_i}_{1} = \acomm{\partial_i}{\psi_j} \psi_i = \delta_{ij} \psi_i \\
-	\implies & \acomm{\partial_i}{\psi_j} = \delta_{ij}
-\end{split}
-\end{equation}
-The product rule is then
-\begin{equation}
-\begin{split}
-	\pdv{f(\psi) g(\psi)}{\psi} &= \pdv*{\{[f(0) + f'(0) \psi][g(0) + g'(0) \psi]\}}{\psi} \\
-	                            &= \pdv*{\{f(0) g(0) + f(0) g'(0) \psi + f'(0) \psi g(0) + f'(0) \psi g'(0) \psi\}}{\psi} \\
-	                            &= \pdv*{\{ \psi f(0) g'(0) - \psi f'(0) g(0) \}}{\psi} \\
-	                            &= f(\psi) \pdv{g(\psi)}{\psi} - \pdv{f(\psi)}{\psi} g(\psi) .
-\end{split}
-\end{equation}
-
-\TODO{int by parts}
-\begin{equation}
-	\int \dif \psi \, \pdv{f(\psi)}{\psi} =
-	\int \dif \psi \, \pdv*{f(0) + f'(0) \psi}{\psi} =
-	\int \dif \psi \, f'(0) =
-	0 ,
-\end{equation}
-so integration by parts takes the form
-\begin{equation}
-	\int \dif \psi \, f(\psi) \pdv{g(\psi)}{\psi} = \int \dif \psi \, \pdv{f(\psi)}{\psi} g(\psi) .
-\end{equation}
-
-
 \chapter{Matsubara energy summation}
 \label{chap:matsum}
 
@@ -877,7 +792,7 @@ After some simplification, we obtain
 	\label{eq:integrals:gaussian_grassmann_one}
 	\end{equation}
 }{
-	Using the Taylor expansion \eqref{eq:gnums:exponential_taylor_series}, definiton \eqref{eq:gnums:integration_differentiation} for integration over Grassmann numbers and the anticommutator \eqref{eq:gnums:anticommutators},
+	Using the Taylor expansion \eqref{eq:gnums:exponential_taylor_series}, and the Grassmann number integral definitions \eqref{eq:gnums:integration_const} and \eqref{eq:gnums:integration_var} and the anticommutator \eqref{eq:gnums:anticommutators},
 	\begin{equation*}
 	\begin{split}
 		\int \dif \conj\psi \int \dif \psi \, e^{-\conj\psi a \psi} = \int \dif \conj\psi \int \dif \psi \, (1 - \conj\psi a \psi)

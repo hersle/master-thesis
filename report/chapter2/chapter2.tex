@@ -359,7 +359,42 @@ By replacing only one operator with its eigenvalue, we can also deduce the requi
 The bosonic path integral \eqref{eq:tft:bosonic_partition_function} and its derivation is therefore not valid for fermions.
 
 To develop the fermionic path integral, we therefore replace the algebra of ordinary commuting numbers in the bosonic case with anticommuting \textbf{Grassmann numbers}.
-Assuming most readers have encountered them before, we define and derive all properties of Grassmann numbers that will be useful to us in \cref{chap:grassmann_numbers} and will only refer to them in this section.
+We will need only a few basic properties of Grassmann numbers, so let us quickly review them here.
+
+The algebra of a set of $N$ Grassmann numbers $\psi_i$ and their conjugates $\conj\psi_i$ is defined by the anticommutators
+\begin{equation}
+	\acomm{\psi_i}{\psi_j} = 
+	\acomm{\psi_i}{\conj\psi_j} = 
+	\acomm{\conj\psi_i}{\conj\psi_j} = 
+	0 .
+\label{eq:gnums:anticommutators}
+\end{equation}
+In particular, this implies that $\psi_i^2 = 0$, so $\psi_i^n = 0$ for any $n \geq 2$.
+Functions of Grassmann numbers are defined by their Taylor expansion \TODO{cannot read comment. follows from or something? ask}.
+The property $\psi_i^2 = 0$ will always terminate the Taylor series after a finite number of term, so the most general function can be written
+\begin{equation}
+\begin{split}
+	f(\psi) &= A + \sum_i A_i \psi_i + \sum_i B_i \conj\psi_i + \sum_{i,j} A_{ij} \psi_i \psi_j + \sum_{i,j} B_{ij} \psi_i \conj\psi_j + \sum_{i,j} C_{i,j} \conj\psi_i \conj\psi_j \\
+	        &+ \ldots + Z_{1 \cdots N} \psi_1 \conj\psi_1 \cdots \psi_N \conj\psi_N .
+\end{split}
+\label{eq:gnums:function_taylor_series}
+\end{equation}
+\TODO{unreadable comment: ? around $Z_1$}
+For example, we define the exponential of one Grassmann number $\psi$ by its normal Taylor series
+\begin{equation}
+	\exp(\psi) = 1 + \psi .
+\label{eq:gnums:exponential_taylor_series}
+\end{equation}
+Integration over Grassmann numbers is defined as
+\begin{align}
+	\iffalse \pdv{1}{\psi_i}      &= 0,           & \qquad \fi \int \dif \psi_i \, 1      &= 0,            \label{eq:gnums:integration_const} \\
+	\iffalse \pdv{\psi_j}{\psi_i} &= \delta_{ij}, & \qquad \fi \int \dif \psi_i \, \psi_j &= \delta_{ij} . \label{eq:gnums:integration_var}   
+\end{align}
+\iffalse
+Note that $\int \dif \psi \, f(\psi) = \int \dif \psi \, [f(0) + f'(0) \psi] = f'(0) = \pdv{f(\psi)}/{\psi}$, so integration and differentiation are effectively identical operations.
+\fi
+These are the Grassmann number properties that we will need.
+
 \TODO{big A in Appendix etc?}
 
 In the derivation of the bosonic path integral \eqref{eq:tft:bosonic_partition_function}, we relied heavily on using eigenstates of the system to take the trace in \eqref{eq:tft:partition_function}, insert completeness relations and take inner products between eigenstates.
@@ -492,8 +527,9 @@ To get a non-zero contribution from the integral, the parentheses must be multip
 	\int \dif \conj\psi \int \dif \psi \, \psi_1 \conj\psi_1 \cdots \psi_N \conj\psi_N = 1 .
 \label{eq:tft:integral_saturated}
 \end{equation}
-Any term with duplicate fields $\psi_i^2 = -\psi_i^2 = 0$ will yield zero, and so will terms with products that do not include \emph{all} $\psi_i$ and $\conj\psi_i$ due to the integration properties \eqref{eq:gnums:integration_differentiation} and the discussion surrounding \cref{eq:gnums:integration_over_all} \TODO{vague}.
-Based on this, we can derive three rules for what combinations of factors we can choose when multiplying out the three parentheses. \TODO{product?}
+Any term with duplicate fields $\psi_i^2 = -\psi_i^2 = 0$ will yield zero.
+Similarly, if a term has a product that does not contain \emph{all} factors $\psi_i$ and $\conj\psi_i$, then after integrating out the \emph{present} factors with definition \eqref{eq:gnums:integration_var}, there will always be a constant integral \eqref{eq:gnums:integration_const} over the \emph{absent} factors left behind, causing the whole integral to vanish.
+Based on this, we can derive three rules for what combinations of factors we can choose when multiplying out the three product.
 \begin{enumerate}
 \item \textbf{For any $i$ in the first parenthesis:} Given that we follow the two next rules, we are free to choose either the factor $1$ or $\psi_i \conj\psi_i$. \label{eq:tft:logic_tree_one}
 \item \textbf{For $j=i$ in the second parenthesis:} 
