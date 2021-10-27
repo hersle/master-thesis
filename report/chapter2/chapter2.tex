@@ -266,7 +266,6 @@ It is tempting to recognize $\pi \dot\phi - \ham$ as the Legendre transformation
 But we should be careful -- the Legendre transformation converts the independent variable $\dot\phi$ in $\lagr(\phi, \dot\phi, \nabla\phi)$ to $\pi$ in $\ham(\phi, \pi, \nabla\phi)$.
 We are integrating over $\pi$ and should therefore not lose track of it by writing $\lagr = \lagr(\phi, \dot\phi, \nabla\phi)$.
 Thus, we do not modify the integral further.
-\TODO{does this make sense?}
 
 \iffalse
 Note that the combination of the Hamiltonian and the fields in the exponential is precisely the Legendre transformation that converts between the Hamiltonian density $\ham$ and the Lagrangian density $\lagr$.
@@ -849,7 +848,14 @@ This procedure gives
 \end{split}
 \label{eq:tft:matsubara_sum_bosons}
 \end{equation}
-We can now use the Matsubara frequency sum \eqref{eq:matsum:example_result} to evaluate the sum over $n$, resulting in
+We need to evaluate the \textbf{Matsubara energy sum} over $n$. 
+Later we will in fact encounter the same sum over fermionic Matsubara energies.
+In \cref{chap:matsum}, we devise a powerful and general method of computing such sums by contour integration in the complex plane.
+This method even kills two birds with one stone, as one uniform procedure enables us to compute both bosonic and fermionic Matsubara energy sums simultaneously!
+In fact, it turns out that the Bose-Einstein distribution emerges naturally from bosonic sums, while the Fermi-Dirac distribution drops out as a byproduct of fermionic sums.
+All of this is explained in the appendix.
+Applying the method to the sum above yields the result \eqref{eq:matsum:example_result}.
+We insert this into our expression for $\log Z$ above to find
 \begin{equation}
 	\log Z = -\frac{\beta}{2} \sum_\vec{p} \int \dif E^2(\vec{p}) \, \frac{1}{2 E(\vec{p})} \left[ 1 + \frac{2}{e^{\beta E(\vec{p})} - 1} \right] .
 \end{equation}
@@ -1079,14 +1085,14 @@ Inserting this back into the partiton function \eqref{eq:tft:dirac_partition_fun
 \label{eq:tft:fermion_log_sum}
 \end{equation}
 We have accomplished our mission of showing that the partition function is a real quantity.
-Moreover, the two sums over $n$ are in the same form as the one bosonic sum \eqref{eq:tft:matsubara_sum_bosons}, but this time over fermionic Matsubara energies.
+Moreover, the two sums over $n$ are in the same form as the bosonic sum \eqref{eq:tft:matsubara_sum_bosons}, but this time over fermionic Matsubara energies.
 Defining the energies $\tilde E_\pm(\vec{p}) = E(\vec{p}) \pm \mu$ relative to the chemical potential, we can use the same method as we did back there to rewrite it as the two integrals
 \begin{equation}
 	\log Z = \sum_\vec{p} \left[ \int \dif \tilde E_+^2(\vec{p}) \sum_n \frac{1}{E_n^2 + \tilde E_+^2(\vec{p})} +
 	                             \int \dif \tilde E_-^2(\vec{p}) \sum_n \frac{1}{E_n^2 + \tilde E_-^2(\vec{p})} \right] .
 \label{eq:tft:matsubara_sum_fermions}
 \end{equation}
-The sums over $n$ can again be performed using the Matsubara frequency sum \eqref{eq:matsum:example_result}.
+Like in \eqref{eq:tft:matsubara_sum_bosons}, the sums over $n$ can be performed using the Matsubara energy sum \eqref{eq:matsum:example_result}.
 Then the integrals become
 \begin{equation}
 \begin{split}
@@ -1116,7 +1122,6 @@ Having evaluated $\log Z$ for both a real scalar field and Dirac fermions, it is
 	  The integrals effectively differ by the power $-1/2$.
 \item We managed to bring $\log Z$ into the similar sums \eqref{eq:tft:boson_log_sum} and \eqref{eq:tft:fermion_log_sum} over the Matsubara energies $E_n$ in both cases.
       In \cref{chap:matsum} described a general framework for computing both sums, with the Bose-Einstein and Fermi-Dirac distributions $1 / [e^{\beta E(\vec{p})} \mp 1]$ arising naturally in the bosonic and fermionic case, respectively.
-	  \TODO{weight this more when introduced in the text, it is important!}
 \item Apart from the chemical potential, the results \eqref{eq:tft:real_scalar_field_partition_function} and \eqref{eq:tft:dirac_partition_function} for $\log Z$ have very similar structure.
       Essentially, they differ by the factor $-1/2$ due to the different powers of the Gaussian integrals and by the different signs in the logarithms due to the Bose-Einstein and Fermi-Dirac distributions.
 \end{itemize}
