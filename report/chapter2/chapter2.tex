@@ -537,24 +537,23 @@ The Hamiltonian \eqref{eq:tft:dirac_hamiltonian} for a Dirac field that we encou
 As we remarked at the start, this analysis was for discrete fields that satisfy the discrete anticommutators \eqref{eq:tft:fermionic_all_anticommutators}.
 We are studying fields $\psi(\vec{x})$ and $\conj\psi(\vec{x})$ with an infinite number of field operators $\creat(\vec{x})$ and $\destr(\vec{x})$ that satisfy the continuum generalization \eqref{eq:tft:fermion_anticommutators}.
 Our results carry over with the substitutions $\psi_i \rightarrow \psi(\vec{x})$, as if every Grassmann number corresponds to the field at one position, and $\sum_i \rightarrow \int \dif^3 x$.
-For example, we would rather define the coherent state
-\TODO{remove hypothetical tense}
+For example, we rather define the coherent state
 \begin{equation}
 	\ket{\psi} = \exp \left[ -\int \dif^3 x\, \psi(\vec{x}) \hat\psi^\dagger(\vec{x}) \right] \ket{0} .
 \end{equation}
-The inner product \eqref{eq:tft:grassmann_inner_product_discrete} between two coherent states would then become
+The inner product \eqref{eq:tft:grassmann_inner_product_discrete} between two coherent states then turns into
 \begin{equation}
-	\braket{\psi | \psi'} = \exp \left[ \int \dif^3 x \, \conj\psi(\vec{x}) \psi'(\vec{x}) \right]
+	\braket{\psi | \psi'} = \exp \left[ \int \dif^3 x \, \conj\psi(\vec{x}) \psi'(\vec{x}) \right] ,
 \label{eq:tft:grassmann_inner_product}
 \end{equation}
-The identity operator \eqref{eq:tft:completeness_grassmann_discrete} would then become
+and the identity operator \eqref{eq:tft:completeness_grassmann_discrete} becomes
 \begin{equation}
 	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \ket{\psi} \bra{\psi} = \1 ,
 \label{eq:tft:completeness_grassmann}
 \end{equation}
-while the trace \eqref{eq:tft:trace_grassmann_discrete} would turn out to be
+while the trace \eqref{eq:tft:trace_grassmann_discrete} is modified to 
 \begin{equation}
-	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \Braket{-\psi | \hat{A} | \psi} = \trace{A} .
+	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \Braket{-\psi | \hat{A} | \psi} = \trace{\hat{A}} .
 \label{eq:tft:trace_grassmann}
 \end{equation}
 The most important thing to note is the negative sign in $\bra{-\psi}$ of the trace \eqref{eq:tft:trace_grassmann} -- we will see that this requires fermionic fields to be \emph{antiperiodic} in imaginary time, in contrast to the periodic bosonic fields.
