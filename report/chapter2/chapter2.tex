@@ -330,16 +330,17 @@ We will later see examples of theories both with and without conserved charges.
 \newcommand\creat{\hat\psi^\dagger}
 \newcommand\destr{\hat\psi        }
 
-We will now develop a path integral for a fermionic field $\psi(\vec{x})$.
-For example, the Dirac Lagrangian is $\lagr = \bar{\psi} (i \hbar c \slashed\partial - m c^2) \psi$ with conjugate momentum $\pi = \fdv{\lagr}/{\dot\psi} = i \hbar \psi^\dagger$, so we are instructed to treat the field and its conjugate independently in the path integral.
+We will now develop a path integral for a fermionic field, described by a four-spinor $\psi = [ \psi_0, \psi_1, \psi_2, \psi_3 ]$,
+For example, the Dirac Lagrangian is $\lagr = \bar{\psi} (i \hbar c \, \slashed\partial - m c^2) \psi$ with conjugate momentum $\pi = \fdv{\lagr}/{\dot\psi} = i \hbar \psi^\dagger$, so we are instructed to treat the field and its conjugate independently in the path integral.
 This is not a peculiarity of fermionic fields only -- for a complex scalar field $\phi$, for example, we would also be instructed to treat $\phi$ and $\conj\phi$ separately. 
 
 Why do we need to derive the path integral for fermions separately -- can we not just use the bosonic path integral \eqref{eq:tft:bosonic_partition_function} with the appropriate conjugate momentum?
-By assumption, the fermion field operator $\destr(\vec{x})$ and its conjugate $\creat(\vec{x})$ obey the fermionic \textbf{anticommutation relations}
+By assumption, the fermion field operators obey the fermionic \textbf{anticommutation relations}
 \begin{equation}
 \begin{split}
-	\acomm{\destr(\vec{x})}{\creat(\vec{y})} = \acomm{\creat(\vec{y})}{\destr(\vec{x})} &= \delta(\vec{x}-\vec{y}) , \\
-	\acomm{\creat(\vec{x})}{\creat(\vec{y})} = \acomm{\destr(\vec{x})}{\destr(\vec{y})} &= 0 ,
+	\acomm{\destr_\alpha(\vec{x})}{\creat_\beta(\vec{y})} &= \delta_{\alpha \beta} \delta(\vec{x}-\vec{y}) , \\
+	\acomm{\creat_\alpha(\vec{x})}{\creat_\beta(\vec{y})} &= 0 , \\
+	\acomm{\destr_\alpha(\vec{x})}{\destr_\beta(\vec{y})} &= 0 ,
 \end{split}
 \label{eq:tft:fermion_anticommutators}
 \end{equation}
@@ -388,7 +389,7 @@ so, perhaps confusingly, we are instructed to treat the field and its conjugate 
 \fi
 
 Let us get to work.
-Suppose we have a finite number $N$ of Grassmann numbers $\psi_i$ and equally many creation and annihilation operators $\creat_i$ and $\destr_i$.
+Suppose we have a finite number $N$ of Grassmann numbers $\psi_i$ with conjugates $\conj\psi_i$ and as many creation and annihilation operators $\creat_i$ and $\destr_i$.
 Right after \cref{eq:tft:eigenvalues_must_anticommute}, we argued that Grassmann numbers anticommute not only with each other, but also with the operators.
 By assumption, we therefore start with all the anticommutators
 \begin{equation}
@@ -537,16 +538,14 @@ With the same reasoning, we can work out that the trace of an operator $\hat{A}$
 Across the third equality, we (anti)commute $\psi_j$ and $\conj\psi_j$ all the way to the left to write $\braket{0 | \destr_j \conj\psi_j \hat{A} (-\psi_j \creat_j) | 0} = \psi_j \conj\psi_j \braket{0 | \destr_j \hat{A} \creat_j | 0}$ while assuming that $\hat{A}$ is a ``bosonic'' operator that \emph{commutes} with the Grassmann numbers.
 The Hamiltonian \eqref{eq:tft:dirac_hamiltonian} for a Dirac field that we encounter later is one example of such an $\hat{A}$, as it contains two field operators.
 
-\TODO{dirac field should have indices in its anticommutation relations}
-
 As we remarked at the start, this analysis was for discrete fields that satisfy the discrete anticommutators \eqref{eq:tft:fermionic_all_anticommutators}.
 We are studying fields $\psi(\vec{x})$ and $\conj\psi(\vec{x})$ with an infinite number of field operators $\creat(\vec{x})$ and $\destr(\vec{x})$ that satisfy the continuum generalization \eqref{eq:tft:fermion_anticommutators}.
 Our results carry over with the substitutions $\psi_i \rightarrow \psi(\vec{x})$, as if every Grassmann number corresponds to the field at one position, and $\sum_i \rightarrow \int \dif^3 x$.
-For example, we rather define the coherent state
+For example, the coherent state is
 \begin{equation}
 	\ket{\psi} = \exp \left[ -\int \dif^3 x\, \psi(\vec{x}) \hat\psi^\dagger(\vec{x}) \right] \ket{0} .
 \end{equation}
-The inner product \eqref{eq:tft:grassmann_inner_product_discrete} between two coherent states then turns into
+The inner product \eqref{eq:tft:grassmann_inner_product_discrete} between two coherent states turns into
 \begin{equation}
 	\braket{\psi | \psi'} = \exp \left[ \int \dif^3 x \, \conj\psi(\vec{x}) \psi'(\vec{x}) \right] ,
 \label{eq:tft:grassmann_inner_product}
@@ -564,6 +563,8 @@ while the trace \eqref{eq:tft:trace_grassmann_discrete} is modified to
 The most important thing to note is the negative sign in $\bra{-\psi}$ of the trace \eqref{eq:tft:trace_grassmann} -- we will see that this requires fermionic fields to be \emph{antiperiodic} in imaginary time, in contrast to the periodic bosonic fields.
 
 Using equations \eqref{eq:tft:grassmann_inner_product}, \eqref{eq:tft:completeness_grassmann} and \eqref{eq:tft:trace_grassmann} as our toolbox, let us now construct the path integral for the fermionic partition function.
+We now revert from the above notation with single fermion fields $\psi$ and $\conj\psi$ back to the four-component spinors $\psi$ and $\psi^\dagger$.
+Accordingly, we will write $\prod_{\alpha=0}^3 \dif \psi_\alpha = \dif \psi$ and $\prod_{\alpha=0}^3 \dif \conj\psi_\alpha = \dif \psi^\dagger$ to indicate integration over all four components.
 The partition function \eqref{eq:tft:partition_function} follows from the trace \eqref{eq:tft:trace_grassmann} with $\hat{A} = e^{-\beta (\hat{H} - \mu \hat{N})}$ as
 \begin{equation}
 	Z = \int \dif \psi_0^\dagger \int \dif \psi_0 \, e^{-\int \dif^3 x \, \psi_{0}^\dagger(\vec{x}) \psi_{0}(\vec{x})} \Braket{-\psi_0 | e^{-\beta(\hat{H} - \mu \hat{N})} | \psi_0} .
@@ -876,8 +877,7 @@ Let us now find the partition function \eqref{eq:tft:fermion_partition_function}
 	      = \bar\psi \left( i \hbar \gamma^0 \pdv{}{\tau} + i \hbar c \, \vec{\gamma} \cdot \nabla - m c^2 \right) \psi .
 \label{eq:tft:dirac_lagrangian}
 \end{equation}
-Here, the four-component Dirac spinor $\psi = [ \psi_1, \psi_2, \psi_3, \psi_4] $ is the basic field and $\psi^\dagger$ is its conjugate, while $\bar\psi = \psi^\dagger \gamma^0$ and $\slashed\partial = \gamma^\mu \partial_\mu$, where $\gamma^\mu$ are the $4 \times 4$ \textbf{Gamma matrices} defined by the Clifford algebra
-\TODO{should have dagger with vectors and conjugate with numbers}
+Here, the four-component Dirac spinor $\psi = [ \psi_0, \psi_1, \psi_2, \psi_3 ] $ is the basic field and $\psi^\dagger$ is its conjugate, while $\bar\psi = \psi^\dagger \gamma^0$ and $\slashed\partial = \gamma^\mu \partial_\mu$, where $\gamma^\mu$ are the $4 \times 4$ \textbf{Gamma matrices} defined by the Clifford algebra
 \begin{equation}
 	\acomm{\gamma^\mu}{\gamma^\nu} = 2 \eta^{\mu \nu} .
 \end{equation}
@@ -910,7 +910,7 @@ so the Hamiltonian density is
 In addition, the Dirac Lagrangian is invariant under the symmetry transformation $\psi_\alpha \rightarrow \psi_\alpha e^{i \theta} \taylor \psi_\alpha - i \theta \psi_\alpha = \psi_\alpha + \delta\psi_\alpha$.
 By Noether's theorem \cite[equation 5.7]{ref:kachelriess}, there is a corresponding conserved current
 \begin{equation}
-	j^\mu \propto \fdv{\lagr}{\partial_\mu \psi_\alpha} \delta \psi_\alpha = \bar\psi_\beta i \hbar c (\gamma^\mu)_{\beta \alpha} (-i \theta \psi_\alpha) = \hbar c \, \bar\psi \gamma^\mu \psi .
+	j^\mu \propto \fdv{\lagr}{\partial_\mu \psi_\alpha} \delta \psi_\alpha = \bar\psi_\beta i \hbar c \, (\gamma^\mu)_{\beta \alpha} (-i \theta \psi_\alpha) = \hbar c \, \bar\psi \gamma^\mu \psi .
 \end{equation}
 Ignoring the constant factors, we take the conserved current to be
 \begin{equation}
@@ -938,7 +938,7 @@ with the Euclidean action
 \begin{equation}
 \begin{split}
 	S_E &= \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \left( \lagr_E + \mu j^0 \right) \\
-	    &= \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \bar\psi \left( -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \vec{\gamma} \cdot \vec{\nabla} - mc^2 + \mu \gamma^0 \right) \psi .
+	    &= \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \bar\psi \left( -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \, \vec{\gamma} \cdot \vec{\nabla} - mc^2 + \mu \gamma^0 \right) \psi .
 \end{split}
 \label{eq:tft:dirac_action_euclidean}
 \end{equation}
@@ -972,7 +972,6 @@ We now change variables from $\psi(\vec{x}, \tau)$ and $\psi^\dagger(\vec{x}, \t
 To be consistent with treating the field and its conjugate as independent variables, we continue to treat the Fourier amplitudes and their conjugates independently.
 The partition function \eqref{eq:tft:dirac_partition_function_first} now becomes 
 \TODO{what factors to have in $\dif (i) (\hbar) \psi$}
-\TODO{$\dif^4 \, \psi_n(\vec{p})$ ?}
 \begin{equation}
 	Z %& = \prod_n \prod_\vec{p} \int \pathintdif [i \hbar \psi_n(\vec{p})^\dagger] \int \pathintdif \psi_n(\vec{p}) \\
 	  %& \times \exp \left\{ \frac{\beta}{\hbar} i \hbar \psi_n(\vec{q})^\dagger \left[ -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \right\} \\
@@ -1114,7 +1113,7 @@ Having evaluated $\log Z$ for both a real scalar field and Dirac fermions, it is
 \item The periodicity of the bosonic field and the antiperiodicity of the fermionic field allowed us to expand both as Fourier series, but with differing Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
 \item Only the Dirac field had a conserved charge that let us introduce a chemical potential $\mu$.
 \item In the bosonic case, we could integrate out the momentum $\pi$, leaving the Gaussian integrals \eqref{eq:tft:boson_gaussian_integral} over \emph{one} variable that we tackled using $\int \dif x \, e^{-ax^2} \propto a^{-1/2}$.
-      In the fermionic case, we could not integrate out the momentum $\pi = i \hbar \conj\psi$.
+      In the fermionic case, we could not integrate out the momentum $\pi = i \hbar \psi^\dagger$.
       This resulted in the Gaussian integrals \eqref{eq:tft:fermion_gaussian_integral} over \emph{pairs} of Grassmann numbers that we handled with $\int \dif \psi^\dagger \int \dif \psi \, e^{-\psi^\dagger A \psi} = \tdet A$.
 	  The integrals effectively differ by the power $-1/2$.
 \item We managed to bring $\log Z$ into the similar sums \eqref{eq:tft:boson_log_sum} and \eqref{eq:tft:fermion_log_sum} over the Matsubara energies $E_n$ in both cases.
