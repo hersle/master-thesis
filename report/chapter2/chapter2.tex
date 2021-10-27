@@ -671,6 +671,9 @@ In anticipation of this, we define the corresponding momentum and Matsubara ener
 \label{eq:tft:matsubara_energies}
 \end{equation}
 
+Note that some authors adopt the four-momentum $p = (E_n/c, \vec{p})$ and write the Fourier amplitude as $\phi(p)$.
+Due to the difference between the discrete nature of the Matsubara energies and the continuous nature of the momenta, we wish to maintain some ``separation'' between time and space and therefore choose to write $\phi_n(\vec{p})$.
+
 \section{Partition function for free bosonic real scalar field}
 
 As a first example, we apply the path integral formalism to find the partition function for a free real scalar field representing spin-zero bosons.
@@ -740,7 +743,6 @@ It then becomes
 	S_E = \frac12 \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \phi \left( \frac{1}{c^2} \pdv[2]{}{\tau} + \nabla^2 - \frac{m^2 c^2}{\hbar^2} \right) \phi .
 \label{eq:tft:boson_euclidean_action_nice}
 \end{equation}
-\TODO{make a ``checkpoint'' here by noting that the partition function can always be written as a functional determinant, so always restart here instead of restarting the game every time}
 
 At this point it is useful to Fourier expand the field as in \eqref{eq:tft:fourier_series} with bosonic Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
 However, we include a prefactor and write
@@ -755,8 +757,6 @@ The prefactor $\hbar c \sqrt{\beta/V}$ is chosen to have the same dimension as t
 Without it, the Gaussian integral that we will end up computing in \cref{eq:tft:boson_gaussian_integral} would make the partition function $Z$ dimensionful, which would formally make it meaningless to take its logarithm.
 %Note that either of the two expansions we have written is as good as the other for our \emph{real} scalar field $\phi(\vec{x},\tau) = \conj\phi(\vec{x},\tau)$.
 Note that the reality $\phi(\vec{x}, \tau) = \conj\phi(\vec{x}, \tau)$ requires Fourier amplitudes with $\conj\phi_n(\vec{k}) = \phi_{-n}(-\vec{k})$.
-
-\TODO{below: use $p = (p^0, \vec{p}) = (E/C, \vec{p})$ ?}
 
 We now rewrite the Euclidean action \eqref{eq:tft:boson_euclidean_action_nice} by inserting the Fourier expansion \eqref{eq:tft:boson_fourier_series}.
 Exploiting the reality $\phi(\vec{x}, \tau) = \conj\phi(\vec{x}, \tau)$, we insert one Fourier expansion for the rightmost field and another with all quantities complex conjugated for the leftmost field.
