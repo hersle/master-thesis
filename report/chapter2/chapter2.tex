@@ -383,7 +383,7 @@ so, perhaps confusingly, we are instructed to treat the field and its conjugate 
 \fi
 
 Let us get to work.
-Suppose we have a finite number $N$ of Grassmann numbers $\psi_i$ and equally many creation and destruction \TODO{annihiliation?} operators $\creat_i$ and $\destr_i$.
+Suppose we have a finite number $N$ of Grassmann numbers $\psi_i$ and equally many creation and annihilation operators $\creat_i$ and $\destr_i$.
 Following the discussion around \cref{eq:tft:eigenvalues_must_anticommute} \TODO{vague} and the definition of Grassmann numbers in \cref{chap:grassmann_numbers}, we have, by assumption, all the anticommutators
 \begin{equation}
 \begin{split}
@@ -418,7 +418,7 @@ Therefore we have
 \begin{equation}
 	\destr_i \ket{1_i} = \destr_i \creat_i \ket{0} = (1 - \creat_i \destr_i) \ket{0} = \ket{0} .
 \end{equation}
-The interpretation of this analysis is that the \textbf{creation operator} $\creat_i$ adds a particle in the state $i$, while the \textbf{destruction operators} $\destr_i$ removes a particle from the same state.
+The interpretation of this analysis is that the \textbf{creation operator} $\creat_i$ adds a particle in the state $i$, while the \textbf{annihilation operators} $\destr_i$ removes a particle from the same state.
 The restriction that $n_i \in \{0, 1\}$ implies that there can be at most one particle in every state, consistent with the Pauli exclusion principle.
 Note that the Fock space has a total of $2^N$ distinct states
 \begin{equation}
@@ -431,7 +431,7 @@ Next, define the \textbf{coherent state}
 	\ket{\psi} = \exp \left( -\sum_i \psi_i \creat_i \right) \ket{0} = \prod_i \exp \left( -\psi_i \creat_i \right) \ket{0} = \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} .
 \end{equation}
 In the last line, we made use of the Taylor expansion \eqref{eq:gnums:function_taylor_series} of functions of Grassmann numbers.
-Applying a destruction operator to this state gives
+Applying an annihilation operator to this state gives
 \begin{equation}
 \begin{aligned}
 	%\destr_j \ket{\psi} = \psi_j \ket{0} = \psi_j \ket{\psi} \quad \text{(last because $\psi_j^2=0$)}
@@ -441,7 +441,7 @@ Applying a destruction operator to this state gives
 	                    &= \psi_j \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} = \psi_j \ket{\psi} . \\
 \end{aligned}
 \end{equation}
-In other words, the coherent state $\ket{\psi}$ is an eigenstate of every destruction operator $\destr_j$ with eigenvalue $\psi_j$!
+In other words, the coherent state $\ket{\psi}$ is an eigenstate of every annihilation operator $\destr_j$ with eigenvalue $\psi_j$!
 This is analogous to the bosonic eigenequation \TODO{eigen equation?} \eqref{eq:tft:field_eigenvalue_equations}.
 It is the coherent states that we wish to use when taking the trace, inner product and inserting identity operators in the path integral.
 
@@ -510,7 +510,7 @@ This explains the transition to the final line.
 \item for every factor $\psi_i \conj\psi_i$ one chooses from the first parenthesis, one must choose the factor $1$ from the second and third parentheses in order to avoid $\psi_i^2=0$, and conversely,
 \item for every factor $1$ one chooses from the first parenthesis, one must choose the factor $-\psi_j \creat_j$ and $-\destr_k \conj\psi_k$ from the second and third parentheses in order to not miss a factor $\psi_i \conj\psi_i$ in the product \TODO{ref}.
 \end{itemize}
-Following these rules is equivalent to iterating over all $2^N$ combinations with $N_j$ creation and destruction operators in the second and third parentheses and $N_i = N - N_j$ Grassmann numbers in the first parenthesis.
+Following these rules is equivalent to iterating over all $2^N$ combinations with $N_j$ creation and annihilation operators in the second and third parentheses and $N_i = N - N_j$ Grassmann numbers in the first parenthesis.
 \fi
 To be clear, the very last equality follows because the sum goes over all states \eqref{eq:tft:fermion_all_states} in the Fock space.
 
