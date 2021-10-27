@@ -607,7 +607,8 @@ The partition function is therefore
 \end{equation}
 \fi
 
-\section{Matsubara frequencies}
+\section{Matsubara frequencies and box quantization}
+\label{sec:matsubara_quantization}
 
 We have just seen how the partition function for bosons can be expressed by the path integral \eqref{eq:tft:bosonic_partition_function} with fields that are periodic in imaginary time.
 For Dirac fermions, we have showed that we can ``naively'' use the same result by substituting the canonical momentum $\pi = i \hbar \psi^\dagger$ and integrate over antiperiodic fields.
@@ -631,30 +632,34 @@ with \textbf{Matsubara frequencies}
 	           \end{cases}
 \label{eq:tft:matsubara_frequencies}
 \end{equation}
-The offset $+\pi / \beta \hbar$ makes the fermionic field antiperiodic at $\tau = \beta \hbar$.
 
-Although the field is not periodic in space, we can still represent it by its Fourier transform as
+The field is not periodic in space, but let us for a moment pretend that it is by putting it in a fictitous box of volume $V = L^3$ and impose periodic boundary conditions.
+Then the spatial part of the field can also be represented by a Fourier series
 \begin{equation}
-	\psi_n(\vec{x}) = \int \frac{\dif^3 k}{(2 \pi / L)^3} \, \psi_n(\vec{k}) e^{i \vec{k} \cdot \vec{x}},
-\label{eq:tft:mathematical_fourier_expansion}
+	\psi_n(\vec{x}) = \sum_\vec{k} \psi_n(\vec{k}) e^{i \vec{k} \cdot \vec{x}} ,
 \end{equation}
-where $L \rightarrow \infty$ is the periodicity of the field along either axis that is sent to infinity as one derives the Fourier transform from a finite Fourier series, and $V = L^3 \rightarrow \infty$ the corresponding volume.
-It will be important to have a ficticious finite volume to work with when we want to convert ``extensive'' observables like the energy $\thermalavg{E}$ into ``intensive'' observables like the energy \emph{density} $\epsilon = \thermalavg{E} / V$ in preparation for using the TOV equation \eqref{eq:tov}.
-Alternatively, one can imagine working with a periodic field $\psi(\vec{x})$ in a finite, but large ``quantization volume'' $V$, ignoring what happens at very large distances $\abs{\vec{x}}$ or, equivalently, at very small momenta $\abs{\vec{p}}$. 
-\TODO{does the discussion about ``quantization volume'' make sense?}
-
-Ultimately, then, we can expand
+where the sum runs over all wavevectors $\vec{k}$ with components $k_i = 2 \pi n_i / L$ for integer $n_i$, each separated by the distance $\Delta k = 2 \pi / L$ in $\vec{k}$-space.
+Since the field is not really periodic, we should take the continuum limit $V \rightarrow \infty$ in the end.
+Then $\Delta k \rightarrow 0$, so the sum is replaced by the integral
+\begin{equation}
+	\sum_\vec{k} = 
+	\sum_\vec{k} \frac{(\Delta k)^3}{(2 \pi / L)^3} 
+	\quad \rightarrow  \quad
+	\int \frac{\dif^3 k}{(2 \pi / L)^3} =
+	V \int \frac{\dif^3 k}{(2 \pi)^3} .
+\label{eq:tft:continuum_limit}
+\end{equation}
+This mathematical trick is known as \textbf{box quantization}.
+In the following sections, we will therefore proceed through a calculation with a finite Fourier series expansion
 \begin{equation}
 	\psi(\vec{x}, \tau) = \sum_n \sum_\vec{k} \psi_n(\vec{k}) e^{i (\vec{k} \cdot \vec{\vec{x}} + \omega_n \tau)}
 \label{eq:tft:fourier_series}
 \end{equation}
-with the Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
-To be more compatible with the notation that will follow, we wrote
-\begin{equation}
-	V \int \frac{\dif^3 k}{(2 \pi)^3} = \sum_\vec{k}
-\label{eq:tft:continuum_limit}
-\end{equation}
-with a normal summation sign, but really mean the integral in \eqref{eq:tft:mathematical_fourier_expansion}.
+of the field, then take the continuum limit \eqref{eq:tft:continuum_limit} at the end of the calculation to make it physically correct.
+
+The infinite volume factor $V$ will come in handy when calculating thermodynamic observables.
+To obtain the pressure \eqref{eq:tft:average_pressure}, we are instructed to divide by volume.
+Similarly, we will need to divide by volume to convert extensive observables observables like the energy \eqref{eq:tft:average_energy} into intensive observables like the energy \emph{density} $\epsilon = \thermalavg{E} / V$ that we need in the TOV equation \eqref{eq:tov}.
 
 The wave number $\vec{k}$ and the Matsubara frequency $\omega_n$ here arose due to geometrical considerations of the periodicity of the field.
 Later on, we will see that they have important physical consequences.
@@ -757,7 +762,6 @@ We now rewrite the Euclidean action \eqref{eq:tft:boson_euclidean_action_nice} b
 Exploiting the reality $\phi(\vec{x}, \tau) = \conj\phi(\vec{x}, \tau)$, we insert one Fourier expansion for the rightmost field and another with all quantities complex conjugated for the leftmost field.
 The action then becomes
 %By inserting one of each Fourier expansion, we can rewrite the Euclidean action \eqref{eq:tft:boson_euclidean_action_nice} as
-\TODO{ref to Fourier conventions to show that we only get factor $V$ etc. should i really have a $(2 \pi)^3$ etc? just ignore it as an overall factor in $Z$?}
 \begin{equation}
 \begin{split}
 	S_E & = -\frac12 \frac{\hbar^2 c^2 \beta}{V}
@@ -765,7 +769,7 @@ The action then becomes
 	    	  \conj\phi_{n'}(\vec{k'}) 
 	    	  \left( \frac{\omega_n^2}{c^2} + \vec{k}^2 + \frac{m^2 c^2}{\hbar^2} \right)
 	  	  \phi_{n}(\vec{k})
-	  	  \underbrace{\int \dif^3 x \, e^{i (\vec{k} - \vec{k'}) \cdot \vec{x}}}_{\delta(\vec{k}-\vec{k'}) V}
+	  	  \underbrace{\int_V \dif^3 x \, e^{i (\vec{k} - \vec{k'}) \cdot \vec{x}}}_{\delta(\vec{k}-\vec{k'}) V}
 	      \underbrace{\int_0^{\beta \hbar} \dif \tau \, e^{i (\omega_n - \omega_{n'}) \tau}}_{\delta_{n,n'} \beta \hbar}
 	  	  \\
 	    & = -\frac12 \hbar \beta^2
@@ -776,6 +780,7 @@ The action then becomes
 \label{eq:tft:boson_action_fourier}
 \end{equation}
 where $E_n$ are the Matsubara energies we defined in \cref{eq:tft:matsubara_energies}, and $E(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4}$ is the relativistic dispersion relation.
+Note that the integral over $x$ runs over the quantization volume $V$ that we defined in \cref{sec:matsubara_quantization}.
 The change of variables \eqref{eq:tft:boson_fourier_series} is a unitary transformation with Jacobian $1$, so the integral measure becomes
 \begin{equation}
 	\pathintdif \phi(x) =
@@ -959,7 +964,7 @@ With the Fourier series, the Euclidean action \eqref{eq:tft:dirac_action_euclide
 \begin{equation}
 \begin{split}
 	S & = \frac{1}{V} \sum_{n,n'} \sum_{\vec{k},\vec{k'}} \psi^\dagger_{n'}(\vec{k'}) \gamma^0 \left( -\hbar \gamma^0 i \omega_n + i \hbar c \, \vec{\gamma} \cdot i \vec{k} - m c^2 + \mu \gamma^0 \right) \psi_n(\vec{k}) \\
-	  & \times \underbrace{\int_0^{\beta \hbar} \dif \tau \, e^{i(\omega_n-\omega_{n'})\tau}}_{\delta_{n,n'} \beta \hbar} \underbrace{\int \dif^3 x \, e^{i(\vec{k}-\vec{k'})\cdot\vec{x}}}_{\delta(\vec{k} - \vec{k'}) V} \\
+	  & \times \underbrace{\int_0^{\beta \hbar} \dif \tau \, e^{i(\omega_n-\omega_{n'})\tau}}_{\delta_{n,n'} \beta \hbar} \underbrace{\int_V \dif^3 x \, e^{i(\vec{k}-\vec{k'})\cdot\vec{x}}}_{\delta(\vec{k} - \vec{k'}) V} \\
 	  & = \beta       \sum_{n}   \sum_{\vec{p}}         i \hbar \psi^\dagger_n(\vec{p})          \left( -E_n + i c \, \gamma^0 \vec{\gamma} \cdot \vec{p} + i m c^2 \gamma^0 - i \mu \right) \psi_n(\vec{p}) . \\
 \end{split}
 \end{equation}
@@ -1097,7 +1102,7 @@ Then the integrals become
 	       &=       \sum_\vec{p} \left\{ 2 \beta E(\vec{p}) + 2 \log \left[ 1 + e^{-\beta E_+(\vec{p})} \right] + 2 \log \left[ 1 + e^{-\beta E_-(\vec{p})} \right] \right\} . \\
 \end{split}
 \end{equation}
-Writing out our continuum definition \eqref{eq:tft:continuum_limit}, we finally obtain the \textbf{partition function for Dirac fermions}
+Taking the continuum limit \eqref{eq:tft:continuum_limit}, we finally obtain the \textbf{partition function for Dirac fermions}
 \begin{equation}
 	\log Z = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ \beta E(\vec{p}) + \log \left[ e^{-\beta (E(\vec{p}) - \mu)}+1 \right] + \log \left[ e^{-\beta (E(\vec{p}) + \mu)} + 1\right] \right\} .
 \label{eq:tft:dirac_partition_function}
