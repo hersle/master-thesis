@@ -585,10 +585,10 @@ Now use the Grassmann inner product \eqref{eq:tft:grassmann_inner_product} to wr
 	Z = \prod_n \int \dif \psi_n^\dagger \int \dif \psi_n \, \exp \left[ \frac{\Delta \tau}{\hbar} \sum_n \int \dif^3 x \left( -\hbar \psi^\dagger_{n+1} \frac{\psi_{n+1} - \psi_n}{\Delta \tau} \psi_{n} - \ham + \mu \numdensity \right) \right] .
 \end{equation}
 % integrate by parts? %why is this valid for Grassmann numbers? Can one e.g. show that $\pdv{\phi^\dagger \phi}{\tau} = 0$?, change order/use int by parts correctly % TODO: don't need this, should rather be careful about index placement above (especially the exp(.. n+1 ..) from completeness)
-Finally, take the continuum limit and introduce the functional integrals $\pathintdif \psi = \lim_{N \rightarrow \infty} \prod_n \dif \psi_n$ and $\pathintdif [i \hbar \psi^\dagger] = \lim_{N \rightarrow \infty} \prod_n \dif \psi^\dagger$, where we absorb some physically irrelevant prefactors into the latter to preserve similarity between the conjugate momentum $\pi$ and $i \hbar \psi^\dagger$. 
+Finally, take the continuum limit and introduce the functional integrals $\pathintdif \psi = \prod_{n=1}^\infty \dif \psi_n$ and $\pathintdif \psi^\dagger = \prod_{n=1}^\infty \dif \psi^\dagger$. 
 We then obtain the \textbf{fermionic partition function}
 \begin{equation}
-	Z = \oint_- \pathintdif [i \hbar \psi^\dagger] \oint_- \pathintdif \psi \exp \left[ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\hbar \psi^\dagger \dot{\psi} - \ham \left( \psi^\dagger, \psi \right) + \mu \numdensity \right) \right] ,
+	Z = \oint_- \pathintdif \psi^\dagger \oint_- \pathintdif \psi \exp \left[ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\hbar \psi^\dagger \dot{\psi} - \ham \left( \psi^\dagger, \psi \right) + \mu \numdensity \right) \right] ,
 \label{eq:tft:fermion_partition_function}
 \end{equation}
 where $\oint_-$ means to integrate over \emph{antiperiodic} fields $\psi(\vec{x}, 0) = -\psi(\vec{x}, \beta \hbar)$, naturally extending the symbol $\oint_+$ we introduced for bosonic fields that were \emph{periodic}.
@@ -882,7 +882,7 @@ Here, the four-component Dirac spinor $\psi = [ \psi_0, \psi_1, \psi_2, \psi_3 ]
 \end{equation}
 Of the multiple possible explicit representations of the Gamma matrices, we will use the \textbf{Dirac basis} where
 \begin{equation}
-	\gamma^0 = \begin{bmatrix} I_2 & 0 \\ 0 & I_2 \\ \end{bmatrix}
+	\gamma^0 = \begin{bmatrix} I_2 & 0 \\ 0 & -I_2 \\ \end{bmatrix}
 	\qquad \text{and} \qquad
 	\gamma^0 = \begin{bmatrix} 0 & \sigma^i \\ -\sigma^i & 0 \\ \end{bmatrix} ,
 \label{eq:tft:gamma_dirac_basis}
@@ -929,7 +929,7 @@ which we define as the Euclidean Lagrangian density $\lagr_E$ for reasons simila
 As explained around \cref{eq:tft:chemical_potential}, we must also include the conserved current \eqref{eq:tft:dirac_conserved_current}.
 Inserting this into the partition function \eqref{eq:tft:fermion_partition_function}, it becomes
 \begin{equation}
-	Z = \oint_- \pathintdif [i \hbar \psi^\dagger] \oint_- \pathintdif \psi
+	Z = \oint_- \pathintdif \psi^\dagger \oint_- \pathintdif \psi
 	    \exp \left( \frac{S_E}{\hbar} \right)
 \label{eq:tft:dirac_partition_function_first}
 \end{equation}
@@ -964,18 +964,17 @@ With the Fourier series, the Euclidean action \eqref{eq:tft:dirac_action_euclide
 \begin{split}
 	S & = \frac{1}{V} \sum_{n,n'} \sum_{\vec{k},\vec{k'}} \psi^\dagger_{n'}(\vec{k'}) \gamma^0 \left( -\hbar \gamma^0 i \omega_n + i \hbar c \, \vec{\gamma} \cdot i \vec{k} - m c^2 + \mu \gamma^0 \right) \psi_n(\vec{k}) \\
 	  & \times \underbrace{\int_0^{\beta \hbar} \dif \tau \, e^{i(\omega_n-\omega_{n'})\tau}}_{\delta_{n,n'} \beta \hbar} \underbrace{\int_V \dif^3 x \, e^{i(\vec{k}-\vec{k'})\cdot\vec{x}}}_{\delta(\vec{k} - \vec{k'}) V} \\
-	  & = \beta       \sum_{n}   \sum_{\vec{p}}         i \hbar \psi^\dagger_n(\vec{p})          \left( -E_n + i c \, \gamma^0 \vec{\gamma} \cdot \vec{p} + i m c^2 \gamma^0 - i \mu \right) \psi_n(\vec{p}) . \\
+	  & = i \beta \hbar \sum_{n}   \sum_{\vec{p}}         \psi^\dagger_n(\vec{p})          \left( -E_n + i c \, \gamma^0 \vec{\gamma} \cdot \vec{p} + i m c^2 \gamma^0 - i \mu \right) \psi_n(\vec{p}) . \\
 \end{split}
 \end{equation}
 We now change variables from $\psi(\vec{x}, \tau)$ and $\psi^\dagger(\vec{x}, \tau)$ to $\psi_n(\vec{k})$ and $\psi^\dagger_n(\vec{k})$ as in the bosonic case \eqref{eq:tft:boson_integral_new_variables}.
 To be consistent with treating the field and its conjugate as independent variables, we continue to treat the Fourier amplitudes and their conjugates independently.
 The partition function \eqref{eq:tft:dirac_partition_function_first} now becomes 
-\TODO{what factors to have in $\dif (i) (\hbar) \psi$}
 \begin{equation}
 	Z %& = \prod_n \prod_\vec{p} \int \pathintdif [i \hbar \psi_n(\vec{p})^\dagger] \int \pathintdif \psi_n(\vec{p}) \\
 	  %& \times \exp \left\{ \frac{\beta}{\hbar} i \hbar \psi_n(\vec{q})^\dagger \left[ -\hbar \omega_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu \right] \psi_n(\vec{p}) \right\} \\
 	  = \prod_n \prod_\vec{p} \int \dif \psi^\dagger_n(\vec{p}) \int \dif \psi_n(\vec{p}) 
-	  \exp \left\{ \psi^\dagger_n(\vec{p}) \left[ \beta( -i E_n - c \gamma^0 \vec{\gamma} \cdot \vec{p} - mc^2 \gamma^0 + \mu ) \right] \psi_n(\vec{p}) \right\} , \\
+	  \exp \left\{ \psi^\dagger_n(\vec{p}) \left[ i \beta ( -E_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu ) \right] \psi_n(\vec{p}) \right\} , \\
 	  %& = \prod_n \prod_\vec{p} \tdet D_n(\vec{p})
 \label{eq:tft:fermion_gaussian_integral}
 \end{equation}
