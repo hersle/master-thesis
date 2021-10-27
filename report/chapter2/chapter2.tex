@@ -100,7 +100,12 @@ Choosing the solution with prefactor $1$, we obtain
 \end{equation}
 
 The momentum states are also orthogonal and complete, but with slightly different factors.
-Due to our convention \eqref{eq:pre:delta_function} for the delta function, orthogonality takes the form
+Using the Fourier transformation convention
+\begin{equation}
+	f(x) = \int \frac{\dif k}{2 \pi} \, e^{-i k x} \hat{f}(k)
+	     = \int \dif x' \underbrace{\int \frac{\dif k}{2 \pi} \, e^{i k (x'-x)}}_{\delta(x'-x)} f(x') ,
+\end{equation}
+we have the Delta function $\delta(x'-x) = \int (\dif k / 2 \pi) \, e^{i k (x'-x)}$, so orthogonality takes the form
 \begin{equation}
 \begin{split}
 	\braket{\pi_a | \pi_b} &= \int \dif \phi \braket{\pi_a | \phi} \braket{\phi | \pi_b} \\
