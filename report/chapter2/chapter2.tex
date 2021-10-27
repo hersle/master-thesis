@@ -175,10 +175,9 @@ where we no longer have any operators, but only the Hamiltonian eigenvalue at th
 	H_n = \int \dif^3 x \, \ham \left( \pi_n(\vec{x}), \phi_n(\vec{x}) \right) .
 \label{eq:tft:hamiltonian_eigenvalues}
 \end{equation}
+We will only study Hamiltonians with this ordering, for which these steps are valid.
 Note the importance of expanding the exponential to first order in timeonly.
 If the Hamiltonian contained \emph{any} mixed sequence of operators such as $H \propto \hat{\pi} \hat{\phi}$, then higher powers like $\hat{H}^2 \propto \hat{\pi} \hat{\phi} \hat{\pi} \hat{\phi}$ in the power series expansion of the time evolution operator would not be in the assumed left-right order.
-
-\TODO{spør Jens Oluf om et alternativt argument her -- kan ikke bare operatorer i $\hat{H}$ kommuteres inntil man får den ønskede rekkefølgen, samtidig som ekstra konstanter medfører en fysisk ubetydelig fase? F.eks. $\hat{H} = \hat{p} \hat{q} = \hat{q} \hat{p} \pm i \hbar$, men de to har forskjellige egenverdier $pq$ og $pq \pm i \hbar$??? Men dette er alltid en fysisk ubetydelig fase?}
 
 \iffalse
 (TODO: If the Hamiltonian is \emph{not} in the order we assumed above, we could always bring it into this order by commuting operators using the commutation relation \eqref{eq:tft:boson_field_commutators}.
