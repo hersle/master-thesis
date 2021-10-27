@@ -344,13 +344,13 @@ However, the anticommutators \eqref{eq:tft:fermion_anticommutators} of the fermi
 For example,
 \begin{equation}
 \begin{split}
-	\text{if}   \quad & \destr \ket{\psi} = \psi \ket{\psi} , \\
+	\text{if}   \quad & \destr \ket{\psi} = \psi \ket{\psi} \quad \text{and} \quad \bra{\psi} \creat = \bra{\psi} \conj\psi , \\
 	\text{then} \quad & \braket{\psi | \creat \destr | \psi} = \braket{\psi | \conj\psi \psi | \psi} = -\braket{\psi | \psi \conj\psi | \psi} = -\braket{\psi | \destr \creat | \psi} \quad \text{by \eqref{eq:tft:fermion_anticommutators}}, \\
 	\text{so}   \quad & \acomm{\psi}{\conj\psi} = 0 . \\
 \end{split}
 \label{eq:tft:eigenvalues_must_anticommute}
 \end{equation}
-By similar reasoning, one can also deduce the requirements $\acomm{\psi}{\creat} = \acomm{\psi}{\destr} = 0$.
+By replacing only one operator with its eigenvalue, we can also deduce the requirements $\acomm{\psi}{\creat} = \acomm{\psi}{\destr} = 0$.
 The bosonic path integral \eqref{eq:tft:bosonic_partition_function} and its derivation is therefore not valid for fermions.
 
 To develop the fermionic path integral, we therefore replace the algebra of ordinary commuting numbers in the bosonic case with anticommuting \textbf{Grassmann numbers}.
@@ -384,7 +384,8 @@ so, perhaps confusingly, we are instructed to treat the field and its conjugate 
 
 Let us get to work.
 Suppose we have a finite number $N$ of Grassmann numbers $\psi_i$ and equally many creation and annihilation operators $\creat_i$ and $\destr_i$.
-Following the discussion around \cref{eq:tft:eigenvalues_must_anticommute} \TODO{vague} and the definition of Grassmann numbers in \cref{chap:grassmann_numbers}, we have, by assumption, all the anticommutators
+Right after \cref{eq:tft:eigenvalues_must_anticommute}, we argued that Grassmann numbers anticommute not only with each other, but also with the operators.
+By assumption, we therefore start with all the anticommutators
 \begin{equation}
 \begin{split}
 	\acomm{\psi_i}{\psi_j} = \acomm{\psi_i}{\conj\psi_j} = \acomm{\conj\psi_i}{\conj\psi_j}                             &= 0            , \\
