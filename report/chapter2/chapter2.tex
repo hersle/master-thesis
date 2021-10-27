@@ -355,6 +355,7 @@ The bosonic path integral \eqref{eq:tft:bosonic_partition_function} and its deri
 
 To develop the fermionic path integral, we therefore replace the algebra of ordinary commuting numbers in the bosonic case with anticommuting \textbf{Grassmann numbers}.
 Assuming most readers have encountered them before, we define and derive all properties of Grassmann numbers that will be useful to us in \cref{chap:grassmann_numbers} and will only refer to them in this section.
+\TODO{big A in Appendix etc?}
 
 In the derivation of the bosonic path integral \eqref{eq:tft:bosonic_partition_function}, we relied heavily on using eigenstates of the system to take the trace in \eqref{eq:tft:partition_function}, insert completeness relations and take inner products between eigenstates.
 To find analogous ways of doing this with fermionic fields, we will introduce \textbf{fermionic coherent states}.
@@ -382,8 +383,8 @@ so, perhaps confusingly, we are instructed to treat the field and its conjugate 
 \fi
 
 Let us get to work.
-Suppose we have a finite number $N$ of Grassmann numbers $\psi_i$ and equally many creation and destruction operators $\creat_i$ and $\destr_i$.
-Following the discussion around \cref{eq:tft:eigenvalues_must_anticommute} and the definition of Grassmann numbers in \cref{chap:grassmann_numbers}, we have, by assumption, all the anticommutators
+Suppose we have a finite number $N$ of Grassmann numbers $\psi_i$ and equally many creation and destruction \TODO{annihiliation?} operators $\creat_i$ and $\destr_i$.
+Following the discussion around \cref{eq:tft:eigenvalues_must_anticommute} \TODO{vague} and the definition of Grassmann numbers in \cref{chap:grassmann_numbers}, we have, by assumption, all the anticommutators
 \begin{equation}
 \begin{split}
 	\acomm{\psi_i}{\psi_j} = \acomm{\psi_i}{\conj\psi_j} = \acomm{\conj\psi_i}{\conj\psi_j}                             &= 0            , \\
@@ -395,7 +396,7 @@ Following the discussion around \cref{eq:tft:eigenvalues_must_anticommute} and t
 \end{equation}
 In other words, all field operators and all Grassmann numbers anticommute with themselves and each other.
 The anticommutators \eqref{eq:tft:fermionic_all_anticommutators} of the field operators $\creat_i$ and $\destr_i$ are the discrete analogues of \eqref{eq:tft:fermion_anticommutators}.
-It will be less painful to describe the formalism of fermionic coherent states in the discrete case and then take the continuum limit $\psi_i \rightarrow \psi(\vec{x})$ in the end.
+It will be less painful \TODO{brutal?} to describe the formalism of fermionic coherent states in the discrete case and then take the continuum limit $\psi_i \rightarrow \psi(\vec{x})$ in the end.
 
 The Fock space of the fermionic field has a \textbf{ground state} or \textbf{vacuum state} that we denote by
 \begin{equation}
@@ -441,7 +442,7 @@ Applying a destruction operator to this state gives
 \end{aligned}
 \end{equation}
 In other words, the coherent state $\ket{\psi}$ is an eigenstate of every destruction operator $\destr_j$ with eigenvalue $\psi_j$!
-This is analogous to the bosonic eigenequation \eqref{eq:tft:field_eigenvalue_equations}.
+This is analogous to the bosonic eigenequation \TODO{eigen equation?} \eqref{eq:tft:field_eigenvalue_equations}.
 It is the coherent states that we wish to use when taking the trace, inner product and inserting identity operators in the path integral.
 
 First, let us find the inner product between two coherent states.
@@ -461,7 +462,7 @@ It is
 \label{eq:tft:grassmann_inner_product_discrete}
 \end{equation}
 
-Next, we can work out that the unit operator $\hat{1}$ can be represented by the integral
+Next, we can work out that the unit operator $\hat{1}$ \TODO{use cool font} can be represented by the integral
 \begin{equation}
 \begin{split}
 	 \iffalse
@@ -479,14 +480,14 @@ Next, we can work out that the unit operator $\hat{1}$ can be represented by the
 \end{split}
 \label{eq:tft:completeness_grassmann_discrete}
 \end{equation}
-To make the big leap across the second equality sign, stare intensely at the middle line while following the next argument.
+To make the big leap across the second equality sign, stare intensely at the middle \TODO{penaltimate ????} line while following the next argument.
 To get a non-zero contribution from the integral, the parentheses must be multiplied out in a way such that one gets terms with the particular combination
 \begin{equation}
 	\int \dif \conj\psi \int \dif \psi \, \psi_1 \conj\psi_1 \cdots \psi_N \conj\psi_N = 1 .
 \label{eq:tft:integral_saturated}
 \end{equation}
-Any term with duplicate fields $\psi_i^2 = -\psi_i^2 = 0$ will yield zero, and so will terms with products that do not include \emph{all} $\psi_i$ and $\conj\psi_i$ due to the integration properties \eqref{eq:gnums:integration_differentiation} and the discussion surrounding \cref{eq:gnums:integration_over_all}.
-Based on this, we can derive three rules for what combinations of factors we can choose when multiplying out the three parentheses.
+Any term with duplicate fields $\psi_i^2 = -\psi_i^2 = 0$ will yield zero, and so will terms with products that do not include \emph{all} $\psi_i$ and $\conj\psi_i$ due to the integration properties \eqref{eq:gnums:integration_differentiation} and the discussion surrounding \cref{eq:gnums:integration_over_all} \TODO{vague}.
+Based on this, we can derive three rules for what combinations of factors we can choose when multiplying out the three parentheses. \TODO{product?}
 \begin{enumerate}
 \item \textbf{For any $i$ in the first parenthesis:} Given that we follow the two next rules, we are free to choose either the factor $1$ or $\psi_i \conj\psi_i$. \label{eq:tft:logic_tree_one}
 \item \textbf{For $j=i$ in the second parenthesis:} 
@@ -497,7 +498,7 @@ If we choose $-\psi_j \creat_j$ in the second, we \emph{must} choose $-\psi_k \c
 Conversely, if we choose $1$ in the second, then we have already included $\psi_i \conj\psi_i$ from rule \ref{eq:tft:logic_tree_one}, and we \emph{must} choose $1$ in the third to not ``oversaturate'' the field product. \label{eq:tft:logic_tree_three}
 \end{enumerate}
 Following these rules, the first parenthesis expands to all possible $2^N$ terms.
-For every one of these terms, there is precisely one legal combination of factors to choose in the second and third parentheses.
+For every one of these terms, there is precisely one legal \TODO{different word, it is ``legal''..} combination of factors to choose in the second and third parentheses.
 This evaluates to $2^N$ terms with all possible combinations of $N_j = N_k$ creation and annihilation operators and $N_i = N - N_j$ Grassmann numbers.
 \emph{These $2^N$ terms are therefore precisely all the $2^N$ states \eqref{eq:tft:fermion_all_states} in the Fock space!}
 The sign ambiguity following different orders of operators in the state \eqref{eq:tft:fermionic_many_particle_state} does not cause any problems with signs in the sum over all the states, either.
@@ -530,10 +531,13 @@ With the same reasoning, we can work out that the trace of an operator $\hat{A}$
 Across the third equality, we (anti)commute $\psi_j$ and $\conj\psi_j$ all the way to the left to write $\braket{0 | \destr_j \conj\psi_j \hat{A} (-\psi_j \creat_j) | 0} = \psi_j \conj\psi_j \braket{0 | \destr_j \hat{A} \creat_j | 0}$ while assuming that $\hat{A}$ is a ``bosonic'' operator that \emph{commutes} with the Grassmann numbers.
 The Hamiltonian \eqref{eq:tft:dirac_hamiltonian} for a Dirac field that we encounter later is one example of such an $\hat{A}$, as it contains two field operators.
 
-As we remarked at the start, this analysis was for discrete fields that satisfies the discrete anticommutators \eqref{eq:tft:fermionic_all_anticommutators}.
+\TODO{dirac field should have indices in its anticommutation relations}
+
+As we remarked at the start, this analysis was for discrete fields that satisfy the discrete anticommutators \eqref{eq:tft:fermionic_all_anticommutators}.
 We are studying fields $\psi(\vec{x})$ and $\conj\psi(\vec{x})$ with an infinite number of field operators $\creat(\vec{x})$ and $\destr(\vec{x})$ that satisfy the continuum generalization \eqref{eq:tft:fermion_anticommutators}.
 Our results carry over with the substitutions $\psi_i \rightarrow \psi(\vec{x})$, as if every Grassmann number corresponds to the field at one position, and $\sum_i \rightarrow \int \dif^3 x$.
 For example, we would rather define the coherent state
+\TODO{remove hypothetical tense}
 \begin{equation}
 	\ket{\psi} = \exp \left[ -\int \dif^3 x\, \psi(\vec{x}) \hat\psi^\dagger(\vec{x}) \right] \ket{0} .
 \end{equation}
@@ -547,6 +551,7 @@ The identity operator \eqref{eq:tft:grassmann_inner_product_discrete} would then
 	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \ket{\psi} \bra{\psi} = \hat{1} ,
 \label{eq:tft:completeness_grassmann}
 \end{equation}
+\TODO{cool font for 1}
 while the trace \eqref{eq:tft:trace_grassmann_discrete} would turn out to be
 \begin{equation}
 	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \Braket{-\psi | \hat{A} | \psi} = \trace{A} .
@@ -554,7 +559,7 @@ while the trace \eqref{eq:tft:trace_grassmann_discrete} would turn out to be
 \end{equation}
 The most important thing to note is the negative sign in $\bra{-\psi}$ of the trace \eqref{eq:tft:trace_grassmann} -- we will see that this requires fermionic fields to be \emph{antiperiodic} in imaginary time, in contrast to the periodic bosonic fields.
 
-Let us now build the path integral for the fermionic partition function using \cref{eq:tft:grassmann_inner_product,eq:tft:completeness_grassmann,eq:tft:trace_grassmann} as our toolbox.
+Let us now build \TODO{build?} the path integral for the fermionic partition function using \cref{eq:tft:grassmann_inner_product,eq:tft:completeness_grassmann,eq:tft:trace_grassmann} as our toolbox. \TODO{... FROM our toolbox eq 123 ...?}
 The partition function \eqref{eq:tft:partition_function} follows from the trace \eqref{eq:tft:trace_grassmann} with $\hat{A} = e^{-\beta (\hat{H} - \mu \hat{N})}$ as
 \begin{equation}
 	Z = \int \dif \psi_0^\dagger \int \dif \psi_0 \, e^{-\int \dif^3 x \, \psi_{0}^\dagger(\vec{x}) \psi_{0}(\vec{x})} \Braket{-\psi_0 | e^{-\beta(\hat{H} - \mu \hat{N})} | \psi_0} .
