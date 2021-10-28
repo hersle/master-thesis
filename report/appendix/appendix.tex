@@ -602,7 +602,7 @@ Importantly, they have simple poles at all imaginary Matsubara frequencies $z = 
 	\path[blue, decoration={markings, mark=between positions 0 and 1 step 1.0 with {\cross}}, postaction={decorate}] (-\r/2, 0) node[black, above] {\scriptsize $-E$} -- (+\r/2, 0) node [black, above] {\scriptsize $+E$};
 }
 \fi
-\def\N{15}
+\def\N{8}
 \def\smallr{0.25}  % TODO: make them touch?\\
 \def\drawpoles{
 \foreach \n in {1,2,...,\N} {
@@ -633,11 +633,15 @@ Importantly, they have simple poles at all imaginary Matsubara frequencies $z = 
 \drawpoles
 \iffalse
 \draw[thick, red, decoration={markings, mark=at position 0.125 with {\arrowreversed{>}}}, postaction={decorate}] (0, 0) circle [radius=(\r+\smallr)];
-\fi
 \draw[very thick, red, decoration={markings, mark=at position 0.4 with {\arrow{latex}}}, postaction={decorate}] 
       (+\w/2, -\r) -- 
       (+\w/2, +\r) arc [start angle=0, end angle=180, radius=\w/2] --
       (-\w/2, -\r) arc [start angle=180, end angle=360, radius=\w/2];
+\fi
+\foreach \n in {1,2,...,\N} {
+	\def\y{-\r + (\n-1)/(\N-1)*(2*\r)}
+	\draw[thick, red, decoration={markings, mark=at position 0.125 with {\arrow{>}}}, postaction={decorate}] (0,{\y}) circle [radius=\smallr];
+}
 \end{tikzpicture}
 \caption{\label{fig:matsum:contourA}Contour $C_A$}
 \end{subfigure}
@@ -646,14 +650,20 @@ Importantly, they have simple poles at all imaginary Matsubara frequencies $z = 
 \begin{tikzpicture}
 \drawaxes
 \drawpoles
+\iffalse
 \draw[semithick, red!50!white, decoration={markings, mark=at position 0.4 with {\arrow{latex}}}, postaction={decorate}] 
       (+\w/2, -\r) -- 
       (+\w/2, +\r) arc [start angle=0, end angle=180, radius=\w/2] --
       (-\w/2, -\r) arc [start angle=180, end angle=360, radius=\w/2];
+\fi
+\foreach \n in {1,2,...,\N} {
+	\def\y{-\r + (\n-1)/(\N-1)*(2*\r)}
+	\draw[thick, red!50!white, decoration={markings, mark=at position 0.125 with {\arrow{>}}}, postaction={decorate}] (0,{\y}) circle [radius=\smallr];
+}
 \draw[very thick, red, decoration={
 	markings,
 	mark=at position 0.125 with {\arrowreversed{latex}},
-}, postaction={decorate}] (0, 0) circle [radius=\r+\w/2];
+}, postaction={decorate}] (0, 0) circle [radius=\r+\smallr/2];
 \end{tikzpicture}
 \caption{\label{fig:matsum:contourB}Contour $C_B$}
 \end{subfigure}
@@ -683,17 +693,18 @@ Importantly, they have simple poles at all imaginary Matsubara frequencies $z = 
 	To evaluate a Matsubara sum \eqref{eq:matsum:sum}, we can transform it into a complex integral \eqref{eq:matsum:sum_as_contour_integral} along the contour $C_A$ that encloses infinitely many imaginary Matsubara frequencies.
 	If the integral vanishes on the circular contour $C_B$ of infinite radius, we can superpose $C_B$ and $C_A$ into the contour $C_C$ that usually encloses only a \emph{finite} number of poles.
 	Then we can evaluate the Matsubara sum with the residue theorem as the finite sum \eqref{eq:matsum:sum_finite_residues}.
+	\TODO{update text and figure}
 }
 \end{figure}
 
 For reasons that will soon be clear, consider the contour integral
 \begin{equation}
-	\oint_{C_A} \dif z \, s(-iz) n_\pm(z)
+	\sum_{n=-N}^N \oint_{C_n} \dif z \, s(-iz) n_\pm(z)
 \label{eq:matsum:contour_integral}
 \end{equation}
-along the contour $C_A$ drawn in \cref{fig:matsum:contourA} that surrounds all poles of $n_\pm(z)$.
-If this contour really is to include \emph{all} poles, it must close at $z = i \infty$ and $z = -i \infty$.
-To circumvent this difficulty, it is more well-defined to think of $C_A$ as enclosing only a finite number of poles at this point, then take the infinite limit at the end of this derivation.
+along the contours $C_n$ drawn in \cref{fig:matsum:contourA} that surround the $2N+1$ poles of $n_\pm(z)$ that are closest to the origin.
+To proceed in a mathematically well-defined way, we consider only a finite number of poles throughout the derivation, but will take the limit $N \rightarrow \infty$ at the very end to include all poles.
+
 How does this contour integral relate to the Matsubara sum \eqref{eq:matsum:sum}?
 First recall the residue theorem
 \begin{equation}
@@ -713,42 +724,49 @@ We then find that the residues of the integrand in the contour integral \eqref{e
 \end{equation}
 By the residue theorem \eqref{eq:matsum:residue_theorem}, the contour integral \eqref{eq:matsum:contour_integral} is then
 \begin{equation}
-	\oint_{C_A} \dif z \, s(-iz) n_\pm(z) = 2 \pi i \sum_i \res_{z = i E_n}[s(-i z) n_\pm(z)]
-	                                  = \pm \frac{2 \pi i}{\beta} \sum_n s(E_n) .
+	\sum_{n=-N}^N \oint_{C_n} \dif z \, s(-iz) n_\pm(z) = 2 \pi i \sum_i \res_{z = i E_n}[s(-i z) n_\pm(z)]
+	                                  = \pm \frac{2 \pi i}{\beta} \sum_{n=-N}^N s(E_n) .
 \label{eq:matsum:connection_integral_sum}
 \end{equation}
-In other words, if the contour $C_A$ includes \emph{all} poles of $n_\pm(z)$, the full Matsubara sum \eqref{eq:matsum:sum} is given by the contour integral
+In other words, the finite version of the Matsubara sum \eqref{eq:matsum:sum} is given by the contour integral
 \begin{equation}
-	S = \pm \frac{\beta}{2 \pi i} \oint_{C_A} \dif z \, s(-iz) n_\pm(z) .
+	S_N = \sum_{n=-N}^N s(E_n) = \pm \frac{\beta}{2 \pi i} \oint_{C_n} \dif z \, s(-iz) n_\pm(z) ,
 \label{eq:matsum:sum_as_contour_integral}
 \end{equation}
+and the full sum is given by $S_\infty = \lim_{N \rightarrow \infty} S_N$.
 
 What is the use of transforming a simple sum into a complex (in both senses) contour integral?
-Consider now the circular contour $C_B$ in \cref{fig:matsum:contourB} that touches the tips of $C_A$ at the imaginary axes.
-Again, to avoid the difficulty of closing $C_A$ at infinity, think of $C_A$ as enclosing only a \emph{finite} number of the infinitely many poles as this point.
+Consider now the circular contour $C_B$ in \cref{fig:matsum:contourB} that touches $C_{-N}$ and $C_N$ at the intersections with the imaginary axis.
 Now
 \begin{equation}
-	\oint_{C_A} \dif z +
+	\sum_{n=-N}^N \oint_{C_n} \dif z +
 	\oint_{C_B} \dif z =
 	\oint_{C_C} \dif z ,
+\label{eq:matsum:contour_superposition}
 \end{equation}
 where $C_C$ is the contour shown in \cref{fig:matsum:contourB}.
-In contrast to the counterclockwise contour $C_A$, the circular contour $C_B$ runs clockwise, killing the contributions from $C_A$ at the tips, and instead closes the contour with semicircles in the real half planes.
-Now inflate the contour by taking the limit $R \rightarrow \infty$.
-Assuming $s(-i z)$ -- like in our motivating example \eqref{eq:matsum:motivating_example} -- satisfies
+The overlapping contributions between the contours $C_n$ run opposite ways and cancel, producing the vertical parts of $C_C$.
+The clockwise circular contour $C_B$ cancels the top part of $C_{N}$ and the bottom part of $C_{-N}$ and closes the contour with semicircles in the real half planes.
+
+Finally, include all poles by taking the limit $N \rightarrow \infty$.
+This inflates the contour $C_C$ to the full real half planes, except the imaginary axis $\real Z = 0$.
+Assuming $s(-i z)$ -- as in our motivating example \eqref{eq:matsum:motivating_example} -- satisfies
 \begin{equation}
 	\abs{s(-iz) n_\pm(z)} < \frac{1}{\abs{z}} \quad \text{as} \quad \abs{z} \rightarrow \infty ,
 \end{equation}
-then $\oint_{C_B} \dif z \, s(-iz) n_\pm(z) \rightarrow 0$ as $R \rightarrow 0$, and we can apply the residue theorem again with the new contour $C_C$ to obtain
+then $\oint_{C_B} \dif z \, s(-iz) n_\pm(z) \rightarrow 0$ as $N \rightarrow \infty$, and by \cref{eq:matsum:contour_superposition} we can trade the contour $\sum_n C_n$ for $C_C$ in \cref{eq:matsum:connection_integral_sum}.
+Now we can apply the residue theorem again with the new contour $C_C$ to obtain
 \begin{equation}
-	S = \frac{\pm \beta}{2 \pi i} \oint_{C_C} \dif z \, s(-iz) n_\pm(z) = \mp \beta \sum_n \res_{z=z_n} [s(-iz) n_\pm(z)] .
+	S = \frac{\pm \beta}{2 \pi i} \oint_{C_C} \dif z \, s(-iz) n_\pm(z) = \mp \beta \sum_n \res_{z=z_n} [s(-iz) n_\pm(z)] ,
 \label{eq:matsum:sum_finite_residues}
 \end{equation}
-Importantly, \emph{the sum now runs over the poles of $s(-iz)$ in the real half planes, and not the poles of $n_\pm(z)$ like in \cref{eq:matsum:connection_integral_sum}}.
+\emph{where the sum now runs over the poles of $s(-iz)$ in the real half planes, and not the poles of $n_\pm(z)$ like in \cref{eq:matsum:connection_integral_sum}}.
 Note also that the sign change following the clockwise orientation of $C_C$.
 Like in our example \eqref{eq:matsum:motivating_example}, most $s(-iz)$ will have a \emph{finite} number of poles, in stark contrast to the infinite number of poles of $n_\pm(z)$.
 We have thus transformed the Matsubara sum over an infinite number of residues of $n_\pm(z)$ to a sum over a finite number of residues of $s(-iz)$ -- a much more manageable task.
 This is our proclaimed elegant and general method of evaluating the Matsubara sum \eqref{eq:matsum:sum}.
+
+\TODO{control the revised argument}
 
 \TODO{revise argument for changing contour. try to avoid the intermediate circle. instead argue that (1) in the infinity limit, we lose nothing by opening the contours at top and bottom because the summand must go to zero in this limit for the sum to converge, and (2) that integrals along the half circles also vanish by our assumption}
 
