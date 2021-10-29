@@ -1144,7 +1144,7 @@ Taking the continuum limit \eqref{eq:tft:continuum_limit}, we finally obtain the
 
 Having evaluated $\log Z$ for both a real scalar field and Dirac fermions, it is insightful to conclude this chapter by comparing the similarities and differences of the two cases.
 \begin{itemize}
-\item The path integrals \eqref{eq:tft:bosonic_partition_function} and \eqref{eq:tft:fermion_partition_function} that we started with looked very similar on the outside, yet were very different on the inside due to the algebra of commuting complex numbers being replaced by anticommuting Grassmann numbers in the fermionic case.
+\item The bosonic and fermionic path integrals \eqref{eq:tft:bosonic_partition_function} and \eqref{eq:tft:fermion_partition_function} that we started with looked very similar on the outside, yet were very different on the inside due to the algebra of commuting complex numbers in the bosonic case being replaced by anticommuting Grassmann numbers for fermions.
 \item The periodicity of the bosonic field and the antiperiodicity of the fermionic field allowed us to expand both as Fourier series, but with differing Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
 \item Only the Dirac field had a conserved charge that let us introduce a chemical potential $\mu$.
 \item In the bosonic case, we could integrate out the momentum $\pi$, leaving the Gaussian integrals \eqref{eq:tft:boson_gaussian_integral} over \emph{one} variable that we tackled using $\int \dif x \, e^{-ax^2} \propto a^{-1/2}$.
@@ -1152,7 +1152,7 @@ Having evaluated $\log Z$ for both a real scalar field and Dirac fermions, it is
       This resulted in the Gaussian integrals \eqref{eq:tft:fermion_gaussian_integral} over \emph{pairs} of Grassmann numbers that we handled with $\int \dif \psi^\dagger \int \dif \psi \, e^{-\psi^\dagger A \psi} = \tdet A$.
 	  The integrals effectively differ by the power $-1/2$.
 \item We managed to bring $\log Z$ into the similar sums \eqref{eq:tft:boson_log_sum} and \eqref{eq:tft:fermion_log_sum} over the Matsubara energies $E_n$ in both cases.
-      In \cref{chap:matsum} described a general framework for computing both sums, with the Bose-Einstein and Fermi-Dirac distributions $1 / [e^{\beta E(\vec{p})} \mp 1]$ arising naturally in the bosonic and fermionic case, respectively.
+      In \cref{chap:matsum} we described a general framework for computing both sums, with the Bose-Einstein and Fermi-Dirac distributions $1 / [e^{\beta E(\vec{p})} \mp 1]$ arising naturally in the bosonic and fermionic case, respectively.
 \item Apart from the chemical potential, the results \eqref{eq:tft:real_scalar_field_partition_function} and \eqref{eq:tft:dirac_partition_function} for $\log Z$ have very similar structure.
       Essentially, they differ by the factor $-1/2$ due to the different powers of the Gaussian integrals and by the different signs in the logarithms due to the Bose-Einstein and Fermi-Dirac distributions.
 \end{itemize}
