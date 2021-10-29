@@ -241,13 +241,16 @@ vanishes.
 Equivalently, the connection coefficients $ \Gamma^\alpha_{\beta\gamma} = \Gamma^\alpha_{\beta\gamma} $ are symmetric in the lower indices.
 Second, we require \textbf{metric compatibility}
 \begin{equation}
-	\nabla_\rho g_{\mu \nu} = 0 .
+	\nabla_\rho g_{\mu \nu} = 0 ,
 \end{equation}
-This implies that
+expressing that the metric is covariantly constant.
+One can show that this guarantees that lengths of vectors and angles between them are preserved under parallel transport, which we will study in the next section, making this a reasonable demand \cite[equation 2.10]{ref:hehl}.
+The covariantly constant nature of the metric implies that we can view spacetime as a continuum of flat Minkowski spacetimes, sewn together by the connection $\Gamma^\alpha_{\beta \gamma}$.
+Metric compatibility implies that
 \begin{equation}
 	g_{\mu \lambda} \nabla_\rho V^\lambda = \nabla_\rho (g_{\mu \lambda} V^\lambda) = \nabla_\rho V_\mu ,
 \end{equation}
-so we do not have to be overly careful regarding index placement when taking covariant derivatives.
+so we can raise and lower indices inside covariant derivatives, even if the metric is outside.
 Using both of these assumptions, we can write out three metric compatibility requirements
 \newcommand\metriccompatibilityequation[3]{\nabla_{#1} g_{{#2}{#3}} &= \partial_{#1} g_{{#2}{#3}} - \Gamma^\lambda_{{#1}{#2}} g_{\lambda {#3}} - \Gamma^\lambda_{{#1}{#3}} g_{{#2} \lambda} = 0}
 \begin{align}
@@ -266,8 +269,11 @@ By subtracting the second and third equation from the first and solving the resu
 \end{equation}
 In general relativity, we will \emph{always} use this unique representation of the connection coefficients given in terms of the metric only.
 With this choice, the metric single-handedly determines the geometry of spacetime, as it is the only fundamental object that all the other geometric quantities we have looked at depends on.
-
-\TODO{gjør et ``dypdykk'' for å finne ut om det er mulig å gjøre GR \emph{uten} $0$ torsion og metric compatibility}
+In fact, the requirements of zero torsion and metric compatibility that led to this metric can be viewed as defining features of general relativity.
+By relaxing either of these requirements, one can come up with various generalizations of general relativity.
+For example, by allowing for nonzero torsion \eqref{eq:torsion_tensor}, one obtains the \emph{Einstein-Cartan theory} of gravitation.
+One can show that the inclusion of torsion is equivalent to accounting for the \emph{spin} of the microscopic particles that make up the macroscopic matter \cite{ref:hehl}.
+However, general relativity is concerned with describing \emph{macroscopic} objects, which justifies our demand of zero torsion.
 
 \iffalse
 \begin{align}
@@ -346,7 +352,7 @@ where $T\indices{^\lambda_{\mu \nu}}$ is the torsion tensor \eqref{eq:torsion_te
 \end{equation}
 We expect that if space is flat, then a parallel transported vector should not depend on the path, so the commutator and thus the Riemann tensor should vanish.
 If there exists \emph{any} choice of coordinates in which the curvature tensor vanishes, then it vanishes in \emph{all} coordinates by its tensorial nature, and this is our ultimate definition of \textbf{flat space}.
-In fact, it turns out that at any point $x_0$ we can find \textbf{normal coordinates} $x^\mu$ in which the metric locally resembles that of flat space with $g_{\mu \nu} = \eta_{\mu \nu}$ and $\partial_\sigma g_{\mu \nu} = 0$ to first order in the displacement.
+In fact, it turns out that at any point $x_0$ we can find \textbf{normal coordinates} $x^\mu$ in which the metric locally resembles Minkowski space with $g_{\mu \nu} = \eta_{\mu \nu}$ and $\partial_\sigma g_{\mu \nu} = 0$ to first order in the displacement.
 To second order in the displacement, \cite{ref:metric_taylor_expansion} shows that the metric can be written
 \begin{equation}
 	g_{\mu \nu}(x) = \eta_{\mu \nu} - \frac12 R_{\alpha \mu \beta \nu} (x^\alpha - x_0^\alpha) (x^\beta - x_0^\beta) .
