@@ -290,7 +290,7 @@ However, general relativity is concerned with describing \emph{macroscopic} obje
 \begin{figure}
 \centering
 \includesvg[width=0.5\textwidth]{figures/parallel_transport.svg}
-\caption{\label{fig:parallel_transport}When a vector is parallel transpored around a closed loop on the $2$-sphere, its final direction depends on the path taken. Illustration by \cite{ref:figure_parallel_transport}.}
+\caption{\label{fig:parallel_transport}When a vector is parallel transported around a closed loop on the $2$-sphere, its final direction depends on the path taken. Illustration by \cite{ref:figure_parallel_transport}.}
 \end{figure}
 
 Now that we know how to take proper derivatives of vector fields and general tensor fields on manifolds, we can discuss how to parallel transport vectors on the manifold.
@@ -378,7 +378,69 @@ Thus, the simplest scalar quantity we can form that represents curvature is the 
 	\label{eq:def_ricci_scalar}
 \end{equation}
 
+\subsection{Example: \texorpdfstring{$2$}{2}-sphere}
+
 \TODO{do $2$-sphere as an example, connect it to a figure with sphere and parallell transport?}
+
+As a simple example and to make sense of some of our results, let us consider the $2$-sphere of constant radius $r$ with coordinates
+\begin{equation}
+	(x^1, x^2) = (\theta, \phi)
+	\quad \text{with} \quad
+	0 \leq \theta < \pi , \quad
+	0 \leq \phi < 2 \pi ,
+\end{equation}
+and the line element and metric given by
+\begin{equation}
+	\dif s^2 = r^2 \dif \theta^2 + r^2 \sin^2 \theta .
+\end{equation}
+
+The non-zero Christoffel symbols \eqref{eq:def_christoffel} are
+\begin{equation}
+	\Gamma^1_{22} = -\sin \theta \cos \theta , \qquad
+	\Gamma^2_{12} = \Gamma^2_{21} = \frac{\cos \theta}{\sin \theta} .
+\end{equation}
+
+For example, parallel transporting a vector with components $(V^1, V^2) = (V^\theta, V^\phi)$ along a curve with $\odv{\theta}/{\tau} = \dot\theta \neq 0$, but $\odv{\phi}/{\tau} = 0$ turns the equation of parallel transport \eqref{eq:parallel_transport} into
+\begin{equation}
+	\dot{V}^\theta = 0 , \qquad
+	\dot{V}^\phi + \frac{1}{\tan \theta} \dot\theta V^\phi = 0 .
+\end{equation}
+The former equation yields $V^1 = \text{const}$, and one can therefore differentiate the latter with the chain rule, exploiting $\pdv{V^2}/{\theta} = 0$, to obtain
+\begin{equation}
+	\odv{V^1}{\theta} = 0 , \qquad
+	\pdv{V^2}{\phi} + \frac{1}{\tan \theta} V^2 = 0 .
+\end{equation}
+The solution is
+\begin{equation}
+	V^\theta(\theta, \phi) = V^\theta(\theta_0, \phi_0) , \qquad
+	V^\phi(\theta, \phi) = \frac{V^\phi(\theta_0, \phi_0)}{\sin \theta} .
+\end{equation}
+As predicted \TODO{ref?}, the length is preserved
+\begin{equation}
+	V^\mu V_\mu = 
+	g_{11} (V^1)^2 + g_{22} (V^2)^2 =
+	R^2 (V^1_0)^2 + R^2 (V^2_0)^2 = \text{const} .
+\end{equation}
+
+\TODO{geodesic equation?}
+
+The nonzero components of the Riemann curvature tensor \eqref{eq:def_riemann_tensor} becomes
+\begin{equation}
+	R\indices{^1_2_0_2} = \sin^2 \theta , \quad
+	R\indices{^1_2_2_1} = -\sin^2 \theta , \quad
+	R\indices{^2_1_1_2} = -1 , \quad
+	R\indices{^2_1_2_1} = 1 .
+\end{equation}
+Then the nonzero components of the Ricci tensor \eqref{eq:def_ricci_tensor}
+\begin{equation}
+	R_{00} = 1 , \qquad R_{11} = \sin^2 \theta .
+\end{equation}
+Finally, the Ricci curvature scalar \eqref{eq:def_ricci_scalar} is
+\begin{equation}
+	R = \frac{2}{R^2} .
+\end{equation}
+As we should expect from dimensional analysis of the preceeding equations, it is proportional to $1/R^2$, where $R$ is the only length scale defined in the problem.
+
 
 
 \section{Least-action derivation of the Einstein field equations}
