@@ -12,10 +12,10 @@ m(r) = function("m")(r)
 β(r) = function("β", latex_name="\\beta")(r)
 
 g = M.metric(name="g")
-g[0,0] = -exp(2*α(r))
-g[1,1] = +exp(2*β(r))
-g[2,2] = r^2
-g[3,3] = r^2*sin(θ)^2
+g[0,0] = +exp(2*α(r))
+g[1,1] = -exp(2*β(r))
+g[2,2] = -r^2
+g[3,3] = -r^2*sin(θ)^2
 
 #G = g.ricci() - 1/2*g.ricci_scalar()*g
 #G.set_name("G")
@@ -27,7 +27,7 @@ u[0] = exp(-α(r))
 u = u.down(g)
 u.set_name("u")
 
-T = (ρ(r)+p(r)) * (u*u) + p(r) * g
+T = (ρ(r)+p(r)) * (u*u) - p(r) * g
 T.set_name("T")
 
 """

@@ -68,15 +68,15 @@ For our purposes, we therefore use the coordinates
 and consider the most general line element that exhibits spherical symmetry, \cite[equation 5.11]{ref:carroll}
 \begin{equation}
 	% coordinates x = (ct, r, θ, ϕ)
-	\dif s^2 = -e^{2 \alpha(r)} c^2 \dif t^2 + e^{2 \beta(r)} \dif r^2 + r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
+	\dif s^2 = e^{2 \alpha(r)} c^2 \dif t^2 - e^{2 \beta(r)} \dif r^2 - r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
 \end{equation}
 
 We model the interior of the star as a perfect fluid with energy-momentum \cite[equation 1.114]{ref:carroll}
 \begin{equation}
-	T\indices{_\mu_\nu} = \frac{1}{c^2} (\epsilon+p) U_\mu U_\nu + p g\indices{_\mu_\nu}.
+	T\indices{_\mu_\nu} = \frac{1}{c^2} (\epsilon+p) U_\mu U_\nu - p g\indices{_\mu_\nu}.
 	\label{eq:tov:energy_momentum_perfect_fluid}
 \end{equation}
-The analysis is simplest in the rest frame of the fluid, where $U_\mu = (U_0, \textbf{0})$ and the normalization condition $U_\mu U^\mu = -c^2$ requires $U_0 = \pm e^\alpha c$.
+The analysis is simplest in the rest frame of the fluid, where $U_\mu = (U_0, \textbf{0})$ and the normalization condition $U_\mu U^\mu = c^2$ requires $U_0 = \pm e^\alpha c$.
 We choose the positive sign so the four-velocity lies in the future light cone, as we are interested in the evolution of the star.
 Then the energy-momentum tensor takes the diagonal form
 \begin{equation}
@@ -90,10 +90,10 @@ T\indices{_\mu_\nu} =
 \qquad \text{or} \qquad
 T\indices{_\mu^\nu} =
 \begin{bmatrix}
-	-\epsilon & 0 & 0 & 0 \\
-	0         & p & 0 & 0 \\
-	0         & 0 & p & 0 \\
-	0         & 0 & 0 & p \\
+	\epsilon &  0 &  0 &  0 \\
+	0        & -p &  0 &  0 \\
+	0        &  0 & -p &  0 \\
+	0        &  0 &  0 & -p \\
 \end{bmatrix}
 .
 \label{eq:einstein_to_tov:T}
@@ -133,7 +133,7 @@ If we set $m(0) = 0$, we can integrate to get
 	\label{eq:einstein_to_tov:m_integral}
 \end{equation}
 In \cite[page 602]{ref:mtw} it is shown that setting $m(0) \neq 0$ creates a singularity at the origin, which is not physically acceptable.
-Outside a star that extends to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_1_1} = (1-2GM/rc^2)^{-1}$ and Schwarzschild mass $M$ \cite[equation 5.1]{ref:carroll}.
+Outside a star that extends to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_1_1} = -(1-2GM/rc^2)^{-1}$ and Schwarzschild mass $M$ \cite[equation 5.1]{ref:carroll}.
 By comparison with \cref{eq:einstein_to_tov:def_m}, the \textbf{Schwarzschild mass} of the star must be
 \begin{equation}
 	M = m(R) = \frac{1}{c^2} \integral{\epsilon(r) 4 \pi r^2}{r}{0}{R} = \integral{\rho(r) 4 \pi r^2}{r}{0}{R}.
@@ -160,7 +160,8 @@ Using \cref{eq:def_cov_deriv}, the component $\nu=1$ gives
 	= \partial_1 T\indices{^1_1} + \Gamma^\sigma_{1 \sigma} T\indices{^1_1} - \Gamma^\sigma_{1 \mu} T\indices{^\mu_\sigma}
 	= \partial_1 T\indices{^1_1} + \Gamma^0_{10} T\indices{^1_1} + \sum_{i=1}^3 \Gamma^i_{1i} T\indices{^1_1} - \Gamma^0_{10} T\indices{^0_0} - \sum_{i=1}^3 \Gamma^i_{1i} T\indices{^i_i}
 \end{equation*}
-Using $T\indices{^0_0} = -\epsilon$ and $T\indices{^1_1} = T\indices{^2_2} = T\indices{^3_3} = p$ from \cref{eq:einstein_to_tov:T}, the sums cancel, leaving
+Using $T\indices{^0_0} = \epsilon$ and $T\indices{^1_1} = T\indices{^2_2} = T\indices{^3_3} = -p$ from \cref{eq:einstein_to_tov:T}, the sums cancel, leaving
+\TODO{what is $\Gamma$ here?}
 \begin{equation}
 	\odv{\alpha}{r} = \frac{-1}{\epsilon+p} \odv{p}{r} .
 	\label{eq:einstein_to_tov:dadr2}
@@ -324,14 +325,14 @@ By \emph{slow movement}, we mean that all velocities $v$ are much lower than the
 In a potential $V$ measured with respect to $V(\infty) = 0$, freely falling particles are accelerated to kinetic energies on the scale $\frac12 m v^2 = m V$.
 Consequently, particles could reach velocities that violate criterion \eqref{eq:weak_field_limit:small_velocity} unless the potential is bounded by
 \begin{equation}
-	V/c^2 \ll 1 .
+	\frac{V}{c^2} \ll 1 .
 	\label{eq:weak_field_limit:small_potential}
 \end{equation}
 In the presence of a fluid with energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid}, internal stresses in the fluid also generate motion.
-For example, sound waves propagagate with velocity $v = \sqrt{\odv{p}/{\rho}} = c \sqrt{\odv{T_{ij}}/{T_{00}}}$.
-We must then have $\odv{T_{ij}}/{T_{00}} \ll 1$ and, by integration,
+For example, the energy-momentum \eqref{eq:einstein_to_tov:T} would give rise to sound waves propagagating with velocity $v = \sqrt{\odv{p}/{\rho}} = c \sqrt{-\odv{T\indices{_i^i}}/{T\indices{_0^0}}}$, with no sum over $i$.
+More generally, we therefore assume slow movement corresponds to $\odv{T_{ij}}/{T_{00}} \ll 1$ or, by integration,
 \begin{equation}
-	T_{ij} \ll T_{00} .
+	\frac{T_{ij}}{T_{00}} \ll 1 .
 	\label{eq:weak_field_limit:small_pressure}
 \end{equation}
 Glancing back at \cref{eq:tov:energy_momentum_perfect_fluid}, we see that we can neglect pressure $p$ in favor of energy density $\epsilon$ in the Newtonian limit.
@@ -351,7 +352,7 @@ Third, a \emph{weak} field corresponds to a metric that can be written as a pert
 	\abs{h\indices{^\mu^\nu}} \ll 1
 	\label{eq:weak_field_limit:weak_field_metric}
 \end{equation}
-on top of flat Minkowski space $\eta\indices{^\mu^\nu} = \text{diag}(-1, +1, +1, +1)$.
+on top of flat Minkowski space $\eta\indices{^\mu^\nu} = \text{diag}(+1, -1, -1, -1)$.
 The inverse metric $g\indices{^\mu^\nu}$ should satisfy $g\indices{^\mu^\nu} g\indices{_\nu_\sigma} = \delta^\mu_\sigma$, so to first order in $h$ we must have
 \begin{equation}
 	g\indices{^\mu^\nu} = \eta\indices{^\mu^\nu} - h\indices{^\mu^\nu} ,
@@ -390,10 +391,10 @@ Upon insertion into the \cref{eq:weak_field_limit:geodesic_approximated}, we can
 \begin{equation*}
 	\odv[2]{x^\mu}{t} = \frac{1}{2} c^2 \eta\indices{^\mu^\lambda} \partial_\lambda h\indices{_0_0} .
 \end{equation*}
-The spatial components of this equation is precisely Newton's second law \cref{eq:interpretation_m:newton2} if we identify $h\indices{_0_0} = -2V/c^2$.
+The spatial components of this equation is precisely Newton's second law \cref{eq:interpretation_m:newton2} if we identify $h\indices{_0_0} = 2V/c^2$.
 In conclusion, we have showed that a weak relativistic gravitational field with
 \begin{equation}
-	g\indices{_0_0} = -1 + h_{00} = - \left( 1 + \frac{2V}{c^2} \right)
+	g\indices{_0_0} = 1 + h_{00} = 1 + \frac{2V}{c^2} 
 	\label{eq:weak_field_limit:metric_with_potential}
 \end{equation}
 describes Newtonian motion in the gravitational potential $V$!
@@ -405,17 +406,17 @@ In general relativity, the gravitational field is produced by matter that enter 
 Let us show that they fall back the Poisson equation \eqref{eq:interpretation_m:poisson} to first nonzero order in the metric perturbation $h$ of the Newtonian limit.
 
 Suppose we are in the stationary reference frame of a perfect fluid with energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid} and velocity $U^\mu = (U^0, \vec{0})$.
-To first order in $h_{00}$, the normalization condition $U^\mu U_\mu = -c^2$ then fixes the time component
+To first order in $h_{00}$, the normalization condition $U^\mu U_\mu = c^2$ then fixes the time component
 \begin{equation}
-	U^0 = - \frac{c}{\sqrt{g_{00}}} = \frac{c}{\sqrt{1-h_{00}}} \taylor c \left( 1 + \frac12 h_{00} \right) .
+	U^0 = \frac{c}{\sqrt{g_{00}}} = \frac{c}{\sqrt{1 + h_{00}}} \taylor c \left( 1 - \frac12 h_{00} \right) .
 \end{equation}
-The energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid} simplifies to dust with
+To lowest order, the energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid} then simplifies to dust with
 \begin{equation}
 	T_{00} = \rho U_0 U_0 \taylor \epsilon
 	\qquad \text{and trace} \qquad
-	T = T\indices{^\mu_\mu} = g^{00} T_{00} \taylor -\epsilon
+	T = T\indices{^\mu_\mu} = g^{00} T_{00} \taylor \epsilon, 
 \end{equation}
-to lowest order, and the pressure components are negligible according to \cref{eq:weak_field_limit:small_pressure}.
+and the pressure components are negligible according to \cref{eq:weak_field_limit:small_pressure}.
 Now rewrite the Einstein field equations \eqref{eq:einstein} by taking the trace of both sides.
 Using $g\indices{^\mu_\mu} = \delta\indices{^\mu_\mu} = 4$, we find that the Ricci scalar can be expressed as $R = - 8 \pi G T / c^4$, so the field equations are equivalent to
 \begin{equation}
@@ -441,26 +442,28 @@ Additionally, the time derivative vanishes for our stationary metric, so we are 
 Using the stationary Christoffel symbols \eqref{eq:weak_field_limit:static_christoffel_symbols}, the Ricci tensor is
 \begin{equation}
 	R_{00} =       R\indices{^\mu_{0 \mu 0}}
-		   =       -\frac12 g^{\mu \nu} \partial_\mu \partial_\nu g_{00}
-		   =       -\frac12 g^{i j} \partial_i \partial_j g_{00}
-		   \taylor -\frac12 \delta^{i j} \partial_i \partial_j h_{00}
-		   =       -\frac12 \nabla^2 h_{00} .
+		   %=       -\frac12 g^{\mu \nu} \partial_\mu \partial_\nu g_{00}
+		   %=       -\frac12 g^{i j} \partial_i \partial_j g_{00}
+		   = \partial_\mu \Gamma^\mu_{00}
+		   = -\frac12 \eta^{\mu \lambda} \partial_\mu \partial_\lambda h_{00}
+		   \taylor  \frac12 \delta^{i j} \partial_i \partial_j h_{00}
+		   =        \frac12 \nabla^2 h_{00} .
 	\label{eq:weak_field_limit:ricci_from_riemann}
 \end{equation}
 
-Inserting $h_{00} = -2V/c^2$ from \cref{eq:weak_field_limit:metric_with_potential} and comparing the result to \cref{eq:weak_field_limit:ricci_from_energy_momentum}, we see that the Einstein field equations yield the Poisson equation \eqref{eq:interpretation_m:poisson} in the Newtonian limit!
+Inserting $h_{00} = 2V/c^2$ from \cref{eq:weak_field_limit:metric_with_potential} and comparing the result to \cref{eq:weak_field_limit:ricci_from_energy_momentum}, we see that the Einstein field equations yield the Poisson equation \eqref{eq:interpretation_m:poisson} in the Newtonian limit!
 
 \subsection{Interpretation of mass and integrated energy density}
 
 When we introduced the Schwarzschild mass $M$ given by \cref{eq:einstein_to_tov:schwarzschild_mass} in \cref{sec:einstein_to_tov}, we did not find it obvious how to interpret it.
 Outside a star, spacetime is described by the Schwarzschild metric with the element \cite[equation 5.1]{ref:carroll}
 \begin{equation}
-	g\indices{_0_0} = - \left( 1 - \frac{2 G M}{r c^2} \right)
+	g\indices{_0_0} = 1 - \frac{2 G M}{r c^2}
 	\quad \text{with} \quad
-	h\indices{_0_0} = \frac{2GM}{rc^2} .
+	h\indices{_0_0} = -\frac{2GM}{rc^2} .
 	\label{eq:weak_field_limit:schwarzschild_metric_tt}
 \end{equation}
-But $V = -c^2 h\indices{_0_0} / 2 = -G M / r$ is precisely the solution to the Poisson equation \eqref{eq:interpretation_m:poisson} for a spherical mass distribution, so we can in fact interpret the mass $M$ as the Newtonian mass of the star.
+But $V = c^2 h\indices{_0_0} / 2 = -G M / r$ is precisely the solution to the Poisson equation \eqref{eq:interpretation_m:poisson} for a spherical mass distribution, so we can in fact interpret the mass $M$ as the Newtonian mass of the star.
 This is reassuring, as it allows us to measure masses of distant stars using Newtonian results like Kepler's third law \cite[chapter 19]{ref:mtw} that rely only on observations.
 
 From the looks of \cref{eq:einstein_to_tov:schwarzschild_mass}, it is very tempting to also interpret $M c^2$ as the volume integral of the energy density over the star and thus its total energy.

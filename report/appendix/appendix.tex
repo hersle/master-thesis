@@ -180,10 +180,10 @@ By integrating the line element from one point on the manifold to another, one c
 between the points.
 Similarly, one can compute the \textbf{volume} of a region
 \begin{equation}
-	V = \int \dif V = \int \sqrt{\det{\gamma}} \dif x^1 \dif x^2 \dif x^3 ,
+	V = \int \dif V = \int \sqrt{-\det{\gamma}} \dif x^1 \dif x^2 \dif x^3 ,
 \end{equation}
-where $\gamma$ is the induced metric on the surface and $\det{\gamma}$ its determinant.
-The factor $\sqrt{\det{\gamma}}$ arises to make the volume element $\dif^n x \sqrt{\det{\gamma}}$ invariant under coordinate transformations.
+where $\gamma$ is the induced metric on the surface and $\det{\gamma} < 0$ its determinant.
+The factor $\sqrt{-\det{\gamma}}$ arises to make the volume element $\dif^n x \sqrt{-\det{\gamma}}$ invariant under coordinate transformations.
 
 \subsection{Covariant derivatives and connection coefficients}
 
@@ -493,7 +493,7 @@ By \textbf{Stokes theorem} \cite[equation 3.35]{ref:carroll}
 our integral for $\variation{S}_1$ over $n$-space can be converted into a boundary integral over $(n-1)$-space at infinity.
 But the variational method that we have used here asserts that there is no variation on the boundary, so
 \begin{equation}
-	\variation{S}_1 = 0 !
+	\variation{S}_1 = 0 .
 \end{equation}
 
 Let us now express $\variation{S}_3$ in terms of $\variation{g^{\mu \nu}}$.

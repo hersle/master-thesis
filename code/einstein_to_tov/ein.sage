@@ -4,7 +4,8 @@ c = var("c") # speed of light
 γ = var("γ", latex_name="\\gamma") # gravitational constant
 α(r) = function("α", latex_name="\\alpha")(r)
 m(r) = function("m")(r)
-β(r) = -1/2 * log(1 - 2*γ*m(r)/(r*c^2))
+#β(r) = function("β", latex_name="\\beta")(r) # uncomment to derive symbolic (α, β) eqs.
+β(r) = -1/2 * log(1 - 2*γ*m(r)/(r*c^2)) # uncomment to derive explicit mass equation
 p(r) = function("p")(r)
 ρ(r) = function("ρ", latex_name="\\rho")(r)
 
@@ -12,10 +13,10 @@ M = Manifold(4, "M", structure="Lorentzian")
 X.<ct,r,θ,ϕ> = M.chart(r"ct r:(0,+oo) θ:(0,pi):\theta ϕ:(0,2*pi):\phi")
 
 g = M.metric(name="g")
-g[0,0] = -exp(2*α(r))
-g[1,1] = +exp(2*β(r))
-g[2,2] = r^2
-g[3,3] = r^2*sin(θ)^2
+g[0,0] = +exp(2*α(r))
+g[1,1] = -exp(2*β(r))
+g[2,2] = -r^2
+g[3,3] = -r^2*sin(θ)^2
 
 G = g.ricci() - 1/2*g.ricci_scalar()*g
 G.set_name("G")
@@ -25,7 +26,7 @@ u[0] = exp(-α(r)) * c
 u = u.down(g)
 u.set_name("u")
 
-T = (ρ(r)+p(r)) * (u*u) / c^2 + p(r) * g
+T = (ρ(r)+p(r)) * (u*u) / c^2 - p(r) * g
 T.set_name("T")
 
 t = var("t") # substitute ct=c*t later when simplifying equations
@@ -49,4 +50,4 @@ eqp = eq3.solve(diff(p(r),r))[0]
 eqp = eqp.substitute(eqm) # eliminate dm/dr term
 dpdr(r) = eqp.rhs().factor()
 
-print(f"p(r) = {dpdr(r)}")
+print(f"dp/dr) = {dpdr(r)}")
