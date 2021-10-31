@@ -290,7 +290,7 @@ However, general relativity is concerned with describing \emph{macroscopic} obje
 \begin{figure}
 \centering
 \includesvg[width=0.5\textwidth]{figures/parallel_transport.svg}
-\caption{\label{fig:parallel_transport}When a vector is parallel transported around a closed loop on the $2$-sphere, its final direction depends on the path taken. Illustration by \cite{ref:figure_parallel_transport}.}
+\caption{\label{fig:parallel_transport}When a vector is parallel transported around a closed loop on the $2$-sphere, its final direction depends on the path taken. Illustration by \cite{ref:figure_parallel_transport}. \TODO{more relevant figure}}
 \end{figure}
 
 Now that we know how to take proper derivatives of vector fields and general tensor fields on manifolds, we can discuss how to parallel transport vectors on the manifold.
@@ -382,7 +382,7 @@ Thus, the simplest scalar quantity we can form that represents curvature is the 
 
 \TODO{do $2$-sphere as an example, connect it to a figure with sphere and parallell transport?}
 
-As a simple example and to make sense of some of our results, let us consider the $2$-sphere of constant radius $r$ with coordinates
+As a simple example and to make sense of some of our results, let us study the geometry of the $2$-sphere of constant radius $r$ with coordinates
 \begin{equation}
 	(x^1, x^2) = (\theta, \phi)
 	\quad \text{with} \quad
@@ -400,46 +400,120 @@ The non-zero Christoffel symbols \eqref{eq:def_christoffel} are
 	\Gamma^2_{12} = \Gamma^2_{21} = \frac{\cos \theta}{\sin \theta} .
 \end{equation}
 
-For example, parallel transporting a vector with components $(V^1, V^2) = (V^\theta, V^\phi)$ along a curve with $\odv{\theta}/{\tau} = \dot\theta \neq 0$, but $\odv{\phi}/{\tau} = 0$ turns the equation of parallel transport \eqref{eq:parallel_transport} into
+The equation of parallel transport \eqref{eq:parallel_transport} of a vector with components $(V^\theta, V^\phi)$ is
 \begin{equation}
-	\dot{V}^\theta = 0 , \qquad
-	\dot{V}^\phi + \frac{1}{\tan \theta} \dot\theta V^\phi = 0 .
+	\dot{V}^\theta - \sin\theta \cos\theta \, \dot\phi V^\phi = 0,
+	\quad
+	\dot{V}^\phi + \frac{1}{\tan\theta} \left( \dot\theta V^\phi + \dot\phi V^\theta \right) = 0.
 \end{equation}
-The former equation yields $V^1 = \text{const}$, and one can therefore differentiate the latter with the chain rule, exploiting $\pdv{V^2}/{\theta} = 0$, to obtain
-\begin{equation}
-	\odv{V^1}{\theta} = 0 , \qquad
-	\pdv{V^2}{\phi} + \frac{1}{\tan \theta} V^2 = 0 .
-\end{equation}
-The solution is
-\begin{equation}
-	V^\theta(\theta, \phi) = V^\theta(\theta_0, \phi_0) , \qquad
-	V^\phi(\theta, \phi) = \frac{V^\phi(\theta_0, \phi_0)}{\sin \theta} .
-\end{equation}
-As predicted \TODO{ref?}, the length is preserved
-\begin{equation}
-	V^\mu V_\mu = 
-	g_{11} (V^1)^2 + g_{22} (V^2)^2 =
-	R^2 (V^1_0)^2 + R^2 (V^2_0)^2 = \text{const} .
-\end{equation}
+Suppose we parallel transport a vector along the equator with $\theta = \pi/2$, so $\dot\theta = 0$, but $\dot\phi \neq 0$.
+Then $\dot{V}^\theta = \dot{V}^\phi = 0$, so $V^\theta = \text{const}$ and $V^\phi = \text{const}$.
+By the symmetry of the sphere, the same result can be applied to a vector that is parallel transported along lines of constant longitude with $\dot\phi = 0$, but $\dot\theta \neq 0$.
+In particular, if we carry a vector all the way around the triangle in \cref{fig:parallel_transport}, we find that the vector is rotated from its initial orientation.
 
-\TODO{geodesic equation?}
+The geodesic equation \eqref{eq:geodesic} becomes
+\begin{equation}
+	\ddot{\theta} - \sin\theta \cos \theta \, \dot\phi^2 = 0,
+	\qquad
+	\ddot\phi + \frac{2}{\tan \theta} \, \dot\theta \dot\phi = 0.
+\end{equation}
+Like above, we could specialize to $\dot\theta = 0$ and $\dot\phi \neq 0$ or $\dot\theta \neq 0$ and $\dot\phi = 0$ to find lines of constant latitude or longitude with $\ddot\theta=0$ or $\ddot\phi=0$, respectively.
+By spherical symmetry, the geodesic between two points lies on a great circle connecting the points, as we expect from intuition.
+But it is also possible to establish this result without relying on the symmetry.
+First, note that the velocity magnitude
+\begin{equation}
+	\dot{x}^i \dot{x}_i = \left( \frac{\dif s}{\dif \tau} \right)^2 = r^2 \left( \dot\theta^2 + \sin^2 \theta \, \dot\phi^2 \right)
+\end{equation}
+is constant, for by substituting $\ddot\theta$ and $\ddot\phi$ we find
+\begin{equation}
+\begin{split}
+	\odv*{\left( \dot\theta^2 + \sin^2 \theta \, \dot\phi^2 \right)}{\tau} &= 2 \dot\theta \ddot\theta + 2 \sin\theta \cos\theta \, \dot\theta \dot\phi^2 + 2 \sin^2\theta \, \dot\phi \ddot\phi \\
+	                                                                       &= 2 \sin\theta \cos\theta \, \dot\theta \dot\phi^2 + 2 \sin\theta \cos\theta \, \dot\theta \dot\phi^2 - 4 \, \frac{\sin^2\theta}{\tan\theta} \, \dot\theta \dot\phi^2 = 0.
+\end{split}
+\end{equation}
+We expect this, because the equation of parallel transport \eqref{eq:parallel_transport} with the metric connection \eqref{eq:def_christoffel} preserves magnitudes of vectors, and we derived the geodesic equation \eqref{eq:geodesic} by parallel transport of the tangent vector $\dot{x}^i$.
+Should expect, because parallel transport preserves length and we derived the geodesic equation by parallel transport of the velocity $\dot{x}^i$.
+We therefore set
+\begin{equation}
+	\dot\theta^2 + \sin^2\theta \, \dot\phi^2 = 1.
+\label{eq:gr_summary:velmag}
+\end{equation}
+The second geodesic equation is
+\begin{equation}
+	\frac{\ddot\phi}{\dot\phi} - \frac{2}{\tan\theta} \, \dot\theta = 0
+	\quad \text{or} \quad
+	\odv*{\left( \log{\dot\phi} - 2 \log \sin \theta \right)}{\tau} = 0,
+	\quad \text{so} \quad
+	\dot\phi = \frac{C_1}{\sin^2\theta}.
+\label{eq:gr_summary:phidotsol}
+\end{equation}
+Substituting this result into \cref{eq:gr_summary:velmag}, using the chain rule and taking the positive square root, we then have
+\begin{equation}
+	\odv\theta\tau = \odv\theta\phi \odv\phi\tau = \sqrt{\frac{\sin^2\theta - C_1^2}{\sin^2\theta}} .
+\end{equation}
+Using $\dot\phi$ from \cref{eq:gr_summary:phidotsol}, we find the separable equation
+\begin{equation}
+	\odv\phi\theta = \frac{C_1}{\sin\theta \sqrt{\sin^2\theta - C_1^2}}.
+\end{equation}
+Integrating this equation is possible, albeit not easy.
+First, rewrite
+\begin{equation}
+	  \odv{\phi}{\theta}
+	= \frac{C_1}{\sin\theta \sqrt{\sin^2\theta - C_1^2}}
+	= \frac{C_1}{\sin^2\theta \sqrt{1 - C_1^2 / \sin^2 \theta}}
+	= \frac{C_1}{\sin^2\theta \sqrt{1 - C_1^2 \left( 1 + 1/\tan^2\theta \right)}}.
+\end{equation}
+Now substitute $u = 1/\tan\theta$ with $\dif u = - \dif \theta / \sin^2\theta$ and integrate
+\begin{equation}
+\begin{aligned}
+	\phi &= \int \frac{C_1 \, \dif \theta}{\sin\theta \sqrt{\sin^2\theta - C_1^2}} \\
+	     &= -\int \frac{C_1 \, \dif u}{\sqrt{1 - C_1^2 \left( 1 + u^2 \right)}} = -\int \frac{\dif u}{\sqrt{\frac{1 - C_1^2}{C_1^2} - u^2}} \\
+	     &= -\asin \left[ \frac{u}{\sqrt{(1-C_1^2)/C_1^2}} \right] + C = -\asin \left[ \frac{C_1 / \tan\theta}{\sqrt{1-C_1^2}} \right] + C.
+\end{aligned}
+\end{equation}
+\iffalse
+\begin{equation}
+\begin{aligned}
+	\int \odv\phi\theta &=  \int \frac{C_1 \, \dif \theta}{\sin\theta \sqrt{\sin^2\theta - C_1^2}} \\
+	                    &=  \int \frac{C_1 \, \dif \theta}{\sin^2\theta \sqrt{1 - C_1^2 / \sin^2 \theta}} \\
+	                    &=  \int \frac{C_1 \, \dif \theta}{\sin^2\theta \sqrt{1 - C_1^2 \left( 1 + 1/\tan^2\theta \right)}} \\
+	                    &= -\int \frac{C_1 \, \dif u}{\sqrt{1 - C_1^2 \left( 1 + u^2 \right)}} \quad \left( u = 1/\tan\theta, \,\, \dif u = -\dif \theta / \sin^2 \theta \right) \\
+	                    &= -\int \frac{\dif u}{\sqrt{\frac{1 - C_1^2}{C_1^2} - u^2}} \\
+	                    &= -\asin \left[ \frac{u}{\sqrt{(1-C_1^2)/C_1^2}} \right] + C_2 \\
+	                    &= -\asin \left[ \frac{C_1 / \tan\theta}{\sqrt{1-C_1^2}} \right] + C_2 \\
+\end{aligned}
+\end{equation}
+\fi
+By the trigonometric formula $\sin(A-B) = \sin A \cos B - \cos A \sin B$, we obtain the rather cryptic result
+\begin{equation}
+	\frac{C_1}{\tan \theta \sqrt{1 - C_1^2}} = \sin(C_2 - \phi) = \sin C_2 \cos \phi - \cos C_2 \sin \phi.
+\end{equation}
+To make sense of it, multiply by $\cos \theta$ and go back to Cartesian coordinates, where $x = r \sin\theta \cos\phi$, $y = r \sin\theta \sin\phi$ and $z = r \cos\theta$.
+We then have the equation
+\begin{equation}
+	\frac{x}{r} \, \sin C_2 - \frac{y}{r} \, \cos C_2 - \frac{z}{r} \, \frac{C_1}{\sqrt{1 - C_1^2}} = 0.
+\end{equation}
+This is the equation of a plane $(\vec{r} - \vec{r}_0) \cdot \vec{n}$ with $\vec{n} = \sin C_2 \, \hat{\vec{x}} -\cos C \, \hat{\vec{y}} -C_1 / \sqrt{1 - C_1^2} \, \hat{\vec{z}}$ centered at the origin $\vec{r}_0 = \vec{0}$!
+Thus, the geodesic between two points follow the intersection between this plane and the sphere, which is precisely the definition of a great circle.
 
-The nonzero components of the Riemann curvature tensor \eqref{eq:def_riemann_tensor} becomes
+Finally, let us investigate the curvature of the sphere.
+The nonzero components of the Riemann curvature tensor \eqref{eq:def_riemann_tensor} are
 \begin{equation}
 	R\indices{^1_2_0_2} = \sin^2 \theta , \quad
 	R\indices{^1_2_2_1} = -\sin^2 \theta , \quad
 	R\indices{^2_1_1_2} = -1 , \quad
 	R\indices{^2_1_2_1} = 1 .
 \end{equation}
-Then the nonzero components of the Ricci tensor \eqref{eq:def_ricci_tensor}
+Then the nonzero components of the Ricci tensor \eqref{eq:def_ricci_tensor} are
 \begin{equation}
-	R_{00} = 1 , \qquad R_{11} = \sin^2 \theta .
+	R_{00} = 1 , \qquad R_{11} = \sin^2 \theta ,
 \end{equation}
-Finally, the Ricci curvature scalar \eqref{eq:def_ricci_scalar} is
+and the Ricci curvature scalar \eqref{eq:def_ricci_scalar} is
 \begin{equation}
-	R = \frac{2}{R^2} .
+	R = \frac{2}{r^2} .
 \end{equation}
-As we should expect from dimensional analysis of the preceeding equations, it is proportional to $1/R^2$, where $R$ is the only length scale defined in the problem.
+The radius $r$ is the only length scale we have defined, so up to the prefactor $2$, this is really the only result we can expect.
+Since the coordinates $x^i$ are dimensionless and the metric tensor $g_{\mu \nu}$ proportional to $r^2$, we can use dimensional analysis to deduce that the Christoffel symbols \eqref{eq:def_christoffel}, Riemann tensor \eqref{eq:def_riemann_tensor} and Ricci tensor \eqref{eq:def_ricci_tensor} should all be dimensionless, so the Ricci scalar \eqref{eq:def_ricci_scalar} should be proportional to $1/r^2$.
 
 
 
