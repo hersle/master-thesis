@@ -1,70 +1,210 @@
-\chapter{Chapter 3}
+\chapter{Neutron stars modelled by a free Fermi gas}
 
-\section{Something}
+\TODO{intro}
 
-Logarithm of partition function
+\section{Numerical solution of the \texorpdfstring{\\}{}Tolman-Oppenheimer-Volkoff equation}
+
+In \cref{chap:tov}, we derived the Tolman-Oppenheimer-Volkoff equation
 \begin{equation}
-	\log Z = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ \beta E(\vec{p}) + \log \left[ e^{-\beta (E(\vec{p}) - \mu)}+1 \right] + \log \left[ e^{-\beta (E(\vec{p}) + \mu)} + 1\right] \right\} .
+	\odv{p}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left[ 1 + \frac{p(r)}{\epsilon(r)} \right] \left[ 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} ,
+\label{eq:nstars:tov}
 \end{equation}
-
-Average number
+and
 \begin{equation}
-	\thermalavg{N} = 
-	\frac{1}{\beta} \pdv{\log Z}{\mu} =
-	2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ n\big[ E(\vec{p})-\mu \big] - n\big[ E(\vec{p})+\mu \big] \Big\} .
+	\odv{m}{r} = \frac{4 \pi r^2 \epsilon(r)}{c^2}
+\label{eq:nstars:dmdr}
 \end{equation}
-$\mu$ determines $\thermalavg{N}$
-
-Energy
+In \cref{chap:tft}, we found $Z = Z(T, \mu, V)$ for two sample systems.
+From $Z$, we could derive $P = P(T, \mu)$ and $\epsilon = \epsilon(T, \mu)$, where the volume $V$ has been eliminated by division, because $P$ and $\epsilon$ are intensive quantities independent of $V$.
+At some fixed temperature $T$, we can eliminate $\mu$ to express $\epsilon$ in terms of $P$.
+Thus, we can obtain an equation of state
 \begin{equation}
-	\thermalavg{E} = 
-	\mu \thermalavg{N} - \pdv{\log Z}{\beta} =
-	2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ -E(\vec{p}) + E(\vec{p}) n\big[ E(\vec{p})-\mu \big] - (-E(\vec{p})) n\big[ E(\vec{p})+\mu \big] \Big\}
+	\epsilon = \epsilon(P).
+\label{eq:nstars:eos}
 \end{equation}
-
-Pressure
-\begin{equation}
-	\thermalavg{P} = 
-	\frac{\log Z}{\beta V} = 
-	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ -E(\vec{p}) - \log \big[ n(E(\vec{p})-\mu) \, n(E(\vec{p})+\mu) \big] \Big\}
-\end{equation}
-
-Assume $\mu > 0$.
-Forget diverging vacuum contribution.
-Then
+Given the equation of state, we can eliminate $\epsilon$ in terms of $P$ in \cref{eq:nstars:tov,eq:nstars:dmdr} and write the system
+\TODO{small $p$ for momentum, big $P$ for pressure everywhere}
 \begin{equation}
 \begin{split}
-	\epsilon &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, n(E(\vec{p})-\mu) E(\vec{p}) \\
-	P        &= -2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, \log n(E(\vec{p})-\mu) \\
+	\odv{p(r)}{r} &= -\frac{G m(r) \epsilon(p(r))}{r^2 c^2} \left[ 1 + \frac{p(r)}{\epsilon(p(r))} \right] \left[ 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1}, \\
+	\odv{m(r)}{r} &= \frac{4 \pi r^2 \epsilon(p(r))}{c^2}. \\
 \end{split}
 \end{equation}
-Zero-temperature limit
-
-Number density (use $n$ without argument for $N/V$)
+This is a system of two first-order differential equations for $P(r)$ and $m(r)$!
+Given a boundary condition, it can be integrated analytically or numerically to obtain $P(r)$ and $m(r)$.
+One natural choice of boundary conditions is that, at the center, $m(r) = 0$, while $P(0)$ can be anything.
+So we choose the boundary condition
 \begin{equation}
-	n = \frac{\thermalavg{N}}{V} = 2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} = \frac{p_F^3}{3 \pi^2 \hbar^3}
+	P(0) = P_0
+	\quad \text{and} \quad
+	m(0) = 0
+	\quad \text{at} \quad
+	r = 0
 \end{equation}
+for some $P_0$.
+With different values for $P_0$, we essentially parametrize different stars with different pressure and mass profiles $P(r)$ and $m(r)$ at some fixed temperature $T$.
+In particular, if $p(R) = 0$ for some $R$, we define $R$ as the radius of the star, and $M = m(R)$ as its mass.
 
-Energy-density
+In a few special situations, the TOV system can be solved analytically, like in \cref{sec:incompressible_star}.
+More often, however, we must resort to solving the system numerically.
+This is straightforward from the system \TODO{ref system}, which is of the form $\odv{\vec{y}}/{t} = \vec{f}(t, \vec{y})$ with $\vec{y} = [P, m]$ and $t = r$ and thus suitable for numerical integration methods like Runge-Kutta methods.
+One issue, however, is the scale of variables.
+For this purpose, we define the dimensionless quantities
+\begin{equation}
+	\diml{\epsilon}(r) = \frac{\epsilon(r)}{\epsilon_0}, \quad
+	\diml{P}(r) = \frac{P(r)}{\epsilon_0}, \quad
+	\diml{m}(r) = \frac{m(r)}{m_0}, \quad
+	\diml{r}(r) = \frac{r}{r_0},
+\end{equation}
+where $m_0$ and $r_0$ are two natural scales of stellar mass and radius, and
+\begin{equation}
+	\epsilon_0 = \frac{m_0 c^2}{4 \pi r_0^3 / 3}
+	%m_0 = \text{solar mass ?}, \quad
+	%r_0 = \text{10 km ?}.
+\end{equation}
+Upon substitution into the TOV system, we get the dimensionless TOV system
+\begin{equation}
+	\frac{\epsilon_0}{r_0} \odv{\diml{p}}{\diml{r}} = -\frac{G m_0 \epsilon_0}{r_0^2 c^2} \frac{\diml{m} \diml{\epsilon}}{\diml{r}^2} \left[ 1 + \frac{\diml{p}}{\diml{\epsilon}} \right] \left[ 1 + \frac{4 \pi r_0^3 \epsilon_0}{m_0 c^2} \frac{\diml{r}^3 \diml{p}}{\diml{m}} \right] \left[ 1 - \frac{2 G m_0}{r_0 c^2} \frac{\diml{m}}{\diml{r}} \right]^{-1}.
+\end{equation}
+This can be simplified further.
+First, insert the definition of $\epsilon_0$ in the middle parenthesis.
+Second, observe that $G_0 = r_0 c^2 / m_0$ has the same units as the gravitational constant $G$, so define the dimensionless gravitational constant $\hat{G} = G / G_0 = G / (r_0 c^2 / m_0)$.
+\begin{equation}
+	\odv{\diml{p}}{\diml{r}} = - \frac{\diml{G} \diml{m} \diml{\epsilon}}{\diml{r}^2} \left[ 1 + \frac{\diml{p}}{\diml{\epsilon}} \right] \left[ 1 + \frac{3 \diml{r}^3 \diml{p}}{\diml{m}} \right] \left[ 1 - \frac{2 \diml{G} \diml{m}}{\diml{r}} \right]^{-1}.
+\end{equation}
+Similarly, the dimensionless mass equation becomes
+\begin{equation}
+	\frac{m_0}{r_0} \odv{\diml{m}(\diml{r})}{\diml{r}} = \frac{4 \pi r_0^2 \epsilon_0}{c^2} \diml{r}^2\diml{\epsilon}(\diml{p}(\diml{r}))
+	\quad \text{or} \quad
+	\odv{\diml{m}}{\diml{r}} = 3 \diml{r}^2 \diml{\epsilon}
+\end{equation}
+To summarize, the dimensionless TOV system is
 \begin{equation}
 \begin{split}
-	\epsilon &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, \theta(E(\vec{p})-\mu) E(\vec{p}) \\
+	\odv{\diml{P}}{\diml{r}} &= - \frac{\diml{G} \diml{m} \diml{\epsilon}(\diml{P}(\diml{r}))}{\diml{r}^2} \left[ 1 + \frac{\diml{p}}{\diml{\epsilon}(\diml{P}(\diml{r}))} \right] \left[ 1 + \frac{3 \diml{r}^3 \diml{p}}{\diml{m}} \right] \left[ 1 - \frac{2 \diml{G} \diml{m}}{\diml{r}} \right]^{-1}, \\
+	\odv{\diml{m}}{\diml{r}} &= 3 \diml{r}^2 \diml{\epsilon}(\diml{P}(\diml{r})), \\
+	\text{subject to } (\diml{P}(0), \diml{m}_0) &= (\diml{P}_0, 0) \text{ at $\diml{r} = 0$}.
+\end{split}
+\end{equation}
+
+\section{Solution for free Fermi gas neutron star}
+
+Let us use the logarithm of the partition function \eqref{eq:tft:dirac_partition_function} for free Dirac fermions to derive an equation of state inside a neutron star composed of neutrons only.
+Then we will solve the TOV equation \eqref{eq:tov} with this equation of state and investigate the mass-radius relation of such neutron stars.
+
+For easy reference, let us repeat the logarithm of the partition function \eqref{eq:tft:dirac_partition_function}.
+It is
+\begin{equation}
+	\log Z = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ \beta E(\vec{p}) + \log \left[ e^{-\beta (E(\vec{p}) - \mu)}+1 \right] + \log \left[ e^{-\beta (E(\vec{p}) + \mu)} + 1\right] \right\}.
+\end{equation}
+First, the particle number density $n = \thermalavg{N}/V$ follows from the derivative \eqref{eq:tft:average_number} and is
+\begin{equation}
+	n = 
+	\frac{1}{\beta} \pdv{\log Z}{\mu} =
+	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ n\big[ E(\vec{p})-\mu \big] - n\big[ E(\vec{p})+\mu \big] \Big\} ,
+\label{eq:nstars:density}
+\end{equation}
+where we defined the \textbf{Fermi-Dirac distribution}
+\begin{equation}
+	n(E) = \frac{1}{e^{-\beta E} + 1}.
+\label{eq:nstars:fermi_dirac_distribution}
+\end{equation}
+The $n$ on the left side of \cref{eq:nstars:density} denotes the particle number density $n = \thermalavg{N}/V$, while $n \left[ E(\vec{p}) \pm \mu \right]$ on the right is the Fermi-Dirac distribution \eqref{eq:nstars:fermi_dirac_distribution} and will \emph{always} be written \emph{with} an argument.
+We hope this clearly distinguishes the two and that the naming appears intuitive -- soon we will get rid of $n(E)$, anyway.
+From the density \eqref{eq:nstars:density}, we see that $n = n(\mu, T)$ is a function of the chemical potential $\mu$ and temperature $T$, so that at some fixed temperature, the value of $\mu$ decides the particle density $n$.
+
+Second, we calculate the energy density $\epsilon = \thermalavg{N} / V$ from \cref{eq:tft:average_energy}.
+It comes out as
+\begin{equation}
+	\epsilon = 
+	\mu n - \frac{1}{V} \pdv{\log Z}{\beta} =
+	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ -E(\vec{p}) + E(\vec{p}) \, n\big[ E(\vec{p})-\mu \big] + E(\vec{p}) \, n\big[ E(\vec{p})+\mu \big] \Big\}.
+\label{eq:nstars:energy_density}
+\end{equation}
+
+Third, we find that the pressure \eqref{eq:tft:average_pressure} is
+\begin{equation}
+	P =
+	\frac{\log Z}{\beta V} = 
+	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ E(\vec{p}) + \log \left[ e^{-\beta(E(\vec{p})-\mu)} + 1 \right] + \log \left[ e^{-\beta(E(\vec{p})+\mu)} + 1 \right] \Big\}.
+\label{eq:nstars:pressure}
+\end{equation}
+
+The first term of the energy density \eqref{eq:nstars:energy_density} and the pressure \eqref{eq:nstars:pressure} is infinite, as the integrand never decays.
+This can be interpreted as an infinite shift of the vacuum energy.
+In contrast, the next two terms are finite as the integrand is suppressed for large $\abs{\vec{p}}$ by the Fermi-Dirac distribution.
+It makes no sense to include a term that integrates over every possible value of the momentum $\vec{p}$ for physical particles whose momentum cannot exceed a certain value due to energy conservation.
+Here, we will make the assumption that we can simply drop this term.
+Later, we will return to investigate this term by regularization and renormalization. \TODO{does this make sense?}
+
+From the particle density \eqref{eq:nstars:density} at constant temperature $T$, we see that the sign of $n$ is determined by the sign of $\mu$.
+The total density $n$ is expressed as a balance between \emph{particles} with energy $E(\vec{p}) > 0$ living relative to the chemical potential $\mu$ and \emph{antiparticles} with energy $E(\vec{p}) < 0$ living relative to the chemical potential $-\mu$.
+Thus, the chemical potential $\mu$ determines the balance between particles and antiparticles in the system.
+Similarly, the two last terms in the energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure} can be interpreted as contributions from particles and antiparticles.
+We choose a large, positive value of $\mu > 0$, so that the particles dominate the system, while antiparticles are hardly present.
+With this choice, $n \left[ E(\vec{p}) - \mu \right] \gg n \left[ E(\vec{p}) + \mu \right]$, and we drop the last term from the particle density \eqref{eq:nstars:density}, energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}.
+
+We are now left with the 
+\begin{equation}
+\begin{aligned}
+	& \text{particle density} & n        &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, n \left[ E(\vec{p})-\mu \right] , \\
+	& \text{energy density}   & \epsilon &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, E(\vec{p}) \, n \left[ E(\vec{p})-\mu \right] \text{ and} \\
+	& \text{pressure}         & P        &= -2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, \log \left[ e^{-\beta(E(\vec{p})-\mu)} + 1 \right] . \\
+\end{aligned}
+\end{equation}
+The integrals become nasty after plugging in the dispersion relation $E(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4}$ \TODO{write in display form and refer back to this} and the Fermi-Dirac distribution \eqref{eq:nstars:fermi_dirac_distribution}, and it is overly optimistic to expect that all of them can be evaluated analytically.
+We will make one final approximation that will make all the integrals surmountable.
+
+By human standards, it is very hot inside a neutron star.
+In fact, studies place typical core temperatures around $T_0 \approx \SI{1e6}{\kelvin}$.
+However, neutrons have mass $m \approx \SI{1.67e-27}{\kilogram}$, so everywhere inside a neutron star we have $\beta E(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4} / k_B T > m c^2 / k_B T_0 \approx 10^7 \gg 1$.
+Although the temperature is very large compared to everyday temperatures, the thermal energy $k_B T$ is in fact very low relative to the energy $E(\vec{p})$ of the nuclei.
+It is therefore an excellent approximation to take the \textbf{zero temperature limit}
+\begin{equation}
+	\beta E(\vec{p}) \gg 1 .
+\end{equation}
+In the zero temperature limit,
+\begin{equation}
+\begin{split}
+	n(E)                                 &\rightarrow \theta(-E) = 1 - \theta(E), \\
+	\log \left[ e^{-\beta E} + 1 \right] &\rightarrow -\beta E \theta(-E) = -\beta E [1 - \theta(E)]. \\
+\end{split}
+\end{equation}
+as shown in \TODO{make simple figure with converging FD distribution}.
+Thus, the zero temperature limit effectively limits the integration to those momenta $\vec{p}$ such that $E(\vec{p}) < \mu$.
+We therefore call
+\begin{equation}
+	\mu = E_F = E(p_F) = \sqrt{p_F^2 c^2 + m^2 c^4}
+\end{equation}
+the Fermi energy and the corresponding momentum $p_F$ the Fermi momentum, representing the occupied state with highest energy and momentum.
+
+Now the particle density \TODO{ref?} becomes simply
+\begin{equation}
+	n = 
+	2 \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \theta \left[ \mu - E(p) \right] =
+	2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} = \frac{p_F^3}{3 \pi^2 \hbar^3} .
+\end{equation}
+Using integral \TODO{ref} and defining the dimensionless momentum $x = p / mc$, the energy density is
+\begin{equation}
+\begin{split}
+	\epsilon &=  2 \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, E(p) \, \theta \left[ \mu - E(p) \right] \\
 	         &=  2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \sqrt{p^2 c^2 + m^2 c^4} \\
 	         &= \frac{m^4 c^5}{\pi^2 \hbar^3} \int_0^{x_F} \dif x \, x^2 \sqrt{1 + x^2} \\
-	         &= \frac{1}{8} \frac{m^4 c^5}{\pi^2 \hbar^3} \left[ \left( 2 x_F^3 + x_F \right) \sqrt{1 + x_F^2} - \asinh x_F \right] \\
+	         &= \frac{m^4 c^5}{8 \pi^2 \hbar^3} \left[ \left( 2 x_F^3 + x_F \right) \sqrt{1 + x_F^2} - \asinh x_F \right] . \\
+\end{split}
+\end{equation}
+Finally, using the same integral, the pressure is
+\begin{equation}
+\begin{split}
+	P &= \frac{2}{\beta} \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \beta \left[ \mu - E(p) \right] \, \theta \left[ \mu - E(p) \right] \\
+	  &= 2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \left[ \sqrt{p_F^2 c^2 + m^2 c^4} - \sqrt{p^2 c^2 + m^2 c^4} \right] \\
+	  &= \frac{m^4 c^5}{\pi^2 \hbar^3} \int_0^{x_F} \dif x \, x^2 \left[ \sqrt{x_F^2+1} - \sqrt{x^2+1} \right] \\
+	  &= \frac{m^4 c^5}{24 \pi^2 \hbar^3} \left[ \left( 2 x_F^3 - 3 x_F \right) \sqrt{x_F^2 + 1} + 3 \asinh x_F \right] . \\
 \end{split}
 \end{equation}
 
-Pressure, use $\log (1 + e^{-\beta E}) \taylor -\beta E \theta(-E)$,
-\begin{equation}
-\begin{split}
-	P &= \frac{2}{\beta} \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, \log \left[ e^{-\beta (E - \mu)} + 1 \right] \\
-	  &= \frac{2}{\beta} \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, \beta (\mu - E) \theta(\mu - E) \\
-	  &= \frac{2}{\beta} \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \beta (\mu - E) \theta(\mu - E) \\
-	  &= \frac{m^4 c^5}{\pi^2 \hbar^3} \int_0^{x_F} \dif x \, x^2 \left( \sqrt{x_F^2+1} - \sqrt{x^2+1} \right) \\
-	  &= \frac{1}{24} \frac{m^4 c^5}{\pi^2 \hbar^3} \left[ \left( 2 x_F^3 - 3 x_F \right) \sqrt{x_F^2 + 1} + 3 \asinh x_F \right] \\
-\end{split}
-\end{equation}
+The equation of state $\epsilon = \epsilon(P)$ follows by eliminating $x_F$, or equivalently $\mu$.
+Due to the complicated dependence of $\epsilon$ and $P$ on $x_F$, we will consider three cases of increasing difficulty.
 
 \subsection{Ultra-relativistic limit}
 

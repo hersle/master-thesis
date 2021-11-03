@@ -18,6 +18,7 @@
 \usepackage{mathtools}
 \usepackage{tensor}
 \usepackage{braket}
+\usepackage[retain-unity-mantissa = false]{siunitx}
 \usepackage{slashed}
 \usepackage[parfill]{parskip} % new paragraph: new line, no indent
 %\usepackage[title]{appendix}
@@ -106,8 +107,8 @@ external/system call={xelatex \tikzexternalcheckshellescape --halt-on-error --in
 \usepackage{bm}
 
 \newcommand\dif{\mathop{}\!\mathrm{d}}
-\newcommand{\abs}[1]{\lvert #1 \rvert}
-\newcommand{\norm}[1]{\Lvert #1 \Rvert}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\Lvert {#1} \Rvert} % TODO: remove?
 \renewcommand{\det}[1]{\abs{#1}}
 %\newcommand{\tdet}{\text{det}}
 \DeclareMathOperator{\tdet}{det}
