@@ -1,0 +1,192 @@
+\chapter{Chapter 3}
+
+\section{Something}
+
+Logarithm of partition function
+\begin{equation}
+	\log Z = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ \beta E(\vec{p}) + \log \left[ e^{-\beta (E(\vec{p}) - \mu)}+1 \right] + \log \left[ e^{-\beta (E(\vec{p}) + \mu)} + 1\right] \right\} .
+\end{equation}
+
+Average number
+\begin{equation}
+	\thermalavg{N} = 
+	\frac{1}{\beta} \pdv{\log Z}{\mu} =
+	2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ n\big[ E(\vec{p})-\mu \big] - n\big[ E(\vec{p})+\mu \big] \Big\} .
+\end{equation}
+$\mu$ determines $\thermalavg{N}$
+
+Energy
+\begin{equation}
+	\thermalavg{E} = 
+	\mu \thermalavg{N} - \pdv{\log Z}{\beta} =
+	2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ -E(\vec{p}) + E(\vec{p}) n\big[ E(\vec{p})-\mu \big] - (-E(\vec{p})) n\big[ E(\vec{p})+\mu \big] \Big\}
+\end{equation}
+
+Pressure
+\begin{equation}
+	\thermalavg{P} = 
+	\frac{\log Z}{\beta V} = 
+	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ -E(\vec{p}) - \log \big[ n(E(\vec{p})-\mu) \, n(E(\vec{p})+\mu) \big] \Big\}
+\end{equation}
+
+Assume $\mu > 0$.
+Forget diverging vacuum contribution.
+Then
+\begin{equation}
+\begin{split}
+	\epsilon &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, n(E(\vec{p})-\mu) E(\vec{p}) \\
+	P        &= -2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, \log n(E(\vec{p})-\mu) \\
+\end{split}
+\end{equation}
+Zero-temperature limit
+
+Number density (use $n$ without argument for $N/V$)
+\begin{equation}
+	n = \frac{\thermalavg{N}}{V} = 2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} = \frac{p_F^3}{3 \pi^2 \hbar^3}
+\end{equation}
+
+Energy-density
+\begin{equation}
+\begin{split}
+	\epsilon &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, \theta(E(\vec{p})-\mu) E(\vec{p}) \\
+	         &=  2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \sqrt{p^2 c^2 + m^2 c^4} \\
+	         &= \frac{m^4 c^5}{\pi^2 \hbar^3} \int_0^{x_F} \dif x \, x^2 \sqrt{1 + x^2} \\
+	         &= \frac{1}{8} \frac{m^4 c^5}{\pi^2 \hbar^3} \left[ \left( 2 x_F^3 + x_F \right) \sqrt{1 + x_F^2} - \asinh x_F \right] \\
+\end{split}
+\end{equation}
+
+Pressure, use $\log (1 + e^{-\beta E}) \taylor -\beta E \theta(-E)$,
+\begin{equation}
+\begin{split}
+	P &= \frac{2}{\beta} \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, \log \left[ e^{-\beta (E - \mu)} + 1 \right] \\
+	  &= \frac{2}{\beta} \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, \beta (\mu - E) \theta(\mu - E) \\
+	  &= \frac{2}{\beta} \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \beta (\mu - E) \theta(\mu - E) \\
+	  &= \frac{m^4 c^5}{\pi^2 \hbar^3} \int_0^{x_F} \dif x \, x^2 \left( \sqrt{x_F^2+1} - \sqrt{x^2+1} \right) \\
+	  &= \frac{1}{24} \frac{m^4 c^5}{\pi^2 \hbar^3} \left[ \left( 2 x_F^3 - 3 x_F \right) \sqrt{x_F^2 + 1} + 3 \asinh x_F \right] \\
+\end{split}
+\end{equation}
+
+\subsection{Ultra-relativistic limit}
+
+Ultra-relativistic limit, $x_F \gg 1$.
+\begin{equation}
+\begin{split}
+	P        &\taylor \frac{1}{24} \frac{m^4 c^5}{\pi^2 \hbar^3} \left[ 2 x^{4} - 2 x^{2} + 3 \log 2 + 3 \log x - \frac{7}{4} \right] \taylor \frac{1}{12} \frac{m^4 c^5 x_F^4}{\pi^2 \hbar^3} \\
+	\epsilon &\taylor \frac{1}{8}  \frac{m^4 c^5}{\pi^2 \hbar^3} \left[ 2 x^{4} + 2 x^{2} - \log 2 - \log x + \frac{1}{4} \right] \taylor \frac{1}{4} \frac{m^4 c^5 x_F^4}{\pi^2 \hbar^3} \\
+\end{split}
+\end{equation}
+Equation of state
+\begin{equation}
+	\epsilon = 3 P
+\end{equation}
+
+Can solve with trial solution
+\begin{equation}
+	P(r) = A r^n
+\end{equation}
+\begin{equation}
+	\odv{m(r)}{r} = \frac{12 \pi A}{c^2} r^{n+2},
+	\quad \text{so} \quad
+	m(r) = \frac{12 \pi A}{(n+3) c^2} r^{n+3}
+	\quad (n \neq -3)
+\end{equation}
+Insert into TOV
+\begin{equation}
+	n A r^{n-1} =
+	-\frac{48 \pi G A^2 r^{2n+1}}{(n+3) c^4} \left[ 2 + \frac{n}{3} \right] \left[ 1 - \frac{24 \pi G A r^{n+2}}{(n+3) c^4} \right]^{-1}
+\end{equation}
+Must choose $n = -2$.
+\begin{equation}
+	\frac{2 A}{r^3} \left[ -1 + \frac{32 \pi G A}{c^4} \left( 1 - \frac{24 \pi G A}{c^4} \right)^{-1} \right] = 0
+\end{equation}
+or
+\begin{equation}
+	\frac{2 A}{r^3} \left[ -1 + \frac{56 \pi G A}{c^4} \right] = 0
+\end{equation}
+Then we must choose
+\begin{equation}
+	A = \frac{c^4}{56 \pi G}
+\end{equation}
+so
+\begin{equation}
+	P(r) = \frac{c^4}{56 \pi G} \frac{1}{r^2}
+\end{equation}
+and
+\begin{equation}
+	m(r) = \frac{3 c^2 r}{14 G}
+\end{equation}
+
+\subsection{Non-relativistic limit}
+
+Non-relativistic limit, $x_F \ll 1$.
+\begin{equation}
+\begin{split}
+	%\epsilon &\taylor \frac{m c^2 p_F^3}{3 \pi^2 \hbar^3} + \frac{p_F^5}{10 \pi^2 \hbar^3 m} = n m c^2 + \frac{p_F^5}{10 \pi^2 \hbar^3 m} \\
+	%P        &\taylor \frac{p_F^5}{15 \pi^2 \hbar^3 m}
+	\epsilon &\taylor \frac{m c^2 p_F^3}{3 \pi^2 \hbar^3} \\
+	P        &\taylor \frac{p_F^5}{15 \pi^2 \hbar^3 m}
+\end{split}
+\end{equation}
+Eliminate $p_F$, equation of state
+\begin{equation}
+	\epsilon = \frac{mc^2}{3\pi^2\hbar^3} \left( 15 \pi^2 \hbar^3 m P \right)^{3/5}
+\end{equation}
+
+Cannot solve TOV exactly.
+Solve it numerically.
+
+Dimensionless quantities
+\begin{equation}
+	\diml{\epsilon} = \frac{\epsilon}{\epsilon_0}, \quad
+	\diml{P} = \frac{P}{\epsilon_0}, \quad
+	\diml{r} = \frac{r}{r_0}, \quad
+	\diml{m} = \frac{m}{m_0}.
+\end{equation}
+where
+\begin{equation}
+	\epsilon_0 = \frac{m_0 c^2}{4 \pi r_0^3 / 3}, \quad
+	m_0 = \text{solar mass ?}, \quad
+	r_0 = \text{10 km ?}.
+\end{equation}
+Dimensionless TOV
+\begin{equation}
+	\frac{\epsilon_0}{r_0} \odv{\diml{p}}{\diml{r}} = -\frac{G m_0 \epsilon_0}{r_0^2 c^2} \frac{\diml{m} \diml{\epsilon}}{\diml{r}^2} \left[ 1 + \frac{\diml{p}}{\diml{\epsilon}} \right] \left[ 1 + \frac{4 \pi r_0^3 \epsilon_0}{m_0 c^2} \frac{\diml{r}^3 \diml{p}}{\diml{m}} \right] \left[ 1 - \frac{2 G m_0}{r_0 c^2} \frac{\diml{m}}{\diml{r}} \right]^{-1}.
+\end{equation}
+Inserting $\epsilon_0 = \ldots$ and defining the dimensionless gravitational constant $\hat{G} = G / (r_0 c^2 / m_0)$, we get
+\begin{equation}
+	\odv{\diml{p}}{\diml{r}} = - \frac{\diml{G} \diml{m} \diml{\epsilon}}{\diml{r}^2} \left[ 1 + \frac{\diml{p}}{\diml{\epsilon}} \right] \left[ 1 + \frac{3 \diml{r}^3 \diml{p}}{\diml{m}} \right] \left[ 1 - \frac{2 \diml{G} \diml{m}}{\diml{r}} \right]^{-1}.
+\end{equation}
+Dimensionless mass equation
+\begin{equation}
+	\odv{\diml{m}}{\diml{r}} = 3 \diml{r}^2 \diml{\epsilon}
+\end{equation}
+Dimensionless equation of state
+\begin{equation}
+	\diml{\epsilon} = \left[ \frac{4^2 5^3}{3^4 \pi^2} \frac{m^8 c^6 r_0^6}{m_0^2 \hbar^6} \diml{P}^3 \right]^{\frac{1}{5}}
+\end{equation}
+Numerical equation to solve
+\begin{equation}
+	\odv{}{r} \begin{bmatrix} m(r) \\ P(r) \\ \end{bmatrix} = f \left( \begin{bmatrix} m(r) \\ P(r) \\ \end{bmatrix} \right)
+	\quad \text{with boundary conditions} \quad
+	\begin{bmatrix} m(0) \\ P(0) \\ \end{bmatrix} = \begin{bmatrix} 0 \\ P_0 \\ \end{bmatrix}.
+\end{equation}
+Each run is parametrized by some central pressure $P_0$.
+At each integration step, the equation of state $\diml\epsilon = \diml\epsilon(\diml{P})$ is used.
+
+\section{General}
+
+How to eliminate $x_F$ in the general case?
+
+\begin{equation}
+	\diml{P}(x_F) = \frac{m^4 c^3 r_0^3}{18 \pi m_0 \hbar^3} \left[ (2 x_F^3 - 3 x_F) \sqrt{x_F^2 + 1} + 3 \asinh x_F \right]
+\end{equation}
+
+At every integration step, we have a value of the pressure $P$.
+Then find the root $x_F$ of
+\begin{equation}
+	P(x_F) - P = 0
+\end{equation}
+and then calculate
+\begin{equation}
+	\diml{ϵ} = \diml{ϵ}(x_F) = \diml{P}(x_F) = \frac{m^4 c^3 r_0^3}{6 \pi m_0 \hbar^3} \left[ (2 x_F^3 + x_F) \sqrt{x_F^2 + 1} - \asinh x_F \right]
+\end{equation}

@@ -112,6 +112,7 @@ external/system call={xelatex \tikzexternalcheckshellescape --halt-on-error --in
 %\newcommand{\tdet}{\text{det}}
 \DeclareMathOperator{\tdet}{det}
 \DeclareMathOperator{\asin}{asin}
+\DeclareMathOperator{\asinh}{asinh}
 \newcommand{\integral}[4]{\int_{#3}^{#4} #1 \dif #2}
 \newcommand{\variation}[1]{\delta #1}
 \newcommand{\trace}[1]{\text{tr} #1}
@@ -134,6 +135,7 @@ external/system call={xelatex \tikzexternalcheckshellescape --halt-on-error --in
 \DeclareMathOperator{\real}{Re}
 \DeclareMathOperator{\imag}{Im}
 \newcommand{\1}{\mathds{1}}
+\newcommand{\diml}[1]{\hat{#1}} % use to denote dimensionless quantity
 
 % useful intro to Latex thesis: https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_1):_Basic_Structure
 
@@ -148,6 +150,7 @@ external/system call={xelatex \tikzexternalcheckshellescape --halt-on-error --in
 \input{prologue/prologue.tex}
 \input{chapter1/chapter1.tex}
 \input{chapter2/chapter2.tex}
+\input{chapter3/chapter3.tex}
 \input{appendix/appendix.tex}
 
 \printbibliography
