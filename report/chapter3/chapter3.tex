@@ -3,6 +3,7 @@
 \TODO{intro}
 
 \section{Numerical solution of the \texorpdfstring{\\}{}Tolman-Oppenheimer-Volkoff equation}
+\label{sec:nstars:numtov}
 
 In \cref{chap:tov}, we derived the Tolman-Oppenheimer-Volkoff equation
 \begin{equation}
@@ -183,6 +184,7 @@ Now the particle density \TODO{ref?} becomes simply
 	n = 
 	2 \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \theta \left[ \mu - E(p) \right] =
 	2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} = \frac{p_F^3}{3 \pi^2 \hbar^3} .
+\label{eq:nstars:density_zeroT}
 \end{equation}
 Using integral \TODO{ref} and defining the dimensionless momentum $x = p / mc$, the energy density is
 \begin{equation}
@@ -192,6 +194,7 @@ Using integral \TODO{ref} and defining the dimensionless momentum $x = p / mc$, 
 	         &= \frac{m^4 c^5}{\pi^2 \hbar^3} \int_0^{x_F} \dif x \, x^2 \sqrt{1 + x^2} \\
 	         &= \frac{m^4 c^5}{8 \pi^2 \hbar^3} \left[ \left( 2 x_F^3 + x_F \right) \sqrt{1 + x_F^2} - \asinh x_F \right] . \\
 \end{split}
+\label{eq:nstars:energy_density_zeroT}
 \end{equation}
 Finally, using the same integral, the pressure is
 \begin{equation}
@@ -201,122 +204,129 @@ Finally, using the same integral, the pressure is
 	  &= \frac{m^4 c^5}{\pi^2 \hbar^3} \int_0^{x_F} \dif x \, x^2 \left[ \sqrt{x_F^2+1} - \sqrt{x^2+1} \right] \\
 	  &= \frac{m^4 c^5}{24 \pi^2 \hbar^3} \left[ \left( 2 x_F^3 - 3 x_F \right) \sqrt{x_F^2 + 1} + 3 \asinh x_F \right] . \\
 \end{split}
+\label{eq:nstars:pressure_zeroT}
 \end{equation}
 
 The equation of state $\epsilon = \epsilon(P)$ follows by eliminating $x_F$, or equivalently $\mu$.
 Due to the complicated dependence of $\epsilon$ and $P$ on $x_F$, we will consider three cases of increasing difficulty.
 
 \subsection{Ultra-relativistic limit}
+\label{sec:nstars:ur_limit}
 
-Ultra-relativistic limit, $x_F \gg 1$.
+First, consider the ultra-relativistic limit
 \begin{equation}
-\begin{split}
-	P        &\taylor \frac{1}{24} \frac{m^4 c^5}{\pi^2 \hbar^3} \left[ 2 x^{4} - 2 x^{2} + 3 \log 2 + 3 \log x - \frac{7}{4} \right] \taylor \frac{1}{12} \frac{m^4 c^5 x_F^4}{\pi^2 \hbar^3} \\
-	\epsilon &\taylor \frac{1}{8}  \frac{m^4 c^5}{\pi^2 \hbar^3} \left[ 2 x^{4} + 2 x^{2} - \log 2 - \log x + \frac{1}{4} \right] \taylor \frac{1}{4} \frac{m^4 c^5 x_F^4}{\pi^2 \hbar^3} \\
-\end{split}
+	x_F \gg 1 , 
+\label{eq:nstars:ur_limit}
 \end{equation}
-Equation of state
+where the Fermi energy $E_F = \sqrt{p_F^2 c^2 + m^2 c^4} \taylor p_F c$ is dominated by the contribution from the Fermi momentum.
+Since $\asinh x_F = \log \left[ x_F + \sqrt{x_F^2 + 1} \right] \taylor \log 2 x_F$ diverges logarithmically, we see that both the energy density and pressure are dominated by the first terms with $2 x_F^3 \sqrt{x_F^2 + 1} \taylor 2 x_F^4$.
+Then the energy density and pressure are
 \begin{equation}
-	\epsilon = 3 P
+	\epsilon \taylor \frac{m^4 c^5 x_F^4}{4 \pi^2 \hbar^3}
+	\qquad \text{and} \qquad
+	P        \taylor \frac{m^4 c^5 x_F^4}{12 \pi^2 \hbar^3},
+\end{equation}
+and $x_F$ is easily eliminated, yielding the very simple equation of state
+\begin{equation}
+	\epsilon = 3 P .
+\label{eq:nstars:ur_eos}
 \end{equation}
 
-Can solve with trial solution
+In this particular case, the TOV equation \eqref{eq:tov} can be solved analytically with the polynomial trial solution
 \begin{equation}
-	P(r) = A r^n
+	P(r) = A r^n .
+\label{eq:nstars:ur_ansatz}
 \end{equation}
+Then
 \begin{equation}
 	\odv{m(r)}{r} = \frac{12 \pi A}{c^2} r^{n+2},
-	\quad \text{so} \quad
+	\qquad \text{so} \qquad
 	m(r) = \frac{12 \pi A}{(n+3) c^2} r^{n+3}
-	\quad (n \neq -3)
+	\quad (n \neq -3).
 \end{equation}
-Insert into TOV
+With the equation of state, $m(r)$ and trial solution, the TOV equation \eqref{eq:tov} reads
+\TODO{the 2 in first par wrong?}
 \begin{equation}
 	n A r^{n-1} =
-	-\frac{48 \pi G A^2 r^{2n+1}}{(n+3) c^4} \left[ 2 + \frac{n}{3} \right] \left[ 1 - \frac{24 \pi G A r^{n+2}}{(n+3) c^4} \right]^{-1}
+	-\frac{48 \pi G A^2 r^{2n+1}}{(n+3) c^4} \left[ 2 + \frac{n}{3} \right] \left[ 1 - \frac{24 \pi G A r^{n+2}}{(n+3) c^4} \right]^{-1} .
 \end{equation}
-Must choose $n = -2$.
+We can attain equality for all $r$ if we choose $n = -2$.
+Then the rightmost factor no longer depends on $r$, and both sides have the $r^{-3}$-dependence
 \begin{equation}
-	\frac{2 A}{r^3} \left[ -1 + \frac{32 \pi G A}{c^4} \left( 1 - \frac{24 \pi G A}{c^4} \right)^{-1} \right] = 0
+	- 2 A r^{-3} = - \frac{64 \pi G A^2 r^{-3}}{c^4} \left[ 1 - \frac{24 \pi G A}{c^4} \right]^{-1} .
 \end{equation}
-or
-\begin{equation}
-	\frac{2 A}{r^3} \left[ -1 + \frac{56 \pi G A}{c^4} \right] = 0
-\end{equation}
-Then we must choose
-\begin{equation}
-	A = \frac{c^4}{56 \pi G}
-\end{equation}
-so
+Then equality is established if we choose $A = c^4 / 56 \pi G$ to match the prefactors.
+In conclusion, the pressure and mass is therefore
 \begin{equation}
 	P(r) = \frac{c^4}{56 \pi G} \frac{1}{r^2}
+	\qquad \text{and} \qquad
+	m(r) = \frac{3 c^2 r}{14 G}.
 \end{equation}
-and
-\begin{equation}
-	m(r) = \frac{3 c^2 r}{14 G}
-\end{equation}
+This is a highly unphysical result.
+The pressure diverges at the center, so nothing could ever hold such a star together.
+In addition, $p(r) > 0$ for all $r$, so the star has no surface and hence infinite mass $M$.
+The ultra-relativistic limit \eqref{eq:nstars:ur_limit} is equivalent to a diverging particle density \eqref{eq:nstars:density_zeroT}, so in this regime neutrons stars are as stable as plastic balloons filled with infinite amounts of air.
 
 \subsection{Non-relativistic limit}
+\label{sec:nstars:nr_limit}
 
-Non-relativistic limit, $x_F \ll 1$.
+Next, let us consider the somewhat more difficult non-relativistic limit
 \begin{equation}
-\begin{split}
+	x_F \ll 1,
+\label{eq:nstars:nr_limit}
+\end{equation}
+where the Fermi energy $E_F = \sqrt{p_F^2 c^2 + m^2 c^4} \taylor m c^2$ is dominated by the rest energy of the fermions.
+Taylor expanding the energy density \eqref{eq:nstars:energy_density_zeroT} and presure \eqref{eq:nstars:pressure_zeroT} around $x_F = 0$ to lowest order, we find
+\begin{equation}
 	%\epsilon &\taylor \frac{m c^2 p_F^3}{3 \pi^2 \hbar^3} + \frac{p_F^5}{10 \pi^2 \hbar^3 m} = n m c^2 + \frac{p_F^5}{10 \pi^2 \hbar^3 m} \\
 	%P        &\taylor \frac{p_F^5}{15 \pi^2 \hbar^3 m}
-	\epsilon &\taylor \frac{m c^2 p_F^3}{3 \pi^2 \hbar^3} \\
-	P        &\taylor \frac{p_F^5}{15 \pi^2 \hbar^3 m}
-\end{split}
+	\epsilon \taylor \frac{m c^2 p_F^3}{3 \pi^2 \hbar^3}
+	\qquad \text{and} \qquad
+	P        \taylor \frac{p_F^5}{15 \pi^2 \hbar^3 m} .
 \end{equation}
-Eliminate $p_F$, equation of state
+Note that with the density \eqref{eq:nstars:density}, the energy density $\epsilon = n m c^2$ is only due to the rest mass of the particles, as if all fermions have broken free from the Pauli exclusion principle and possess the same rest energy $m c^2$.
+This is only a mathematical feature of the non-relativistic limit -- the fermions still occupy different states with different momentum, but the momenta are so small that the differences are negligible compared to the rest energy $mc^2$.
+Again, it is straightforward to eliminate $x_F$ to find the equation of state, only this time there is some extra bookkeeping with all the exponents.
+Gathering all the prefactors under the same roof, we find
 \begin{equation}
-	\epsilon = \frac{mc^2}{3\pi^2\hbar^3} \left( 15 \pi^2 \hbar^3 m P \right)^{3/5}
+	%\epsilon = \frac{mc^2}{3\pi^2\hbar^3} \left( 15 \pi^2 \hbar^3 m P \right)^{3/5}
+	\epsilon = \left( \frac{5^3 m^8 c^{10}}{3^2 \pi^4 \hbar^6} \right)^{\frac15}  P^{\frac35} .
 \end{equation}
+With this power dependence, it is not easy, if even possible, to solve the TOV equation analytically.
+The trial solution \eqref{eq:nstars:ur_ansatz} we employed in \cref{sec:nstars:ur_limit} fails miserably, as we do not get the same fortunate cancellations of $r$.
+We therefore resort to the numerical solution method described in \cref{sec:nstars:numtov}, parametrizing different stars by their center pressure $P_0$ and integrating the TOV equation until the pressure $p(R)$ vanishes, using the corresponding radius $R$ to establish the mass $M = m(R)$ of the star.
 
-Cannot solve TOV exactly.
-Solve it numerically.
-
-Dimensionless quantities
-\begin{equation}
-	\diml{\epsilon} = \frac{\epsilon}{\epsilon_0}, \quad
-	\diml{P} = \frac{P}{\epsilon_0}, \quad
-	\diml{r} = \frac{r}{r_0}, \quad
-	\diml{m} = \frac{m}{m_0}.
-\end{equation}
-where
-\begin{equation}
-	\epsilon_0 = \frac{m_0 c^2}{4 \pi r_0^3 / 3}, \quad
-	m_0 = \text{solar mass ?}, \quad
-	r_0 = \text{10 km ?}.
-\end{equation}
-Dimensionless TOV
-\begin{equation}
-	\frac{\epsilon_0}{r_0} \odv{\diml{p}}{\diml{r}} = -\frac{G m_0 \epsilon_0}{r_0^2 c^2} \frac{\diml{m} \diml{\epsilon}}{\diml{r}^2} \left[ 1 + \frac{\diml{p}}{\diml{\epsilon}} \right] \left[ 1 + \frac{4 \pi r_0^3 \epsilon_0}{m_0 c^2} \frac{\diml{r}^3 \diml{p}}{\diml{m}} \right] \left[ 1 - \frac{2 G m_0}{r_0 c^2} \frac{\diml{m}}{\diml{r}} \right]^{-1}.
-\end{equation}
-Inserting $\epsilon_0 = \ldots$ and defining the dimensionless gravitational constant $\hat{G} = G / (r_0 c^2 / m_0)$, we get
-\begin{equation}
-	\odv{\diml{p}}{\diml{r}} = - \frac{\diml{G} \diml{m} \diml{\epsilon}}{\diml{r}^2} \left[ 1 + \frac{\diml{p}}{\diml{\epsilon}} \right] \left[ 1 + \frac{3 \diml{r}^3 \diml{p}}{\diml{m}} \right] \left[ 1 - \frac{2 \diml{G} \diml{m}}{\diml{r}} \right]^{-1}.
-\end{equation}
-Dimensionless mass equation
-\begin{equation}
-	\odv{\diml{m}}{\diml{r}} = 3 \diml{r}^2 \diml{\epsilon}
-\end{equation}
+\iffalse
 Dimensionless equation of state
 \begin{equation}
 	\diml{\epsilon} = \left[ \frac{4^2 5^3}{3^4 \pi^2} \frac{m^8 c^6 r_0^6}{m_0^2 \hbar^6} \diml{P}^3 \right]^{\frac{1}{5}}
 \end{equation}
-Numerical equation to solve
+\fi
+
+\subsection{General case}
+
+How can we find the energy density
 \begin{equation}
-	\odv{}{r} \begin{bmatrix} m(r) \\ P(r) \\ \end{bmatrix} = f \left( \begin{bmatrix} m(r) \\ P(r) \\ \end{bmatrix} \right)
-	\quad \text{with boundary conditions} \quad
-	\begin{bmatrix} m(0) \\ P(0) \\ \end{bmatrix} = \begin{bmatrix} 0 \\ P_0 \\ \end{bmatrix}.
+	\epsilon = \frac{m^4 c^5}{8 \pi^2 \hbar^3} \left[ \left( 2 x_F^3 + x_F \right) \sqrt{1 + x_F^2} - \asinh x_F \right]
+\label{eq:nstars:gr_limit_energy_density}
 \end{equation}
-Each run is parametrized by some central pressure $P_0$.
-At each integration step, the equation of state $\diml\epsilon = \diml\epsilon(\diml{P})$ is used.
+that corresponds to a given pressure
+\begin{equation}
+	P = \frac{m^4 c^5}{24 \pi^2 \hbar^3} \left[ \left( 2 x_F^3 - 3 x_F \right) \sqrt{x_F^2 + 1} + 3 \asinh x_F \right] 
+\label{eq:nstars:gr_limit_pressure}
+\end{equation}
+for general $x_F$?
+Since we are already solving the TOV equation on a computer, we can do so by numerical root finding.
+At every step $r$ in the numerical integration algorithm, we know the current pressure $P(r)$.
+Using a numerical root finding algorithm, we can find the root $x_F$ of the function
+\begin{equation}
+	f(x_F) = P(x_F) - P(r) = 0,
+\end{equation}
+where $P(x_F)$ is the pressure \eqref{eq:nstars:gr_limit_pressure} and $P(r)$ is the pressure at the current step.
+Then we can simply calculate the corresponding energy density $\epsilon(x_F)$ from \cref{eq:nstars:gr_limit_energy_density}.
+This whole procedure can be elegantly encapsulated into a function in the program that takes in $P(r)$ and spits out $\epsilon(P(r))$, effectively implementing an implicit equation of state.
 
-\section{General}
-
-How to eliminate $x_F$ in the general case?
-
+\iffalse
 \begin{equation}
 	\diml{P}(x_F) = \frac{m^4 c^3 r_0^3}{18 \pi m_0 \hbar^3} \left[ (2 x_F^3 - 3 x_F) \sqrt{x_F^2 + 1} + 3 \asinh x_F \right]
 \end{equation}
@@ -330,3 +340,14 @@ and then calculate
 \begin{equation}
 	\diml{ϵ} = \diml{ϵ}(x_F) = \diml{P}(x_F) = \frac{m^4 c^3 r_0^3}{6 \pi m_0 \hbar^3} \left[ (2 x_F^3 + x_F) \sqrt{x_F^2 + 1} - \asinh x_F \right]
 \end{equation}
+\fi
+
+
+\begin{figure}
+\begin{tikzpicture}
+\begin{axis}[width=10cm, height=10cm]
+\addplot [red, mark=none] table [x=R, y=M] {../code/tov_fermi_gas/data/gr.dat};
+\addplot [blue, mark=none] table [x=R, y=M] {../code/tov_fermi_gas/data/nr.dat};
+\end{axis}
+\end{tikzpicture}
+\end{figure}
