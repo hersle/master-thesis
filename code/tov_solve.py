@@ -5,39 +5,19 @@ import scipy.integrate
 import scipy.optimize
 import matplotlib.pyplot as plt
 
-# constants
-π = np.pi
+from constants import *
 m0 = 1.98847e30 # kg
-c = 299792458 # m/s
 r0 = 10e3 # m
-m = 1.67492749804e-27 # kg
-ħ = 1.054571817e-34 # Js 
-ratio = m**8*c**6*r0**6 / (m0**2*ħ**6)
+G = 6.67430e-11 / (r0*c**2/m0) # dimensionless
 
+"""
 ϵ0 = m0*c**2 / (4/3*π*r0**3)
 print(f"ϵ0 = {ϵ0}")
 
 kB = 1.380649e-23
 T = 1e6 # https://en.wikipedia.org/wiki/Neutron_star#Mass_and_temperature
 print(f"m c^2 / k_B T = {m * c**2 / (kB * T)} >> 1")
-
-
-G = 6.67430e-11 # dimensionful
-G = G / (r0*c**2/m0) # dimensionless
-
-def writecols(cols, headers, filename):
-    maxlen = max(len(col) for col in cols)
-    for col in cols:
-        while len(col) < maxlen:
-            col.append(np.nan)
-        
-    file = open(filename, "w")
-    file.write(" ".join(headers) + "\n")
-    for r in range(0, maxlen):
-        for col in cols:
-            file.write(str(col[r]) + " ")
-        file.write("\n")
-    file.close()
+"""
 
 def soltov(ϵ, P0, max_step=1e-3):
     def f(r, y):
@@ -58,21 +38,6 @@ def soltov(ϵ, P0, max_step=1e-3):
     rs, ms, Ps = res.t, res.y[0,:], res.y[1,:]
 
     return rs, ms, Ps
-
-def ϵUR(P): return 3*P
-
-def ϵNR(P): return (5**3*4**2 / (3**4*π**2) * ratio * np.abs(P)**3)**(1/5)
-
-# Px(1e7) ≈ 1e28, so need to consider x ∈ [0, 1e7] for P ∈ [0, 1e28]
-def Px(x): return m**4*c**3*r0**3 / (18*π*m0*ħ**3) * ((2*x**3 - 3*x) * np.sqrt(x**2 + 1) + 3*np.arcsinh(x))
-def ϵGR(P):
-    P = np.abs(P) # TODO: implications?
-    def f(x): return Px(x) - P
-    sol = scipy.optimize.root_scalar(f, method="bisect", bracket=(0, 1e18))
-    assert sol.converged, "ERROR: equation of state root finder did not converge"
-    x = sol.root
-    ϵ = m**4*c**3*r0**3 / (6*π*m0*ħ**3) * ((2*x**3+x) * np.sqrt(x**2 + 1) - np.arcsinh(x))
-    return ϵ
     
 def massradius(ϵ, P0, max_step=1e-3):    
     rs, ms, Ps = soltov(ϵ, P0, max_step=max_step)
@@ -121,25 +86,3 @@ def massradiusplot(ϵ, P1, P2, tolD=1e-5, tolP=1e-6, max_step=1e-3, visual=False
         plt.show() # leave final plot open
 
     return Ps, Ms, Rs
-
-# rs, ms, Ps = soltov(ϵNR, 2.4)
-
-#Ps, Ms, Rs = massradiusplot(ϵNR, 1e-6, 1e10, tolD=0.05, tolP=1e-5, max_step=5e-4, visual=True) # for full curve
-
-#Ps, Ms, Rs = massradiusplot(ϵNR, 1e1, 1e21, tolD=0.04, tolP=1e-3, max_step=2e-4, visual=True) # for spiral only
-
-#Ps, Ms, Rs = massradiusplot(ϵNR, 1e-6, 1e21, tolD=0.05, tolP=1e-5, max_step=2e-4, visual=True) # everything?
-#writecols([Ps, Ms, Rs], ["P", "M", "R"], "data/nr.dat")
-
-# TODO: P never 0, cannot integrate to np.inf
-#Ps, Ms, Rs = massradiusplot(ϵUR, 1e-0, 1e4, tolD=0.1, tolP=1e-1, max_step=1e-2, visual=True) # everything?
-#writecols([Ps, Ms, Rs], ["P", "M", "R"], "data/ur.dat")
-
-# Everything for GR
-#Ps, Ms, Rs = massradiusplot(ϵGR, 1e-6, 1e17, tolD=0.05, tolP=1e-5, max_step=2e-3, visual=True)
-#writecols([Ps, Ms, Rs], ["P", "M", "R"], "data/gr.dat")
-
-
-#plt.plot(Rs, Ms, "-ko")
-#plt.show()
-#Ps, Ms, Rs = massradiusplot(ϵNR, 1e-2, 1e2, tolD=0.5, tolP=1e-2, max_step=1e-3, visual=False) # for spiral
