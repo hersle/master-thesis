@@ -1033,7 +1033,71 @@ Here, we do the latter in the computer algebra system SAGE, inspired by \cite{re
 
 The output matches \cref{eq:tov} precisely.
 
-\section{Numerical integration of Tolman-Oppenheimer-Volkoff equation}
+\chapter{Numerical integration of the Tolman-Oppenheimer-Volkoff equation}
+\label{sec:nstars:numtov}
+
+In \cref{chap:tov} we derived the Tolman-Oppenheimer-Volkoff system \TODO{ref to conclusion in chapter 1 with this system}.
+Given an equation of state $f(\epsilon, P) = 0$, we wish to solve the system of three equations
+\begin{align}
+	\odv{P}{r} &= -\frac{G m \epsilon}{r^2 c^2} \left[ 1 + \frac{P}{\epsilon} \right] \left[ 1 + \frac{4 \pi r^3 P}{m c^2} \right] \left[ 1 - \frac{2 G m}{r c^2} \right]^{-1} , \label{eq:numtov:toveq} \\
+	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon}{c^2} , \label{eq:numtov:masseq} \\
+	f(\epsilon, P) &= 0 , \label{eq:numtov:eos} 
+\end{align}
+\TODO{a, b, c}
+for the unknown pressure, mass and energy density profiles $P(r)$, $m(r)$ and $\epsilon(r)$, subject to the boundary condition $P(0) = P_0$ and $m(0) = 0$.
+Given the equation of state \eqref{eq:numtov:eos}, we can eliminate $\epsilon$ in favor of $P$ in the TOV equation \eqref{eq:numtov:toveq}.
+Then the TOV equation \eqref{eq:numtov:toveq} and the mass equation \eqref{eq:numtov:masseq} constitute a system of two equations for the pressure $P(r)$ and mass $m(r)$ on the form $\odv{\vec{y}}/{t} = f(t, \vec{y})$ with $\vec{y} = [P, m]$.
+This is exactly in the suitable form for numerical Runge-Kutta integration algorithms.
+
+To avoid issues with numerical unstability, it is wise to eliminate physical scales from the system and introduce dimensionless variables that can be kept as close to $1$ as possible.
+Define define the dimensionless variables
+\begin{equation}
+	\diml{\epsilon}(r) = \frac{\epsilon(r)}{\epsilon_0}, \quad
+	\diml{P}(r) = \frac{P(r)}{\epsilon_0}, \quad
+	\diml{m}(r) = \frac{m(r)}{m_0} \quad \text{and} \quad
+	\diml{r}(r) = \frac{r}{r_0},
+\end{equation}
+where $m_0$ and $r_0$ are two natural scales of stellar mass and radius, and
+\begin{equation}
+	\epsilon_0 = \frac{m_0 c^2}{4 \pi r_0^3 / 3}
+	%m_0 = \text{solar mass ?}, \quad
+	%r_0 = \text{10 km ?}.
+\label{eq:numtov:energy_density_scale}
+\end{equation}
+is a corresponding natural scale of energy density.
+For a neutron star, it would be appropriate to choose the solar mass $m_0 = \solarmass$ and $r_0 = \SI{10}{\kilo\meter}$, for example.
+With these dimensionless quantities, the TOV system \TODO{ref} becomes
+\begin{align}
+	\odv{\diml{p}}{\diml{r}} &= -\frac{G m_0}{r_0 c^2} \frac{\diml{m} \diml{\epsilon}}{\diml{r}^2} \left[ 1 + \frac{\diml{p}}{\diml{\epsilon}} \right] \left[ 1 + \frac{4 \pi r_0^3 \epsilon_0}{m_0 c^2} \frac{\diml{r}^3 \diml{p}}{\diml{m}} \right] \left[ 1 - \frac{2 G m_0}{r_0 c^2} \frac{\diml{m}}{\diml{r}} \right]^{-1} , \\
+	\odv{\diml{m}}{\diml{r}} &= \frac{4 \pi r_0^3 \epsilon_0}{m_0 c^2} \diml{r}^2\diml{\epsilon} , \\
+	\diml\epsilon            &= \diml\epsilon(\diml{P}) .
+\end{align}
+First, note that the energy density scale \eqref{eq:numtov:energy_density_scale} simplifies the second parenthesis in the first equation and the prefactor in the second equation.
+Second, observe that $G_0 = r_0 c^2 / m_0$ has the same units as the gravitational constant, so let us also introduce the dimensionless gravitational constant
+\begin{equation}
+	\diml{G} = \frac{G}{G_0} .
+\end{equation}
+With these observations, the system \TODO{ref} simplifies to
+\begin{align}
+	\odv{\diml{p}}{\diml{r}} &= - \frac{\diml{G} \diml{m} \diml{\epsilon}}{\diml{r}^2} \left[ 1 + \frac{\diml{p}}{\diml{\epsilon}} \right] \left[ 1 + \frac{3 \diml{r}^3 \diml{p}}{\diml{m}} \right] \left[ 1 - \frac{2 \diml{G} \diml{m}}{\diml{r}} \right]^{-1} , \\
+	\odv{\diml{m}}{\diml{r}} &= 3 \diml{r}^2 \diml{\epsilon} , \\
+	\diml\epsilon            &= \diml\epsilon(\diml{P}) ,
+\end{align}
+which we wish to solve subject to the boundary conditions $\diml{P}(0) = \diml{P}_0$ and $\diml{m}(0) = 0$ for some dimensionless pressure $\diml{P}_0$.
+
+To find the mass and radius of some star with central pressure $\diml{P}_0$, we can integrate the system \TODO{ref} until $\diml{P} \le 0$.
+We then terminate the integration algorithm and call the final radius $\diml{r} = \diml{R}$ and mass $\diml{m}(\diml{r}) = \diml{M}$ the radius and mass of the star.
+By parametrizing multiple stars with a range of central pressures $\diml{P}_0$ and performing this task for each of them, we obtain a mass-radius relation of the star.
+
+Below is a small Python program that accomplishes all of this for an arbitrary equation of state $\diml\epsilon = \diml\epsilon(\diml{P})$.
+The function \verb|massradiusplot| \TODO{font?} can be run with \verb|visual=True| to show the mass-radius relation in real-time, updating it every time the mass and radius of a new star is found.
+Typically, stars distributed uniformly between two central pressures may be located very non-uniformly in the mass-radius space.
+To circumvent this difficulty and make the mass-radius curve as smooth as possible, we recursively split an initial central pressure interval $(\diml{P}_1, \diml{P}_2)$ until the Euclidean distance $\sqrt{(\diml{R}_2-\diml{R}_1)^2 + (\diml{M}_2-\diml{M}_1)^2}$ between points on the curve is below some tolerance.
 
 \codefile{python}{../code/tov_solve.py}
+
+\section{Cold free fermion neutron stars}
+
+Below, we use the general framework above to find the mass-radius relation for the equations of state for cold free fermion neutron stars that we found in \cref{sec:nstars:nr_limit} and \cref{sec:nstars:gr_limit}.
+
 \codefile{python}{../code/tov_free_fermi_gas.py}

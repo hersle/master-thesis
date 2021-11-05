@@ -3,6 +3,7 @@
 import numpy as np
 import scipy.integrate
 import matplotlib.pyplot as plt
+import utils
 
 from constants import c
 m0 = 1.98847e30 # kg
@@ -41,7 +42,7 @@ def massradius(ϵ, P0, maxdr=1e-3):
 
 # Bisect [P1, P2] to make points evenly
 def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, outfile="", visual=False):
-    P1, P2 = Pinterval[0], Pinterval[1]
+    P1, P2 = P1P2[0], P1P2[1]
     R1, M1 = massradius(ϵ, P1, maxdr=maxdr)
     R2, M2 = massradius(ϵ, P2, maxdr=maxdr)
     Ps, Ms, Rs = [P1, P2], [M1, M2], [R1, R2]

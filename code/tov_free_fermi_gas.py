@@ -13,7 +13,7 @@ def ϵNR(P):
     factorNR = 5**3*4**2 / (3**4*π**2) * m**8*c**6*r0**6 / (m0**2*ħ**6)
     return (factorNR * np.abs(P)**3)**(1/5)
 
-massradiusplot(ϵNR, (1e-6, 1e21), tolD=0.05, tolP=1e-5, maxdr=2e-3, outfile="data/nr.dat")
+#massradiusplot(ϵNR, (1e-6, 1e21), tolD=0.05, tolP=1e-5, maxdr=2e-3, outfile="data/nr.dat")
 
 # Arbitrary Fermi momentum
 def ϵGR(P):
@@ -26,4 +26,4 @@ def ϵGR(P):
     ϵ = 3*factorGR * ((2*x**3+x) * np.sqrt(x**2 + 1) - np.arcsinh(x))
     return ϵ
 
-massradiusplot(ϵGR, (1e-6, 1e17), tolD=0.1, tolP=1e-5, maxdr=2e-3, outfile="data/gr.dat")
+massradiusplot(ϵGR, (1e-6, 1e17), tolD=0.05, tolP=1e-5, maxdr=2e-3, outfile="data/gr2.dat")
