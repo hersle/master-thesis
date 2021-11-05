@@ -2,42 +2,18 @@
 
 \TODO{intro}
 
-\TODO{move this to chap 2 intro}
-In \cref{chap:tft}, we found $Z = Z(T, \mu, V)$ for two sample systems.
-From $Z$, we could derive $P = P(T, \mu)$ and $\epsilon = \epsilon(T, \mu)$, where the volume $V$ has been eliminated by division, because $P$ and $\epsilon$ are intensive quantities independent of $V$.
-At some fixed temperature $T$, we can therefore eliminate $\mu$ to express $\epsilon$ in terms of $P$.
-Thus, we can obtain an equation of state
-Given the equation of state, we can eliminate $\epsilon$ in terms of $P$ in \cref{eq:nstars:tov,eq:nstars:dmdr} and write the system
 \TODO{small $p$ for momentum, big $P$ for pressure everywhere}
-\begin{equation}
-\begin{split}
-	\odv{p(r)}{r} &= -\frac{G m(r) \epsilon(p(r))}{r^2 c^2} \left[ 1 + \frac{p(r)}{\epsilon(p(r))} \right] \left[ 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1}, \\
-	\odv{m(r)}{r} &= \frac{4 \pi r^2 \epsilon(p(r))}{c^2}. \\
-\end{split}
-\end{equation}
-This is a system of two first-order differential equations for $P(r)$ and $m(r)$!
-Given a boundary condition, it can be integrated analytically or numerically to obtain $P(r)$ and $m(r)$.
-One natural choice of boundary conditions is that, at the center, $m(r) = 0$, while $P(0)$ can be anything.
-So we choose the boundary condition
-\begin{equation}
-	P(0) = P_0
-	\quad \text{and} \quad
-	m(0) = 0
-	\quad \text{at} \quad
-	r = 0
-\end{equation}
-for some $P_0$.
-With different values for $P_0$, we essentially parametrize different stars with different pressure and mass profiles $P(r)$ and $m(r)$ at some fixed temperature $T$.
-In particular, if $p(R) = 0$ for some $R$, we define $R$ as the radius of the star, and $M = m(R)$ as its mass.
 
+In \cref{chap:tft}, we found $Z = Z(T, \mu, V)$ for two sample systems, and in particular a gas of free Dirac fermions.
+From $Z$, we can derive the pressure $P = P(T, \mu)$ and energy density $\epsilon = \thermalavg{E}/V = \epsilon(T, \mu)$ using \cref{eq:tft:average_number,eq:tft:average_energy,eq:tft:average_pressure}, where the volume $V$ has been eliminated by division, because $P$ and $\epsilon$ are intensive quantities.
+At some fixed temperature $T$, we can therefore eliminate $\mu$ to express $\epsilon$ in terms of $P$.
+This gives us an equation of state $\epsilon = \epsilon(P)$ with which we can solve the TOV system \TODO{ref}.
 
-\section{Solution for free Fermi gas neutron star}
+In this chapter, we will use the free Dirac fermion partition function \eqref{eq:tft:dirac_partition_function} and do exactly this to model a cold neutron star made of free neutrons.
 
-Let us use the logarithm of the partition function \eqref{eq:tft:dirac_partition_function} for free Dirac fermions to derive an equation of state inside a neutron star composed of neutrons only.
-Then we will solve the TOV equation \eqref{eq:tov} with this equation of state and investigate the mass-radius relation of such neutron stars.
+\section{Equation of state}
 
-For easy reference, let us repeat the logarithm of the partition function \eqref{eq:tft:dirac_partition_function}.
-It is
+For easy reference, the logarithm of the free Dirac fermion partition function \eqref{eq:tft:dirac_partition_function} is
 \begin{equation}
 	\log Z = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ \beta E(\vec{p}) + \log \left[ e^{-\beta (E(\vec{p}) - \mu)}+1 \right] + \log \left[ e^{-\beta (E(\vec{p}) + \mu)} + 1\right] \right\}.
 \end{equation}
@@ -53,11 +29,11 @@ where we defined the \textbf{Fermi-Dirac distribution}
 	n(E) = \frac{1}{e^{-\beta E} + 1}.
 \label{eq:nstars:fermi_dirac_distribution}
 \end{equation}
-The $n$ on the left side of \cref{eq:nstars:density} denotes the particle number density $n = \thermalavg{N}/V$, while $n \left[ E(\vec{p}) \pm \mu \right]$ on the right is the Fermi-Dirac distribution \eqref{eq:nstars:fermi_dirac_distribution} and will \emph{always} be written \emph{with} an argument.
-We hope this clearly distinguishes the two and that the naming appears intuitive -- soon we will get rid of $n(E)$, anyway.
+Do not confuse the particle density $n$ on the left with the Fermi-Dirac distributions $n[E(\vec{p}) \mp \mu]$ on the right!
+We will soon integrate away $n[E(\vec{p}) \mp \mu]$, anyway.
 From the density \eqref{eq:nstars:density}, we see that $n = n(\mu, T)$ is a function of the chemical potential $\mu$ and temperature $T$, so that at some fixed temperature, the value of $\mu$ decides the particle density $n$.
 
-Second, we calculate the energy density $\epsilon = \thermalavg{N} / V$ from \cref{eq:tft:average_energy}.
+Second, we calculate the energy density $\epsilon = \thermalavg{E} / V$ from \cref{eq:tft:average_energy}.
 It comes out as
 \begin{equation}
 	\epsilon = 
@@ -76,10 +52,10 @@ Third, we find that the pressure \eqref{eq:tft:average_pressure} is
 
 The first term of the energy density \eqref{eq:nstars:energy_density} and the pressure \eqref{eq:nstars:pressure} is infinite, as the integrand never decays.
 This can be interpreted as an infinite shift of the vacuum energy.
-In contrast, the next two terms are finite as the integrand is suppressed for large $\abs{\vec{p}}$ by the Fermi-Dirac distribution.
+In contrast, the two last terms are finite as the integrand is suppressed for large $\abs{\vec{p}}$ by the Fermi-Dirac distribution.
 It makes no sense to include a term that integrates over every possible value of the momentum $\vec{p}$ for physical particles whose momentum cannot exceed a certain value due to energy conservation.
-Here, we will make the assumption that we can simply drop this term.
-Later, we will return to investigate this term by regularization and renormalization. \TODO{does this make sense?}
+Here, we will make the assumption that we can simply drop the infinite term.
+We will return later to investigate this term by regularization and renormalization. \TODO{does this make sense?}
 
 From the particle density \eqref{eq:nstars:density} at constant temperature $T$, we see that the sign of $n$ is determined by the sign of $\mu$.
 The total density $n$ is expressed as a balance between \emph{particles} with energy $E(\vec{p}) > 0$ living relative to the chemical potential $\mu$ and \emph{antiparticles} with energy $E(\vec{p}) < 0$ living relative to the chemical potential $-\mu$.
@@ -88,15 +64,16 @@ Similarly, the two last terms in the energy density \eqref{eq:nstars:energy_dens
 We choose a large, positive value of $\mu > 0$, so that the particles dominate the system, while antiparticles are hardly present.
 With this choice, $n \left[ E(\vec{p}) - \mu \right] \gg n \left[ E(\vec{p}) + \mu \right]$, and we drop the last term from the particle density \eqref{eq:nstars:density}, energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}.
 
-We are now left with the 
+Dropping terms as described in the last paragraphs, we are left with the
 \begin{equation}
 \begin{aligned}
 	& \text{particle density} & n        &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, n \left[ E(\vec{p})-\mu \right] , \\
 	& \text{energy density}   & \epsilon &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, E(\vec{p}) \, n \left[ E(\vec{p})-\mu \right] \text{ and} \\
 	& \text{pressure}         & P        &= -2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, \log \left[ e^{-\beta(E(\vec{p})-\mu)} + 1 \right] . \\
 \end{aligned}
+\label{eq:nstars:dropped_infinities}
 \end{equation}
-The integrals become nasty after plugging in the dispersion relation $E(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4}$ \TODO{write in display form and refer back to this} and the Fermi-Dirac distribution \eqref{eq:nstars:fermi_dirac_distribution}, and it is overly optimistic to expect that all of them can be evaluated analytically.
+The integrals become nasty after plugging in the dispersion relation $E(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4}$ \TODO{write in display form in TFT chapter and only refer back here} and the Fermi-Dirac distribution \eqref{eq:nstars:fermi_dirac_distribution}, and it is overly optimistic to expect that all of them can be evaluated analytically.
 We will make one final approximation that will make all the integrals surmountable.
 
 By human standards, it is very hot inside a neutron star.
@@ -108,28 +85,28 @@ It is therefore an excellent approximation to take the \textbf{zero temperature 
 	\beta E(\vec{p}) \gg 1 .
 \end{equation}
 In the zero temperature limit,
+\TODO{make two simple figures to show how the two functions ``converge''}
 \begin{equation}
 \begin{split}
-	n(E)                                 &\rightarrow \theta(-E) = 1 - \theta(E), \\
-	\log \left[ e^{-\beta E} + 1 \right] &\rightarrow -\beta E \theta(-E) = -\beta E [1 - \theta(E)]. \\
+	n(E)                                 \quad &\rightarrow \quad \theta(-E) , \\
+	\log \left[ e^{-\beta E} + 1 \right] \quad &\rightarrow \quad -\beta E \theta(-E) . \\
 \end{split}
 \end{equation}
-as shown in \TODO{make simple figure with converging FD distribution}.
-Thus, the zero temperature limit effectively limits the integration to those momenta $\vec{p}$ such that $E(\vec{p}) < \mu$.
+Thus, the zero temperature limit effectively limits the integrals \eqref{eq:nstars:dropped_infinities} to those momenta $\vec{p}$ with $E(\vec{p}) < \mu$.
 We therefore call
 \begin{equation}
 	\mu = E_F = E(p_F) = \sqrt{p_F^2 c^2 + m^2 c^4}
 \end{equation}
-the Fermi energy and the corresponding momentum $p_F$ the Fermi momentum, representing the occupied state with highest energy and momentum.
+the Fermi energy and the corresponding momentum $p_F$ the Fermi momentum, representing the occupied state in momentum-space with greatest energy and momentum.
 
-Now the particle density \TODO{ref?} becomes simply
+Now the particle density \TODO{ref} becomes simply
 \begin{equation}
 	n = 
 	2 \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \theta \left[ \mu - E(p) \right] =
 	2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} = \frac{p_F^3}{3 \pi^2 \hbar^3} .
 \label{eq:nstars:density_zeroT}
 \end{equation}
-Using integral \TODO{ref} and defining the dimensionless momentum $x = p / mc$, the energy density is
+Using integral \TODO{ref} and defining the dimensionless momentum $x = p / mc$, the energy density \TODO{ref} is
 \begin{equation}
 \begin{split}
 	\epsilon &=  2 \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, E(p) \, \theta \left[ \mu - E(p) \right] \\
@@ -139,7 +116,7 @@ Using integral \TODO{ref} and defining the dimensionless momentum $x = p / mc$, 
 \end{split}
 \label{eq:nstars:energy_density_zeroT}
 \end{equation}
-Finally, using the same integral, the pressure is
+Finally, using the same integral, the pressure \TODO{ref} is
 \begin{equation}
 \begin{split}
 	P &= \frac{2}{\beta} \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \beta \left[ \mu - E(p) \right] \, \theta \left[ \mu - E(p) \right] \\
@@ -150,8 +127,8 @@ Finally, using the same integral, the pressure is
 \label{eq:nstars:pressure_zeroT}
 \end{equation}
 
-The equation of state $\epsilon = \epsilon(P)$ follows by eliminating $x_F$, or equivalently $\mu$.
-Due to the complicated dependence of $\epsilon$ and $P$ on $x_F$, we will consider three cases of increasing difficulty.
+The equation of state $\epsilon = \epsilon(P)$ follows by eliminating $x_F$ from the energy density \eqref{eq:nstars:energy_density_zeroT} and pressure \eqref{eq:nstars:pressure_zeroT}.
+Due to their complicated dependence on $x_F$, we will do so in three cases of increasing difficulty.
 
 \subsection{Ultra-relativistic limit}
 \label{sec:nstars:ur_limit}
@@ -162,8 +139,8 @@ First, consider the ultra-relativistic limit
 \label{eq:nstars:ur_limit}
 \end{equation}
 where the Fermi energy $E_F = \sqrt{p_F^2 c^2 + m^2 c^4} \taylor p_F c$ is dominated by the contribution from the Fermi momentum.
-Since $\asinh x_F = \log \left[ x_F + \sqrt{x_F^2 + 1} \right] \taylor \log 2 x_F$ diverges logarithmically, we see that both the energy density and pressure are dominated by the first terms with $2 x_F^3 \sqrt{x_F^2 + 1} \taylor 2 x_F^4$.
-Then the energy density and pressure are
+Since $\asinh x_F = \log \left[ x_F + \sqrt{x_F^2 + 1} \right] \taylor \log 2 x_F$ diverges logarithmically, we see that both the energy density \eqref{eq:nstars:energy_density_zeroT} and pressure \eqref{eq:nstars:pressure_zeroT} are dominated by their first term with $2 x_F^3 \sqrt{x_F^2 + 1} \taylor 2 x_F^4$.
+In the ultra-relativistic limit, then,
 \begin{equation}
 	\epsilon \taylor \frac{m^4 c^5 x_F^4}{4 \pi^2 \hbar^3}
 	\qquad \text{and} \qquad
@@ -175,20 +152,20 @@ and $x_F$ is easily eliminated, yielding the very simple equation of state
 \label{eq:nstars:ur_eos}
 \end{equation}
 
-In this particular case, the TOV equation \eqref{eq:tov} can be solved analytically with the polynomial trial solution
+In this particular case, the TOV system \TODO{ref} can be solved analytically with the polynomial trial solution
 \begin{equation}
 	P(r) = A r^n .
 \label{eq:nstars:ur_ansatz}
 \end{equation}
-Then
+Then the mass equation \TODO{ref} is
 \begin{equation}
-	\odv{m(r)}{r} = \frac{12 \pi A}{c^2} r^{n+2},
+	\odv{m}{r} = \frac{12 \pi A}{c^2} r^{n+2},
 	\qquad \text{so} \qquad
 	m(r) = \frac{12 \pi A}{(n+3) c^2} r^{n+3}
 	\quad (n \neq -3).
+\label{eq:nstars:ur_mass}
 \end{equation}
-With the equation of state, $m(r)$ and trial solution, the TOV equation \eqref{eq:tov} reads
-\TODO{the 2 in first par wrong?}
+With the equation of state \eqref{eq:nstars:ur_eos}, mass \eqref{eq:nstars:ur_mass} and trial solution \eqref{eq:nstars:ur_ansatz}, the TOV equation \eqref{eq:tov} reads
 \begin{equation}
 	n A r^{n-1} =
 	-\frac{48 \pi G A^2 r^{2n+1}}{(n+3) c^4} \left[ 2 + \frac{n}{3} \right] \left[ 1 - \frac{24 \pi G A r^{n+2}}{(n+3) c^4} \right]^{-1} .
@@ -198,22 +175,23 @@ Then the rightmost factor no longer depends on $r$, and both sides have the $r^{
 \begin{equation}
 	- 2 A r^{-3} = - \frac{64 \pi G A^2 r^{-3}}{c^4} \left[ 1 - \frac{24 \pi G A}{c^4} \right]^{-1} .
 \end{equation}
-Then equality is established if we choose $A = c^4 / 56 \pi G$ to match the prefactors.
-In conclusion, the pressure and mass is therefore
+Equality is established if we match the prefactors by choosing $A = c^4 / 56 \pi G$.
+Then the solutions for the pressure and mass are
 \begin{equation}
 	P(r) = \frac{c^4}{56 \pi G} \frac{1}{r^2}
 	\qquad \text{and} \qquad
-	m(r) = \frac{3 c^2 r}{14 G}.
+	m(r) = \frac{3 c^2}{14 G} r .
 \end{equation}
 This is a highly unphysical result.
 The pressure diverges at the center, so nothing could ever hold such a star together.
-In addition, $p(r) > 0$ for all $r$, so the star has no surface and hence infinite mass $M$.
-The ultra-relativistic limit \eqref{eq:nstars:ur_limit} is equivalent to a diverging particle density \eqref{eq:nstars:density_zeroT}, so in this regime neutrons stars are as stable as plastic balloons filled with infinite amounts of air.
+In addition, $p(r) > 0$ for all $r$, so the star has no surface and hence infinite mass $M = m(\infty) = \infty$.
+
+\TODO{make plot of $P(r)$ and $m(r)$ for a star}
 
 \subsection{Non-relativistic limit}
 \label{sec:nstars:nr_limit}
 
-Next, let us consider the somewhat more difficult non-relativistic limit
+Next, let us consider the more difficult non-relativistic limit
 \begin{equation}
 	x_F \ll 1,
 \label{eq:nstars:nr_limit}
@@ -227,10 +205,10 @@ Taylor expanding the energy density \eqref{eq:nstars:energy_density_zeroT} and p
 	\qquad \text{and} \qquad
 	P        \taylor \frac{p_F^5}{15 \pi^2 \hbar^3 m} .
 \end{equation}
-Note that with the density \eqref{eq:nstars:density}, the energy density $\epsilon = n m c^2$ is only due to the rest mass of the particles, as if all fermions have broken free from the Pauli exclusion principle and possess the same rest energy $m c^2$.
+Note that with the density \eqref{eq:nstars:density}, the energy density can be written $\epsilon = n m c^2$, so it is only due to the rest mass of the particles, as if all fermions have broken free from the Pauli exclusion principle and possess the same rest energy $m c^2$.
 This is only a mathematical feature of the non-relativistic limit -- the fermions still occupy different states with different momentum, but the momenta are so small that the differences are negligible compared to the rest energy $mc^2$.
 Again, it is straightforward to eliminate $x_F$ to find the equation of state, only this time there is some extra bookkeeping with all the exponents.
-Gathering all the prefactors under the same roof, we find
+Carefully gathering all the prefactors under the same roof, we find
 \begin{equation}
 	%\epsilon = \frac{mc^2}{3\pi^2\hbar^3} \left( 15 \pi^2 \hbar^3 m P \right)^{3/5}
 	\epsilon = \left( \frac{5^3 m^8 c^{10}}{3^2 \pi^4 \hbar^6} \right)^{\frac15}  P^{\frac35} .
@@ -238,6 +216,7 @@ Gathering all the prefactors under the same roof, we find
 With this power dependence, it is not easy, if even possible, to solve the TOV equation analytically.
 The trial solution \eqref{eq:nstars:ur_ansatz} we employed in \cref{sec:nstars:ur_limit} fails miserably, as we do not get the same fortunate cancellations of $r$.
 We therefore resort to the numerical solution method described in \cref{sec:nstars:numtov}, parametrizing different stars by their center pressure $P_0$ and integrating the TOV equation until the pressure $p(R)$ vanishes, using the corresponding radius $R$ to establish the mass $M = m(R)$ of the star.
+The results are shown in \cref{fig:nstars:massradius}.
 
 \iffalse
 Dimensionless equation of state
@@ -261,14 +240,15 @@ that corresponds to a given pressure
 \end{equation}
 for general $x_F$?
 Since we are already solving the TOV equation on a computer, we can do so by numerical root finding.
-At every step $r$ in the numerical integration algorithm, we know the current pressure $P(r)$.
+At every step $r$ in the numerical integration algorithm, we know the current pressure $P = P(r)$.
 Using a numerical root finding algorithm, we can find the root $x_F$ of the function
 \begin{equation}
-	f(x_F) = P(x_F) - P(r) = 0,
+	f(x_F) = P(x_F) - P = 0,
 \end{equation}
-where $P(x_F)$ is the pressure \eqref{eq:nstars:gr_limit_pressure} and $P(r)$ is the pressure at the current step.
-Then we can simply calculate the corresponding energy density $\epsilon(x_F)$ from \cref{eq:nstars:gr_limit_energy_density}.
-This whole procedure can be elegantly encapsulated into a function in the program that takes in $P(r)$ and spits out $\epsilon(P(r))$, effectively implementing an implicit equation of state.
+where $P(x_F)$ is the pressure \eqref{eq:nstars:gr_limit_pressure} as a function of $x_F = p_F / m c$.
+Having found the root, we can simply calculate the corresponding energy density $\epsilon(x_F)$ from \cref{eq:nstars:gr_limit_energy_density}.
+This whole procedure can be elegantly encapsulated into a function that implements an implicit equation of state $\epsilon = \epsilon(P)$, which in turn is straightforward to plug into our solver described in \cref{sec:nstars:numtov}.
+The results are shown in \cref{fig:nstars:massradius}.
 
 \iffalse
 \begin{equation}
@@ -315,3 +295,11 @@ and then calculate
 }
 
 \end{figure}
+
+\section{Discussion / stability analysis}
+
+\TODO{discuss mass bound}
+
+\TODO{compare with earlier results, most massive neutron stars}
+
+\TODO{stability analysis, which parts of the plot are meaningful?}
