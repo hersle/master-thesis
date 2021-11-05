@@ -1029,6 +1029,11 @@ For later reference, recall that the upper and lower signs hold for bosons and f
 When deriving \cref{eq:tov} analytically, we made use of energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$ instead of substituting our results into the unused \cref{eq:einstein_to_tov:thetatheta}.
 Here, we do the latter in the computer algebra system SAGE, inspired by \cite{ref:sage_tov}.
 
-\codefile{python}{../code/einstein_to_tov/ein.sage}
+\codefile{python}{../code/tov_derive.sage}
 
 The output matches \cref{eq:tov} precisely.
+
+\section{Numerical integration of Tolman-Oppenheimer-Volkoff equation}
+
+\codefile{python}{../code/tov_solve.py}
+\codefile{python}{../code/tov_free_fermi_gas.py}
