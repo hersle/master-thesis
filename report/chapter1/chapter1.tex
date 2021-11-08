@@ -178,6 +178,7 @@ It relates the pressure gradient $\odv{p}/{r}$ and energy density $\epsilon$ at 
 To determine them, an additional \textbf{equation of state}
 \begin{equation}
 	F(p, \epsilon) = 0
+\label{eq:tov:eos}
 \end{equation}
 that relates the thermodynamic variables is required, typically obtained from statistical physics.
 Given all three equations and the central pressure $p(0)$, we can integrate to find the pressure everywhere inside the star.
@@ -586,3 +587,25 @@ Replacing energy density $\epsilon$ with mass density $\rho$ using \cref{eq:tov
 \end{equation}
 The Newtonian limit corresponds to sending $c \rightarrow \infty$, as this reduces the Lorentz transformations of relativity to the Galilei transformations of Newtonian physics.
 But sending $c \rightarrow \infty$ kills all corrections in the three parentheses of \cref{eq:tov_units}, which restores the Newtonian pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient}!
+
+
+\section{Summary}
+
+The most important result of this chapter is the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}.
+Together with the mass gradient \eqref{eq:einstein_to_tov:m_rho} and an equation of state \eqref{eq:tov:eos}, it is best viewed as the system of equations
+\begin{subequations}
+\label{eq:tov:tovsys}
+\begin{align}
+	\odv{P}{r} &= -\frac{G m \epsilon}{r^2 c^2} \left( 1 + \frac{P}{\epsilon} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \label{eq:tov:tovsys_pressure} \\
+	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon}{c^2} , \label{eq:tov:tovsys_mass} \\
+	\epsilon &= \epsilon(P) . \label{eq:tov:tovsys_eos}
+\end{align}
+\end{subequations}
+The equation of state \eqref{eq:tov:tovsys_eos} allows one to eliminate all dependence on $\epsilon$ in favor of $P$ in the pressure and mass gradients \eqref{eq:tov:tovsys_pressure} and \eqref{eq:tov:tovsys_mass}.
+They then constitute a system of two differential equations for the two unknown functions $P(r)$ and $m(r)$ that is to be integrated from $m(0) = 0$ and some central pressure $P(0) = P_0$.
+We define the surface and radius $R$ of the star by a vanishing pressure $P(R) = 0$, and the corresponding mass $m(R) = M$ as the mass of the star.
+In \cref{sec:nstars:numtov}, we describe how to integrate the system numerically for an arbitrary equation of state.
+
+By solving this system for an incompressible star with constant energy density $\epsilon = \epsilon_0$, we derived the Buchdal limit $M < 4 c^2 R / 9 G = $.
+Finally, we looked in great detail at the Newtonian limit and saw that the TOV equation correctly reduced to its Newtonian counterpart.
+The Newtonian limit also enabled us to interpret the mass $M$ as the \emph{Newtonian} mass of the star -- precisely the mass measured by observations.
