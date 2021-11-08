@@ -26,8 +26,9 @@ Spacetime is curved according to the Einstein field equations
 expressing how energy and momentum on the rightmost side -- such as mass and light -- determine the geometry of spacetime on the left side.
 
 The most important result of this chapter will be the Tolman-Oppenheimer-Volkoff equation
+\TODO{with or withour arguments in functions?}
 \begin{equation*}
-	\odv{p}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left[ 1 + \frac{p(r)}{\epsilon(r)} \right] \left[ 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} ,
+	\odv{P}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left[ 1 + \frac{P(r)}{\epsilon(r)} \right] \left[ 1 + \frac{4 \pi r^3 P(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} ,
 \end{equation*}
 which we will derive from the Einstein field equations.
 With this equation, we can find the pressure profile and radius of a star once we have an equation of state that relates the pressure and energy of the material inside.
@@ -42,7 +43,7 @@ To make sense of our results, we will investigate the correspondence between gen
 \section{Derivation from the Einstein field equations}
 \label{sec:einstein_to_tov}
 
-To analyze astrophysical objects like stars, it is of considerable interest to relate the pressure $p(x)$ and energy density $\epsilon(x)$ or mass density $\rho(x)$ at every position $x$ inside the object.
+To analyze astrophysical objects like stars, it is of considerable interest to relate the pressure $P(x)$ and energy density $\epsilon(x)$ or mass density $\rho(x)$ at every position $x$ inside the object.
 We will derive the relativistic relation between these quantities from the \textbf{Einstein field equations} \cite[equation 4.44]{ref:carroll}
 \begin{equation}
 	G\indices{_\mu_\nu} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = \frac{8 \pi G}{c^4} T_{\mu \nu} .
@@ -74,7 +75,7 @@ and consider the most general line element that exhibits spherical symmetry, \ci
 
 We model the interior of the star as a perfect fluid with energy-momentum \cite[equation 1.114]{ref:carroll}
 \begin{equation}
-	T\indices{_\mu_\nu} = \frac{1}{c^2} (\epsilon+p) U_\mu U_\nu - p g\indices{_\mu_\nu}.
+	T\indices{_\mu_\nu} = \frac{1}{c^2} (\epsilon+P) U_\mu U_\nu - P g\indices{_\mu_\nu}.
 	\label{eq:tov:energy_momentum_perfect_fluid}
 \end{equation}
 The analysis is simplest in the rest frame of the fluid, where $U_\mu = (U_0, \textbf{0})$ and the normalization condition $U_\mu U^\mu = c^2$ requires $U_0 = \pm e^\alpha c$.
@@ -84,17 +85,17 @@ Then the energy-momentum tensor takes the diagonal form
 T\indices{_\mu_\nu} =
 \begin{bmatrix}
 	\epsilon e^{2\alpha} & 0            & 0     & 0                   \\
-	0                    & p e^{2\beta} & 0     & 0                   \\
-	0                    & 0            & p r^2 & 0                   \\
-	0                    & 0            & 0     & p r^2 \sin^2 \theta \\
+	0                    & P e^{2\beta} & 0     & 0                   \\
+	0                    & 0            & P r^2 & 0                   \\
+	0                    & 0            & 0     & P r^2 \sin^2 \theta \\
 \end{bmatrix}
 \qquad \text{or} \qquad
 T\indices{_\mu^\nu} =
 \begin{bmatrix}
 	\epsilon &  0 &  0 &  0 \\
-	0        & -p &  0 &  0 \\
-	0        &  0 & -p &  0 \\
-	0        &  0 &  0 & -p \\
+	0        & -P &  0 &  0 \\
+	0        &  0 & -P &  0 \\
+	0        &  0 &  0 & -P \\
 \end{bmatrix}
 .
 \label{eq:einstein_to_tov:T}
@@ -108,9 +109,9 @@ After inserting the energy-momentum tensor on the right and simplifying, we get 
 \begin{align}
 	\frac{1}{r^2} e^{-2 \beta} \left( 2 r \beta' - 1 + e^{2 \beta} \right)                               &= \frac{8 \pi G}{c^4} \epsilon
 	&& \left( G\indices{_0_0} = \frac{8 \pi G}{c^4} T\indices{_0_0} \right) , \label{eq:einstein_to_tov:tt} \\
-	\frac{1}{r^2} e^{-2 \beta} \left( 2 r \alpha' + 1 - e^{2 \beta} \right)                              &= \frac{8 \pi G}{c^4} p
+	\frac{1}{r^2} e^{-2 \beta} \left( 2 r \alpha' + 1 - e^{2 \beta} \right)                              &= \frac{8 \pi G}{c^4} P
 	&& \left( G\indices{_1_1} = \frac{8 \pi G}{c^4} T\indices{_1_1} \right) , \label{eq:einstein_to_tov:rr} \\
-	e^{-2 \beta} \left( \alpha'' + (\alpha')^2 - \alpha' \beta' + \frac{1}{r} (\alpha' - \beta') \right) &= \frac{8 \pi G}{c^4} p
+	e^{-2 \beta} \left( \alpha'' + (\alpha')^2 - \alpha' \beta' + \frac{1}{r} (\alpha' - \beta') \right) &= \frac{8 \pi G}{c^4} P
 	&& \left( G\indices{_2_2} = \frac{8 \pi G}{c^4} T\indices{_2_2} \right) . \label{eq:einstein_to_tov:thetatheta}
 \end{align}
 \end{subequations}
@@ -146,7 +147,7 @@ We return to this question in \cref{sec:weak_field_limit} after studying incomp
 
 Meanwhile, definition \eqref{eq:einstein_to_tov:def_m} turns \cref{eq:einstein_to_tov:rr} into
 \begin{equation}
-	\odv{\alpha}{r} = \frac{G}{r^2 c^4} \frac{m(r) c^2 + 4 \pi r^3 p}{1 - 2 G m(r) / r c^2} .
+	\odv{\alpha}{r} = \frac{G}{r^2 c^4} \frac{m(r) c^2 + 4 \pi r^3 P}{1 - 2 G m(r) / r c^2} .
 	\label{eq:einstein_to_tov:dadr1}
 \end{equation}
 To finally eliminate $\alpha$, we can replace all occurences of $\alpha'$ and $\beta$ in the remaining \cref{eq:einstein_to_tov:thetatheta} with the expressions \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:def_m}.
@@ -161,29 +162,29 @@ Using \cref{eq:def_cov_deriv}, the component $\nu=1$ gives
 	= \partial_1 T\indices{^1_1} + \Gamma^\sigma_{1 \sigma} T\indices{^1_1} - \Gamma^\sigma_{1 \mu} T\indices{^\mu_\sigma}
 	= \partial_1 T\indices{^1_1} + \Gamma^0_{10} T\indices{^1_1} + \sum_{i=1}^3 \Gamma^i_{1i} T\indices{^1_1} - \Gamma^0_{10} T\indices{^0_0} - \sum_{i=1}^3 \Gamma^i_{1i} T\indices{^i_i}
 \end{equation*}
-Using $T\indices{^0_0} = \epsilon$ and $T\indices{^1_1} = T\indices{^2_2} = T\indices{^3_3} = -p$ from \cref{eq:einstein_to_tov:T}, the explicit sums cancel.
+Using $T\indices{^0_0} = \epsilon$ and $T\indices{^1_1} = T\indices{^2_2} = T\indices{^3_3} = -P$ from \cref{eq:einstein_to_tov:T}, the explicit sums cancel.
 With $\Gamma^0_{10} = \frac12 g^{00} \partial_1 g_{00} = \odv{\alpha}/{r}$, we are left with
 \begin{equation}
-	\odv{\alpha}{r} = \frac{-1}{\epsilon+p} \odv{p}{r} .
+	\odv{\alpha}{r} = \frac{-1}{\epsilon+P} \odv{P}{r} .
 	\label{eq:einstein_to_tov:dadr2}
 \end{equation}
 Now $\alpha$ is easily eliminated by equating \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:dadr2}. 
 Whichever approach we follow, we end up with the \textbf{Tolman-Oppenheimer-Volkow (TOV) equation}
 \begin{equation}
-	\odv{p}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left[ 1 + \frac{p(r)}{\epsilon(r)} \right] \left[ 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
+	\odv{P}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left[ 1 + \frac{P(r)}{\epsilon(r)} \right] \left[ 1 + \frac{4 \pi r^3 P(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
 	\label{eq:tov}
 \end{equation}
-It relates the pressure gradient $\odv{p}/{r}$ and energy density $\epsilon$ at radius $r$ from the center of a spherical static star composed of a perfect fluid.
-\Cref{eq:einstein_to_tov:m_rho,eq:tov} constitute two equations for the three unknowns $p$, $\epsilon$ and $m$.
+It relates the pressure gradient $\odv{P}/{r}$ and energy density $\epsilon$ at radius $r$ from the center of a spherical static star composed of a perfect fluid.
+\Cref{eq:einstein_to_tov:m_rho,eq:tov} constitute two equations for the three unknowns $P$, $\epsilon$ and $m$.
 To determine them, an additional \textbf{equation of state}
 \begin{equation}
-	F(p, \epsilon) = 0
+	F(P, \epsilon) = 0
 \label{eq:tov:eos}
 \end{equation}
 that relates the thermodynamic variables is required, typically obtained from statistical physics.
-Given all three equations and the central pressure $p(0)$, we can integrate to find the pressure everywhere inside the star.
-We define the radius of the star to be the radius $R$ at which $p(R) = 0$.
-Carrying out this procedure for different values of $p(0)$, we can find a mass-radius relation $M(R)$ for stars parametrized by their central pressure $p(0)$.
+Given all three equations and the central pressure $P(0)$, we can integrate to find the pressure everywhere inside the star.
+We define the radius of the star to be the radius $R$ at which $P(R) = 0$.
+Carrying out this procedure for different values of $P(0)$, we can find a mass-radius relation $M(R)$ for stars parametrized by their central pressure $P(0)$.
 
 \section{Solution for an incompressible star}
 \label{sec:incompressible_star}
@@ -195,7 +196,7 @@ Although it may sound unphysical from the outset, we can make a somewhat realist
 	\epsilon(r) = \epsilon_0
 \end{equation}
 is constant inside the star.
-For example, this results in a completely unrealistic speed of sound $v = \sqrt{\odv{p}/{\rho}} = c \sqrt{1/(\odv{\epsilon}/{p})} = c \sqrt{1/0} = \infty$ \cite{ref:speed_of_sound}.
+For example, this results in a completely unrealistic speed of sound $v = \sqrt{\odv{P}/{\rho}} = c \sqrt{1/(\odv{\epsilon}/{P})} = c \sqrt{1/0} = \infty$ \cite{ref:speed_of_sound}.
 Anyway, integrating \cref{eq:einstein_to_tov:m_integral,eq:einstein_to_tov:schwarzschild_mass} yield
 \begin{equation}
 	m(r) c^2 = \frac{4}{3} \pi r^3 \epsilon_0 
@@ -203,13 +204,13 @@ Anyway, integrating \cref{eq:einstein_to_tov:m_integral,eq:einstein_to_tov:schwa
 	M c^2 = \frac{4}{3} \pi R^3 \epsilon_0 
 	.
 \end{equation}
-Inserting the energy density $\epsilon(r)$ and mass $m(r)$ into \cref{eq:tov}, $p$ and $r$ separate to
+Inserting the energy density $\epsilon(r)$ and mass $m(r)$ into \cref{eq:tov}, $P$ and $r$ separate to
 \begin{equation*}
-	\int \frac{\dif p}{(\epsilon_0+p)(\epsilon_0+3p)} = - \int \frac{4 \pi G r \dif r}{3 c^4 - 8\pi G r^2 \epsilon_0} .
+	\int \frac{\dif P}{(\epsilon_0+P)(\epsilon_0+3P)} = - \int \frac{4 \pi G r \dif r}{3 c^4 - 8\pi G r^2 \epsilon_0} .
 \end{equation*}
 The left side can now be split by the partial fraction decomposition
 \begin{equation*}
-	\frac{1}{(\epsilon_0+p)(\epsilon_0+3p)} = \frac{1}{2p} \left( \frac{1}{\epsilon_0+p} + \frac{1}{\epsilon_0+3p} \right) .
+	\frac{1}{(\epsilon_0+P)(\epsilon_0+3P)} = \frac{1}{2P} \left( \frac{1}{\epsilon_0+P} + \frac{1}{\epsilon_0+3P} \right) .
 \end{equation*}
 Performing all three integrals using the general antiderivatives
 \begin{equation*}
@@ -217,10 +218,10 @@ Performing all three integrals using the general antiderivatives
 	\quad \text{and} \quad
 	\int \frac{x \dif x}{a x^2 + b} = \frac{1}{2 a} \log \left( a x^2 + b \right) + C
 \end{equation*}
-and applying the boundary condition $p(R) = 0$ to determine the integration constant, we eventually find the radial pressure
+and applying the boundary condition $P(R) = 0$ to determine the integration constant, we eventually find the radial pressure
 \begin{equation}
 	% p(r) in terms of M, R, 
-	p(r) = \epsilon_0 \, \frac{\sqrt{1-\frac{2GMr^2}{R^3c^2}} - \sqrt{1-\frac{2GM}{Rc^2}}}{3 \sqrt{1-\frac{2GM}{Rc^2}} - \sqrt{1-\frac{2GMr^2}{R^3c^2}}} .
+	P(r) = \epsilon_0 \, \frac{\sqrt{1-\frac{2GMr^2}{R^3c^2}} - \sqrt{1-\frac{2GM}{Rc^2}}}{3 \sqrt{1-\frac{2GM}{Rc^2}} - \sqrt{1-\frac{2GMr^2}{R^3c^2}}} .
 	% p(r) in terms of p0, M, R
 	%p(r) = -\frac{M}{\frac{4}{3} \pi R^3} \frac{4 \pi R^{3} p_0 \left( \frac{1}{3} + \sqrt{1-\frac{2GMr^2}{R^3}} \right) + M \left( 1 + \sqrt{1-\frac{2GMr^2}{R^3}} \right)}
 	%                                           {4 \pi R^{3} p_0 \left( 1           + \sqrt{1-\frac{2GMr^2}{R^3}} \right) + M \left( 3 + \sqrt{1-\frac{2GMr^2}{R^3}} \right)}
@@ -228,7 +229,7 @@ and applying the boundary condition $p(R) = 0$ to determine the integration cons
 \end{equation}
 In particular, the central pressure is
 \begin{equation}
-	p(0) = \epsilon_0 \frac{1 - \sqrt{1 - \frac{2GM}{Rc^2}}}{3 \sqrt{1-\frac{2GM}{Rc^2}} - 1} .
+	P(0) = \epsilon_0 \frac{1 - \sqrt{1 - \frac{2GM}{Rc^2}}}{3 \sqrt{1-\frac{2GM}{Rc^2}} - 1} .
 	\label{eq:incompressible_star:central_pressure}
 \end{equation}
 It is interesting to note that the pressure is positive for $GM/Rc^2 < 4/9$, but explodes at $GM/Rc^2 = 4/9$ and becomes negative for $GM/Rc^2 > 4/9$.
@@ -270,7 +271,7 @@ In \cref{fig:incompressible_star:plot1}, we compare the mass-radius relation to 
 		\legend{$M(R)$, $M_\text{max}(R)$};
 		\nextgroupplot[
 			title={\subcaption{\label{fig:incompressible_star:plot2}Pressure profile}},
-			xlabel=$r\, /\, R_0$, ylabel=$p(r) \, / \, p(0)$, xtick distance=0.25,
+			xlabel=$r\, /\, R_0$, ylabel=$P(r) \, / \, P(0)$, xtick distance=0.25,
 		]
 		\pgfplotsinvokeforeach{0.9, 0.99, 0.999} {
 			\addplot [domain=0:1,samples=200] {p(x,#1*Mmax(1),1)/p(0,#1*Mmax(1),1)} node[pos=0.54, sloped, yshift=+16pt] {\scriptsize $M = #1 M_\text{max}$};
@@ -279,7 +280,7 @@ In \cref{fig:incompressible_star:plot1}, we compare the mass-radius relation to 
 	\end{tikzpicture}
 	\caption{
 		\subref{fig:incompressible_star:plot1} Mass-radius relation $M(R) = 4 \pi R^3 \epsilon_0 / 3 c^2$ for a star of constant energy density $\epsilon_0$ compared to the maximum supported mass $M_\text{max}(R) = 4 c^2 R / 9 G$.
-		\subref{fig:incompressible_star:plot2} Pressure profile $p(r)$ for stars of radius $R_0 = \sqrt{c^4 / G \epsilon_0}$ and masses $M$ approaching the limit $M_\text{max}(R_0)$.
+		\subref{fig:incompressible_star:plot2} Pressure profile $P(r)$ for stars of radius $R_0 = \sqrt{c^4 / G \epsilon_0}$ and masses $M$ approaching the limit $M_\text{max}(R_0)$.
 	}
 \end{figure}
 
@@ -331,13 +332,13 @@ Consequently, particles could reach velocities that violate criterion \eqref{eq:
 	\label{eq:weak_field_limit:small_potential}
 \end{equation}
 In the presence of a fluid with energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid}, internal stresses in the fluid also generate motion.
-For example, the energy-momentum \eqref{eq:einstein_to_tov:T} would give rise to sound waves propagagating with velocity $v = \sqrt{\odv{p}/{\rho}} = c \sqrt{-\odv{T\indices{_i^i}}/{T\indices{_0^0}}}$, with no sum over $i$.
+For example, the energy-momentum \eqref{eq:einstein_to_tov:T} would give rise to sound waves propagagating with velocity $v = \sqrt{\odv{P}/{\rho}} = c \sqrt{-\odv{T\indices{_i^i}}/{T\indices{_0^0}}}$, with no sum over $i$.
 More generally, we therefore assume slow movement corresponds to $\odv{T_{ij}}/{T_{00}} \ll 1$ or, by integration,
 \begin{equation}
 	\frac{T_{ij}}{T_{00}} \ll 1 .
 	\label{eq:weak_field_limit:small_pressure}
 \end{equation}
-Glancing back at \cref{eq:tov:energy_momentum_perfect_fluid}, we see that we can neglect pressure $p$ in favor of energy density $\epsilon$ in the Newtonian limit.
+Glancing back at \cref{eq:tov:energy_momentum_perfect_fluid}, we see that we can neglect pressure $P$ in favor of energy density $\epsilon$ in the Newtonian limit.
 This result can be understood physically -- pressure is a result of randomized motion and decreases with the velocities of the motion, while energy is equivalent to mass and is unaffected by the velocity of the mass.
 In summary, slow motion is achieved only if \cref{eq:weak_field_limit:small_velocity,eq:weak_field_limit:small_potential,eq:weak_field_limit:small_pressure} are all satisfied.
 
@@ -532,21 +533,21 @@ By Newton's law of gravity it is therefore pulled upon by the force
 \end{equation}
 If the star is in hydrostatic equilibrium, this force must be exactly cancelled by the force
 \begin{equation}
-	\dif \textbf{F}_2 = - \Big[ p(r + \dif r) - p(r) \Big] \dif A \, \hat{\textbf{r}} = -\dif p \dif A \, \hat{\textbf{r}}
+	\dif \textbf{F}_2 = - \Big[ P(r + \dif r) - P(r) \Big] \dif A \, \hat{\textbf{r}} = -\dif P \dif A \, \hat{\textbf{r}}
 	\label{eq:weak_field_limit:force_pressure}
 \end{equation}
 that arises from the pressure difference above and below the element.
 Setting $\dif \textbf{F}_1 + \dif \textbf{F}_2 = 0$ then gives the \textbf{Newtonian pressure gradient}
 \begin{equation}
-	\odv{p}{r} = -\frac{G m(r) \rho(r)}{r^2} .
+	\odv{P}{r} = -\frac{G m(r) \rho(r)}{r^2} .
 	\label{eq:weak_field_limit:newtonian_pressure_gradient}
 \end{equation}
 
 Solving this differential equation for a star of constant mass density $\rho(r) = \rho_0$ like we solved the TOV equation \eqref{eq:tov} in \cref{sec:incompressible_star}, we get the pressures
 \begin{equation}
-	p(r) = \frac{\rho_0}{2} \frac{G M}{R} \left( 1 + \frac{r}{R} \right) \left( 1 - \frac{r}{R} \right)
+	P(r) = \frac{\rho_0}{2} \frac{G M}{R} \left( 1 + \frac{r}{R} \right) \left( 1 - \frac{r}{R} \right)
 	\quad \text{and} \quad
-	p(0) = \frac{\rho_0}{2} \frac{GM}{R} .
+	P(0) = \frac{\rho_0}{2} \frac{GM}{R} .
 	\label{eq:weak_field_limit:newtonian_pressure}
 \end{equation}
 In this case, the pressure is well-behaved for all $r$.
@@ -564,7 +565,7 @@ To see that everything is consistent, let us nevertheless verify explicitly that
 First, note that the quantity \eqref{eq:weak_field_limit:small_gmr} in the rightmost parenthesis can be neglected.
 Second, by \cref{eq:weak_field_limit:small_pressure}, we can neglect the pressure-energy density ratio
 \begin{equation}
-	\frac{p}{\epsilon} \ll 1
+	\frac{P}{\epsilon} \ll 1
 	\label{eq:weak_field_limit:small1}
 \end{equation}
 in the leftmost parenthesis.
@@ -572,8 +573,8 @@ Third, we argued in \cref{sec:incompressible_star} that all physical stars have 
 We can then pull the minimum density $\epsilon(r)$ outside the integral \eqref{eq:einstein_to_tov:m_integral} to bound $m(r) c^2 \geq \frac{4}{3} \pi r^3 \epsilon(r)$.
 It follows from \cref{eq:weak_field_limit:small1} that
 \begin{equation}
-	\frac{4 \pi r^3 p(r)}{m(r) c^2} \leq \frac{4 \pi r^3 p(r)}{\frac{4}{3} \pi r^3 \epsilon(r)}
-	                                =    \frac{3 p(r)}{\epsilon(r)}
+	\frac{4 \pi r^3 P(r)}{m(r) c^2} \leq \frac{4 \pi r^3 P(r)}{\frac{4}{3} \pi r^3 \epsilon(r)}
+	                                =    \frac{3 P(r)}{\epsilon(r)}
 						            \ll  1 .
 	\label{eq:weak_field_limit:small2}
 \end{equation}
@@ -582,7 +583,7 @@ Thus, all three corrections in \cref{eq:tov} vanish, so we do indeed recover the
 In fact, there is an alternative way to see it that requires much less work.
 Replacing energy density $\epsilon$ with mass density $\rho$ using \cref{eq:tov:mass_energy_equivalence}, \cref{eq:tov} takes the form
 \begin{equation}
-	\odv{p}{r} = -\frac{G m(r) \rho(r)}{r^2} \left[ 1 + \frac{p(r)}{\rho(r) c^2} \right] \left[ 1 + \frac{4 \pi r^3 p(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
+	\odv{P}{r} = -\frac{G m(r) \rho(r)}{r^2} \left[ 1 + \frac{P(r)}{\rho(r) c^2} \right] \left[ 1 + \frac{4 \pi r^3 P(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
 	\label{eq:tov_units}
 \end{equation}
 The Newtonian limit corresponds to sending $c \rightarrow \infty$, as this reduces the Lorentz transformations of relativity to the Galilei transformations of Newtonian physics.
