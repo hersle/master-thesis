@@ -7,7 +7,7 @@
 In \cref{chap:tft}, we found $Z = Z(T, \mu, V)$ for two sample systems, and in particular a gas of free Dirac fermions.
 From $Z$, we can derive the pressure $P = P(T, \mu)$ and energy density $\epsilon = \thermalavg{E}/V = \epsilon(T, \mu)$ using \cref{eq:tft:average_number,eq:tft:average_energy,eq:tft:average_pressure}, where the volume $V$ has been eliminated by division, because $P$ and $\epsilon$ are intensive quantities.
 At some fixed temperature $T$, we can therefore eliminate $\mu$ to express $\epsilon$ in terms of $P$.
-This gives us an equation of state $\epsilon = \epsilon(P)$ with which we can solve the TOV system \TODO{ref}.
+This gives us an equation of state $\epsilon = \epsilon(P)$ with which we can solve the Tolman-Oppenheimer-Volkoff system \eqref{eq:tov:tovsys}.
 
 In this chapter, we will use the free Dirac fermion partition function \eqref{eq:tft:dirac_partition_function} and do exactly this to model a cold neutron star made of free neutrons.
 
@@ -65,14 +65,14 @@ We choose a large, positive value of $\mu > 0$, so that the particles dominate t
 With this choice, $n \left[ E(\vec{p}) - \mu \right] \gg n \left[ E(\vec{p}) + \mu \right]$, and we drop the last term from the particle density \eqref{eq:nstars:density}, energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}.
 
 Dropping terms as described in the last paragraphs, we are left with the
-\begin{equation}
-\begin{aligned}
-	& \text{particle density} & n        &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, n \left[ E(\vec{p})-\mu \right] , \\
-	& \text{energy density}   & \epsilon &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, E(\vec{p}) \, n \left[ E(\vec{p})-\mu \right] \text{ and} \\
-	& \text{pressure}         & P        &= -2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, \log \left[ e^{-\beta(E(\vec{p})-\mu)} + 1 \right] . \\
-\end{aligned}
+\begin{subequations}
+\begin{align}
+	& \text{particle density} & n        &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, n \left[ E(\vec{p})-\mu \right] ,                    \label{eq:nstars:dropped_infinities_density} \\
+	& \text{energy density}   & \epsilon &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, E(\vec{p}) \, n \left[ E(\vec{p})-\mu \right] ,      \label{eq:nstars:dropped_infinities_energy_density} \\
+	& \text{pressure}         & P        &= -2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, \log \left[ e^{-\beta(E(\vec{p})-\mu)} + 1 \right] . \label{eq:nstars:dropped_infinities_pressure}
+\end{align}
 \label{eq:nstars:dropped_infinities}
-\end{equation}
+\end{subequations}
 The integrals become nasty after plugging in the dispersion relation $E(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4}$ \TODO{write in display form in TFT chapter and only refer back here} and the Fermi-Dirac distribution \eqref{eq:nstars:fermi_dirac_distribution}, and it is overly optimistic to expect that all of them can be evaluated analytically.
 We will make one final approximation that will make all the integrals surmountable.
 
@@ -131,14 +131,14 @@ We therefore call
 \end{equation}
 the Fermi energy and the corresponding momentum $p_F$ the Fermi momentum, representing the occupied state in momentum-space with greatest energy and momentum.
 
-Now the particle density \TODO{ref} becomes simply
+Now the particle density \eqref{eq:nstars:dropped_infinities_density} becomes simply
 \begin{equation}
 	n = 
 	2 \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \theta \left[ \mu - E(p) \right] =
 	2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} = \frac{p_F^3}{3 \pi^2 \hbar^3} .
 \label{eq:nstars:density_zeroT}
 \end{equation}
-Using integral \TODO{ref} and defining the dimensionless momentum $x = p / mc$, the energy density \TODO{ref} is
+Using integral \TODO{ref} and defining the dimensionless momentum $x = p / mc$, the energy density \eqref{eq:nstars:dropped_infinities_energy_density} is
 \begin{equation}
 \begin{split}
 	\epsilon &=  2 \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, E(p) \, \theta \left[ \mu - E(p) \right] \\
@@ -148,7 +148,7 @@ Using integral \TODO{ref} and defining the dimensionless momentum $x = p / mc$, 
 \end{split}
 \label{eq:nstars:energy_density_zeroT}
 \end{equation}
-Finally, using the same integral, the pressure \TODO{ref} is
+Finally, using the same integral, the pressure \eqref{eq:nstars:dropped_infinities_pressure} is
 \begin{equation}
 \begin{split}
 	P &= \frac{2}{\beta} \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \beta \left[ \mu - E(p) \right] \, \theta \left[ \mu - E(p) \right] \\
@@ -184,12 +184,12 @@ and $x_F$ is easily eliminated, yielding the very simple equation of state
 \label{eq:nstars:ur_eos}
 \end{equation}
 
-In this particular case, the TOV system \TODO{ref} can be solved analytically with the polynomial trial solution
+In this particular case, the TOV system \eqref{eq:tov:tovsys} can be solved analytically with the polynomial trial solution
 \begin{equation}
 	P(r) = A r^n .
 \label{eq:nstars:ur_ansatz}
 \end{equation}
-Then the mass equation \TODO{ref} is
+Then the mass equation \eqref{eq:tov:tovsys_mass} is
 \begin{equation}
 	\odv{m}{r} = \frac{12 \pi A}{c^2} r^{n+2},
 	\qquad \text{so} \qquad
@@ -197,7 +197,7 @@ Then the mass equation \TODO{ref} is
 	\quad (n \neq -3).
 \label{eq:nstars:ur_mass}
 \end{equation}
-With the equation of state \eqref{eq:nstars:ur_eos}, mass \eqref{eq:nstars:ur_mass} and trial solution \eqref{eq:nstars:ur_ansatz}, the TOV equation \eqref{eq:tov} reads
+With the equation of state \eqref{eq:nstars:ur_eos}, mass \eqref{eq:nstars:ur_mass} and trial solution \eqref{eq:nstars:ur_ansatz}, the TOV equation \eqref{eq:tov:tovsys_pressure} reads
 \begin{equation}
 	n A r^{n-1} =
 	-\frac{48 \pi G A^2 r^{2n+1}}{(n+3) c^4} \left[ 2 + \frac{n}{3} \right] \left[ 1 - \frac{24 \pi G A r^{n+2}}{(n+3) c^4} \right]^{-1} .
@@ -218,7 +218,7 @@ This is a highly unphysical result.
 The pressure diverges at the center, so nothing could ever hold such a star together.
 In addition, $p(r) > 0$ for all $r$, so the star has no surface and hence infinite mass $M = m(\infty) = \infty$.
 
-\TODO{make plot of $P(r)$ and $m(r)$ for a star}
+\TODO{make plot of $P(r)$ and $m(r)$ for a star.}
 
 \subsection{Non-relativistic limit}
 \label{sec:nstars:nr_limit}
@@ -311,8 +311,8 @@ and then calculate
 	colorbar horizontal, point meta=explicit, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_0 / \epsilon_0)$, xtick distance=3, minor x tick num=2, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
 	extra y ticks/.expanded={\maxMnr, \maxMgr}, extra y tick style={dashed}, % https://tex.stackexchange.com/a/333974
 ]
-\addplot [mark=none, mesh, semithick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/tov_fermi_gas/data/nr.dat} node [pos=0.47, pin={[text=black]0:Non-relativistic limit $p_F \ll 1$}] {};
-\addplot [mark=none, mesh, semithick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/tov_fermi_gas/data/gr.dat} node [pos=0.55, pin={[text=black]-100:Arbitrary $p_F$}] {};
+\addplot [mark=none, mesh, semithick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/nr.dat} node [pos=0.47, pin={[text=black]0:Non-relativistic limit $p_F \ll 1$}] {};
+\addplot [mark=none, mesh, semithick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/gr.dat} node [pos=0.55, pin={[text=black]-100:Arbitrary $p_F$}] {};
 
 %\edef\doplot{\noexpand\addplot [domain=-10:10, dashed, update limits=false] {\maxM};} % see https://tex.stackexchange.com/a/73916, https://tex.stackexchange.com/a/519
 %\doplot
