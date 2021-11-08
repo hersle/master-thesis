@@ -66,16 +66,16 @@ Similarly, the two last terms in the energy density \eqref{eq:nstars:energy_dens
 We choose a large, positive value of $\mu > 0$, so that the particles dominate the system, while antiparticles are hardly present.
 With this choice, $n \left[ E(\vec{p}) - \mu \right] \gg n \left[ E(\vec{p}) + \mu \right]$, and we drop the last term from the particle density \eqref{eq:nstars:density}, energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}.
 
-Dropping terms as described in the last paragraphs, we are left with the
-\begin{subequations}
-\begin{align}
+Dropping terms as described in the last paragraphs, we are left with the%
+\begin{subequations}%
+\begin{align}%
 	& \text{particle density} & n        &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, n \left[ E(\vec{p})-\mu \right] ,                    \label{eq:nstars:dropped_infinities_density} \\
 	& \text{energy density}   & \epsilon &=  2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, E(\vec{p}) \, n \left[ E(\vec{p})-\mu \right] ,      \label{eq:nstars:dropped_infinities_energy_density} \\
 	& \text{pressure}         & P        &= -2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \, \log \left[ e^{-\beta(E(\vec{p})-\mu)} + 1 \right] . \label{eq:nstars:dropped_infinities_pressure}
-\end{align}
-\label{eq:nstars:dropped_infinities}
-\end{subequations}
-The integrals become nasty after plugging in the dispersion relation $E(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4}$ \TODO{write in display form in TFT chapter and only refer back here} and the Fermi-Dirac distribution \eqref{eq:nstars:fermi_dirac_distribution}, and it is overly optimistic to expect that all of them can be evaluated analytically.
+\end{align}%
+\label{eq:nstars:dropped_infinities}%
+\end{subequations}%
+The integrals become nasty after plugging in the relativistic dispersion relation \eqref{eq:tft:dispersion} and the Fermi-Dirac distribution \eqref{eq:nstars:fermi_dirac_distribution}, and it is overly optimistic to expect that all of them can be evaluated analytically.
 We will make one final approximation that will make all the integrals surmountable.
 
 By human standards, it is very hot inside a neutron star.

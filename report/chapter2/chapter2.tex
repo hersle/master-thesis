@@ -810,7 +810,12 @@ The action then becomes
 \end{split}
 \label{eq:tft:boson_action_fourier}
 \end{equation}
-where $E_n$ are the Matsubara energies we defined in \cref{eq:tft:matsubara_energies}, and $E(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4}$ is the relativistic dispersion relation.
+where $E_n$ are the Matsubara energies we defined in \cref{eq:tft:matsubara_energies}, and
+\begin{equation}
+	E(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4}
+\label{eq:tft:dispersion}
+\end{equation}
+is the relativistic dispersion relation.
 Note that the integral over $x$ runs over the quantization volume $V$ that we defined in \cref{sec:matsubara_quantization}.
 The change of variables \eqref{eq:tft:boson_fourier_series} is a unitary transformation with Jacobian $1$, so the integral measure becomes
 \begin{equation}
@@ -1041,7 +1046,7 @@ which is familiar for a $2 \times 2$ matrix, but in fact also valid for a block 
 Ignoring the factor $i \beta$ for now and taking care of it later using $\tdet AB  = \tdet{A} \tdet{B}$ and $\tdet{i \beta} = (i \beta)^4 = \beta^4$, we get
 $AD = (E_n + i \mu)^2 + (mc^2)^2$ and $BC = - (\vec{\sigma} \cdot \vec{p})^2 c^2$.
 From the Pauli matrices \eqref{eq:tft:pauli_matrices}, it is straightforward to verify the property $(\vec{\sigma} \cdot \vec{p})^2 = \vec{p}^2$.
-Introducing the relativistic dispersion relation $E^2(\vec{p}) = \vec{p}^2 c^2 + (mc^2)^2$ again, we then get the simple diagonal $2 \times 2$ matrix
+Introducing the relativistic dispersion relation \eqref{eq:tft:dispersion} again, we then get the simple diagonal $2 \times 2$ matrix
 $AD - BC = (E_n + i \mu)^2 + E^2(\vec{p})$.
 The determinant then becomes
 \begin{equation}
