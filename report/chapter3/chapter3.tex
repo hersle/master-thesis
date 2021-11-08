@@ -134,14 +134,14 @@ the Fermi energy and the corresponding momentum $p_F$ the Fermi momentum, repres
 Now the particle density \eqref{eq:nstars:dropped_infinities_density} becomes simply
 \begin{equation}
 	n = 
-	2 \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \theta \left[ \mu - E(p) \right] =
+	2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \theta \left[ \mu - E(p) \right] =
 	2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} = \frac{p_F^3}{3 \pi^2 \hbar^3} .
 \label{eq:nstars:density_zeroT}
 \end{equation}
 Using integral \TODO{ref} and defining the dimensionless momentum $x = p / mc$, the energy density \eqref{eq:nstars:dropped_infinities_energy_density} is
 \begin{equation}
 \begin{split}
-	\epsilon &=  2 \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, E(p) \, \theta \left[ \mu - E(p) \right] \\
+	\epsilon &=  2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, E(p) \, \theta \left[ \mu - E(p) \right] \\
 	         &=  2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \sqrt{p^2 c^2 + m^2 c^4} \\
 	         &= \frac{m^4 c^5}{\pi^2 \hbar^3} \int_0^{x_F} \dif x \, x^2 \sqrt{1 + x^2} \\
 	         &= \frac{m^4 c^5}{8 \pi^2 \hbar^3} \left[ \left( 2 x_F^3 + x_F \right) \sqrt{1 + x_F^2} - \asinh x_F \right] . \\
@@ -151,7 +151,7 @@ Using integral \TODO{ref} and defining the dimensionless momentum $x = p / mc$, 
 Finally, using the same integral, the pressure \eqref{eq:nstars:dropped_infinities_pressure} is
 \begin{equation}
 \begin{split}
-	P &= \frac{2}{\beta} \int \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \beta \left[ \mu - E(p) \right] \, \theta \left[ \mu - E(p) \right] \\
+	P &= \frac{2}{\beta} \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \beta \left[ \mu - E(p) \right] \, \theta \left[ \mu - E(p) \right] \\
 	  &= 2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \left[ \sqrt{p_F^2 c^2 + m^2 c^4} - \sqrt{p^2 c^2 + m^2 c^4} \right] \\
 	  &= \frac{m^4 c^5}{\pi^2 \hbar^3} \int_0^{x_F} \dif x \, x^2 \left[ \sqrt{x_F^2+1} - \sqrt{x^2+1} \right] \\
 	  &= \frac{m^4 c^5}{24 \pi^2 \hbar^3} \left[ \left( 2 x_F^3 - 3 x_F \right) \sqrt{x_F^2 + 1} + 3 \asinh x_F \right] . \\
@@ -324,6 +324,7 @@ and then calculate
 	Mass-radius relation for cold neutron stars parametrized by their central pressures $P_0$, obtained by numerically integrating the TOV equation from the central pressure $P_0$ until it vanishes at the surface.
 	The numerical integration is carried out using an explicit equation of state in the non-relativistic limit with Fermi momenta $p_F \ll m c$, and using a root-finding algorithm to calculate an implicit equation of state for general $p_F$.
 	Non-relativistic stars are parametrized by central pressures $\SI{1e-6}{} \epsilon_0 \le P_0 \le \SI{1e21}{} \epsilon_0$, while stars with arbitrary Fermi momenta are parametrized by $\SI{1e-6}{} \epsilon_0 \le P_0 \le \SI{1e17}{} \epsilon_0$, where $\epsilon_0 = \solarmass c^2 / (4 \pi R_0^3 / 3) = \SI{4.27e34}{\pascal}$, $\solarmass = \SI{1.99e30}{\kilogram}$ is the mass of the sun, $c = \SI{299792458}{\meter\per\second}$ is the speed of light and $R_0 = \SI{10}{\kilo\meter}$.
+	\TODO{center title!}
 }
 
 \end{figure}
