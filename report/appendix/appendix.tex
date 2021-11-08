@@ -736,7 +736,7 @@ Importantly, they have simple poles at all imaginary Matsubara frequencies $z = 
 \tikzset{cross/.style={cross out, draw=black, fill=none, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt}, cross/.default={2pt}}
 
 \def\r{1.65}
-\def\w{0.235} % for circles
+\def\w{0.21} % for circles
 %\def\w{0.3} % for "pole"
 \def\n{16}
 \iffalse
@@ -745,7 +745,7 @@ Importantly, they have simple poles at all imaginary Matsubara frequencies $z = 
 	\path[blue, decoration={markings, mark=between positions 0 and 1 step 1.0 with {\cross}}, postaction={decorate}] (-\r/2, 0) node[black, above] {\scriptsize $-E$} -- (+\r/2, 0) node [black, above] {\scriptsize $+E$};
 }
 \fi
-\def\N{8}
+\def\N{9}
 \def\drawpoles{
 \foreach \n in {1,2,...,\N} {
 	\def\y{-\r + (\n-1)/(\N-1)*(2*\r)}
@@ -843,7 +843,7 @@ For reasons that will soon be clear, consider the contour integral
 	\oint_{C_N^A} \dif z \, s(-iz) n_\pm(z)
 \label{eq:matsum:contour_integral}
 \end{equation}
-along the contour $C_N^A$ drawn in \cref{fig:matsum:contourA} that surround the $2N+1$ poles of $n_\pm(z)$ that are closest to the origin.
+along the contour $C_N^A$ drawn in \cref{fig:matsum:contourA} that encircle the $2N+1$ poles of $n_\pm(z)$ that are closest to the origin.
 To proceed in a mathematically well-defined way, we consider only a finite number of poles for now, but will include all poles by taking the limit $N \rightarrow \infty$ at the very end of this derivation.
 Otherwise, we would have to argue that $C_\infty^A$ can be closed at infinity, if it were to include \emph{all} poles of $n_\pm(z)$.
 Our strategy will circumvent this difficulty.

@@ -370,8 +370,8 @@ The algebra of a set of $N$ Grassmann numbers $\psi_i$ and their conjugates $\co
 \label{eq:gnums:anticommutators}
 \end{equation}
 In particular, this implies that $\psi_i^2 = 0$, so $\psi_i^n = 0$ for any $n \geq 2$.
-Functions of Grassmann numbers are defined by their Taylor expansion \TODO{cannot read comment. follows from or something? ask}.
-The property $\psi_i^2 = 0$ will always terminate the Taylor series after a finite number of term, so the most general function can be written
+Functions of Grassmann numbers are defined by their Taylor expansion, but the property $\psi_i^2 = 0$ will always terminate the Taylor series after a finite number of terms.
+Thus, the most general function of $N$ Grassmann numbers and their conjugates can be written
 \begin{equation}
 \begin{split}
 	f(\psi) &= A + \sum_i A_i \psi_i + \sum_i B_i \conj\psi_i + \sum_{i,j} A_{ij} \psi_i \psi_j + \sum_{i,j} B_{ij} \psi_i \conj\psi_j + \sum_{i,j} C_{i,j} \conj\psi_i \conj\psi_j \\
@@ -379,10 +379,9 @@ The property $\psi_i^2 = 0$ will always terminate the Taylor series after a fini
 \end{split}
 \label{eq:gnums:function_taylor_series}
 \end{equation}
-\TODO{unreadable comment: ? around $Z_1$}
-For example, we define the exponential of one Grassmann number $\psi$ by its normal Taylor series
+For example, for the exponential function of one Grassmann number $\psi$, only the first two terms survive the Taylor series
 \begin{equation}
-	\exp(\psi) = 1 + \psi .
+	\exp(\psi) = \sum_{n=0}^\infty \frac{\psi^n}{n!} = 1 + \psi .
 \label{eq:gnums:exponential_taylor_series}
 \end{equation}
 Integration over Grassmann numbers is defined as
@@ -519,7 +518,7 @@ Next, we can work out that the unit operator $\1$ can be represented by the inte
 \end{split}
 \label{eq:tft:completeness_grassmann_discrete}
 \end{equation}
-To make the big leap across the second equality sign, stare intensely at the middle \TODO{penaltimate ????} line while following the next argument.
+To make the big leap across the second equality sign, stare intensely at the middle line while following the next argument.
 To get a non-zero contribution from the integral, the parentheses must be multiplied out in a way such that one gets terms with the particular combination
 \begin{equation}
 	\int \dif \conj\psi \int \dif \psi \, \psi_1 \conj\psi_1 \cdots \psi_N \conj\psi_N = 1 .
@@ -671,8 +670,8 @@ Then the spatial part of the field can also be represented by a Fourier series
 \begin{equation}
 	\psi_n(\vec{x}) = \sum_\vec{k} \psi_n(\vec{k}) e^{i \vec{k} \cdot \vec{x}} ,
 \end{equation}
-where the sum runs over all wavevectors $\vec{k}$ with components $k_i = 2 \pi n_i / L$ for integer $n_i$, each separated by the distance $\Delta k = 2 \pi / L$ in $\vec{k}$-space.
-Since the field is not really periodic, we should take the continuum limit $V \rightarrow \infty$ in the end.
+where the sum runs over all wavevectors $\vec{k}$ with components $k_i = 2 \pi n_i / L$ for integers $n_i$, each separated by the distance $\Delta k = 2 \pi / L$ in $\vec{k}$-space.
+Since the field is not really periodic, we should take the continuum limit $V \rightarrow \infty$ at the end.
 Then $\Delta k \rightarrow 0$, so the sum is replaced by the integral
 \begin{equation}
 	\sum_\vec{k} = 
@@ -1143,11 +1142,14 @@ Taking the continuum limit \eqref{eq:tft:continuum_limit}, we finally obtain the
 \label{eq:tft:dirac_partition_function}
 \end{equation}
 
+\section{Summary}
+
 Having evaluated $\log Z$ for both a real scalar field and Dirac fermions, it is insightful to conclude this chapter by comparing the similarities and differences of the two cases.
 \begin{itemize}
-\item The bosonic and fermionic path integrals \eqref{eq:tft:bosonic_partition_function} and \eqref{eq:tft:fermion_partition_function} that we started with looked very similar on the outside, yet were very different on the inside due to the algebra of commuting complex numbers in the bosonic case being replaced by anticommuting Grassmann numbers for fermions.
-\item The periodicity of the bosonic field and the antiperiodicity of the fermionic field allowed us to expand both as Fourier series, but with differing Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
-\item Only the Dirac field had a conserved charge that let us introduce a chemical potential $\mu$.
+\item The bosonic and fermionic path integrals \eqref{eq:tft:bosonic_partition_function} and \eqref{eq:tft:fermion_partition_function} that we started with look very similar on the outside, yet are very different on the inside due to the algebra of commuting complex numbers in the bosonic case being replaced by anticommuting Grassmann numbers for fermions.
+\item The periodicity of the bosonic field and the antiperiodicity of the fermionic field allowed us to expand both as Fourier series, but with different Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
+\item Only the Dirac field has a conserved charge that let us introduce a chemical potential $\mu$.
+      The \emph{real} scalar field that we considered has no conserved current, unlike a \emph{complex} scalar field.
 \item In the bosonic case, we could integrate out the momentum $\pi$, leaving the Gaussian integrals \eqref{eq:tft:boson_gaussian_integral} over \emph{one} variable that we tackled using $\int \dif x \, e^{-ax^2} \propto a^{-1/2}$.
       In the fermionic case, we could not integrate out the momentum $\pi = i \hbar \psi^\dagger$.
       This resulted in the Gaussian integrals \eqref{eq:tft:fermion_gaussian_integral} over \emph{pairs} of Grassmann numbers that we handled with $\int \dif \psi^\dagger \int \dif \psi \, e^{-\psi^\dagger A \psi} = \tdet A$.
@@ -1155,7 +1157,8 @@ Having evaluated $\log Z$ for both a real scalar field and Dirac fermions, it is
 \item We managed to bring $\log Z$ into the similar sums \eqref{eq:tft:boson_log_sum} and \eqref{eq:tft:fermion_log_sum} over the Matsubara energies $E_n$ in both cases.
       In \cref{chap:matsum} we described a general framework for computing both sums, with the Bose-Einstein and Fermi-Dirac distributions $1 / [e^{\beta E(\vec{p})} \mp 1]$ arising naturally in the bosonic and fermionic case, respectively.
 \item Apart from the chemical potential, the results \eqref{eq:tft:real_scalar_field_partition_function} and \eqref{eq:tft:dirac_partition_function} for $\log Z$ have very similar structure.
-      Essentially, they differ by the factor $-1/2$ due to the different powers of the Gaussian integrals and by the different signs in the logarithms due to the Bose-Einstein and Fermi-Dirac distributions.
+      If we set $\mu = 0$, they essentially differ by the factor $-4$ due to the different powers of the Gaussian integrals and by the different signs in the logarithms due to the Bose-Einstein and Fermi-Dirac distributions.
+      Physically, we can interpret the factor $4$ for the spin-half fermions to arise from four separate contributions from both particles and antiparticles with both spin up and spin down.
 \end{itemize}
 
 \TODO{a word about divergence and renormalization? do this in parallell with next chapter?}
