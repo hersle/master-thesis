@@ -84,14 +84,46 @@ It is therefore an excellent approximation to take the \textbf{zero temperature 
 \begin{equation}
 	\beta E(\vec{p}) \gg 1 .
 \end{equation}
-In the zero temperature limit,
-\TODO{make two simple figures to show how the two functions ``converge''}
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\begin{groupplot}[group style={group size=2 by 1, horizontal sep=5pt}, height=6cm, width=7cm, /tikz/declare function={
+			n(\b,\E) = 1/(exp(\b*\E)+1);
+		}]
+			\nextgroupplot[xlabel=$E$, ylabel=$1/(e^{\beta E}+1)$, 
+				colorbar horizontal, colorbar sampled, colorbar style={xlabel=$\beta$, samples=7, xtick={-0.5, 0.5, 1.5, 2.5, 3.5, 4.5}, xticklabels={$1/2$, $1$, $2$, $4$, $8$, $16$, $32$}, grid=none, xticklabel pos=upper, tickwidth=0, at={(0.0,1.03)}, anchor=south west},
+				every colorbar/.append style={width=2*\pgfkeysvalueof{/pgfplots/parent axis width}+\pgfkeysvalueof{/pgfplots/group/horizontal sep}},
+				xtick distance=10, ytick distance=0.5, grid=none, minor tick num=1,
+			]
+			\pgfplotsinvokeforeach{0.5, 1, 2, 4, 8, 16, 32}{
+				\addplot[domain=-10:+10, samples=200, mesh, point meta={log2(#1)}] {n(#1, x)};
+			}
+
+			\nextgroupplot[xlabel=$E$, ylabel=$\log (e^{-\beta E}+1)/\beta$, xtick distance=10, yticklabel pos=right, ytick distance=5, minor tick num=1, grid=none]
+			\pgfplotsinvokeforeach{0.5, 1, 2, 4, 8, 16, 32}{
+				\addplot[domain=-10:+10, samples=200, mesh, point meta={log2(#1)}] {ln(exp(-#1*x)+1)/#1};
+			}
+		\end{groupplot}
+	\end{tikzpicture}
+\caption{\label{fig:nstars:distribution_convergence}%
+	In the zero temperature limit $\beta E \gg 1$, the Fermi-Dirac distribution $1/(e^{\beta E}+1) \rightarrow \theta(-E)$, while $\log (e^{-\beta E} + 1) \rightarrow -\beta E \, \theta(-E)$, where $\theta(E)$ is the step function.
+}
+\end{figure}
+
+In the zero temperature limit, the Fermi-Dirac distribution can be replaced by
 \begin{equation}
-\begin{split}
-	n(E)                                 \quad &\rightarrow \quad \theta(-E) , \\
-	\log \left[ e^{-\beta E} + 1 \right] \quad &\rightarrow \quad -\beta E \theta(-E) . \\
-\end{split}
+	n(E)       =                 \begin{cases} 1 / (e^{+\beta \abs{E}}+1) & (E>0) \\ 1 / (e^{-\beta \abs{E}}+1) & (E<0) \end{cases}
+	     \quad \rightarrow \quad \begin{cases} 0 & (E>0) \\ 1 & (E<0) \end{cases}
+	     \quad =                 \theta(-E) ,
 \end{equation}
+while the logarithm in the pressure behaves as
+\begin{equation}
+	\log (e^{-\beta E}+1)       =                 \begin{cases} \log (e^{-\beta \abs{E}}+1) & (E>0) \\ \log (e^{+\beta \abs{E}}+1) & (E<0) \end{cases}
+	                      \quad \rightarrow \quad \begin{cases} \log 1 & (E>0) \\ \log e^{-\beta E} & (E<0) \end{cases}
+	                      \quad =                 -\beta E \, \theta(-E) .
+\end{equation}
+This is confirmed by the plots in \cref{fig:nstars:distribution_convergence} for increasing values of $\beta$.
 Thus, the zero temperature limit effectively limits the integrals \eqref{eq:nstars:dropped_infinities} to those momenta $\vec{p}$ with $E(\vec{p}) < \mu$.
 We therefore call
 \begin{equation}
