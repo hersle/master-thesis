@@ -1101,7 +1101,7 @@ We then terminate the integration algorithm and call the final radius $\diml{r} 
 By parametrizing multiple stars with a range of central pressures $\diml{P}_0$ and performing this task for each of them, we obtain a mass-radius relation of the star.
 
 Below is a small Python program that accomplishes all of this for an arbitrary equation of state $\diml\epsilon = \diml\epsilon(\diml{P})$.
-The function \verb|massradiusplot| \TODO{font?} can be run with the optional parameter \verb|visual=True| to show the mass-radius relation in real-time, updating it every time the mass and radius of a new star is found.
+The function \verb|massradiusplot| can be run with the optional parameter \verb|visual=True| to show the mass-radius relation in real-time, updating it every time the mass and radius of a new star is found.
 Typically, stars distributed uniformly between two central pressures may be located very non-uniformly in the mass-radius space.
 To circumvent this difficulty and make the mass-radius curve as smooth as possible, we take an adaptive approach by recursively splitting an initial central pressure interval $(\diml{P}_1, \diml{P}_2)$ until the Euclidean distance $\sqrt{(\diml{R}_2-\diml{R}_1)^2 + (\diml{M}_2-\diml{M}_1)^2}$ between all points on the curve is below some given tolerance.
 
