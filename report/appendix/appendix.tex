@@ -1054,8 +1054,8 @@ Explicitly inserting the equation of state \eqref{eq:tov:tovsys_eos} into the ma
 This is a system of two differential equations in the form $\odv{\vec{y}}/{t} = f(t, \vec{y})$ with $t=r$ and $\vec{y} = [P, m]$ that is suitable for Runge-Kutta integration algorithms.
 In the following, we show how to integrate this system numerically.
 
-To avoid issues with numerical unstability, it is wise to eliminate physical scales from the system and introduce dimensionless variables that can be kept as close to $1$ as possible.
-Define define the dimensionless variables
+To avoid issues with numerical instability, it is wise to eliminate physical scales from the system and introduce dimensionless variables that can be kept as close to $1$ as possible.
+Define the dimensionless variables
 \begin{equation}
 	\diml{\epsilon}(r) = \frac{\epsilon(r)}{\epsilon_0}, \quad
 	\diml{P}(r) = \frac{P(r)}{\epsilon_0}, \quad
@@ -1063,7 +1063,7 @@ Define define the dimensionless variables
 	\diml{r}(r) = \frac{r}{r_0},
 \label{eq:numtov:dimensionless_variables}
 \end{equation}
-where $m_0$ and $r_0$ are two natural scales of stellar mass and radius, and
+where $m_0$ and $r_0$ are two natural scales of stellar mass \TODO{masses?} and radius \TODO{radii?}, and
 \begin{equation}
 	\epsilon_0 = \frac{m_0 c^2}{4 \pi r_0^3 / 3}
 	%m_0 = \text{solar mass ?}, \quad
@@ -1094,7 +1094,7 @@ With these observations, the system \eqref{eq:numtov:tovsys_dimless_complicated}
 	\odv{\diml{m}}{\diml{r}} &= 3 \diml{r}^2 \diml{\epsilon}(\diml{P}) .
 \end{align}
 \end{subequations}
-which we wish to solve subject to the boundary conditions $\diml{P}(0) = \diml{P}_0$ and $\diml{m}(0) = 0$ for some dimensionless pressure $\diml{P}_0$.
+which we wish to solve subject to the boundary conditions $\diml{P}(0) = \diml{P}_0$ and $\diml{m}(0) = 0$ for some dimensionless central pressure $\diml{P}_0$.
 
 To find the mass and radius of some star with central pressure $\diml{P}_0$, we can integrate the system \eqref{eq:numtov:tovsys_dimless_simple} until $\diml{P} \le 0$.
 We then terminate the integration algorithm and call the final radius $\diml{r} = \diml{R}$ and mass $\diml{m}(\diml{r}) = \diml{M}$ the radius and mass of the star.

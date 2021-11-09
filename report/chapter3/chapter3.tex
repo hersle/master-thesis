@@ -1,5 +1,7 @@
 \chapter{Cold free fermion neutron stars}
 
+\TODO{better title}
+
 \TODO{inspiration, references}
 
 \TODO{intro}
@@ -9,13 +11,14 @@ From $Z$, we can derive the pressure $P = P(T, \mu)$ and energy density $\epsilo
 At some fixed temperature $T$, we can therefore eliminate $\mu$ to express $\epsilon$ in terms of $P$.
 This gives us an equation of state $\epsilon = \epsilon(P)$ with which we can solve the Tolman-Oppenheimer-Volkoff system \eqref{eq:tov:tovsys}.
 
-In this chapter, we will use the free Dirac fermion partition function \eqref{eq:tft:dirac_partition_function} and do exactly this to model a cold neutron star made of free neutrons.
+In this chapter, we will use partition function \eqref{eq:tft:dirac_partition_function} for free Dirac fermions and do exactly this to model a neutron star with a cold ideal Fermi gas of neutrons.
+\TODO{bad wording: use something like ``equation of state for free/ideal cold fermi gas?}
 
 \section{Equation of state}
 
 For easy reference, the logarithm of the free Dirac fermion partition function \eqref{eq:tft:dirac_partition_function} is
 \begin{equation}
-	\log Z = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \left\{ \beta E(\vec{p}) + \log \left[ e^{-\beta (E(\vec{p}) - \mu)}+1 \right] + \log \left[ e^{-\beta (E(\vec{p}) + \mu)} + 1\right] \right\}.
+	\log Z = 2 V \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \bigg\{ \beta E(\vec{p}) + \log \left[ e^{-\beta (E(\vec{p}) - \mu)}+1 \right] + \log \left[ e^{-\beta (E(\vec{p}) + \mu)} + 1\right] \bigg\}.
 \end{equation}
 First, the particle number density $n = \thermalavg{N}/V$ follows from the derivative \eqref{eq:tft:average_number} and is
 \begin{equation}
@@ -30,11 +33,11 @@ where we defined the \textbf{Fermi-Dirac distribution}
 \label{eq:nstars:fermi_dirac_distribution}
 \end{equation}
 Do not confuse the particle density $n$ on the left with the Fermi-Dirac distributions $n[E(\vec{p}) \mp \mu]$ on the right!
-We will soon integrate away $n[E(\vec{p}) \mp \mu]$, anyway.
-From the density \eqref{eq:nstars:density}, we see that $n = n(\mu, T)$ is a function of the chemical potential $\mu$ and temperature $T$, so that at some fixed temperature, the value of $\mu$ decides the particle density $n$.
+We will soon perform the integral over $\vec{p}$ and get rid of $n[E(\vec{p}) \mp \mu]$, anyway.
+From the density \eqref{eq:nstars:density}, we see that $n = n(\mu, T)$ is a function of the chemical potential $\mu$ and temperature $T$, so that at some fixed temperature, the value of $\mu$ determines the particle density $n$.
 
 Second, we calculate the energy density $\epsilon = \thermalavg{E} / V$ from \cref{eq:tft:average_energy}.
-It comes out as
+It comes out as \TODO{different wording}
 \begin{equation}
 	\epsilon = 
 	\mu n - \frac{1}{V} \pdv{\log Z}{\beta} =
@@ -46,16 +49,16 @@ Third, we find that the pressure \eqref{eq:tft:average_pressure} is
 \begin{equation}
 	P =
 	\frac{\log Z}{\beta V} = 
-	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ E(\vec{p}) + \log \left[ e^{-\beta(E(\vec{p})-\mu)} + 1 \right] + \log \left[ e^{-\beta(E(\vec{p})+\mu)} + 1 \right] \Big\}.
+	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \bigg\{ E(\vec{p}) + \log \left[ e^{-\beta(E(\vec{p})-\mu)} + 1 \right] + \log \left[ e^{-\beta(E(\vec{p})+\mu)} + 1 \right] \bigg\}.
 \label{eq:nstars:pressure}
 \end{equation}
 
-The first term of the energy density \eqref{eq:nstars:energy_density} and the pressure \eqref{eq:nstars:pressure} is infinite, as the integrand never decays.
+The first term of the energy density \eqref{eq:nstars:energy_density} and the pressure \eqref{eq:nstars:pressure} is infinite, as the integrand never decays \TODO{decay usually associated with radiation}.
 This can be interpreted as an infinite shift of the vacuum energy.
-In contrast, the two last terms are finite as the integrand is suppressed for large $\abs{\vec{p}}$ by the Fermi-Dirac distribution.
+In contrast, the two last terms are finite as the integrand is suppressed \TODO{?} for large $\abs{\vec{p}}$ by the Fermi-Dirac distribution.
 It makes no sense to include a term that integrates over every possible value of the momentum $\vec{p}$ for physical particles whose momentum cannot exceed a certain value due to energy conservation.
 Here, we will make the assumption that we can simply drop the infinite term.
-We will return later to investigate this term by regularization and renormalization. \TODO{does this make sense?}
+We will return later to investigate this term by regularization and renormalization. \TODO{does this make sense?} \TODO{improve convergence/divergence arguments, look at measure $p^2$, etc.}
 
 From the particle density \eqref{eq:nstars:density} at constant temperature $T$, we see that the sign of $n$ is determined by the sign of $\mu$.
 The total density $n$ is expressed as a balance between \emph{particles} with energy $E(\vec{p}) > 0$ living relative to the chemical potential $\mu$ and \emph{antiparticles} with energy $E(\vec{p}) < 0$ living relative to the chemical potential $-\mu$.
@@ -76,11 +79,12 @@ Dropping terms as described in the last paragraphs, we are left with the%
 The integrals become nasty after plugging in the relativistic dispersion relation \eqref{eq:tft:dispersion} and the Fermi-Dirac distribution \eqref{eq:nstars:fermi_dirac_distribution}, and it is overly optimistic to expect that all of them can be evaluated analytically.
 We will make one final approximation that will make all the integrals surmountable.
 
+\TODO{what about $\beta \mu \gg 1$? assume/take this into account.}
 By human standards, it is very hot inside a neutron star.
-In fact, studies place typical core temperatures around $T_0 \approx \SI{1e6}{\kelvin}$.
+In fact, studies estimate typical core temperatures around $T_0 \approx \SI{1e6}{\kelvin}$. \TODO{reference}
 However, neutrons have mass $m \approx \SI{1.67e-27}{\kilogram}$, so everywhere inside a neutron star we have $\beta E(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4} / k_B T > m c^2 / k_B T_0 \approx 10^7 \gg 1$.
 Although the temperature is very large compared to everyday temperatures, the thermal energy $k_B T$ is in fact very low relative to the energy $E(\vec{p})$ of the nuclei.
-It is therefore an excellent approximation to take the \textbf{zero temperature limit}
+It is therefore an excellent approximation to take the \textbf{zero-temperature limit}
 \begin{equation}
 	\beta E(\vec{p}) \gg 1 .
 \end{equation}
@@ -107,11 +111,11 @@ It is therefore an excellent approximation to take the \textbf{zero temperature 
 		\end{groupplot}
 	\end{tikzpicture}
 \caption{\label{fig:nstars:distribution_convergence}%
-	In the zero temperature limit $\beta E \gg 1$, the Fermi-Dirac distribution $1/(e^{\beta E}+1) \rightarrow \theta(-E)$, while $\log (e^{-\beta E} + 1) \rightarrow -\beta E \, \theta(-E)$, where $\theta(E)$ is the step function.
+	In the zero-temperature limit $\beta E \gg 1$, the Fermi-Dirac distribution $1/(e^{\beta E}+1) \rightarrow \theta(-E)$, while $\log (e^{-\beta E} + 1) \rightarrow -\beta E \, \theta(-E)$, where $\theta(E)$ is the step function.
 }
 \end{figure}
 
-In the zero temperature limit, the Fermi-Dirac distribution can be replaced by
+In the zero-temperature limit, the Fermi-Dirac distribution can be replaced by
 \begin{equation}
 	n(E)       =                 \begin{cases} 1 / (e^{+\beta \abs{E}}+1) & (E>0) \\ 1 / (e^{-\beta \abs{E}}+1) & (E<0) \end{cases}
 	     \quad \rightarrow \quad \begin{cases} 0 & (E>0) \\ 1 & (E<0) \end{cases}
@@ -124,14 +128,14 @@ while the logarithm in the pressure behaves as
 	                      \quad =                 -\beta E \, \theta(-E) .
 \end{equation}
 This is confirmed by the plots in \cref{fig:nstars:distribution_convergence} for increasing values of $\beta$.
-Thus, the zero temperature limit effectively limits the integrals \eqref{eq:nstars:dropped_infinities} to those momenta $\vec{p}$ with $E(\vec{p}) < \mu$.
+Thus, the zero-temperature limit effectively limits the integrals \eqref{eq:nstars:dropped_infinities} to those momenta $\vec{p}$ with $E(\vec{p}) < \mu$.
 We therefore call
 \begin{equation}
 	\mu = E_F = E(p_F) = \sqrt{p_F^2 c^2 + m^2 c^4}
 \end{equation}
-the Fermi energy and the corresponding momentum $p_F$ the Fermi momentum, representing the occupied state in momentum-space with greatest energy and momentum.
+the Fermi energy and the corresponding momentum $p_F$ the Fermi momentum, representing the occupied state in momentum-space with largest energy and momentum.
 
-Now the particle density \eqref{eq:nstars:dropped_infinities_density} becomes simply
+Now the particle density \eqref{eq:nstars:dropped_infinities_density} simply becomes
 \begin{equation}
 	n = 
 	2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \theta \left[ \mu - E(p) \right] =
@@ -161,6 +165,8 @@ Finally, using the same integral, the pressure \eqref{eq:nstars:dropped_infiniti
 
 The equation of state $\epsilon = \epsilon(P)$ follows by eliminating $x_F$ from the energy density \eqref{eq:nstars:energy_density_zeroT} and pressure \eqref{eq:nstars:pressure_zeroT}.
 Due to their complicated dependence on $x_F$, we will do so in three cases of increasing difficulty.
+
+\TODO{first present three cases, \emph{then} do calculations, to not overload the reader}
 
 \subsection{Ultra-relativistic limit}
 \label{sec:nstars:ur_limit}
@@ -203,7 +209,7 @@ With the equation of state \eqref{eq:nstars:ur_eos}, mass \eqref{eq:nstars:ur_ma
 	-\frac{48 \pi G A^2 r^{2n+1}}{(n+3) c^4} \left[ 2 + \frac{n}{3} \right] \left[ 1 - \frac{24 \pi G A r^{n+2}}{(n+3) c^4} \right]^{-1} .
 \end{equation}
 We can attain equality for all $r$ if we choose $n = -2$.
-Then the rightmost factor no longer depends on $r$, and both sides have the $r^{-3}$-dependence
+Then the rightmost factor no longer depends on $r$, and both sides have the same $r^{-3}$-dependence
 \begin{equation}
 	- 2 A r^{-3} = - \frac{64 \pi G A^2 r^{-3}}{c^4} \left[ 1 - \frac{24 \pi G A}{c^4} \right]^{-1} .
 \end{equation}
@@ -335,3 +341,5 @@ and then calculate
 \TODO{compare with earlier results, most massive neutron stars}
 
 \TODO{stability analysis, which parts of the plot are meaningful?}
+
+\TODO{keywords: $dp/d\epsilon = 1/3$ = conformal limit? no mass in this EOS = scale invariance. $T^{\mu \nu}$ traceless?}
