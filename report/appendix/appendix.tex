@@ -79,6 +79,7 @@ The benefit is that an index transforms with the partial derivative that has the
 %With this convention, we can always deduce the correct transformation laws from the index position, and we can place remaining indices so that they are contracted to yield an expression with the right number of free indices.
 
 We define an $n$-dimensional \textbf{covariant vector} as an $n$-tuple $V_\mu$ that transforms with the \emph{same} matrix $\pdv{x^{\mu}}/{x^{\mu'}}$ as the change of basis as
+\begin{subequations}
 \begin{equation}
 	V_{\mu'} = \pdv{x^{\mu}}{x^{\mu'}} V_\mu .
 	\label{eq:covariant_transformation}
@@ -96,6 +97,7 @@ More generally, we define a $n$-dimensional \textbf{tensor} of rank $(r,s)$ as a
 	\label{eq:tensor_transformation}
 \end{equation}
 under the coordinate transformation \eqref{eq:gr_summary:coordinate_transformation}.
+\end{subequations}
 
 \iffalse
 We will work with vector fields $V^\mu(x)$ on manifolds.
@@ -168,6 +170,7 @@ But the metric is the most natural choice, as it is inherent to the manifold and
 \subsection{Line element and volume}
 
 From the metric tensor, one defines the \textbf{line element}
+\begin{subequations}
 \begin{equation}
 	\dif s = \sqrt{g\indices{_\mu_\nu} \dif x^\mu \dif x^\nu}
 	\label{eq:def_line_elem}
@@ -182,6 +185,7 @@ Similarly, one can compute the \textbf{volume} of a region
 \begin{equation}
 	V = \int \dif V = \int \sqrt{-\det{\gamma}} \dif x^1 \dif x^2 \dif x^3 ,
 \end{equation}
+\end{subequations}
 where $\gamma$ is the induced metric on the surface and $\det{\gamma} < 0$ its determinant.
 The factor $\sqrt{-\det{\gamma}}$ arises to make the volume element $\dif^n x \sqrt{-\det{\gamma}}$ invariant under coordinate transformations.
 
@@ -253,11 +257,13 @@ Metric compatibility implies that
 so we can raise and lower indices inside covariant derivatives, even if the metric is outside.
 Using both of these assumptions, we can write out three metric compatibility requirements
 \newcommand\metriccompatibilityequation[3]{\nabla_{#1} g_{{#2}{#3}} &= \partial_{#1} g_{{#2}{#3}} - \Gamma^\lambda_{{#1}{#2}} g_{\lambda {#3}} - \Gamma^\lambda_{{#1}{#3}} g_{{#2} \lambda} = 0}
+\begin{subequations}
 \begin{align}
-	\metriccompatibilityequation{\rho}{\mu}{\nu} \\
-	\metriccompatibilityequation{\mu}{\nu}{\rho} \\
+	\metriccompatibilityequation{\rho}{\mu}{\nu} , \\
+	\metriccompatibilityequation{\mu}{\nu}{\rho} , \\
 	\metriccompatibilityequation{\nu}{\rho}{\mu} .
 \end{align}
+\end{subequations}
 By subtracting the second and third equation from the first and solving the resulting equation for the connection, we find the \textbf{Christoffel symbols} or \textbf{metric connection}
 \begin{equation}
 	\Gamma^\sigma_{\mu \nu} = \frac{1}{2} g\indices{^\sigma^\rho} \left(

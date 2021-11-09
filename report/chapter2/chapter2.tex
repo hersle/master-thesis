@@ -13,12 +13,14 @@ In a quantum system in the grand canonical ensemble, the partition function is
 \end{equation}
 where $\hat{H}$ is the Hamiltonian operator $\beta = 1 / k_B T$, $\mu$ is the chemical potential, $\hat{N}_i$ are number operators, $\Omega = -k_B T \log{Z}$ is the grand potential, $k_B$ is the Boltzmann constant and the trace can be evaluated in any basis.
 If we can find the partition function, we can obtain all thermodynamic information about the system, such as \cite[chapter 5]{ref:jensoluf}
+\begin{subequations}
 \begin{align}
 	%\text{the entropy}                     \quad \thermalavg{S}   &= -\pdv{\Omega}{T} \\
-	           & \text{the average number of particles} & \thermalavg{N_i} & = k_B T \pdv{\log{Z}}{\mu_i},                    & \label{eq:tft:average_number} \\
-	           & \text{the average energy}              & \thermalavg{E}   & = \mu_i \thermalavg{N_i} - \pdv{\log{Z}}{\beta}  & \label{eq:tft:average_energy} \\ % \Omega + T S + \mu_i \thermalavg{N_i} \\
-	\text{and} & \text{the average pressure}            & \thermalavg{P}   & = \frac{k_B T}{V} \log{Z}.                       & \label{eq:tft:average_pressure} % -\pdv{\Omega}{V}
+	            & \text{the average number of particles} & \thermalavg{N_i} & = k_B T \pdv{\log{Z}}{\mu_i},                    & \label{eq:tft:average_number} \\
+	            & \text{the average energy}              & \thermalavg{E}   & = \mu_i \thermalavg{N_i} - \pdv{\log{Z}}{\beta}  & \label{eq:tft:average_energy} \\ % \Omega + T S + \mu_i \thermalavg{N_i} \\
+	\text{and } & \text{the average pressure}            & \thermalavg{P}   & = \frac{k_B T}{V} \log{Z}.                       & \label{eq:tft:average_pressure} % -\pdv{\Omega}{V}
 \end{align}
+\end{subequations}
 This is exactly what we eventually want to insert into the TOV equation \eqref{eq:tov}.
 As all relevant information about a system can be derived from the partition function, we say that we have ``solved the system completely'' once we have found $Z$.
 
@@ -335,14 +337,14 @@ This is not a peculiarity of fermionic fields only -- for a complex scalar field
 
 Why do we need to derive the path integral for fermions separately -- can we not just use the bosonic path integral \eqref{eq:tft:bosonic_partition_function} with the appropriate conjugate momentum?
 By assumption, the fermion field operators obey the fermionic \textbf{anticommutation relations}
-\begin{equation}
-\begin{split}
+\begin{subequations}%
+\begin{align}%
 	\acomm{\destr_\alpha(\vec{x})}{\creat_\beta(\vec{y})} &= \delta_{\alpha \beta} \delta(\vec{x}-\vec{y}) , \\
 	\acomm{\creat_\alpha(\vec{x})}{\creat_\beta(\vec{y})} &= 0 , \\
 	\acomm{\destr_\alpha(\vec{x})}{\destr_\beta(\vec{y})} &= 0 ,
-\end{split}
-\label{eq:tft:fermion_anticommutators}
-\end{equation}
+\end{align}%
+\label{eq:tft:fermion_anticommutators}%
+\end{subequations}%
 in contrast to the bosonic commutators \eqref{eq:tft:boson_field_commutators}.
 In the derivation of the bosonic path integral \eqref{eq:tft:bosonic_partition_function}, we treated the eigenvalues $\phi$ and $\pi$ of the operators $\hat\phi$ and $\hat\pi$ as ordinary numbers.
 However, the anticommutators \eqref{eq:tft:fermion_anticommutators} of the fermionic field operators in fact requires their eigenvalues to anticommute!
@@ -385,10 +387,12 @@ For example, for the exponential function of one Grassmann number $\psi$, only t
 \label{eq:gnums:exponential_taylor_series}
 \end{equation}
 Integration over Grassmann numbers is defined as
+\begin{subequations}
 \begin{align}
 	\iffalse \pdv{1}{\psi_i}      &= 0,           & \qquad \fi \int \dif \psi_i \, 1      &= 0,            \label{eq:gnums:integration_const} \\
 	\iffalse \pdv{\psi_j}{\psi_i} &= \delta_{ij}, & \qquad \fi \int \dif \psi_i \, \psi_j &= \delta_{ij} . \label{eq:gnums:integration_var}   
 \end{align}
+\end{subequations}
 \iffalse
 Note that $\int \dif \psi \, f(\psi) = \int \dif \psi \, [f(0) + f'(0) \psi] = f'(0) = \pdv{f(\psi)}/{\psi}$, so integration and differentiation are effectively identical operations.
 \fi
@@ -423,15 +427,15 @@ Let us get to work.
 Suppose we have a finite number $N$ of Grassmann numbers $\psi_i$ with conjugates $\conj\psi_i$ and as many creation and annihilation operators $\creat_i$ and $\destr_i$.
 Right after \cref{eq:tft:eigenvalues_must_anticommute}, we argued that Grassmann numbers anticommute not only with each other, but also with the operators.
 By assumption, we therefore start with all the anticommutators
-\begin{equation}
-\begin{split}
-	\acomm{\psi_i}{\psi_j} = \acomm{\psi_i}{\conj\psi_j} = \acomm{\conj\psi_i}{\conj\psi_j}                             &= 0            , \\
-	\acomm{\psi_i}{\destr_j} = \acomm{\psi_i}{\creat_j} = \acomm{\conj\psi_i}{\destr_j} = \acomm{\conj\psi_i}{\creat_j} &= 0            , \\
-	\acomm{\destr_i}{\destr_j} = \acomm{\creat_i}{\creat_j}                                                             &= 0            , \\
-	\acomm{\destr_i}{\creat_j} = \acomm{\creat_j}{\destr_i}                                                             &= \delta_{i j} . \\
-\end{split}
+\begin{subequations}%
+\begin{align}%
+	\acomm{\psi_i}{\psi_j} = \acomm{\psi_i}{\conj\psi_j} = \acomm{\conj\psi_i}{\conj\psi_j}                             &= 0            , \label{eq:tft:fermionic_anticommutator_gnums} \\
+	\acomm{\psi_i}{\destr_j} = \acomm{\psi_i}{\creat_j} = \acomm{\conj\psi_i}{\destr_j} = \acomm{\conj\psi_i}{\creat_j} &= 0            , \label{eq:tft:fermionic_anticommutator_gnum_op} \\
+	\acomm{\destr_i}{\destr_j} = \acomm{\creat_i}{\creat_j}                                                             &= 0            , \label{eq:tft:fermionic_anticommutator_sameops} \\
+	\acomm{\destr_i}{\creat_j} = \acomm{\creat_j}{\destr_i}                                                             &= \delta_{i j} . \label{eq:tft:fermionic_anticommutator_diffops}
+\end{align}%
 \label{eq:tft:fermionic_all_anticommutators}
-\end{equation}
+\end{subequations}%
 In other words, all field operators and all Grassmann numbers anticommute with themselves and each other.
 The anticommutators \eqref{eq:tft:fermionic_all_anticommutators} of the field operators $\creat_i$ and $\destr_i$ are the discrete analogues of \eqref{eq:tft:fermion_anticommutators}.
 It will be more comfortable to carry out the formalism of fermionic coherent states in the discrete case and then take the continuum limit $\psi_i \rightarrow \psi(\vec{x})$ in the end.
@@ -445,8 +449,8 @@ We can apply any sequence of $n = \sum_i n_i$ different creation operators to it
 	\ket{n_1, n_2, \ldots, n_N} = \left( \creat_1 \right)^{n_1} \cdots \left( \creat_N \right)^{n_N} \ket{0} .
 \label{eq:tft:fermionic_many_particle_state}
 \end{equation}
-This results in a non-zero state only if $n_i \in \{0, 1\}$ for all $i$, because $(\creat_i)^2 \ket{0} = -(\creat_i)^2 \ket{0} = 0$ by the anticommutator \eqref{eq:tft:fermionic_all_anticommutators}.
-Note that shuffling the sequence of operators in \cref{eq:tft:fermionic_many_particle_state} can change the sign -- we define the $n$-particle state to have operators with indices that increase from left to right.
+This results in a non-zero state only if $n_i \in \{0, 1\}$ for all $i$, because $(\creat_i)^2 \ket{0} = -(\creat_i)^2 \ket{0} = 0$ by the anticommutator \eqref{eq:tft:fermionic_anticommutator_sameops}.
+Note that shuffling the sequence of operators in \cref{eq:tft:fermionic_many_particle_state} can change the sign of the state -- we define the $n$-particle state to have operators with indices that increase from left to right.
 In particular, we can build the \textbf{one-particle state}
 \begin{equation}
 	\ket{1_i} = \ket{(n_1=0), \ldots, (n_i=1), \ldots, (n_N=0)} = \creat_i \ket{0} .
@@ -577,6 +581,7 @@ For example, the coherent state is
 \begin{equation}
 	\ket{\psi} = \exp \left[ -\int \dif^3 x\, \psi(\vec{x}) \hat\psi^\dagger(\vec{x}) \right] \ket{0} .
 \end{equation}
+\begin{subequations}
 The inner product \eqref{eq:tft:grassmann_inner_product_discrete} between two coherent states turns into
 \begin{equation}
 	\braket{\psi | \psi'} = \exp \left[ \int \dif^3 x \, \conj\psi(\vec{x}) \psi'(\vec{x}) \right] ,
@@ -592,6 +597,7 @@ while the trace \eqref{eq:tft:trace_grassmann_discrete} is modified to
 	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \Braket{-\psi | \hat{A} | \psi} = \trace{\hat{A}} .
 \label{eq:tft:trace_grassmann}
 \end{equation}
+\end{subequations}
 The most important thing to note is the negative sign in $\bra{-\psi}$ of the trace \eqref{eq:tft:trace_grassmann} -- we will see that this requires fermionic fields to be \emph{antiperiodic} in imaginary time, in contrast to the periodic bosonic fields.
 
 Using equations \eqref{eq:tft:grassmann_inner_product}, \eqref{eq:tft:completeness_grassmann} and \eqref{eq:tft:trace_grassmann} as our toolbox, let us now construct the path integral for the fermionic partition function.
@@ -990,13 +996,13 @@ Notice in particular the similarity of the fermionic path integral \eqref{eq:tft
 
 As in the bosonic case, we now Fourier expand the field.
 The fermionic antiperiodicity \eqref{eq:tft:periodicity} enables us to expand the Dirac field in the Fourier series
-\begin{equation}
-\begin{split}
-	\psi(\vec{x}, \tau)         &= \frac{1}{\sqrt{V}} \sum_n \sum_\vec{k} e^{i (\vec{k} \cdot \vec{x} + \omega_n \tau)} \psi_{n}(\vec{k}) \\
+\begin{subequations}
+\begin{align}
+	\psi(\vec{x}, \tau)         &= \frac{1}{\sqrt{V}} \sum_n \sum_\vec{k} e^{i (\vec{k} \cdot \vec{x} + \omega_n \tau)} \psi_{n}(\vec{k}), \\
 	\psi^\dagger(\vec{x}, \tau) &= \frac{1}{\sqrt{V}} \sum_n \sum_\vec{k} e^{-i (\vec{k} \cdot \vec{x} + \omega_n \tau)} \psi_{n}^\dagger(\vec{k}) .
 \label{eq:tft:dirac_fourier_series}
-\end{split}
-\end{equation}
+\end{align}
+\end{subequations}
 with fermionic Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
 As with the bosonic field, we have made the Fourier amplitudes $\psi_n(\vec{k})$ dimensionless by pulling out a factor $1/\sqrt{V}$.
 The factor differs from the one in the bosonic Fourier series \eqref{eq:tft:boson_fourier_series} due to the different dimension of the fermionic field $\psi(\vec{x}, \tau)$ and the bosonic field $\phi(\vec{x}, \tau)$.
