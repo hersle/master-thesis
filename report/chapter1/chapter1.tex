@@ -26,9 +26,8 @@ Spacetime is curved according to the Einstein field equations
 expressing how energy and momentum on the rightmost side -- such as mass and light -- determine the geometry of spacetime on the left side.
 
 The most important result of this chapter will be the Tolman-Oppenheimer-Volkoff equation
-\TODO{with or withour arguments in functions?}
 \begin{equation*}
-	\odv{P}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left[ 1 + \frac{P(r)}{\epsilon(r)} \right] \left[ 1 + \frac{4 \pi r^3 P(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} ,
+	\odv{P(r)}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left[ 1 + \frac{P(r)}{\epsilon(r)} \right] \left[ 1 + \frac{4 \pi r^3 P(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} ,
 \end{equation*}
 which we will derive from the Einstein field equations.
 With this equation, we can find the pressure profile and radius of a star once we have an equation of state that relates the pressure and energy of the material inside.
@@ -75,12 +74,12 @@ and consider the most general line element that exhibits spherical symmetry, \ci
 
 We model the interior of the star as a perfect fluid with energy-momentum \cite[equation 1.114]{ref:carroll}
 \begin{equation}
-	T\indices{_\mu_\nu} = \frac{1}{c^2} (\epsilon+P) U_\mu U_\nu - P g\indices{_\mu_\nu}.
+	T\indices{_\mu_\nu}(r) = \frac{U_\mu U_\nu}{c^2} \left[ \epsilon(r)+P(r) \right]  - g\indices{_\mu_\nu} P(r) .
 	\label{eq:tov:energy_momentum_perfect_fluid}
 \end{equation}
 The analysis is simplest in the rest frame of the fluid, where $U_\mu = (U_0, \textbf{0})$ and the normalization condition $U_\mu U^\mu = c^2$ requires $U_0 = \pm e^\alpha c$.
 We choose the positive sign so the four-velocity lies in the future light cone, as we are interested in the evolution of the star.
-Then the energy-momentum tensor takes the diagonal form
+Dropping the function argument $r$ from now, the energy-momentum tensor then takes the diagonal form
 \begin{equation}
 T\indices{_\mu_\nu} =
 \begin{bmatrix}
@@ -119,13 +118,13 @@ After inserting the energy-momentum tensor on the right and simplifying, we get 
 Next, let us introduce the mass of the star.
 Define the function $m(r)$ by
 \begin{equation}
-	e^{2 \beta} = \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} ,
+	e^{2 \beta(r)} = \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} ,
 	\label{eq:einstein_to_tov:def_m}
 \end{equation}
 so $g\indices{_1_1}$ resembles the Schwarzschild metric element.
 Then \cref{eq:einstein_to_tov:tt} becomes
 \begin{equation}
-	\odv{(m c^2)}{r} = 4 \pi r^2 \epsilon(r) ,
+	\odv{\left[m(r) c^2\right]}{r} = 4 \pi r^2 \epsilon(r) ,
 	\label{eq:einstein_to_tov:m_rho}
 \end{equation}
 directly relating $m(r)$ and $\epsilon(r)$.
@@ -147,7 +146,7 @@ We return to this question in \cref{sec:weak_field_limit} after studying incomp
 
 Meanwhile, definition \eqref{eq:einstein_to_tov:def_m} turns \cref{eq:einstein_to_tov:rr} into
 \begin{equation}
-	\odv{\alpha}{r} = \frac{G}{r^2 c^4} \frac{m(r) c^2 + 4 \pi r^3 P}{1 - 2 G m(r) / r c^2} .
+	\odv{\alpha(r)}{r} = \frac{G}{r^2 c^4} \frac{m(r) c^2 + 4 \pi r^3 P(r)}{1 - 2 G m(r) / r c^2} .
 	\label{eq:einstein_to_tov:dadr1}
 \end{equation}
 To finally eliminate $\alpha$, we can replace all occurences of $\alpha'$ and $\beta$ in the remaining \cref{eq:einstein_to_tov:thetatheta} with the expressions \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:def_m}.
@@ -171,7 +170,7 @@ With $\Gamma^0_{10} = \frac12 g^{00} \partial_1 g_{00} = \odv{\alpha}/{r}$, we a
 Now $\alpha$ is easily eliminated by equating \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:dadr2}. 
 Whichever approach we follow, we end up with the \textbf{Tolman-Oppenheimer-Volkow (TOV) equation}
 \begin{equation}
-	\odv{P}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left[ 1 + \frac{P(r)}{\epsilon(r)} \right] \left[ 1 + \frac{4 \pi r^3 P(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
+	\odv{P(r)}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left[ 1 + \frac{P(r)}{\epsilon(r)} \right] \left[ 1 + \frac{4 \pi r^3 P(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
 	\label{eq:tov}
 \end{equation}
 It relates the pressure gradient $\odv{P}/{r}$ and energy density $\epsilon$ at radius $r$ from the center of a spherical static star composed of a perfect fluid.
@@ -585,7 +584,7 @@ Thus, all three corrections in \cref{eq:tov} vanish, so we do indeed recover the
 In fact, there is an alternative way to see it that requires much less work.
 Replacing energy density $\epsilon$ with mass density $\rho$ using \cref{eq:tov:mass_energy_equivalence}, \cref{eq:tov} takes the form
 \begin{equation}
-	\odv{P}{r} = -\frac{G m(r) \rho(r)}{r^2} \left[ 1 + \frac{P(r)}{\rho(r) c^2} \right] \left[ 1 + \frac{4 \pi r^3 P(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
+	\odv{P(r)}{r} = -\frac{G m(r) \rho(r)}{r^2} \left[ 1 + \frac{P(r)}{\rho(r) c^2} \right] \left[ 1 + \frac{4 \pi r^3 P(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
 	\label{eq:tov_units}
 \end{equation}
 The Newtonian limit corresponds to sending $c \rightarrow \infty$, as this reduces the Lorentz transformations of relativity to the Galilei transformations of Newtonian physics.
