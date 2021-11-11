@@ -5,34 +5,44 @@ import scipy.integrate
 import matplotlib.pyplot as plt
 import utils
 
-from constants import c
-m0 = 1.98847e30 # kg
-r0 = 10e3 # m
-G = 6.67430e-11 / (r0*c**2/m0) # dimensionless
+from constants import *
 
-def soltov(ϵ, P0, maxdr=1e-3):
-    print(f"Solving TOV with ϵ = {ϵ.__name__}, P0 = {P0}, maxdr = {maxdr} ...")
+def soltov(ϵ, P0, maxdr=1e-3, progress=True):
+    def printprogress(r, m, P, message="", end=""):
+        print(f"\r", end="") # reset line
+        print(f"Solving TOV: ", end="")
+        print(f"ϵ = {ϵ.__name__}, P0 = {P0:9.2e}, maxdr = {maxdr:9.2e}, ", end="")
+        print(f"r = {r:8.5f}, m = {m:8.5f}, P/P0 = {P/P0:8.5f}", end="")
+        if message != "":
+            print(f", {message}", end="")
+        print("", end=end, flush=True) # flush without newline
 
     def rhs(r, y):
         m, P = y[0], y[1]
-        dmdr = 3*r**2*ϵ(P)
+        if progress:
+            printprogress(r, m, P)
+        dmdr = b*r**2*ϵ(P)
         if r == 0:
             dPdr = 0 # avoid division by r = 0 (m = 0 implies dPdr = 0)
         else:
-            dPdr = -G*m*ϵ(P)/r**2 * (1 + P/ϵ(P)) * (1 + 3*r**2*P/ϵ(P)) / (1 - 2*G*m/r)
-        return [dmdr, dPdr]
+            dPdr = -G/r**2 * (ϵ(P) + P) * (m + b*r**3*P) / (1 - 2*G*m/r)
+        return np.array([dmdr, dPdr])
 
     def terminator(r, y):
         m, P = y[0], y[1]
         return P - 0
     terminator.terminal = True # stop integration when P == 0, use as last point
 
+    r1, r2 = 0, np.inf
     res = scipy.integrate.solve_ivp(
         rhs, (0, np.inf), (0, P0), events=terminator, max_step=maxdr
     )
     assert res.success, "ERROR: " + res.message
-
     rs, ms, Ps = res.t, res.y[0,:], res.y[1,:]
+
+    if progress:
+        printprogress(rs[-1], ms[-1], Ps[-1], res.message, end="\n") # finish progress printer with newline
+
     return rs, ms, Ps
     
 def massradius(ϵ, P0, maxdr=1e-3):    
