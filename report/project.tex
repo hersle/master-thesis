@@ -125,11 +125,13 @@ external/system call={xelatex \tikzexternalcheckshellescape --halt-on-error --in
     },
 }
 
-\newcommand{\tablemaximum}[3]{
+\newcommand{\tablemaximum}[5]{
 	\pgfplotstableread{#1}{\mytable}
 	\pgfplotstablesort[sort key=#2, sort cmp=float >]{\mytablesorted}{\mytable}
 	\pgfplotstablegetelem{0}{#2}\of\mytablesorted
-	\pgfmathsetmacro{#3}{\pgfplotsretval}
+	\pgfmathsetmacro{#3}{\pgfplotsretval} % find the maximum
+	\pgfplotstablegetelem{0}{#4}\of\mytablesorted
+	\pgfmathsetmacro{#5}{\pgfplotsretval} % find an associated value
 }
 
 %\fancypagestyle{plain}{\pagestyle{fancy}} % make chapter front pages, bibliography etc. use same style as other pages (see https://tex.stackexchange.com/a/10046)
