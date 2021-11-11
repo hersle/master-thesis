@@ -40,8 +40,8 @@ def soltov(ϵ, P0, maxdr=1e-3, progress=True):
     assert res.success, "ERROR: " + res.message
     rs, ms, Ps = res.t, res.y[0,:], res.y[1,:]
 
-    if progress:
-        printprogress(rs[-1], ms[-1], Ps[-1], res.message, end="\n") # finish progress printer with newline
+    if progress: # finish progress printer with newline
+        printprogress(rs[-1], ms[-1], Ps[-1], res.message, end="\n")
 
     return rs, ms, Ps
     
