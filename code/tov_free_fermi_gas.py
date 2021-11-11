@@ -25,5 +25,5 @@ def ϵGR(P):
     #ϵ = 4*m**4*c**3*r0**3 / (π*b*m0*ħ**3) * (np.sinh(4*np.arcsinh(x))-4*np.arcsinh(x))/32 # alternative
     return ϵ
 
-massradiusplot(ϵNR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, outfile="data/nr2.dat", visual=True)
-massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, outfile="data/gr2.dat", visual=True) # numerical instability for P2 > 1e7
+massradiusplot(ϵNR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, outfile="data/nr.dat", visual=True)
+massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, outfile="data/gr.dat", visual=True) # numerical instability for P2 > 1e7
