@@ -23,14 +23,15 @@ def soltov(ϵ, P0, maxdr=1e-3, progress=True):
         m, P, α = y[0], y[1], y[2]
         if progress:
             printprogress(r, m, P)
-        dmdr = b*r**2*ϵ(P)
+        E = ϵ(P) # computation can be expensive, only do it once
+        dmdr = b*r**2*E
         if r == 0:
             dPdr = 0 # avoid division by r = 0 (m = 0 implies dPdr = 0)
             dαdr = 0
         else:
-            dPdr = -G/r**2 * (ϵ(P) + P) * (m + b*r**3*P) / (1 - 2*G*m/r)
+            dPdr = -G/r**2 * (E + P) * (m + b*r**3*P) / (1 - 2*G*m/r)
             #dαdr = (m + 4*π*r**3*P) / (r*(r-2*m))
-            dαdr = -dPdr / (ϵ(P) + P)
+            dαdr = -dPdr / (E + P)
         return np.array([dmdr, dPdr, dαdr])
 
     def terminator(r, y):
@@ -45,7 +46,8 @@ def soltov(ϵ, P0, maxdr=1e-3, progress=True):
     assert res.success, "ERROR: " + res.message
     rs, ms, Ps, αs = res.t, res.y[0,:], res.y[1,:], res.y[2,:]
 
-    αs = αs - αs[-1] + 1/2 * np.log(1-2*G*ms[-1]/rs[-1]) # Glendenning (2.226)
+    # match α to the Schwarzschild metric at the surface Glendenning (2.226)
+    αs = αs - αs[-1] + 1/2 * np.log(1-2*G*ms[-1]/rs[-1]) 
 
     if progress: # finish progress printer with newline
         printprogress(rs[-1], ms[-1], Ps[-1], res.message, end="\n")

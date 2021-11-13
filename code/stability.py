@@ -46,7 +46,7 @@ def search(r, Π, Q, W, N, p1, p2, plot=False, progress=False):
     def decreaseuntil(ω20, cond):
         return increaseuntil(ω20, cond, sign=-1)
 
-    def bisectuntil(ω21, ω22, tol=1e-8, plot=False, progress=False):
+    def bisectuntil(ω21, ω22, tol=1e-8):
         u1, n1 = shoot(r, Π, Q, W, ω21, p1, p2)
         u2, n2 = shoot(r, Π, Q, W, ω22, p1, p2)
         i = 0
@@ -55,7 +55,7 @@ def search(r, Π, Q, W, N, p1, p2, plot=False, progress=False):
             ω23 = (ω21 + ω22) / 2
             u3, n3 = shoot(r, Π, Q, W, ω23, p1, p2)
             if progress:
-                print(f"\rShoot with ω2 = {ω23:.15f} -> {n3:3d} nodes", end="")
+                print(f"\rShooting with ω2 = {ω23:.15f} -> {n3:3d} nodes", end="")
             us.append(u3)
             if n3 > N:
                 ω22, u2, n2 = ω23, u3, n3
@@ -72,6 +72,8 @@ def search(r, Π, Q, W, N, p1, p2, plot=False, progress=False):
                 plt.plot(r, us[i], color=(i/len(us), 0, 0))
 
             # find first index (from back) where derivative is zero
+            # so we can zoom in plot on the relevant area
+            # (otherwise, divergence makes plot unreadable)
             i = len(u) - 2
             du = np.gradient(u)
             while i >= 0 and du[i] * du[i+1] > 0:
@@ -93,13 +95,15 @@ def search(r, Π, Q, W, N, p1, p2, plot=False, progress=False):
         ω21 = ω20
         ω22 = increaseuntil(ω20, lambda u, n: n > N)
 
-    ω2, u, n = bisectuntil(ω21, ω22, plot=plot, progress=progress)
+    ω2, u, n = bisectuntil(ω21, ω22)
     return ω2, u, n
 
 
 def eigenmode(r, m, P, α, ϵ, N, p1=0.01, p2=0.99, plot=False, progress=True):
     dPdr = np.gradient(P, r)
     dPdϵ = np.gradient(P, ϵ)
+
+    # TODO: remove values that are not used to prevent division by zero warnings
 
     # TODO: correct factors of G, see e.g. Bardeen catalogue 1966 !
     β = -1/2*np.log(1-2*G*m/r) # β(0) = 0, avoid division by 0, already dimensionless
