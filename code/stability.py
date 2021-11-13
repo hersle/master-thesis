@@ -27,21 +27,15 @@ def shoot(r, Π, Q, W, ω2, j=50):
         hp = r[i+1] - r[i]
         hm = r[i] - r[i-1]
         H = hp + hm
-        """
-        if np.abs(u[i]) > 1e4:
-            u[i+1] = u[i] + np.sign(u[i])
-        """
-        denom = 2*Π[i]/hp+dΠdr[i]
-        factor = 1/denom
-        #print(factor)
-        if np.abs(factor) > 1e2:
-            # "handle" blowup without oscillating back
+        factorp = 2*Π[i]/hp+dΠdr[i] 
+        factor0 = (2*Π[i]*(1/hp+1/hm) - H*(Q[i]+ω2*W[i]))
+        factorm = (dΠdr[i] - 2*Π[i]/hm)
+        u[i+1] = 1/factorp * ( u[i] * factor0 + u[i-1] * factorm ) # TODO: absolute vlaue consequences?
+        #u[i+1] = 1 / (2*Πf(i+1/2)*hm) * ( u[i] * (2*Πf(i+1/2)*hm + 2*Πf(i-1/2)*hp - F[i]*H*hp*hm) + u[i-1] * (2*Πf(i-1/2)*hp) )
+
+        # handle divergence at the last few points
+        if r[i+1] / r[-1] > 0.999:
             u[i+1] = u[i] + (u[i]-u[i-1]) * (r[i+1]-r[i]) / (r[i]-r[i-1]) # linterp last few points
-        else:
-            u[i+1] = factor * ( u[i] * (2*Π[i]*(1/hp+1/hm) - H*(Q[i]+ω2*W[i])) + u[i-1] * (dΠdr[i] - 2*Π[i]/hm) )
-            #u[i+1] = 1 / (2*Πf(i+1/2)*hm) * ( u[i] * (2*Πf(i+1/2)*hm + 2*Πf(i-1/2)*hp - F[i]*H*hp*hm) + u[i-1] * (2*Πf(i-1/2)*hp) )
-        #print(u[i+1]-u[i])
-    #print(u[-10:])
     return u, count_nodes(u)
 
 def count_nodes(u):
@@ -60,31 +54,40 @@ def search(r, Π, Q, W, N=0):
         while not cond(u, n):
             ω2 += sign*1 if ω2 == ω20 else (ω2 - ω20) # exponential increase
             u, n = shoot(r, Π, Q, W, ω2)
-            #plt.plot(r, u)
-            #plt.show()
         return ω2
 
     def decreaseuntil(ω20, cond):
         return increaseuntil(ω20, cond, sign=-1)
 
-    def bisectuntil(ω21, ω22, tol=1e-5, plot=False):
+    def bisectuntil(ω21, ω22, tol=1e-8, plot=False):
         u1, n1 = shoot(r, Π, Q, W, ω21)
         u2, n2 = shoot(r, Π, Q, W, ω22)
+        i = 0
+        us = []
         while ω22 - ω21 > tol:
             ω23 = (ω21 + ω22) / 2
             u3, n3 = shoot(r, Π, Q, W, ω23)
             print(f"ω2 = {ω23} -> {n3} nodes")
-            if plot:
-                plt.plot(r, u3, label=f"n = {n3}, ω2 = {ω23}")
+            us.append(u3)
             if n3 > N:
                 ω22, u2, n2 = ω23, u3, n3
             else:
                 ω21, u1, n1 = ω23, u3, n3
+            i += 1
         ω2 = (ω21 + ω22) / 2
         u, n = shoot(r, Π, Q, W, ω23)
         if plot:
-            plt.ylim(-1e3, +1e3)
-            plt.legend()
+            for i in range(0, len(us)):
+                plt.plot(r, us[i], color=(i/len(us), 0, 0))
+
+            # find first index (from back) where derivative is zero
+            i = len(u) - 2
+            du = np.gradient(u)
+            while i >= 0 and du[i] * du[i+1] > 0:
+                i -= 1
+            ymax = u[i]
+            plt.ylim(-2*ymax, +2*ymax)
+            #plt.legend()
             plt.show()
         return ω2, u, n
 

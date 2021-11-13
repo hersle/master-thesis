@@ -36,5 +36,5 @@ def ϵGR(P):
 # massradiusplot(ϵNR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, outfile="data/nr.dat")
 # massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, outfile="data/gr.dat")
 
-r, m, P, α, ϵ = soltov(ϵNR, 1e3)
+r, m, P, α, ϵ = soltov(ϵNR, 1e-5)
 fundamental_mode(r, m, P, α, ϵ)
