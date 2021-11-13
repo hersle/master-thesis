@@ -18,32 +18,39 @@ def soltov(ϵ, P0, maxdr=1e-3, progress=True):
         print("", end=end, flush=True) # flush without newline
 
     def rhs(r, y):
-        m, P = y[0], y[1]
+        m, P, α = y[0], y[1], y[2]
         if progress:
             printprogress(r, m, P)
         dmdr = b*r**2*ϵ(P)
         if r == 0:
             dPdr = 0 # avoid division by r = 0 (m = 0 implies dPdr = 0)
+            dαdr = 0
         else:
             dPdr = -G/r**2 * (ϵ(P) + P) * (m + b*r**3*P) / (1 - 2*G*m/r)
-        return np.array([dmdr, dPdr])
+            #dαdr = (m + 4*π*r**3*P) / (r*(r-2*m))
+            dαdr = -dPdr / (ϵ(P) + P)
+        return np.array([dmdr, dPdr, dαdr])
 
     def terminator(r, y):
-        m, P = y[0], y[1]
+        m, P, α = y[0], y[1], y[2]
         return P - 0
     terminator.terminal = True # stop integration when P == 0, use as last point
 
     r1, r2 = 0, np.inf
     res = scipy.integrate.solve_ivp(
-        rhs, (0, np.inf), (0, P0), events=terminator, max_step=maxdr
+        rhs, (0, np.inf), (0, P0, 0), events=terminator, max_step=maxdr
     )
     assert res.success, "ERROR: " + res.message
-    rs, ms, Ps = res.t, res.y[0,:], res.y[1,:]
+    rs, ms, Ps, αs = res.t, res.y[0,:], res.y[1,:], res.y[2,:]
+
+    αs = αs - αs[-1] + 1/2 * np.log(1-2*G*ms[-1]/rs[-1]) # Glendenning (2.226)
 
     if progress: # finish progress printer with newline
         printprogress(rs[-1], ms[-1], Ps[-1], res.message, end="\n")
 
-    return rs, ms, Ps
+    ϵs = np.array([ϵ(P) for P in Ps]) # TODO: compute more efficiently
+
+    return rs, ms, Ps, αs, ϵs
     
 def massradius(ϵ, P0, maxdr=1e-3):    
     rs, ms, Ps = soltov(ϵ, P0, maxdr=maxdr)
