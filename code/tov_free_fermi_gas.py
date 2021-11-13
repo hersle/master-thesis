@@ -11,14 +11,14 @@ import scipy.optimize
 def ϵNR(P):
     if P <= 0:
         return 0
-    prefactor = (5**3*4**2 / (3**2*π**2*b**2) * m**8*c**6*r0**6 / (m0**2*ħ**6))**(1/5)
+    prefactor = (5**3*4**2 / (3**2*π**2*b**2) * mn**8*c**6*r0**6 / (m0**2*ħ**6))**(1/5)
     return prefactor * P**(3/5)
 
 # Arbitrary Fermi momentum
 def ϵGR(P):
     if P <= 0:
         return 0
-    prefactor = m**4*c**3*r0**3 / (6*π*b*m0*ħ**3)
+    prefactor = mn**4*c**3*r0**3 / (6*π*b*m0*ħ**3)
     def f(x):
         Px = prefactor * ((2*x**3 - 3*x) * np.sqrt(x**2 + 1) + 3*np.arcsinh(x))
         #asinhx4 = 4*np.arcsinh(x)
@@ -29,12 +29,13 @@ def ϵGR(P):
     x = sol.root
     ϵx = 3*prefactor * ((2*x**3+x) * np.sqrt(x**2 + 1) - np.arcsinh(x))
     #asinhx4 = 4*np.arcsinh(x)
-    #ϵx = 4*m**4*c**3*r0**3 / (π*b*m0*ħ**3) * (np.sinh(asinhx4)-asinhx4)/32
+    #ϵx = 4*mn**4*c**3*r0**3 / (π*b*m0*ħ**3) * (np.sinh(asinhx4)-asinhx4)/32
     return ϵx
 
 # numerical instability for P2 > 1e7
 # massradiusplot(ϵNR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, outfile="data/nr.dat")
 # massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, outfile="data/gr.dat")
 
-r, m, P, α, ϵ = soltov(ϵNR, 1e-5)
-fundamental_mode(r, m, P, α, ϵ)
+for P0 in np.geomspace(1e-6, 1e7, 10):
+    r, m, P, α, ϵ = soltov(ϵNR, P0)
+    ω2, u = eigenmode(r, m, P, α, ϵ, 0, progress=True)
