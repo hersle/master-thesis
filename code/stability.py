@@ -55,7 +55,7 @@ def search(r, Π, Q, W, N, p1, p2, plot=False, progress=False):
             ω23 = (ω21 + ω22) / 2
             u3, n3 = shoot(r, Π, Q, W, ω23, p1, p2)
             if progress:
-                print(f"\rShooting with ω2 = {ω23:.15f} -> {n3:3d} nodes", end="")
+                print(f"\rShoot with ω2 = {ω23:.15f} -> {n3:3d} nodes", end="")
             us.append(u3)
             if n3 > N:
                 ω22, u2, n2 = ω23, u3, n3
@@ -97,10 +97,11 @@ def search(r, Π, Q, W, N, p1, p2, plot=False, progress=False):
     return ω2, u, n
 
 
-def eigenmode(r, m, P, α, ϵ, N, p1=0.01, p2=0.99, plot=False, progress=False):
+def eigenmode(r, m, P, α, ϵ, N, p1=0.01, p2=0.99, plot=False, progress=True):
     dPdr = np.gradient(P, r)
     dPdϵ = np.gradient(P, ϵ)
 
+    # TODO: correct factors of G, see e.g. Bardeen catalogue 1966 !
     β = -1/2*np.log(1-2*G*m/r) # β(0) = 0, avoid division by 0, already dimensionless
     Γ = (P + ϵ) / P * dPdϵ # already dimensionless
     Π = np.exp(β+3*α)/r**2 * Γ * P

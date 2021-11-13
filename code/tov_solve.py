@@ -3,7 +3,9 @@
 import numpy as np
 import scipy.integrate
 import matplotlib.pyplot as plt
+import matplotlib.colors
 import utils
+from stability import eigenmode
 
 from constants import *
 
@@ -51,27 +53,33 @@ def soltov(ϵ, P0, maxdr=1e-3, progress=True):
     ϵs = np.array([ϵ(P) for P in Ps]) # TODO: compute more efficiently
 
     return rs, ms, Ps, αs, ϵs
-    
-def massradius(ϵ, P0, maxdr=1e-3):    
-    rs, ms, Ps = soltov(ϵ, P0, maxdr=maxdr)
-    R, M = rs[-1], ms[-1]
-    return R, M
 
 # Bisect [P1, P2] to make points evenly
-def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, outfile="", visual=False):
+def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, outfile="", visual=False):
+    def solvestar(P0):
+        rs, ms, Ps, αs, ϵs = soltov(ϵ, P0, maxdr=maxdr)
+        R, M = rs[-1], ms[-1]
+        ω2 = eigenmode(rs, ms, Ps, αs, ϵs, 0)[0] if stability else np.nan
+        return R, M, ω2
+
     P1, P2 = P1P2[0], P1P2[1]
-    R1, M1 = massradius(ϵ, P1, maxdr=maxdr)
-    R2, M2 = massradius(ϵ, P2, maxdr=maxdr)
-    Ps, Ms, Rs = [P1, P2], [M1, M2], [R1, R2]
+    R1, M1, ω21 = solvestar(P1)
+    R2, M2, ω22 = solvestar(P2)
+    Ps, Ms, Rs, ω2s = [P1, P2], [M1, M2], [R1, R2], [ω21, ω22]
 
     if visual:
         plt.ion() # automatically update open figure
-        graph, = plt.plot([], [], "k-o") # modify graph data later
+        if stability:
+            graph, = plt.plot([], [], "k-", zorder=0) # modify graph data later
+            norm = matplotlib.colors.TwoSlopeNorm(vmin=-1, vcenter=0, vmax=+1)
+            scatt = plt.scatter([], [], zorder=1) # modify graph data later
+        else:
+            graph, = plt.plot([], [], "k-o") # modify graph data later
 
     i = 0
     while i < len(Ps) - 1:
-        P1, M1, R1 = Ps[i],   Ms[i],   Rs[i]
-        P2, M2, R2 = Ps[i+1], Ms[i+1], Rs[i+1]
+        P1, M1, R1, ω21 = Ps[i],   Ms[i],   Rs[i],   ω2s[i]
+        P2, M2, R2, ω22 = Ps[i+1], Ms[i+1], Rs[i+1], ω2s[i+1]
 
         # Split intervals based on Euclidean distance between (R, M)-points in plot
         # But make sure P1, P2 do not get too close, otherwise algorithm gets stuck
@@ -79,15 +87,21 @@ def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, outfile="", visua
         if D > tolD and P2 - P1 > tolP:
             # split [P1, P2] into [P1, (P1+P2)/2] and [(P1+P2)/2, P2]
             P3 = (P1 + P2) / 2
-            R3, M3 = massradius(ϵ, P3, maxdr=maxdr)
+            R3, M3, ω23 = solvestar(P3)
             Ps.insert(i+1, P3)
             Ms.insert(i+1, M3)
             Rs.insert(i+1, R3)
+            ω2s.insert(i+1, ω23)
 
             if visual:
                 # Animate plot in real-time for immediate feedback
                 # inspired by https://stackoverflow.com/a/10944967
                 graph.set_data(Rs, Ms)
+                if stability:
+                    scatt.set_offsets(np.transpose([Rs, Ms]))
+                    scatt.set_array(np.sign(ω2s))
+                    scatt.set_cmap("bwr")
+                    scatt.set_norm(norm)
                 plt.gca().relim() # autoscale only works in animation after this
                 plt.autoscale()
                 plt.draw()
@@ -100,7 +114,7 @@ def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, outfile="", visua
         plt.show() # leave final plot open
 
     if outfile != "":
-        utils.writecols([Ps, Ms, Rs], ["P", "M", "R"], outfile)
-        print(f"Wrote (P, M, R) to {outfile}")
+        utils.writecols([Ps, Ms, Rs, ω2s], ["P", "M", "R", "omega2"], outfile)
+        print(f"Wrote (P, M, R, ω2) to {outfile}")
     
     return Ps, Ms, Rs
