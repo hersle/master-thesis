@@ -348,42 +348,82 @@ Let us investigate the stability of stars on the curve in \cref{fig:nstars:massr
 
 \TODO{figure with analogy between unstable pendulum and unstable star?}
 
-What, precisely, do we mean by 
+We will start simple by presenting a few heuristic arguments for stability.
+Then we outline the general theory of stellar stability and connect the dots back to our heuristic arguments, ensuring they are watertight.
 
-\subsection{Necessary conditions for stability}
+\subsection{Necessary heuristic arguments}
 
-First, let us rule out unstable stars by deriving a set of necessary conditions for stability, and checking whether some of the stars on the curve violate them.
+\TODO{increase/decrease arguments, analogy with a ``physical''/``unphysical'' balloon?}
 
 However exotic life inside a star may be, it cannot break causality. 
-In particular, the speed of sound $v = c \sqrt{\odv{P}/{\epsilon}}$ cannot exceed the speed of light $c$.
-In other words, the equation of state $\epsilon = \epsilon(P)$ must satisfy
+In particular, the speed of sound $v = \sqrt{\odv{P}/{\rho}} = c \sqrt{\odv{P}/{\epsilon}}$ should not exceed the speed of light $c$.
+The equation of state $\epsilon = \epsilon(P)$ must therefore satisfy
 \TODO{ref?}
 \begin{equation}
 	\odv{P}{\epsilon} < 1 .
 \end{equation}
 How does the equation of state for a free Fermi gas hold up in this regard?
-For general Fermi momenta $p_F$, we can apply the chain rule and inverse derivative $\odv{x_F}/{\epsilon} = 1 / (\odv{\epsilon}/{x_F})$ to the pressure \eqref{eq:nstars:pressure_zeroT} and energy density \eqref{eq:nstars:energy_density_zeroT} to see that
+Recall that the equation of state for general Fermi momenta $p_F$ followed by eliminating $x_F$ from the energy density \eqref{eq:nstars:energy_density_zeroT} to express it in terms of the pressure \eqref{eq:nstars:pressure_zeroT}.
+It is straightforward to calculate the derivatives
+\begin{equation}
+	\odv{P}{x_F} = \frac{m^4 c^5}{3 \pi^2 \hbar^3} \frac{x_F^4}{\sqrt{x_F^2 + 1}}
+	\quad \text{and} \quad
+	\odv{\epsilon}{x_F} = \frac{m^4 c^5}{\pi^2 \hbar^3} x_F^2 \, \sqrt{x_F^2 + 1} .
+\end{equation}
+Then we can apply the chain rule and the rule of inverse derivatives to obtain
 \begin{equation}
 	\odv{P}{\epsilon} = 
 	\odv{P}{x_F} \odv{x_F}{\epsilon} =
 	\frac{\odv{P}/{x_F}}{\odv{\epsilon}/{x_F}} =
-	\frac13 \, \frac{1}{1+1/x^2} < \frac13 ,
+	\frac13 \, \frac{1}{1+1/x_F^2}.
 \end{equation}
-so it does not break causality.
-Observe that $\odv{P}/{\epsilon} \rightarrow 1/3$ as $x_F \rightarrow \infty$, as we should expect with the simple ultra-relativistic equation of state \eqref{eq:nstars:ur_eos}.
+We see that $\odv{P}/{\epsilon} < 1$ for all $x_F$ and approaches $1/3$ as $x_F \rightarrow \infty$, as expected from the ultra-relativistic equation of state \eqref{eq:nstars:ur_eos}.
+Thus, none of our stars have an unphysical speed of sound.
 
-Another critertion be derived by considering how the mass and central pressure close to the equilibrium curve changes when the star is perturbatively compressed or expands by perturbing the radius $R$.
+In order for the speed of light to be a real quantity, it is natural to also require
+\begin{equation}
+	\odv{P}{\epsilon} > 0 .
+\end{equation}
+But violation of this condition would other serious consequences.
+An increase $\dif \epsilon > 0$ in energy density always increases the contracting force of gravity.
+If $\odv{P}/{\epsilon} < 0$, $\dif P < 0$ and the pressure would decrease.
+The star would contract, causing the energy density to increase further.
+Repeating the argument, the star contracts indefinitely and hence collapses.
+Similarly, the star would explode if $\dif \epsilon < 0$.
+The statement $\odv{P}/{\epsilon} > 0$ is equivalent to Le Chaterlier's principle -- that given a change in energy density or pressure, the system will counteract it and attempt to restore the system to its original state.
 
-The real way to check the stability of a star is the following.
-In \cref{eq:einstein_to_tov:einstein_equation_in_star}, we showed that in equilibrium, the metric \TODO{ref} satisfies
+A third necessary condition is
+\begin{equation}
+	\odv{M(P_0)}{P_0} > 0
+\end{equation}
+for stars parametrized by their central pressure $P_0$.
+
+Suppose that this is the case.
+Suppose a star in equilibrium has its central pressure (and hence energy density, by \TODO{ref above}) increased, by, say, contraction of its radius.
+Then the new star, by assumption, has the same central pressure as the one in equilibrium of the same mass, but the less mass gives it a lower force of gravity.
+Thus, the star expands and is driven back to its original equilibrium state.
+
+On the other hand, suppose that $\odv{M}/{P_0} < 0$.
+Under the same process, the central pressure increases while the larger mass than the new equilibrium, so gravity is stronger and contracts the star further, driving it away from equilibrium.
+
+This excludes the downward parts of the spiral in the figure.
+
+\subsection{General analysis}
+
+The arguments presented above were necessary, but not sufficient for stellar stability.
+Let us analyze the stability of the stars in a more rigorous way by finding a mathematical definition of stability.
+
+In \cref{sec:einstein_to_tov}, we showed that in a spherically symmetric metric \TODO{ref} for a perfect fluid with energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid} in equilibrium with four-velocity $U^\mu = (U^0, \vec{0})$, the Einstein field equations \eqref{eq:einstein} reduced to
 \begin{subequations}
 \begin{align}
 	\frac{1}{r^2} e^{-2 \beta_0} \left( 2 r \beta_0' - 1 + e^{2 \beta_0} \right)                         &= \frac{8 \pi G}{c^4} \epsilon_0        , \\
 	\frac{1}{r^2} e^{-2 \beta_0} \left( 2 r \alpha_0' + 1 - e^{2 \beta_0} \right)                              &= \frac{8 \pi G}{c^4} P_0         , \\
-	e^{-2 \beta_0} \left( \alpha_0'' + (\alpha_0')^2 - \alpha_0' \beta_0' + \frac{1}{r} (\alpha_0' - \beta_0') \right) &= \frac{8 \pi G}{c^4} P_0.
+	e^{-2 \beta_0} \left( \alpha_0'' + (\alpha_0')^2 - \alpha_0' \beta_0' + \frac{1}{r} (\alpha_0' - \beta_0') \right) &= \frac{8 \pi G}{c^4} P_0,
 \end{align}
 \end{subequations}
-Chandrasekhar used perturbation theory to expand the true solutions $f(r,t) = f_0(r) + f_1(r,t)$, where $f \in \{ \alpha, \beta, P, \epsilon \}$ around their equilibria $f_0(r)$ with assumed small perturbations $f_1(r,t)$.
+where we have used the subscript $0$ to indicate that these are all quantities in \emph{equilibrium}.
+Suppose instead that the fluid is slightly perturbed from equilibrium with four-velocity $U^\mu = (U^0, U^1, 0, 0)$, now with non-zero radial component $U^1$.
+Chandrasekhar then used perturbation theory to expand the true solutions
 \begin{equation}
 \begin{aligned}
 	\alpha   (r, t) &= \alpha_0  (r) + \alpha_1  (r, t), & \qquad \qquad
@@ -392,45 +432,62 @@ Chandrasekhar used perturbation theory to expand the true solutions $f(r,t) = f_
 	\epsilon (r, t) &= \epsilon_0(r) + \epsilon_1(r, t). \\
 \end{aligned}
 \end{equation}
-Then Chandrasekhar that the new field equations, after inserting the quantities above, expanding to first order in the assumed small perturbations $f_1(r,t)$ and simplifying using the equilibrium equations \TODO{ref} give
+about their equilibria $f_0(r)$ with assumed small deviations $f_1(r, t)$.
+Chandrasekhar then solved the Einstein field equations \eqref{eq:einstein} again for these quantities, expanded the result to linear order in the perturbations $f_1(r,t)$ and subtracted the equilibrium equations \TODO{ref} to simplify the system.
+Defining $v = e^\alpha U^1$, he then found the system
 \begin{subequations}
 \begin{align}
 	(2 r e^{-2 \beta_0} \beta_1)' &= \frac{8 \pi G}{c^4} \epsilon_1 , \\
-	r e^{-2 \beta_0} (2 \alpha_1' - 4 \alpha_0' \beta_1) &= 2 e^{-2 \beta_0} \beta_1 + \frac{8 \pi G}{c^4} r^2 P_1 \\
-	e^{-2 \beta_0} \dot{\beta_1} &= -\frac{8 \pi G}{c^4} (P_0 + \epsilon_0) r \dot{r} \\
-	e^{2(\beta_0 - \alpha_0)} (P_0 + \epsilon_0) \ddot{r} + P_1' + (P_0 + \epsilon_0) \alpha_1' + (P_1 + \epsilon_1) \alpha_0' &= 0 .
+	r e^{-2 \beta_0} (2 \alpha_1' - 4 \alpha_0' \beta_1) &= 2 e^{-2 \beta_0} \beta_1 + \frac{8 \pi G}{c^4} r^2 P_1 , \\
+	e^{-2 \beta_0} \dot{\beta_1} &= -\frac{8 \pi G}{c^4} (P_0 + \epsilon_0) r v ,
 \end{align}
 \end{subequations}
-He goes on to show that, defining $\dot{\xi} = e^\alpha u^r$, where $u^r$ is the radial part of the fluid's four velocity, then $\xi = e^\alpha y_n e^{i \omega t} / r^2$ where $y_n$, $\omega_n$ is the solution to the Sturm-Liouville problem
+From the conservation $\nabla_\mu T^{\mu \nu} = 0$ from energy-momentum, he obtains the complementary equation
 \begin{equation}
-	\odv*{\Pi(r) \odv{y_n}{r}}{r} + [ Q + \omega_n^2 W ] y_n = 0 ,
+	e^{2(\beta_0 - \alpha_0)} (P_0 + \epsilon_0) \dot{v} + P_1' + (P_0 + \epsilon_0) \alpha_1' + (P_1 + \epsilon_1) \alpha_0' = 0 .
 \end{equation}
-where
+Finally, he defines $\dot{\xi} = v$ to distinguish the coordinate $r$ from the function $\xi(r, t)$ and assumes a solution on the form
+\begin{equation}
+	\xi(r,t) = \frac{e^\alpha(r)}{r^2} U_n(r) e^{i \omega_n t} .
+\end{equation}
+Then $\xi(r,t)$ is a solution to the Einstein equations if $U_n(r)$ and the corresponding eigenvalue $\omega_n^2$ solves the \textbf{Sturm-Liouville problem}
+\begin{equation}
+	\odv*{ \left[ \Pi(r) \odv{U_n(r)}{r} \right] }{r} + \left[ Q(r) + \omega_n^2 W(r) \right] U_n(r) = 0 ,
+\end{equation}
+where the coefficient functions are
+\TODO{use big/small $u$/$U$ in ST-eq/4-vel}
 \begin{subequations}
 \begin{align}
-	\Pi &= \frac{1}{r^2} e^{\beta_0 + 3 \alpha_0} \gamma P \\
-	Q   &= -\frac{4}{r^3} e^{\beta_0 + 3 \alpha_0} \odv{P}{r} - \frac{8 \pi}{r^2} e^{3 \beta_0 + 3 \alpha_0} P (\epsilon + P) + \frac{1}{r^2} + \frac{e^{\beta_0 + 3 \alpha_0}}{r^2(\epsilon + P)} \odv{P}{r}^2 \\
-	W   &= \frac{1}{r^2} e^{3 \beta_0 + \alpha_0} (\epsilon + P)
+	\Pi &= \frac{1}{r^2} e^{\beta_0 + 3 \alpha_0} \gamma P_0 , \\
+	Q   &= -\frac{4}{r^3} e^{\beta_0 + 3 \alpha_0} P_0' - \frac{8 \pi}{r^2} e^{3 \beta_0 + 3 \alpha_0} P (\epsilon_0 + P_0) + \frac{e^{\beta_0 + 3 \alpha_0}}{r^2(\epsilon_0 + P_0)} (P_0')^2 , \\
+	W   &= \frac{1}{r^2} e^{3 \beta_0 + \alpha_0} (\epsilon_0 + P_0) .
 \end{align}
 \end{subequations}
-and
+The perturbation is assumed to take place adiabatically with the adiabatic index
 \begin{equation}
-	\gamma = \frac{\epsilon + P}{P} \odv{P}{\epsilon}
+	\gamma = \frac{\epsilon + P}{P} \odv{P}{\epsilon} ,
 \end{equation}
-is the adiabatic index.
+and the boundary conditions are \TODO{cite catalogue}
+\begin{equation}
+	u(r) \propto r^3 \text{ at $r=0$}
+	\qquad \text{and} \qquad
+	u'(r) = 0 \text{ at $r=R$}.
+\end{equation}
+The boundary condition at $r=0$ is derived by observing that $r = 0$ is a regular singular point of the Sturm-Liouville equation \TODO{ref}, so $U \propto r^3$ in order for $\xi$ and $\xi'$ to be finite there.
+Physically, this implies that $\xi(0, t) = 0$, so the fluid at the center is not displaced, which is the only reasonable condition in a spherically symmetric situation.
+At $r = R$, the boundary condition $u'(r) = 0$ follows from requiring that the Lagrangian variation in the pressure following a fluid element in the flow vanishes.
 
-A characteristic feature of Sturm-Liouville eigenvalue problems is that the eigenvalues form a discrete, increasing sequence
+A characteristic feature of Sturm-Liouville problems is that the eigenvalues form a discrete, increasing sequence
 \begin{equation}
 	\omega_0^2 < \omega_1^2 < \omega_2^2 < \cdots .
 \end{equation}
-Moreover, the solution $y_n(r)$ has exactly $n$ zeros (where it \emph{crosses} the $r$-axis).
-If the lowest mode $n = 0$ has $\omega_0^2 > 0$, then all $\omega_n^2 > 0$, so $\omega_n$ is a real quantity and $u_n \propto e^{i \omega_n t}$ merely oscillates.
-However, if $\omega_0^2 < 0$, then $\omega_n = \pm i \abs{\omega_n}$ and $u_n \propto e^{\pm \omega_n t}$, so the star either implodes or explodes!
-We therefore define a star to be stable if $\omega_0^2 > 0$, and unstable if $\omega_n^2 < 0$.
-
-\TODO{increase/decrease arguments, analogy with a ``physical''/``unphysical'' balloon?}
-
-
+This enables us to make a rigorous definition of stellar stability.
+\begin{itemize}
+\item If $\omega_0^2 > 0$, then all vibration modes have $\omega_n^2 > 0$, so $\omega_n$ is real.
+      Then $\xi_n(r, t) \propto e^{i \omega_n t}$ merely oscillates back and forth, so the star attempts to return to equilibrium, and we say the star is \textbf{stable}.
+\item If $\omega_0^2 < 0$, then at least one vibration mode has $\omega_n = \pm i \abs{\omega_n}$, so $\omega_n$ is imaginary.
+      Then $\xi(r,t) = \propto e^{\pm \abs{\omega_n} t}$ takes off exponentially, so the star either implodes or explodes, and we say the star is \textbf{unstable}.
+\end{itemize}
 
 \subsection{Sufficient conditions for stability}
 
