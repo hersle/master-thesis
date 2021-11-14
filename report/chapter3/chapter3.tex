@@ -337,7 +337,102 @@ and then calculate
 
 \end{figure}
 
-\section{Discussion / stability analysis}
+\section{Stability analysis}
+
+The mass-radius curves in \cref{fig:nstars:massradius} display some interesting behavior.
+In particular, the curves spiral for central pressures greater than that corresponding to the maximum mass.
+Since we have used statistical physics to obtain an equation of state, all stars on the mass-radius curve are in \emph{equilibrium}.
+\TODO{is the assumption of equilibrium instead/also baked into using perfect fluid energy momentum \eqref{eq:tov:energy_momentum_perfect_fluid}?}
+However, just like a pendulum can be in stable or unstable equilibria, the equilibrium of a star can similarly be either stable or unstable with respect to small perturbations applied to it.
+Let us investigate the stability of stars on the curve in \cref{fig:nstars:massradius}.
+
+\TODO{figure with analogy between unstable pendulum and unstable star?}
+
+What, precisely, do we mean by 
+
+\subsection{Necessary conditions for stability}
+
+First, let us rule out unstable stars by deriving a set of necessary conditions for stability, and checking whether some of the stars on the curve violate them.
+
+However exotic life inside a star may be, it cannot break causality. 
+In particular, the speed of sound $v = c \sqrt{\odv{P}/{\epsilon}}$ cannot exceed the speed of light $c$.
+In other words, the equation of state $\epsilon = \epsilon(P)$ must satisfy
+\TODO{ref?}
+\begin{equation}
+	\odv{P}{\epsilon} < 1 .
+\end{equation}
+How does the equation of state for a free Fermi gas hold up in this regard?
+For general Fermi momenta $p_F$, we can apply the chain rule and inverse derivative $\odv{x_F}/{\epsilon} = 1 / (\odv{\epsilon}/{x_F})$ to the pressure \eqref{eq:nstars:pressure_zeroT} and energy density \eqref{eq:nstars:energy_density_zeroT} to see that
+\begin{equation}
+	\odv{P}{\epsilon} = 
+	\odv{P}{x_F} \odv{x_F}{\epsilon} =
+	\frac{\odv{P}/{x_F}}{\odv{\epsilon}/{x_F}} =
+	\frac13 \, \frac{1}{1+1/x^2} < \frac13 ,
+\end{equation}
+so it does not break causality.
+Observe that $\odv{P}/{\epsilon} \rightarrow 1/3$ as $x_F \rightarrow \infty$, as we should expect with the simple ultra-relativistic equation of state \eqref{eq:nstars:ur_eos}.
+
+Another critertion be derived by considering how the mass and central pressure close to the equilibrium curve changes when the star is perturbatively compressed or expands by perturbing the radius $R$.
+
+The real way to check the stability of a star is the following.
+In \cref{eq:einstein_to_tov:einstein_equation_in_star}, we showed that in equilibrium, the metric \TODO{ref} satisfies
+\begin{subequations}
+\begin{align}
+	\frac{1}{r^2} e^{-2 \beta_0} \left( 2 r \beta_0' - 1 + e^{2 \beta_0} \right)                         &= \frac{8 \pi G}{c^4} \epsilon_0        , \\
+	\frac{1}{r^2} e^{-2 \beta_0} \left( 2 r \alpha_0' + 1 - e^{2 \beta_0} \right)                              &= \frac{8 \pi G}{c^4} P_0         , \\
+	e^{-2 \beta_0} \left( \alpha_0'' + (\alpha_0')^2 - \alpha_0' \beta_0' + \frac{1}{r} (\alpha_0' - \beta_0') \right) &= \frac{8 \pi G}{c^4} P_0.
+\end{align}
+\end{subequations}
+Chandrasekhar used perturbation theory to expand the true solutions $f(r,t) = f_0(r) + f_1(r,t)$, where $f \in \{ \alpha, \beta, P, \epsilon \}$ around their equilibria $f_0(r)$ with assumed small perturbations $f_1(r,t)$.
+\begin{equation}
+\begin{aligned}
+	\alpha   (r, t) &= \alpha_0  (r) + \alpha_1  (r, t), & \qquad \qquad
+	\beta    (r, t) &= \beta_0   (r) + \beta_1   (r, t), \\
+	P        (r, t) &= P_0       (r) + P_1       (r, t), & \qquad \qquad
+	\epsilon (r, t) &= \epsilon_0(r) + \epsilon_1(r, t). \\
+\end{aligned}
+\end{equation}
+Then Chandrasekhar that the new field equations, after inserting the quantities above, expanding to first order in the assumed small perturbations $f_1(r,t)$ and simplifying using the equilibrium equations \TODO{ref} give
+\begin{subequations}
+\begin{align}
+	(2 r e^{-2 \beta_0} \beta_1)' &= \frac{8 \pi G}{c^4} \epsilon_1 , \\
+	r e^{-2 \beta_0} (2 \alpha_1' - 4 \alpha_0' \beta_1) &= 2 e^{-2 \beta_0} \beta_1 + \frac{8 \pi G}{c^4} r^2 P_1 \\
+	e^{-2 \beta_0} \dot{\beta_1} &= -\frac{8 \pi G}{c^4} (P_0 + \epsilon_0) r \dot{r} \\
+	e^{2(\beta_0 - \alpha_0)} (P_0 + \epsilon_0) \ddot{r} + P_1' + (P_0 + \epsilon_0) \alpha_1' + (P_1 + \epsilon_1) \alpha_0' &= 0 .
+\end{align}
+\end{subequations}
+He goes on to show that, defining $\dot{\xi} = e^\alpha u^r$, where $u^r$ is the radial part of the fluid's four velocity, then $\xi = e^\alpha y_n e^{i \omega t} / r^2$ where $y_n$, $\omega_n$ is the solution to the Sturm-Liouville problem
+\begin{equation}
+	\odv*{\Pi(r) \odv{y_n}{r}}{r} + [ Q + \omega_n^2 W ] y_n = 0 ,
+\end{equation}
+where
+\begin{subequations}
+\begin{align}
+	\Pi &= \frac{1}{r^2} e^{\beta_0 + 3 \alpha_0} \gamma P \\
+	Q   &= -\frac{4}{r^3} e^{\beta_0 + 3 \alpha_0} \odv{P}{r} - \frac{8 \pi}{r^2} e^{3 \beta_0 + 3 \alpha_0} P (\epsilon + P) + \frac{1}{r^2} + \frac{e^{\beta_0 + 3 \alpha_0}}{r^2(\epsilon + P)} \odv{P}{r}^2 \\
+	W   &= \frac{1}{r^2} e^{3 \beta_0 + \alpha_0} (\epsilon + P)
+\end{align}
+\end{subequations}
+and
+\begin{equation}
+	\gamma = \frac{\epsilon + P}{P} \odv{P}{\epsilon}
+\end{equation}
+is the adiabatic index.
+
+A characteristic feature of Sturm-Liouville eigenvalue problems is that the eigenvalues form a discrete, increasing sequence
+\begin{equation}
+	\omega_0^2 < \omega_1^2 < \omega_2^2 < \cdots .
+\end{equation}
+Moreover, the solution $y_n(r)$ has exactly $n$ zeros (where it \emph{crosses} the $r$-axis).
+If the lowest mode $n = 0$ has $\omega_0^2 > 0$, then all $\omega_n^2 > 0$, so $\omega_n$ is a real quantity and $u_n \propto e^{i \omega_n t}$ merely oscillates.
+However, if $\omega_0^2 < 0$, then $\omega_n = \pm i \abs{\omega_n}$ and $u_n \propto e^{\pm \omega_n t}$, so the star either implodes or explodes!
+We therefore define a star to be stable if $\omega_0^2 > 0$, and unstable if $\omega_n^2 < 0$.
+
+\TODO{increase/decrease arguments, analogy with a ``physical''/``unphysical'' balloon?}
+
+
+
+\subsection{Sufficient conditions for stability}
 
 \TODO{discuss mass bound}
 
