@@ -335,7 +335,6 @@ The numerical integration is carried out using an explicit equation of state in 
 Stars are parametrized by central pressures $\SI{1e-6}{} \epsilon_0 \le P_0 \le \SI{1e7}{} \epsilon_0$, where $\epsilon_0 = \solarmass c^2 / (4 \pi R_0^3 / 3) = \SI{4.27e34}{\pascal}$, $R_0 = \SI{10}{\kilo\meter}$, $\solarmass$ is the mass of the sun and $c$ is the speed of light.
 }
 
-
 \end{figure}
 
 \tablemaximum{../code/data/gr2.dat}{M}{\maxMgr}{P}{\maxPgr}
@@ -573,6 +572,52 @@ This enables us to make a rigorous definition of stellar stability.
 \item If $\omega_0^2 < 0$, then at least one vibration mode has $\omega_n = \pm i \abs{\omega_n}$, so $\omega_n$ is imaginary.
       Then $\xi(r,t) = \propto e^{\pm \abs{\omega_n} t}$ takes off exponentially, so the star either implodes or explodes, and we say the star is \textbf{unstable}.
 \end{itemize}
+
+\pgfplotstableread{../code/data/nmodes_norm.dat}{\nmodestable}
+\pgfplotstablegetelem{0}{omega2}\of{\nmodestable}
+got \pgfplotsretval
+
+\pgfplotstablegetrowsof{\nmodestable}
+\pgfmathparse{int(\pgfmathresult-1)}
+\pgfplotstablegetelem{\pgfmathresult}{r}\of{\nmodestable}
+\pgfmathsetmacro{\maxR}{\pgfplotsretval}
+radius is \maxR
+
+\usetikzlibrary{calc}
+\begin{figure}
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size=2 by 1, horizontal sep=5pt},
+	width=8cm, height=7cm,
+	xlabel=$r / R$,
+	xmin=-0.1, xmax=1.1, ymin=-1.1, ymax=+1.1, restrict y to domain=-100:+100,
+	xtick={0,0.5,1}, ytick={-1,0,1},
+	ymajorgrids=true,
+	no markers, cycle list name=color list, % or exotic
+]
+\nextgroupplot[
+	ylabel=$U_n / \norm{U_n}_\infty$,
+	legend cell align=left, legend columns=5, legend style={at={(1.0, 1.03)}, anchor=south},
+]
+\pgfplotstableread{../code/data/nmodes_norm.dat}{\nmodestable};
+\pgfplotsinvokeforeach{0,1,2,3,4} {
+	\addplot+ [thick] table [x expr=\thisrow{r}/\maxR, y=U#1] {\nmodestable};
+	\pgfplotstablegetelem{#1}{omega2}\of{\nmodestable}
+	\addlegendentryexpanded{$\omega_{#1}^2 = \pgfmathprintnumber[fixed, fixed zerofill, precision=2]{\pgfplotsretval}$};
+}
+
+\nextgroupplot[
+	ylabel=$U_n / \norm{U_0}_\infty$, yticklabel pos=right, ylabel near ticks,
+	yticklabels={},
+];
+\tablemaximum{../code/data/nmodes.dat}{U0}{\maxU}{r}{\maxr}
+\pgfplotsinvokeforeach{0,1,2,3,4} {
+	\addplot+ [thick] table [x expr=\thisrow{r}/\maxR, y expr=\thisrow{U#1}/\maxU] {../code/data/nmodes.dat};
+}
+\addplot [dashed, domain=0:0.5, restrict y to domain=0:1.1, samples=50] {(x*\maxR)^3 / \maxU} node[pos=0.6, label={[xshift=+1ex]135:$\propto r^3$}] {};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
 
 \subsection{Sufficient conditions for stability}
 
