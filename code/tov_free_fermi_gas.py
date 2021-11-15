@@ -33,11 +33,22 @@ def ϵGR(P):
     return ϵx
 
 # numerical instability for P2 > 1e7
-massradiusplot(ϵNR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/nr2.dat")
-massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/gr2.dat")
+#massradiusplot(ϵNR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/nr2.dat")
+#massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/gr2.dat")
 
 """
 for P0 in np.geomspace(1e-6, 1e7, 10):
     r, m, P, α, ϵ = soltov(ϵNR, P0)
     ω2, u = eigenmode(r, m, P, α, ϵ, 0, progress=True)
 """
+
+#P0 = 1e-1
+P0 = 5e2
+r, m, P, α, ϵ = soltov(ϵGR, P0)
+ns = range(0, 5)
+ω2s, us = eigenmode(r, m, P, α, ϵ, ns, plot=False, cut=True, normalize=False, outfile="data/nmodes.dat")
+ω2s, us = eigenmode(r, m, P, α, ϵ, ns, plot=False, cut=True, normalize=True, outfile="data/nmodes_norm.dat")
+for ω2, u, n in zip(ω2s, us, ns):
+    plt.plot(r, u, label=f"n = {n}, ω2 = {ω2}")
+plt.legend()
+plt.show()

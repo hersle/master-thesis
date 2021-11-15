@@ -1,6 +1,15 @@
 from constants import *
 import matplotlib.pyplot as plt
 import numpy as np
+import utils
+
+def cut_divergence(u, r):
+    # find index where derivative becomes zero, and cut away divergence after it
+    du = np.gradient(u, r)
+    i = len(u) - 1
+    while i >= 0 and du[i] * du[i-1] >= 0:
+        i -= 1
+    return u[:i+1]
 
 def shoot(r, Π, Q, W, ω2, p1, p2):
     dΠdr = np.gradient(Π, r)
@@ -62,8 +71,8 @@ def search(r, Π, Q, W, N, p1, p2, plot=False, progress=False):
             else:
                 ω21, u1, n1 = ω23, u3, n3
             i += 1
-        ω2 = (ω21 + ω22) / 2
-        u, n = shoot(r, Π, Q, W, ω23, p1, p2)
+        ω2 = ω21 if N % 2 == 0 else ω22 # always choose the one that inflects at the end, so it derivative looks like zero right before it diverges
+        u, n = shoot(r, Π, Q, W, ω2, p1, p2)
 
         if progress:
             print() # newline
@@ -71,14 +80,7 @@ def search(r, Π, Q, W, N, p1, p2, plot=False, progress=False):
             for i in range(0, len(us)):
                 plt.plot(r, us[i], color=(i/len(us), 0, 0))
 
-            # find first index (from back) where derivative is zero
-            # so we can zoom in plot on the relevant area
-            # (otherwise, divergence makes plot unreadable)
-            i = len(u) - 2
-            du = np.gradient(u)
-            while i >= 0 and du[i] * du[i+1] > 0:
-                i -= 1
-            ymax = u[i]
+            ymax = np.max(np.abs(cut_divergence(u, r)))
             plt.ylim(-2*ymax, +2*ymax)
             plt.show()
 
@@ -99,7 +101,12 @@ def search(r, Π, Q, W, N, p1, p2, plot=False, progress=False):
     return ω2, u, n
 
 
-def eigenmode(r, m, P, α, ϵ, N, p1=0.01, p2=0.99, plot=False, progress=True):
+def eigenmode(r, m, P, α, ϵ, Ns, p1=0.01, p2=0.99, plot=False, progress=True, cut=False, normalize=False, outfile=""):
+    if type(Ns) == type(0):
+        ω2s, us = eigenmode(r, m, P, α, ϵ, [Ns], p1=p1, p2=p2, plot=plot, progress=progress, cut=cut, normalize=normalize, outfile=outfile)
+        ω2, u = ω2s[0], us[0]
+        return ω2, u
+
     dPdr = np.gradient(P, r)
     dPdϵ = np.gradient(P, ϵ)
 
@@ -114,5 +121,25 @@ def eigenmode(r, m, P, α, ϵ, N, p1=0.01, p2=0.99, plot=False, progress=True):
 
     # TODO: can i divide Π, Q, W by their maximums to make numbers more handleable?
 
-    ω2, u, n = search(r, Π, Q, W, N, p1, p2, plot=plot, progress=progress)
-    return ω2, u
+    ω2s, us = [], []
+    for N in Ns:
+        ω2, u, n = search(r, Π, Q, W, N, p1, p2, plot=plot, progress=progress)
+        if cut:
+            uc = cut_divergence(u, r)
+            u[:len(uc)] = uc
+            u[len(uc):] = np.nan
+        if normalize:
+            u = u / np.nanmax(np.abs(u))
+        ω2s.append(ω2)
+        us.append(u)
+
+    if outfile != "":
+        cols = [ω2s, r]
+        heads = ["omega2", "r"]
+        for u, N in zip(us, Ns):
+            cols.append(u)
+            heads.append(f"U{N}")
+        utils.writecols(cols, heads, outfile)
+        print(f"Wrote (ω2, r, U) to {outfile}")
+
+    return ω2s, us

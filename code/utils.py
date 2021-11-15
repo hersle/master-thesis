@@ -1,3 +1,5 @@
+import numpy as np
+
 def writecols(cols, headers, filename):
     maxlen = max(len(col) for col in cols)
     for col in cols:
