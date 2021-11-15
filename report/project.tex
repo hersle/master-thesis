@@ -93,6 +93,9 @@ external/system call={xelatex \tikzexternalcheckshellescape --halt-on-error --in
 	/pgfplots/colormap={parametrize}{rgb255=(255,255,0) rgb255=(255,0,0)}
 }
 \pgfplotsset{
+	/pgfplots/colormap={negpos}{rgb255=(0,0,255) rgb255=(0,0,0) rgb255=(255,0,0)}
+}
+\pgfplotsset{
 	/pgfplots/colormap={plasma}{%
 		rgb=(0.050383, 0.029803, 0.527975)
 		rgb=(0.186213, 0.018803, 0.587228)
@@ -160,6 +163,7 @@ external/system call={xelatex \tikzexternalcheckshellescape --halt-on-error --in
 \DeclareMathOperator{\tdet}{det}
 \DeclareMathOperator{\asin}{asin}
 \DeclareMathOperator{\asinh}{asinh}
+\DeclareMathOperator{\sgn}{sgn}
 \newcommand{\integral}[4]{\int_{#3}^{#4} #1 \dif #2}
 \newcommand{\variation}[1]{\delta #1}
 \newcommand{\trace}[1]{\text{tr} #1}
