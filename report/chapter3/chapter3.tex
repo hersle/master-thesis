@@ -350,8 +350,6 @@ Let us investigate the stability of the sequence of stars on the curve in \cref{
 
 \subsection{Necessary conditions for stability}
 
-\TODO{increase/decrease arguments, analogy with a ``physical''/``unphysical'' balloon?}
-
 We will start simple by presenting a few necessary conditions for stability.
 However, neither of the conditions are \emph{sufficient} or a star to be stable, so we can only use them to identify unstable stars.
 
@@ -380,6 +378,28 @@ Then we can apply the chain rule and the rule of inverse derivatives to obtain
 We see that $\odv{P}/{\epsilon} < 1$ for all $x_F$ and approaches $1/3$ in the ultra-relativistic limit $x_F \rightarrow \infty$, as we should expect from the corresponding equation of state \eqref{eq:nstars:ur_eos}.
 Hence, all the stars in \cref{fig:nstars:massradius} satisfy this condition and it does not rule out any stars.
 
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{shapes.symbols}
+\newcommand\drawstarforcebalance[5]{
+	\draw [very thick] (#1,#2) circle [radius=#3];
+	\draw [thick] [-{Latex[width=3mm,length=3mm]}] ({#1-0.2},{#2+0.2}) -- ({#1-0.2+#4*cos(45)},{#2+0.2+#4*sin(45)});
+	\draw [thick] [{Latex[width=3mm,length=3mm]}-] ({#1+0.2},{#2-0.2}) -- ({#1+0.2+#5*cos(45)},{#2-0.2+#5*sin(45)});
+}
+\begin{figure}
+\begin{tikzpicture}
+\drawstarforcebalance{0.0}{0.0}{1.0}{0.9}{0.9};
+\drawstarforcebalance{3.0}{0.0}{1.5}{1.2}{0.6};
+\drawstarforcebalance{7.0}{0.0}{2.0}{1.5}{0.3};
+\node[starburst, fill=yellow, draw=red, line width=2pt, anchor=west, minimum size=5cm] at (10,0) {\textbf{BOOM}};
+\end{tikzpicture}
+\caption{\label{fig:nstars:star_explosion}%
+A slight decrease $\dif \epsilon < 0$ in energy density weakens the gravitational force pulling a star in.
+If the equation of state $\epsilon = \epsilon(P)$ in a star satisfies $\odv{P}/{\epsilon} < 0$, such a change in energy density would cause an increase $\dif P > 0$ in the pressure pushing the star out.
+The greater pressure then causes the star to expand, which in turn causes another decrease in energy density.
+Repeated application of the same argument shows that the star continues to expand while the pressure grows indefinitely, so the star ultimately explodes.
+}
+\end{figure}
+
 From the expression $v = c \sqrt{\odv{P}/{\epsilon}}$ of the speed of sound, it also sounds reasonable to require that
 \begin{equation}
 	\odv{P}{\epsilon} > 0
@@ -389,6 +409,7 @@ Violation of this condition would in fact have dramatic consequences.
 First, note that an increase in energy density $\dif \epsilon > 0$ always increase the gravitational force attempting to pull the star in.
 If such an increase implied a \emph{decrease} $\dif P < 0$ in the pressure that pushes the star out, then the gravitational force would automatically ``win'', causing the star to contract, and hence the energy density to increase further.
 Repeating the argument, we understand that the star collapses.
+This process is illustrated in \cref{fig:nstars:stability_mass_pressure}.
 Likewise, if a decrease $\dif \epsilon < 0$ caused an increase $\dif P > 0$, the same argument shows that the pressure wins and the star explodes.
 However, if the two always change by the same sign, then the two forces will at the very least counteract each other instead of being driven apart.
 In this case the star \emph{can} be stable, but the balance between the forces would have to be investigated in detail to conclude if it \emph{is}.
