@@ -318,8 +318,8 @@ and then calculate
 	%extra y ticks/.expanded={\maxMnr, \maxMgr}, extra y tick style={dashed}, % https://tex.stackexchange.com/a/333974
 	%extra x ticks/.expanded={{10*\maxRnr}, {10*\maxRgr}}, extra x tick style={dashed, tick label style={yshift=-1ex}},
 ]
-\addplot [mark=none, mesh, semithick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/nr.dat} node [pos=0.47, pin={[text=black]0:Non-relativistic limit $p_F \ll 1$}] {};
-\addplot [mark=none, mesh, semithick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/gr.dat} node [pos=0.55, pin={[text=black]-100:Arbitrary $p_F$}] {};
+\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/nr.dat} node [pos=0.47, pin={[text=black]0:Non-relativistic limit $p_F \ll 1$}] {};
+\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/gr.dat} node [pos=0.55, pin={[text=black]-100:Arbitrary $p_F$}] {};
 \node [circle, fill, inner sep=1pt, label={90:$(\pgfmathprintnumber\maxRnr, \pgfmathprintnumber\maxMnr)$}] at ({10*\maxRnr}, \maxMnr) {};
 \node [circle, fill, inner sep=1pt, label={90:$(\pgfmathprintnumber\maxRgr, \pgfmathprintnumber\maxMgr)$}] at ({10*\maxRgr}, \maxMgr) {};
 
@@ -356,13 +356,13 @@ Stars are parametrized by central pressures $\SI{1e-6}{} \epsilon_0 \le P_0 \le 
 	colorbar horizontal, colorbar sampled, colorbar style={xlabel=$\sgn \omega_0^2$, xtick={-1, 0, +1}, xticklabels={$-1$ (unstable), $0$ (marginal), $+1$ (stable)}, at={(0.5,1.05)}, anchor=south, xticklabel pos=upper, tickwidth=0},
 	xticklabels=\empty,
 ]
-\addplot [mark=none, mesh, semithick] table [x expr={10*\thisrow{R}}, y=M, meta expr={sign(\thisrow{omega2})}] {../code/data/gr2.dat};
+\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={sign(\thisrow{omega2})}] {../code/data/gr2.dat};
 
 \nextgroupplot[
 	title={\subcaption{\label{fig:nstars:stability_exact}Exact stability}},
 	xlabel=$R / \si{\kilo\meter}$,
 ]
-\addplot [mark=none, mesh, semithick] table [x expr={10*\thisrow{R}}, y=M, meta expr={sign(\thisrow{P}-\maxPgr)}] {../code/data/gr2.dat};
+\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={sign(\thisrow{P}-\maxPgr)}] {../code/data/gr2.dat};
 \end{groupplot}
 \end{tikzpicture}
 
