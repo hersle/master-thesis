@@ -115,10 +115,8 @@ def coeffs(r, m, P, α, ϵ):
     Π = np.exp(β+3*α)/r**2 * Γ * P
     Q = -4*np.exp(β+3*α)/r**3*dPdr - 8*π*(G/4*π)*np.exp(3*β+3*α)/r**2*P*(ϵ+P) + np.exp(β+3*α)*dPdr**2 / (r**2*(ϵ+P))
     W = np.exp(3*β+α)*(ϵ+P)/r**2
-    return Π, Q, W
 
-def demoshoot(r, m, P, α, ϵ, Ns, p1=0.01, p2=0.99, plot=False, progress=True, outfile=""):
-    pass
+    return Π, Q, W
 
 def eigenmode(r, m, P, α, ϵ, Ns, p1=0.01, p2=0.99, plot=False, progress=True, cut=False, normalize=False, outfile="", outfileshoot=""):
     if type(Ns) == type(0):
