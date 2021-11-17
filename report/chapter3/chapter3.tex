@@ -6,6 +6,8 @@
 
 \TODO{intro}
 
+\TODO{inspiration \cite{ref:stability_methods}, \cite{ref:glendenning}}
+
 In \cref{chap:tft}, we found $Z = Z(T, \mu, V)$ for two sample systems, and in particular a gas of free Dirac fermions.
 From $Z$, we can derive the pressure $P = P(T, \mu)$ and energy density $\epsilon = \thermalavg{E}/V = \epsilon(T, \mu)$ using \cref{eq:tft:average_number,eq:tft:average_energy,eq:tft:average_pressure}, where the volume $V$ has been eliminated by division, because $P$ and $\epsilon$ are intensive quantities.
 At some fixed temperature $T$, we can therefore eliminate $\mu$ to express $\epsilon$ in terms of $P$.
@@ -517,7 +519,8 @@ Chandrasekhar found the new field equations, wrote the solutions
 \end{aligned}
 \end{equation}
 as small deviations $f_1(r,t)$ from their equilibria counterparts $f_0(r)$, expanded the field equations to first order in the deviations and subtracted the equilibrium equations \eqref{eq:nstars:field_equations_equilibrium} to simplify the system.
-Defining $v = e^\alpha U^1$, he then obtained the system \TODO{ref chandrasekhar paper}
+Detailed calculation can be found in \cite{ref:stability_multi_fluid}, for example.
+Defining $v = e^\alpha U^1$, he then obtained the system \cite{ref:chandrasekhar_stability}
 \begin{subequations}
 \begin{align}
 	(2 r e^{-2 \beta_0} \beta_1)' &= \frac{8 \pi G}{c^4} \epsilon_1 , \\
@@ -560,7 +563,7 @@ Then, at the end, we shift $\alpha(r) \rightarrow \alpha(r) - \alpha(R) + \frac1
 \TODO{incorporate into TOV chapter and/or code appendix}
 With $\alpha$, $P$ and $m$ determined, $\beta$ is determined by \eqref{eq:einstein_to_tov:def_m}.
 
-The boundary conditions are \TODO{cite ref catalogue}
+The boundary conditions are \cite{ref:stability_methods}
 \begin{equation}
 	u(r) \propto r^3 \text{ at $r=0$}
 	\qquad \text{and} \qquad
