@@ -313,15 +313,17 @@ and then calculate
 \centering
 \begin{tikzpicture}
 \begin{axis}[
-	width=15cm, height=10cm,
-	xlabel=$R / \si{\kilo\meter}$, ylabel=$M / \solarmass$, title={Mass-radius relation for cold free Fermi gas neutron star}, title style={yshift=1.8cm},
+	width=15cm, height=15cm,
+	xlabel=$R / \si{\kilo\meter}$, ylabel=$M / \solarmass$, title={Mass-radius relation for cold free Fermi gas neutron star}, title style={yshift=2.3cm},
+	xmin=0, xmax=50, xtick distance=5, minor x tick num=4,
+	ymin=0, ymax=1.1, ytick distance=0.1, minor y tick num=9,
 	grid=major,
 	colorbar horizontal, point meta=explicit, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_0 / \epsilon_0)$, xtick distance=1, minor x tick num=0, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
 	%extra y ticks/.expanded={\maxMnr, \maxMgr}, extra y tick style={dashed}, % https://tex.stackexchange.com/a/333974
 	%extra x ticks/.expanded={{10*\maxRnr}, {10*\maxRgr}}, extra x tick style={dashed, tick label style={yshift=-1ex}},
 ]
-\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/nr.dat} node [pos=0.47, pin={[text=black]0:Non-relativistic limit $p_F \ll 1$}] {};
-\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/gr.dat} node [pos=0.55, pin={[text=black]-100:Arbitrary $p_F$}] {};
+\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/nr.dat} node [pos=0.67, pin={[text=black]0:Non-relativistic limit $p_F \ll mc$}] {};
+\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/gr.dat} node [pos=0.61, pin={[text=black]-100:Arbitrary $p_F$}] {};
 \node [circle, fill, inner sep=1pt, label={90:$(\pgfmathprintnumber\maxRnr, \pgfmathprintnumber\maxMnr)$}] at ({10*\maxRnr}, \maxMnr) {};
 \node [circle, fill, inner sep=1pt, label={90:$(\pgfmathprintnumber\maxRgr, \pgfmathprintnumber\maxMgr)$}] at ({10*\maxRgr}, \maxMgr) {};
 
