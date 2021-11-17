@@ -339,8 +339,6 @@ Stars are parametrized by central pressures $\SI{1e-6}{} \epsilon_0 \le P_0 \le 
 
 \end{figure}
 
-\tablemaximum{../code/data/gr2.dat}{M}{\maxMgr}{P}{\maxPgr}
-
 \begin{figure}
 \centering
 \begin{tikzpicture}
@@ -349,22 +347,23 @@ Stars are parametrized by central pressures $\SI{1e-6}{} \epsilon_0 \le P_0 \le 
 	width=14cm, height=9cm,
 	ylabel=$M / \solarmass$, 
 	grid=major,
-	colormap={signnegpos}{samples of colormap=(3 of negpos)}, colormap access=const, 
-	point meta=explicit, point meta min=-1.5, point meta max=+1.5,
-	every axis title/.style={at={(0.97,0.95)}, text width=4cm, anchor=north east, draw=black, fill=white},
+	%point meta=explicit, point meta min=-1.5, point meta max=+1.5,
+	colormap={signnegpos}{samples of colormap=(4 of stability)}, colormap access=const, 
+	point meta=explicit, point meta min=0, point meta max=4,
+	every axis title/.style={at={(0.97,0.95)}, text width=3cm, anchor=north east, draw=black, fill=white},
 ]
 \nextgroupplot[
-	title={\subcaption{\label{fig:nstars:stability_computed}Computed stability}},
-	colorbar horizontal, colorbar sampled, colorbar style={xlabel=$\sgn \omega_0^2$, xtick={-1, 0, +1}, xticklabels={$-1$ (unstable), $0$ (marginal), $+1$ (stable)}, at={(0.5,1.05)}, anchor=south, xticklabel pos=upper, tickwidth=0},
+	title={\subcaption{\label{fig:nstars:stability_computed}Computed}},
+	colorbar horizontal, colorbar sampled, colorbar style={xlabel={Number of unstable modes with $\omega_n^2 < 0$}, xtick={0.5, 1.5, 2.5, 3.5}, xticklabels={$0$, $1$, $2$, $3$}, at={(0.5,1.05)}, anchor=south, xticklabel pos=upper, tickwidth=0},
 	xticklabels=\empty,
 ]
-\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={sign(\thisrow{omega2})}] {../code/data/gr2.dat};
+\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta=nu] {../code/data/gr2.dat};
 
 \nextgroupplot[
-	title={\subcaption{\label{fig:nstars:stability_exact}Exact stability}},
+	title={\subcaption{\label{fig:nstars:stability_exact}Exact}},
 	xlabel=$R / \si{\kilo\meter}$,
 ]
-\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={sign(\thisrow{P}-\maxPgr)}] {../code/data/gr2.dat};
+\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={greater(\thisrow{P},0.8) + greater(\thisrow{P},600) + greater(\thisrow{P},19000)}] {../code/data/gr2.dat};
 \end{groupplot}
 \end{tikzpicture}
 
