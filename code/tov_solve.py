@@ -61,27 +61,32 @@ def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, 
     def solvestar(P0):
         rs, ms, Ps, αs, ϵs = soltov(ϵ, P0, maxdr=maxdr)
         R, M = rs[-1], ms[-1]
-        ω2 = eigenmode(rs, ms, Ps, αs, ϵs, 0)[0] if stability else np.nan
-        return R, M, ω2
+        if stability:
+            nu = 0
+            while eigenmode(rs, ms, Ps, αs, ϵs, nu)[0] < 0:
+                nu += 1 # count number of unstable modes with ω2 < 0
+        else:
+            nu = np.nan
+        return R, M, nu
 
     P1, P2 = P1P2[0], P1P2[1]
-    R1, M1, ω21 = solvestar(P1)
-    R2, M2, ω22 = solvestar(P2)
-    Ps, Ms, Rs, ω2s = [P1, P2], [M1, M2], [R1, R2], [ω21, ω22]
+    R1, M1, nu1 = solvestar(P1)
+    R2, M2, nu2 = solvestar(P2)
+    Ps, Ms, Rs, nus = [P1, P2], [M1, M2], [R1, R2], [nu1, nu2]
 
     if visual:
         plt.ion() # automatically update open figure
         if stability:
             graph, = plt.plot([], [], "k-", zorder=0) # modify graph data later
-            norm = matplotlib.colors.TwoSlopeNorm(vmin=-1, vcenter=0, vmax=+1)
             scatt = plt.scatter([], [], zorder=1) # modify graph data later
+            cbar = plt.colorbar()
         else:
             graph, = plt.plot([], [], "k-o") # modify graph data later
 
     i = 0
     while i < len(Ps) - 1:
-        P1, M1, R1, ω21 = Ps[i],   Ms[i],   Rs[i],   ω2s[i]
-        P2, M2, R2, ω22 = Ps[i+1], Ms[i+1], Rs[i+1], ω2s[i+1]
+        P1, M1, R1, nu1 = Ps[i],   Ms[i],   Rs[i],   nus[i]
+        P2, M2, R2, nu2 = Ps[i+1], Ms[i+1], Rs[i+1], nus[i+1]
 
         # Split intervals based on Euclidean distance between (R, M)-points in plot
         # But make sure P1, P2 do not get too close, otherwise algorithm gets stuck
@@ -89,11 +94,11 @@ def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, 
         if D > tolD and P2 - P1 > tolP:
             # split [P1, P2] into [P1, (P1+P2)/2] and [(P1+P2)/2, P2]
             P3 = (P1 + P2) / 2
-            R3, M3, ω23 = solvestar(P3)
+            R3, M3, nu3 = solvestar(P3)
             Ps.insert(i+1, P3)
             Ms.insert(i+1, M3)
             Rs.insert(i+1, R3)
-            ω2s.insert(i+1, ω23)
+            nus.insert(i+1, nu3)
 
             if visual:
                 # Animate plot in real-time for immediate feedback
@@ -101,9 +106,14 @@ def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, 
                 graph.set_data(Rs, Ms)
                 if stability:
                     scatt.set_offsets(np.transpose([Rs, Ms]))
-                    scatt.set_array(np.sign(ω2s))
-                    scatt.set_cmap("bwr")
-                    scatt.set_norm(norm)
+                    scatt.set_array(np.array(nus))
+                    scatt.set_cmap("jet")
+                    #norm = matplotlib.colors.TwoSlopeNorm(vmin=-1, vcenter=0, vmax=2)
+                    #print(nus)
+                    #norm = matplotlib.colors.BoundaryNorm(boundaries=nus, ncolors=np.max(nus)+1)
+                    #scatt.set_norm(norm)
+                    #cbar.set_clim(0, np.max(nus))
+                    scatt.set_clim(0, np.max(nus))
                 plt.gca().relim() # autoscale only works in animation after this
                 plt.autoscale()
                 plt.draw()
@@ -116,7 +126,7 @@ def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, 
         plt.show() # leave final plot open
 
     if outfile != "":
-        utils.writecols([Ps, Ms, Rs, ω2s], ["P", "M", "R", "omega2"], outfile)
-        print(f"Wrote (P, M, R, ω2) to {outfile}")
+        utils.writecols([Ps, Ms, Rs, nus], ["P", "M", "R", "nu"], outfile)
+        print(f"Wrote (P, M, R, nu) to {outfile}")
     
     return Ps, Ms, Rs

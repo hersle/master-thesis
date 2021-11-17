@@ -34,7 +34,7 @@ def ϵGR(P):
 
 # numerical instability for P2 > 1e7
 #massradiusplot(ϵNR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/nr2.dat")
-#massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/gr2.dat")
+massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/gr2.dat")
 
 """
 for P0 in np.geomspace(1e-6, 1e7, 10):
