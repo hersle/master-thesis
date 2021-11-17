@@ -550,10 +550,12 @@ where the coefficient functions are
 	Q   &= -\frac{4}{r^3} e^{\beta_0 + 3 \alpha_0} P_0' - \frac{8 \pi}{r^2} e^{3 \beta_0 + 3 \alpha_0} P (\epsilon_0 + P_0) + \frac{e^{\beta_0 + 3 \alpha_0}}{r^2(\epsilon_0 + P_0)} (P_0')^2 , \\
 	W   &= \frac{1}{r^2} e^{3 \beta_0 + \alpha_0} (\epsilon_0 + P_0) .
 \end{align}
+\label{eq:nstars:sturm_liouville_coefficients}
 \end{subequations}
 The perturbation is assumed to take place adiabatically with the adiabatic index
 \begin{equation}
 	\gamma = \frac{\epsilon + P}{P} \odv{P}{\epsilon} .
+\label{eq:nstars:adiabatic_index}
 \end{equation}
 Note that all quantities quantities above are \emph{known} after solving the TOV equation \eqref{eq:tov} for some equation of state $\epsilon = \epsilon(P)$.
 The pressure $P$ and mass $m$ come directly from the system \eqref{eq:tov:tovsys}.
@@ -591,10 +593,10 @@ It relies on the additional property of Sturm-Liouville problems that
 \begin{equation}
 	\text{the $N$-th eigenmode $U_N(r)$ has exactly $N$ internal zeros for $0 < r < R$} .
 \end{equation}
-From their definitions \TODO{ref} and criterion \eqref{eq:nstars:stability_pressure_energy_density}, $\gamma$, and hence $\Pi$ and $W$, are positive for all $r$.
+From their definitions \eqref{eq:nstars:sturm_liouville_coefficients} and \eqref{eq:nstars:adiabatic_index} and criterion \eqref{eq:nstars:stability_pressure_energy_density}, $\gamma$, and hence $\Pi$ and $W$, are positive for all $r$.
 By rewriting the Sturm-Liouville equation \eqref{eq:nstars:sturm_liouville} in the form
 \begin{equation}
-, 
+\frac{\left[ \Pi(r) U'(r) \right]'}{U(r)} = - \left[ Q(r) + \omega_n^2 W(r) \right] ,
 \end{equation}
 it is evident that increasing $\omega^2$ increases the oscillatory behavior of $U(r)$.
 Crucially, then, the higher the eigenmode index $N$, the greater the value of $\omega^2$ must necessarily be.
