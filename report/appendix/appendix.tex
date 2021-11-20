@@ -705,6 +705,7 @@ We will look at the \textbf{flow} of fluid elements along stream lines $x(\tau)$
 \begin{equation}
 	T_{\mu \nu} = \frac{1}{c^2} U_\mu U_\nu (\epsilon + P) - g_{\mu \nu} P .
 \end{equation}
+\TODO{show what this tensor really means in flat minkowski space?}
 
 \section{Conservation of baryon number}
 
@@ -732,6 +733,7 @@ Since $U^0 = c$ in our reference frame, we make no mistake by including $\pdv{U^
 The rate of change is then given by the tensorial law
 \begin{equation}
 	\odv{V}{\tau} = V \pdv{u^\alpha}{x^\alpha} = V \nabla_\mu U^\mu .
+\label{eq:relfluid:volume_rate_change}
 \end{equation}
 By the equivalence principle and its tensorial transformation properties, the same law holds in any spacetime and in any reference frame.
 
@@ -739,15 +741,17 @@ Like the volume element, the baryon number density $n(x(\tau))$ can also change 
 In contrast, the total \textbf{baryon number} $N = n V$ must be conserved, as expressed by
 \begin{equation}
 	\odv*{\left( n V \right)}{\tau} = 0 .
+\label{eq:relfluid:baryon_number_constant}
 \end{equation}
 It will be very useful to rewrite this law in multiple different ways.
-First, let us differentiate it with the product rule and insert the volume element rate of change \TODO{ref}.
+First, let us differentiate it with the product rule and insert the volume element rate of change \eqref{eq:relfluid:volume_rate_change}.
 Then the conservation law is equivalent to
 \begin{equation}
 	0 = \frac{1}{V} \odv*{\left( n U^\mu \right)}{\tau}
 	  = \odv{n}{\tau} + \frac{n}{V} \odv{V}{\tau}
 	  = U^\mu \nabla_\mu n + n \nabla_\mu U^\mu
 	  = \nabla_\mu \left( n u^\mu \right) ,
+\label{eq:relfluid:baryon_number_divergence}
 \end{equation}
 which has the elegant interpretation that there is no flux of the baryon number density current $n u^\mu$ out of the volume element.
 We can use this result to rewrite the conservation law in a second way, namely
@@ -755,6 +759,7 @@ We can use this result to rewrite the conservation law in a second way, namely
 	\odv{n}{\tau} = \odv{x^\mu}{\tau} \pdv{n}{x^\mu}
 	              = U^\mu \nabla_\mu n
 	              = -n \nabla_\mu U^\mu .
+\label{eq:relfluid:baryon_number_rate_change}
 \end{equation}
 
 \section{Conservation of energy and Euler equation}
@@ -766,6 +771,7 @@ The conservation of energy-momentum $\nabla_\mu T^{\mu \nu} = 0$ implies
 	  &= \nabla_\mu \left[ \frac{1}{c^2} U_\mu U_\nu (\epsilon + P) - g_{\mu \nu} P \right] \\
 	  &= \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( U^\nu \nabla_\mu U^\mu + U^\mu \nabla_\mu U^\nu \Big) + U^\mu U^\nu \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\nu P . \\
 \end{split}
+\label{eq:relfluid:conservation_energy_momentum}
 \end{equation}
 
 From this, it is possible to derive two separate results by \emph{projecting} the part of the vector $\nabla_\mu T^{\mu \nu}$ that is parallel and and orthogonal to $U^\mu$.
@@ -787,6 +793,7 @@ From these expressions, it is convenient to define the parallel and orthogonal \
 	\left(P_\parallel\right) \indices{^\alpha_\beta} = \frac{U^\alpha U_\beta}{U^\mu U_\mu}
 	\qquad \text{and} \qquad
 	\left(P_\perp\right) \indices{^\alpha_\beta} = \left( \delta\indices{^\alpha_\beta} - \frac{U^\alpha U_\beta}{U^\mu U_\mu} \right)
+\label{eq:relfluid:projection_tensors}
 \end{equation}
 that project out the parallel part $V_\parallel^\alpha = \left(P_\parallel\right)\indices{^\alpha_\beta} V^\beta$ and $V_\perp^\alpha = \left(P_\perp\right)\indices{^\alpha_\beta} V^\beta$ of the vector $V^\alpha$.
 These projectors are valid for any normalization $U^\mu U_\mu$.
@@ -795,7 +802,7 @@ With our conventions and choice of units, $U^\mu U_\mu = c^2$.
 \subsection{Energy conservation}
 
 First, let us see what the parallel part of $\nabla_\mu T^{\mu \nu} = 0$ gives us.
-Instead of multiplying it my $\left(P_\parallel\right)\indices{^\alpha_\nu} = U^\alpha U_\nu /c^2$, however, let us only multiply by $U_\nu$.
+Instead of multiplying it my $\left(P_\parallel\right)\indices{^\alpha_\nu} = U^\alpha U_\nu /c^2$, however, let us only multiply by $U_\nu$ -- the result must still be equal to zero.
 Then we obtain
 \begin{equation}
 \begin{split}
@@ -803,8 +810,14 @@ Then we obtain
 	  &= \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( U_\nu U^\nu \nabla_\mu U^\mu + U^\mu U_\nu \nabla_\mu U^\nu \Big) + U^\mu U_\nu U^\nu \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\nu P . \\
 \end{split}
 \end{equation}
-We can simplify this by using both $U^\nu U_\nu = c^2$ and its implication $\nabla_\mu \left( U^\nu U_\nu \right) = 2 U^\nu \nabla_\mu U^\nu = 0$.
-This gives us
+We can simplify this equation by using
+\begin{equation}
+	U^\nu U_\nu = c^2 
+	\qquad \text{and its implication} \qquad
+	\nabla_\mu \left( U^\nu U_\nu \right) = 2 U^\nu \nabla_\mu U^\nu = 0 .
+\label{eq:relfluid:tricks}
+\end{equation}
+This kills one term in the square brackets and multiplies the two others by $c^2$, leaving us with
 \begin{equation}
 \begin{split}
 	  0 &= \Big(\epsilon + P \Big) \nabla_\mu U^\mu + U^\mu \nabla_\mu \Big( \epsilon + P \Big) - U_\nu \nabla^\nu P \\
@@ -817,13 +830,14 @@ Then we obtain
 	0 = \nabla_\mu \bigg( \epsilon \, U^\mu \bigg) + P \, \nabla_\mu U^\mu .
 \end{equation}
 This is in fact the \textbf{relativistic equation of energy conservation}!
-In the Newtonian limit \TODO{ref}, the pressure term is negligible and we obtain the familiar continuity equation
+In the Newtonian limit \eqref{eq:weak_field_limit:small_pressure}, the pressure term is negligible and we obtain the familiar continuity equation
 \begin{equation}
 	0 = \nabla_\mu \bigg( \epsilon \, u^\mu \bigg) = \pdv{\epsilon}{t} - \vec{\nabla} \cdot \Big( \epsilon \vec{v} \Big) .
+\label{eq:relfluid:energy_conservation}
 \end{equation}
 
 It is useful to have the Euler equation in a form that involves derivatives $\odv{}/{\tau} = U^\mu \nabla_\mu$ along a streamline.
-By repeated application of the product rule and substitution of baryon number conservation \TODO{ref}, we can rewrite \TODO{ref} as
+By repeated application of the product rule and substitution of baryon number conservation \eqref{eq:relfluid:baryon_number_rate_change}, we can rewrite \eqref{eq:relfluid:energy_conservation} as
 \begin{equation}
 \begin{split}
 	0 &= U^\mu \nabla_\mu \epsilon + (\epsilon+P) \nabla_\mu U^\mu  \\
@@ -832,13 +846,14 @@ By repeated application of the product rule and substitution of baryon number co
 	  &= \odv{\epsilon}{\tau} - \frac{\epsilon+P}{n} U^\mu \nabla_\mu n \\
 	  &= \odv{\epsilon}{\tau} - \frac{\epsilon+P}{n} \odv{n}{\tau} . \\
 \end{split}
+\label{eq:relfluid:energy_conservation_rewritten}
 \end{equation}
 This is in the form we wanted.
 
 \subsection{Euler equation}
 
 Second, let us inspect the component of $\nabla_\mu T^{\mu \nu}$ orthogonal to $U^\mu$ using the orthogonal projection tensor $\left(P_\perp\right)\indices{^\alpha_\nu}$.
-A straightforward calculation using the same tricks \TODO{ref} shows that
+A straightforward calculation using the same tricks \eqref{eq:relfluid:tricks} shows that
 \begin{equation}
 \begin{split}
 	0 &=      \left(P_\perp\right)\indices{^\alpha_\nu} \nabla_\mu T^{\mu \nu} \\
@@ -849,7 +864,9 @@ A straightforward calculation using the same tricks \TODO{ref} shows that
 	  &=      \frac{1}{c^2} \Big( \epsilon + P \Big) U^\mu \nabla_\mu U^\alpha - \nabla^\alpha P + \frac{1}{c^2} U^\alpha U^\mu \nabla_\nu P .
 \end{split}
 \end{equation}
-This is the \textbf{relativistic Euler equation}, for in the Newtonian limit \TODO{ref}, the three spatial indices reduce to the Euler equation
+This is the \textbf{relativistic Euler equation}. 
+In the Newtonian limit $U^\mu = (c, \vec{v})$ with small velocity \eqref{eq:weak_field_limit:small_velocity} and pressure \eqref{eq:weak_field_limit:small_pressure}, the rightmost term is negligible because it contains the product of two velocities, and so is the pressure contribution in the leftmost term.
+Then the three spatial indices $\alpha = \{1, 2, 3\}$ reduce to the non-relativistic Euler equation
 \TODO{also get gravitational acceleration in the perturbation?}
 \begin{equation}
 	\rho \left[ \pdv{\vec{v}}{t} + \left( \vec{v} \cdot \vec{\nabla} \right) \vec{v} \right] = -\nabla P .
@@ -873,7 +890,7 @@ Explicitly writing out the differentials and cancelling the constant $N$, we fin
 \begin{equation}
 	\dif \epsilon = \frac{\epsilon + P}{n} \dif n + n T \dif s .
 \end{equation}
-To relate this to our flow, combine baryon number conservation \TODO{ref1} with energy conservation \TODO{ref2} into
+To relate this to our flow, combine baryon number conservation \eqref{eq:relfluid:baryon_number_rate_change} with energy conservation in the form \eqref{eq:relfluid:energy_conservation_rewritten} into
 \begin{equation}
 	\odv{\epsilon}{\tau} = \frac{\epsilon + P}{n} \odv{n}{\tau} .
 \end{equation}
