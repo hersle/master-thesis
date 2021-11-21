@@ -1,0 +1,94 @@
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction} % but still display in TOC (see https://tex.stackexchange.com/a/222961)
+
+Since the dawn of mankind, humans have gazed upon the night sky with great curiosity of what lies out in the universe.
+\begin{itemize}
+\item Establish the importance of studying stars from an existential point of view.
+\item Give a brief historical review of how our view of stars and the universe has changed, from the nonscientific views of the earliest days to the scientific viewpoint of the modern age.
+\end{itemize}
+
+After the discovery of the neutron in 1933, scientists soon proposed the existence of stars consisting of neutrons.
+\begin{itemize}
+\item Explain why neutron stars are plausible, from the original ``ignorant'' point of view before one has a good theoretical understanding of neutron stars.
+\item Review the hypotheses that came from the initial theoretical work on neutron stars, before any observation was made.
+\end{itemize}
+
+In 1967, Jocelyn Bell and Antony Hewish discovered the first known neutron star.
+\begin{itemize}
+\item Review observations that have been made from neutron stars up until today.
+\item Connect the observations made to the theoretical hypotheses from the last paragraph.
+\end{itemize}
+
+Today, scientists have a good understanding of neutron stars.
+\begin{itemize}
+\item Explain the modern, ``perfect'' understanding of neutron stars, that have not been covered by the ``naive'' view in the last two paragraphs.
+\item Explain that neutron stars are formed by supernova explosions.
+\item Explain that neutron stars are the smallest and densest class of stars that have been observed.
+\item Explain that neutron stars are kept stable by the balance between gravitational attraction and Pauli pressure.
+\end{itemize}
+
+Being one of the most exotic types of objects humanity has observed, neutron stars are a gateway to developing our understanding of new, hypothetical astronomical objects.
+\begin{itemize}
+\item Explain why it is important to understand neutron stars first (even if others already understand them), in order to do new and interesting work.
+\item Explain the possibility that neutron stars can develop into even more, currently hypothetical classes of stars, such as quark stars.
+\end{itemize}
+
+\section*{Outline of this thesis}
+
+In this thesis, we develop the theoretical tools necessary to study stars made of free neutrons, calculate their mass-radius curve and study their stability.
+\begin{itemize}
+\item State the content of this thesis, distinguishing between the theoretical tools we develop, and the results that we obtain by calculations with these tools.
+\item Although these are not new findings but rather a review, this is our ``niche''.
+\item To ``occupy our niche'', this paragraph should explain \emph{why} this particular content is the most natural buildup for a thesis on neutron stars.
+\end{itemize}
+
+In \textbf{\cref{chap:tov}}, we derive the \textbf{Tolman-Oppenheimer-Volkoff system of equations}
+\begin{align*}
+	\odv{P}{r} &= -\frac{G m \epsilon}{r^2 c^2} \left( 1 + \frac{P}{\epsilon} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \\
+	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon}{c^2} ,
+\end{align*}
+from the theory of general relativity.
+\begin{itemize}
+\item Explain why Newtonian gravity does not suffice to study stars, and that the relativistic effects of Einstein's theory is needed.
+\item Explain the importance of the TOV equations for the study of \emph{any} kind of star.
+\item Explain that the three unknowns in the equation are the pressure $P$, mass $m$ and energy density $\epsilon$.
+      Since there are only two equations, we must find an additional one to solve for the unknowns.
+      This is the equation of state $\epsilon = \epsilon(P)$, which is outside the scope of general relativity and must be found by statistical physics and quantum theory.
+\end{itemize}
+
+In \textbf{\cref{chap:tft}}, we will study \textbf{thermal field theory} -- the formalism needed to find the effects of quantum fields at nonzero temperature.
+\begin{itemize}
+\item Explain that thermal field theory is the ``missing link'' needed to find $\epsilon$ in the Tolman-Oppenheimer-Volkoff equation.
+\item Present the buildup of this chapter: the partition function is needed for finding expectation values of thermodynamic variables, the partition function can be found by a path integral.
+\item We first show how one does the path integral for bosons with complex numbers, then introduce anticommuting Grassmann numbers to find the path integral for fermions.
+\end{itemize}
+
+In \textbf{\cref{chap:nstars}}, we finally put together the pieces of \cref{chap:tov} and \cref{chap:tft} and study \textbf{neutron stars}.
+\begin{itemize}
+\item Make very clear that while chapter 1 and 2 ``only'' develop theoretical tools, chapter 1+2=3 puts the tools to work together and constitutes our ``results'' chapter.
+\item Having found the partition function for free fermions in \cref{chap:tft}, we find the equation of state $\epsilon = \epsilon(P)$ for a gas of free neutrons.
+\item Then we insert the equation of state into the Tolman-Oppenheimer-Volkoff equations and solve them, which yield the mass-radius-curve of neutron stars parametrized by their central pressure.
+\item This is our ``results'', then we compare them to observations and earlier theoretical work.
+\item Finally, we study the stability of the stars we have found.
+\end{itemize}
+
+In \textbf{\cref{chap:gr}}, we give a comprehensive \textbf{review of the theory of general relativity}.
+\begin{itemize}
+\item Say that this appendix enables readers unfamiliar with general relativity to understand all aspects of it that are needed for our purposes.
+\end{itemize}
+
+In \textbf{\cref{chap:relfluid}}, we study \textbf{relativistic fluid mechanics}.
+\begin{itemize}
+\item Assuming familiarity with general relativity, we derive all results needed to study the stability of stars.
+\end{itemize}
+
+In \textbf{\cref{chap:matsum}}, we describe the technique of \textbf{Matsubara frequency summation}.
+\begin{itemize}
+\item This is an elegant mathematical tool that is extremely useful to perform calculations in thermal field theory.
+\item Say that this summation on its own is purely mathematical, and that the results thereof can be considered as mathematical identities only, when they are applied in the chapter on thermal field theory.
+\item However, note that the results of the mathematical identities are of great physical interest, as it is precisely these identities that give rise to the bosonic and fermionic distributions.
+\end{itemize}
+
+In \textbf{\cref{chap:integrals}}, we list all integrals used throughout this thesis with pure proofs.
+
+In \textbf{\cref{chap:code}}, we list all source code used for numerical work in this thesis.
