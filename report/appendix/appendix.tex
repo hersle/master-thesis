@@ -865,6 +865,7 @@ A straightforward calculation using the same tricks \eqref{eq:relfluid:tricks} s
 	  &-      \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) U^\alpha \nabla_\mu U^\mu + U^\alpha U^\mu \nabla_\mu \Big( \epsilon + P \Big) - U^\alpha U^\nu \nabla_\nu P \bigg] \\
 	  &=      \frac{1}{c^2} \Big( \epsilon + P \Big) U^\mu \nabla_\mu U^\alpha - \nabla^\alpha P + \frac{1}{c^2} U^\alpha U^\mu \nabla_\nu P .
 \end{split}
+\label{eq:relfluid:euler_equation}
 \end{equation}
 This is the \textbf{relativistic Euler equation}. 
 In the Newtonian limit $U^\mu = (c, \vec{v})$ with small velocity \eqref{eq:weak_field_limit:small_velocity} and pressure \eqref{eq:weak_field_limit:small_pressure}, the rightmost term is negligible because it contains the product of two velocities, and so is the pressure contribution in the leftmost term.
@@ -876,6 +877,7 @@ Then the three spatial indices $\alpha = \{1, 2, 3\}$ reduce to the non-relativi
 
 
 \subsection{Adiabadicity}
+\label{sec:relfluid:adiabadicity}
 
 The flow of our perfect fluid is adiabatic, meaning there is no transfer of heat between fluid elements.
 One way to understand this is that the energy-momentum tensor \TODO{ref} is diagonal, and any exchange of heat would have to come from energy flux terms, which are represented by off-diagonal elements.
@@ -908,6 +910,7 @@ In our case,
 	\gamma = \frac{n}{P} \left( \pdv{P}{n} \right)_S
 	       = \frac{n}{P} \frac{\odv{P}/{\tau}}{\odv{n}/{\tau}}
 	       = \frac{\epsilon+P}{P} \odv{P}{\epsilon}
+\label{eq:relfluid:adiabadicity}
 \end{equation}
 
 

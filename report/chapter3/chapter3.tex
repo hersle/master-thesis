@@ -496,52 +496,248 @@ The criterion \eqref{eq:nstars:stability_mass_pressure} shows that the stars loc
 
 \subsection{General analysis}
 
+\TODO{where to put this?}
+Then he expanded the field equations to first order in the deviations $\delta f$ and simplified them by subtracting the equilibrium equations \eqref{eq:nstars:field_equations_equilibrium}.
+Chandrasekhar's original paper \cite{ref:chandrasekhar_stability} is very compact and does not include many details of this calculation.
+A more verbose outline can be found in \cite[§ 26.4d]{ref:mtw}, which we will follow here.
+\TODO{but we dont do all details}
+
+
 The arguments presented above were necessary, but not sufficient for stellar stability.
 Let us analyze the stability of the stars in a more rigorous way by finding a mathematical definition of stability.
 
-In \cref{sec:einstein_to_tov}, we showed that in the spherically symmetric metric \eqref{eq:tov:metric} for a perfect fluid with energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid} in equilibrium with four-velocity $U^\mu = (U^0, \vec{0})$, the Einstein field equations \eqref{eq:einstein} reduced to
-\begin{subequations}
-\begin{align}
-	\frac{1}{r^2} e^{-2 \beta_0} \left( 2 r \beta_0' - 1 + e^{2 \beta_0} \right)                         &= \frac{8 \pi G}{c^4} \epsilon_0        , \\
-	\frac{1}{r^2} e^{-2 \beta_0} \left( 2 r \alpha_0' + 1 - e^{2 \beta_0} \right)                              &= \frac{8 \pi G}{c^4} P_0         , \\
-	e^{-2 \beta_0} \left( \alpha_0'' + (\alpha_0')^2 - \alpha_0' \beta_0' + \frac{1}{r} (\alpha_0' - \beta_0') \right) &= \frac{8 \pi G}{c^4} P_0,
-\end{align}
-\label{eq:nstars:field_equations_equilibrium}
-\end{subequations}
-where we have used the subscript $0$ to indicate that these are all quantities in \emph{equilibrium}.
-Suppose instead that the fluid is slightly perturbed from equilibrium with four-velocity $U^\mu = (U^0, U^1, 0, 0)$, now with non-zero radial component $U^1$.
-Then the field equations change, and their solutions $\alpha(r,t)$, $\beta(r,t)$, $P(r,t)$ and $\epsilon(r,t)$ gains an additional time dependence.
-Chandrasekhar found the new field equations, wrote the solutions
+In \cref{sec:einstein_to_tov}, we showed that the Einstein field equations \eqref{eq:einstein} reduced to
+\TODO{start with metric}
+\begin{subequations}%
+\begin{align}%
+	\frac{1}{r^2} e^{-2 \beta_0} \left( 2 r \beta_0' - 1 + e^{2 \beta_0} \right)  &= \frac{8 \pi G}{c^4} \epsilon_0   && \left( G_{00} = \frac{8 \pi G}{c^4} T_{00} \right) , \label{eq:nstars:field_equations_equilibrium_00} \\
+	\frac{1}{r^2} e^{-2 \beta_0} \left( 2 r \alpha_0' + 1 - e^{2 \beta_0} \right) &= \frac{8 \pi G}{c^4} P_0          && \left( G_{11} = \frac{8 \pi G}{c^4} T_{11} \right) , \label{eq:nstars:field_equations_equilibrium_11} \\
+	\alpha_0'                                                                     &= \frac{-1}{\epsilon_0 + P_0} P_0' && \left( \nabla_\mu T\indices{^\mu_1} = 0 \right)    . \label{eq:nstars:field_equations_equilibrium_T}
+	%e^{-2 \beta_0} \left( \alpha_0'' + (\alpha_0')^2 - \alpha_0' \beta_0' + \frac{1}{r} (\alpha_0' - \beta_0') \right) &= \frac{8 \pi G}{c^4} P_0,
+\end{align}%
+\label{eq:nstars:field_equations_equilibrium}%
+\end{subequations}%
+for a perfect fluid with energy-momentum
+\begin{equation}
+	T_{\mu \nu} = \frac{1}{c^2} U_\mu U_\nu (\epsilon_0 + P_0) - g_{\mu \nu} P_0
+	\quad \text{where} \quad
+	P_0 = P_0(r), \epsilon_0 = \epsilon_0(r) ,
+\label{eq:nstars:energy_momentum}
+\end{equation}
+in \emph{equilibrium} with four-velocity
+\begin{equation}
+	U^\mu = (U^0, 0,0,0) ,
+\label{eq:nstars:velocity_equilibrium}
+\end{equation}
+in the spherically symmetric metric
+\begin{equation}
+	\dif s^2 = e^{2 \alpha_0(r)} \dif t^2 - e^{2 \beta_0(r)} \dif r^2 - r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
+\end{equation}
+
+Now we suppose that the fluid is \emph{no longer in equilibrium}, \TODO{better word?} but rather has the four-velocity
+\begin{equation}
+	U^\mu = (U^0, U^1, 0, 0)
+	\quad
+	\text{with a non-zero radial component $U^1$.}
+\label{eq:nstars:velocity_unstable}
+\end{equation}
+By the spherical symmetry, we still assume there is no angular velocity component.
+The metric should still be spherically symmetric, but $\alpha_0(r) \rightarrow \alpha(r,t)$ and $\beta_0(r) \rightarrow \beta(r,t)$ are promoted to time-dependent functions, and therefore so are the pressure $P_0(r) \rightarrow P(r,t)$ and energy density $\epsilon_0(r) \rightarrow \epsilon(r,t)$.
+We therefore have the new metric
+\begin{equation}
+	\dif s^2 = e^{2 \alpha(t, r)} \dif t^2 - e^{2 \beta(t, r)} \dif r^2 - r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
+\label{eq:nstars:metric_unstable}
+\end{equation}
+To make calculations manageable, we assume that the fluid is only slightly \emph{perturbed} from equilibrium.
+Following \cite{ref:chandrasekhar_stability}, our strategy will be to employ perturbation theory by writing the new functions as the small perturbations 
 \begin{equation}
 \begin{aligned}
-	\alpha   (r, t) &= \alpha_0  (r) + \alpha_1  (r, t), & \qquad \qquad
-	\beta    (r, t) &= \beta_0   (r) + \beta_1   (r, t), \\
-	P        (r, t) &= P_0       (r) + P_1       (r, t), & \qquad \qquad
-	\epsilon (r, t) &= \epsilon_0(r) + \epsilon_1(r, t). \\
+	\alpha   (r, t) &= \alpha_0  (r) + \delta \alpha  (r, t), & \qquad \qquad
+	\beta    (r, t) &= \beta_0   (r) + \delta \beta   (r, t), \\
+	P        (r, t) &= P_0       (r) + \delta P       (r, t), & \qquad \qquad
+	\epsilon (r, t) &= \epsilon_0(r) + \delta \epsilon(r, t), \\
 \end{aligned}
+\label{eq:nstars:perturbation_expansion}
 \end{equation}
-as small deviations $f_1(r,t)$ from their equilibria counterparts $f_0(r)$, expanded the field equations to first order in the deviations and subtracted the equilibrium equations \eqref{eq:nstars:field_equations_equilibrium} to simplify the system.
-Detailed calculation can be found in \cite{ref:stability_multi_fluid}, for example.
-Defining $v = e^\alpha U^1$, he then obtained the system \cite{ref:chandrasekhar_stability}
+around equilibrium, and calculating the perturbations to first order.
+
+The fundamental quantity that we want to determine is the displacement $\xi(t, r)$ of fluid elements from the unperturbed to the perturbed system.
+Evolution of this quantity should give us insight into how the stellar material responds to perturbations.
+Like $\delta \alpha$, $\delta \beta$, $\delta P$ and $\delta \epsilon$, we assume $\xi$ be a small quantity, and we will calculate to first order in all these five quantites.
+Let us define $\xi(t, r)$ it so that if we attach a tracker to some fixed fluid element in the star, then
+\TODO{I should not mention $\xi$ before it is defined}
+\begin{equation}
+\begin{split}
+	\text{      in the unperturbed star, } & \text{the fluid element is at $\big(ct,r,\theta,\phi\big)$,} \\
+	\text{while in the   perturbed star, } & \text{the fluid element is at $\big(ct,r+\xi(r,t),\theta,\phi\big)$.} \\
+\end{split}
+\end{equation}
+What is the relation between the fluid element displacement $\xi(r,t)$ and the fluid's four-velocity?
+By our definition, $\pdv{\xi}/{t} = \odv{r}/{t}$, where the latter derivative is the derivative of the fluid element's radial coordinate taken \emph{along its world line} -- or \emph{stream line} -- $x(\tau)$.
+The chain rule then gives
+\begin{equation}
+	\dot\xi = \pdv{\xi}{t} = \odv{r}{t} = \frac{\odv{r}/{\tau}}{\odv{t}/{\tau}} = c \, \frac{U^1}{U^0} .
+\end{equation}
+We can determine $U^0$ and $U^1$ by combining this equation the normalization condition $U_\mu U^\mu = e^{2 \alpha} \left( U^0 \right)^2 - e^{2 \beta} \left( U^1 \right)^2 = c^2$.
+To first order in $\xi$ and $\delta \alpha$, we find the components
+\begin{equation}
+	U^0%=       c \, \frac{U^1}{\dot\xi}
+	    =       c \, \frac{e^{-\alpha}}{\sqrt{1 - \left( \frac{e^\beta \dot\xi}{c e^\alpha} \right)^2 }}
+	    \taylor c \, e^{-\alpha_0} \, (1 - \delta \alpha)
+	\qquad \text{and} \qquad
+	U^1 =        \frac{e^{-\alpha}}{\sqrt{1 - \left( \frac{e^\beta \dot\xi}{c e^\alpha} \right)^2 }} \, \dot\xi
+	    \taylor  e^{-\alpha_0} \dot\xi .
+\end{equation}
+
+In the perturbed system, the field equations \eqref{eq:nstars:field_equations_equilibrium} also change and must be rederived from the Einstein equations \eqref{eq:einstein} in the new metric \eqref{eq:nstars:metric_unstable} subject to the energy-momentum \eqref{eq:nstars:energy_momentum} with the non-equilibrium velocity \eqref{eq:nstars:velocity_unstable}.
+As always, the field equations follow from the machinery of \cref{eq:def_christoffel,eq:def_riemann_tensor,eq:def_ricci_tensor,eq:def_ricci_scalar}.
+This time, we calculate the field equations to first order in the small quantities and subtract the equilibrium equations \eqref{eq:nstars:field_equations_equilibrium} to simplify them.
+A tedious, but in principle straightforward calculation (although in practice perhaps not), reveals that to first order in the perturbations, two of the new field equations are
 \begin{subequations}
 \begin{align}
-	(2 r e^{-2 \beta_0} \beta_1)' &= \frac{8 \pi G}{c^4} \epsilon_1 , \\
-	r e^{-2 \beta_0} (2 \alpha_1' - 4 \alpha_0' \beta_1) &= 2 e^{-2 \beta_0} \beta_1 + \frac{8 \pi G}{c^4} r^2 P_1 , \\
-	e^{-2 \beta_0} \dot{\beta_1} &= -\frac{8 \pi G}{c^4} (P_0 + \epsilon_0) r v ,
+	%\delta \beta   &= - \frac{4 \pi G}{c^4} (\epsilon_0 + P_0) r e^{2 \beta_0} \xi                                                                                                && \left( G_{01} = \frac{8 \pi G}{c^4} T_{01} \right) , \\
+	%\delta \alpha' &= \frac{r}{2 e^{-2 \beta_0}} \left[ \frac{8 \pi G}{c^4} \delta P + 2 e^{-2 \beta_0} \left( \frac{2}{r} \alpha_0' + \frac{1}{r^2} \right) \delta \beta \right] && \left( G_{11} = \frac{8 \pi G}{c^4} T_{11} \right) .
+	%%\delta \alpha' &= 4 \pi \left\{ -\gamma P_0 \frac{e^{2 \beta_0}}{r} (r^2 e^{-\alpha_0} \xi)' + \left[ P_0' r - (\epsilon_0 + P_0) e^{2 \beta_0} \xi \right] \right\}
+	%
+	\frac{2}{r} e^{-(\beta_0 + \alpha_0)} \dot{\delta\beta}                                                                     &= - \frac{8 \pi G}{c^4} (\epsilon_0 + P_0) e^{\beta_0 - \alpha_0} \dot\xi                         && \left( G_{01} = \frac{8 \pi G}{c^4} T_{01} \right) , \label{eq:nstars:field_equations_unstable_01} \\
+	\frac{2}{r} e^{-2\beta_0} \delta\alpha' - 2 e^{-2 \beta_0} \left( \frac{2}{r} \alpha_0' + \frac{1}{r^2} \right) \delta\beta &= \frac{8 \pi G}{c^4} \delta P                                                                    && \left( G_{11} = \frac{8 \pi G}{c^4} T_{11} \right) . \label{eq:nstars:field_equations_unstable_11}
 \end{align}
+\TODO{integrate first with time!}
+\Cref{eq:nstars:field_equations_unstable_01,eq:nstars:field_equations_unstable_11} are analogous to \cref{eq:nstars:field_equations_equilibrium_00,eq:nstars:field_equations_equilibrium_11}.
+What is the third equation corresponding to \cref{eq:nstars:field_equations_equilibrium_T}, which we found from conservation of energy-momentum $\nabla_\mu T^{\mu \nu} = 0$?
+In \cref{chap:relfluid}, we study relativistic fluid mechanics and start from $\nabla_\mu T^{\mu \nu} = 0$ to derive the relativistic generalization of the Euler equation,
+\begin{equation*}
+	  \frac{1}{c^2} \Big( \epsilon + P \Big) U^\mu \nabla_\mu U^\alpha = \nabla^\alpha P - \frac{1}{c^2} U^\alpha U^\mu \nabla_\nu P
+	  \qquad \left( \nabla_\mu T^{\mu \nu} = 0 \right) .
+\end{equation*}
+By inserting the new four-velocity \eqref{eq:nstars:velocity_unstable} and the expansions \eqref{eq:nstars:perturbation_expansion} into the relativistic Euler equation and performing calculations in the new metric \eqref{eq:nstars:metric_unstable} to first order, one finds
+\TODO{ref program?}
+\begin{equation}
+	\left( \epsilon_0 + P_0 \right) e^{2 \beta_0 - 2 \alpha_0} \ddot \xi = -c^2 \left[ \delta P' - \left( \delta \epsilon + \delta P \right) \alpha_0' - \left( \epsilon_0 + P_0 \right) \delta \alpha' \right] .
+\label{eq:nstars:field_equations_unstable_T}
+\end{equation}
+\label{eq:nstars:field_equations_unstable}%
 \end{subequations}
-From the conservation $\nabla_\mu T^{\mu \nu} = 0$ from energy-momentum, he also obtained the complementary equation
+The system \eqref{eq:nstars:field_equations_unstable} consists of \emph{three} equations for the \emph{five} unknowns $\xi$, $\delta P$, $\delta \epsilon$, $\delta \alpha$ and $\delta \beta$.
+We will complete the set by finding two additional equations from our study of relativistic fluid mechanics in \cref{chap:relfluid}.
+
+To make use of the results of \cref{chap:relfluid} in our context, we must first learn to distinguish between \emph{Eularian} and \emph{Lagrangian} changes in fluids.
+The quantities
+\begin{subequations}
 \begin{equation}
-	e^{2(\beta_0 - \alpha_0)} (P_0 + \epsilon_0) \dot{v} + P_1' + (P_0 + \epsilon_0) \alpha_1' + (P_1 + \epsilon_1) \alpha_0' = 0 .
+	\delta f(r, t) = f(r, t) - f_0(r)
+\label{eq:nstars:change_eularian}
 \end{equation}
-Finally, he defines $\dot{\xi} = v$ to distinguish the coordinate $r$ from the function $\xi(r, t)$ and assumes a solution on the form
+that we defined in \cref{eq:nstars:perturbation_expansion} are \textbf{Eularian changes} in the quantities $f$, measured by an observer who is sitting duck at some fixed position $x^\mu = (ct, r, \theta, \phi)$.
+In contrast, we define the \textbf{Lagrangian changes}
 \begin{equation}
-	\xi(r,t) = \frac{e^\alpha}{r^2} U_n(r) e^{i \omega_n t} .
+	\Delta f(r,t) = f(r+\xi(r,t), t) - f_0(r)
+\label{eq:nstars:change_lagrangian}
 \end{equation}
-Then $\xi(r,t)$ is a solution to the Einstein equations if $U_n(r)$ and the corresponding eigenvalue $\omega_n^2$ solves the \textbf{Sturm-Liouville problem}
+\end{subequations}
+as the changes in the same quantities, but measured by an observer who is moving \emph{with} the fluid element as it flows from $r$ to $r + \xi(r,t)$.
+One can always be converted to the other through the Taylor expansion
 \begin{equation}
-	\odv*{ \left[ \Pi(r) \odv{U_n(r)}{r} \right] }{r} + \left[ Q(r) + \omega_n^2 W(r) \right] U_n(r) = 0 ,
-\label{eq:nstars:sturm_liouville}
+\begin{split}
+	\Delta f(r,t) &\taylor f(r,t) + \xi(r,t) \, f'(r,t) - f_0(r) \\
+	              &= \delta f(r,t) + \xi(r,t) \, f'(r,t) .
+\end{split}
+\label{eq:nstars:delta_taylor_expansion}
+\end{equation}
+To summarize, $\delta$ measures changes at a fixed position of different fluid elements, while $\Delta$ measures changes of fixed fluid elements at different positions.
+The first stems from perturbation theory, and the second is natural to use in fluid mechanics.
+
+In our study of relativistic fluid mechanics in \cref{chap:relfluid}, we require that the number of baryons in a fluid element must be conserved in flow.
+By eliminating the baryon number density with \cref{eq:relfluid:baryon_number_rate_change}, the equation of energy conservation \eqref{eq:relfluid:energy_conservation_rewritten} is equivalent to
+\TODO{say that we eliminate baryon number density}
+\begin{equation}
+	\odv{\epsilon}{\tau} = -(\epsilon+P) \nabla_\mu U^\mu 
+\label{eq:nstars:energy_conservation}
+\end{equation}
+First, note that because the equilibrium energy density $\epsilon_0(r)$ is independent of time, $\odv{\epsilon}/{\tau} = \odv{\Delta \epsilon}/{\tau}$.
+At first sight, it may sound more straightforward to write $\odv{\delta \epsilon}/{\tau}$ instead of $\odv{\Delta \epsilon}/{\tau}$.
+However, since the derivative $\odv{}/{\tau}$ is along the stream line of the fluid element, the Lagrangian changes are more accurate than the Eularian changes to first order in perturbation theory.
+To first order in the small quantities, only the time component contributes when applying the chain rule to the left side
+\begin{equation}
+	\odv{\epsilon}{\tau} =
+	\odv{\Delta \epsilon}{\tau} =
+	U^\mu \nabla_\mu \Delta \epsilon \taylor
+	U^0 \pdv{\Delta \epsilon}{t} = U^0 \dot{\Delta \epsilon} =
+	e^{-\alpha_0} \dot{\Delta \epsilon} .
+\end{equation}
+On the right side, we can calculate the quantity $\nabla_\mu U^\mu$ with the identity
+\begin{equation}
+\begin{split}
+	\nabla_\mu U^\mu &= \frac{1}{\sqrt{-\det{g}}} \partial_\mu \left( \sqrt{-g} \, U^\mu \right) \\
+	                 &= e^{-\alpha_0} \left[ \dot{\delta\beta} + \frac{e^{-\beta_0}}{r^2} \left( e^{\beta_0} r^2 \dot\xi \right)' \right] .
+\end{split}
+\end{equation}
+To first order in the small quantities, \cref{eq:nstars:energy_conservation} then says
+\begin{equation}
+	\dot{\Delta \epsilon} = - \left( \epsilon_0 + P_0 \right) \left[ \dot{\delta\beta} + \frac{e^{-\beta_0}}{r^2} \left( e^{\beta_0} r^2 \dot\xi \right)' \right] .
+\end{equation}
+Again, integrate with respect to time to get rid of the dots and set the integration constant to zero, so $\Delta \epsilon = 0$ when $\delta \beta = 0$ and $\xi = 0$.
+We then find our fourth main equation
+\begin{equation}
+	\Delta \epsilon = - \left( \epsilon_0 + P_0 \right) \left[ \delta\beta + \frac{e^{-\beta_0}}{r^2} \left( e^{\beta_0} r^2 \xi \right)' \right] .
+\label{eq:nstars:Delta_epsilon}
+\end{equation}
+
+The last result of \cref{chap:relfluid} that we make use of is adiabadicity of the flow.
+In \cref{sec:relfluid:adiabadicity}, we show that the flow of a perfect fluid is adiabatic with the \textbf{adiabatic index}
+\begin{equation}
+	\gamma = \frac{\epsilon+P}{P} \odv{P}{\epsilon} .
+\label{eq:nstars:adiabatic_index0}
+\end{equation}
+The above expression can be calculated entirely from the fluid's equation of state $\epsilon = \epsilon(P)$, although in its current form, it is the perturbed quantities that enter, so for now it must be treated as an unknown quantity.
+However, by interpreting the derivative as the ratio of Lagrangian changes, the adiabatic index can be rewritten in the visually similar, but fundamentally distinct form
+\begin{equation}
+	\gamma = 
+	\frac{\epsilon+P}{P} \frac{\Delta P}{\Delta \epsilon} ,
+	\quad \text{or} \quad
+	\Delta P = \frac{P}{\epsilon + P} \, \gamma \, \Delta \epsilon .
+\label{eq:nstars:adiabatic_index}
+\end{equation}
+\TODO{what about $P$ vs $P_0$ here?}
+The latter is a relation between two first order quantities, and so for the purpose of perturbation theory, \emph{the only relevant part of $\gamma$ is the zeroth order part}
+\begin{equation}
+	\gamma_0 = \frac{\epsilon_0+P_0}{P_0} \frac{\Delta P_0}{\Delta \epsilon_0} .
+\end{equation}
+This gives us our fifth and final equation
+\begin{equation}
+	\Delta P = \frac{P_0}{\epsilon_0 + P_0} \, \gamma_0 \, \Delta \epsilon .
+\label{eq:nstars:Delta_P}
+\end{equation}
+
+We have made quite a big mess by now, but we finally have all the information we need, and it remains only to clean up after ourselves.
+Together, \cref{eq:nstars:field_equations_unstable_01,eq:nstars:field_equations_unstable_11,eq:nstars:field_equations_unstable_T,eq:nstars:Delta_epsilon,eq:nstars:Delta_P} constitute the system of five equations
+\begin{subequations}
+\begin{align}
+	\frac{2}{r} e^{-(\beta_0 + \alpha_0)} \delta\beta                                                                           &= - \frac{8 \pi G}{c^4} (\epsilon_0 + P_0) e^{\beta_0 - \alpha_0} \xi \\
+	\frac{2}{r} e^{-2\beta_0} \delta\alpha' - 2 e^{-2 \beta_0} \left( \frac{2}{r} \alpha_0' + \frac{1}{r^2} \right) \delta\beta &= \frac{8 \pi G}{c^4} \delta P                                  \\
+	\left( \epsilon_0 + P_0 \right) e^{2 \beta_0 - 2 \alpha_0} \ddot \xi                                                        &= -c^2 \left[ \delta P' - \left( \delta \epsilon + \delta P \right) \alpha_0' - \left( \epsilon_0 + P_0 \right) \delta \alpha' \right] \\
+	\Delta \epsilon                                                                                                             &= - \left( \epsilon_0 + P_0 \right) \left[ \delta\beta + \frac{e^{-\beta_0}}{r^2} \left( e^{\beta_0} r^2 \xi \right)' \right]  \\
+	\Delta P &= \frac{P_0}{\epsilon_0 + P_0} \, \gamma_0 \, \Delta \epsilon
+\end{align}%
+\label{eq:nstars:perturbation_system}%
+\end{subequations}%
+for the five unknowns $\xi$, $\delta \alpha$, $\delta \beta$, $\delta P$ and $\delta \epsilon$.
+Remember that any occurence of $\Delta P$ and $\Delta \epsilon$ can be traded for $\delta P$ and $\delta \epsilon$ by the Taylor expansion \eqref{eq:nstars:delta_taylor_expansion}.
+Except for the independent variables $r$ and $t$, the only other quantities are the equilibrium values $\alpha_0$, $\beta_0$, $P_0$ and $\epsilon_0$ and derivatives thereof.
+Solving the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} yield $P_0$, $m_0$ and $\alpha_0$, from which one can calculate $\epsilon_0$ by the equation of state \eqref{eq:tov:tovsys_eos} and $\beta_0$ from definition \eqref{eq:einstein_to_tov:def_m}.
+
+As we remarked earlier, it is $\xi$ we want to calculate, so let us reduce the system \eqref{eq:nstars:perturbation_system} to a differential equation involving $\xi(t,r)$ as the only dependent variable.
+Along the way, it is convenient to define
+\begin{equation}
+	\zeta(t,r) = r^2 e^{\beta_0(r)} \xi(t,r),
+\end{equation}
+because the only spatial derivative of $\xi$ appears in the combination $\left( e^{\beta_0} r^2 \xi \right)$.
+Never forget that we are doing perturbation theory, so any product of two small quantities can be neglected, and we can simplify expressions using any equilibrium equation from above.
+Again, the work before us is easy in principle and hard in practice.
+In the end, one finds that $\zeta$ obeys the differential equation
+\begin{equation}
+	W(r) \ddot{\zeta}(r,t) = (\Pi(r) \zeta'(r))' + Q(r) \zeta(r) ,
+\label{eq:nstars:diffeq_zeta}
 \end{equation}
 where the coefficient functions are
 \TODO{use big/small $u$/$U$ in ST-eq/4-vel}
@@ -554,40 +750,99 @@ where the coefficient functions are
 \end{align}
 \label{eq:nstars:sturm_liouville_coefficients}
 \end{subequations}
-The perturbation is assumed to take place adiabatically with the adiabatic index
-\begin{equation}
-	\gamma = \frac{\epsilon + P}{P} \odv{P}{\epsilon} .
-\label{eq:nstars:adiabatic_index}
-\end{equation}
-Note that all quantities quantities above are \emph{known} after solving the TOV equation \eqref{eq:tov} for some equation of state $\epsilon = \epsilon(P)$.
-The pressure $P$ and mass $m$ come directly from the system \eqref{eq:tov:tovsys}.
+
+\TODO{incorporate how to find $\alpha_0$ into TOV chapter and/or code appendix}
 In addition, $\alpha$ can be obtained by integrating its derivative \eqref{eq:einstein_to_tov:dadr1} or \eqref{eq:einstein_to_tov:dadr2}, too.
 Since it is only the derivative of $\alpha$ that enters the TOV equation, we can start its integration subject to a convenient boundary condition such as $\alpha(0) = 0$.
 Then, at the end, we shift $\alpha(r) \rightarrow \alpha(r) - \alpha(R) + \frac12 \log (1 - 2 G M / R)$ to match it to the Schwarzschild solution.
-\TODO{incorporate into TOV chapter and/or code appendix}
-With $\alpha$, $P$ and $m$ determined, $\beta$ is determined by \eqref{eq:einstein_to_tov:def_m}.
 
-The boundary conditions are \cite{ref:stability_methods}
+We can find a general solution of this equation using separation of variables.
+Let us write
 \begin{equation}
-	u(r) \propto r^3 \text{ at $r=0$}
-	\qquad \text{and} \qquad
-	u'(r) = 0 \text{ at $r=R$}.
+	\zeta(t,r) = T(t) \, U(r) .
 \end{equation}
-The boundary condition at $r=0$ is derived by observing that $r = 0$ is a regular singular point of the Sturm-Liouville equation \eqref{eq:nstars:sturm_liouville} so $U \propto r^3$ in order for $\xi$ and $\xi'$ to be finite there.
-Physically, this implies that $\xi(0, t) = 0$, so the fluid at the center is not displaced, which is the only reasonable condition in a spherically symmetric situation.
-At $r = R$, the boundary condition $u'(r) = 0$ follows from requiring that the Lagrangian variation in the pressure following a fluid element in the flow vanishes.
+Substitution into the differential equation \eqref{eq:nstars:diffeq_zeta} shows that
+\begin{equation}
+	\frac{\ddot{T}}{T} = \frac{\left( \Pi \, U' \right)' + Q \, U}{W} = -\omega^2
+\end{equation}
+must be a constant $-\omega^2$, so we find that $T(t) = e^{i \omega t}$ and that $U(r)$ and $\omega^2$ must solve
+\begin{equation}
+	\odv*{ \left[ \Pi(r) \odv{U(r)}{r} \right] }{r} + \left[ Q(r) + \omega^2 W(r) \right] U(r) = 0 .
+\label{eq:nstars:sturm_liouville}
+\end{equation}
 
-A characteristic feature of Sturm-Liouville problems is that the eigenvalues form a discrete, increasing sequence
+What are the boundary equations for $U(r)$?
+At the center $r = 0$, spherical symmetry implies that there can be no flow, so the physical boundary condition there is
+\begin{equation}
+	\xi(t, 0) = 0.
+\label{eq:nstars:boundary_condition_center_physical}
+\end{equation}
+If there was flow at the center, it would necessarily be uniform in all directions, so an inward flow would drain all of the star's material into a sink at the center, while an outward flow would expel the material and create an ``eye of the storm'' in the middle.
+The translation of this condition for the displacement \eqref{eq:nstars:displacement_general_solution} to vanish is
+\TODO{why not $r^4$, $r^5$, etc? do we need $\xi' > 0$ at $r=0$ or something?}
+\begin{equation}
+	U_n(r) \propto r^3 .
+\label{eq:nstars:boundary_condition_center_mathematical}
+\end{equation}
+At the surface $r = R$, there can be no change in pressure as one follows a fluid element, just like at the interface between water and air down on earth.
+The boundary condition here is therefore
+\begin{equation}
+	\Delta P =
+	\frac{P_0}{P_0 + \epsilon_0} \, \gamma_0 \Delta \epsilon =
+	\odv{P}{\epsilon} \Delta \epsilon =
+	0 .
+\end{equation}
+The surface is defined by $P = 0$, so the derivative $\odv{\epsilon}/{P}$ there is
+\TODO{ref to equation of state, equations and/or plot}
+\TODO{show in more detail}
+\begin{equation}
+	\odv{P}{\epsilon} = \frac{1}{\odv{\epsilon}{P}} = \frac{1}{\epsilon'(P)} = \frac{1}{\epsilon'(0)} = \frac{1}{\infty} = 0,
+\label{eq:nstars:boundary_condition_surface_physical}
+\end{equation}
+and the boundary condition \eqref{eq:nstars:boundary_condition_center_physical} is automatically satisfied \emph{provided that}
+\begin{equation}
+	\Delta \epsilon = - \left( \epsilon_0 + P_0 \right) \left[ \delta\beta + \frac{e^{-\beta_0(R)}}{R^2} U_n'(R) e^{i \omega t} \right] < \infty \quad \text{is finite}.
+\end{equation}
+By assumption, $\delta\beta$ is a small and thus finite quantity, and so is $e^{-\beta_0(R)} = \left( 1 - 2 G M / R c^2 \right)^{-1/2}$.
+The translation of the boundary condition \eqref{eq:nstars:boundary_condition_surface_physical} at the surface into a criterion on $U_n(r)$ is therefore only that
+\begin{equation}
+	U_n'(R) < \infty \quad \text{is finite} .
+\label{eq:nstars:boundary_condition_surface_mathematical}
+\end{equation}
+The differential equation \eqref{eq:nstars:sturm_liouville} is a \textbf{Sturm-Liouville problem} \TODO{ref some mathematics text} for the eigenfunction $U(r)$ and its corresponding squared eigenfrequency $\omega^2$.
+In fact, a characteristic feature of Sturm-Liouville problems is that there are multiple solutions $U(r) = U_n(r)$ with corresponding squared frequencies $\omega^2 = \omega_n^2$ forming an infinite, discrete sequence
 \begin{equation}
 	\omega_0^2 < \omega_1^2 < \omega_2^2 < \cdots .
 \end{equation}
-This enables us to make a rigorous definition of stellar stability.
+A more familiar example, perhaps, is the time independent Schrödinger equation, for which the energies $E_n$ associated with the wave functions $\psi_n(x)$ form such an increasing, discrete sequence.
+Noting that our our first order analysis has yielded the \emph{linear} differential equation \eqref{eq:nstars:diffeq_zeta} for $\zeta$, and thus $\xi$, we can superpose all solutions of the Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville} into a general solution
+\TODO{$c_n U_n(r)$, some normalization?}
+\begin{equation}
+	\xi(t,r) = \frac{e^{-\beta_0(r)}}{r^2} \sum_n U_n(r) e^{i \omega_n t} .
+\label{eq:nstars:displacement_general_solution}
+\end{equation}
+This superposition will still satisfy the physical boundary conditions \eqref{eq:nstars:boundary_condition_center_physical} and \eqref{eq:nstars:boundary_condition_surface_physical}, provided that each $U_n(r)$ separately satisfies the mathematical boundary conditions \eqref{eq:nstars:boundary_condition_center_mathematical} and \eqref{eq:nstars:boundary_condition_surface_mathematical}.
+
+At long last, we are in an excellent position to make a \textbf{rigorous definition of stellar stability}.
+Suppose a star is exposed to some external perturbation $\xi(t,r)$.
+Whether it is you touching the star with your finger, some imperfection in the stellar material or the blast from a nearby supernova explosion, it is the initial functional form of the perturbation $\xi(t,r)$ that determines its decomposition into the sum over all modes \eqref{eq:nstars:displacement_general_solution}.
+In the real world, we expect that any such perturbation will activate \emph{all} modes $U_n(r)$ to some degree -- for one would need remarkable finger precision to activate only a finite selection of modes.
 \begin{itemize}
-\item If $\omega_0^2 > 0$, then all vibration modes have $\omega_n^2 > 0$, so $\omega_n$ is real.
-      Then $\xi_n(r, t) \propto e^{i \omega_n t}$ merely oscillates back and forth, so the star attempts to return to equilibrium, and we say the star is \textbf{stable}.
-\item If $\omega_0^2 < 0$, then at least one vibration mode has $\omega_n = \pm i \abs{\omega_n}$, so $\omega_n$ is imaginary.
-      Then $\xi(r,t) = \propto e^{\pm \abs{\omega_n} t}$ takes off exponentially, so the star either implodes or explodes, and we say the star is \textbf{unstable}.
+\item If $\omega_0^2 > 0$, then all vibration modes have real frequencies $\omega_n > 0$.
+      Then all terms merely oscillate back and forth like $\xi \propto e^{i \omega_n t}$, so the star attempts to return to equilibrium, and we say the star is \textbf{stable}.
+\item If $\omega_0^2 < 0$, then at least one vibration mode has an imaginary frequency $\omega_n = \pm i \abs{\omega_n}$.
+      Then some term in $\xi \propto e^{\pm \abs{\omega_n} t}$ takes off exponentially, so the star either implodes or explodes, and we say the star is \textbf{unstable}.
 \end{itemize}
+
+\TODO{innvending 1: vi gjør perturbasjonsteori, så gjelder vel ikke eksponensiell tidsvekst for evig?}
+
+
+\TODO{instability, connect to attractor/chaos stuff from nonlinear dynamics?}
+
+\TODO{break down BCs into physical, then ``translated'' parts}
+\TODO{require $\xi' = 0$ at center, otherwise there would be a singularity?}
+\TODO{$\delta r$ instead of $\xi$?}
+
 
 There is a particularly fun numerical technique called the \textbf{shooting method} that can be used to determine the squared frequencies $\omega_N^2$ and their corresponding solutions $U_N(r)$.
 It relies on the additional property of Sturm-Liouville problems that
