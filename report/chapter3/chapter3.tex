@@ -906,9 +906,9 @@ This error is very likely to be related to numerical inaccuracy, as there are a 
 \item Since $r=R$ is a singular point, the numerical integration freaks out as $r \rightarrow R$.
       To fix this, we linearly interpolate the next value of $U(r)$ from its value at the previous point beyond $r > 0.99 R$.
 \end{itemize}
-We expect that these sources of error accumulate, explaining the violation of condition \eqref{eq:nstars:stability_mass_pressure}.
+We expect that these sources of error accumulate and explain the violation of condition \eqref{eq:nstars:stability_mass_pressure}.
 
-\TODO{check if there are more negative modes inside the spiral! it seems to be the case!!}
+\TODO{check if there are more negative modes inside the spiral! seems to be!!}
 
 However, trying to look behind the numerical inaccuracy, our computational results do suggest a simple rule for stability.
 At every point along the mass-radius curve where $\odv{M(P_0)}/{P_0} = 0$, stars seem to acquire one more unstable vibration mode, starting with zero unstable modes for $P_0 \rightarrow 0$.
