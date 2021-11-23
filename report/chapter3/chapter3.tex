@@ -506,6 +506,8 @@ A more verbose outline can be found in \cite[§ 26.4d]{ref:mtw}, which we will f
 The arguments presented above were necessary, but not sufficient for stellar stability.
 Let us analyze the stability of the stars in a more rigorous way by finding a mathematical definition of stability.
 
+\subsubsection{Perturbation theory for the fluid displacement}
+
 In \cref{sec:einstein_to_tov}, we showed that the Einstein field equations \eqref{eq:einstein} reduced to
 \TODO{start with metric}
 \begin{subequations}%
@@ -726,12 +728,13 @@ Remember that any occurence of $\Delta P$ and $\Delta \epsilon$ can be traded fo
 Except for the independent variables $r$ and $t$, the only other quantities are the equilibrium values $\alpha_0$, $\beta_0$, $P_0$ and $\epsilon_0$ and derivatives thereof.
 Solving the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} yield $P_0$, $m_0$ and $\alpha_0$, from which one can calculate $\epsilon_0$ by the equation of state \eqref{eq:tov:tovsys_eos} and $\beta_0$ from definition \eqref{eq:einstein_to_tov:def_m}.
 
-As we remarked earlier, it is $\xi$ we want to calculate, so let us reduce the system \eqref{eq:nstars:perturbation_system} to a differential equation involving $\xi(t,r)$ as the only dependent variable.
+It is the displacement $\xi(t,r)$ we want to calculate, so let us reduce the system \eqref{eq:nstars:perturbation_system} to a differential equation involving it as the only dependent variable.
 Along the way, it is convenient to define
 \begin{equation}
 	\zeta(t,r) = r^2 e^{\beta_0(r)} \xi(t,r),
+\label{eq:nstars:definition_zeta}
 \end{equation}
-because the only spatial derivative of $\xi$ appears in the combination $\left( e^{\beta_0} r^2 \xi \right)$.
+because the only spatial derivative that appears is of this precise combination in \TODO{ref eq}.
 Never forget that we are doing perturbation theory, so any product of two small quantities can be neglected, and we can simplify expressions using any equilibrium equation from above.
 Again, the work before us is easy in principle and hard in practice.
 In the end, one finds that $\zeta$ obeys the differential equation
@@ -744,31 +747,35 @@ where the coefficient functions are
 \TODO{check units}
 \begin{subequations}
 \begin{align}
-	\Pi &= \frac{1}{r^2} e^{\beta_0 + 3 \alpha_0} \gamma P_0 , \\
-	Q   &= -\frac{4}{r^3} e^{\beta_0 + 3 \alpha_0} P_0' - \frac{8 \pi}{r^2} e^{3 \beta_0 + 3 \alpha_0} P (\epsilon_0 + P_0) + \frac{e^{\beta_0 + 3 \alpha_0}}{r^2(\epsilon_0 + P_0)} (P_0')^2 , \\
-	W   &= \frac{1}{r^2} e^{3 \beta_0 + \alpha_0} (\epsilon_0 + P_0) .
+	\Pi &= \frac{1}{r^2} e^{\beta_0 + 3 \alpha_0} \gamma P_0 , \label{eq:nstars:sturm_liouville_coefficients_Pi} \\
+	Q   &= -\frac{4}{r^3} e^{\beta_0 + 3 \alpha_0} P_0' - \frac{8 \pi}{r^2} e^{3 \beta_0 + 3 \alpha_0} P (\epsilon_0 + P_0) + \frac{e^{\beta_0 + 3 \alpha_0}}{r^2(\epsilon_0 + P_0)} (P_0')^2 , \label{eq:nstars:sturm_liouville_coefficients_Q} \\
+	W   &= \frac{1}{r^2} e^{3 \beta_0 + \alpha_0} (\epsilon_0 + P_0) . \label{eq:nstars:sturm_liouville_coefficients_W}
 \end{align}
 \label{eq:nstars:sturm_liouville_coefficients}
 \end{subequations}
+
+\subsubsection{General Sturm-Liouville solution for the fluid displacement}
 
 \TODO{incorporate how to find $\alpha_0$ into TOV chapter and/or code appendix}
 In addition, $\alpha$ can be obtained by integrating its derivative \eqref{eq:einstein_to_tov:dadr1} or \eqref{eq:einstein_to_tov:dadr2}, too.
 Since it is only the derivative of $\alpha$ that enters the TOV equation, we can start its integration subject to a convenient boundary condition such as $\alpha(0) = 0$.
 Then, at the end, we shift $\alpha(r) \rightarrow \alpha(r) - \alpha(R) + \frac12 \log (1 - 2 G M / R)$ to match it to the Schwarzschild solution.
 
-We can find a general solution of this equation using separation of variables.
-Let us write
+We can find a solution to this differential equation using separation of variables.
+Let us assume a solution on the form
 \begin{equation}
 	\zeta(t,r) = T(t) \, U(r) .
+\label{eq:nstars:separation_of_variables}
 \end{equation}
 Substitution into the differential equation \eqref{eq:nstars:diffeq_zeta} shows that
 \begin{equation}
 	\frac{\ddot{T}}{T} = \frac{\left( \Pi \, U' \right)' + Q \, U}{W} = -\omega^2
 \end{equation}
-must be a constant $-\omega^2$, so we find that $T(t) = e^{i \omega t}$ and that $U(r)$ and $\omega^2$ must solve
+must be a constant $-\omega^2$, which can be any complex number at this stage.
+We then find that $T(t) = e^{\pm i \omega t}$, while $U(r)$ and $\omega^2$ must solve
 \begin{equation}
 	\odv*{ \left[ \Pi(r) \odv{U(r)}{r} \right] }{r} + \left[ Q(r) + \omega^2 W(r) \right] U(r) = 0 .
-\label{eq:nstars:sturm_liouville}
+\label{eq:nstars:diffeq_U}
 \end{equation}
 
 What are the boundary equations for $U(r)$?
@@ -777,26 +784,32 @@ At the center $r = 0$, spherical symmetry implies that there can be no flow, so 
 	\xi(t, 0) = 0.
 \label{eq:nstars:boundary_condition_center_physical}
 \end{equation}
-If there was flow at the center, it would necessarily be uniform in all directions, so an inward flow would drain all of the star's material into a sink at the center, while an outward flow would expel the material and create an ``eye of the storm'' in the middle.
-The translation of this condition for the displacement \eqref{eq:nstars:displacement_general_solution} to vanish is
+From definitions \eqref{eq:nstars:definition_zeta} and \eqref{eq:nstars:separation_of_variables}, we see that this requires
 \TODO{why not $r^4$, $r^5$, etc? do we need $\xi' > 0$ at $r=0$ or something?}
 \begin{equation}
-	U_n(r) \propto r^3 .
+	U_n(r) \propto r^3
+	\qquad \text{near} \qquad
+	r = 0.
 \label{eq:nstars:boundary_condition_center_mathematical}
 \end{equation}
 At the surface $r = R$, there can be no change in pressure as one follows a fluid element, just like at the interface between water and air down on earth.
 The boundary condition here is therefore
 \begin{equation}
-	\Delta P =
-	\frac{P_0}{P_0 + \epsilon_0} \, \gamma_0 \Delta \epsilon =
-	\odv{P}{\epsilon} \Delta \epsilon =
-	0 .
+	\Delta P = 0
+	\qquad \text{at} \qquad
+	r = 0.
 \end{equation}
-The surface is defined by $P = 0$, so the derivative $\odv{\epsilon}/{P}$ there is
+From \TODO{ref e} and \TODO{ref gamma0}, we see that this is equivalent to
+\begin{equation}
+	\Delta P = 
+	\frac{P_0}{P_0 + \epsilon_0} \, \gamma_0 \Delta \epsilon =
+	\odv{P_0}{\epsilon_0} \Delta \epsilon =
+\end{equation}
+The surface $r = R$ is defined by $P_0 = 0$, so the derivative there is
 \TODO{ref to equation of state, equations and/or plot}
 \TODO{show in more detail}
 \begin{equation}
-	\odv{P}{\epsilon} = \frac{1}{\odv{\epsilon}{P}} = \frac{1}{\epsilon'(P)} = \frac{1}{\epsilon'(0)} = \frac{1}{\infty} = 0,
+	\odv{P}{\epsilon} = \frac{1}{\odv{\epsilon}/{P}} = \frac{1}{\epsilon'(P)} = \frac{1}{\epsilon'(0)} = \frac{1}{\infty} = 0,
 \label{eq:nstars:boundary_condition_surface_physical}
 \end{equation}
 and the boundary condition \eqref{eq:nstars:boundary_condition_center_physical} is automatically satisfied \emph{provided that}
@@ -809,30 +822,97 @@ The translation of the boundary condition \eqref{eq:nstars:boundary_condition_su
 	U_n'(R) < \infty \quad \text{is finite} .
 \label{eq:nstars:boundary_condition_surface_mathematical}
 \end{equation}
-The differential equation \eqref{eq:nstars:sturm_liouville} is a \textbf{Sturm-Liouville problem} \TODO{ref some mathematics text} for the eigenfunction $U(r)$ and its corresponding squared eigenfrequency $\omega^2$.
-In fact, a characteristic feature of Sturm-Liouville problems is that there are multiple solutions $U(r) = U_n(r)$ with corresponding squared frequencies $\omega^2 = \omega_n^2$ forming an infinite, discrete sequence
+
+The differential equation \eqref{eq:nstars:diffeq_U} subject to the boundary conditions \eqref{eq:nstars:boundary_condition_center_mathematical} and \eqref{eq:nstars:boundary_condition_surface_mathematical} is a \textbf{Sturm-Liouville problem} for eigenfunctions $U(r) = U_n(r)$ and their corresponding eigenvalues $\omega^2 = \omega_n^2$.
+It is best viewed as the eigenvalue equation
+\begin{subequations}
+\begin{equation}
+	\odv*{ \left[ \Pi(r) \odv{U_n(r)}{r} \right] }{r} + Q(r) \, U_n(r) = -\omega_n^2 W(r) U_n(r) \label{eq:nstars:sturm_liouville} \\
+\end{equation}
+\begin{equation}
+	\text{subject to the boundary conditions} \qquad
+	U_n(r \rightarrow 0) \propto r^3 
+	\quad \text{and} \quad
+	U_n'(R) < \infty .
+\end{equation}
+\end{subequations}
+for the squared frequencies $\omega_n^2$ and the corresponding eigenfunctions $U_n(r)$.
+The Sturm-Liouville equation \eqref{eq:nstars:sturm_liouville} is expressed in a self-adjoint form with respect to the inner product
+\begin{equation}
+	\braket{f | g} = \int_0^R \dif r \, f(r) g(r) .
+\label{eq:nstars:function_inner_product}
+\end{equation}
+Denoting the differential operator on left side by $\hat{L} = \hat{L}(r)$, we can integrate by parts twice to show that for two solutions $U_m(r)$ and $U_n(r)$,
+\begin{equation}
+\begin{split}
+	\Braket{\hat{L} U_m | U_n} &= \int_0^R \dif r \, \left[ \left( \Pi U_m' \right)' U_n + Q U_m U_n \right] \\
+	                           &= \Big[ \Pi U_m' U_n \Big] + \int_0^R \dif r \, \left[ - \Pi U_m' U_n' + Q U_m U_n \right] \\
+	                           &= \Big[ \Pi U_m' U_n \Big] - \Big[ \Pi U_m U_n' \Big] + \int_0^R \dif r \, \left[ \left( \Pi U_n' \right)' U_m + Q U_m U_n \right] \\
+	                           &= \Big[ \Pi \, U_m' \, U_n \Big]_{r=0}^{r=R} - \Big[ \Pi \, U_m \, U_n' \Big]_{r=0}^{r=R} + \Braket{U_m | \hat{L} U_n} . \\
+\end{split}
+\end{equation}
+The surface terms at $r = 0$ vanish because $U_n(0) = U_m(0) = 0$ there by boundary condition \eqref{eq:nstars:boundary_condition_center_mathematical}, while the surface terms at $r = R$ vanish because $P_0(R) = 0$ there, causing $\Pi(R) = 0$ from its definition \eqref{eq:nstars:sturm_liouville_coefficients_Pi}.
+Using the inner product \eqref{eq:nstars:function_inner_product} and the property 
+\begin{equation}
+	\braket{\hat{L} U_m | U_n} = \braket{U_m | \hat{L} U_n}
+\label{eq:nstars:inner_product_hermitean}
+\end{equation}
+that follows, one can dive into the field of Sturm-Liouville theory, where one will discover the following important properties:
+\begin{subequations}
+\begin{enumerate}
+\item \label{item:nstars:sturm_liouville_eigenvalues} The eigenvalues $\omega_n^2$ are real and form an infinite, discrete sequence
 \begin{equation}
 	\omega_0^2 < \omega_1^2 < \omega_2^2 < \cdots .
 \end{equation}
-A more familiar example, perhaps, is the time independent Schrödinger equation, for which the energies $E_n$ associated with the wave functions $\psi_n(x)$ form such an increasing, discrete sequence.
-Noting that our our first order analysis has yielded the \emph{linear} differential equation \eqref{eq:nstars:diffeq_zeta} for $\zeta$, and thus $\xi$, we can superpose all solutions of the Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville} into a general solution
-\TODO{$c_n U_n(r)$, some normalization?}
+
+The proof of reality is within our reach.
+Applying property \eqref{eq:nstars:inner_product_hermitean} with $U_m = U_n$, we have $\braket{\hat{L} U_n | U_n} = \conj{\braket{\hat{L} U_n | U_n}}$.
+Exchanging the left side of $\hat{L} U_n = -\omega_n^2 W U_n$ with the right and noting that $\braket{W U_n | U_n}$ is real, this is equivalent to $-\omega_n^2 \braket{W U_n | U_n} = \conj{\left( -\omega_n^2 \right)} \braket{W U_n | U_n}$, so $\omega_n^2$ is real.
+Proving the last part takes more work, but we will that it plays out in practice when solving the Sturm-Liouville problem numerically soon.
+
+\item \label{item:nstars:sturm_liouville_zeros} The eigenfunction $U_n(r)$ corresponding to the eigenvalue $\omega_n^2$ has exactly
 \begin{equation}
-	\xi(t,r) = \frac{e^{-\beta_0(r)}}{r^2} \sum_n U_n(r) e^{i \omega_n t} .
+	n \text{ zeros } U_n(r) = 0 \quad \text{for} \quad 0 < r < R .
+\end{equation}
+Intuitively, by rewriting the Sturm-Liouville equation as $\left( \Pi U_n' \right)' / U_n = - \left( Q + \omega_n^2 W \right)$ and noting that $W > 0$ by its definition \eqref{eq:nstars:sturm_liouville_coefficients_W}, it is apparent that as $\omega_n^2$ increases, so does the oscillatory behavior of $U_n$ around $U_n = 0$, and hence the number of zeros.
+
+\item \label{item:nstars:sturm_liouville_completeness} Eigenfunctions $U_n(r)$ corresponding to different eigenvalues $\omega_n^2$ are different, and constitute an orthonormal basis for the Hilbert space of functions on $[0, R]$ with respect to the $W$-weighted inner product 
+\begin{equation}
+	\braket{U_m | U_n}_W = \braket{W U_m | U_n} = \delta_{m n} .
+\end{equation}
+We can give a quick proof of the first part.
+Property \eqref{eq:nstars:inner_product_hermitean} implies that $-\omega_n^2 \braket{W U_n  | U_m} = -\omega_m^2 \braket{W U_m | U_n}$, so $\left( \omega_m^2 - \omega_n^2 \right) \braket{W U_m | U_n} = 0$.
+If $U_m = U_n$ are equal, then $\braket{W U_m | u_n} \neq 0$, so $\omega_m^2 = \omega_n^2$ must be equal.
+On the other hand, if $\omega_m^2 \neq \omega_n^2$, then $\braket{W U_m | U_n} = 0$, and $U_m \neq U_n$ must be different.
+\end{enumerate}
+\end{subequations}
+For an excellent to-the-point overview of Sturm-Liouville theory and rigorous proofs of all the properties, we recommend \TODO{ref to some mathematics text for proofs}.
+\TODO{are the remarks/miniproofs after the statements distracting?}
+
+A more familiar example of applied Sturm-Liouville theory, perhaps, is the one dimensional time independent Schrödinger equation $\left[ \left(-\hbar^2/2m\right)\odv[2]{}/{x} + V(x) \right] \psi_n(x) = E_n \psi_n(x)$ for the energies $E_n$ and wave functions $\psi_n(x)$.
+
+\subsubsection{Definition of stellar stability}
+
+At long last, we are now in an excellent position to make a rigorous definition of stellar stability.
+Property \ref{item:nstars:sturm_liouville_completeness} implies that any sane displacement $\xi(t,r)$ can be written as a linear combiation
+\begin{equation}
+	\xi(t,r) = \frac{e^{-\beta_0(r)}}{r^2} \sum_n c_n U_n(r) e^{i \omega_n t} .
 \label{eq:nstars:displacement_general_solution}
 \end{equation}
-This superposition will still satisfy the physical boundary conditions \eqref{eq:nstars:boundary_condition_center_physical} and \eqref{eq:nstars:boundary_condition_surface_physical}, provided that each $U_n(r)$ separately satisfies the mathematical boundary conditions \eqref{eq:nstars:boundary_condition_center_mathematical} and \eqref{eq:nstars:boundary_condition_surface_mathematical}.
+The superposition will still satisfy the physical boundary conditions \eqref{eq:nstars:boundary_condition_center_physical} and \eqref{eq:nstars:boundary_condition_surface_physical}, provided that each $U_n(r)$ separately satisfies the boundary conditions \eqref{eq:nstars:boundary_condition_center_mathematical} and \eqref{eq:nstars:boundary_condition_surface_mathematical}.
+Property \ref{item:nstars:sturm_liouville_eigenvalues} ensures all $\omega_n^2$ are real, \emph{but there is no restriction on the sign of $\omega_n^2$}.
 
-At long last, we are in an excellent position to make a \textbf{rigorous definition of stellar stability}.
-Suppose a star is exposed to some external perturbation $\xi(t,r)$.
-Whether it is you touching the star with your finger, some imperfection in the stellar material or the blast from a nearby supernova explosion, it is the initial functional form of the perturbation $\xi(t,r)$ that determines its decomposition into the sum over all modes \eqref{eq:nstars:displacement_general_solution}.
-In the real world, we expect that any such perturbation will activate \emph{all} modes $U_n(r)$ to some degree -- for one would need remarkable finger precision to activate only a finite selection of modes.
 \begin{itemize}
 \item If $\omega_0^2 > 0$, then all vibration modes have real frequencies $\omega_n > 0$.
-      Then all terms merely oscillate back and forth like $\xi \propto e^{i \omega_n t}$, so the star attempts to return to equilibrium, and we say the star is \textbf{stable}.
-\item If $\omega_0^2 < 0$, then at least one vibration mode has an imaginary frequency $\omega_n = \pm i \abs{\omega_n}$.
-      Then some term in $\xi \propto e^{\pm \abs{\omega_n} t}$ takes off exponentially, so the star either implodes or explodes, and we say the star is \textbf{unstable}.
+      Then all terms in the displacement \eqref{eq:nstars:displacement_general_solution} merely oscillate back and forth like $\xi \propto e^{i \omega_n t}$, so the star attempts to return to equilibrium, and we say the star is \textbf{stable}.
+\item If $\omega_0^2 < 0$, then one or more vibration modes have imaginary frequencies $\omega_n = \pm i \abs{\omega_n}$.
+      Then some term in the displacement \eqref{eq:nstars:displacement_general_solution} takes off expnentially like $\xi \propto e^{\pm \abs{\omega_n} t}$, so the star either implodes or explodes, and we say the star is \textbf{unstable}.
 \end{itemize}
+A prerequisite for the above definition is that it is sufficient for \emph{one} mode in the displacement \eqref{eq:nstars:displacement_general_solution} to be unstable for the star as a whole to be unstable.
+To understand this, suppose a star is exposed to some external perturbation $\xi(t,r)$.
+Whatever the source of this perturbation -- be it the touch of a finger, an imperfection in the star's material or the blast from a nearby supernova explosion -- it is the initial state $\xi(t,r)$ of this \emph{external} perturabtion that determines the contribution from each mode in the sum \eqref{eq:nstars:displacement_general_solution}, and subsequently the \emph{response} of the star to the perturbation.
+In the real world, we expect that any external perturbation will activate \emph{all} modes $U_n(r)$ to some extent -- for one would need remarkable finger precision to perturb the star in an \emph{exact} superposition of only a finite selection of modes.
+Given that all modes have even the slightest nonzero contribution, the presence of \emph{any} exponential term is sufficient for the whole sum to collapse or grow unbounded towards $0$ or $\infty$.
 
 \TODO{innvending 1: vi gjør perturbasjonsteori, så gjelder vel ikke eksponensiell tidsvekst for evig?}
 
@@ -843,6 +923,9 @@ In the real world, we expect that any such perturbation will activate \emph{all}
 \TODO{require $\xi' = 0$ at center, otherwise there would be a singularity?}
 \TODO{$\delta r$ instead of $\xi$?}
 
+\subsubsection{Numerical solution of the Sturm-Liouville problem with the shooting method}
+
+\TODO{use $n(\omega^2)$ for number of nodes instead of distinguishing between $n$ and $N$?}
 
 There is a particularly fun numerical technique called the \textbf{shooting method} that can be used to determine the squared frequencies $\omega_N^2$ and their corresponding solutions $U_N(r)$.
 It relies on the additional property of Sturm-Liouville problems that
