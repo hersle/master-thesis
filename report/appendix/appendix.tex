@@ -1327,7 +1327,49 @@ To circumvent this difficulty and make the mass-radius curve as smooth as possib
 
 \codefile{python}{../code/tov_solve.py}
 
-\section{Stability analysis}
+\section{Stability analysis and shooting method}
+\label{sec:numerics:shooting_method}
+
+The shooting method finds \emph{one} eigenvalue $\omega_n^2$ and its corresponding eigenfunction $U_n(r)$ with the following strategy:
+\begin{enumerate}
+\item Guess \emph{any} value of $\omega^2$.
+\item \emph{Impose} the boundary condition $U(r) \propto r^3$ at $r \rightarrow 0$, then numerically integrate the Sturm-Liouville equation \eqref{eq:nstars:sturm_liouville} to ``shoot out'' $U(r)$ for $0 \leq r \leq R$.
+\item Count the number of nodes $n(\omega^2)$ of $U(r)$.
+      \begin{enumerate}
+      \item If $n(\omega^2) > n$, then we should \emph{decrease} our guess for $\omega^2$ to decrease the number of nodes by Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros}.
+      \item If $n(\omega^2) \leq n$, then we should \emph{increase} our guess for $\omega^2$ to increase the number of nodes by Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros}.
+      \end{enumerate}
+% catalogue paper, see paragraph across page 507-508
+\end{enumerate}
+The rule that we should increase our guess not only if $n(\omega^2) < n$, but also if $n(\omega^2) = n$, is a little technical and deserves an explanation.
+Suppose we are looking for the lowest mode $n = 0$ and have guessed a value of $\omega^2$ with $n(\omega^2) = 0$ zeros.
+If the true eigenvalue $\omega_n^2$ had been \emph{less} than $\omega^2$, then any lower guess of $\omega^2$ would also give $n(\omega^2) = 0$ zeros, for a function cannot have less than zero zeros!
+But then we could repeat the same reasoning infinitely many times and ultimately reach the conclusion that the $\omega_0^2 = -\infty$, which is neither physically sound or consistent with the mathematical property \ref{item:nstars:sturm_liouville_eigenvalues}.
+By contradiction, then, the eigenvalue must be \emph{greater} than the initial guess, explaining why we should increase our guess also $n(\omega^2) = n$ with $n = 0$.
+If instead $n = 1$ and we guess $\omega^2$ with $n(\omega^2) = 1$ zeros, then decreasing our guess would eventually yield the incorrect eigenvalue $\omega_0^2$ -- not $\omega_1^2$.
+Thus, we still have to increase our guess, and this rule now follows for all $n$ by induction.
+
+We implement the shooting method in \TODO{ref app}.
+Initially, we find two lower and upper bounds $\omega_-^2$ and $\omega_+^2$ with $n \leq N$ and $n > N$ zeros, then inspect $\omega^2 = (\omega_-^2 + \omega_+)^2) / 2$ and replace either the lower or upper bound depending on its number of zeros.
+Continuing to split the interval $(\omega_-^2, \omega_+^2)$ in this manner, the bounds come closer and closer and we terminate the procedure when they are so close that we are satisfied with any value in the interval.
+Perhaps \cref{fig:nstars:shooting_convergence} sheds new light on this quite technical discussion -- there we show how the squared frequencies $\omega^2$ and the corresponding solutions $U(r)$ converge towards the exact values $\omega_0^2$ and $U_0(r)$ of the fundamental vibration mode $N=0$.
+
+With the shooting method in our toolbox, we can compute $\omega_0^2$ for every star along the curve in \cref{fig:nstars:massradius} and determine whether it is stable or not by checking its sign.
+We indicate the stability determined in this way in \cref{fig:nstars:stability} \TODO{a}.
+Starting from the lowest central pressure and mass, it seems the stars are stable up to the maximum mass.
+However, the numerical procedure also indicates that stars slightly beyond this point are stable, which we know \emph{cannot} be the case by criterion \eqref{eq:nstars:stability_mass_pressure}.
+
+This error is very likely to be related to numerical inaccuracy, as there are a number of aspects with our implementation of the shooting method in \TODO{ref app} that are quite crude.
+\begin{itemize}
+\item Since the TOV equation is solved numerically, $\alpha_0(r)$, $\beta_0(r)$, $P_0(r)$ and $\epsilon_0(r)$ are only determined at discrete points between $0$ and $R$.
+      Thus, the same is true for $\Pi(r)$, $Q(r)$, and $W(r)$.
+      In addition, we approximate the derivatives derivatives $\odv{P_0}{\epsilon_0}$ and $\odv{P_0}{r}$ that are needed in $\Pi(r)$ and $Q(r)$ with finite differences.
+\item We integrate the Sturm-Liouville equation numerically using finite differences.
+\item The boundary condition $U(r) \propto r^3$ is implemented numerically by setting $U(r) = r^3$ for all $r < 0.01 R$.
+\item Since $r=R$ is a singular point, the numerical integration freaks out as $r \rightarrow R$.
+      To fix this, we linearly interpolate the next value of $U(r)$ from its value at the previous point beyond $r > 0.99 R$.
+\end{itemize}
+We expect that these sources of error accumulate and explain the violation of condition \eqref{eq:nstars:stability_mass_pressure}.
 
 The program above can optionally check the stability of the stars it finds by the \textbf{shooting method} presented in \cref{sec:nstars:stability_general}.
 Converting the Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville_problem} with the dimensionful scales defined in \cref{sec:nstars:numtov}, we find the dimensionless Sturm-Liouville problem
