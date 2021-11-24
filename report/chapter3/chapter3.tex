@@ -877,16 +877,11 @@ Given that all modes have even the slightest nonzero contribution, the presence 
 
 \TODO{innvending 1: vi gjør perturbasjonsteori, så gjelder vel ikke eksponensiell tidsvekst for evig?}
 
-
 \TODO{instability, connect to attractor/chaos stuff from nonlinear dynamics?}
 
-\TODO{break down BCs into physical, then ``translated'' parts}
-\TODO{require $\xi' = 0$ at center, otherwise there would be a singularity?}
 \TODO{$\delta r$ instead of $\xi$?}
 
 \subsubsection{Numerical solution of the Sturm-Liouville problem with the shooting method}
-
-\TODO{use $n(\omega^2)$ for number of nodes instead of distinguishing between $n$ and $N$?}
 
 Multiple methods for determining the stability of stars through our definition above are catalogued by \cite{ref:stability_methods}.
 The \textbf{shooting method} is a particularly fun numerical technique for finding the eigenfunctions $U_n(r)$ and eigenvalues $\omega_n^2$ of the Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville_problem}.
@@ -952,7 +947,7 @@ The results are very interesting.
 
 Our computations suggest that at every local mass extremum point where $\odv{M(P_0)}/{P_0} = 0$, stars seem to acquire one more unstable vibration mode, starting with zero unstable modes for the lowest pressures $P_0 \rightarrow 0$.
 In fact, \cite{ref:stability_methods} presents a method which is based on this principle!
-For a sequence of \emph{cold} stars -- like ours -- in a mass-radius diagram like \cref{fig:nstars:massradius}, then the following holds:
+For a sequence of \emph{cold} stars -- like ours -- in a mass-radius diagram like \cref{fig:nstars:massradius}, the following holds:
 \begin{itemize}
 \item For the lowermost central energy densities $\epsilon(P_0)$, we know from classical theory that stars are \emph{stable}.
 \item At every local mass extremum $\odv{M(P_0)}/{P_0} = 0$ where the curve bends \emph{counterclockwise} as the central pressure increases, one \emph{stable} mode becomes \emph{unstable}.
