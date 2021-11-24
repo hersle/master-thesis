@@ -37,14 +37,9 @@ def ϵGR(P):
 massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/gr2.dat")
 
 """
-for P0 in np.geomspace(1e-6, 1e7, 10):
-    r, m, P, α, ϵ = soltov(ϵNR, P0)
-    ω2, u = eigenmode(r, m, P, α, ϵ, 0, progress=True)
-"""
-
 r, m, P, α, ϵ = soltov(ϵGR, 1e3)
 ω2s, us = eigenmode(r, m, P, α, ϵ, [0], plot=True, outfileshoot="data/shoot.dat")# , outfile="data/nmodes.dat")
-exit()
+"""
 
 #P0 = 1e-1
 P0 = 5e2

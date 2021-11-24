@@ -113,7 +113,7 @@ def coeffs(r, m, P, α, ϵ):
     Γ = (P + ϵ) / P * dPdϵ # already dimensionless
 
     Π = np.exp(β+3*α)/r**2 * Γ * P
-    Q = -4*np.exp(β+3*α)/r**3*dPdr - 8*π*(G/4*π)*np.exp(3*β+3*α)/r**2*P*(ϵ+P) + np.exp(β+3*α)*dPdr**2 / (r**2*(ϵ+P))
+    Q = -4*np.exp(β+3*α)/r**3*dPdr - (8*π*G/(4*π/3))*np.exp(3*β+3*α)/r**2*P*(ϵ+P) + np.exp(β+3*α)*dPdr**2 / (r**2*(ϵ+P))
     W = np.exp(3*β+α)*(ϵ+P)/r**2
 
     return Π, Q, W

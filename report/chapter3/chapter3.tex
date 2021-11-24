@@ -342,43 +342,6 @@ Stars are parametrized by central pressures $\SI{1e-6}{} \epsilon_0 \le P_0 \le 
 
 \end{figure}
 
-\begin{figure}
-\centering
-\begin{tikzpicture}
-\begin{groupplot}[
-	group style={group size=1 by 2, vertical sep=10pt},
-	width=14cm, height=9cm,
-	ylabel=$M / \solarmass$, 
-	grid=major,
-	%point meta=explicit, point meta min=-1.5, point meta max=+1.5,
-	colormap={signnegpos}{samples of colormap=(4 of stability)}, colormap access=const, 
-	point meta=explicit, point meta min=0, point meta max=4,
-	every axis title/.style={at={(0.97,0.95)}, text width=3cm, anchor=north east, draw=black, fill=white},
-]
-\nextgroupplot[
-	title={\subcaption{\label{fig:nstars:stability_computed}Computed}},
-	colorbar horizontal, colorbar sampled, colorbar style={xlabel={Number of unstable modes with $\omega_n^2 < 0$}, xtick={0.5, 1.5, 2.5, 3.5}, xticklabels={$0$, $1$, $2$, $3$}, at={(0.5,1.05)}, anchor=south, xticklabel pos=upper, tickwidth=0},
-	xticklabels=\empty,
-]
-\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta=nu] {../code/data/gr2.dat};
-
-\nextgroupplot[
-	title={\subcaption{\label{fig:nstars:stability_exact}Exact}},
-	xlabel=$R / \si{\kilo\meter}$,
-]
-\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={greater(\thisrow{P},0.8) + greater(\thisrow{P},600) + greater(\thisrow{P},19000)}] {../code/data/gr2.dat};
-\end{groupplot}
-\end{tikzpicture}
-
-\caption{\label{fig:nstars:stability}%
-Stability analysis of the neutron stars with arbitrary Fermi momenta in \cref{fig:nstars:massradius}.
-The sign of the squared eigenfreuqency $\omega_0^2$ of the lowest normal vibration mode determines whether a star is stable and oscillates like $e^{i \omega_0 t}$, or if it is unstable and grows or decays like $e^{\pm \abs{\omega_0} t}$.
-\subref{fig:nstars:stability_computed} Squared eigenfrequencies computed numerically by solving the Sturm-Liouville eigenvalue equation with the shooting method.
-\subref{fig:nstars:stability_exact} Stability determined exactly by the rule that a star transitions from stable to unstable as the central pressure increases beyond the one corresponding to the maximum mass.
-}
-
-\end{figure}
-
 \section{Stability analysis}
 
 The mass-radius curves in \cref{fig:nstars:massradius} display some interesting behavior.
@@ -495,6 +458,7 @@ The star therefore contracts, and repeating the argument causes it to collapse c
 The criterion \eqref{eq:nstars:stability_mass_pressure} shows that the stars located between the maximum mass and the bottom of the spiral in \cref{fig:nstars:massradius} are unstable!
 
 \subsection{General analysis}
+\label{sec:nstars:stability_general}
 
 \TODO{where to put this?}
 Then he expanded the field equations to first order in the deviations $\delta f$ and simplified them by subtracting the equilibrium equations \eqref{eq:nstars:field_equations_equilibrium}.
@@ -748,8 +712,8 @@ where the coefficient functions are
 \begin{subequations}
 \begin{align}
 	\Pi &= \frac{1}{r^2} e^{\beta_0 + 3 \alpha_0} \gamma P_0 , \label{eq:nstars:sturm_liouville_coefficients_Pi} \\
-	Q   &= -\frac{4}{r^3} e^{\beta_0 + 3 \alpha_0} P_0' - \frac{8 \pi}{r^2} e^{3 \beta_0 + 3 \alpha_0} P (\epsilon_0 + P_0) + \frac{e^{\beta_0 + 3 \alpha_0}}{r^2(\epsilon_0 + P_0)} (P_0')^2 , \label{eq:nstars:sturm_liouville_coefficients_Q} \\
-	W   &= \frac{1}{r^2} e^{3 \beta_0 + \alpha_0} (\epsilon_0 + P_0) . \label{eq:nstars:sturm_liouville_coefficients_W}
+	Q   &= -\frac{4}{r^3} e^{\beta_0 + 3 \alpha_0} P_0' - \frac{8 \pi G}{c^4} \frac{1}{r^2} e^{3 \beta_0 + 3 \alpha_0} P (\epsilon_0 + P_0) + \frac{e^{\beta_0 + 3 \alpha_0}}{r^2(\epsilon_0 + P_0)} \left( P_0' \right)^2 , \label{eq:nstars:sturm_liouville_coefficients_Q} \\
+	W   &= \frac{1}{c^2 r^2} e^{3 \beta_0 + \alpha_0} (\epsilon_0 + P_0) . \label{eq:nstars:sturm_liouville_coefficients_W}
 \end{align}
 \label{eq:nstars:sturm_liouville_coefficients}
 \end{subequations}
@@ -785,7 +749,7 @@ At the center $r = 0$, spherical symmetry implies that there can be no flow, so 
 \label{eq:nstars:boundary_condition_center_physical}
 \end{equation}
 From definitions \eqref{eq:nstars:definition_zeta} and \eqref{eq:nstars:separation_of_variables}, we see that this requires
-\TODO{why not $r^4$, $r^5$, etc? do we need $\xi' > 0$ at $r=0$ or something?}
+\TODO{why not $r^4$, $r^5$, etc? do we need $\xi' > 0$ at $r=0$ or something? dimensional analysis requires $U \propto r^3$?}
 \begin{equation}
 	U_n(r) \propto r^3
 	\qquad \text{near} \qquad
@@ -834,7 +798,9 @@ It is best viewed as the eigenvalue equation
 	U_n(r \rightarrow 0) \propto r^3 
 	\quad \text{and} \quad
 	U_n'(R) < \infty .
+\label{eq:nstars:sturm_liouville_boundary_conditions}
 \end{equation}
+\label{eq:nstars:sturm_liouville_problem}
 \end{subequations}
 for the squared frequencies $\omega_n^2$ and the corresponding eigenfunctions $U_n(r)$.
 The Sturm-Liouville equation \eqref{eq:nstars:sturm_liouville} is expressed in a self-adjoint form with respect to the inner product
@@ -1007,6 +973,7 @@ As with the Buchdal bound \eqref{eq:incompressible_star:buchdal} that we looked 
 \usetikzlibrary{calc}
 \begin{figure}
 \begin{tikzpicture}
+\pgfplotstableread{../code/data/nmodes_norm.dat}{\nmodestable};
 \pgfplotstablegetrowsof{\nmodestable}
 \pgfmathparse{int(\pgfmathresult-1)}
 \pgfplotstablegetelem{\pgfmathresult}{r}\of{\nmodestable}
@@ -1024,7 +991,6 @@ As with the Buchdal bound \eqref{eq:incompressible_star:buchdal} that we looked 
 	ylabel=$U_n / \norm{U_n}_\infty$,
 	legend cell align=left, legend columns=5, legend style={at={(1.0, 1.03)}, anchor=south},
 ]
-\pgfplotstableread{../code/data/nmodes_norm.dat}{\nmodestable};
 \pgfplotsinvokeforeach{0,1,2,3,4} {
 	\addplot+ [thick] table [x expr=\thisrow{r}/\maxR, y=U#1] {\nmodestable};
 	\pgfplotstablegetelem{#1}{omega2}\of{\nmodestable}
@@ -1082,6 +1048,43 @@ As with the Buchdal bound \eqref{eq:incompressible_star:buchdal} that we looked 
 	In the opposite case $n \leq N$, it would have been a better lower bound $\omega_-^2 = -8$.
 	Moving on, the algorithm continues to split intervals in this fashion until the lower and upper bounds are so close that any value in the interval $[\omega_-^2, \omega_+^2]$ is satisfactory.
 }
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size=1 by 2, vertical sep=10pt},
+	width=14cm, height=9cm,
+	ylabel=$M / \solarmass$, 
+	grid=major,
+	%point meta=explicit, point meta min=-1.5, point meta max=+1.5,
+	colormap={signnegpos}{samples of colormap=(4 of stability)}, colormap access=const, 
+	point meta=explicit, point meta min=0, point meta max=4,
+	every axis title/.style={at={(0.97,0.95)}, text width=3cm, anchor=north east, draw=black, fill=white},
+]
+\nextgroupplot[
+	title={\subcaption{\label{fig:nstars:stability_computed}Computed}},
+	colorbar horizontal, colorbar sampled, colorbar style={xlabel={Number of unstable modes with $\omega_n^2 < 0$}, xtick={0.5, 1.5, 2.5, 3.5}, xticklabels={$0$, $1$, $2$, $3$}, at={(0.5,1.05)}, anchor=south, xticklabel pos=upper, tickwidth=0},
+	xticklabels=\empty,
+]
+\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta=nu] {../code/data/gr2.dat};
+
+\nextgroupplot[
+	title={\subcaption{\label{fig:nstars:stability_exact}Exact}},
+	xlabel=$R / \si{\kilo\meter}$,
+]
+\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={greater(\thisrow{P},0.8) + greater(\thisrow{P},600) + greater(\thisrow{P},19000)}] {../code/data/gr2.dat};
+\end{groupplot}
+\end{tikzpicture}
+
+\caption{\label{fig:nstars:stability}%
+Stability analysis of the neutron stars with arbitrary Fermi momenta in \cref{fig:nstars:massradius}.
+The sign of the squared eigenfreuqency $\omega_0^2$ of the lowest normal vibration mode determines whether a star is stable and oscillates like $e^{i \omega_0 t}$, or if it is unstable and grows or decays like $e^{\pm \abs{\omega_0} t}$.
+\subref{fig:nstars:stability_computed} Squared eigenfrequencies computed numerically by solving the Sturm-Liouville eigenvalue equation with the shooting method.
+\subref{fig:nstars:stability_exact} Stability determined exactly by the rule that a star transitions from stable to unstable as the central pressure increases beyond the one corresponding to the maximum mass.
+}
+
 \end{figure}
 
 \subsection{Sufficient conditions for stability}

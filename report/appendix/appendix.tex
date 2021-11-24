@@ -1257,7 +1257,9 @@ Here, we do the latter in the computer algebra system SAGE, inspired by \cite{re
 
 The output matches \cref{eq:tov} precisely.
 
-\chapter{Numerical integration of the Tolman-Oppenheimer-Volkoff equation}
+\chapter{Numerical implementations}
+
+\section{Numerical integration of the Tolman-Oppenheimer-Volkoff equation}
 \label{sec:nstars:numtov}
 
 In \cref{chap:tov} we derived the Tolman-Oppenheimer-Volkoff system \eqref{eq:tov:tovsys} for the unknown pressure and mass profiles $P(r)$ and $m(r)$, subject to the boundary conditions $P(0) = P_0$ and $m(0) = 0$.
@@ -1324,6 +1326,35 @@ Typically, stars distributed uniformly between two central pressures may be loca
 To circumvent this difficulty and make the mass-radius curve as smooth as possible, we take an adaptive approach by recursively splitting an initial central pressure interval $(\diml{P}_1, \diml{P}_2)$ until the Euclidean distance $\sqrt{(\diml{R}_2-\diml{R}_1)^2 + (\diml{M}_2-\diml{M}_1)^2}$ between all points on the curve is below some given tolerance.
 
 \codefile{python}{../code/tov_solve.py}
+
+\section{Stability analysis}
+
+The program above can optionally check the stability of the stars it finds by the \textbf{shooting method} presented in \cref{sec:nstars:stability_general}.
+Converting the Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville_problem} with the dimensionful scales defined in \cref{sec:nstars:numtov}, we find the dimensionless Sturm-Liouville problem
+\begin{subequations}
+\begin{equation}
+	\odv*{ \left[ \hat{\Pi}(\hat{r}) \odv{\hat{U}_n(\hat{r})}{\hat{r}} \right] }{\hat{r}} + \hat{Q}(\hat{r}) \, \hat{U}_n(\hat{r}) = -\hat{\omega}_n^2 \hat{W}(\hat{r}) \hat{U}_n(\hat{r}) \\
+\end{equation}
+\begin{equation}
+	\text{subject to the boundary conditions} \qquad
+	\hat{U}_n(\hat{r} \rightarrow 0) \propto \hat{r}^3
+	\quad \text{and} \quad
+	\hat{U}_n'(\hat{R}) < \infty .
+\end{equation}
+\end{subequations}
+with the dimensionless quantities
+\begin{subequations}
+\begin{align}
+	\hat{U}_n    &= \frac{U_n}{r_0^3} \\
+	\hat{\omega} &= \frac{\omega}{c/r_0} \\
+	\hat{\Pi}    &= \frac{\pi}{\epsilon_0 / r_0^2} = e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^2} \gamma_0 \hat{P}_0 \\
+	\hat{Q}      &= \frac{Q}{\epsilon_0 / r_0^4} = -4 e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^3} \odv{\hat{P}_0}{\hat{r}} - \frac{8 \pi \hat{G}}{4 \pi / 3} \hat{P}_0 \left( \hat{P}_0 + \hat{\epsilon}_0 \right) \frac{1}{\hat{r}^2} e^{3 \beta_0 + 3 \alpha_0} + e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^2} \frac{\left( \odv{\hat{P}_0}/{\hat{r}} \right)^2}{\hat{P}_0 + \hat{\epsilon}_0} \\
+	\hat{W}      &= \frac{W}{\epsilon_0 / r_0^2 c^2} = e^{3 \beta_0 + \alpha_0} \frac{1}{\hat{r}^2} \left( \hat{P}_0 + \hat{\epsilon}_0 \right)
+\end{align}
+\end{subequations}
+Most terms are similar to their counterparts \eqref{eq:nstars:sturm_liouville_coefficients}, except the prefactor in the second term of $\hat{Q}$ following the division by the energy density scale \eqref{eq:numtov:energy_density_scale}.
+
+\codefile{python}{../code/stability.py}
 
 \section{Cold free fermion neutron stars}
 
