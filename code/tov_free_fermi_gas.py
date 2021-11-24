@@ -34,7 +34,7 @@ def ϵGR(P):
 
 # numerical instability for P2 > 1e7
 #massradiusplot(ϵNR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/nr2.dat")
-massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/gr2.dat")
+#massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/gr2.dat")
 
 """
 r, m, P, α, ϵ = soltov(ϵGR, 1e3)
@@ -42,9 +42,9 @@ r, m, P, α, ϵ = soltov(ϵGR, 1e3)
 """
 
 #P0 = 1e-1
-P0 = 5e2
+P0 = 3e2
 r, m, P, α, ϵ = soltov(ϵGR, P0)
-ns = range(0, 5)
+ns = range(0, 12)
 ω2s, us = eigenmode(r, m, P, α, ϵ, ns, plot=False, cut=True, normalize=False, outfile="data/nmodes.dat")
 ω2s, us = eigenmode(r, m, P, α, ϵ, ns, plot=False, cut=True, normalize=True, outfile="data/nmodes_norm.dat")
 for ω2, u, n in zip(ω2s, us, ns):

@@ -959,7 +959,10 @@ As with the Buchdal bound \eqref{eq:incompressible_star:buchdal} that we looked 
 \TODO{can I really say this? I never drew a parametrical mass-radius curve for stars of constant radius}
 
 \usetikzlibrary{calc}
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{cycle list/Dark2} % or Dark2
 \begin{figure}
+\centering
 \begin{tikzpicture}
 \pgfplotstableread{../code/data/nmodes_norm.dat}{\nmodestable};
 \pgfplotstablegetrowsof{\nmodestable}
@@ -967,37 +970,48 @@ As with the Buchdal bound \eqref{eq:incompressible_star:buchdal} that we looked 
 \pgfplotstablegetelem{\pgfmathresult}{r}\of{\nmodestable}
 \pgfmathsetmacro{\maxR}{\pgfplotsretval}
 \begin{groupplot}[
-	group style={group size=2 by 1, horizontal sep=5pt},
-	width=8cm, height=7cm,
-	xlabel=$r / R$,
-	xmin=-0.1, xmax=1.1, ymin=-1.1, ymax=+1.1, restrict y to domain=-100:+100,
-	xtick={0,0.5,1}, ytick={-1,0,1},
+	group style={group size=1 by 2, horizontal sep=5pt, vertical sep=5pt},
+	width=14.5cm, height=9.8cm,
+	xmin=-0.0, xmax=1.0, ymin=-1.1, ymax=+1.1, restrict y to domain=-50:+50,
+	xtick={0,0.25,0.5,0.75,1}, ytick={-1,0,1},
 	ymajorgrids=true,
-	no markers, cycle list name=color list, % or exotic
+	%cycle list name=Dark2,%no markers, cycle list name=color list, % or exotic
+	cycle multi list={
+		solid, dashed\nextlist
+		Dark2 % or Set1
+	},
 ]
 \nextgroupplot[
+	every axis title/.style={at={(0.03,0.07)}, text width=5cm, anchor=south west, draw=black, fill=white},
+	title={\subcaption{\label{fig:nstars:modes_normed_separate}Separate normalization}},
 	ylabel=$U_n / \norm{U_n}_\infty$,
-	legend cell align=left, legend columns=5, legend style={at={(1.0, 1.03)}, anchor=south},
+	legend cell align=left, legend columns=4, legend style={at={(0.5, 1.03)}, anchor=south},
+	xticklabels={},
 ]
-\pgfplotsinvokeforeach{0,1,2,3,4} {
+\pgfplotsinvokeforeach{0,1,...,7} {
 	\addplot+ [thick] table [x expr=\thisrow{r}/\maxR, y=U#1] {\nmodestable};
 	\pgfplotstablegetelem{#1}{omega2}\of{\nmodestable}
-	\addlegendentryexpanded{$\omega_{#1}^2 = \pgfmathprintnumber[fixed, fixed zerofill, precision=2]{\pgfplotsretval}$};
+	\addlegendentryexpanded{$\omega_{#1}^2 = \pgfmathprintnumber[fixed, fixed zerofill, precision=2, showpos=true]{\pgfplotsretval} \, c / r_0$};
 }
 
 \nextgroupplot[
-	ylabel=$U_n / \norm{U_0}_\infty$, yticklabel pos=right, ylabel near ticks,
-	yticklabels={},
+	every axis title/.style={at={(0.97,0.07)}, text width=5cm, anchor=south east, draw=black, fill=white},
+	title={\subcaption{\label{fig:nstars:modes_normed_common}Common normalization}},
+	xlabel=$r / R$,
+	ylabel=$U_n / \norm{U_0}_\infty$,
 ];
 \tablemaximum{../code/data/nmodes.dat}{U0}{\maxU}{r}{\maxr}
-\pgfplotsinvokeforeach{0,1,2,3,4} {
+\pgfplotsinvokeforeach{0,1,...,7} {
 	\addplot+ [thick] table [x expr=\thisrow{r}/\maxR, y expr=\thisrow{U#1}/\maxU] {../code/data/nmodes.dat};
 }
-\addplot [dashed, domain=0:0.5, restrict y to domain=0:1.1, samples=50] {(x*\maxR)^3 / \maxU} node[pos=0.6, label={[xshift=+1ex]135:$\propto r^3$}] {};
+\addplot [dashed, domain=0:0.5, restrict y to domain=0:1.1, samples=50] {(x*\maxR)^3 / \maxU} node[pos=0.6, label={[xshift=+0ex]135:$\propto r^3$}] {};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:nstars:modes}%
-\TODO{figure text}
+The eight lowest vibration modes $U_n(r)$ and squared eigenfrequencies $\omega_n^2$ for a cold neutron star with central pressure $P = \SI{3e2}{} \epsilon_0$.
+In \subref{fig:nstars:modes_normed_separate}, the eigenfunctions are separately normalized to their own maxima, making their shape throughout the star and the boundary condition $U_n(R) < \infty$ clear.
+In \subref{fig:nstars:modes_normed_common}, they are instead normalized to a common scale, highlighting the boundary condition $U_n(r) \propto r^3$ for $r \rightarrow 0$.
+Here, $r_0 = \SI{10}{\kilo\meter}$.
 }
 \end{figure}
 
