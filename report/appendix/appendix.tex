@@ -756,13 +756,13 @@ Then the conservation law is equivalent to
 \label{eq:relfluid:baryon_number_divergence}
 \end{equation}
 which has the elegant interpretation that there is no flux of the baryon number density current $n u^\mu$ out of the volume element.
-We can use this result to rewrite the conservation law in a second way, namely
+From \cref{eq:relfluid:baryon_number_divergence}, we can rewrite the conservation law in the alternative form
 \begin{equation}
-	\odv{n}{\tau} = \odv{x^\mu}{\tau} \pdv{n}{x^\mu}
-	              = U^\mu \nabla_\mu n
-	              = -n \nabla_\mu U^\mu .
+	\odv{n}{\tau} = U^\mu \nabla_\mu n
+	              = -n \nabla_\mu U^\mu ,
 \label{eq:relfluid:baryon_number_rate_change}
 \end{equation}
+expressing the rate of change of the density along a stream line.
 
 \section{Conservation of energy and Euler equation}
 
@@ -823,16 +823,17 @@ This kills one term in the square brackets and multiplies the two others by $c^2
 \begin{subequations}
 \begin{align}
 	  0 &= \Big(\epsilon + P \Big) \nabla_\mu U^\mu + U^\mu \nabla_\mu \Big( \epsilon + P \Big) - U_\nu \nabla^\nu P \nonumber \\
-	    &= \nabla_\mu \bigg[ U^\mu \Big( \epsilon + p \Big)  \bigg] - U^\mu \nabla_\mu P && \quad \text{(by product rule)} \nonumber \\
-	    &= \nabla_\mu \bigg( \epsilon \, U^\mu \bigg) + P \, \nabla_\mu U^\mu && \quad \text{(by product rule)} \label{eq:relfluid:energy_conservation_before_product} \\
-	    &= U^\mu \nabla_\mu \epsilon + \left( \epsilon + P \right) \nabla_\mu U^\mu && \quad \text{(by product rule)} . \label{eq:relfluid:energy_conservation_after_product}
+	    &= \nabla_\mu \bigg[ U^\mu \Big( \epsilon + p \Big)  \bigg] - U^\mu \nabla_\mu P && \quad \text{(by ``backward'' product rule)} \nonumber \\
+	    &= \nabla_\mu \bigg( \epsilon \, U^\mu \bigg) + P \, \nabla_\mu U^\mu && \quad \text{(by ``forward'' product rule)} \label{eq:relfluid:energy_conservation_before_product} \\
+	    &= U^\mu \nabla_\mu \epsilon + \left( \epsilon + P \right) \nabla_\mu U^\mu && \quad \text{(by ``forward'' product rule)} \label{eq:relfluid:energy_conservation_after_product} \\
+	    &= \odv{\epsilon}{\tau} + \left( \epsilon + P \right) \nabla_\mu U^\mu && \quad \text{(by chain rule)} . \label{eq:relfluid:energy_conservation_after_chain}
 	    %&= \odv{\epsilon}{\tau} + \frac{\epsilon + P}{n} \, n \nabla_\mu U^\mu \nonumber \\
 	    %&= \odv{\epsilon}{\tau} - \frac{\epsilon + P}{n} \, U^\mu \nabla_\mu n && \quad \text{(by baryon number conservation \eqref{eq:relfluid:baryon_number_divergence})} \\
 	    %&= \odv{\epsilon}{\tau} - \left( \epsilon + P \right) \odv{n}{\tau} && \quad \text{(by chain rule)} .
 \end{align}%
 \label{eq:relfluid:energy_conservation}%
 \end{subequations}%
-Either of the equivalent labelled forms is known as the \textbf{relativistic equation of energy conservation}.
+Either of the equivalent forms is known as the \textbf{relativistic equation of energy conservation}.
 In the Newtonian limit \eqref{eq:weak_field_limit:small_pressure}, the pressure term is negligible and the form \eqref{eq:relfluid:energy_conservation_after_product} reduces to the familiar continuity equation
 \begin{equation}
 	0 = \nabla_\mu \bigg( \epsilon \, u^\mu \bigg) = \pdv{\epsilon}{t} - \vec{\nabla} \cdot \Big( \epsilon \vec{v} \Big) .
@@ -873,7 +874,7 @@ A straightforward calculation using the same tricks \eqref{eq:relfluid:tricks} s
 This is the \textbf{relativistic Euler equation}. 
 In the Newtonian limit $U^\mu = (c, \vec{v})$ with small velocity \eqref{eq:weak_field_limit:small_velocity} and pressure \eqref{eq:weak_field_limit:small_pressure}, the rightmost term is negligible because it contains the product of two velocities, and so is the pressure contribution in the leftmost term.
 Then the three spatial indices $\alpha = \{1, 2, 3\}$ reduce to the non-relativistic Euler equation
-\TODO{also get gravitational acceleration in the perturbation?}
+\TODO{can i also get gravitational acceleration $\vec{g}$ in the perturbation?}
 \begin{equation}
 	\rho \left[ \pdv{\vec{v}}{t} + \left( \vec{v} \cdot \vec{\nabla} \right) \vec{v} \right] = -\nabla P .
 \end{equation}
