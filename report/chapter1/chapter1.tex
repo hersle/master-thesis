@@ -187,6 +187,11 @@ Given all three equations and the central pressure $P(0)$, we can integrate to f
 We define the radius of the star to be the radius $R$ at which $P(R) = 0$.
 Carrying out this procedure for different values of $P(0)$, we can find a mass-radius relation $M(R)$ for stars parametrized by their central pressure $P(0)$.
 
+\TODO{incorporate how to find $\alpha_0$ into TOV chapter and/or code appendix}
+In addition, $\alpha$ can be obtained by integrating its derivative \eqref{eq:einstein_to_tov:dadr1} or \eqref{eq:einstein_to_tov:dadr2}, too.
+Since it is only the derivative of $\alpha$ that enters the TOV equation, we can start its integration subject to a convenient boundary condition such as $\alpha(0) = 0$.
+Then, at the end, we shift $\alpha(r) \rightarrow \alpha(r) - \alpha(R) + \frac12 \log (1 - 2 G M / R)$ to match it to the Schwarzschild solution.
+
 \section{Solution for an incompressible star}
 \label{sec:incompressible_star}
 
