@@ -895,35 +895,58 @@ Let us put it to use and determine the stability of the stars along the curve in
 \pgfplotstablegetelem{\pgfmathresult}{r}\of{\shoottable}
 \pgfmathsetmacro{\maxR}{\pgfplotsretval}
 \begin{axis}[
-	width=11cm, height=8cm,
+	width=15cm, height=10cm,
 	xlabel=$r/R$, ylabel=$U(r) / \norm{U_0(r)}_\infty$,
-	title={Convergence of $U(r; \omega^2) \rightarrow U_0(r; \omega_0^2)$ \\ with the shooting method},
+	title={Convergence of $U(r) \rightarrow U_0(r)$ as $\omega^2 \rightarrow \omega_0^2$ with the shooting method},
 	%every axis title/.style={at={(0.5,1)}, align=center, above=1ex, text width=0.8*\pgfkeysvalueof{/pgfplots/width}]},
-	ymin=-2.1, ymax=+2.1,
+	xmin=0, xmax=1, ymin=-2.0, ymax=+2.0,
 	xtick distance=0.25, ytick distance=1,
 	ymajorgrids, xmajorgrids,
 	cycle list name=color list,
-	legend style={anchor=south west, at={(1.02, 0)}},
+	legend style={anchor=north, at={(0.5, -0.25)}},
+	legend columns=8, transpose legend,
 	legend cell align=right,
-	colormap name=blackred, cycle list={[samples of colormap=33]},
+	colormap name=blackred, cycle list={[samples of colormap=32]},
+	clip mode=individual,
 ]
-\addlegendimage{empty legend}
-\addlegendentry{\hspace{-0.6cm}\textbf{Value of $\omega^2$}} % hack for legend title: https://tex.stackexchange.com/questions/2311/add-a-legend-title-to-the-legend-box-with-pgfplots
-\pgfplotsinvokeforeach{0,...,32}{ % 32, it works but it is very slow
-	\pgfplotstablegetelem{#1}{omega2}\of{../code/data/shoot.dat}
-	\addplot+ [thick, restrict y to domain=-5:5] table [x expr=\thisrow{r}/\maxR, y expr={\thisrow{U#1} / 0.000312}] {../code/data/shoot.dat}; % faster to read directly from file for some reason
-	\addlegendentryexpanded{$\pgfmathprintnumber[precision=10, fixed, fixed zerofill]{\pgfplotsretval}$};
+%\addlegendimage{empty legend}
+%\addlegendentry{\hspace{-0.6cm}\textbf{Value of $\omega^2$}} % hack for legend title: https://tex.stackexchange.com/questions/2311/add-a-legend-title-to-the-legend-box-with-pgfplots
+\pgfplotsinvokeforeach{0,...,31}{ % 31, it works but it is very slow
+	%\pgfplotstablegetrowsof{\shoottable}
+	%\pgfmathparse{int(\pgfplotsretval-1)}
+	%\pgfplotstablegetelem{\pgfmathresult}{U#1}\of{\shoottable} % last value of U (positive -> blue, negative -> red)
+	%\pgfmathparse{int(sign(\pgfplotsretval))}
+	%\pgfmathsetmacro{\signU}{\pgfmathresult}
+
+	\pgfmathparse{int(100 * (0.0 + 0.6 * #1 / 31))} % lin interp 50 -> 100
+	\pgfmathsetmacro{\clrintensity}{\pgfmathresult}
+	\pgfplotstablegetelem{#1}{nn}\of{\shoottable}
+	\ifthenelse{\equal{\pgfplotsretval}{1}}{
+		\edef\mycolor{black!\clrintensity!red}
+	}{
+		\edef\mycolor{black!\clrintensity!blue}
+	}
+	\edef\temp{\noexpand\addplot+ [thick, color=\mycolor, restrict y to domain=-5:5] table [x expr=\noexpand\thisrow{r}/\maxR, y expr={\noexpand\thisrow{U#1} / 0.000312}] {../code/data/shoot.dat};} % faster to read directly from file for some reason
+	\temp
+	%\addplot+ [thick, restrict y to domain=-5:5] table [x expr=\thisrow{r}/\maxR, y expr={\thisrow{U#1} / 0.000312}] {../code/data/shoot.dat}; % faster to read directly from file for some reason
+
+	\pgfplotstablegetelem{#1}{omega2}\of{\shoottable} % get value of \omega^2
+	\addlegendentryexpanded{$\pgfmathprintnumber[precision=10, fixed, fixed zerofill]{\pgfplotsretval}$}; % pgfplotsretval is still omega2
 }
+\node [text=black, anchor=north] at (axis description cs:0.5,-0.15) {Value of $\hat{\omega}^2 = \omega^2 / (c/r_0)^2$};
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:nstars:shooting_convergence}%
-	The shooting method is used to determine the squared frequency $\omega_N^2$ of the vibration mode $U_N(r)$ with $N=0$ of a neutron star with central pressure $P_0 = 10^3 \epsilon_0$.
-	First, it finds two values $\omega_-^2 = -16$ and $\omega_+^2 = 0$ whose corresponding solutions $U(r)$ have $n_- \leq N$ and $n_+ > N$ nodes, respectively.
-	The exact squared frequency is then guaranteed to lie in $\omega_-^2 < \omega^2 < \omega_+^2$.
-	Next, the algorithm finds the solution $U(r)$ corresponding to $\omega^2 = (\omega_-^2 + \omega_+^2) / 2 = -8$ and counts its number of nodes.
-	Here, it is found to have $n > N$ nodes, so $\omega_+^2 = -8$ gives a tighter upper bound on $\omega^2$ than $0$.
-	In the opposite case $n \leq N$, it would have been a better lower bound $\omega_-^2 = -8$.
-	Moving on, the algorithm continues to split intervals in this fashion until the lower and upper bounds are so close that any value in the interval $[\omega_-^2, \omega_+^2]$ is satisfactory.
+	The shooting method is used to determine the squared frequency $\omega_n^2$ of the vibration mode $U_n(r)$ with $n=0$ of a neutron star with central pressure $P_0 = 10^3 \epsilon_0$.
+	Roughly speaking, it intelligently guesses eigenvalues $\omega^2$ of the Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville_problem} with corresponding eigenfunctions $U(r)$ until the guess is good enough.
+	First, the method establishes two bounds $\hat{\omega}_-^2 = -16$ and $\hat{\omega}_+^2 = 0$ whose corresponding solutions $U_\mp(r)$ have $n(\omega_-^2) \leq n$ and $n(\omega_+^2) > n$ nodes, respectively.
+	The exact squared frequency is then guaranteed to lie in $\omega_-^2 < \omega_n^2 < \omega_+^2$.
+	Next, the algorithm finds the solution $U(r)$ corresponding to $\hat{\omega}^2 = (\hat{\omega}_-^2 + \hat{\omega}_+^2) / 2 = -8$ and counts its number of nodes.
+	Here, it is found to have $n(\omega^2) > n$ nodes, so $-8$ is a tighter upper bound on $\hat{\omega}_n^2$ than $0$.
+	The process is therefore repeated with the old lower bound $\hat{\omega}_-^2 = -16$ and the new upper bound $\hat{\omega}_+^2 = -8$.
+	In the opposite case $n(\omega^2) \leq n$, $\hat{\omega}_-^2 = -8$ would rather be a better lower bound.
+	The algorithm continues to split intervals in this fashion until the lower and upper bounds are so close that any value in the interval $[\omega_-^2, \omega_+^2]$ is satisfactory.
+	\textcolor{blue}{Blue} lines correspond to \textcolor{blue}{lower bounds $\omega_-^2$}, \textcolor{red}{red} lines to \textcolor{red}{upper bounds $\omega_+^2$}, brighter colors to initial guesses and darker colors to later guesses.
 }
 \end{figure}
 

@@ -38,7 +38,7 @@ def ϵGR(P):
 
 """
 r, m, P, α, ϵ = soltov(ϵGR, 1e3)
-ω2s, us = eigenmode(r, m, P, α, ϵ, [0], plot=True, outfileshoot="data/shoot.dat")# , outfile="data/nmodes.dat")
+ω2s, us = eigenmode(r, m, P, α, ϵ, [0], plot=True, outfileshoot="data/shoot.dat")# , outfile="data/nmodes.dat") # TODO: should print number of nodes, added this manually in the data file for plotting
 """
 
 #P0 = 1e-1
