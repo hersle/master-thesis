@@ -819,38 +819,41 @@ We can simplify this equation by using
 	\nabla_\mu \left( U^\nu U_\nu \right) = 2 U^\nu \nabla_\mu U^\nu = 0 .
 \label{eq:relfluid:tricks}
 \end{equation}
-This kills one term in the square brackets and multiplies the two others by $c^2$, leaving us with
-\begin{equation}
-\begin{split}
-	  0 &= \Big(\epsilon + P \Big) \nabla_\mu U^\mu + U^\mu \nabla_\mu \Big( \epsilon + P \Big) - U_\nu \nabla^\nu P \\
-	    &= \nabla_\mu \bigg[ U^\mu \Big( \epsilon + p \Big)  \bigg] - U^\mu \nabla_\mu P . \\
-\end{split}
-\end{equation}
-We can go even further if we apply the backwards product rule $U^\mu \nabla_\mu P = \nabla_\mu (U^\mu P) - P \nabla_\mu U^\mu$ to the last term.
-Then we obtain
-\begin{equation}
-	0 = \nabla_\mu \bigg( \epsilon \, U^\mu \bigg) + P \, \nabla_\mu U^\mu .
-\end{equation}
-This is in fact the \textbf{relativistic equation of energy conservation}!
-In the Newtonian limit \eqref{eq:weak_field_limit:small_pressure}, the pressure term is negligible and we obtain the familiar continuity equation
+This kills one term in the square brackets and multiplies the two others by $c^2$, leaving
+\begin{subequations}
+\begin{align}
+	  0 &= \Big(\epsilon + P \Big) \nabla_\mu U^\mu + U^\mu \nabla_\mu \Big( \epsilon + P \Big) - U_\nu \nabla^\nu P \nonumber \\
+	    &= \nabla_\mu \bigg[ U^\mu \Big( \epsilon + p \Big)  \bigg] - U^\mu \nabla_\mu P && \quad \text{(by product rule)} \nonumber \\
+	    &= \nabla_\mu \bigg( \epsilon \, U^\mu \bigg) + P \, \nabla_\mu U^\mu && \quad \text{(by product rule)} \label{eq:relfluid:energy_conservation_before_product} \\
+	    &= U^\mu \nabla_\mu \epsilon + \left( \epsilon + P \right) \nabla_\mu U^\mu && \quad \text{(by product rule)} . \label{eq:relfluid:energy_conservation_after_product}
+	    %&= \odv{\epsilon}{\tau} + \frac{\epsilon + P}{n} \, n \nabla_\mu U^\mu \nonumber \\
+	    %&= \odv{\epsilon}{\tau} - \frac{\epsilon + P}{n} \, U^\mu \nabla_\mu n && \quad \text{(by baryon number conservation \eqref{eq:relfluid:baryon_number_divergence})} \\
+	    %&= \odv{\epsilon}{\tau} - \left( \epsilon + P \right) \odv{n}{\tau} && \quad \text{(by chain rule)} .
+\end{align}%
+\label{eq:relfluid:energy_conservation}%
+\end{subequations}%
+Either of the equivalent labelled forms is known as the \textbf{relativistic equation of energy conservation}.
+In the Newtonian limit \eqref{eq:weak_field_limit:small_pressure}, the pressure term is negligible and the form \eqref{eq:relfluid:energy_conservation_after_product} reduces to the familiar continuity equation
 \begin{equation}
 	0 = \nabla_\mu \bigg( \epsilon \, u^\mu \bigg) = \pdv{\epsilon}{t} - \vec{\nabla} \cdot \Big( \epsilon \vec{v} \Big) .
-\label{eq:relfluid:energy_conservation}
 \end{equation}
 
+\iffalse
 It is useful to have the Euler equation in a form that involves derivatives $\odv{}/{\tau} = U^\mu \nabla_\mu$ along a streamline.
 By repeated application of the product rule and substitution of baryon number conservation \eqref{eq:relfluid:baryon_number_rate_change}, we can rewrite \eqref{eq:relfluid:energy_conservation} as
 \begin{equation}
-\begin{split}
-	0 &= U^\mu \nabla_\mu \epsilon + (\epsilon+P) \nabla_\mu U^\mu  \\
-	  &= \odv{\epsilon}{\tau} + (\epsilon+P) \nabla_\mu U^\mu \\
-	  &= \odv{\epsilon}{\tau} + \frac{\epsilon+P}{n} n \nabla_\mu U^\mu \\
-	  &= \odv{\epsilon}{\tau} - \frac{\epsilon+P}{n} U^\mu \nabla_\mu n \\
-	  &= \odv{\epsilon}{\tau} - \frac{\epsilon+P}{n} \odv{n}{\tau} . \\
-\end{split}
+\begin{aligned}
+	0 &= U^\mu \nabla_\mu \epsilon + (\epsilon+P) \nabla_\mu U^\mu      && \qquad \text{(by product rule)} \\
+	  &= \odv{\epsilon}{\tau} + (\epsilon+P) \nabla_\mu U^\mu           && \qquad \text{(by backwards chain rule)} \\
+	  &= \odv{\epsilon}{\tau} + \frac{\epsilon+P}{n} n \nabla_\mu U^\mu &&                             \\
+	  &= \odv{\epsilon}{\tau} - \frac{\epsilon+P}{n} U^\mu \nabla_\mu n && \qquad \text{(by product rule and \eqref{eq:relfluid:baryon_number_divergence})} \\
+	  &= \odv{\epsilon}{\tau} - \frac{\epsilon+P}{n} \odv{n}{\tau} .    && \qquad \text{(by backwards chain rule)} \\
+	  &= \odv{\epsilon}{\tau} + \left( \epsilon + P \right) \nabla_\mu U^\mu
+\end{aligned}
 \label{eq:relfluid:energy_conservation_rewritten}
 \end{equation}
 This is in the form we wanted.
+\fi
 
 \subsection{Euler equation}
 
@@ -893,25 +896,34 @@ Then the first law can be rewritten
 Explicitly writing out the differentials and cancelling the constant $N$, we find
 \begin{equation}
 	\dif \epsilon = \frac{\epsilon + P}{n} \dif n + n T \dif s .
+\label{eq:relfluid:thermodynamics_first_law_rewritten}
 \end{equation}
-To relate this to our flow, combine baryon number conservation \eqref{eq:relfluid:baryon_number_rate_change} with energy conservation in the form \eqref{eq:relfluid:energy_conservation_rewritten} into
+To relate this to our flow, combine conservation of energy \eqref{eq:relfluid:energy_conservation_after_product} and baryon number \eqref{eq:relfluid:baryon_number_divergence} into
 \begin{equation}
-	\odv{\epsilon}{\tau} = \frac{\epsilon + P}{n} \odv{n}{\tau} .
+\begin{aligned}
+	0 &= U^\mu \nabla_\mu \epsilon + \frac{\epsilon+P}{n} \, n \nabla_\mu U^\mu \\
+	  &= U^\mu \nabla_\mu \epsilon - \frac{\epsilon+P}{n} \, U^\mu \nabla_\mu n && \qquad \text{(by baryon number conservation \eqref{eq:relfluid:baryon_number_divergence})} \\
+	  &= \odv{\epsilon}{\tau} - \frac{\epsilon+P}{n} \odv{n}{\tau}      && \qquad \text{(by chain rule)} . \\
+\end{aligned}
+\label{eq:relfluid:energy_conservation_rewritten}
 \end{equation}
-This is the first law of thermodynamics with $\dif Q = T \dif S = 0$, showing that the flow indeed is adiabatic.
+This is just the first law of thermodynamics \eqref{eq:relfluid:thermodynamics_first_law_rewritten} with $\dif Q = T \dif S = 0$, showing that the flow indeed is adiabatic!
 
 A useful consequence of adiabadicity is that it enables us to define the \textbf{adiabatic index}
 \begin{equation}
 	\gamma = \left( \pdv{\log (P/P_0)}{\log (n/n_0)} \right)_S
 \end{equation}
 at constant entropy, relative to some irrelevant pressure and number density scales $P_0$ and $n_0$.
-In our case,
+In our case, we can take the derivative and rewrite the adiabatic index by eliminating the baryon number density with \cref{eq:relfluid:energy_conservation_rewritten}.
+It then takes the practical form
 \begin{equation}
 	\gamma = \frac{n}{P} \left( \pdv{P}{n} \right)_S
 	       = \frac{n}{P} \frac{\odv{P}/{\tau}}{\odv{n}/{\tau}}
-	       = \frac{\epsilon+P}{P} \odv{P}{\epsilon}
+	       = \frac{\epsilon+P}{P} \frac{\odv{P}/{\tau}}{\odv{\epsilon}/{\tau}}
+	       = \frac{\epsilon+P}{P} \odv{P}{\epsilon} .
 \label{eq:relfluid:adiabadicity}
 \end{equation}
+The last expression is possible to calculate from the equation of state $\epsilon = \epsilon(P)$.
 
 
 \chapter{Matsubara energy summation}
