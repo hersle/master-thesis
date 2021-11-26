@@ -326,8 +326,8 @@ and then calculate
 	%extra y ticks/.expanded={\maxMnr, \maxMgr}, extra y tick style={dashed}, % https://tex.stackexchange.com/a/333974
 	%extra x ticks/.expanded={{10*\maxRnr}, {10*\maxRgr}}, extra x tick style={dashed, tick label style={yshift=-1ex}},
 ]
-\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/nr.dat} node [pos=0.67, pin={[text=black]0:Non-relativistic limit $p_F \ll mc$}] {};
-\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/gr.dat} node [pos=0.61, pin={[text=black]-100:Arbitrary $p_F$}] {};
+\addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/nr.dat} node [pos=0.67, pin={[text=black]0:Non-relativistic limit $p_F \ll mc$}] {};
+\addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P})}] {../code/data/gr.dat} node [pos=0.61, pin={[text=black]-100:Arbitrary $p_F$}] {};
 \node [circle, fill, inner sep=1pt, label={90:$(\pgfmathprintnumber\maxRnr, \pgfmathprintnumber\maxMnr)$}] at ({10*\maxRnr}, \maxMnr) {};
 \node [circle, fill, inner sep=1pt, label={90:$(\pgfmathprintnumber\maxRgr, \pgfmathprintnumber\maxMgr)$}] at ({10*\maxRgr}, \maxMgr) {};
 
@@ -1032,18 +1032,20 @@ For a sequence of \emph{cold} stars -- like ours -- in a mass-radius diagram lik
 Our curve only includes a spiral turning counterclockwise and thus indicate the two first rules, but we have no grounds to confirm nor deny the third rule.
 \cite{ref:stability_rules_thorne} give a detailed discussion and proofs of these three rules.
 As with the Buchdal bound \eqref{eq:incompressible_star:buchdal} that we looked at a long time ago, the maximum mass is not only a limit on \emph{massiveness}, but also on \emph{stability}.
-\TODO{can I really say this? I never drew a parametrical mass-radius curve for stars of constant radius}
+\TODO{can I really say this? I never drew a parametrical mass-radius curve for stars of constant radius, so maybe I should go back and do that}
 
 
 \begin{figure}[b]
 \centering
+\pgfplotsset{
+	/pgfplots/colormap={stability}{rgb255=(65,171,93) rgb255=(254,178,76) rgb255=(252,78,42) rgb255=(122,1,119)}
+}
 \begin{tikzpicture}
 \begin{groupplot}[
 	group style={group size=1 by 1, vertical sep=10pt},
 	width=15cm, height=12cm,
 	xlabel=$R / \si{\kilo\meter}$, ylabel=$M / \solarmass$,
 	grid=major,
-	%point meta=explicit, point meta min=-1.5, point meta max=+1.5,
 	colormap={signnegpos}{samples of colormap=(4 of stability)}, colormap access=const, 
 	point meta=explicit, point meta min=0, point meta max=4,
 	every axis title/.style={at={(0.97,0.95)}, text width=3cm, anchor=north east, draw=black, fill=white},
@@ -1055,7 +1057,7 @@ As with the Buchdal bound \eqref{eq:incompressible_star:buchdal} that we looked 
 	%xticklabels=\empty,
 	minor x tick num=4, minor y tick num=9,
 ]
-\addplot [mark=none, mesh, thick] table [x expr={10*\thisrow{R}}, y=M, meta=nu] {../code/data/gr2.dat};
+\addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta=nu] {../code/data/gr2.dat};
 
 \iffalse % Exact results are now extremely similar to computed results
 \nextgroupplot[
@@ -1072,6 +1074,7 @@ Stability analysis of the neutron stars with arbitrary Fermi momenta in \cref{fi
 Squared eigenfrequencies $\omega_n^2$ of the Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville_problem} are computed numerically with shooting method.
 The sign of the squared eigenfreuqency $\omega_0^2$ of the lowest normal vibration mode determines whether a star is stable and oscillates like $e^{i \omega_0 t}$, or if it is unstable and grows or decays like $e^{\pm \abs{\omega_0} t}$.
 Here, the number of unstable modes with negative squared eigenfrequencies $\omega_n^2 < 0$ are counted for all stars along the mass-radius curve.
+Do note the presence of all \emph{four} colors.
 }
 
 \end{figure}
