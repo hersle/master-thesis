@@ -350,7 +350,7 @@ Stars are parametrized by central pressures $\SI{1e-6}{} \epsilon_0 \le P_0 \le 
 The mass-radius curves in \cref{fig:nstars:massradius} display some interesting behavior.
 In particular, the curves spiral for central pressures greater than that corresponding to the maximum mass.
 Since we have used statistical physics to obtain an equation of state, all stars on the mass-radius curve are in \emph{equilibrium}.
-\TODO{is the assumption of equilibrium instead/also baked into using perfect fluid energy momentum \eqref{eq:tov:energy_momentum_perfect_fluid}? and $U = (U^0, \vec{0})$?}
+\TODO{is the assumption of equilibrium instead/also baked into using perfect fluid energy momentum \eqref{eq:tov:energy_momentum_perfect_fluid}? and $U = (U^0, \vec{0})$? JO answer: yes! Fluid is equilibrium, and so is stat mech, so everything is consistent.}
 However, just like a pendulum can be in stable or unstable equilibria, the equilibrium of a star can be either stable or unstable with respect to small perturbations.
 Let us investigate the stability of the sequence of stars on the curve in \cref{fig:nstars:massradius}.
 
@@ -358,8 +358,8 @@ Let us investigate the stability of the sequence of stars on the curve in \cref{
 
 \subsection{Necessary conditions for stability}
 
-We will start simple by presenting a few necessary conditions for stability.
-However, neither of the conditions are \emph{sufficient} or a star to be stable, so we can only use them to identify unstable stars.
+We will start simply by presenting a few necessary conditions for stability.
+However, neither of the conditions are \emph{sufficient} for a star to be stable, so we can only use them to identify unstable stars.
 
 However exotic life inside a star may be, it cannot break causality. 
 In particular, the speed of sound $v = \sqrt{\odv{P}/{\rho}} = c \sqrt{\odv{P}/{\epsilon}}$ should not exceed the speed of light $c$.
@@ -502,11 +502,12 @@ the Einstein field equations \eqref{eq:einstein} reduced to
 \begin{align}%
 	\frac{1}{r^2} e^{-2 \beta_0} \left( 2 r \beta_0' - 1 + e^{2 \beta_0} \right)  &= \frac{8 \pi G}{c^4} \epsilon_0   && \left( G_{00} = \frac{8 \pi G}{c^4} T_{00} \right) , \label{eq:nstars:field_equations_equilibrium_00} \\
 	\frac{1}{r^2} e^{-2 \beta_0} \left( 2 r \alpha_0' + 1 - e^{2 \beta_0} \right) &= \frac{8 \pi G}{c^4} P_0          && \left( G_{11} = \frac{8 \pi G}{c^4} T_{11} \right) , \label{eq:nstars:field_equations_equilibrium_11} \\
-	\alpha_0'                                                                     &= \frac{-1}{\epsilon_0 + P_0} P_0' && \left( \nabla_\mu T\indices{^\mu_1} = 0 \right)    . \label{eq:nstars:field_equations_equilibrium_T}
+	\alpha_0'                                                                     &= \frac{-1}{\epsilon_0 + P_0} P_0' && \left( \nabla_\mu T\indices{^\mu_1} = 0 \right)    , \label{eq:nstars:field_equations_equilibrium_T}
 	%e^{-2 \beta_0} \left( \alpha_0'' + (\alpha_0')^2 - \alpha_0' \beta_0' + \frac{1}{r} (\alpha_0' - \beta_0') \right) &= \frac{8 \pi G}{c^4} P_0,
 \end{align}%
 \label{eq:nstars:field_equations_equilibrium}%
 \end{subequations}%
+where $' = \pdv{}/{r}$.
 
 Now we suppose that the fluid is no longer in equilibrium, but rather let loose in the radial direction with four-velocity
 \begin{equation}
