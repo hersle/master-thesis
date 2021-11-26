@@ -1272,7 +1272,7 @@ The output matches \cref{eq:tov} precisely.
 
 \chapter{Numerical implementations}
 
-\section{Numerical integration of the Tolman-Oppenheimer-Volkoff equation}
+\section{Integration of the Tolman-Oppenheimer-Volkoff equation}
 \label{sec:nstars:numtov}
 
 In \cref{chap:tov} we derived the Tolman-Oppenheimer-Volkoff system \eqref{eq:tov:tovsys} for the unknown pressure and mass profiles $P(r)$ and $m(r)$, subject to the boundary conditions $P(0) = P_0$ and $m(0) = 0$.
@@ -1318,6 +1318,7 @@ First, note that the energy density scale \eqref{eq:numtov:energy_density_scale}
 Second, observe that $G_0 = r_0 c^2 / m_0$ has the same units as the gravitational constant $G$, so let us also introduce the dimensionless gravitational constant
 \begin{equation}
 	\diml{G} = \frac{G}{G_0} .
+\label{eq:numtov:dimensionless_gravitational_constant}
 \end{equation}
 With these observations, the system \eqref{eq:numtov:tovsys_dimless_complicated} simplifies to
 \begin{subequations}
@@ -1337,77 +1338,148 @@ Below is a small Python program that accomplishes all of this for an arbitrary e
 The function \verb|massradiusplot| can be run with the optional parameter \verb|visual=True| to show the mass-radius relation in real-time, updating it every time the mass and radius of a new star is found.
 Typically, stars distributed uniformly between two central pressures may be located very non-uniformly in the mass-radius space.
 To circumvent this difficulty and make the mass-radius curve as smooth as possible, we take an adaptive approach by recursively splitting an initial central pressure interval $(\diml{P}_1, \diml{P}_2)$ until the Euclidean distance $\sqrt{(\diml{R}_2-\diml{R}_1)^2 + (\diml{M}_2-\diml{M}_1)^2}$ between all points on the curve is below some given tolerance.
+The program optionally checks the stability of stars by the definition in \cref{sec:nstars:stability_general} and numerical method described in the next section.
 
 \codefile{python}{../code/tov_solve.py}
 
-\section{Stability analysis and shooting method}
+\section{The shooting method}
 \label{sec:numerics:shooting_method}
 
-The shooting method finds \emph{one} eigenvalue $\omega_n^2$ and its corresponding eigenfunction $U_n(r)$ with the following strategy:
+Here, we describe how the shooting method determines the eigenvalues $\omega_n^2$ and corresponding eigenfunctions $U_n(r)$ of the Sturm-Liouville problem
+\begin{subequations}
+\begin{align}
+	&\odv*{ \left[ \Pi(r) \odv{U_n(r)}{r} \right] }{r} + Q(r) \, U_n(r) = -\omega_n^2 W(r) U_n(r) && \text{for } 0 \leq r \leq R , \label{eq:shooting:sturm_liouville_diffeq} \\
+	\text{subject to} \quad & U_n(r)          \propto r^3    && \text{near } r=0 , \label{eq:shooting:sturm_liouville_bc1} \\
+	\text{and}        \quad & \odv{U_n(r)}{r} <       \infty && \text{at } r=R , \label{eq:shooting:sturm_liouville_bc2}
+\end{align}%
+\label{eq:shooting:sturm_liouville_problem}%
+\end{subequations}%
+with the coefficient functions \eqref{eq:nstars:sturm_liouville_coefficients} that we encountered in \cref{eq:nstars:sturm_liouville_problem} in \cref{sec:nstars:stability_general} and our numerical implementation of it.
+We recommend looking at \cref{fig:nstars:shooting_convergence} while reading this explanation, where it is illustrated how the method finds the mode $n=0$ for such a Sturm-Liouville problem.
+
+\subsubsection{Description}
+\label{sec:numerics:shooting_method_description}
+
+The shooting method finds any \emph{one} eigenvalue $\omega_n^2$ and its corresponding eigenfunction $U_n(r)$ with the following strategy:
 \begin{enumerate}
-\item Guess \emph{any} value of $\omega^2$.
-\item \emph{Impose} the boundary condition $U(r) \propto r^3$ at $r \rightarrow 0$, then numerically integrate the Sturm-Liouville equation \eqref{eq:nstars:sturm_liouville} to ``shoot out'' $U(r)$ for $0 \leq r \leq R$.
-\item Count the number of nodes $n(\omega^2)$ of $U(r)$.
+\item \textbf{Guess} \emph{any} value $\omega^2$ for the eigenvalue $\omega_n^2$.
+\item \textbf{Impose} the boundary condition \eqref{eq:shooting:sturm_liouville_bc1} by setting $U(r) \propto r^3$ near $r = 0$. \label{item:shooting:bc1}
+\item \textbf{Shoot} the corresponding guess $U(r)$ for the eigenfunction $U_n(r)$ by numerically integrating the Sturm-Liouville equation \eqref{eq:shooting:sturm_liouville_diffeq} to $r=R$. \label{item:shooting:shoot}
+\item \textbf{Count} the number of nodes $n(\omega^2)$ of $U(r)$.
       \begin{enumerate}
-      \item If $n(\omega^2) > n$, then we should \emph{decrease} our guess for $\omega^2$ to decrease the number of nodes by Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros}.
-      \item If $n(\omega^2) \leq n$, then we should \emph{increase} our guess for $\omega^2$ to increase the number of nodes by Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros}.
+      \item If $n(\omega^2) > n$, then Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros} on page~\pageref{item:nstars:sturm_liouville_zeros} implies that $\omega^2 > \omega_n^2$, so \textbf{decrease} the guess for $\omega^2$.
+      \item If $n(\omega^2) \leq n$, then Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros} on page~\pageref{item:nstars:sturm_liouville_zeros} implies that $\omega^2 < \omega_n^2$, so \textbf{increase} the guess for $\omega^2$.
       \end{enumerate}
+      \label{item:shooting:count}
 % catalogue paper, see paragraph across page 507-508
 \end{enumerate}
+In \cref{fig:nstars:shooting_convergence}, it is shown that every $U(r)$ seems to diverge as $r \rightarrow R$, breaking boundary condition \eqref{eq:shooting:sturm_liouville_bc2}.
+In theory, $U(r)$ does not diverge and hence satisfies the boundary condition only if one guesses the \emph{exact} correct eigenvalue $\omega_n^2$.
+In practice, inaccuracy of the numerical integration will prevent one from guessing the exact eigenvalue -- it will only be possible to guess a value very close to it.
+As our guess gets very close to the true eigenvalue, the function $U(r)$ will diverge to one infinity $\pm \infty$ with $n$ nodes for guesses $\omega^2 < \omega_n^2$ slightly below the true eigenvalue, but to the \emph{other} infinity $\mp \infty$ with $n+1$ nodes for guesses $\omega^2 > \omega_n^2$ slightly above.
+This is the essential feature that allows our guess to get so close to the true eigenvalue.
+
 The rule that we should increase our guess not only if $n(\omega^2) < n$, but also if $n(\omega^2) = n$, is a little technical and deserves an explanation.
 Suppose we are looking for the lowest mode $n = 0$ and have guessed a value of $\omega^2$ with $n(\omega^2) = 0$ zeros.
 If the true eigenvalue $\omega_n^2$ had been \emph{less} than $\omega^2$, then any lower guess of $\omega^2$ would also give $n(\omega^2) = 0$ zeros, for a function cannot have less than zero zeros!
-But then we could repeat the same reasoning infinitely many times and ultimately reach the conclusion that the $\omega_0^2 = -\infty$, which is neither physically sound or consistent with the mathematical property \ref{item:nstars:sturm_liouville_eigenvalues}.
-By contradiction, then, the eigenvalue must be \emph{greater} than the initial guess, explaining why we should increase our guess also $n(\omega^2) = n$ with $n = 0$.
-If instead $n = 1$ and we guess $\omega^2$ with $n(\omega^2) = 1$ zeros, then decreasing our guess would eventually yield the incorrect eigenvalue $\omega_0^2$ -- not $\omega_1^2$.
-Thus, we still have to increase our guess, and this rule now follows for all $n$ by induction.
+But then we could repeat the same reasoning infinitely many times and ultimately reach the conclusion that the eigenvalue is $\omega_0^2 = -\infty$, which is neither physically sound or consistent with the mathematical Sturm-Liouville property \ref{item:nstars:sturm_liouville_eigenvalues} on page~\pageref{item:nstars:sturm_liouville_eigenvalues}.
+By contradiction, then, the eigenvalue must be \emph{greater} than the initial guess, explaining why we should increase our guess also if $n(\omega^2) = n$ with $n = 0$.
+If instead $n = 1$ and we guess $\omega^2$ with $n(\omega^2) = 1$ zeros, then decreasing our guess would eventually yield the incorrect eigenvalue $\omega_0^2$, and not the desired eigenvalue $\omega_1^2$.
+Thus, we have to increase our guess if $n=1$ too, and the rule now follows for all $n$ by induction.
 
-We implement the shooting method in \TODO{ref app}.
-Initially, we find two lower and upper bounds $\omega_-^2$ and $\omega_+^2$ with $n \leq N$ and $n > N$ zeros, then inspect $\omega^2 = (\omega_-^2 + \omega_+)^2) / 2$ and replace either the lower or upper bound depending on its number of zeros.
-Continuing to split the interval $(\omega_-^2, \omega_+^2)$ in this manner, the bounds come closer and closer and we terminate the procedure when they are so close that we are satisfied with any value in the interval.
-Perhaps \cref{fig:nstars:shooting_convergence} sheds new light on this quite technical discussion -- there we show how the squared frequencies $\omega^2$ and the corresponding solutions $U(r)$ converge towards the exact values $\omega_0^2$ and $U_0(r)$ of the fundamental vibration mode $N=0$.
+The efficiency of the shooting method hinges on the precise way in which it refines the guesses for the eigenvalues in step \ref{item:shooting:count} above.
+To make it fast, our actual implementation carries out the search in the following way:
+\begin{enumerate}
+\item Establish a lower bound $\omega_-^2$ and an upper bound $\omega_+^2$ for $\omega_n^2$ that have $n(\omega_-^2) \leq n$ and $n(\omega_+^2) > n$ zeros.
+      To do so, guess \emph{any} eigenvalue, for example $\omega^2 = 0$, shoot $U(r)$ and count its number of nodes $n(\omega^2)$.
+      \begin{itemize}
+      \item If $n(\omega^2) \leq n$, set the lower bound $\omega_-^2 = \omega^2$.
+            Find an upper bound by increasing $\omega^2$ exponentially up from $\omega_-^2$ and shooting $U(r)$ with step \ref{item:shooting:bc1} and \ref{item:shooting:shoot} above until it has $n(\omega^2) > n$ nodes, then set the upper bound $\omega_+^2 = \omega^2$.
+      \item If $n(\omega^2) >    n$, then $\omega_+^2 = \omega^2$ is an upper bound.
+            Find a lower bound by decreasing $\omega^2$ exponentially down from $\omega_+^2$ and shooting $U(r)$ with step \ref{item:shooting:bc1} and \ref{item:shooting:shoot} above until it has $n(\omega^2) \leq n$ nodes, then set the lower bound $\omega_-^2 = \omega^2$.
+      \end{itemize}
+      \label{item:shooting:bounds}
+\item Calulate the new guess $\omega^2 = (\omega_-^2 + \omega_+^2) / 2$, shoot $U(r)$ with step \ref{item:shooting:bc1} and \ref{item:shooting:shoot} above and count its number of nodes $n(\omega^2)$. \label{item:shooting:newguess}
+      \begin{itemize}
+      \item If $n(\omega^2) \leq n$, then $\omega^2$ is a tighter lower bound than $\omega_-^2$, so set $\omega_-^2 = \omega^2$.
+      \item If $n(\omega^2) >    n$, then $\omega^2$ is a tighter upper bound than $\omega_-^2$, so set $\omega_+^2 = \omega^2$.
+      \end{itemize}
+\item Repeat step \ref{item:shooting:newguess} until the bounds $\omega_-^2$ and $\omega_+^2$ are so close that any value in the interval $[\omega_-^2, \, \omega_+^2]$ is a satisfactory approximation for the true eigenvalue $\omega_n^2$.
+\item Output $\omega^2 = (\omega_-^2 + \omega_+^2) / 2 \approx \omega_n^2$ as the final approximation of the true eigenvalue.
+\end{enumerate}
+This algorithm runs \emph{logarithmically fast}, because the interval $[\omega_-^2, \, \omega_+^2]$ is enlarged \emph{exponentially} in step \ref{item:shooting:bounds} and \emph{halved} at every iteration of step \ref{item:shooting:newguess}.
 
-With the shooting method in our toolbox, we can compute $\omega_0^2$ for every star along the curve in \cref{fig:nstars:massradius} and determine whether it is stable or not by checking its sign.
-We indicate the stability determined in this way in \cref{fig:nstars:stability} \TODO{a}.
-Starting from the lowest central pressure and mass, it seems the stars are stable up to the maximum mass.
-However, the numerical procedure also indicates that stars slightly beyond this point are stable, which we know \emph{cannot} be the case by criterion \eqref{eq:nstars:stability_mass_pressure}.
+\subsubsection{Implementation}
 
-This error is very likely to be related to numerical inaccuracy, as there are a number of aspects with our implementation of the shooting method in \TODO{ref app} that are quite crude.
-\begin{itemize}
-\item Since the TOV equation is solved numerically, $\alpha_0(r)$, $\beta_0(r)$, $P_0(r)$ and $\epsilon_0(r)$ are only determined at discrete points between $0$ and $R$.
-      Thus, the same is true for $\Pi(r)$, $Q(r)$, and $W(r)$.
-      In addition, we approximate the derivatives derivatives $\odv{P_0}{\epsilon_0}$ and $\odv{P_0}{r}$ that are needed in $\Pi(r)$ and $Q(r)$ with finite differences.
-\item We integrate the Sturm-Liouville equation numerically using finite differences.
-\item The boundary condition $U(r) \propto r^3$ is implemented numerically by setting $U(r) = r^3$ for all $r < 0.01 R$.
-\item Since $r=R$ is a singular point, the numerical integration freaks out as $r \rightarrow R$.
-      To fix this, we linearly interpolate the next value of $U(r)$ from its value at the previous point beyond $r > 0.99 R$.
-\end{itemize}
-We expect that these sources of error accumulate and explain the violation of condition \eqref{eq:nstars:stability_mass_pressure}.
-
-The program above can optionally check the stability of the stars it finds by the \textbf{shooting method} presented in \cref{sec:nstars:stability_general}.
-Converting the Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville_problem} with the dimensionful scales defined in \cref{sec:nstars:numtov}, we find the dimensionless Sturm-Liouville problem
-\begin{subequations}
+The coefficient functions \eqref{eq:nstars:sturm_liouville_coefficients} of the Sturm-Liouville problem \eqref{eq:shooting:sturm_liouville_problem} are to be calculated from the output of the program in \cref{sec:nstars:numtov}.
+We therefore recast the problem to dimensionless form to make use of the dimensionless quantities \eqref{eq:numtov:dimensionless_variables} by defining the dimensionless variables
 \begin{equation}
-	\odv*{ \left[ \hat{\Pi}(\hat{r}) \odv{\hat{U}_n(\hat{r})}{\hat{r}} \right] }{\hat{r}} + \hat{Q}(\hat{r}) \, \hat{U}_n(\hat{r}) = -\hat{\omega}_n^2 \hat{W}(\hat{r}) \hat{U}_n(\hat{r}) \\
+	\hat{U}_n    = \frac{U_n}{r_0^3} , \quad
+	\hat{\omega} = \frac{\omega_n}{c/r_0} , \quad
+	\hat{\Pi}    = \frac{\pi}{\epsilon_0 / r_0^2} , \quad % = e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^2} \gamma_0 \hat{P}_0 \\
+	\hat{Q}      = \frac{Q}{\epsilon_0 / r_0^4} , \quad %= -4 e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^3} \odv{\hat{P}_0}{\hat{r}} - \frac{8 \pi \hat{G}}{4 \pi / 3} \hat{P}_0 \left( \hat{P}_0 + \hat{\epsilon}_0 \right) \frac{1}{\hat{r}^2} e^{3 \beta_0 + 3 \alpha_0} + e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^2} \frac{\left( \odv{\hat{P}_0}/{\hat{r}} \right)^2}{\hat{P}_0 + \hat{\epsilon}_0} \\
+	\hat{W}      = \frac{W}{\epsilon_0 / r_0^2 c^2} . %= e^{3 \beta_0 + \alpha_0} \frac{1}{\hat{r}^2} \left( \hat{P}_0 + \hat{\epsilon}_0 \right)
+\label{eq:shooting:dimensionless_variables}
 \end{equation}
-\begin{equation}
-	\text{subject to the boundary conditions} \qquad
-	\hat{U}_n(\hat{r} \rightarrow 0) \propto \hat{r}^3
-	\quad \text{and} \quad
-	\hat{U}_n'(\hat{R}) < \infty .
-\end{equation}
-\end{subequations}
-with the dimensionless quantities
+The Sturm-Liouville problem then takes the unchanged, only ``hatted form''
 \begin{subequations}
 \begin{align}
-	\hat{U}_n    &= \frac{U_n}{r_0^3} \\
-	\hat{\omega} &= \frac{\omega}{c/r_0} \\
-	\hat{\Pi}    &= \frac{\pi}{\epsilon_0 / r_0^2} = e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^2} \gamma_0 \hat{P}_0 \\
-	\hat{Q}      &= \frac{Q}{\epsilon_0 / r_0^4} = -4 e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^3} \odv{\hat{P}_0}{\hat{r}} - \frac{8 \pi \hat{G}}{4 \pi / 3} \hat{P}_0 \left( \hat{P}_0 + \hat{\epsilon}_0 \right) \frac{1}{\hat{r}^2} e^{3 \beta_0 + 3 \alpha_0} + e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^2} \frac{\left( \odv{\hat{P}_0}/{\hat{r}} \right)^2}{\hat{P}_0 + \hat{\epsilon}_0} \\
-	\hat{W}      &= \frac{W}{\epsilon_0 / r_0^2 c^2} = e^{3 \beta_0 + \alpha_0} \frac{1}{\hat{r}^2} \left( \hat{P}_0 + \hat{\epsilon}_0 \right)
+	&\odv*{ \left[ \hat{\Pi}(\hat{r}) \odv{\hat{U}_n(\hat{r})}{\hat{r}} \right] }{\hat{r}} + \hat{Q}(\hat{r}) \, \hat{U}_n(\hat{r}) = -\hat{\omega}_n^2 \hat{W}(\hat{r}) \hat{U}_n(\hat{r}) && \text{for } 0 \leq \hat{r} \leq \hat{R} , \\
+	\text{subject to} \quad & \hat{U}_n(\hat{r})          \propto \hat{r}^3    && \text{near } \hat{r}=0 , \\
+	\text{and}        \quad & \odv{\hat{U}_n(\hat{r})}{\hat{r}} <       \infty && \text{at } \hat{r}=\hat{R} ,
+\end{align}%
+\end{subequations}
+while the coefficient functions become
+\begin{subequations}
+\begin{align}
+	\hat{\Pi} &= e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^2} \gamma_0 \hat{P}_0 , \\
+	\hat{Q}   &= -4 e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^3} \odv{\hat{P}_0}{\hat{r}} - \frac{8 \pi \hat{G}}{4 \pi / 3} \hat{P}_0 \left( \hat{P}_0 + \hat{\epsilon}_0 \right) \frac{1}{\hat{r}^2} e^{3 \beta_0 + 3 \alpha_0} + e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^2} \frac{\left( \odv{\hat{P}_0}/{\hat{r}} \right)^2}{\hat{P}_0 + \hat{\epsilon}_0} , \\
+	\hat{W}   &= e^{3 \beta_0 + \alpha_0} \frac{1}{\hat{r}^2} \left( \hat{P}_0 + \hat{\epsilon}_0 \right) ,
 \end{align}
 \end{subequations}
-Most terms are similar to their counterparts \eqref{eq:nstars:sturm_liouville_coefficients}, except the prefactor in the second term of $\hat{Q}$ following the division by the energy density scale \eqref{eq:numtov:energy_density_scale}.
+where $\gamma_0$ is the adiabatic index \eqref{eq:nstars:adiabatic_index} and $\hat{G}$ is the dimensionless gravitational constant \eqref{eq:numtov:dimensionless_gravitational_constant}.
+Note the difference between the numerical prefactors in the second terms in $\hat{Q}$ above and its dimensionful counterpart \eqref{eq:nstars:sturm_liouville_coefficients_Q}.
+
+On top of this, we implement the shooting method as described in \cref{sec:numerics:shooting_method_description}.
+Some further remarks about our implementation are in order.
+\begin{itemize}
+\item To impose boundary condition \eqref{eq:shooting:sturm_liouville_bc1} in step \ref{item:shooting:bc1} on page~\pageref{item:shooting:bc1}, we set $\hat{U}(\hat{r}) = \hat{r}^3$ for all discrete points with $\hat{r} < 0.01 \hat{R}$.
+\item To numerically integrate the Sturm-Liouville differential equation \eqref{eq:shooting:sturm_liouville_diffeq} for after $\hat{r} \geq 0.01 \hat{R}$ in step \ref{item:shooting:shoot} on page~\pageref{item:shooting:shoot}, we first use the product rule to rewrite it as
+      \begin{equation}
+	      0 = \hat{\Pi} \hat{U}'' + \hat{\Pi}' \hat{U}' + \left( \hat{Q} + \hat{\omega}^2 \hat{W} \right) \hat{U} .
+      \end{equation}
+      Denoting the discrete points by $r_i$ and values of functions there by $f_i = f(r_i)$, we approximate all derivatives with the central finite differences
+      \begin{equation}
+          f_i'' \approx \frac{f'_{i+1/2}-f'_{i-1/2}}{r_{i+1/2}-r_{i-1/2}}
+          \qquad \text{and} \qquad
+          f_i' \approx \frac{f_{i+1}-f_{i-1}}{r_{i+1}-r_{i-1}} .
+      \end{equation}
+      This lets us compute the next, unknown value
+      \begin{equation}
+            U_{i+1} = \frac{1}{C_+} \Big( C \cdot U_i + C_- \cdot U_{i-1} \Big)
+      \end{equation}
+      from the previous known values $U_i$ and $U_{i-1}$ and the known coefficients
+      \begin{subequations}
+      \begin{align}
+          C_-             &= -\frac{2 \Pi_i}{r_i-r_{i-1}} + \Pi'_i , \\
+          C_{\phantom{-}} &= +\frac{2 \Pi_i}{r_{i+1}-r_i} + \frac{2 \Pi_i}{r_i-r_{i-1}} - \Big( r_{i+1} - r_{i-1} \Big) \Big( Q_i + \omega^2 W_i \Big) , \\
+          C_+             &= +\frac{2 \Pi_i}{r_{i+1}-r_i} + \Pi'_i .
+      \end{align}
+      \end{subequations}
+\item To prevent numerical integration from breaking down, we stop the numerical integration at $\hat{r} = 0.99 \hat{R}$ and linearly interpolate
+      \begin{equation}
+          U_{i+1} = U_i + \frac{U_i - U_{i-1}}{r_i - r_{i-1}} \Big( r_{i+1} - r_i \Big) .
+      \end{equation}
+      for the remaining points $\hat{r} > 0.99 \hat{R}$.
+      The point $r=R$ is a singular point because $Q(R) = W(R) = 0$, causing $U(r)$ to blow up there and making it very difficult for numerical integration to follow it.
+      Our assumption is that at $r = 0.99 R$, the blowup has already started, and the purpose of the linear interpolation is merely to capture the blowup all the way out to $r=R$ without care of the exact functional form of $U(r)$ there.
+\item It should also be noted that numerical errors may occur due to division by zero in the coefficient functions in the regions $r < 0.01 R$ and $r > 0.99 R$, but not in the intermediate region $0.01 R < r < 0.99 R$.
+      This is not an issue, because we enforce the form of $U(r)$ in these two regions independently of the coefficient functions.
+\end{itemize}
+
+Below is our implementation of the shooting method in Python based on this description.
+
+\TODO{fix code files so all lines are within margins}
 
 \codefile{python}{../code/stability.py}
 

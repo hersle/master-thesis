@@ -126,11 +126,8 @@ def eigenmode(r, m, P, α, ϵ, Ns, p1=0.01, p2=0.99, plot=False, progress=True, 
 
     Π, Q, W = coeffs(r, m, P, α, ϵ)
 
-    # TODO: remove values that are not used to prevent division by zero warnings
-
-    # TODO: correct factors of G, see e.g. Bardeen catalogue 1966 !
-
-    # TODO: can i divide Π, Q, W by their maximums to make numbers more handleable?
+    # TODO: remove values that are not used to prevent division by zero warnings?
+    #       β gives an error because of divisoin by zero in a region where its value is not used
 
     ω2s, us = [], []
     for N in Ns:
