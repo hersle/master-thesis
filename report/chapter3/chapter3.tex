@@ -260,6 +260,8 @@ The trial solution \eqref{eq:nstars:ur_ansatz} we employed in \cref{sec:nstars:u
 We therefore resort to the numerical solution method described in \cref{sec:nstars:numtov}, parametrizing different stars by their center pressure $P_0$ and integrating the TOV equation until the pressure $p(R)$ vanishes, using the corresponding radius $R$ to establish the mass $M = m(R)$ of the star.
 The results are shown in \cref{fig:nstars:massradius}.
 
+\TODO{compare with earlier results, most massive neutron stars}
+
 \iffalse
 Dimensionless equation of state
 \begin{equation}
@@ -788,9 +790,8 @@ It is best viewed as the eigenvalue equation
 \begin{subequations}
 \begin{align}
 	&\odv*{ \left[ \Pi(r) \odv{U_n(r)}{r} \right] }{r} + Q(r) \, U_n(r) = -\omega_n^2 W(r) U_n(r) && \text{for } 0 \leq r \leq R , \label{eq:nstars:sturm_liouville} \\
-	\text{subject to} \quad & U_n(r)          \propto r^3    && \text{near } r=0 , \\
-	\text{and}        \quad & \odv{U_n(r)}{r} <       \infty && \text{at } r=R .
-\label{eq:nstars:sturm_liouville_boundary_conditions}%
+	\text{subject to} \quad & U_n(r)          \propto r^3    && \text{near } r=0 , \label{eq:nstars:sturm_liouville_boundary_condition1} \\
+	\text{and}        \quad & \odv{U_n(r)}{r} <       \infty && \text{at } r=R . \label{eq:nstars:sturm_liouville_boundary_condition2}
 \end{align}%
 \label{eq:nstars:sturm_liouville_problem}%
 \end{subequations}
@@ -853,28 +854,27 @@ In one dimension, normalizable solutions to the Schrödinger equation possess pr
 
 \subsubsection{Definition of stellar stability}
 
-\TODO{continue from here on friday}
-
 At long last, we are now in an excellent position to make a rigorous definition of stellar stability.
-Property \ref{item:nstars:sturm_liouville_completeness} implies that any sane displacement $\xi(t,r)$ can be written as a linear combiation
+Property \ref{item:nstars:sturm_liouville_completeness} implies that any sane displacement $\xi(t,r)$ can be written as the linear combiation
 \begin{equation}
-	\xi(t,r) = \frac{e^{-\beta_0(r)}}{r^2} \sum_n c_n U_n(r) e^{i \omega_n t} .
+	\xi(t,r) = \frac{e^{-\beta_0(r)}}{r^2} \sum_n c_n U_n(r) e^{i \omega_n t}
 \label{eq:nstars:displacement_general_solution}
 \end{equation}
+for some constants $c_n$.
 The superposition will still satisfy the physical boundary conditions \eqref{eq:nstars:boundary_condition_center_physical} and \eqref{eq:nstars:boundary_condition_surface_physical}, provided that each $U_n(r)$ separately satisfies the boundary conditions \eqref{eq:nstars:boundary_condition_center_mathematical} and \eqref{eq:nstars:boundary_condition_surface_mathematical}.
 Property \ref{item:nstars:sturm_liouville_eigenvalues} ensures all $\omega_n^2$ are real, \emph{but there is no restriction on the sign of $\omega_n^2$}.
 
 \begin{itemize}
 \item If $\omega_0^2 > 0$, then all vibration modes have real frequencies $\omega_n > 0$.
-      Then all terms in the displacement \eqref{eq:nstars:displacement_general_solution} merely oscillate back and forth like $\xi \propto e^{i \omega_n t}$, so the star attempts to return to equilibrium, and we say the star is \textbf{stable}.
+      Then all terms in the displacement \eqref{eq:nstars:displacement_general_solution} merely oscillate back and forth like $\xi \propto e^{i \omega_n t}$, so the star attempts to return to equilibrium, and we say it is \textbf{stable}.
 \item If $\omega_0^2 < 0$, then one or more vibration modes have imaginary frequencies $\omega_n = \pm i \abs{\omega_n}$.
-      Then some term in the displacement \eqref{eq:nstars:displacement_general_solution} takes off expnentially like $\xi \propto e^{\pm \abs{\omega_n} t}$, so the star either implodes or explodes, and we say the star is \textbf{unstable}.
+      Then some term in the displacement \eqref{eq:nstars:displacement_general_solution} takes off expnentially like $\xi \propto e^{\pm \abs{\omega_n} t}$, so the star either implodes or explodes, and we say it is \textbf{unstable}.
 \end{itemize}
 A prerequisite for the above definition is that it is sufficient for \emph{one} mode in the displacement \eqref{eq:nstars:displacement_general_solution} to be unstable for the star as a whole to be unstable.
 To understand this, suppose a star is exposed to some external perturbation $\xi(t,r)$.
-Whatever the source of this perturbation -- be it the touch of a finger, an imperfection in the star's material or the blast from a nearby supernova explosion -- it is the initial state $\xi(t,r)$ of this \emph{external} perturabtion that determines the contribution from each mode in the sum \eqref{eq:nstars:displacement_general_solution}, and subsequently the \emph{response} of the star to the perturbation.
+Whatever the source of this perturbation -- be it the touch of a finger, an imperfection in the star's material or the blast from a nearby supernova explosion -- it is the initial state $\xi(t,r)$ of this \emph{external} perturabtion that determines the contribution $c_n$ from each mode in the sum \eqref{eq:nstars:displacement_general_solution}, and subsequently the \emph{response} of the star to the perturbation.
 In the real world, we expect that any external perturbation will activate \emph{all} modes $U_n(r)$ to some extent -- for one would need remarkable finger precision to perturb the star in an \emph{exact} superposition of only a finite selection of modes.
-Given that all modes have even the slightest nonzero contribution, the presence of \emph{any} exponential term is sufficient for the whole sum to collapse or grow unbounded towards $0$ or $\infty$.
+Given that all modes have even the slightest nonzero contribution $c_n \neq 0$, the presence of \emph{any} exponential term is sufficient for the whole sum to collapse or grow unbounded towards $0$ or $\infty$.
 
 \TODO{innvending 1: vi gjør perturbasjonsteori, så gjelder vel ikke eksponensiell tidsvekst for evig?}
 
@@ -901,8 +901,8 @@ Let us put it to use and determine the stability of the stars along the curve in
 	title={Convergence of $U(r) \rightarrow U_0(r)$ as $\omega^2 \rightarrow \omega_0^2$ with the shooting method},
 	%every axis title/.style={at={(0.5,1)}, align=center, above=1ex, text width=0.8*\pgfkeysvalueof{/pgfplots/width}]},
 	xmin=0, xmax=1, ymin=-2.0, ymax=+2.0,
-	xtick distance=0.25, ytick distance=1,
-	ymajorgrids, xmajorgrids,
+	xtick distance=0.25, minor x tick num=4,
+	ytick distance=2, minor y tick num=3, ymajorgrids,
 	cycle list name=color list,
 	legend style={anchor=north, at={(0.5, -0.25)}},
 	legend columns=8, transpose legend,
@@ -913,12 +913,6 @@ Let us put it to use and determine the stability of the stars along the curve in
 %\addlegendimage{empty legend}
 %\addlegendentry{\hspace{-0.6cm}\textbf{Value of $\omega^2$}} % hack for legend title: https://tex.stackexchange.com/questions/2311/add-a-legend-title-to-the-legend-box-with-pgfplots
 \pgfplotsinvokeforeach{0,...,31}{ % 31, it works but it is very slow
-	%\pgfplotstablegetrowsof{\shoottable}
-	%\pgfmathparse{int(\pgfplotsretval-1)}
-	%\pgfplotstablegetelem{\pgfmathresult}{U#1}\of{\shoottable} % last value of U (positive -> blue, negative -> red)
-	%\pgfmathparse{int(sign(\pgfplotsretval))}
-	%\pgfmathsetmacro{\signU}{\pgfmathresult}
-
 	\pgfmathparse{int(100 * (0.0 + 0.6 * #1 / 31))} % lin interp 50 -> 100
 	\pgfmathsetmacro{\clrintensity}{\pgfmathresult}
 	\pgfplotstablegetelem{#1}{nn}\of{\shoottable}
@@ -930,58 +924,27 @@ Let us put it to use and determine the stability of the stars along the curve in
 	\edef\temp{\noexpand\addplot+ [thick, color=\mycolor, restrict y to domain=-5:5] table [x expr=\noexpand\thisrow{r}/\maxR, y expr={\noexpand\thisrow{U#1} / 0.000312}] {../code/data/shoot.dat};} % faster to read directly from file for some reason
 	\temp
 	%\addplot+ [thick, restrict y to domain=-5:5] table [x expr=\thisrow{r}/\maxR, y expr={\thisrow{U#1} / 0.000312}] {../code/data/shoot.dat}; % faster to read directly from file for some reason
-
 	\pgfplotstablegetelem{#1}{omega2}\of{\shoottable} % get value of \omega^2
 	\addlegendentryexpanded{$\pgfmathprintnumber[precision=10, fixed, fixed zerofill]{\pgfplotsretval}$}; % pgfplotsretval is still omega2
 }
 \node [text=black, anchor=north] at (axis description cs:0.5,-0.15) {Value of $\hat{\omega}^2 = \omega^2 / (c/r_0)^2$};
+%\addplot [forget plot, dashed, domain=0:5, restrict y to domain=0:2.0, samples=50] {(x*\maxR)^3 / 0.000312} node[pos=0.6, label={[xshift=+0ex]135:$\propto r^3$}] {};
+\addplot [forget plot, dashed, domain=0:0.2, restrict y to domain=0:2, samples=100] {700*x^3} node[pos=0.6, label={[xshift=+1ex]135:$\propto r^3$}] {};
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:nstars:shooting_convergence}%
-	The shooting method is used to determine the squared frequency $\omega_n^2$ of the vibration mode $U_n(r)$ with $n=0$ of a neutron star with central pressure $P_0 = 10^3 \epsilon_0$.
-	Roughly speaking, it intelligently guesses eigenvalues $\omega^2$ of the Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville_problem} with corresponding eigenfunctions $U(r)$ until the guess is good enough.
-	First, the method establishes two bounds $\hat{\omega}_-^2 = -16$ and $\hat{\omega}_+^2 = 0$ whose corresponding solutions $U_\mp(r)$ have $n(\omega_-^2) \leq n$ and $n(\omega_+^2) > n$ nodes, respectively.
+	The shooting method finds the eigenvalue $\omega_n^2$ and corresponding eigenfunction $U_n(r)$ with $n=0$ of a Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville_problem}.
+	It guesses the eigenvalue $\omega^2$, imposes the boundary condition \eqref{eq:nstars:sturm_liouville_boundary_condition1} near $r = 0$, ``shoots'' across to $r=R$ by integrating the differential equation \eqref{eq:nstars:sturm_liouville} and checks whether $U(r)$ ``hits'' boundary condition \eqref{eq:nstars:sturm_liouville_boundary_condition2} there.
+	Based on the number of nodes $n(\omega^2)$ of $U(r)$, the guess is intelligently improved and the process repeated, arriving ever closer to the true eigenvalue $\omega_n^2$.
+	First, the algorithm establishes two bounds $\hat{\omega}_-^2 = -16$ and $\hat{\omega}_+^2 = 0$ whose corresponding solutions have $n(\omega_-^2) \leq n$ and $n(\omega_+^2) > n$ nodes.
 	The exact squared frequency is then guaranteed to lie in $\omega_-^2 < \omega_n^2 < \omega_+^2$.
-	Next, the algorithm finds the solution $U(r)$ corresponding to $\hat{\omega}^2 = (\hat{\omega}_-^2 + \hat{\omega}_+^2) / 2 = -8$ and counts its number of nodes.
-	Here, it is found to have $n(\omega^2) > n$ nodes, so $-8$ is a tighter upper bound on $\hat{\omega}_n^2$ than $0$.
-	The process is therefore repeated with the old lower bound $\hat{\omega}_-^2 = -16$ and the new upper bound $\hat{\omega}_+^2 = -8$.
-	In the opposite case $n(\omega^2) \leq n$, $\hat{\omega}_-^2 = -8$ would rather be a better lower bound.
-	The algorithm continues to split intervals in this fashion until the lower and upper bounds are so close that any value in the interval $[\omega_-^2, \omega_+^2]$ is satisfactory.
-	\textcolor{blue}{Blue} lines correspond to \textcolor{blue}{lower bounds $\omega_-^2$}, \textcolor{red}{red} lines to \textcolor{red}{upper bounds $\omega_+^2$}, brighter colors to initial guesses and darker colors to later guesses.
+	Next, the algorithm finds the number of nodes corresponding to $\hat{\omega}^2 = (\hat{\omega}_-^2 + \hat{\omega}_+^2) / 2 = -8$.
+	Here, it is found to have $n(\omega^2) > n$ nodes, so the process is repeated with the tighter upper bound $\hat{\omega}_+^2 = -8$.
+	In the opposite case $n(\omega^2) \leq n$, $-8$ would rather be a better lower bound $\hat{\omega}_-^2$.
+	The algorithm continues to split the $[\omega_-^2, \, \omega_+^2]$ in this fashion until the bounds are so close that any value in the interval is satisfactory.
+	In the plot, \textcolor{blue}{blue} lines correspond to \textcolor{blue}{lower bounds $\omega_-^2$}, \textcolor{red}{red} lines to \textcolor{red}{upper bounds $\omega_+^2$}, brighter colors to initial guesses and darker colors to later guesses.
 }
 \end{figure}
-
-We describe the shooting method and our implementation of it in detail in \cref{sec:numerics:shooting_method}.
-It is also possible to understand the gist of the shooting method from \cref{fig:nstars:shooting_convergence}, where we show how it establishes $\omega_n^2$ and $U_n(r)$ by an intelligent form of ``trial and error''.
-\TODO{remark how we start with $U \propto r^3$, then see which eigenvalue that causes us to ``hit'' the correct boundary condition on the other side}
-In \cref{fig:nstars:modes}, we display the five lowest modes calculated for a star of some given central pressure.
-
-Finally, we apply the shooting method to every star along the curve in \cref{fig:nstars:massradius}.
-For every star, we repeatedly apply the shooting method to find all negative eigenvalues $\omega_n^2 < 0$ until we encounter the first positive value $\omega_n^2 > 0$.
-We then simply count the number of unstable modes with $\omega_n^2 < 0$ and display this number in \cref{fig:nstars:stability}.
-The results are very interesting.
-\begin{enumerate}
-\item Starting from the lowest central pressure, and hence lowest central energy and mass densities, all stars are \emph{stable} up until the maximum mass.
-      The part on this segment with lowest central energy density is the territory of Newtonian theory, where we should already expect stars to be stable, but that the situation remains so as relativistic effects take over is not necessarily obvious.
-\item At the point of maximum mass, stars gain \emph{one unstable mode}, and the number stays constant as we follow the curve down to the point of the spiral with minimal mass.
-      From the necessary stability condition \eqref{eq:nstars:stability_mass_pressure}, we already know that stars on this segment should indeed be unstable.
-\item Beyond the spiral's point of minimal mass, stars have a \emph{second unstable mode}.
-\item In the innermost parts of the spiral after the next local mass maximum, there even seems to be some stars with a \emph{third unstable mode}.
-      The effect is not as crystal clear as it is with the previous segments, however.
-\end{enumerate}
-
-Our computations suggest that at every local mass extremum point where $\odv{M(P_0)}/{P_0} = 0$, stars seem to acquire one more unstable vibration mode, starting with zero unstable modes for the lowest pressures $P_0 \rightarrow 0$.
-In fact, \cite{ref:stability_methods} presents a method which is based on this principle!
-For a sequence of \emph{cold} stars -- like ours -- in a mass-radius diagram like \cref{fig:nstars:massradius}, the following holds:
-\begin{itemize}
-\item For the lowermost central energy densities $\epsilon(P_0)$, we know from classical theory that stars are \emph{stable}.
-\item At every local mass extremum $\odv{M(P_0)}/{P_0} = 0$ where the curve bends \emph{counterclockwise} as the central pressure increases, one \emph{stable} mode becomes \emph{unstable}.
-\item At every local mass extremum $\odv{M(P_0)}/{P_0} = 0$ where the curve bends \emph{clockwise} as the central pressure increases, one \emph{unstable} mode becomes \emph{stable}.
-\end{itemize}
-Our results only include local mass extrema with counterclockwise turns and thus indicate the two first rules, but we have no grounds to confirm nor deny the third rule.
-\cite{ref:stability_rules_thorne} give a detailed discussion and proofs of these three rules.
-As with the Buchdal bound \eqref{eq:incompressible_star:buchdal} that we looked at a long time ago, the maximum mass is not only a limit on \emph{massiveness}, but also on \emph{stability}.
-\TODO{can I really say this? I never drew a parametrical mass-radius curve for stars of constant radius}
 
 \usetikzlibrary{calc}
 \usepgfplotslibrary{colorbrewer}
@@ -1040,8 +1003,39 @@ Here, $r_0 = \SI{10}{\kilo\meter}$.
 }
 \end{figure}
 
+We describe the shooting method and our implementation of it in detail in \cref{sec:numerics:shooting_method}.
+It is also possible to understand the gist of the shooting method from \cref{fig:nstars:shooting_convergence}, where we show how it establishes $\omega_0^2$ and $U_0(r)$ by an intelligent form of ``trial and error''.
+In \cref{fig:nstars:modes}, we display the five lowest modes obtained with the shooting method for some star.
 
-\begin{figure}
+Finally, we use the shooting method to examine the stability of every star along the curve in \cref{fig:nstars:massradius}.
+For every star, we repeatedly apply the shooting method for $n = 0, \, 1, \, 2, \, \ldots$ to find all negative eigenvalues $\omega_n^2 < 0$ until we encounter the first positive value $\omega_n^2 > 0$.
+We then simply count the number of unstable modes with $\omega_n^2 < 0$ and display this number in \cref{fig:nstars:stability}.
+The results are very interesting.
+\begin{enumerate}
+\item Starting from the lowest central pressure, and hence lowest central energy and mass densities, all stars are \emph{stable} up until the maximum mass.
+      The part on this segment with lowest central energy density is the territory of Newtonian theory, where we should already expect stars to be stable, but that the situation remains so as relativistic effects take over is not necessarily obvious.
+\item At the point of maximum mass, stars gain \emph{one unstable mode}, and the number stays constant as we follow the curve down to the point of the spiral with minimal mass.
+      From the necessary stability condition \eqref{eq:nstars:stability_mass_pressure}, we already know that stars on this segment should indeed be unstable.
+\item Beyond the spiral's point of minimal mass, stars have a \emph{second unstable mode}.
+\item In the innermost parts of the spiral after the next local mass maximum, there even seems to be some stars with a \emph{third unstable mode}.
+      The effect is not as crystal clear as it is with the previous segments, however.
+\end{enumerate}
+
+Our computations suggest that at every local mass extremum point where $\odv{M(P_0)}/{P_0} = 0$, stars acquire one additional unstable vibration mode, starting with zero unstable modes for the lowest pressures $P_0 \rightarrow 0$.
+In fact, \cite{ref:stability_methods} presents a method for determining stability of stars based on this principle!
+For a sequence of \emph{cold} stars -- like ours -- in a mass-radius diagram like \cref{fig:nstars:massradius}, the following holds:
+\begin{itemize}
+\item For the lowermost central energy densities $\epsilon(P_0)$, we know from classical theory that stars are \emph{stable}.
+\item At every local mass extremum $\odv{M(P_0)}/{P_0} = 0$ where the curve bends \emph{counterclockwise} as the central pressure increases, one \emph{stable} mode becomes \emph{unstable}.
+\item At every local mass extremum $\odv{M(P_0)}/{P_0} = 0$ where the curve bends \emph{clockwise} as the central pressure increases, one \emph{unstable} mode becomes \emph{stable}.
+\end{itemize}
+Our curve only includes a spiral turning counterclockwise and thus indicate the two first rules, but we have no grounds to confirm nor deny the third rule.
+\cite{ref:stability_rules_thorne} give a detailed discussion and proofs of these three rules.
+As with the Buchdal bound \eqref{eq:incompressible_star:buchdal} that we looked at a long time ago, the maximum mass is not only a limit on \emph{massiveness}, but also on \emph{stability}.
+\TODO{can I really say this? I never drew a parametrical mass-radius curve for stars of constant radius}
+
+
+\begin{figure}[b]
 \centering
 \begin{tikzpicture}
 \begin{groupplot}[
@@ -1081,7 +1075,5 @@ Here, the number of unstable modes with negative squared eigenfrequencies $\omeg
 }
 
 \end{figure}
-
-\TODO{compare with earlier results, most massive neutron stars}
 
 \TODO{keywords: $dp/d\epsilon = 1/3$ = conformal limit? no mass in this EOS = scale invariance. $T^{\mu \nu}$ traceless?}
