@@ -366,7 +366,8 @@ In particular, the speed of sound $v = \sqrt{\odv{P}/{\rho}} = c \sqrt{\odv{P}/{
 The equation of state $\epsilon = \epsilon(P)$ must therefore satisfy
 \TODO{ref?}
 \begin{equation}
-	\odv{P}{\epsilon} < 1 .
+	\odv{P}{\epsilon} < 1
+	\qquad \text{(necessary condition)} .
 \end{equation}
 How does the equation of state for a free Fermi gas hold up in this regard?
 Recall that the equation of state for general Fermi momenta $p_F$ followed by eliminating $x_F$ from the energy density \eqref{eq:nstars:energy_density_zeroT} to express it in terms of the pressure \eqref{eq:nstars:pressure_zeroT}.
@@ -382,6 +383,7 @@ Then we can apply the chain rule and the rule of inverse derivatives to obtain
 	\odv{P}{x_F} \odv{x_F}{\epsilon} =
 	\frac{\odv{P}/{x_F}}{\odv{\epsilon}/{x_F}} =
 	\frac13 \, \frac{1}{1+1/x_F^2}.
+\label{eq:nstars:dPde}
 \end{equation}
 We see that $\odv{P}/{\epsilon} < 1$ for all $x_F$ and approaches $1/3$ in the ultra-relativistic limit $x_F \rightarrow \infty$, as we should expect from the corresponding equation of state \eqref{eq:nstars:ur_eos}.
 Hence, all the stars in \cref{fig:nstars:massradius} satisfy this condition and it does not rule out any stars.
@@ -411,6 +413,7 @@ Repeated application of the same argument shows that the star continues to expan
 From the expression $v = c \sqrt{\odv{P}/{\epsilon}}$ of the speed of sound, it also sounds reasonable to require that
 \begin{equation}
 	\odv{P}{\epsilon} > 0
+	\qquad \text{(necessary condition)}
 \label{eq:nstars:stability_pressure_energy_density}
 \end{equation}
 for it to be a real quantity.
@@ -418,44 +421,53 @@ Violation of this condition would in fact have dramatic consequences.
 First, note that an increase in energy density $\dif \epsilon > 0$ always increase the gravitational force attempting to pull the star in.
 If such an increase implied a \emph{decrease} $\dif P < 0$ in the pressure that pushes the star out, then the gravitational force would automatically ``win'', causing the star to contract, and hence the energy density to increase further.
 Repeating the argument, we understand that the star collapses.
-This process is illustrated in \cref{fig:nstars:stability_mass_pressure}.
+This process is illustrated in \cref{fig:nstars:star_explosion}.
 Likewise, if a decrease $\dif \epsilon < 0$ caused an increase $\dif P > 0$, the same argument shows that the pressure wins and the star explodes.
 However, if the two always change by the same sign, then the two forces will at the very least counteract each other instead of being driven apart.
 In this case the star \emph{can} be stable, but the balance between the forces would have to be investigated in detail to conclude if it \emph{is}.
-This criterion does not let us rule out any of our stars, either, but it will be useful to assume \TODO{ref} in the following.
+In our case, the derivative \eqref{eq:nstars:dPde} is already positive, so this criterion does not let us rule out any of our stars, either.
+However, it will be useful to be able to assume condition \eqref{eq:nstars:stability_pressure_energy_density} as we continue our stability analysis.
 
 \begin{figure}
 \centering
 \begin{tikzpicture}
-\begin{axis}[axis x line=bottom, axis y line=left, xlabel=$P_0$, ylabel=$M$, xtick=\empty, ytick=\empty]
-	\addplot[domain=-1:+1, black] {-x^2};
+%\begin{axis}[axis x line=bottom, axis y line=left, xlabel=$P_0$, ylabel=$M$, xtick=\empty, ytick=\empty]
+\begin{axis}[axis x line=bottom, axis y line=left, axis line style={very thick, -Latex[]}, xlabel=$P_0$, ylabel=$M$, xtick=\empty, ytick=\empty, xmax=1.15]
+	\addplot[thick, domain=-1:+1, black] {-x^2};
 
-	\node [draw=black, circle, fill, inner sep=1pt, label=left:$E_1$] at (axis cs:-0.7,-0.49) {};
-	\node [draw=black, circle, fill, inner sep=1pt, label=left:$E_2$] at (axis cs:-0.5,-0.25) {};
-	\node [draw=black, circle, fill, inner sep=1pt, label=right:$C$ ] at (axis cs:-0.5,-0.49) {};
+	\node (E1inc) [draw=black, circle, fill, inner sep=1pt, label=left:$E_1^+$] at (axis cs:-0.7,-0.49) {};
+	\node (E2inc) [draw=black, circle, fill, inner sep=1pt, label=left:$E_2^+$] at (axis cs:-0.5,-0.25) {};
+	\node  (Cinc) [draw=black, circle, fill, inner sep=1pt, label=right:$C^+$ ] at (axis cs:-0.5,-0.49) {};
 
-	\node [draw=black, circle, fill, inner sep=1pt, label=left:$E_2$] at (axis cs:+0.7,-0.49) {};
-	\node [draw=black, circle, fill, inner sep=1pt, label=left:$E_1$] at (axis cs:+0.5,-0.25) {};
-	\node [draw=black, circle, fill, inner sep=1pt, label=right:$C$ ] at (axis cs:+0.7,-0.25) {};
+	\node (E1dec) [draw=black, circle, fill, inner sep=1pt, label=left:$E_2^-$] at (axis cs:+0.7,-0.49) {};
+	\node (E2dec) [draw=black, circle, fill, inner sep=1pt, label=left:$E_1^-$] at (axis cs:+0.5,-0.25) {};
+	\node  (Cdec) [draw=black, circle, fill, inner sep=1pt, label=right:$C^-$ ] at (axis cs:+0.7,-0.25) {};
+
+	\draw [dashed] (E1inc) -- (Cinc) -- (E2inc);
+	\draw [dashed] (E1dec) -- (Cdec) -- (E2dec);
 \end{axis}
 \end{tikzpicture}
-\caption{\label{fig:nstars:stability_mass_pressure}}
+\caption{\label{fig:nstars:stability_mass_pressure}%
+	Suppose an equilibrium star $E_1^+$ on an \emph{increasing} part of the mass-pressure curve $M(P_0)$ is compressed to a non-equilibrium star $C^+$ with the same mass.
+	Compared to the \emph{more massive} equilibrium star $E_2^+$ with the increased central pressure, it experiences \emph{less} gravitational attraction, causing it to expand back towards the original equilibrium configuration $E_1^+$.
+	In contrast, suppose an equilibrium star $E_1^-$ on a \emph{decreasing} part of the mass-pressure curve is compressed to a non-equilibrium star $C_-$ with the same mass.
+	Compared to the \emph{less massive} equilibrium star $E_2^-$ with the increased central pressure, it experiences \emph{more} gravitational attraction, causing it to compress even more and ultimately implode.
+}
 \end{figure}
 
-A third necessary condition is
+A third necessary condition for stars parametrized by their central pressure $P_0$ is
 \begin{equation}
 	\odv{M(P_0)}{P_0} > 0
+	\qquad \text{(necessary condition)} .
 \label{eq:nstars:stability_mass_pressure}
 \end{equation}
-for stars parametrized by their central pressure $P_0$.
+To understand it, consider a star $E_1^+$ in equilibrium on the increasing part of the mass-pressure curve in \cref{fig:nstars:stability_mass_pressure}, where condition \eqref{eq:nstars:stability_mass_pressure} is satisfied.
+Now compress this star to the non-equilibrium star $C^+$ with the same mass, and let $E_2^+$ be the star in equilibrium with the same central pressure as $C^+$.
+Then $C^+$ has less mass than $E_2^+$, and hence weaker gravitational forces than $E_2^+$, but the same central pressure as $E_2^+$.
+As a result, the star will expand and hence decrease its central density and pressure, causing it to return towards the equilibrium star $E_1^+$.
 
-Consider a star $E_1$ in equilibrium on the increasing part of the curve in \cref{fig:nstars:stability_mass_pressure}, where condition \eqref{eq:nstars:stability_mass_pressure} is satisfied.
-Now compress this star to the non-equilibrium star $C$ with the same mass, and let $E_2$ be the star in equilibrium with the same central pressure as $C$.
-Then $C$ has less mass than $E_2$, and hence weaker gravitational forces than $E_2$, but the same central pressure as $P_2$.
-As a result, the star will expand and decrease its central density and pressure, causing it to return towards the equilibrium star $E_1$.
-
-Let us we repeat the argument on the decreasing part of the curve, where condition \eqref{eq:nstars:stability_mass_pressure} does not hold.
-After the compression from $E_1$ to $C$, we see that $C$ has more mass and hence stronger gravitational forces than $E_2$, but again the same central pressure.
+Let us repeat the argument on the decreasing part of the curve, where condition \eqref{eq:nstars:stability_mass_pressure} does not hold.
+After the compression from $E_1^-$ to $C^-$, we see that $C^-$ has more mass and hence stronger gravitational forces than $E_2^-$, but again the same central pressure.
 The star therefore contracts, and repeating the argument causes it to collapse completely.
 
 The criterion \eqref{eq:nstars:stability_mass_pressure} shows that the stars located between the maximum mass and the bottom of the spiral in \cref{fig:nstars:massradius} are unstable!
@@ -525,7 +537,6 @@ with small perturbations $\delta \alpha$, $\delta \beta$, $\delta P$ and $\delta
 What we want to determine is the displacement of fluid elements from the unperturbed star to the perturbed star.
 Evolution of this quantity should give us insight into how the star responds to perturbations.
 Let us therefore define $\xi(t, r)$ so that if we attach a tracker to some fixed fluid element in the star, then
-\TODO{I should not mention $\xi$ before it is defined}
 \begin{equation}
 \begin{split}
 	\text{      in the unperturbed star, } & \text{the fluid element is at $\big(ct,r,\theta,\phi\big)$,} \\
@@ -876,11 +887,11 @@ Whatever the source of this perturbation -- be it the touch of a finger, an impe
 In the real world, we expect that any external perturbation will activate \emph{all} modes $U_n(r)$ to some extent -- for one would need remarkable finger precision to perturb the star in an \emph{exact} superposition of only a finite selection of modes.
 Given that all modes have even the slightest nonzero contribution $c_n \neq 0$, the presence of \emph{any} exponential term is sufficient for the whole sum to collapse or grow unbounded towards $0$ or $\infty$.
 
-\TODO{innvending 1: vi gjør perturbasjonsteori, så gjelder vel ikke eksponensiell tidsvekst for evig?}
+\TODO{innvending 1: vi gjør perturbasjonsteori, hvorfor er eksponensiell tidsvekst gyldig også når stjernen har blitt veldig mye større/mindre?}
 
-\TODO{instability, connect to attractor/chaos stuff from nonlinear dynamics?}
+\TODO{can the instability stuff be connect to attractor/chaos stuff from nonlinear dynamics?}
 
-\TODO{$\delta r$ instead of $\xi$?}
+\TODO{write $\delta r$ instead of $\xi$ to be consistent with the $\delta$-quantities?}
 
 \subsubsection{Numerical solution of the Sturm-Liouville problem with the shooting method}
 
