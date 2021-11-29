@@ -158,10 +158,11 @@ An elegant, but less straightforward argument is to use local energy-momentum co
 For two different proofs, see \cite{ref:einstein_conservation_energy_momentum} and \cite[section 8.3.2]{ref:mika_gr_notes}.
 Using \cref{eq:def_cov_deriv}, the component $\nu=1$ gives
 \begin{equation*}
-	0
-	= \nabla_\mu T\indices{^\mu_1}
-	= \partial_1 T\indices{^1_1} + \Gamma^\sigma_{1 \sigma} T\indices{^1_1} - \Gamma^\sigma_{1 \mu} T\indices{^\mu_\sigma}
-	= \partial_1 T\indices{^1_1} + \Gamma^0_{10} T\indices{^1_1} + \sum_{i=1}^3 \Gamma^i_{1i} T\indices{^1_1} - \Gamma^0_{10} T\indices{^0_0} - \sum_{i=1}^3 \Gamma^i_{1i} T\indices{^i_i}
+\begin{split}
+	0 &= \nabla_\mu T\indices{^\mu_1} \\
+	  &= \partial_1 T\indices{^1_1} + \Gamma^\sigma_{1 \sigma} T\indices{^1_1} - \Gamma^\sigma_{1 \mu} T\indices{^\mu_\sigma} \\
+	  &= \partial_1 T\indices{^1_1} + \Gamma^0_{10} T\indices{^1_1} + \sum_{i=1}^3 \Gamma^i_{1i} T\indices{^1_1} - \Gamma^0_{10} T\indices{^0_0} - \sum_{i=1}^3 \Gamma^i_{1i} T\indices{^i_i} . \\
+\end{split}
 \end{equation*}
 Using $T\indices{^0_0} = \epsilon$ and $T\indices{^1_1} = T\indices{^2_2} = T\indices{^3_3} = -P$ from \cref{eq:einstein_to_tov:T}, the explicit sums cancel.
 With $\Gamma^0_{10} = \frac12 g^{00} \partial_1 g_{00} = \odv{\alpha}/{r}$, we are left with
@@ -179,18 +180,27 @@ It relates the pressure gradient $\odv{P}/{r}$ and energy density $\epsilon$ at 
 \Cref{eq:einstein_to_tov:m_rho,eq:tov} constitute two equations for the three unknowns $P$, $\epsilon$ and $m$.
 To determine them, an additional \textbf{equation of state}
 \begin{equation}
-	F(P, \epsilon) = 0
+	\epsilon = \epsilon(P)
 \label{eq:tov:eos}
 \end{equation}
 that relates the thermodynamic variables is required, typically obtained from statistical physics.
-Given all three equations and the central pressure $P(0)$, we can integrate to find the pressure everywhere inside the star.
+Given all three equations \eqref{eq:einstein_to_tov:m_rho}, \eqref{eq:tov} and \eqref{eq:tov:eos} and the central pressure $P(0)$, we can integrate to find the pressure everywhere inside the star.
 We define the radius of the star to be the radius $R$ at which $P(R) = 0$.
 Carrying out this procedure for different values of $P(0)$, we can find a mass-radius relation $M(R)$ for stars parametrized by their central pressure $P(0)$.
 
-\TODO{incorporate how to find $\alpha_0$ into TOV chapter and/or code appendix}
-In addition, $\alpha$ can be obtained by integrating its derivative \eqref{eq:einstein_to_tov:dadr1} or \eqref{eq:einstein_to_tov:dadr2}, too.
-Since it is only the derivative of $\alpha$ that enters the TOV equation, we can start its integration subject to a convenient boundary condition such as $\alpha(0) = 0$.
-Then, at the end, we shift $\alpha(r) \rightarrow \alpha(r) - \alpha(R) + \frac12 \log (1 - 2 G M / R)$ to match it to the Schwarzschild solution.
+For some purposes, such as when analyzing stability of stars in \cref{sec:nstars:stability_general}, it is also useful to obtain the metric function $\alpha(r)$.
+Inside the star, note that in both equation \eqref{eq:einstein_to_tov:einstein_equation_in_star} and \eqref{eq:einstein_to_tov:dadr2}, it is only the derivative $\alpha'(r)$ that enters, so the solution is only specified up to a constant.
+Outside the star, however, $\alpha(R)$ should match the Schwarzschild metric with
+\begin{equation}
+	g_{00} = e^{2 \alpha(R)} = 1 - \frac{2 G M }{Rc^2} .
+\label{eq:tov:schwarzschild_metric_00_surface}
+\end{equation}
+To integrate $\alpha(r)$, then, we can simply start with any value such as $\alpha(0) = 0$ at the center, then integrate either \eqref{eq:einstein_to_tov:dadr1} or \eqref{eq:einstein_to_tov:dadr2} with the \emph{known} right sides out to the surface $r=R$ and finally shift all values of $\alpha(r)$ by
+\begin{equation}
+	\alpha(r) \rightarrow \alpha(r) - \alpha(R) + \frac12 \log \left( 1 - \frac{2 G M }{ R c^2} \right)
+\end{equation}
+to match the Schwarzschild metric element \eqref{eq:tov:schwarzschild_metric_00_surface}.
+This is completely equivalent to instead setting $\alpha(R) = \log \left(1 - 2 G M / R c^2 \right) / 2$ and integrating $\odv{\alpha(r)}/{r}$ backwards from the surface $r=R$ into the center $r=0$, but the former method can be more natural to implement from a numerical perspective.
 
 \section{Solution for an incompressible star}
 \label{sec:incompressible_star}
@@ -601,18 +611,20 @@ But sending $c \rightarrow \infty$ kills all corrections in the three parenthese
 \section{Summary}
 
 The most important result of this chapter is the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}.
-Together with the mass gradient \eqref{eq:einstein_to_tov:m_rho} and an equation of state \eqref{eq:tov:eos}, it is best viewed as the system of equations
+Together with the mass gradient \eqref{eq:einstein_to_tov:m_rho}, one of the equations involving $\alpha(r)$ such as \cref{eq:einstein_to_tov:dadr1} and an equation of state \eqref{eq:tov:eos}, it is best viewed as the system of equations
 \begin{subequations}
 \label{eq:tov:tovsys}
 \begin{align}
 	\odv{P}{r} &= -\frac{G m \epsilon}{r^2 c^2} \left( 1 + \frac{P}{\epsilon} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \label{eq:tov:tovsys_pressure} \\
 	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon}{c^2} , \label{eq:tov:tovsys_mass} \\
+	\odv{\alpha}{r} &= -\frac{1}{\epsilon+P} \odv{P}{r} , \label{eq:tov:tovsys_alpha} \\
 	\epsilon &= \epsilon(P) . \label{eq:tov:tovsys_eos}
 \end{align}
 \end{subequations}
 The equation of state \eqref{eq:tov:tovsys_eos} allows one to eliminate all dependence on $\epsilon$ in favor of $P$ in the pressure and mass gradients \eqref{eq:tov:tovsys_pressure} and \eqref{eq:tov:tovsys_mass}.
 They then constitute a system of two differential equations for the two unknown functions $P(r)$ and $m(r)$ that is to be integrated from $m(0) = 0$ and some central pressure $P(0) = P_0$.
 We define the surface and radius $R$ of the star by a vanishing pressure $P(R) = 0$, and the corresponding mass $m(R) = M$ as the mass of the star.
+If needed, one can also integrate \eqref{eq:tov:tovsys_alpha} subject to $\alpha(R) = \log \left( 1 - 2 G M / r c^2 \right)$ to determine $\alpha(r)$ and hence the full form of the metric \eqref{eq:tov:metric} after calculating $\beta(r)$ from $m(r)$ through equation \eqref{eq:einstein_to_tov:def_m}.
 In \cref{sec:nstars:numtov}, we describe how to integrate the system numerically for an arbitrary equation of state.
 
 By solving this system for an incompressible star with constant energy density $\epsilon = \epsilon_0$, we derived the Buchdal limit $M < 4 c^2 R / 9 G = $.

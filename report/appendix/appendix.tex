@@ -1276,15 +1276,16 @@ The output matches \cref{eq:tov} precisely.
 \label{sec:nstars:numtov}
 
 In \cref{chap:tov} we derived the Tolman-Oppenheimer-Volkoff system \eqref{eq:tov:tovsys} for the unknown pressure and mass profiles $P(r)$ and $m(r)$, subject to the boundary conditions $P(0) = P_0$ and $m(0) = 0$.
-Explicitly inserting the equation of state \eqref{eq:tov:tovsys_eos} into the mass and pressure gradients \eqref{eq:tov:tovsys_pressure} and \eqref{eq:tov:tovsys_mass}, the system reads
+Explicitly inserting the equation of state \eqref{eq:tov:tovsys_eos} into the rest of the system, it reads
 \begin{subequations}
 \label{eq:numtov:tovsys}
 \begin{align}
 	\odv{P}{r} &= -\frac{G m \epsilon(P)}{r^2 c^2} \left[ 1 + \frac{P}{\epsilon(P)} \right] \left[ 1 + \frac{4 \pi r^3 P}{m c^2} \right] \left[ 1 - \frac{2 G m}{r c^2} \right]^{-1} , \label{eq:numtov:tov_pressure} \\
-	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon}{c^2} . \label{eq:numtov:tov_mass}
+	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon}{c^2} , \label{eq:numtov:tov_mass} \\
+	\odv{\alpha}{r} &= -\frac{1}{\epsilon(P) + P} \odv{P}{r} . \label{eq:numtov:tov_alpha}
 \end{align}
 \end{subequations}
-This is a system of two differential equations in the form $\odv{\vec{y}}/{t} = f(t, \vec{y})$ with $t=r$ and $\vec{y} = [P, m]$ that is suitable for Runge-Kutta integration algorithms.
+This is a system of three differential equations in the form $\odv{\vec{y}}/{t} = f(t, \vec{y})$ with $t=r$ and $\vec{y} = [P,\, m,\, \alpha]$ that is suitable for Runge-Kutta integration algorithms.
 In the following, we show how to integrate this system numerically.
 
 To avoid issues with numerical instability, it is wise to eliminate physical scales from the system and introduce dimensionless variables that can be kept as close to $1$ as possible.
@@ -1311,7 +1312,8 @@ With the dimensionless variables \eqref{eq:numtov:dimensionless_variables}, the 
 \label{eq:numtov:tovsys_dimless_complicated}
 \begin{align}
 	\odv{\diml{P}}{\diml{r}} &= -\frac{G m_0}{r_0 c^2} \frac{\diml{m} \diml{\epsilon}(\diml{P})}{\diml{r}^2} \left[ 1 + \frac{\diml{P}}{\diml{\epsilon}(\diml{P})} \right] \left[ 1 + \frac{4 \pi r_0^3 \epsilon_0}{m_0 c^2} \frac{\diml{r}^3 \diml{P}}{\diml{m}} \right] \left[ 1 - \frac{2 G m_0}{r_0 c^2} \frac{\diml{m}}{\diml{r}} \right]^{-1} , \\
-	\odv{\diml{m}}{\diml{r}} &= \frac{4 \pi r_0^3 \epsilon_0}{m_0 c^2} \diml{r}^2\diml{\epsilon}(\diml{P}) .
+	\odv{\diml{m}}{\diml{r}} &= \frac{4 \pi r_0^3 \epsilon_0}{m_0 c^2} \diml{r}^2\diml{\epsilon}(\diml{P}) , \\
+	\odv{\diml{\alpha}}{\diml{r}} &= -\frac{1}{\diml{\epsilon}(\diml{P})+\diml{P}} \odv{\diml{P}}{\diml{r}} .
 \end{align}
 \end{subequations}
 First, note that the energy density scale \eqref{eq:numtov:energy_density_scale} further simplifies $4 \pi r_0^3 \epsilon_0 / m_0 c^2 = 3$.
@@ -1325,10 +1327,15 @@ With these observations, the system \eqref{eq:numtov:tovsys_dimless_complicated}
 \label{eq:numtov:tovsys_dimless_simple}
 \begin{align}
 	\odv{\diml{P}}{\diml{r}} &= - \frac{\diml{G} \diml{m} \diml{\epsilon}(\diml{P})}{\diml{r}^2} \left[ 1 + \frac{\diml{P}}{\diml{\epsilon}(\diml{P})} \right] \left[ 1 + \frac{3 \diml{r}^3 \diml{P}}{\diml{m}} \right] \left[ 1 - \frac{2 \diml{G} \diml{m}}{\diml{r}} \right]^{-1} , \\
-	\odv{\diml{m}}{\diml{r}} &= 3 \diml{r}^2 \diml{\epsilon}(\diml{P}) .
+	\odv{\diml{m}}{\diml{r}} &= 3 \diml{r}^2 \diml{\epsilon}(\diml{P}) , \\
+	\odv{\diml{\alpha}}{\diml{r}} &= -\frac{1}{\diml{\epsilon}(\diml{P})+\diml{P}} \odv{\diml{P}}{\diml{r}} ,
 \end{align}
 \end{subequations}
-which we wish to solve subject to the boundary conditions $\diml{P}(0) = \diml{P}_0$ and $\diml{m}(0) = 0$ for some dimensionless central pressure $\diml{P}_0$.
+which we wish to solve subject to the boundary conditions $\diml{P}(0) = \diml{P}_0$ and $\diml{m}(0) = 0$ for some dimensionless central pressure $\diml{P}_0$, and $\alpha(R) = \log \left( 1 - 2 \diml{G} \diml{M} / \diml{R} \right) / 2$.
+As explained in \cref{eq:tov:schwarzschild_metric_00_surface}, we implement the latter boundary condition by integrating from $\alpha(0) = 0$ and finally shift
+\begin{equation}
+	\alpha(r) \rightarrow \alpha(r) - \alpha(\diml{R}) + \frac12 \log \left( 1 - \frac{2 \diml{G} \diml{M} }{ \diml{R}} \right) .
+\end{equation}
 
 To find the mass and radius of some star with central pressure $\diml{P}_0$, we can integrate the system \eqref{eq:numtov:tovsys_dimless_simple} until $\diml{P} \le 0$.
 We then terminate the integration algorithm and call the final radius $\diml{r} = \diml{R}$ and mass $\diml{m}(\diml{r}) = \diml{M}$ the radius and mass of the star.
