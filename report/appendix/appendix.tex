@@ -327,7 +327,7 @@ Inserted into the equation of parallel transport \eqref{eq:parallel_transport}, 
 	\odv[2]{x^\mu}{\tau} + \Gamma^\mu_{\rho \sigma} \odv{x^\rho}{\tau} \odv{x^\sigma}{\tau} = 0 .
 	\label{eq:geodesic}
 \end{equation}
-In flat space, it reduces to the equation of a straight line $\odv[2]{x^\mu}/{\tau} = 0$.
+In flat spacetime, it reduces to the equation of a straight line $\odv[2]{x^\mu}/{\tau} = 0$.
 One of Einstein's profound insights of general relativity was that gravity does not simply alter the path of a freely falling particle away from the straight line it would follow in Euclidean space in the abscence of gravity.
 Instead, gravity presents itself in the geometry of spacetime, as the presence of energy-momentum curves spacetime and lays geodesic ``tracks'' according to \cref{eq:geodesic} that any freely falling particle is destined to follow.
 \emph{Gravity is geometry}.
@@ -703,7 +703,7 @@ we uncover the \textbf{Einstein field equations in the presence of matter},
 \label{chap:relfluid}
 
 In this appendix, we will derive a number of important results from relativistic fluid mechanics needed for stability analysis of stars.
-We will look at the \textbf{flow} of fluid elements along stream lines $x(\tau)$ in a \textbf{perfect fluid} with energy-momentum
+We will look at the \textbf{flow} of fluid elements along stream lines $x(\tau)$ in a \textbf{perfect fluid} with energy-momentum tensor
 \begin{equation}
 	T_{\mu \nu} = \frac{1}{c^2} u_\mu u_\nu (\epsilon + P) - g_{\mu \nu} P .
 \end{equation}
@@ -714,8 +714,8 @@ We will look at the \textbf{flow} of fluid elements along stream lines $x(\tau)$
 \TODO{make figure}
 
 Due to both the geometry of spacetime and spatial change of velocities, the volume $V(x(\tau))$ of a fluid element changes as it moves along a streamline.
-Let us derive the rate of change of this volume element in flat space, then generalize the result using the equivalence principle \TODO{ref}.
-In flat space and in a frame that follows the fluid element, $u^\mu(x) \taylor (c, \vec{v}(x))$, where $\vec{v}(x)$ is small close to the fluid element.
+Let us derive the rate of change of this volume element in flat spacetime, then generalize the result using the equivalence principle \TODO{ref}.
+In flat spacetime and in a frame that follows the fluid element, $u^\mu(x) \taylor (c, \vec{v}(x))$, where $\vec{v}(x)$ is small close to the fluid element.
 As the fluid element flows from place to the next in a short time $\delta t = \delta \tau$, the length $L^i$ of the fluid element along a spatial dimension $i$ changes by
 \begin{equation}
 	\dif L^i = \Big[ v^i(x+L^i) - v^i(x) \Big] \dif \tau 
@@ -733,6 +733,7 @@ The volume of the fluid element then changes by
 \end{equation}
 Since $u^0 = c$ in our reference frame, we make no mistake by including $\pdv{u^0}/{x^0} = 0$ in the sum.
 The rate of change is then given by the tensorial law
+\TODO{remark second equality due to vanishing Christoffel symbols?}
 \begin{equation}
 	\odv{V}{\tau} = V \pdv{u^\alpha}{x^\alpha} = V \nabla_\mu u^\mu .
 \label{eq:relfluid:volume_rate_change}
@@ -740,7 +741,7 @@ The rate of change is then given by the tensorial law
 By the equivalence principle and its tensorial transformation properties, the same law holds in any spacetime and in any reference frame.
 
 Like the volume element, the baryon number density $n(x(\tau))$ can also change along a streamline.
-In contrast, the total \textbf{baryon number} $N = n V$ must be conserved, as expressed by
+In contrast \TODO{to what?}, the total \textbf{baryon number} $N = n V$ must be conserved, as expressed by
 \begin{equation}
 	\odv*{\left( n V \right)}{\tau} = 0 .
 \label{eq:relfluid:baryon_number_constant}
@@ -763,6 +764,7 @@ From \cref{eq:relfluid:baryon_number_divergence}, we can rewrite the conservatio
 \label{eq:relfluid:baryon_number_rate_change}
 \end{equation}
 expressing the rate of change of the density along a stream line.
+\TODO{show that this is a continuity equation?}
 
 \section{Conservation of energy and Euler equation}
 
@@ -800,11 +802,12 @@ From these expressions, it is convenient to define the parallel and orthogonal \
 that project out the parallel part $v_\parallel^\alpha = \left(P_\parallel\right)\indices{^\alpha_\beta} v^\beta$ and $v_\perp^\alpha = \left(P_\perp\right)\indices{^\alpha_\beta} v^\beta$ of the vector $v^\alpha$.
 These projectors are valid for any normalization $u^\mu u_\mu$.
 With our conventions and choice of units, $u^\mu u_\mu = c^2$.
+\TODO{show projector property $P^2 = P$!}
 
 \subsection{Energy conservation}
 
 First, let us see what the parallel part of $\nabla_\mu T^{\mu \nu} = 0$ gives us.
-Instead of multiplying it my $\left(P_\parallel\right)\indices{^\alpha_\nu} = u^\alpha u_\nu /c^2$, however, let us only multiply by $u_\nu$ -- the result must still be equal to zero.
+Instead of multiplying it by $\left(P_\parallel\right)\indices{^\alpha_\nu} = u^\alpha u_\nu /c^2$, however, let us only multiply by $u_\nu$ -- the result must still be equal to zero.
 Then we obtain
 \begin{equation}
 \begin{split}
@@ -878,6 +881,9 @@ Then the three spatial indices $\alpha = \{1, 2, 3\}$ reduce to the non-relativi
 \begin{equation}
 	\rho \left[ \pdv{\vec{v}}{t} + \left( \vec{v} \cdot \vec{\nabla} \right) \vec{v} \right] = -\nabla P .
 \end{equation}
+\TODO{what about Newt limit by $c \rightarrow \infty$?}
+\TODO{make it more clear which terms are dropped and how i obtain normal Euler eq}
+\TODO{reduce ALL relativistic results in this section to classical results, ref to iver fluid compendium!}
 
 
 \subsection{Adiabadicity}
@@ -908,7 +914,7 @@ To relate this to our flow, combine conservation of energy \eqref{eq:relfluid:en
 \end{aligned}
 \label{eq:relfluid:energy_conservation_rewritten}
 \end{equation}
-This is just the first law of thermodynamics \eqref{eq:relfluid:thermodynamics_first_law_rewritten} with $\dif Q = T \dif S = 0$, showing that the flow indeed is adiabatic!
+\emph{This is precisely the first law of thermodynamics \eqref{eq:relfluid:thermodynamics_first_law_rewritten} with $\dif Q = T \dif S = 0$}, showing that the flow indeed is adiabatic!
 
 A useful consequence of adiabadicity is that it enables us to define the \textbf{adiabatic index}
 \begin{equation}
@@ -1297,7 +1303,7 @@ Define the dimensionless variables
 	\diml{r}(r) = \frac{r}{r_0},
 \label{eq:numtov:dimensionless_variables}
 \end{equation}
-where $m_0$ and $r_0$ are two natural scales of stellar mass \TODO{masses?} and radius \TODO{radii?}, and
+where $m_0$ and $r_0$ are two natural scales of stellar masses and radii, and
 \begin{equation}
 	\epsilon_0 = \frac{m_0 c^2}{4 \pi r_0^3 / 3}
 	%m_0 = \text{solar mass ?}, \quad
@@ -1372,7 +1378,7 @@ The shooting method finds any \emph{one} eigenvalue $\omega_n^2$ and its corresp
 \item \textbf{Guess} \emph{any} value $\omega^2$ for the eigenvalue $\omega_n^2$.
 \item \textbf{Impose} the boundary condition \eqref{eq:shooting:sturm_liouville_bc1} by setting $U(r) \propto r^3$ near $r = 0$. \label{item:shooting:bc1}
 \item \textbf{Shoot} the corresponding guess $U(r)$ for the eigenfunction $U_n(r)$ by numerically integrating the Sturm-Liouville equation \eqref{eq:shooting:sturm_liouville_diffeq} to $r=R$. \label{item:shooting:shoot}
-\item \textbf{Count} the number of nodes $n(\omega^2)$ of $U(r)$.
+\item \textbf{Count} the number of nodes $n(\omega^2)$ of $U(r)$.  \TODO{rethink number of nodes notation?}
       \begin{enumerate}
       \item If $n(\omega^2) > n$, then Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros} on page~\pageref{item:nstars:sturm_liouville_zeros} implies that $\omega^2 > \omega_n^2$, so \textbf{decrease} the guess for $\omega^2$.
       \item If $n(\omega^2) \leq n$, then Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros} on page~\pageref{item:nstars:sturm_liouville_zeros} implies that $\omega^2 < \omega_n^2$, so \textbf{increase} the guess for $\omega^2$.
@@ -1383,8 +1389,9 @@ The shooting method finds any \emph{one} eigenvalue $\omega_n^2$ and its corresp
 In \cref{fig:nstars:shooting_convergence}, it is shown that every $U(r)$ seems to diverge as $r \rightarrow R$, breaking boundary condition \eqref{eq:shooting:sturm_liouville_bc2}.
 In theory, $U(r)$ does not diverge and hence satisfies the boundary condition only if one guesses the \emph{exact} correct eigenvalue $\omega_n^2$.
 In practice, inaccuracy of the numerical integration will prevent one from guessing the exact eigenvalue -- it will only be possible to guess a value very close to it.
-As our guess gets very close to the true eigenvalue, the function $U(r)$ will diverge to one infinity $\pm \infty$ with $n$ nodes for guesses $\omega^2 < \omega_n^2$ slightly below the true eigenvalue, but to the \emph{other} infinity $\mp \infty$ with $n+1$ nodes for guesses $\omega^2 > \omega_n^2$ slightly above.
-This is the essential feature that allows our guess to get so close to the true eigenvalue.
+As our guess gets very close to the true eigenvalue, the function $U(r)$ will diverge towards $+\infty$ or $-\infty$ with $n$ nodes for guesses $\omega^2 < \omega_n^2$ slightly below the true eigenvalue.
+For guesses $\omega^2 > \omega_n^2$ slightly above the true eigenvalue, the function will have $n+1$ nodes and diverge towards the oppositely signed infinity.
+Essentially, we are looking for the precise value of $\omega^2$ that causes the blowup of $U(r)$ close to $r=R$ to ``tip over'' from one infinity $\pm \infty$ to other infinity $\mp \infty$, as shown with the \textcolor{red}{red} and \textcolor{blue}{blue} guesses in \cref{fig:nstars:shooting_convergence}.
 
 The rule that we should increase our guess not only if $n(\omega^2) < n$, but also if $n(\omega^2) = n$, is a little technical and deserves an explanation.
 Suppose we are looking for the lowest mode $n = 0$ and have guessed a value of $\omega^2$ with $n(\omega^2) = 0$ zeros.
