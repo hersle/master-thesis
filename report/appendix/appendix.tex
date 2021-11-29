@@ -766,6 +766,12 @@ From \cref{eq:relfluid:baryon_number_divergence}, we can rewrite the conservatio
 expressing the rate of change of the density along a stream line.
 \TODO{show that this is a continuity equation?}
 
+In the Newtonian limit, $u^\mu = (c, \vec{v})$ and the vanishing divergence \cref{eq:relfluid:baryon_number_divergence} can be rewritten as the continuity equation
+\begin{equation}
+	\pdv{n}{t} - \vec{\nabla} \cdot \left( n \vec{v} \right) = 0
+\end{equation}
+for the baryon number density $n$.
+
 \section{Conservation of energy and Euler equation}
 
 The conservation of energy-momentum $\nabla_\mu T^{\mu \nu} = 0$ implies
@@ -838,9 +844,13 @@ This kills one term in the square brackets and multiplies the two others by $c^2
 \end{subequations}%
 Either of the equivalent forms is known as the \textbf{relativistic equation of energy conservation}.
 In the Newtonian limit \eqref{eq:weak_field_limit:small_pressure}, the pressure term is negligible and the form \eqref{eq:relfluid:energy_conservation_after_product} reduces to the familiar continuity equation
+\cite[equation 7.1]{ref:iver}
 \begin{equation}
-	0 = \nabla_\mu \bigg( \epsilon \, u^\mu \bigg) = \pdv{\epsilon}{t} - \vec{\nabla} \cdot \Big( \epsilon \vec{v} \Big) .
+	0 = \nabla_\mu \bigg( \epsilon \, u^\mu \bigg) = \pdv{\epsilon}{t} - \vec{\nabla} \cdot \Big( \epsilon \vec{v} \Big)
+	\qquad \text{or} \qquad
+	0 = \nabla_\mu \bigg( \rho \, u^\mu \bigg) = \pdv{\rho}{t} - \vec{\nabla} \cdot \Big( \rho \vec{v} \Big)
 \end{equation}
+for either the energy density $\epsilon$ or the mass density $\rho$, by the mass-energy equivalence \eqref{eq:tov:mass_energy_equivalence}.
 
 \iffalse
 It is useful to have the Euler equation in a form that involves derivatives $\odv{}/{\tau} = u^\mu \nabla_\mu$ along a streamline.
@@ -870,27 +880,30 @@ A straightforward calculation using the same tricks \eqref{eq:relfluid:tricks} s
 	  &\times \Bigg \{ \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( u^\nu \nabla_\mu u^\mu + u^\mu \nabla_\mu u^\nu \Big) + u^\mu u^\nu \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\nu P \Bigg\} \\
 	  &=      \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( u^\alpha \nabla_\mu u^\mu + u^\mu \nabla_\mu u^\alpha \Big) + u^\mu u^\alpha \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\alpha P \\
 	  &-      \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) u^\alpha \nabla_\mu u^\mu + u^\alpha u^\mu \nabla_\mu \Big( \epsilon + P \Big) - u^\alpha u^\nu \nabla_\nu P \bigg] \\
-	  &=      \frac{1}{c^2} \Big( \epsilon + P \Big) u^\mu \nabla_\mu u^\alpha - \nabla^\alpha P + \frac{1}{c^2} u^\alpha u^\mu \nabla_\nu P .
+	  &=      \frac{1}{c^2} \Big( \epsilon + P \Big) u^\mu \nabla_\mu u^\alpha - \nabla^\alpha P + \frac{1}{c^2} u^\alpha u^\mu \nabla_\mu P .
 \end{split}
 \label{eq:relfluid:euler_equation}
 \end{equation}
 This is the \textbf{relativistic Euler equation}. 
 In the Newtonian limit $u^\mu = (c, \vec{v})$ with small velocity \eqref{eq:weak_field_limit:small_velocity} and pressure \eqref{eq:weak_field_limit:small_pressure}, the rightmost term is negligible because it contains the product of two velocities, and so is the pressure contribution in the leftmost term.
-Then the three spatial indices $\alpha = \{1, 2, 3\}$ reduce to the non-relativistic Euler equation
-\TODO{can i also get gravitational acceleration $\vec{g}$ in the perturbation?}
+Then the three spatial indices $\alpha = a = \{1, 2, 3\}$ reduce to $\rho u^\mu \nabla_\mu u^a - \nabla^a P = 0$, where $\rho = \epsilon / c^2$ by the mass-energy equivalence \eqref{eq:tov:mass_energy_equivalence}.
+In the first term, $u^\mu \nabla_\mu u^a \taylor u^\mu \partial_\mu u^a + u^0 \Gamma^a_{00} u^0$ and $\Gamma^a_{00} = -\eta^{\mu \lambda} \partial_\lambda h_{00} / 2 = -\eta^{\mu \lambda} \partial_\lambda V / c^2$, as we found in \cref{eq:weak_field_limit:static_christoffel_symbols,eq:weak_field_limit:metric_with_potential} in \cref{sec:weak_field_limit}.
+The second term can be rewritten $\nabla^a P = -\nabla_a P$ in the Minkowski metric.
+We therefore recover the Euler equation
+\cite[equation 4.3]{ref:iver}
 \begin{equation}
-	\rho \left[ \pdv{\vec{v}}{t} + \left( \vec{v} \cdot \vec{\nabla} \right) \vec{v} \right] = -\nabla P .
+	\pdv{\vec{v}}{t} + \left( \vec{v} \cdot \vec{\nabla} \right) \vec{v} = -\frac{1}{\rho} \nabla P + \vec{g} ,
+	\qquad \text{where } \vec{g} = -\nabla V ,
 \end{equation}
+from fluid mechanics, expressing the acceleration of fluid elements on the left in terms of the gravitational field $\vec{g}$ and the pressure gradient $\nabla P$.
 \TODO{what about Newt limit by $c \rightarrow \infty$?}
-\TODO{make it more clear which terms are dropped and how i obtain normal Euler eq}
-\TODO{reduce ALL relativistic results in this section to classical results, ref to iver fluid compendium!}
 
 
-\subsection{Adiabadicity}
+\section{Adiabadicity}
 \label{sec:relfluid:adiabadicity}
 
-The flow of our perfect fluid is adiabatic, meaning there is no transfer of heat between fluid elements.
-One way to understand this is that the energy-momentum tensor \TODO{ref} is diagonal, and any exchange of heat would have to come from energy flux terms, which are represented by off-diagonal elements.
+The flow of a perfect fluid is adiabatic, meaning there is no transfer of heat between fluid elements.
+One way to understand this is that the energy-momentum tensor is diagonal, and that any exchange of heat would have to come from energy flux terms, which are represented by off-diagonal elements.
 A more verbose way is to consider the first law of thermodynamics,
 \begin{equation}
 	\dif E = \dif Q + \dif W = T \dif S - P \dif V .
