@@ -257,7 +257,7 @@ Carefully gathering all the prefactors under the same roof, we find
 \end{equation}
 With this power dependence, it is not easy, if even possible, to solve the TOV equation analytically.
 The trial solution \eqref{eq:nstars:ur_ansatz} we employed in \cref{sec:nstars:ur_limit} fails miserably, as we do not get the same fortunate cancellations of $r$.
-We therefore resort to the numerical solution method described in \cref{sec:nstars:numtov}, parametrizing different stars by their center pressure $P_0$ and integrating the TOV equation until the pressure $p(R)$ vanishes, using the corresponding radius $R$ to establish the mass $M = m(R)$ of the star.
+We therefore resort to the numerical solution method described in \cref{sec:nstars:numtov}, parametrizing different stars by their central pressure $P_0$ and integrating the TOV equation until the pressure $p(R)$ vanishes, using the corresponding radius $R$ to establish the mass $M = m(R)$ of the star.
 The results are shown in \cref{fig:nstars:massradius}.
 
 \TODO{compare with earlier results, most massive neutron stars}
@@ -350,7 +350,7 @@ Stars are parametrized by central pressures $\SI{1e-6}{} \epsilon_0 \le P_0 \le 
 The mass-radius curves in \cref{fig:nstars:massradius} display some interesting behavior.
 In particular, the curves spiral for central pressures greater than that corresponding to the maximum mass.
 Since we have used statistical physics to obtain an equation of state, all stars on the mass-radius curve are in \emph{equilibrium}.
-\TODO{is the assumption of equilibrium instead/also baked into using perfect fluid energy momentum \eqref{eq:tov:energy_momentum_perfect_fluid}? and $U = (U^0, \vec{0})$? JO answer: yes! Fluid is equilibrium, and so is stat mech, so everything is consistent.}
+\TODO{is the assumption of equilibrium instead/also baked into using perfect fluid energy momentum \eqref{eq:tov:energy_momentum_perfect_fluid}? and $u = (u^0, \vec{0})$? JO answer: yes! Fluid is equilibrium, and so is stat mech, so everything is consistent.}
 However, just like a pendulum can be in stable or unstable equilibria, the equilibrium of a star can be either stable or unstable with respect to small perturbations.
 Let us investigate the stability of the sequence of stars on the curve in \cref{fig:nstars:massradius}.
 
@@ -487,14 +487,14 @@ In \cref{sec:einstein_to_tov}, we showed that in the spherically symmetric metri
 \end{equation}
 for a perfect fluid with energy-momentum
 \begin{equation}
-	T_{\mu \nu} = \frac{1}{c^2} U_\mu U_\nu (\epsilon_0 + P_0) - g_{\mu \nu} P_0
+	T_{\mu \nu} = \frac{1}{c^2} u_\mu u_\nu (\epsilon_0 + P_0) - g_{\mu \nu} P_0
 	\qquad \text{where} \qquad
 	P_0 = P_0(r) \text{ and } \epsilon_0 = \epsilon_0(r)
 \label{eq:nstars:energy_momentum}
 \end{equation}
 that is in \emph{equilibrium} with four-velocity
 \begin{equation}
-	U^\mu = (U^0, 0, 0, 0) ,
+	u^\mu = (u^0, 0, 0, 0) ,
 \label{eq:nstars:velocity_equilibrium}
 \end{equation}
 the Einstein field equations \eqref{eq:einstein} reduced to
@@ -511,7 +511,7 @@ where $' = \pdv{}/{r}$.
 
 Now we suppose that the fluid is no longer in equilibrium, but rather let loose in the radial direction with four-velocity
 \begin{equation}
-	U^\mu = (U^0, U^1, 0, 0) .
+	u^\mu = (u^0, u^1, 0, 0) .
 	\quad
 \label{eq:nstars:velocity_unstable}
 \end{equation}
@@ -550,14 +550,14 @@ What is the relation between the fluid element displacement $\xi(r,t)$ and the f
 By our definition, $\pdv{\xi}/{t} = \odv{r}/{t}$, where right side is to be interpreted as the derivative of the fluid element's radial coordinate taken \emph{along its world line} -- or \emph{stream line} -- $x(\tau)$.
 The chain rule then gives
 \begin{equation}
-	\dot\xi = \pdv{\xi}{t} = \odv{r}{t} = \frac{\odv{r}/{\tau}}{\odv{t}/{\tau}} = c \, \frac{U^1}{U^0} .
+	\dot\xi = \pdv{\xi}{t} = \odv{r}{t} = \frac{\odv{r}/{\tau}}{\odv{t}/{\tau}} = c \, \frac{u^1}{u^0} .
 \end{equation}
-We can express $U^0$ and $U^1$ in terms of $\dot\xi$ by combining this equation the normalization condition $U_\mu U^\mu = e^{2 \alpha} \left( U^0 \right)^2 - e^{2 \beta} \left( U^1 \right)^2 = c^2$.
+We can express $u^0$ and $u^1$ in terms of $\dot\xi$ by combining this equation the normalization condition $u_\mu u^\mu = e^{2 \alpha} \left( u^0 \right)^2 - e^{2 \beta} \left( u^1 \right)^2 = c^2$.
 To first order in $\dot\xi$ and $\delta \alpha$, we find the components
 \begin{subequations}
 \begin{align}
-	U^0 &= \frac{c \, e^{-\alpha}}{\sqrt{1 - \left( e^{\beta-\alpha} \dot\xi / c \right)^2 }} \taylor c \, e^{-\alpha_0} \, (1 - \delta \alpha), \\
-	U^1 &= \frac{\dot\xi \, e^{-\alpha}}{\sqrt{1 - \left( e^{\beta-\alpha} \dot\xi / c \right)^2 }} \taylor \dot\xi \, e^{-\alpha_0} .
+	u^0 &= \frac{c \, e^{-\alpha}}{\sqrt{1 - \left( e^{\beta-\alpha} \dot\xi / c \right)^2 }} \taylor c \, e^{-\alpha_0} \, (1 - \delta \alpha), \\
+	u^1 &= \frac{\dot\xi \, e^{-\alpha}}{\sqrt{1 - \left( e^{\beta-\alpha} \dot\xi / c \right)^2 }} \taylor \dot\xi \, e^{-\alpha_0} .
 \end{align}
 \label{eq:nstars:velocity_components}
 \end{subequations}
@@ -587,7 +587,7 @@ The simplest form of the field equations is therefore
 What is the third equation corresponding to \cref{eq:nstars:field_equations_equilibrium_T}, which we found from conservation of energy-momentum $\nabla_\mu T^{\mu \nu} = 0$ back in \cref{sec:einstein_to_tov}?
 In \cref{chap:relfluid}, we study relativistic fluid mechanics and start from $\nabla_\mu T^{\mu \nu} = 0$ to derive the relativistic generalization of the Euler equation,
 \begin{equation*}
-	  \frac{1}{c^2} \Big( \epsilon + P \Big) U^\mu \nabla_\mu U^\alpha = \nabla^\alpha P - \frac{1}{c^2} U^\alpha U^\mu \nabla_\nu P
+	  \frac{1}{c^2} \Big( \epsilon + P \Big) u^\mu \nabla_\mu u^\alpha = \nabla^\alpha P - \frac{1}{c^2} u^\alpha u^\mu \nabla_\nu P
 	  \qquad \left( \nabla_\mu T^{\mu \nu} = 0 \right) .
 \end{equation*}
 By inserting the new four-velocity components \eqref{eq:nstars:velocity_components} and the expansions \eqref{eq:nstars:perturbation_expansion} into the relativistic Euler equation and performing calculations in the new metric \eqref{eq:nstars:metric_unstable} to first order, \cite[§26.5]{ref:mtw} finds
@@ -628,7 +628,7 @@ The former stems from our use of perturbation theory, while the latter arises na
 
 In our study of relativistic fluid mechanics in \cref{chap:relfluid}, we derive the relativistic generalization \eqref{eq:relfluid:energy_conservation} of conservation of energy in flow of a fluid,
 \begin{equation}
-	\odv{\epsilon}{\tau} = U^\mu \nabla_\mu \epsilon = -(\epsilon+P) \nabla_\mu U^\mu  .
+	\odv{\epsilon}{\tau} = u^\mu \nabla_\mu \epsilon = -(\epsilon+P) \nabla_\mu u^\mu  .
 \label{eq:nstars:energy_conservation}
 \end{equation}
 First, note that because the equilibrium energy density $\epsilon_0(r)$ is independent of time, $\odv{\epsilon}/{\tau} = \odv{\Delta \epsilon}/{\tau}$.
@@ -639,16 +639,16 @@ To first order in the small quantities, only the time component contributes to t
 \begin{split}
 	\odv{\epsilon}{\tau} =
 	\odv{\Delta \epsilon}{\tau} =
-	U^\mu \nabla_\mu \Delta \epsilon &=
-	U^0 \nabla_0 \Delta \epsilon + U^1 \nabla_1 \Delta \epsilon \\
-	&\taylor U^0 \pdv{\Delta \epsilon}{t} = U^0 \dot{\Delta \epsilon} =
+	u^\mu \nabla_\mu \Delta \epsilon &=
+	u^0 \nabla_0 \Delta \epsilon + u^1 \nabla_1 \Delta \epsilon \\
+	&\taylor u^0 \pdv{\Delta \epsilon}{t} = u^0 \dot{\Delta \epsilon} =
 	e^{-\alpha_0} \dot{\Delta \epsilon} .
 \end{split}
 \end{equation}
-On the right side, we can calculate the quantity $\nabla_\mu U^\mu$ with the identity
+On the right side, we can calculate the quantity $\nabla_\mu u^\mu$ with the identity
 \begin{equation}
 \begin{split}
-	\nabla_\mu U^\mu &= \frac{1}{\sqrt{-\det{g}}} \partial_\mu \left( \sqrt{-g} \, U^\mu \right) \\
+	\nabla_\mu u^\mu &= \frac{1}{\sqrt{-\det{g}}} \partial_\mu \left( \sqrt{-g} \, u^\mu \right) \\
 	                 &= e^{-\alpha_0} \left[ \dot{\delta\beta} + \frac{e^{-\beta_0}}{r^2} \left( e^{\beta_0} r^2 \dot\xi \right)' \right] .
 \end{split}
 \end{equation}
@@ -722,7 +722,6 @@ In the end, \cite[equation 26.19]{ref:mtw} finds that $\zeta$ obeys the differen
 \label{eq:nstars:diffeq_zeta}
 \end{equation}
 where the coefficient functions are
-\TODO{use small $u$ for velocity, so it does not conflict with big $U$ below}
 \begin{subequations}
 \begin{align}
 	\Pi &= \frac{1}{r^2} e^{\beta_0 + 3 \alpha_0} \gamma P_0 , \label{eq:nstars:sturm_liouville_coefficients_Pi} \\

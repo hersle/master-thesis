@@ -75,10 +75,10 @@ and consider the most general line element that exhibits spherical symmetry, \ci
 
 We model the interior of the star as a perfect fluid with energy-momentum \cite[equation 1.114]{ref:carroll}
 \begin{equation}
-	T\indices{_\mu_\nu}(r) = \frac{U_\mu U_\nu}{c^2} \left[ \epsilon(r)+P(r) \right]  - g\indices{_\mu_\nu} P(r) .
+	T\indices{_\mu_\nu}(r) = \frac{u_\mu u_\nu}{c^2} \left[ \epsilon(r)+P(r) \right]  - g\indices{_\mu_\nu} P(r) .
 	\label{eq:tov:energy_momentum_perfect_fluid}
 \end{equation}
-The analysis is simplest in the rest frame of the fluid, where $U_\mu = (U_0, \textbf{0})$ and the normalization condition $U_\mu U^\mu = c^2$ requires $U_0 = \pm e^\alpha c$.
+The analysis is simplest in the rest frame of the fluid, where $u_\mu = (u_0, \textbf{0})$ and the normalization condition $u_\mu u^\mu = c^2$ requires $u_0 = \pm e^\alpha c$.
 We choose the positive sign so the four-velocity lies in the future light cone, as we are interested in the evolution of the star.
 Dropping the function argument $r$ from now, the energy-momentum tensor then takes the diagonal form
 \begin{equation}
@@ -416,14 +416,14 @@ describes Newtonian motion in the gravitational potential $V$!
 In general relativity, the gravitational field is produced by matter that enter the Einstein field equations \eqref{eq:einstein} on the right.
 Let us show that they fall back the Poisson equation \eqref{eq:interpretation_m:poisson} to first nonzero order in the metric perturbation $h$ of the Newtonian limit.
 
-Suppose we are in the stationary reference frame of a perfect fluid with energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid} and velocity $U^\mu = (U^0, \vec{0})$.
-To first order in $h_{00}$, the normalization condition $U^\mu U_\mu = c^2$ then fixes the time component
+Suppose we are in the stationary reference frame of a perfect fluid with energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid} and velocity $u^\mu = (u^0, \vec{0})$.
+To first order in $h_{00}$, the normalization condition $u^\mu u_\mu = c^2$ then fixes the time component
 \begin{equation}
-	U^0 = \frac{c}{\sqrt{g_{00}}} = \frac{c}{\sqrt{1 + h_{00}}} \taylor c \left( 1 - \frac12 h_{00} \right) .
+	u^0 = \frac{c}{\sqrt{g_{00}}} = \frac{c}{\sqrt{1 + h_{00}}} \taylor c \left( 1 - \frac12 h_{00} \right) .
 \end{equation}
 To lowest order, the energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid} then simplifies to dust with
 \begin{equation}
-	T_{00} = \rho U_0 U_0 \taylor \epsilon
+	T_{00} = \rho u_0 u_0 \taylor \epsilon
 	\qquad \text{and trace} \qquad
 	T = T\indices{^\mu_\mu} = g^{00} T_{00} \taylor \epsilon, 
 \end{equation}
