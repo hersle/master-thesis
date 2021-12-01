@@ -1,5 +1,6 @@
-\chapter*{Introduction}
-\addcontentsline{toc}{chapter}{Introduction} % but still display in TOC (see https://tex.stackexchange.com/a/222961)
+\setcounter{chapter}{-1} % make this chapter 0
+\chapter{Introduction}
+%\addcontentsline{toc}{chapter}{Introduction} % but still display in TOC (see https://tex.stackexchange.com/a/222961)
 
 Inspiration
 
@@ -7,7 +8,7 @@ Inspiration
 
 \url{https://en.wikipedia.org/wiki/Compact_star}
 
-\section*{The life and death of stars}
+\section{The life and death of stars}
 
 \begin{figure}
 \centering
@@ -103,36 +104,62 @@ Inspiration
 	\draw [-latex, dashed] (planetarynebula) to [out=135, in=180, out looseness=0.5] (protostar);
 \end{tikzpicture}
 \caption{\label{fig:intro:star_evolution}%
-	A simplified life cycle of stars and their main structure at every stage (not to scale).
+	Simplified life cycle of stars and their main structure at every stage (not to scale).
 }
 \end{figure}
 
 % planetary nebula -> releases ionized gas -> forms clouds
-The mothers of all stars are enormous accumulations of light elements like hydrogen called \textbf{giant molecular clouds}, formed by the ashes of dying stars whose life cycle we are about to describe.
-Such clouds consist of matter weighing between tens of thousands to tens of millions solar masses, distributed with a relatively low average density over a huge area that are tens to hundreds of lightyears across.
-Internally, the dynamics of a molecular cloud is, most importantly, governed by the attractive force of gravity between particles and the repulsive thermal pressure from their thermal motion and collisions.
+The mother of any star is an enormous accumulation of light elements like hydrogen called a \textbf{giant molecular cloud}, formed by the ashes of dying stars at the end of the life cycle we have just begun to describe.
+Such clouds consist of matter weighing up to tens of millions solar masses, distributed with a relatively low average density over a huge area that up to hundreds of lightyears across.
+Internally, the dynamics of a molecular cloud is chiefly governed by the attractive force of gravity between particles and the repulsive thermal pressure from their motion and collisions.
 
 Due to the force of gravity, parts of the cloud can clump together in areas of greater density.
-The larger the mass, the more surrounding material is attracted, causing the clump to grow like a rolling snowball.
-Initially, the density is low and thermal radiation can escape from the X.
-As the density increases, however, thermal radiation can no longer find its way out and is trapped.
-The temperature therefore increases, and so does the pressure.
-As the clump continues to grow in mass by sucking up surrounding material, becoming ever denser and hotter, it receives the more honorable name \textbf{protostar}.
+As more mass accumulates, the force of gravity attracting the surrounding material only increases, causing a snowball effect that only amplifies the growth of the clump.
+Initially, the material is not so dense, and thermal radiation can escape outside, causing low temperatures and pressure and allowing the clump to contract with little resistance.
+However, once the density becomes sufficiently high, thermal radiation can no longer find its way out and is trapped inside.
+When this happens, the temperature increases, in turn increasing the outwards pressure that counteracts the inwards gravitational collapse and considerably slows down the contraction.
+During this stage depicted in \cref{fig:intro:star_evolution_protostar}, as the child ``clump'' grows by sucking up material from its parent cloud, it receives the more honorable name \textbf{protostar}.
 
-At some point, the temperature has become so high that hydrogen can fuse to form helium.
-This greatly increases the pressure, and the protostar ultimately stops contracting and reaches a state of equilibrium and has become a grown-up \textbf{main sequence star}.
-In this stage, fusion of hydrogen into helium continues -- the heavier helium is pulled into the central regions of the star and is called the \emph{core}, while the lighter hydrogen contitutes an outer shell.
-What happens next depends heavily on the mass of the star.
+Sooner or later, the protostar has depleted the cloud of its available mass.
+It then continues to contract, causing the temperature and pressure to increase, ultimately reaching a state of equilibrium with the gravitational collapse.
+The protostar is then promoted to a \textbf{main sequence star}.
+Provided that the protostar has accumulated at least $M \gtrsim 0.08 \solarmass$, the temperature will reach $T \gtrsim \SI{1e7}{\kelvin}$ -- sufficient for the fusion of hydrogen into helium to take place.
+For billions of years, the star supports itself by burning hydrogen into helium.
+The heavier helium is pulled into the central regions of the star, establishing a helium \emph{core} surrounded by an \emph{envelope} constisting of the lighter hydrogen, as shown in \cref{fig:intro:star_evolution_mainseq}.
 
-If the star is not so massive, the fusion stops with helium, and as hydrogen is depleted, the supporting pressure falls and the star begins to contract again, causing the temperature to rise again.
-The core collapses, while the temperature in the outer hydrogen layer can increase so that hydrogen begins to burn again, causing the outer parts of the star to expand, and the star is a \textbf{red giant}.
-As the core continues to heat up, it may eventually reach $10^8 K$, where helium fuses into carbon, causing an explosive reaction, the envelope becomes unstable and the outer parts of the star is expelled in a \textbf{planetary nebula}, while the core remains as a \textbf{white dwarf}, supported by the degeneracy pressure of electrons, maximum mass Chandrasekhar mass $1.4$?
+What happens after most of the hydrogen has burnt up depends heavily on the mass of the star.
+Stars up to $M \lesssim 8 \solarmass$ evolve into \textbf{red giants}.
+As the hydrogen fails to support the star, the core begins to contract again.
+For heavier red giants, the temperature can increase to $T \gtrsim \SI{1e8}{\kelvin}$, activating both fusion of helium to carbon and carbon to oxygen, but the temperature is too low for fusion of heavier elements.
+The core develops shells with elements of increasing weight towards the center as shown in \cref{fig:intro:star_evolution_red_giant}, from hydrogen to helium, carbon, or oxygen, depending on the exact mass of the star.
+Due to the sudden increase in temperature, much energy is transported into the envelope, where it ignites leftover hydrogen and inflates the envelope up to 200 solar radii -- hence the name of the star.
 
-If the star is more massive, fusion continues all the way until hydrogen and the star becomes a \textbf{red supergiant}.
-It eventually explodes in a \textbf{supernova}, and the core collpases to a \textbf{neutron star}.
-The equilibrium configuration of a neutron star is composed of neutrons, protons, hyperons, leptons and possibly quarks.
+Eventually, explosions in the envelope of a red giant trigger unstable pulsations of the hydrogen envelope.
+This causes a \textbf{planetary nebula}, depicted in \cref{fig:intro:star_evolution_planetary_nebula} -- an ejection of the outer shells of the red giant into new interstellar clouds from which new starts can be born at a restart of the cycle.
+The remaining inert core that is intact from the nebula forms a \textbf{white dwarf}.
+Illustrated in \cref{fig:intro:star_evolution_white_dwarf}, a white dwarf is essentially the core of the preceeding red giant that is intact after the planetary nebula.
+Since no further reactions occur, it is supported against collapse solely by electron degeneracy pressure.
+White dwarves can be as hot as $T \approx \SI{1e7}{\kelvin}$ upon formation, but gradually cool down as they radiate away their energy.
+Importantly, white dwarves can only support themselves for masses up to the Chandrasekhar limit $M \lesssim 1.4 \solarmass$.
+\TODO{cooling etc}
 
-\section*{Neutron stars}
+If the mass of a main sequence star exceeds $M \gtrsim 8 \solarmass$, it essentially becomes a more dramatic a red giant -- namely a \textbf{red supergiant}.
+The increased mass sends the temperature soaring well above $T \gtrsim \SI{1e8}{\kelvin}$, activating not only fusion from hydrogen to helium, carbon and oxygen, but even fusion to heavier elements such as neon and iron.
+When the reactions reach iron, something dramatic happens.
+In contrast to elements lighter than iron, fusion from iron or heavier elements \emph{require} energy instead of releasing it.
+The burning therefore stops at iron.
+At this point, the core of a red supergiant is so massive due to the more massive elements that it exceeds the Chandrasekhar limit.
+Thus, the core collapses in an explosion called a \textbf{supernova}, illustrated in \cref{fig:intro:star_evolution_supernova}.
+\TODO{iron peak graph?}
+
+For supergiants whose mass does not exceed $M \lesssim 40 \solarmass$, the core left behind by the supernova is called a \textbf{neutron star}.
+The core collapse of the supergiant has compressed the core past the white dwarf stage, reaching a new equilibrium composition of neutrons, protons, hyperons, leptons and possibly quarks.
+Like white dwarves, neutron stars are ovens that are burnt out, and only continue to cool down and shine.
+\TODO{temperature? new 1e11-1e12 K, quickly decays to 1e6, then radiate away and cool down}
+
+Even more massive supergiants with more than $M \gtrsim 40 \solarmass$ experience such a tremendous force of gravity that they collapse directly to \textbf{black holes}, depicted in \cref{fig:intro:star_evolution_black_hole}.
+
+\section{From proposition to observation and theory of neutron stars}
 
 
 Since the dawn of mankind, humans have gazed upon the night sky with great curiosity of what lies out in the universe.
@@ -167,7 +194,7 @@ Being one of the most exotic types of objects humanity has observed, neutron sta
 \item Explain the possibility that neutron stars can develop into even more, currently hypothetical classes of stars, such as quark stars.
 \end{itemize}
 
-\section*{Outline of this thesis}
+\section{Outline of this thesis}
 
 In this thesis, we develop the theoretical tools necessary to study stars made of free neutrons, calculate their mass-radius curve and study their stability.
 \begin{itemize}
