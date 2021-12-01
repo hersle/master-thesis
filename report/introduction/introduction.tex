@@ -9,6 +9,104 @@ Inspiration
 
 \section*{The life and death of stars}
 
+\begin{figure}
+\centering
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.symbols}
+\usetikzlibrary{shadows}
+\usetikzlibrary{trees}
+\begin{tikzpicture}[
+	edge from parent/.style={draw,very thick,-latex},
+	level distance=5cm,
+	level 1/.style={level distance=4.1cm},
+	level 2/.style={level distance=3.8cm, sibling distance=6.7cm},
+	level 3/.style={level distance=4.7cm},
+	level 4/.style={level distance=4.3cm, sibling distance=5.3cm},
+	sibling distance=6cm,
+	every label/.style={text width=4cm, text centered, inner sep=0pt, yshift=+2pt},
+	element/.style={font=\small},
+	dualpath/.style={
+		edge from parent path={(\tikzparentnode\tikzparentanchor) -| (\tikzchildnode\tikzchildanchor)},
+	},
+	cloud/.pic={
+		\node [draw, cloud, element, aspect=2, fill=gray, inner sep=10pt] {H};
+	},
+	protostar/.pic={
+		\node [draw, cloud, aspect=2, fill=black!20!white, inner sep=20pt] {};
+		\shade [even odd rule, inner color=black!70!white, outer color=black!20!white] circle (20pt);
+		\node [element] at (0, 0) {H};
+		\node [element] at (-40pt, 0) {H};
+		\node [element] at (+40pt, 0) {H};
+	},
+	mainsequencestar/.pic={
+		\draw[draw=black, fill=orange!50!yellow, circular glow={fill=orange!50!yellow}] circle [radius=30pt]; \node [element] at (90:22.5pt) {H};
+		\draw[draw=black, fill=red] circle [radius=15pt]; \node [element] at (90:0pt) {He};
+	},
+	browndwarf/.pic={
+		\filldraw[brown] circle [radius=20pt];
+		\node [element] at (90:0pt) {H};
+	},
+	redgiant/.pic={
+		\draw[draw=black, fill=red!75!orange, circular glow={fill=red!75!orange}] circle [radius=40pt]; \node [element] at (90:30pt) {H};
+		\draw[draw=black, fill=orange!50!yellow] circle [radius=20pt]; \node [element] at (90:15pt) {H};
+		\draw[draw=black, fill=gray] circle [radius=10pt]; \node [element] at (90: 0pt) {He};
+		\draw[draw=none] (-60pt,-60pt) rectangle (+60pt,+60pt);
+	},
+	redsupergiant/.pic={
+		\draw[draw=black, fill=red!75!orange, circular glow={fill=red!75!orange}] circle [radius=50pt]; \node [element] at (90:45pt) {H};
+		\draw[draw=black, fill=orange!50!yellow] circle [radius=40pt]; \node [element] at (90:35pt) {He};
+		\draw[draw=black, fill=green!50!gray] circle [radius=30pt]; \node [element] at (90:25pt) {$\vdots$ };
+		\draw[draw=black, fill=blue!50!gray] circle [radius=20pt]; \node [element] at (90:15pt) {Si};
+		\draw[draw=black, fill=gray] circle [radius=10pt]; \node [element] at (90:0pt) {Fe};
+		\draw[draw=none] (-60pt,-60pt) rectangle (+60pt,+60pt);
+	},
+	supernova/.pic={
+		\node[starburst, fill=yellow, draw=red, minimum size=2cm] {};
+	},
+	planetarynebula/.pic={
+		\node[starburst, starburst points=14, starburst point height=0.25cm, fill=yellow, draw=red,  minimum size=2.0cm] {};
+	},
+	blackhole/.pic={
+		\draw [fill=black, circular glow={fill=red!50!orange}] circle[radius=40pt];
+		\draw[draw=none] (-50pt, -50pt) rectangle (+50pt, +50pt);
+	},
+	neutronstar/.pic={
+		\draw[draw=black, fill=blue!  0!purple, circular glow={fill=blue!0!purple}] circle [radius=40pt]; \node [element, rotate=45] at (135:35pt) {H,}; \node [element] at ( 90:35pt) {He,}; \node [element, rotate=-45] at (45:35pt) {Fe};
+		\draw[draw=black, fill=blue! 25!purple] circle [radius=30pt]; \node [element, rotate=+20] at (110:25pt) {$e^-$,}; \node [element, rotate=-20] at (70:25pt) {$n$};
+		\draw[draw=black, fill=blue! 50!purple] circle [radius=20pt]; \node [element] at (90:15pt) {$n$};
+		\draw[draw=black, fill=blue! 75!purple] circle [radius=10pt]; \node [element] at (90: 0pt) {?};
+		\draw[draw=none] (-50pt, -50pt) rectangle (+50pt, +50pt);
+	},
+	whitedwarf/.pic={
+		\draw[draw=black, fill=white! 90!gray, circular glow={fill=cyan! 20!white}] circle [radius=30pt]; \node [element, rotate=+20] at (110:22.5pt) {H,}; \node [element, rotate=-20] at (70:22.5pt) {He};
+		\draw[draw=black, fill=cyan! 60!white] circle [radius=15pt]; \node [element] at (90:0pt) {C, O};
+		\draw[draw=none] (-50pt, -50pt) rectangle (+50pt, +50pt);
+	},
+]
+
+	\node (protostar) {\tikz \node [label={[text width=6.0cm]below:\subcaption{\label{fig:intro:star_evolution_protostar}protostar in giant molecular cloud}}] {\tikz \pic {protostar};};}
+		child { node [label={[]below:\subcaption{\label{fig:intro:star_evolution_mainseq}main sequence star}}] {\tikz \node [] {\tikz \pic {mainsequencestar};};}
+			child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_red_giant}red giant}}] {\tikz \pic {redgiant};};}
+				child { node (planetarynebula) {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_planetary_nebula}planetary nebula}}] {\tikz \pic {planetarynebula};};}
+					child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_white_dwarf}white dwarf}}] {\tikz \pic {whitedwarf};};} }
+				} edge from parent [dualpath] node [above, anchor=south west, xshift=-2pt] {$M \lesssim 8 \solarmass$}
+			}
+			child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_red_supergiant}red supergiant}}] {\tikz \pic {redsupergiant};};}
+				child { node (supernova) [label={below:\subcaption{\label{fig:intro:star_evolution_supernova}supernova}}] {\tikz \node [] {\tikz \pic {supernova};};}
+					child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_neutron_star}neutron star}}] {\tikz \pic {neutronstar};};} edge from parent [dualpath] node[above, anchor=south west, xshift=-8pt] {$M \lesssim 40 \solarmass$} }
+					child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_black_hole}black hole}}] {\tikz \pic {blackhole};};} edge from parent [dualpath] node[above, anchor=south east, xshift=+8pt] {$M \gtrsim 40 \solarmass$} }
+				}
+				edge from parent [dualpath] node [above, anchor=south east, xshift=+2pt] {$M \gtrsim 8 \solarmass$}
+			}
+		};
+	\draw [-latex, dashed] (supernova)       to [out= 45, in=  0, out looseness=0.5] (protostar);
+	\draw [-latex, dashed] (planetarynebula) to [out=135, in=180, out looseness=0.5] (protostar);
+\end{tikzpicture}
+\caption{\label{fig:intro:star_evolution}%
+	A simplified life cycle of stars and their main structure at every stage (not to scale).
+}
+\end{figure}
+
 % planetary nebula -> releases ionized gas -> forms clouds
 The mothers of all stars are enormous accumulations of light elements like hydrogen called \textbf{giant molecular clouds}, formed by the ashes of dying stars whose life cycle we are about to describe.
 Such clouds consist of matter weighing between tens of thousands to tens of millions solar masses, distributed with a relatively low average density over a huge area that are tens to hundreds of lightyears across.
