@@ -2,11 +2,14 @@
 \chapter{Introduction}
 %\addcontentsline{toc}{chapter}{Introduction} % but still display in TOC (see https://tex.stackexchange.com/a/222961)
 
-Inspiration
+%Inspiration
+%\url{https://en.wikipedia.org/wiki/White_dwarf#Formation}
+%\url{https://en.wikipedia.org/wiki/Compact_star}
 
-\url{https://en.wikipedia.org/wiki/White_dwarf#Formation}
-
-\url{https://en.wikipedia.org/wiki/Compact_star}
+Ever since the dawn of mankind, humans have gazed upon the night sky with great curiosity of what lies beyond our reach and how it all fits together with our existence.
+During the 20th century, physicists have developed two irreplaceable tools for understanding its structure -- general relativity by Einstein and quantum theory by numerous physicists.
+The most exotic type of star currently known to man is neutron stars, formed in the supernova explosion of massive stars that are not massive enough to collapse into black holes.
+In this thesis, we are going to study the fundamentals of neutron stars, from the theory of general relativity to their equation of state by quantum field theory.
 
 \section{The life and death of stars}
 
@@ -161,6 +164,49 @@ Even more massive supergiants with more than $M \gtrsim 40 \solarmass$ experienc
 
 \section{From proposition to observation and theory of neutron stars}
 
+Only two years after James Chadwick discovered the neutron in 1932, \cite{ref:neutron_discovery}
+Walter Baade and Fritz Zwicky proposed the existence of stars composed of this particle. \cite{ref:supernova_cosmic_rays_neutron_stars}
+First, they proposed that supernovae -- which scientists had just begun to study -- was the origin of cosmic rays -- energetic streams of protons and atomic nuclei moving through space.
+In developing an explanation of the detailed mechanisms involved in this process, Baade and Zwicky simultaneously suggested -- with great accuracy -- that
+\begin{displayquote}
+(...) %With all reserve we advance the view that
+a super-nova represents the transition of an ordinary star into a neutron star, consisting mainly of neutrons.
+Such a star may possess a very small radius and an extremely high density.
+As neutrons can be packed much more closely than ordinary nuclei and electrons, the "gravitational packing" energy in a cold neutron star may become very large, and, under certain circumstances, may far exceed the ordinary nuclear packing fractions.
+A neutron star would therefore represent the most stable configuration of matter as such.
+\cite[page 263]{ref:supernova_cosmic_rays_neutron_stars}
+\end{displayquote}
+Today, it is known that supernovae do indeed account for most cosmic rays, and that they do indeed mark the transition of an ordinary star into neutron stars or black holes.
+
+The first theoretical model of a neutron star was developed by Oppenheimer and Volkoff in 1939. \cite{ref:tov}
+Assuming a neutron star consists entirely of a non-interacting cold Fermi gas, they found an equation of state governing its internals and solved the Einstein field equations in a radially symmetric perfect fluid to find the mass and radii of neutron stars.
+In such a cold gas, thermal motion contributes nothing to the pressure, so any pressure is only due to the Pauli exclusion principle, stating that no fermions can be in the same quantum state.
+Analogously to the Chandrasekhar limit, their results implied that this degeneracy pressure could only support masses up to $M < 0.7 \solarmass$.
+
+Assuming a neutron star consists entirely of a free and cold Fermi gas, Oppenheimer and Volkoff in 1939 predicted \TODO{?} that the mass of a neutron star cannot exceed $M < 0.75 \solarmass$ \cite{ref:tov} -- a limit analogous to the Chandrasekhar limit for white dwarves.
+
+% see https://en.wikipedia.org/wiki/Pulsar
+Up until the late 1960s, the existence of neutron stars was only considered a theoretical possibility.
+Given their small size, assumed rarity and faint thermal radiation, experimentalists did not have much of a clue how one would observe them.
+It was first in 1968 that Jocelyn Bell, a PhD student supervised by A?? Hewish, recorded an unusual \textbf{pulsa}ting \textbf{r}adio signal from an extraterrestial source, now referred to as a \textbf{pulsar}. \cite{ref:neutron_star_discovery_first}
+The signal consisteded of short, Gaussian pulses lasting about \SI{0.3}{\second} that repeated with extreme accuracy with a period of \SI{1.337}{\second}. \TODO{show plot in figure?}
+At first, it was speculated that the source could be a white dwarf oscillating radially at this frequency.
+Thomas Gold provided an alternative explanation, suggesting the signal arose from a rotating neutron star with a strong magnetic field. \cite{ref:neutron_star_gold}
+He thought the star's magnetic field to be reminiscent of a dipole and that the signal was emitted from localized spots on the star corresponding to the magnetic poles.
+This picture naturally explained the Gaussian shape of the short pulses, just like the beam from a rotating lighthouse flashing an observer at night.
+In contrast, radial pulsations did not explain the shape nor the extreme regularity of the signal.
+Not long after, Richard Lovelace and others measured a similar signal from the pulsar NP 0532 in the Crab Nebula -- also referred to as the Crab Pulsar -- with a period of only \SI{33}{\milli\second}, which could not be explained by radial oscillations. \cite{ref:crab_pulsar_period_discovery}
+Moreover, D.W. Richards discovered that the period seemed to increase, as it should for a rotating object that radiates away energy.
+This development convinced physicists that the signals were indeed from real, rotating and pulsating \textbf{neutron stars}.
+Controversially, Bell's supervisor Hewish and Martin Ryle later got the Nobel prize for their first discovery of a neutron star, although it is Jocelyn who made the actual measurements and is usually credited in hindsight.
+
+
+% see https://en.wikipedia.org/wiki/Tolman%E2%80%93Oppenheimer%E2%80%93Volkoff_limit
+To this day, many neutron stars have been discovered with mass up to X has been observed, showing that the Oppenheimer-Volkoff limit is wrong.
+Modern, advanced theories take into account that a neutron star consists not only of neutrons, but also of other particles.
+We return to this question in the conclusion and outlook.
+
+
 
 Since the dawn of mankind, humans have gazed upon the night sky with great curiosity of what lies out in the universe.
 \begin{itemize}
@@ -196,60 +242,66 @@ Being one of the most exotic types of objects humanity has observed, neutron sta
 
 \section{Outline of this thesis}
 
-In this thesis, we develop the theoretical tools necessary to study stars made of free neutrons, calculate their mass-radius curve and study their stability.
-\begin{itemize}
-\item State the content of this thesis, distinguishing between the theoretical tools we develop, and the results that we obtain by calculations with these tools.
-\item Although these are not new findings but rather a review, this is our ``niche''.
-\item To ``occupy our niche'', this paragraph should explain \emph{why} this particular content is the most natural buildup for a thesis on neutron stars.
-\end{itemize}
+In this thesis, we first develop the fundamental theoretical tools that are necessary to study neutron stars.
+Then we apply them to calculate masses and radii of neutron stars and study the stability of these stars.
 
 In \textbf{\cref{chap:tov}}, we derive the \textbf{Tolman-Oppenheimer-Volkoff system of equations}
 \begin{align*}
 	\odv{P}{r} &= -\frac{G m \epsilon}{r^2 c^2} \left( 1 + \frac{P}{\epsilon} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \\
 	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon}{c^2} ,
+	%\odv{\alpha}{r} &= -\frac{1}{\epsilon(P)+P} \odv{P}{r} ,
 \end{align*}
-from the theory of general relativity.
-\begin{itemize}
-\item Explain why Newtonian gravity does not suffice to study stars, and that the relativistic effects of Einstein's theory is needed.
-\item Explain the importance of the TOV equations for the study of \emph{any} kind of star.
-\item Explain that the three unknowns in the equation are the pressure $P$, mass $m$ and energy density $\epsilon$.
-      Since there are only two equations, we must find an additional one to solve for the unknowns.
-      This is the equation of state $\epsilon = \epsilon(P)$, which is outside the scope of general relativity and must be found by statistical physics and quantum theory.
-\end{itemize}
+from the Einstein field equations of general relativity.
+This is a system of two differential equations for the unknown pressure $P(r)$, mass $m(r)$ and energy density $\epsilon(r)$ at radius $r$ from the center of a star composed of a \emph{perfect fluid} in \emph{equilibrium}.
+An additional equation of state $\epsilon = \epsilon(P)$ that allows computation of the energy density corresponding to a given pressure is needed to solve the system.
+This is outside the scope of general relativity and belongs to the field of quantum theory and statistical mechanics.
+Given the equation of state, however, one may impose the boundary condition $m(0) = 0$ and any central pressure $P(0) = P_0$ and solve the system for the pressure profile $P(r)$ and mass profile $m(r)$ in the star.
+By defining the surface $r=R$ of the star where the pressure $P(R) = 0$ vanishes, one can obtain the radius $R$ and mass $M = m(R)$ of the star.
+In particular, we will solve the system analytically for a star of constant energy density $\epsilon(P) = \epsilon_0$ to derive the Buchdal limit
+\begin{equation*}
+	\frac{M}{R} < \frac{4 c^2}{9 G}
+\end{equation*}
+on the mass-radius ratio of \emph{any} star.
 
 In \textbf{\cref{chap:tft}}, we will study \textbf{thermal field theory} -- the formalism needed to find the effects of quantum fields at nonzero temperature.
-\begin{itemize}
-\item Explain that thermal field theory is the ``missing link'' needed to find $\epsilon$ in the Tolman-Oppenheimer-Volkoff equation.
-\item Present the buildup of this chapter: the partition function is needed for finding expectation values of thermodynamic variables, the partition function can be found by a path integral.
-\item We first show how one does the path integral for bosons with complex numbers, then introduce anticommuting Grassmann numbers to find the path integral for fermions.
-\end{itemize}
+We will show how to write the quantum partition function
+\begin{equation*}
+	Z = \trace \left[ e^{-\beta(\hat{H} - \mu_i \hat{N}_i)} \right]
+\end{equation*}
+as a path integral.
+First, we use the path integral to find the partition function of a gas of free bosons.
+Next, we introduce Grassmann numbers and fermionic coherent states to derive a path integral that is valid for fermions, and calculate it for a non-interacting Fermi gas of free Dirac fermions.
+From this partition function, we can calculate the energy density and pressure and hence the equation of state.
 
-In \textbf{\cref{chap:nstars}}, we finally put together the pieces of \cref{chap:tov} and \cref{chap:tft} and study \textbf{neutron stars}.
-\begin{itemize}
-\item Make very clear that while chapter 1 and 2 ``only'' develop theoretical tools, chapter 1+2=3 puts the tools to work together and constitutes our ``results'' chapter.
-\item Having found the partition function for free fermions in \cref{chap:tft}, we find the equation of state $\epsilon = \epsilon(P)$ for a gas of free neutrons.
-\item Then we insert the equation of state into the Tolman-Oppenheimer-Volkoff equations and solve them, which yield the mass-radius-curve of neutron stars parametrized by their central pressure.
-\item This is our ``results'', then we compare them to observations and earlier theoretical work.
-\item Finally, we study the stability of the stars we have found.
-\end{itemize}
+In \textbf{\cref{chap:nstars}}, we put together the pieces of \cref{chap:tov} and \cref{chap:tft} and study \textbf{neutron stars} made of a \textbf{cold, non-interacting Fermi gas}.
+From the partition function $Z$ of \cref{chap:tft}, we find the equation of state
+\begin{equation*}
+	\epsilon = \epsilon(P)
+\end{equation*}
+for a cold Fermi gas made of free neutrons.
+We then solve the Tolman-Oppenheimer-Volkoff equation numerically for this equation of state to find a mass-radius curve $[R(P_0), \, M(P_0)]$ for such stars parametrized by their central pressure.
+Finally, we study whether stars on the curve are in stable or unstable equilibrium.
+We begin by establishing a set of necessary criterions from simple physical considerations.
+Then we develop a mathematically rigorous criterion on the stability of stars by using perturbation theory on the equilibrium Einstein field equations in \cref{chap:tov} to study the behavior of the perfect fluid as it is disturbed from equilibrium.
+This results in a Sturm-Liouville problem for normal vibration modes $U_n(r)$ with squared frequencies $\omega_n^2$ whose sign determine whether an exponential time dependence $e^{i \omega_n t}$ on the motion of disturbed fluid elements oscillate or grow exponentially.
+
+\TODO{ctrl+f combiation fix}
+
+In \textbf{\cref{chap:conclusion}}, we wrap it all up and discuss our results in light of observations and more advanced theories of neutron stars.
 
 In \textbf{\cref{chap:gr}}, we give a comprehensive \textbf{review of the theory of general relativity}.
-\begin{itemize}
-\item Say that this appendix enables readers unfamiliar with general relativity to understand all aspects of it that are needed for our purposes.
-\end{itemize}
+Here, we derive the Einstein field equations from the principle of least action and cover all aspects of general relativity that we require for \cref{chap:tov} and \cref{chap:nstars}.
 
-In \textbf{\cref{chap:relfluid}}, we study \textbf{relativistic fluid mechanics}.
-\begin{itemize}
-\item Assuming familiarity with general relativity, we derive all results needed to study the stability of stars.
-\end{itemize}
+In \textbf{\cref{chap:relfluid}}, we briefly summarize \textbf{relativistic fluid mechanics} for a perfect fluid.
+Here, we derive relativistic generalizations of results from ordinary fluid mechanics, such as the Euler equation and the equation of energy conservation.
+These results are needed to understand the behavior of fluids outside equilibrium in the stability analysis in \cref{chap:nstars}.
 
 In \textbf{\cref{chap:matsum}}, we describe the technique of \textbf{Matsubara frequency summation}.
-\begin{itemize}
-\item This is an elegant mathematical tool that is extremely useful to perform calculations in thermal field theory.
-\item Say that this summation on its own is purely mathematical, and that the results thereof can be considered as mathematical identities only, when they are applied in the chapter on thermal field theory.
-\item However, note that the results of the mathematical identities are of great physical interest, as it is precisely these identities that give rise to the bosonic and fermionic distributions.
-\end{itemize}
+This is an elegant mathematical tool that allow us to compute a general class of infinite sums we encounter in \cref{chap:tft}.
+Despite their purely mathematical foundation, the results of this appendix naturally give rise to the Bose-Einstein and Fermi-Dirac distributions, and are therefore of great physical interest, too.
 
-In \textbf{\cref{chap:integrals}}, we list all integrals used throughout this thesis with pure proofs.
+In \textbf{\cref{chap:integrals}}, we give concise proofs of all integrals used throughout this thesis.
+Whenever we encounter difficult integrals in the main text, we will always write the result directly and refer back to this appendix for readers who wish to investigate them in more detail.
 
-In \textbf{\cref{chap:code}}, we list all source code used for numerical work in this thesis.
+In \textbf{\cref{chap:code}}, we describe implementations of numerical methods and algorithms.
+Here, we present dimensionless forms of the TOV equations in \cref{chap:tov} and the equations of stellar instability in \cref{chap:nstars}, and show how they can be solved with Runge-Kutta methods and the shooting method, respectively.
