@@ -6,12 +6,20 @@
 %\url{https://en.wikipedia.org/wiki/White_dwarf#Formation}
 %\url{https://en.wikipedia.org/wiki/Compact_star}
 
-Ever since the dawn of mankind, humans have gazed upon the night sky with great curiosity of what lies beyond our reach and how it all fits together with our existence.
-During the 20th century, physicists have developed two irreplaceable tools for understanding its structure -- general relativity by Einstein and quantum theory by numerous physicists.
-The most exotic type of star currently known to man is neutron stars, formed in the supernova explosion of massive stars that are not massive enough to collapse into black holes.
-In this thesis, we are going to study the fundamentals of neutron stars, from the theory of general relativity to their equation of state by quantum field theory.
+Ever since the dawn of mankind, humans have gazed upon the night sky with great curiosity of what lies beyond our immediate reach.
+Not until the Copernican Revolution in the 16th century did we begin to draw a correct picture of how it really looks and where we fit into it.
+Nicolaus Copernicus correctly claimed that the Earth revolves around the Sun at the center of a solar system, leading to a number of important discoveries by Tycho Brahe, Johannes Kepler, Galileo Galilei, and finally culminating in Isaac Newton's theory on gravity and motion in the 17th century.
+With Newton's theory, humans gained a first scientific understanding of the motion and structure of planets and stars.
+During the following scientific revolution, technological advancements in optics and observational techniques made possible not only observation of a number of new stars and planets, but also measurements of their temperature and distance to Earth.
+In the 20th century, physicists developed two theories that gave unprecedented new insight into stars.
+First, Albert Einstein's theory of general relativity accurately described macroscopic aspects of the motion and structure of stars where Newton's theory broke down.
+Second, quantum theory developed by numerous physicists like Niels Bohr, Erwin Schrödinger and Werner Heisenberg gave us a brand new understanding of the microscopic properties of stars and their structure.
+Since then, physicists have observed and explained increasingly exotic types of stars.
+In this thesis, we will develop the fundamental gravitational and quantum theory for studying neutron stars, the smallest and most massive known type of star that has not collapsed to a black hole.
 
-\section{The life and death of stars}
+\textit{This chapter is inspired by references \cite{ref:glendenning}, \cite{ref:neutron_star_physics}, \cite{ref:lovelace_summary} and \cite{ref:neutron_star_wikipedia}.}
+
+\section{Life, death and structure of stars}
 
 \begin{figure}
 \centering
@@ -112,100 +120,110 @@ In this thesis, we are going to study the fundamentals of neutron stars, from th
 \end{figure}
 
 % planetary nebula -> releases ionized gas -> forms clouds
-The mother of any star is an enormous accumulation of light elements like hydrogen called a \textbf{giant molecular cloud}, formed by the ashes of dying stars at the end of the life cycle we have just begun to describe.
-Such clouds consist of matter weighing up to tens of millions solar masses, distributed with a relatively low average density over a huge area that up to hundreds of lightyears across.
-Internally, the dynamics of a molecular cloud is chiefly governed by the attractive force of gravity between particles and the repulsive thermal pressure from their motion and collisions.
+The mother of any star is an enormous accumulation of light elements, predominantly hydrogen, called a \textbf{giant molecular cloud}, formed by the ashes of dying stars at the end of the life cycle we have just begun to describe.
+Such clouds consist of matter weighing up to tens of millions solar masses, distributed with a relatively low average density over a huge area up to hundreds of lightyears across.
+Internally, the dynamics of a molecular cloud is chiefly governed by a balance between the attractive force of gravity between particles and the repulsive thermal pressure from their motion and collisions.
 
 Due to the force of gravity, parts of the cloud can clump together in areas of greater density.
 As more mass accumulates, the force of gravity attracting the surrounding material only increases, causing a snowball effect that only amplifies the growth of the clump.
-Initially, the material is not so dense, and thermal radiation can escape outside, causing low temperatures and pressure and allowing the clump to contract with little resistance.
+Initially, the clump is not so dense, and thermal radiation can escape outside, resulting in low temperatures and pressure and allowing the clump to contract with little resistance.
 However, once the density becomes sufficiently high, thermal radiation can no longer find its way out and is trapped inside.
-When this happens, the temperature increases, in turn increasing the outwards pressure that counteracts the inwards gravitational collapse and considerably slows down the contraction.
-During this stage depicted in \cref{fig:intro:star_evolution_protostar}, as the child ``clump'' grows by sucking up material from its parent cloud, it receives the more honorable name \textbf{protostar}.
+When this happens, the temperature increases, in turn increasing the outwards pressure counteracting the inwards gravitational collapse, thus considerably slowing the contraction down.
+During this stage, as the child ``clump'' grows by sucking up material from its parent cloud, it receives the honorable name \textbf{protostar} (\cref{fig:intro:star_evolution_protostar}).
 
 Sooner or later, the protostar has depleted the cloud of its available mass.
-It then continues to contract, causing the temperature and pressure to increase, ultimately reaching a state of equilibrium with the gravitational collapse.
-The protostar is then promoted to a \textbf{main sequence star}.
+Whatever total mass $M$ has been gathered by now will determine the fate of the star for the rest of its life.
+The contraction continues until the temperature and pressure have increased sufficiently for the star to reach a state of equilibrium.
+The protostar is then promoted to a \textbf{main sequence star} (\cref{fig:intro:star_evolution_mainseq}).
 Provided that the protostar has accumulated at least $M \gtrsim 0.08 \solarmass$, the temperature will reach $T \gtrsim \SI{1e7}{\kelvin}$ -- sufficient for the fusion of hydrogen into helium to take place.
 For billions of years, the star supports itself by burning hydrogen into helium.
-The heavier helium is pulled into the central regions of the star, establishing a helium \emph{core} surrounded by an \emph{envelope} constisting of the lighter hydrogen, as shown in \cref{fig:intro:star_evolution_mainseq}.
+The heavier helium is pulled into the central regions of the star, establishing the separation between a helium \emph{core} surrounded by an \emph{envelope} constisting of the lighter hydrogen.
 
-What happens after most of the hydrogen has burnt up depends heavily on the mass of the star.
-Stars up to $M \lesssim 8 \solarmass$ evolve into \textbf{red giants}.
-As the hydrogen fails to support the star, the core begins to contract again.
-For heavier red giants, the temperature can increase to $T \gtrsim \SI{1e8}{\kelvin}$, activating both fusion of helium to carbon and carbon to oxygen, but the temperature is too low for fusion of heavier elements.
-The core develops shells with elements of increasing weight towards the center as shown in \cref{fig:intro:star_evolution_red_giant}, from hydrogen to helium, carbon, or oxygen, depending on the exact mass of the star.
-Due to the sudden increase in temperature, much energy is transported into the envelope, where it ignites leftover hydrogen and inflates the envelope up to 200 solar radii -- hence the name of the star.
+What happens once the hydrogen begins to deplete depends heavily on the mass of the star.
+Stars up to $M \lesssim 8 \solarmass$ evolve into \textbf{red giants} (\cref{fig:intro:star_evolution_red_giant}).
+As the hydrogen is exhausted, the pressure falls and fails to support the star, so the core begins to contract again, in turn causing another increase in temperature.
+For heavier red giants, the temperature can increase to $T \gtrsim \SI{1e8}{\kelvin}$, activating both fusion of helium to carbon and carbon to oxygen, but not of heavier elements.
+As these processes take place, the core develops shells with elements of increasing weight towards the center as shown in the figure, from hydrogen to helium, carbon or oxygen, depending on the exact mass of the star.
+Due to the sudden increase in temperature, much energy is transported into the envelope, where it ignites leftover hydrogen and inflates the envelope up to 200 solar radii.
 
 Eventually, explosions in the envelope of a red giant trigger unstable pulsations of the hydrogen envelope.
-This causes a \textbf{planetary nebula}, depicted in \cref{fig:intro:star_evolution_planetary_nebula} -- an ejection of the outer shells of the red giant into new interstellar clouds from which new starts can be born at a restart of the cycle.
-The remaining inert core that is intact from the nebula forms a \textbf{white dwarf}.
-Illustrated in \cref{fig:intro:star_evolution_white_dwarf}, a white dwarf is essentially the core of the preceeding red giant that is intact after the planetary nebula.
-Since no further reactions occur, it is supported against collapse solely by electron degeneracy pressure.
+This causes a \textbf{planetary nebula} (\cref{fig:intro:star_evolution_planetary_nebula}) -- an ejection of the outer shells of the red giant into new clouds from which new stars are born.
+The remaining inert core that is left intact from the nebula forms a \textbf{white dwarf} (\cref{fig:intro:star_evolution_white_dwarf}).
+Since no further reactions occur in the core, it is supported against collapse solely by degeneracy pressure of electrons that are ripped away from the arms of their parent atoms at high density and forced to occupy different states by the Pauli exclusion principle.
 White dwarves can be as hot as $T \approx \SI{1e7}{\kelvin}$ upon formation, but gradually cool down as they radiate away their energy.
-Importantly, white dwarves can only support themselves for masses up to the Chandrasekhar limit $M \lesssim 1.4 \solarmass$.
-\TODO{cooling etc}
+Importantly, Chandrasekhar derived that ideal white dwarves consisting of a relativistic degenerate electron gas can only support themselves for masses up to $M \lesssim 0.91\solarmass$. \cite{ref:chandrasekhar_limit_ideal}
+A few years later, he took more effects into account and derived the more accurate Chandrasekhar limit $M \lesssim 1.47$. \cite{ref:chandrasekhar_limit_nonideal}
 
-If the mass of a main sequence star exceeds $M \gtrsim 8 \solarmass$, it essentially becomes a more dramatic a red giant -- namely a \textbf{red supergiant}.
-The increased mass sends the temperature soaring well above $T \gtrsim \SI{1e8}{\kelvin}$, activating not only fusion from hydrogen to helium, carbon and oxygen, but even fusion to heavier elements such as neon and iron.
+If the mass of a main sequence star exceeds $M \gtrsim 8 \solarmass$, it first becomes a more intense red giant -- a \textbf{red supergiant} (\cref{fig:intro:star_evolution_red_supergiant}), for lack of a better word.
+The increased mass sends the temperature soaring well above $T \gtrsim \SI{1e8}{\kelvin}$, activating not only fusion from hydrogen to helium, carbon and oxygen, but even to heavier elements such as neon and iron.
 When the reactions reach iron, something dramatic happens.
-In contrast to elements lighter than iron, fusion from iron or heavier elements \emph{require} energy instead of releasing it.
-The burning therefore stops at iron.
-At this point, the core of a red supergiant is so massive due to the more massive elements that it exceeds the Chandrasekhar limit.
-Thus, the core collapses in an explosion called a \textbf{supernova}, illustrated in \cref{fig:intro:star_evolution_supernova}.
-\TODO{iron peak graph?}
+While fusion from lighter elements \emph{release} energy, fusion from iron or heavier elements \emph{require} energy, causing the burning to stop at iron.
+At this point, due to the heavy elements, the core of a red supergiant is so massive that it exceeds the Chandrasekhar limit.
+Inevitably, the core collapses and produces an extremely powerful explosion called a \textbf{supernova} (\cref{fig:intro:star_evolution_supernova}).
+\TODO{draw a iron peak graph?}
 
-For supergiants whose mass does not exceed $M \lesssim 40 \solarmass$, the core left behind by the supernova is called a \textbf{neutron star}.
-The core collapse of the supergiant has compressed the core past the white dwarf stage, reaching a new equilibrium composition of neutrons, protons, hyperons, leptons and possibly quarks.
-Like white dwarves, neutron stars are ovens that are burnt out, and only continue to cool down and shine.
-\TODO{temperature? new 1e11-1e12 K, quickly decays to 1e6, then radiate away and cool down}
+\TODO{move some of this to next section}
+For supergiants whose mass does not exceed $M \lesssim 40 \solarmass$, the supernova leaves behind an inert core called a \textbf{neutron star} (\cref{fig:intro:star_evolution_neutron_star}).
+The core is then to massive that it is compressed \emph{past} the Chandrasekhar limit of white dwarves.
+The resulting extreme density and Fermi energy makes it energetically favorable for electrons and protons to combine into neutrons in inverse beta decay.
+In general, the outer core of a neutron star can consist of a neutron ($n$) superfluid mixed with superconducting protons ($p$), electrons ($e^-$) and muons ($\mu^-$). % Potekhin section 2.2
+The precise composition of the inner core is an open question, but it is believed that it may contain $\lambda$ and $\Sigma^-$ baryons, $\pi$ and $K$ mesons and deconfined quark matter. % Potekhin section 2.2 list 1-4
+Thus, compact stars are not only imporant for astrophysics in isolation, but also for the development of nuclear and particle physics.
+Outside the core, there is an envelope consisting of more ``ordinary'' matter with isolated atomic nuclei, such as iron. % Potekhin 2.2 last paragraph
+%making a neutron star consist protons, hyperons, leptons and possibly quarks. % Glendenning somewhere
+Despite their differences, all the particles group up for a last stand against gravity, reaching a new equilibrium configuration that is known as a neutron star.
+As with white dwarves, there is a limit for the gravitational force that their degeneracy pressure can withstand.
+Assuming a neutron star consists of an ideal Fermi gas of pure neutrons, Oppenheimer and Volkoff computed the mass bound $M \lesssim 0.7 \solarmass$ in 1939. \cite{ref:tov}
+More advanced theories and observations place the so named Oppenheimer-Volkoff limit of real neutron stars somewhere between $2 \solarmass$ and $3 \solarmass$. % Potekhin section 2.3
+Like white dwarves, neutron stars only cool down by radiating their stored energy, from initial temperatures $T \approx \SI{1e10}{\kelvin}$ to $T \approx \SI{1e8}{\kelvin}$ in a month, then to $T \approx \SI{1e6}{\kelvin}$ in less than a million years -- all at the \emph{surface}. % Glendenning page 115
 
-Even more massive supergiants with more than $M \gtrsim 40 \solarmass$ experience such a tremendous force of gravity that they collapse directly to \textbf{black holes}, depicted in \cref{fig:intro:star_evolution_black_hole}.
+Finally, for even more massive supergiants with $M \gtrsim 40 \solarmass$, the Oppenheimer-Volkoff limit is exceeded, and not even the degeneracy pressure of neutrons can resist gravity.
+Beyond this limit, no known star has escaped the collapse to a \textbf{black holes} (\cref{fig:intro:star_evolution_black_hole}).
+It is, however, an open question whether there can be even more classes of stars that fall between the Oppenheimer-Volkoff limit and the lightest observed black holes.
+No such hypothetical stars have been observed yet.
+They are referred to as \textbf{exotic stars}, of which \textbf{quark stars} and \textbf{electroweak stars} are two theoretical examples.
 
-\section{From proposition to observation and theory of neutron stars}
+This marks the last possible path of evolution in the somewhat simplified diagram in \cref{fig:intro:star_evolution}.
+Most importantly, we have omitted the possibility that main sequence stars with $M \lesssim 0.08 \solarmass$ never reach the temperature necessary to ignite hydrogen and become brown dwarves.
+
+\section{Proposition and observation of neutron stars}
 
 Only two years after James Chadwick discovered the neutron in 1932, \cite{ref:neutron_discovery}
-Walter Baade and Fritz Zwicky proposed the existence of stars composed of this particle. \cite{ref:supernova_cosmic_rays_neutron_stars}
-First, they proposed that supernovae -- which scientists had just begun to study -- was the origin of cosmic rays -- energetic streams of protons and atomic nuclei moving through space.
-In developing an explanation of the detailed mechanisms involved in this process, Baade and Zwicky simultaneously suggested -- with great accuracy -- that
+Walter Baade and Fritz Zwicky proposed the existence of stars composed of the particle.
+At the time, physicists had only recently begun to study supernovae and the origin of cosmic rays.
+In developing an explanation of the detailed mechanisms involved in a supernova, they suggested -- with great accuracy -- that
+\cite[page 263]{ref:supernova_cosmic_rays_neutron_stars}
 \begin{displayquote}
 (...) %With all reserve we advance the view that
 a super-nova represents the transition of an ordinary star into a neutron star, consisting mainly of neutrons.
 Such a star may possess a very small radius and an extremely high density.
-As neutrons can be packed much more closely than ordinary nuclei and electrons, the "gravitational packing" energy in a cold neutron star may become very large, and, under certain circumstances, may far exceed the ordinary nuclear packing fractions.
+As neutrons can be packed much more closely than ordinary nuclei and electrons, the ``gravitational packing'' energy in a cold neutron star may become very large, and, under certain circumstances, may far exceed the ordinary nuclear packing fractions.
 A neutron star would therefore represent the most stable configuration of matter as such.
-\cite[page 263]{ref:supernova_cosmic_rays_neutron_stars}
 \end{displayquote}
-Today, it is known that supernovae do indeed account for most cosmic rays, and that they do indeed mark the transition of an ordinary star into neutron stars or black holes.
 
+\iffalse
 The first theoretical model of a neutron star was developed by Oppenheimer and Volkoff in 1939. \cite{ref:tov}
 Assuming a neutron star consists entirely of a non-interacting cold Fermi gas, they found an equation of state governing its internals and solved the Einstein field equations in a radially symmetric perfect fluid to find the mass and radii of neutron stars.
 In such a cold gas, thermal motion contributes nothing to the pressure, so any pressure is only due to the Pauli exclusion principle, stating that no fermions can be in the same quantum state.
 Analogously to the Chandrasekhar limit, their results implied that this degeneracy pressure could only support masses up to $M < 0.7 \solarmass$.
-
-Assuming a neutron star consists entirely of a free and cold Fermi gas, Oppenheimer and Volkoff in 1939 predicted \TODO{?} that the mass of a neutron star cannot exceed $M < 0.75 \solarmass$ \cite{ref:tov} -- a limit analogous to the Chandrasekhar limit for white dwarves.
+\fi
 
 % see https://en.wikipedia.org/wiki/Pulsar
 Up until the late 1960s, the existence of neutron stars was only considered a theoretical possibility.
-Given their small size, assumed rarity and faint thermal radiation, experimentalists did not have much of a clue how one would observe them.
-It was first in 1968 that Jocelyn Bell, a PhD student supervised by A?? Hewish, recorded an unusual \textbf{pulsa}ting \textbf{r}adio signal from an extraterrestial source, now referred to as a \textbf{pulsar}. \cite{ref:neutron_star_discovery_first}
+Given their supposed small size, rarity and faint thermal radiation, how would one ever detect such an object?
+It was first in 1968 that Jocelyn Bell, a PhD student of Antony Hewish, recorded an unusual \textbf{pulsa}ting \textbf{r}adio signal from an extraterrestial source, now referred to as a \textbf{pulsar}. \cite{ref:neutron_star_discovery_first}
 The signal consisteded of short, Gaussian pulses lasting about \SI{0.3}{\second} that repeated with extreme accuracy with a period of \SI{1.337}{\second}. \TODO{show plot in figure?}
-At first, it was speculated that the source could be a white dwarf oscillating radially at this frequency.
-Thomas Gold provided an alternative explanation, suggesting the signal arose from a rotating neutron star with a strong magnetic field. \cite{ref:neutron_star_gold}
-He thought the star's magnetic field to be reminiscent of a dipole and that the signal was emitted from localized spots on the star corresponding to the magnetic poles.
-This picture naturally explained the Gaussian shape of the short pulses, just like the beam from a rotating lighthouse flashing an observer at night.
+At first, it was speculated that the source could be a white dwarf oscillating radially at the corresponding frequency.
+Thomas Gold provided an alternative explanation, suggesting the signal arose from a \emph{rotating} neutron star with a strong magnetic field. \cite{ref:neutron_star_gold}
+He imagined the star's magnetic field to be reminiscent of a dipole and that a directional signal was emitted from localized spots on the star corresponding to the magnetic poles.
+This picture naturally explained the Gaussian shape of the short pulses, as one would detect a similar pattern by measuring the intensity of a directed, rotating lighthouse beam from a fixed position.
 In contrast, radial pulsations did not explain the shape nor the extreme regularity of the signal.
-Not long after, Richard Lovelace and others measured a similar signal from the pulsar NP 0532 in the Crab Nebula -- also referred to as the Crab Pulsar -- with a period of only \SI{33}{\milli\second}, which could not be explained by radial oscillations. \cite{ref:crab_pulsar_period_discovery}
-Moreover, D.W. Richards discovered that the period seemed to increase, as it should for a rotating object that radiates away energy.
-This development convinced physicists that the signals were indeed from real, rotating and pulsating \textbf{neutron stars}.
-Controversially, Bell's supervisor Hewish and Martin Ryle later got the Nobel prize for their first discovery of a neutron star, although it is Jocelyn who made the actual measurements and is usually credited in hindsight.
+Not long after, Richard Lovelace and others measured a similar signal from the pulsar NP 0532 in the Crab Nebula -- also referred to as the Crab Pulsar -- with a period of only \SI{33}{\milli\second}, which was even more challenging to explain by radial oscillations. \cite{ref:crab_pulsar_period_discovery}
+Moreover, David Richards discovered that the period slightly increased with time in the way that it should for a rotating object that radiates away its energy.
+This evidence convinced physicists that the signals were indeed from real, rotating and pulsating \textbf{neutron stars}.
+Controversially, Bell's supervisor and first author Hewish later got the Nobel prize for the discovery of the neutron star, although it is Jocelyn who made the actual measurements and is often credited first in hindsight.
 
-
-% see https://en.wikipedia.org/wiki/Tolman%E2%80%93Oppenheimer%E2%80%93Volkoff_limit
-To this day, many neutron stars have been discovered with mass up to X has been observed, showing that the Oppenheimer-Volkoff limit is wrong.
-Modern, advanced theories take into account that a neutron star consists not only of neutrons, but also of other particles.
-We return to this question in the conclusion and outlook.
-
+At the time of writing, a total of 3177 pulsars have been discovered. \cite{ref:pulsar_catalogue}
 
 
 Since the dawn of mankind, humans have gazed upon the night sky with great curiosity of what lies out in the universe.
