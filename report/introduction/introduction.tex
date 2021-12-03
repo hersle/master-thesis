@@ -59,9 +59,11 @@ In this thesis, we will develop the fundamental gravitational and quantum theory
 		\node [element] at (90:0pt) {H};
 	},
 	redgiant/.pic={
-		\draw[draw=black, fill=red!75!orange, circular glow={fill=red!75!orange}] circle [radius=40pt]; \node [element] at (90:30pt) {H};
-		\draw[draw=black, fill=orange!50!yellow] circle [radius=20pt]; \node [element] at (90:15pt) {H};
-		\draw[draw=black, fill=gray] circle [radius=10pt]; \node [element] at (90: 0pt) {He};
+		\draw[draw=black, fill=red!75!orange, circular glow={fill=red!75!orange}] circle [radius=40pt]; %\node [element] at (90:30pt) {H};
+		\draw[draw=black, fill=orange!50!yellow] circle [radius=30pt]; \node [element] at (90:35pt) {H};
+		\draw[draw=black, fill=green!50!gray   ] circle [radius=20pt]; \node [element] at (90:25pt) {He};
+		\draw[draw=black, fill=gray            ] circle [radius=10pt]; \node [element] at (90:15pt) {C};
+		\draw[draw=black, fill=gray            ] circle [radius= 0pt]; \node [element] at (90: 0pt) {O};
 		\draw[draw=none] (-60pt,-60pt) rectangle (+60pt,+60pt);
 	},
 	redsupergiant/.pic={
@@ -83,15 +85,14 @@ In this thesis, we will develop the fundamental gravitational and quantum theory
 		\draw[draw=none] (-50pt, -50pt) rectangle (+50pt, +50pt);
 	},
 	neutronstar/.pic={
-		\draw[draw=black, fill=blue!  0!purple, circular glow={fill=blue!0!purple}] circle [radius=40pt]; \node [element, rotate=45] at (135:35pt) {H,}; \node [element] at ( 90:35pt) {He,}; \node [element, rotate=-45] at (45:35pt) {Fe};
-		\draw[draw=black, fill=blue! 25!purple] circle [radius=30pt]; \node [element, rotate=+20] at (110:25pt) {$e^-$,}; \node [element, rotate=-20] at (70:25pt) {$n$};
-		\draw[draw=black, fill=blue! 50!purple] circle [radius=20pt]; \node [element] at (90:15pt) {$n$};
-		\draw[draw=black, fill=blue! 75!purple] circle [radius=10pt]; \node [element] at (90: 0pt) {?};
+		\draw[draw=black, fill=blue!  0!purple, circular glow={fill=blue!0!purple}] circle [radius=45pt]; \node [element, rotate=45] at (135:37.5pt) {H}; \node [element] at ( 90:37.5pt) {$\cdots$}; \node [element, rotate=-45] at (45:37.5pt) {Fe};
+		\draw[draw=black, fill=blue! 25!purple] circle [radius=30pt]; \node [element, rotate=+45] at (135:22.5pt) {$n$}; \node [element, rotate=0] at (90:22.5pt) {$p$}; \node [element, rotate=-45] at (45:22.5pt) {$e^-$};
+		\draw[draw=black, fill=blue! 50!purple] circle [radius=15pt]; \node [element] at (90:0pt) {???};
 		\draw[draw=none] (-50pt, -50pt) rectangle (+50pt, +50pt);
 	},
 	whitedwarf/.pic={
-		\draw[draw=black, fill=white! 90!gray, circular glow={fill=cyan! 20!white}] circle [radius=30pt]; \node [element, rotate=+20] at (110:22.5pt) {H,}; \node [element, rotate=-20] at (70:22.5pt) {He};
-		\draw[draw=black, fill=cyan! 60!white] circle [radius=15pt]; \node [element] at (90:0pt) {C, O};
+		\draw[draw=black, fill=white!80!gray, circular glow={fill=cyan! 20!white}] circle [radius=30pt]; \node [element, rotate=+30] at (120:22.5pt) {H}; \node [element, rotate=-30] at (60:22.5pt) {He};
+		\draw[draw=black, fill=cyan!60!white] circle [radius=15pt]; \node [element] at (90:0pt) {C  O};
 		\draw[draw=none] (-50pt, -50pt) rectangle (+50pt, +50pt);
 	},
 ]
