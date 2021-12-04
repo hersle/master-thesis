@@ -30,7 +30,7 @@ First, the particle number density $n = \thermalavg{N}/V$ follows from the deriv
 	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ n\big[ E(\vec{p})-\mu \big] - n\big[ E(\vec{p})+\mu \big] \Big\} ,
 \label{eq:nstars:density}
 \end{equation}
-where we defined the \textbf{Fermi-Dirac distribution}
+where we defined the \textbf{Fermi-Dirac distribution} \TODO{plus or minus in exponential?}
 \begin{equation}
 	n(E) = \frac{1}{e^{-\beta E} + 1}.
 \label{eq:nstars:fermi_dirac_distribution}
@@ -82,16 +82,40 @@ Dropping terms as described in the last paragraphs, we are left with the%
 The integrals become nasty after plugging in the relativistic dispersion relation \eqref{eq:tft:dispersion} and the Fermi-Dirac distribution \eqref{eq:nstars:fermi_dirac_distribution}, and it is overly optimistic to expect that all of them can be evaluated analytically.
 We will make one final approximation that will make all the integrals surmountable.
 
-\TODO{what about $\beta \mu \gg 1$? assume/take this into account.}
-By human standards, it is very hot inside a neutron star.
-In fact, studies estimate typical core temperatures around $T_0 \approx \SI{1e6}{\kelvin}$. \TODO{reference}
-However, neutrons have mass $m \approx \SI{1.67e-27}{\kilogram}$, so everywhere inside a neutron star we have $\beta E(\vec{p}) = \sqrt{\vec{p}^2 c^2 + m^2 c^4} / k_B T > m c^2 / k_B T_0 \approx 10^7 \gg 1$.
-Although the temperature is very large compared to everyday temperatures, the thermal energy $k_B T$ is in fact very low relative to the energy $E(\vec{p})$ of the nuclei.
-It is therefore an excellent approximation to take the \textbf{zero-temperature limit}
+At \emph{absolute} zero temperature $T = 0$, the Fermi-Dirac distribution
 \begin{equation}
-	\beta E(\vec{p}) \gg 1 .
+	n(E) = \frac{1}{e^{\beta (E - \mu)} + 1} = \theta(\mu-E) = \begin{cases} 0 & (E > \mu) \\ 1 & (E < \mu) \end{cases}
 \end{equation}
+behaves like a step function.
+To see this, observe that $T = 0$ corresponds to $\beta = \infty$, and that the sign of $E - \mu$ determines whether the exponential $e^{\beta (E - \mu)}$ in the denominator blows up or vanishes, and hence whether the fraction survives.
+Physically, this means that the system is completely degenerate, filling momentum states with $E(\vec{p}) < \mu$ only.
+The filled states with highest momentum $p_F$ make up a so-called \emph{Fermi surface} $\abs{\vec{p}} = p_F$ in momentum space, and the corresponding maximum energy $E_F = \sqrt{p_F^2 c^2 + m^2 c^4}$ is called the \emph{Fermi energy}, and is equal to the chemical potential when $T = 0$.
 
+Typical neutron star core temperatures linger around $T_0 \approx \SI{1e6}{\kelvin}$, \cite{ref:glendenning} so how is this relevant for our purposes?
+By using a Sommerfeld expansion, it is possible to show mathematically that the chemical potential at a finite temperature $T > 0$ is corrected from the Fermi energy by
+\cite[section 3.6]{ref:notes_statistical_physics_tong}, \cite[exercise 2]{ref:eth_statistical_physics_exercise}
+\begin{equation}
+	\mu(T) = E_F + \bigo \left( \left( \frac{T}{T_F} \right)^2 \right) ,
+	%\mu(T) = E_F - \frac{\pi^2}{6} (k_B T)^2 \frac{g'(E_F)}{g(E_F)}
+\end{equation}
+to first nonzero order in $T/T_F$, where $T_F = E_F / k_B$ is the \emph{Fermi temperature} corresponding to the Fermi energy $E_F$, and $g(E)$ the density of states.
+Neutrons have mass $m \approx \SI{1.67e-27}{\kilogram}$, so $T_F = \sqrt{p_F^2 c^2 + m^2 c^4} / k_B > m c^2 / k_B \approx \SI{1e13}{\kelvin}$.
+Thus, $T / T_F < T_0 / T_F \approx 10^{-7} \ll 1$, and it is therefore an excellent approximation to take the limit
+\begin{equation}
+	\beta \mu \gg 1 .
+\end{equation}
+By rewriting the Fermi-Dirac distribution as
+\begin{equation}
+	n(E) = \frac{1}{e^{\beta \mu (E/\mu - 1)} + 1} ,
+\label{eq:nstars:zero_temperature_limit}
+\end{equation}
+we can again see that in the zero-temperature limit \eqref{eq:nstars:zero_temperature_limit}, the sign of $E - \mu$ will again force the distribution into a simple step function, as at absolute zero temperature.
+Thus, the zero-temperature behavior of the Fermi-Dirac distribution is restored in this limit.
+Although the temperature itself is far from zero, this approximation is therefore referred to as the \textbf{zero-temperature approximation}.
+
+Alternatively, since the chemical potential is an independent variable in the partition function, we could simply have \emph{assumed} the zero-temperature limit \eqref{eq:nstars:zero_temperature_limit} when we said we \emph{chose} a ``large, positive value'' for the chemical potential.
+
+\iffalse
 \begin{figure}
 	\centering
 	\begin{tikzpicture}
@@ -117,6 +141,7 @@ It is therefore an excellent approximation to take the \textbf{zero-temperature 
 	In the zero-temperature limit $\beta E \gg 1$, the Fermi-Dirac distribution $1/(e^{\beta E}+1) \rightarrow \theta(-E)$, while $\log (e^{-\beta E} + 1) \rightarrow -\beta E \, \theta(-E)$, where $\theta(E)$ is the step function.
 }
 \end{figure}
+\fi
 
 In the zero-temperature limit, the Fermi-Dirac distribution can be replaced by
 \begin{equation}
