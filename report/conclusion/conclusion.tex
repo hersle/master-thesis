@@ -1,8 +1,129 @@
-\chapter{Conclusion and outlook}
+\chapter*{Conclusion and outlook}
+\addcontentsline{toc}{chapter}{Conclusion and outlook} % but still display in TOC (see https://tex.stackexchange.com/a/222961)
 \label{chap:conclusion}
 
+\TODO{include Buchdal in stability, draw in graphs?}
+
+\TODO{mass-radius, remove $\epsilon_0$ and rather express pressure in Pascal, multiply annotations by 10!!}
+
+The main result of this thesis is the mass-radius curve in \cref{fig:nstars:massradius}, its inherent upper mass limit $M = 0.71 \solarmass$ corresponding to the radius $R = \SI{9.1}{\kilo\meter}$, and the stability analysis in \cref{fig:nstars:stability}, showing that the only stable stars are those with central pressures below that corresponding to the most massive star.
+In comparison, Oppenheimer and Volkoff obtained the same limit $M = 0.71 \solarmass$ with the slightly different radius $R = \SI{9.5}{\kilo\meter}$ by approximate analytical techniques. \cite{ref:tov}
+
+\TODO{We have found a (close to, see simplest improvement below) LOWER bound on the real limit, because the higher the density, the more important are REPULSIVE nuclear effects, providing additional pressure (beyond degeneracy pressure) and hence resistance against gravitational collapse} % Glendenning section 3.9.9, "The numerical solution of the Oppenheimer-Volkoff ..."
+
+Improvements:
+
+\subsection*{Renormalization}
+
+E.g. Francsco chapter 6
+Vacuum contribution diverged.
+Can renormalize (by opening up for self-interactions for the Dirac fermions?), then the mass (of the neutron) will change, and so will the mass-radius curve.
+See wikipedia intro: \url{https://en.wikipedia.org/wiki/Renormalization}
+
+\subsection*{More particles}
+
+Balance between including many particles, but restrict to most relevant particles to keep model simple.
+
+\begin{enumerate}
+\item n
+\item n, p, e
+\item ???
+\item $\sigma, \omega$
+\item $\sigma, \omega, \mu$
+\item $\ldots$
+\end{enumerate}
+
+See Caroline chapter 5, nuclear field theory!
+(always add things together in $\lagr$)
+(when use mean-field-theory?)
+\begin{enumerate}
+\item zeroth improvement: our theory: neutrons only
+\item 0.5th improvement(?): add protons and neutrons, beta decay, still fermi gas
+\item one improvement: $\sigma-\omega$ model: introduce scalar meson and vector meson (in addition to Dirac lagrangian) (lagr. 5.6 in caroline).
+      Scalar meson: $\lagr_\sigma = \frac12 \left[ \left( \partial_\mu \sigma \right)^2 - m_\sigma^2 \sigma^2 \right]$.
+      Vector meson: $\lagr_\omega = -\frac14 \omega_{\mu\nu} \omega^{\mu\nu} + \frac12 m_\omega^2 \omega_\mu \omega^\mu$
+      Interactions 1: $\lagr_{\sigma\psi} = g_\sigma \sigma \bar\psi \psi$
+      Interactions 2: $\lagr_{\omega\psi} = g_\omega \omega^\mu \bar\psi \gamma_\mu \psi$
+\item second improvement: add scalar self interactions to $\sigma-\omega$ model (nonlinear $\sigma-\omega$ model) (caroline 5.62)
+      Self-interactions: $\lagr_{\sigma\sigma} = -\frac13 b m \left( g_\sigma \sigma \right)^3 - \frac14 c \left( g_\sigma \sigma \right)^4$
+\item third improvement: add isospin force (then get $\sigma-\omega-\rho$ model) (caroline 5.70)
+      Isospin force: $\lagr_\rho = \frac14 \vec\rho_{\mu\nu} \cdot \vec\rho^{\mu\nu} + \frac12 m_\rho^2 \vec\rho_\mu \cdot \vec\rho^\mu$
+\item fourth improvement: electrons and muons (caroline 5.94)
+      (electrons due to inverse beta decay, muons from where?)
+      leptons: $e^-$, $\mu^-$.
+      Lagrangian $\lagr_{e \mu} = \sum_{\lambda=\mu,e} \bar\psi_\lambda \left( i \gamma^\mu \partial_\mu - m_\lambda \right) \psi_\lambda$
+\item even more: hyperons (caroline's outlook?)
+\end{enumerate}
+all together: \textbf{neutron star matter}, Glendenning (5.38)
+\begin{equation}
+	\lagr = \sum_\lagr
+\end{equation}
+
+\subsubsection{Some more particles}
+
+% Glendenning section 3.9.2
+Inverse beta decay: protons, neutrons, electrons.
+All are fermions, simply add three contributions to energy density, pressure and density.
+Is SOFTER (?), will yield LOWER maximum mass -- numerical oslution shows 0.70 (instead of 0.71), says glendenning (Glendenning 3.9.9)
+(local) charge neutrality is simply $n_p = n_e$.
+Minimize total energy density $\epsilon = sum3$ using Lagrange multiplies at FIXED baryon density (chemical equilibrium), yields connection between chemical potentials.
+Is even softer (yields lower maximum mass)
+
+\subsubsection{Even more particles}
+
+Sigma-omega model (Walecka model)
+And/or $npe\mu$ model???
+
+\subsubsection{Even,even more particles}
+
+Extend sigma-omega-model, include electrons, muons, $\rho$ meson (kaon, pion, etc?):
+
+
+\begin{equation}
+\begin{split}
+	\lagr &= \sum_B \bar\psi_B \left( i \gamma^\mu \partial_\mu - m_B + g_{\sigma B} \sigma - g_{\omega B} \gamma_\mu \omega^\mu - \frac12 g_{\rho B} \gamma_\mu \vec{\tau} \cdot \vec\rho^\mu \right) \psi_B \\
+	      &+ \frac12 \left[ \left( \partial_\mu \sigma \right)^2 - m_\sigma^2 \sigma^2 \right] - \frac14 \omega_{\mu \nu}^2 + \frac12 m_\omega^2 \omega_\mu^2 \\
+	      &- \frac14 \vec\rho_{\mu\nu}^2 + \frac12 m_\rho^2 \vec\rho_\mu^2 - \frac13 b m_n \left( g_\sigma \sigma \right)^3 - \frac14 c \left( g_\sigma \sigma \right)^4 \\
+	      &+ \sum_\lambda \bar\psi_\lambda \left( i \gamma^\mu \partial_\mu - m_\lambda \right) \psi_\lambda \\
+\end{split}
+\end{equation}
+
+\subsubsection{Charge neutrality}
+
+% See e.g. Glendenning page 71, Halvor 
+Multiple particles may in general have charge, in contrast to neutrons.
+Stars are neutral: if it is charged, then particles of the same signed charge as the star are kicked out due to strong Coulomb force relative to weak gravitational force (can show quantitatively).
+This argument means \emph{global} charge neutrality, but it is more common, easier and has little effect to instead assume \emph{local} charge neutrality.
+
+\subsubsection*{Sigma-omega model}
+
+\subsubsection*{}
+
+\subsection*{Rotating neutron stars}
+
+More advanced treatment of general relativity than the spherically symmetric case
+Axisymmetric rotating star in equilibrium
+\cite[section 6]{ref:glendenning}
+\begin{equation}
+	%\dif s^2 = e^{2 \nu} \dif t^2 - e^{2 \psi} \left( \dif r^2 + r^2 \dif \theta^2 \right) - e^{2 \psi} \left( \dif \phi - \omega \dif t \right)^2
+	\dif s^2 = e^{2\nu(r,\theta)} \dif t^2 - e^{2\lambda(r,\theta)} \dif r^2 - r^2 e^{2 \alpha(r,\theta)} \left\{ \dif \theta^2 + \sin^2 \theta \left[ \dif \theta - L(r,\theta) \dif t \right]^2 \right\}
+\end{equation}
+Four-velocity $u^\mu = (u^0, 0, 0, u^3) = (\odv{ct}{\tau}, 0, 0, \odv{\phi}{\tau})$,  \TODO{or are all components 0 in the rest frame?}
+
+\subsection*{Treat different shells of star differently, not as one big model}
+
+\subsection*{Do more exact than zero-temperature limit?}
+
+\subsection{Exotic stars}
+
+Can they form? What happens in stellar evolution diagram in chapter 1 if mass is X? Maybe quark stars?
 \TODO{do all of this ``complicated stuff'' in the outlook instead, keep introduction simple and safe?}
+The precise core matter (of nstars) is an unknown and important problem in physics ( see e.g. abstract of review \url{https://arxiv.org/abs/1603.02698v1})
+
+\subsection*{Notes}
+
 Theory: (glendenning p 231+)
+
 \begin{itemize}
 \item matter of neutron stars: ``neutron star matter''
 \item 1939 pure free neutrons
