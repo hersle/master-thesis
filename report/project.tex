@@ -235,6 +235,25 @@ external/system call={xelatex \tikzexternalcheckshellescape --halt-on-error --in
 	\usebibmacro{finentry}%
 }
 
+\newbibmacro*{university+date}{%
+	\printtext{Written in}%
+	\setunit*{\addspace}%
+	\mkbibbold{\printdate}%\printfield{year}%
+	\setunit*{\addspace}%
+	\printtext{at}%
+	\setunit*{\addspace}%
+	\printlist{institution}%
+}
+\DeclareBibliographyDriver{thesis}{%
+	\usebibmacro{begentry}%
+	\usebibmacro{author+title+edition}%
+	\newunit\newblock
+	\usebibmacro{university+date}%
+	\newunit\newblock
+	\usebibmacro{isbn+doi+url}%
+	\usebibmacro{finentry}%
+}
+
 \DeclareFieldFormat*{urldate}{#1}
 \newbibmacro*{published+viewed}{%
 	\iffieldundef{year}{}{% print publication date if we have one
