@@ -1,5 +1,5 @@
 \chapter{Conclusion and outlook}
-\addcontentsline{toc}{chapter}{Conclusion and outlook} % but still display in TOC (see https://tex.stackexchange.com/a/222961)
+%\addcontentsline{toc}{chapter}{Conclusion and outlook} % but still display in TOC (see https://tex.stackexchange.com/a/222961)
 \label{chap:conclusion}
 
 \TODO{joke: how \emph{on earth} can we measure neutron stars?}
@@ -11,24 +11,27 @@
 \section{Conclusion}
 
 In this thesis, we have laid a solid foundation for continued study of neutron stars and other kinds of compact stars.
-In great detail, we have derived the Tolman-Oppenheimer-Volkoff equations from general relativity, and shown how the partition function corresponding to some Lagrangian can be calculated with the path integral in the framework of thermal field theory.
+In great detail, we have derived the Tolman-Oppenheimer-Volkoff equations from general relativity, and shown how the partition function for a theory with some specified Lagrangian can be calculated with the path integral in the framework of thermal field theory.
 In particular, we calculated the partition function for free Dirac fermions and solved the Tolman-Oppenheimer-Volkoff equations with the resulting equation of state for a cold Fermi gas of neutrons.
-Finally, we used perturbation theory relativity to take a detailed look at the stability of stars.
+Finally, we applied perturbation theory to general relativity and performed a detailed analysis of the stability of stars.
+This work constitutes a broad and thorough introduction to the most important aspects of the study of compacts stars, starting from first principles of general relativity, quantum mechanics and field theory.
 
-Our main result is the mass-radius curve in \cref{fig:nstars:massradius}, its inherent upper mass limit $M = 0.71 \solarmass$ with radius $R = \SI{9.1}{\kilo\meter}$, and the stability analysis in \cref{fig:nstars:stability}, showing that the only stable stars are those with central pressures below that corresponding to the most massive star.
-In comparison, \cite{ref:tov} obtained the same limit $M_\text{TOV} = 0.71 \solarmass$ with the slightly different radius $R = \SI{9.5}{\kilo\meter}$ by approximate analytical techniques in 1939.
+Our main results are the computed mass-radius curve in \cref{fig:nstars:massradius} and the computed stability analysis in \cref{fig:nstars:stability}.
+Together, they show that neutron stars are stable up to some maximum central pressure $P_0 = $ \TODO{} with a corresponding maximum mass $M = 0.71 \solarmass$ and minimum radius $R = \SI{9.1}{\kilo\meter}$, but become unstable if the central pressure is increased further.
+In comparison, \cite{ref:tov}, building upon the work of \cite{ref:tolman}, studied the same model in 1939 and obtained the same limit $M_\text{TOV} = 0.71 \solarmass$ with the slightly different radius $R = \SI{9.5}{\kilo\meter}$ by approximate analytical techniques.
+Our computational stability analysis is also consistent a set of qualitative rules established by \cite{ref:stability_methods}.
 
-However, most observed neutron stars exceed this limit.
+However, most observed neutron stars exceed the mass limit we have found.
 Even slowly rotating pulsars, for whom our results are comparable, \cite[section 2.1]{ref:neutron_star_physics} are typically observed with masses in the range $1.0 \solarmass < M < 2.2 \solarmass$. \cite[figure 2 and 3]{ref:neutron_star_masses_paper}
-The recent observation of the gravitational wave GW170817 from the merging of two neutron stars even suggests that the true Tolman-Oppenheimer-Volkoff limit is at least $M_\text{TOV} \gtrsim 2.3 \solarmass$. \cite{ref:gravitational_wave_tov_limit}
+The recent observation of the gravitational wave GW170817 from the merging of two neutron stars even suggests that the true value of the so-called Tolman-Oppenheimer-Volkoff limit is at least $M_\text{TOV} \gtrsim 2.3 \solarmass$. \cite{ref:gravitational_wave_tov_limit}
 %For ridigly rotating neutron stars, the TOV limit is believed to increase by $18\%-20\%$. \TODO{ref/drop?}
 
 Observations of massive neutron stars give a lower bound on $M_\text{TOV}$, and hence impose constraints on stellar equations of state.
 Viewed the other way around, equations of state are benchmarked by the maximum masses they produce.
-Although our model performs poorly in this regard, it can in hindsight still be viewed as an interesting result because it gives a \emph{lower} bound on $M_\text{TOV}$.
+Although our model performs poorly in this regard, it can in hindsight still be viewed as an interesting result because it should be close to a \emph{lower} bound on $M_\text{TOV}$.
 In our model, the degeneracy pressure of the neutrons provide the \emph{only} resistance against gravitational collapse.
 As density increases, repulsive nuclear effects become more important and should provide \emph{additional} pressure and hence greater resistance against collapse, explaining why our result is a lower bound. \cite[section 3.9.8]{ref:glendenning}
-Nevertheless, it is both impressive and surprising that a model as simple as the one we have considered here does give an estimate of neutron star masses that is certainly within the right order of magnitude.
+Nevertheless, it is surprising and impressive that a naive model of a neutron star as a simple sphere of non-interactings neutrons only give estimates that are certainly of the right order of magnitude.
 
 \section{Outlook}
 
@@ -116,7 +119,7 @@ Several fields are treated approximatively in a relativistic mean field approach
 Throwing all these particles into the mix, one ends up with the quite complicated Lagrangian
 \begin{equation}
 \begin{split}
-	\lagr &= \sum_B \left( \lagr_{\psi_B} + \lagr_{\sigma \psi_{\psi_B}} + \lagr_{\omega \psi_{\psi_B}} + \lagr_{\rho \psi_{\psi_B}} \right) + \lagr_\sigma + \lagr_\omega + \lagr_{\sigma \sigma} + \lagr_\rho + \sum_L \lagr_{\psi_L} . \\
+	\lagr &= \sum_B \left( \lagr_{\psi_B} + \lagr_{\sigma \psi_{B}} + \lagr_{\omega \psi_{B}} + \lagr_{\rho \psi_{B}} \right) + \lagr_\sigma + \lagr_\omega + \lagr_{\sigma \sigma} + \lagr_\rho + \sum_L \lagr_{\psi_L} . \\
 	      %&= \sum_B \bar\psi_B \left( i \gamma^\mu \partial_\mu - m_B + g_{\sigma B} \sigma - g_{\omega B} \gamma_\mu \omega^\mu - \frac12 g_{\rho B} \gamma_\mu \vec{\tau} \cdot \vec\rho^\mu \right) \psi_B \\
 	      %&+ \frac12 \left[ \left( \partial_\mu \sigma \right)^2 - m_\sigma^2 \sigma^2 \right] - \frac14 \omega_{\mu \nu}^2 + \frac12 m_\omega^2 \omega_\mu^2 \\
 	      %&- \frac14 \vec\rho_{\mu\nu}^2 + \frac12 m_\rho^2 \vec\rho_\mu^2 - \frac13 b m_n \left( g_\sigma \sigma \right)^3 - \frac14 c \left( g_\sigma \sigma \right)^4 \\
@@ -125,6 +128,7 @@ Throwing all these particles into the mix, one ends up with the quite complicate
 \end{equation}
 With all these effects, numerical results give a maximum mass in the range $1.42 \solarmass < M_\text{TOV} < 2.02 \solarmass$ depending on the values chosen for the coupling constants. \cite[table 1]{ref:neutron_star_hyperon_effect}
 This is much more in line with observations.
+For a more gradual, step-by-step exposure to these successive improvements, see theses by \cite{ref:master_caroline} and \cite{ref:master_francesco}.
 
 \iffalse
 \subsubsection{Charge neutrality}
@@ -137,11 +141,11 @@ This argument means \emph{global} charge neutrality, but it is more common, easi
 
 \subsection*{Exotic stars}
 
-Another possible path of pursuit is to go looking for other, different types of stars.
-It is speculated that neutron stars that only slightly exceed the Oppenheimer-Volkoff limit need not necessarily collapse to black holes, but can form other hypothetical, compact stars referred to as \emph{exotic stars}.
-Observations have identified several candidates for exotic stars with masses in the gap between the upper Oppenheimer-Volkoff limit and the least massive observed black holes, but of unknown nature. \cite{ref:wiki_list_star_massess}
-For example, it is possible that a neutron star that exceeds the Oppenheimer-Volkoff limit can evolve into a \emph{quark star}, where individual neutrons no longer play the most important role, but their constituent quarks have broken free from the shackles of the baryons they make up.
-This state of matter is known as \emph{quark matter}, and is only stable under extreme temperature and pressure. \cite[chapter 8]{ref:glendenning}
+Another possible path of pursuit is to go looking for different types of stars.
+It is speculated that neutron stars that only slightly exceed the Tolman-Oppenheimer-Volkoff limit need not necessarily collapse to black holes, but can form other hypothetical, compact stars referred to as \emph{exotic stars}.
+Observations have identified several candidates for exotic stars with masses in the gap between the upper Tolman-Oppenheimer-Volkoff limit and the least massive observed black holes, but of unknown nature. \cite{ref:wiki_list_star_massess}
+For example, it is possible that a neutron star that exceeds the limit can evolve into a \emph{quark star}, where individual neutrons no longer play the most important role, but their constituent quarks have broken free and become \emph{deconfined quark matter}.
+This state of matter is only stable under extreme temperature and pressure, and it is also possible that it exists in the core of ordinary neutron stars. \cite[chapter 8]{ref:glendenning}
 Other examples of exotic stars are strange stars, electroweak stars, preon stars and boson stars.
 
 \subsection*{Hybrid stars}
@@ -164,6 +168,6 @@ and the fluid's four-velocity $u^\mu = (u^0, 0, 0, u^3)$ gains an angular compon
 The star is then no longer governed by the familiar Tolman-Oppenheimer-Volkoff equations, which were derived under the assumption of no rotation.
 Study of rotating neutron stars is useful because it is, to a greater extent, directly comparable to observations of pulsars.
 
-\subsection*{Bottom line}
-
-We have only scratched the surface of neutron stars, and if there is one thing we \emph{do} know for sure, it is that there are still a great deal of unanswered questions at the core.
+%\subsection*{Bottom line}
+%We have only scratched the surface of neutron stars.
+%At the core, there are still a great deal of unanswered questions that we can pursue.
