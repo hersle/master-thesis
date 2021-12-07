@@ -33,6 +33,8 @@ def ϵGR(P):
     return ϵx
 
 # numerical instability for P2 > 1e7
+massradiusplot(ϵNR, (1e-6, 1e0), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=False, visual=True, outfile="data/nr_newtonian.dat", newtonian=True)
+#massradiusplot(ϵGR, (1e-6, 1e0), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=False, visual=True, outfile="data/gr_newtonian.dat", newtonian=True)
 #massradiusplot(ϵNR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/nr2.dat")
 #massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/gr2.dat")
 
@@ -41,6 +43,7 @@ r, m, P, α, ϵ = soltov(ϵGR, 1e3)
 ω2s, us = eigenmode(r, m, P, α, ϵ, [0], plot=True, outfileshoot="data/shoot.dat")# , outfile="data/nmodes.dat") # TODO: should print number of nodes, added this manually in the data file for plotting
 """
 
+"""
 #P0 = 1e-1
 P0 = 3e2
 r, m, P, α, ϵ = soltov(ϵGR, P0)
@@ -51,3 +54,4 @@ for ω2, u, n in zip(ω2s, us, ns):
     plt.plot(r, u, label=f"n = {n}, ω2 = {ω2}")
 plt.legend()
 plt.show()
+"""

@@ -9,11 +9,11 @@ from stability import eigenmode
 
 from constants import *
 
-def soltov(ϵ, P0, maxdr=1e-3, progress=True):
+def soltov(ϵ, P0, maxdr=1e-3, progress=True, newtonian=False):
     def printprogress(r, m, P, message="", end=""):
         print(f"\r", end="") # reset line
         print(f"Solving TOV: ", end="")
-        print(f"ϵ = {ϵ.__name__}, P0 = {P0:9.2e}, maxdr = {maxdr:9.2e}, ", end="")
+        print(f"ϵ = {ϵ.__name__}, Newtonian={newtonian}, P0 = {P0:9.2e}, maxdr = {maxdr:9.2e}, ", end="")
         print(f"r = {r:8.5f}, m = {m:8.5f}, P/P0 = {P/P0:8.5f}", end="")
         if message != "":
             print(f", {message}", end="")
@@ -29,9 +29,15 @@ def soltov(ϵ, P0, maxdr=1e-3, progress=True):
             dPdr = 0 # avoid division by r = 0 (m = 0 implies dPdr = 0)
             dαdr = 0
         else:
-            dPdr = -G/r**2 * (E + P) * (m + b*r**3*P) / (1 - 2*G*m/r)
+            if newtonian:
+                dPdr = -G*E*m/r**2
+            else:
+                dPdr = -G/r**2 * (E + P) * (m + b*r**3*P) / (1 - 2*G*m/r)
             #dαdr = (m + 4*π*r**3*P) / (r*(r-2*m))
-            dαdr = -dPdr / (E + P)
+            if newtonian:
+                dαdr = 0
+            else:
+                dαdr = -dPdr / (E + P)
         return np.array([dmdr, dPdr, dαdr])
 
     def terminator(r, y):
@@ -57,9 +63,9 @@ def soltov(ϵ, P0, maxdr=1e-3, progress=True):
     return rs, ms, Ps, αs, ϵs
 
 # Bisect [P1, P2] to make points evenly
-def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, outfile="", visual=False):
-    def solvestar(P0):
-        rs, ms, Ps, αs, ϵs = soltov(ϵ, P0, maxdr=maxdr)
+def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, outfile="", visual=False, newtonian=False):
+    def solvestar(P0, newtonian=False):
+        rs, ms, Ps, αs, ϵs = soltov(ϵ, P0, maxdr=maxdr, newtonian=newtonian)
         R, M = rs[-1], ms[-1]
         if stability:
             nu = 0
@@ -70,8 +76,8 @@ def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, 
         return R, M, nu
 
     P1, P2 = P1P2[0], P1P2[1]
-    R1, M1, nu1 = solvestar(P1)
-    R2, M2, nu2 = solvestar(P2)
+    R1, M1, nu1 = solvestar(P1, newtonian=newtonian)
+    R2, M2, nu2 = solvestar(P2, newtonian=newtonian)
     Ps, Ms, Rs, nus = [P1, P2], [M1, M2], [R1, R2], [nu1, nu2]
 
     if visual:
@@ -94,7 +100,7 @@ def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, 
         if D > tolD and P2 - P1 > tolP:
             # split [P1, P2] into [P1, (P1+P2)/2] and [(P1+P2)/2, P2]
             P3 = (P1 + P2) / 2
-            R3, M3, nu3 = solvestar(P3)
+            R3, M3, nu3 = solvestar(P3, newtonian=newtonian)
             Ps.insert(i+1, P3)
             Ms.insert(i+1, M3)
             Rs.insert(i+1, R3)
