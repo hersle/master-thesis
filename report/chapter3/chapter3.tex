@@ -884,6 +884,7 @@ It is best viewed as the eigenvalue equation
 \end{align}%
 \label{eq:nstars:sturm_liouville_problem}%
 \end{subequations}
+We will always take $U_n(r)$ to be a real solution -- for if $U_n$ is a complex solution, then so is $\conj{U_n}$ and thus also $\real{U_n} = (U_n + \conj{U_n})/2$.
 In the form above, the Sturm-Liouville equation is expressed in a self-adjoint form with respect to the inner product
 \begin{equation}
 	\braket{f | g} = \int_0^R \dif r \, f(r) g(r) .
@@ -900,9 +901,9 @@ Denoting the left side by $\hat{L} U_n = \hat{L}(r) U_n(r)$, we can integrate by
 \end{equation}
 The surface terms at $r = 0$ vanish because $U_n(0) = U_m(0) = 0$ there by boundary condition \eqref{eq:nstars:boundary_condition_center_mathematical}, while the surface terms at $r = R$ vanish because $P_0(R) = 0$ there, causing $\Pi(R) = 0$ from its definition \eqref{eq:nstars:sturm_liouville_coefficients_Pi}.
 Using the inner product \eqref{eq:nstars:function_inner_product} and the property 
-\TODO{need to say that the functions are \emph{real}!}
 \begin{equation}
 	\braket{\hat{L} U_m | U_n} = \braket{U_m | \hat{L} U_n}
+	%\qquad \text{for real solutions $U_m(r)$, $U_n(r)$}
 \label{eq:nstars:inner_product_hermitean}
 \end{equation}
 that follows, one can dive into the field of Sturm-Liouville theory, where one will discover the following important properties:
@@ -916,7 +917,7 @@ that is bounded from below, but not from above.
 
 The proof of reality is within our reach.
 Applying property \eqref{eq:nstars:inner_product_hermitean} with $U_m = U_n$, we have $\braket{\hat{L} U_n | U_n} = \conj{\braket{\hat{L} U_n | U_n}}$.
-Exchanging the left side of $\hat{L} U_n = -\omega_n^2 W U_n$ with the right and noting that $\braket{W U_n | U_n}$ is real, this is equivalent to $-\omega_n^2 \braket{W U_n | U_n} = \conj{\left( -\omega_n^2 \right)} \braket{W U_n | U_n}$, so $\omega_n^2$ is real.
+Exchanging the left side of $\hat{L} U_n = -\omega_n^2 W U_n$ with the right and noting that $\braket{W U_n | U_n}$ is real because $W$ and $\abs{U_n}^2$ are real, this is equivalent to $-\omega_n^2 \braket{W U_n | U_n} = \conj{\left( -\omega_n^2 \right)} \braket{W U_n | U_n}$, so $\omega_n^2$ is real.
 Proving the last part takes more work, but we will that it plays out in practice when solving the Sturm-Liouville problem numerically soon.
 
 \item \label{item:nstars:sturm_liouville_zeros} The eigenfunction $U_n(r)$ corresponding to the eigenvalue $\omega_n^2$ has exactly
