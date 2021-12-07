@@ -314,9 +314,8 @@ Thus, thermal field theory -- statistical mechanics for quantum fields at finite
 % https://physics.stackexchange.com/questions/363666/chemical-potential-in-quantum-field-theories (chemical potential in QFT)
 % https://physics.stackexchange.com/questions/294783/rotating-away-a-constant-gauge-field (cannot have single-valued gauge transformation)
 % https://physics.stackexchange.com/questions/231092/general-principles-require-that-a-massless-vector-couple-to-a-conserved-current (gauge transformation leaves lagrangian invariant)
-The only ingredients in the path integral we have not yet discussed are the chemical potential $\mu$ and the number density $\numdensity$ \TODO{cannot read JO remark. charge? see Møte 12 paper}.
+The only ingredients in the path integral we have not yet discussed are the chemical potential $\mu$ and the number density $\numdensity$.
 In statistical mechanics, we can associate a chemical potential $\mu$ with any conserved quantity $N$ of the system in the ``shifted Hamiltonian'' $H' = H - \mu N$.
-
 How can we connect this to the field theory under study?
 Suppose that the field theory admits a conserved current
 \begin{equation}
@@ -331,18 +330,18 @@ Suppose that the field theory admits a conserved current
 In the corresponding quantized quantum field theory, this is equivalent to the commutation $\comm{\hat{H}}{\hat{Q}} = 0$ between the Hamiltonian operator and charge operator.
 Then $\odv{\thermalavg{Q}}/{t} = \thermalavg{\comm{\hat{H}}{\hat{Q}}} = 0$ by Ehrenfest's theorem.
 The conserved current $j^\mu(x)$ can be coupled to a gauge field $A_\mu(x)$ by adding the term $A_\mu(x) j^\mu(x)$ to the Lagrangian density $\lagr$, or $-A_\mu(x) j^\mu(x)$ to the Hamiltonian density $\ham$.
-Under a standard gauge transformation
+Under a standard, Abelian gauge transformation
 \begin{equation}
 	A_\mu(x) \quad \rightarrow \quad A'_\mu(x) = A_\mu(x) + \partial_\mu \lambda(x) ,
 \label{eq:tft:gauge_transformation}
 \end{equation}
-we can apply the product rule backwards to show that the Lagrangian density changes to
+we can apply the product rule backwards to show that the Lagrangian density changes as
 \begin{equation}
 	\lagr = \lagr_0 + A_\mu j^\mu \quad \rightarrow \quad \lagr' = \lagr_0 + A'_\mu j^\mu
 	                                                             = \lagr   + (\partial_\mu \lambda) j^\mu
 	                                                             = \lagr   + \partial_\mu (\lambda j^\mu) - \lambda \underbrace{\partial_\mu j^\mu}_0 .
 \end{equation}
-Thus, the Lagrangian is invariant up to the surface term $\partial_\mu (\lambda j^\mu)$, provided that the current is conserved according to $\partial_\mu j^\mu = 0$. \TODO{significance of this?}
+Thus, the Lagrangian is invariant up to the surface term $\partial_\mu (\lambda j^\mu)$, provided that the current is conserved according to $\partial_\mu j^\mu = 0$, so the equations of motion are unchanged.
 To make contact between the field theory and the grand canonical ensemble where $\ham' = \ham - \mu \numdensity$, we see that the chemical potential $\mu$ is equivalent to the temporal component of a constant gauge field
 \begin{equation}
 	A_\mu(x) = \mu \delta_{\mu 0} 
@@ -350,9 +349,10 @@ To make contact between the field theory and the grand canonical ensemble where 
 	\numdensity(x) = j^0(x)!
 \label{eq:tft:chemical_potential}
 \end{equation}
+In conclusion, the so far unspecified density $\numdensity$ in the partition function is identified with the charge density $j^0$ corresponding to the conserved charge $Q = \int \dif^3 x \, j^0(x)$.
 
 To what extent is this coupling physical?
-Is it possible to remove the gauge field $A_\mu$ with a gauge transformation \eqref{eq:tft:gauge_transformation} such that $A'_\mu = 0$?
+In other words, is it possible to remove the gauge field $A_\mu$ with a gauge transformation \eqref{eq:tft:gauge_transformation} such that $A'_\mu = 0$?
 To achieve this, we would have to choose $\lambda(x) = -t \mu$ up to a constant, because then $A'_\mu = A_0 + \partial_\mu \lambda = \mu - \mu = 0$.
 But the gauge function $\lambda(t, \vec{x}) \neq \lambda(t + \beta \hbar, \vec{x})$ is not single-valued on the \emph{periodic} manifold of fields we are considering.
 We therefore conclude that the gauge transformation is ill-defined, and that the coupling between the chemical potential and conserved current is truly physical.
@@ -361,13 +361,10 @@ Later, we will see examples of theories both with and without conserved charges.
 When studying Dirac fermions, we will see that the conserved charge corresponds to the difference between the number of particles and antiparticles.
 The associated chemical potential essentially functions as a knob with which we can regulate the balance between particles and antiparticles in the system.
 
+% for Abelian theories, we are restricted to introduce chemical potentials only for commuting components of conserved currents! relevant for quark star EoS?}
+
 \TODO{does this make sense?}
 
-\TODO{exercise: find $Q = \int j^0$ in QED. Set up $H' = H - \mu Q$. Then go back and find $\lagr$ by LT. Look at how the $\mu$ term appears in $\lagr$. Should be like a gauge/couple current? See Martin Spillum Grønlipage eq 2.27}
-
-\TODO{Mention that this theory is non-Abelian?}
-
-\TODO{for Abelian theories, we are restricted to introduce chemical potentials only for commuting components of consreved currents! relevant for quark star EoS?}
 
 \section{Path integral for fermionic partition function}
 
