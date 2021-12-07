@@ -1,19 +1,24 @@
-\chapter{Cold free fermion neutron stars}
+\chapter{Ideal neutron stars}
 \label{chap:nstars}
 
-\TODO{better title}
+\TODO{make sure ``ideal neutron star'' is used throughout}
 
-\TODO{references}
+\TODO{references throughout?}
 
-\TODO{intro}
-
-In \cref{chap:tft}, we found $Z = Z(T, \mu, V)$ for two sample systems, and in particular a gas of free Dirac fermions.
-From $Z$, we can derive the pressure $P = P(T, \mu)$ and energy density $\epsilon = \thermalavg{E}/V = \epsilon(T, \mu)$ using \cref{eq:tft:average_number,eq:tft:average_energy,eq:tft:average_pressure}, where the volume $V$ has been eliminated by division, because $P$ and $\epsilon$ are intensive quantities.
+In \cref{chap:tft}, we found the partition function $Z = Z(T, \mu, V)$ for two sample systems, and in particular a gas of free Dirac fermions, referred to as an \textbf{ideal Fermi gas}.
+From the partition function, we can derive the pressure $P = P(T, \mu)$ and energy density $\epsilon = \thermalavg{E}/V = \epsilon(T, \mu)$ as functions of temperature and chemical potential using equation \eqref{eq:tft:average_number}, \eqref{eq:tft:average_energy} and \eqref{eq:tft:average_pressure}, eliminating the volume dependence as $P$ and $\epsilon$ are turned into intensive quantities by division.
 At some fixed temperature $T$, we can therefore eliminate $\mu$ to express $\epsilon$ in terms of $P$.
-This gives us an equation of state $\epsilon = \epsilon(P)$ with which we can solve the Tolman-Oppenheimer-Volkoff system \eqref{eq:tov:tovsys}.
+This gives us an equation of state $\epsilon = \epsilon(T, P)$ for the energy density.
+In this chapter, we will see that inside neutron stars it is valid to consider the zero-temperature limit $T=0$, directly relating pressure to energy density in the resulting temperature-independent equation of state $\epsilon = \epsilon(P)$.
+With this equation of state, we can finally solve the Tolman-Oppenheimer-Volkoff system \eqref{eq:tov:tovsys} for some central pressure $P(0)=P_0$.
+By doing so for a range of central pressures, we will parametrize a \textbf{mass-radius curve} of neutron stars.
+These \textbf{ideal neutron stars} are hence modelled by an ideal Fermi gas of neutrons with the additional assumption of zero temperature.
 
-In this chapter, we will use partition function \eqref{eq:tft:dirac_partition_function} for free Dirac fermions and do exactly this to model a neutron star with a cold ideal Fermi gas of neutrons.
-\TODO{bad wording: use something like ``equation of state for free/ideal cold fermi gas?}
+In the second part of this chapter, we investigate whether the stars on the mass-radius curve we find are \textbf{stable or unstable}.
+By applying perturbation theory to the equilibrium analysis of general relativity in \cref{chap:tov}, we will derive a differential equation for radial pulsations of stars slightly outside equilibrium.
+We will find a general solution of this equation expressed as a sum over infinitely many normal pulsation modes and corresponding eigenfrequencies, each of which solve a Sturm-Liouville problem.
+From this, we will see that we can conclude whether a star is stable or not by checking the \emph{sign} of the eigenvalue of one Sturm-Liouville problem.
+To conclude our stability analysis, we therefore use the \textbf{shooting method} to solve a Sturm-Liouville problem for every star on our mass-radius curve to determine their stability.
 
 \textit{This chapter is inspired by references \cite{ref:jensoluf}, \cite{ref:glendenning}, \cite{ref:mtw} and \cite{ref:stability_methods}.}
 
