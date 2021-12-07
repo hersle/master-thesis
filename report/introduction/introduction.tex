@@ -1,5 +1,6 @@
 %\setcounter{chapter}{-1} % make this chapter 0
 \chapter{Introduction}
+\label{chap:intro}
 %\addcontentsline{toc}{chapter}{Introduction} % but still display in TOC (see https://tex.stackexchange.com/a/222961)
 
 %Inspiration
@@ -191,7 +192,7 @@ In developing an explanation of the detailed mechanisms involved in a supernova,
 \cite[page 263]{ref:supernova_cosmic_rays_neutron_stars}
 \begin{displayquote}
 (...) %With all reserve we advance the view that
-a super-nova represents the transition of an ordinary star into a neutron star, consisting mainly of neutrons.
+a super-nova represents the transition of an ordinary star into a \emph{neutron star}, consisting mainly of neutrons.
 Such a star may possess a very small radius and an extremely high density.
 As neutrons can be packed much more closely than ordinary nuclei and electrons, the ``gravitational packing'' energy in a cold neutron star may become very large, and, under certain circumstances, may far exceed the ordinary nuclear packing fractions.
 A neutron star would therefore represent the most stable configuration of matter as such.
@@ -206,7 +207,7 @@ Analogously to the Chandrasekhar limit, their results implied that this degenera
 
 % see https://en.wikipedia.org/wiki/Pulsar
 Up until the late 1960s, the existence of neutron stars was only considered a theoretical possibility.
-Given their supposed small size, rarity and faint thermal radiation, how would one ever detect such an object?
+How \emph{on Earth} would one ever detect such an object, given their assumed small size, rarity and faint thermal radiation?
 It was first in 1968 that Jocelyn Bell, a PhD student of Antony Hewish, recorded an unusual \textbf{pulsa}ting \textbf{r}adio signal from an extraterrestial source, now referred to as a \textbf{pulsar}. \cite{ref:neutron_star_discovery_first}
 The signal consisteded of short, Gaussian pulses lasting about \SI{0.3}{\second} that repeated with extreme accuracy with a period of \SI{1.337}{\second}. \TODO{show plot in figure?}
 At first, it was speculated that the source could be a white dwarf oscillating radially at the corresponding frequency.
@@ -219,13 +220,13 @@ Moreover, David Richards discovered that the period slightly increased with time
 This evidence convinced physicists that the signals were indeed from real, rotating and pulsating \textbf{neutron stars}.
 Controversially, Bell's supervisor and first author Hewish later got the Nobel prize for the discovery of the neutron star, although it is Jocelyn who made the actual measurements and is often credited first in hindsight.
 
-At the time of writing, a total of 3177 pulsars have been discovered. \cite{ref:pulsar_catalogue}
-
 
 \section{Outline of this thesis}
 
 In this thesis, we first develop the fundamental theoretical tools that are necessary to study neutron stars.
 Then we apply them to calculate masses and radii of neutron stars and study the stability of these stars.
+
+In \textbf{\cref{chap:intro}}, you already know that we have presented the life cycle of stars and the history of the proposition and discovery of neutron stars.
 
 In \textbf{\cref{chap:tov}}, we derive the \textbf{Tolman-Oppenheimer-Volkoff system of equations}
 \begin{align*}
