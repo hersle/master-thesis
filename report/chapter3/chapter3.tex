@@ -916,33 +916,37 @@ that follows, one can dive into the field of Sturm-Liouville theory, where one w
 \end{equation}
 that is bounded from below, but not from above.
 
-The proof of reality is within our reach.
-Applying property \eqref{eq:nstars:inner_product_hermitean} with $U_m = U_n$, we have $\braket{\hat{L} U_n | U_n} = \conj{\braket{\hat{L} U_n | U_n}}$.
-Exchanging the left side of $\hat{L} U_n = -\omega_n^2 W U_n$ with the right and noting that $\braket{W U_n | U_n}$ is real because $W$ and $\abs{U_n}^2$ are real, this is equivalent to $-\omega_n^2 \braket{W U_n | U_n} = \conj{\left( -\omega_n^2 \right)} \braket{W U_n | U_n}$, so $\omega_n^2$ is real.
-Proving the last part takes more work, but we will that it plays out in practice when solving the Sturm-Liouville problem numerically soon.
-
 \item \label{item:nstars:sturm_liouville_zeros} The eigenfunction $U_n(r)$ corresponding to the eigenvalue $\omega_n^2$ has exactly
 \begin{equation}
 	n \text{ zeros } U_n(r) = 0 \quad \text{for} \quad 0 < r < R .
 \end{equation}
-Intuitively, by rewriting the Sturm-Liouville equation as $\left( \Pi U_n' \right)' / U_n = - \left( Q + \omega_n^2 W \right)$ and noting that $W > 0$ by its definition \eqref{eq:nstars:sturm_liouville_coefficients_W}, it is apparent that as $\omega_n^2$ increases, so does the oscillatory behavior of $U_n$ around $U_n = 0$, and hence the number of zeros.
 
 \item \label{item:nstars:sturm_liouville_completeness} Eigenfunctions $U_n(r)$ corresponding to different eigenvalues $\omega_n^2$ are different, and constitute an orthonormal basis for the Hilbert space of real, square integrable functions on $[0, R]$ under the $W$-weighted inner product 
 \begin{equation}
 	\braket{U_m | U_n}_W = \braket{W U_m | U_n} = \delta_{m n} .
 \end{equation}
+\end{enumerate}
+\end{subequations}
+
+The property that the eigenvalues are real is possible for us to prove, and we should, because we will take it as an assumption when we solve the Sturm-Liouville problem numerically.
+Applying property \eqref{eq:nstars:inner_product_hermitean} with $U_m = U_n$, we have $\braket{\hat{L} U_n | U_n} = \conj{\braket{\hat{L} U_n | U_n}}$.
+Exchanging the left side of $\hat{L} U_n = -\omega_n^2 W U_n$ with the right and noting that $\braket{W U_n | U_n}$ is real because $W$ and $\abs{U_n}^2$ are real, this is equivalent to $-\omega_n^2 \braket{W U_n | U_n} = \conj{\left( -\omega_n^2 \right)} \braket{W U_n | U_n}$, so $\omega_n^2$ is real.
+%Proving the last part takes more work, but we will that it plays out in practice when solving the Sturm-Liouville problem numerically soon.
+
+We can also understand intuitively why the number of zeros must increase with $\omega_n^2$.
+By rewriting the Sturm-Liouville equation as $\left( \Pi U_n' \right)' / U_n = - \left( Q + \omega_n^2 W \right)$ and noting that $W > 0$ by its definition \eqref{eq:nstars:sturm_liouville_coefficients_W}, it is apparent that as $\omega_n^2$ increases, so does the curvature of $U_n$ towards $U_n = 0$, and hence the number of zeros.
+
+For a greater overview of Sturm-Liouville theory and proofs of the other properties, we recommend \cite{ref:morse_feshbach}.
+Perhaps, it can also be comforting to think of a more familiar example of applied Sturm-Liouville theory, namely the time-independent Schrödinger equation $\left[ \left(-\hbar^2/2m\right)\odv[2]{}/{x} + V(x) \right] \psi_n(x) = E_n \psi_n(x)$.
+Here, the energies $E_n$ play the role of the eigenvalues $\omega_n^2$ and the wave functions $\psi_n(x)$ are analogous to the eigenfunctions $U_n(r)$.
+In one dimension, normalizable solutions to the Schrödinger equation possess precisely the same three properties as above.
+
+\iffalse
 We can give a quick proof of the first part.
 Property \eqref{eq:nstars:inner_product_hermitean} implies that $-\omega_n^2 \braket{W U_n  | U_m} = -\omega_m^2 \braket{W U_m | U_n}$, so $\left( \omega_m^2 - \omega_n^2 \right) \braket{W U_m | U_n} = 0$.
 If $U_m = U_n$ are equal, then $\braket{W U_m | U_n} \neq 0$, so $\omega_m^2 = \omega_n^2$ must be equal.
 On the other hand, if $\omega_m^2 \neq \omega_n^2$, then $\braket{W U_m | U_n} = 0$, and $U_m \neq U_n$ must be different.
-\end{enumerate}
-\end{subequations}
-\TODO{are the remarks/miniproofs after the statements distracting?}
-
-For an excellent to-the-point overview of Sturm-Liouville theory and rigorous proofs of all the properties, we recommend \TODO{ref to some mathematics text for proofs}.
-It can also be comforting to think of a perhaps more familiar example of applied Sturm-Liouville theory, namely the time-independent Schrödinger equation $\left[ \left(-\hbar^2/2m\right)\odv[2]{}/{x} + V(x) \right] \psi_n(x) = E_n \psi_n(x)$.
-Here, the energies $E_n$ play the role of the eigenvalues $\omega_n^2$ and the wave functions $\psi_n(x)$ are analogous to the eigenfunctions $U_n(r)$.
-In one dimension, normalizable solutions to the Schrödinger equation possess precisely the same three properties as above.
+\fi
 
 \subsubsection{Definition of stellar stability}
 

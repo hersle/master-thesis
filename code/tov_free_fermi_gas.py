@@ -33,7 +33,7 @@ def ϵGR(P):
     return ϵx
 
 # numerical instability for P2 > 1e7
-massradiusplot(ϵNR, (1e-6, 1e0), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=False, visual=True, outfile="data/nr_newtonian.dat", newtonian=True)
+#massradiusplot(ϵNR, (1e-6, 1e0), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=False, visual=True, outfile="data/nr_newtonian.dat", newtonian=True)
 #massradiusplot(ϵGR, (1e-6, 1e0), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=False, visual=True, outfile="data/gr_newtonian.dat", newtonian=True)
 #massradiusplot(ϵNR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/nr2.dat")
 #massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/gr2.dat")
