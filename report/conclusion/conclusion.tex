@@ -1,11 +1,11 @@
-\chapter{Conclusion and outlook}
+\chapter{Conclusions and outlook}
 %\addcontentsline{toc}{chapter}{Conclusion and outlook} % but still display in TOC (see https://tex.stackexchange.com/a/222961)
 \label{chap:conclusion}
 
-\section{Conclusion}
+\section{Conclusions}
 
 In this thesis, we have laid a solid foundation for continued study of neutron stars and other kinds of compact stars.
-In great detail, we have derived the Tolman-Oppenheimer-Volkoff equations from general relativity, and shown how the partition function for a theory with some specified Lagrangian can be calculated with the path integral in the framework of thermal field theory.
+In great detail, we have derived the Tolman-Oppenheimer-Volkoff equations from general relativity, and shown how the partition function for a theory with some specified Lagrangian can be expressed as a path integral in the framework of thermal field theory.
 In particular, we calculated the partition function for free Dirac fermions and solved the Tolman-Oppenheimer-Volkoff equations with the resulting equation of state for a cold Fermi gas of neutrons.
 Finally, we applied perturbation theory to general relativity and performed a detailed analysis of the stability of stars.
 This work constitutes a broad and thorough introduction to the most important aspects of the study of compacts stars, starting from first principles of general relativity, quantum mechanics and field theory.
@@ -17,7 +17,7 @@ Our computational stability analysis is also consistent with a set of qualitativ
 
 However, most observed neutron stars exceed the mass limit we have found.
 Even slowly rotating pulsars, for whom our results are comparable, \cite[section 2.1]{ref:neutron_star_physics} are typically observed with masses in the range $1.0 \solarmass < M < 2.2 \solarmass$. \cite[figure 2 and 3]{ref:neutron_star_masses_paper}
-The recent observation of the gravitational wave GW170817 from the merging of two neutron stars even suggests that the true value of the so-called Tolman-Oppenheimer-Volkoff limit is at least $M_\text{TOV} \gtrsim 2.3 \solarmass$. \cite{ref:gravitational_wave_tov_limit}
+The recent observation of the gravitational wave GW170817 from the merging of two neutron stars even suggests that the true value of the so-called Tolman-Oppenheimer-Volkoff upper mass limit $M \lesssim M_\text{TOV}$ for neutron stars is at least $M_\text{TOV} \gtrsim 2.3 \solarmass$. \cite{ref:gravitational_wave_tov_limit}
 %For ridigly rotating neutron stars, the TOV limit is believed to increase by $18\%-20\%$. \TODO{ref/drop?}
 
 Observations of massive neutron stars give a lower bound on $M_\text{TOV}$, and hence impose constraints on stellar equations of state.
@@ -26,7 +26,7 @@ Although our model performs poorly in this regard, it can in hindsight still be 
 Why?
 Due to the zero-temperature approximation, \emph{all} resistance against gravitational collapse in our model is provided by the degeneracy pressure of the neutrons.
 As density increases, \emph{repulsive} nuclear effects become more important and should provide \emph{additional} pressure and hence greater resistance against collapse in a real neutron star. \cite[section 3.9.8]{ref:glendenning}
-Nevertheless, it is both surprising and impressive that a naive model of a neutron star as a simple sphere of non-interactings neutrons give estimates that are certainly of the right order of magnitude.
+Nevertheless, it is both surprising and impressive that a simple model of a neutron star as a sphere of non-interactings neutrons give estimates that are certainly of the right order of magnitude.
 
 \section{Outlook}
 
@@ -34,6 +34,7 @@ From the mismatch between our result and observations, it is clear that we shoul
 Instead of going further in the same direction, it is also possible to turn around and pursue a different path by studying other types of stars.
 Let us take a look at some of the roads available to us at the current crossroad.
 
+\iffalse
 \subsection*{Renormalization}
 
 When we encountered infinite vacuum contributions to the energy density and pressure, we simply argued that they were unphysical and ignored them.
@@ -43,13 +44,14 @@ A more precise treatment would be to allow for additional self-interactions in t
 %E.g. Francsco chapter 6
 %Vacuum contribution diverged.
 %See wikipedia intro: \url{https://en.wikipedia.org/wiki/Renormalization}
+\fi
 
 \subsection*{More advanced models with additional particles}
 
 There is little doubt that the greatest simplification in our free Fermi gas model is that a neutron star consists \emph{only} of neutrons.
 This is not true, and we should expect different results by accounting for a greater variety of particles with more advanced models.
 In order to keep the model simple enough for accurate calculations, it is of practical importance to include only the particles that are most relevant.
-When adding several types of charged particles, we must impose additional conditions of chemical equilibrium and charge neutrality, neither of which we have needed to worry about for the neutral neutron.
+When adding several types of charged particles, one must impose additional constraints of chemical equilibrium and charge neutrality, neither of which we have needed to worry about for the neutral neutron.
 \cite[chapter 4]{ref:glendenning} studies relativistic nuclear field theory and outlines a series of successive improvements of our model:
 
 \begin{enumerate}
@@ -107,7 +109,7 @@ while a muon is added to the lepton range
 \end{equation*}
 This extension is straightforward to apply to the Lagrangians above.
 For each baryon $B$, a free Dirac Lagrangian $\lagr_{\psi_B}$ and additional interaction Lagrangians with distinct couplings $g_B$ from above are added.
-For each lepton $L$, only a free Dirac Lagrangian $\lagr_{\psi_L}$ is added -- their most important job is only to meet the charge neutrality condition.
+For each lepton $L$, only a free Dirac Lagrangian $\lagr_{\psi_L}$ is added -- their most important job is only to meet the charge neutrality constraint.
 \end{subequations}
 \end{enumerate}
 
@@ -126,6 +128,20 @@ With all these effects, numerical results give a maximum mass in the range $1.42
 This is much more in line with observations.
 For a gradual, step-by-step exposure to these successive improvements, see also the theses \cite{ref:master_caroline,ref:master_francesco}.
 
+\subsection*{Rotating neutron stars}
+
+Since observed neutron stars are pulsars, another relevant path of study is that of rotating neutron stars.
+A rotating neutron star breaks spherical symmetry, but retains axial symmetry about its rotation axis.
+This requires a more advanced treatment of general relativity, where the spherically symmetric metric \eqref{eq:tov:metric} must be replaced with the axially symmetric metric
+\cite[section 6]{ref:glendenning}
+\begin{equation}
+	%\dif s^2 = e^{2 \nu} \dif t^2 - e^{2 \psi} \left( \dif r^2 + r^2 \dif \theta^2 \right) - e^{2 \psi} \left( \dif \phi - \omega \dif t \right)^2
+	\dif s^2 = e^{2\nu(r,\theta)} \dif t^2 - e^{2\lambda(r,\theta)} \dif r^2 - r^2 e^{2 \mu(r,\theta)} \left\{ \dif \theta^2 + \sin^2 \theta \left[ \dif \theta  - \omega(r,\theta) \dif t \right]^2 \right\} ,
+\end{equation}
+and the fluid's four-velocity $u^\mu = (u^0, 0, 0, u^3)$ gains an angular component $u^3 = \odv{\phi}/{\tau}$ in equilibrium.
+The star is then no longer governed by the familiar Tolman-Oppenheimer-Volkoff equations, which were derived under the assumption of no rotation.
+Study of rotating neutron stars is useful because it is directly comparable to observations of pulsars.
+
 \iffalse
 \subsubsection{Charge neutrality}
 
@@ -135,6 +151,7 @@ Stars are neutral: if it is charged, then particles of the same signed charge as
 This argument means \emph{global} charge neutrality, but it is more common, easier and has little effect to instead assume \emph{local} charge neutrality.
 \fi
 
+\iffalse
 \subsection*{Exotic stars}
 
 Another possible path of pursuit is to go looking for different types of stars.
@@ -150,20 +167,26 @@ Another unrealistic assumption in this and even more advanced neutron star model
 In a real star, it is natural to expect a phase transition somewhere between the surface and the core.
 The term \emph{hybrid stars} refers to stars with mixed-phase interiors. \cite[chapter 9]{ref:glendenning}
 To come closer to an answer regarding what lies in the core of a neutron star, one must dare to study such stars and models.
+\fi
 
-\subsection*{Rotating neutron stars}
+\subsection*{Hybrid stars and quark stars}
 
-Since observed neutron stars are pulsars, another relevant path of study is that of rotating neutron stars.
-A rotating neutron star breaks spherical symmetry, but retains axial symmetry about its rotation axis.
-This requires a more advanced treatment of general relativity, where the spherically symmetric metric \eqref{eq:tov:metric} must be exchanged with the axially symmetric metric
-\cite[section 6]{ref:glendenning}
-\begin{equation}
-	%\dif s^2 = e^{2 \nu} \dif t^2 - e^{2 \psi} \left( \dif r^2 + r^2 \dif \theta^2 \right) - e^{2 \psi} \left( \dif \phi - \omega \dif t \right)^2
-	\dif s^2 = e^{2\nu(r,\theta)} \dif t^2 - e^{2\lambda(r,\theta)} \dif r^2 - r^2 e^{2 \mu(r,\theta)} \left\{ \dif \theta^2 + \sin^2 \theta \left[ \dif \theta  - \omega(r,\theta) \dif t \right]^2 \right\} ,
-\end{equation}
-and the fluid's four-velocity $u^\mu = (u^0, 0, 0, u^3)$ gains an angular component $u^3 = \odv{\phi}/{\tau}$ in equilibrium.
-The star is then no longer governed by the familiar Tolman-Oppenheimer-Volkoff equations, which were derived under the assumption of no rotation.
-Study of rotating neutron stars is useful because it is directly comparable to observations of pulsars.
+Neutrons are composed of quarks, and quarks are described by the theory of quantum chromodynamics that exhibits \emph{asymptotic freedom}.
+At extreme density, this feature causes quarks to become free of interactions, resulting in a new state of matter known as \emph{quark matter}.
+In quark matter, the individuality of neutrons is lost, and it is instead free quarks that make up the fundamental degrees of freedom.
+In fact, it is likely that the universe passed through a phase of quark matter during the first few seconds.
+Furthermore, it is speculated that the conditions in the cores of neutron stars are so extreme that it allows for the presence of quark matter.
+If this is true, some or all neutron stars may really be \emph{hybrid stars} with a phase transition between a central quark matter core that is surrounded by an envelope of nuclear matter.
+\emph{Quark stars} refer to such hypothetical stars composed of pure quark matter only, with no nuclear envelope.
+\cite[chapter 8]{ref:glendenning}
+
+Indeed, there have been observed objects of unknown nature whose mass exceeds the currently accepted value of Tolman-Oppenheimer-Volkoff limit, but falls short of the least massive known black holes. \cite{ref:wiki_list_star_massess}
+These objects may turn out to be neutron stars or black holes after all, but they are also candidates for hybrid stars and quark stars -- both of which are yet to be observed.
+
+However, it is notoriously difficult to make practical computations of quantum chromodynamics.
+Therefore, alternative and more practical models such as the \emph{MIT bag model} have been developed to study quark stars.
+
+It is this path that I aim to study in my master thesis following this specialization project.
 
 %\subsection*{Bottom line}
 %We have only scratched the surface of neutron stars.
