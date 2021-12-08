@@ -418,8 +418,6 @@ Stars are parametrized by central pressures $\SI{4.27e28}{\pascal} \le P_0 \le \
 
 \section{Stability analysis}
 
-\TODO{include Buchdal in stability, draw in graphs?}
-
 The mass-radius curves in \cref{fig:nstars:massradius} display some interesting behavior.
 In particular, the curves spiral for central pressures greater than that corresponding to the maximum mass.
 Since we have used statistical physics to obtain an equation of state, all stars on the mass-radius curve are in \emph{equilibrium}.
@@ -433,6 +431,10 @@ Let us investigate the stability of the sequence of stars on the curve in \cref{
 
 We will start simply by presenting a few necessary conditions for stability.
 However, neither of the conditions are \emph{sufficient} for a star to be stable, so we can only use them to identify unstable stars.
+
+In fact, we have already discussed one such condition -- the Buchdal limit \eqref{eq:incompressible_star:buchdal}.
+However, if we were to plot the line $M = 4 c^2 R / 9 G$ in \cref{fig:nstars:massradius}, the line would be so steep that it would be essentially parallel to the vertical axis and completely invisible.
+Only stars above this line would be unstable, and it therefore does not rule out any stars on our mass-radius curve.
 
 However exotic life inside a star may be, it cannot break causality. 
 In particular, the speed of sound $v = \sqrt{\odv{P}/{\rho}} = c \sqrt{\odv{P}/{\epsilon}}$ should not exceed the speed of light $c$.
@@ -526,7 +528,7 @@ However, it will be useful to be able to assume condition \eqref{eq:nstars:stabi
 }
 \end{figure}
 
-A third necessary condition for stars parametrized by their central pressure $P_0$ is
+A fourth necessary condition for stars parametrized by their central pressure $P_0$ is
 \begin{equation}
 	\odv{M(P_0)}{P_0} > 0
 	\qquad \text{(necessary condition)} .
