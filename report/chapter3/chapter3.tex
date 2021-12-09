@@ -22,7 +22,7 @@ To conclude our stability analysis, we therefore use the \textbf{shooting method
 
 \textit{This chapter is inspired by references \cite{ref:jensoluf}, \cite{ref:glendenning}, \cite{ref:mtw} and \cite{ref:stability_methods}.}
 
-\section{Equation of state}
+\section{Equation of state for a cold free Fermi gas}
 
 For ease of reference, the logarithm of the free Dirac fermion partition function \eqref{eq:tft:dirac_partition_function} is
 \begin{equation}
@@ -39,7 +39,7 @@ First, the particle number density $n = \thermalavg{N}/V$ follows from the deriv
 \begin{equation}
 	n = 
 	\frac{1}{\beta} \pdv{\log Z}{\mu} =
-	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ n\big[ E(\vec{p})-\mu \big] - n\big[ E(\vec{p})+\mu \big] \Big\} ,
+	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ n\big[ E(\vec{p})-\mu \big] - n\big[ E(\vec{p})+\mu \big] \Big\} .
 \label{eq:nstars:density}
 \end{equation}
 Do not confuse the particle density $n$ on the left with the Fermi-Dirac distributions $n[E(\vec{p}) \mp \mu]$ on the right!
@@ -63,22 +63,52 @@ Third, we find that the pressure \eqref{eq:tft:average_pressure} is
 \label{eq:nstars:pressure}
 \end{equation}
 \end{subequations}
+An interpretation of the terms contributing to the particle number density, energy density and pressure is in order.
 
-The first term of the energy density \eqref{eq:nstars:energy_density} and the pressure \eqref{eq:nstars:pressure} is infinite, as the integrand increases unbounded like $\dif^3 p \, E(\vec{p}) = 4 \pi p^2 \sqrt{p^2 c^2 + m^2 c^4} \propto p^3$ for large $p$.
-This can be interpreted as an infinite shift of the vacuum energy.
-In contrast, the two last terms are finite as the Fermi-Dirac distribution exponentially suppresses the integrand for large $\abs{\vec{p}}$.
-It makes no sense to include a term that integrates over every possible value of the momentum $\vec{p}$ for physical particles whose momentum cannot exceed a certain value due to energy conservation.
-We will therefore simply drop the infinite, first terms of the energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}.
-\TODO{discuss renormalization/regularization/vacuum energy shift/counter terms in outlook?}
+\begin{enumerate}
 
+\item
 From the particle density \eqref{eq:nstars:density} at constant temperature $T$, we see that the sign of $n$ is determined by the sign of $\mu$.
-The total density $n$ is expressed as a balance between \emph{particles} with energy $E(\vec{p}) > 0$ living relative to the chemical potential $\mu$ and \emph{antiparticles} with energy $E(\vec{p}) < 0$ living relative to the chemical potential $-\mu$.
+The total density $n$ is expressed as a balance between \emph{particles} living relative to the chemical potential $+\mu$ and \emph{antiparticles} living relative to the chemical potential $-\mu$.
 Thus, the chemical potential $\mu$ determines the balance between particles and antiparticles in the system.
 Similarly, the two last terms in the energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure} can be interpreted as contributions from particles and antiparticles, respectively.
 We \emph{choose} a large, positive value of $\mu > 0$, so that the presence of particles dominate, while antiparticles are more or less abscent.
-With this choice, $n \left[ E(\vec{p}) - \mu \right] \gg n \left[ E(\vec{p}) + \mu \right]$, and we drop the antiparticle contribution from the last terms of the particle density \eqref{eq:nstars:density}, energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}.
+With this choice, $n \left[ E(\vec{p}) - \mu \right] \gg n \left[ E(\vec{p}) + \mu \right]$, and we \emph{drop the last terms of the particle density \eqref{eq:nstars:density}, energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}}.
 
-Dropping terms as described in the last two paragraphs and noting that the integrals only depend on the magnitude $\abs{\vec{p}} = p$, we are left with%
+\item
+The first term of the energy density \eqref{eq:nstars:energy_density} is infinite, as the integrand increases unbounded like $\dif^3 p \, E(\vec{p}) = 4 \pi p^2 \sqrt{p^2 c^2 + m^2 c^4} \propto p^3$ for large $p$.
+It is like a sum over an infinite number of fermionic harmonic oscillators $\hat{H} = \hbar \omega \left( \frac12 + a^\dagger a \right)$, each with ground state energy $\braket{0 | \frac12 \hbar \omega | 0}$, two for spin up and down and two more for both particles and antiparticles.
+Therefore, it can be interpreted as an \emph{infinite shift of the vacuum energy}.
+We will make the assumption that there is no vacuum energy, or equivalently redefine the infinite contribution as a new zero-point energy.
+For exampe, in the vacuum outside a star there should be no mass density $\rho = \epsilon / c^2$, and hence no energy density $\epsilon$.
+Do note, however, that the possible presence of vacuum energy is really an unresolved problem in physics -- we will briefly discuss this in a moment.
+Either way, we will \emph{drop the first term of the energy density \eqref{eq:nstars:energy_density}}.
+%In contrast, the two last terms are finite as the Fermi-Dirac distribution exponentially suppresses the integrand for large $\abs{\vec{p}}$.
+%It makes no sense to include a term that integrates over every possible value of the momentum $\vec{p}$ for physical particles whose momentum cannot exceed a certain value due to energy conservation.
+%We will therefore simply drop the infinite, first terms of the energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}.
+%\TODO{discuss renormalization/regularization/vacuum energy shift/counter terms in outlook?}
+
+\item
+Like the energy density, the first term of the pressure \eqref{eq:nstars:pressure} is also infinite.
+It is reasonable that if we drop the infinite contribution to the energy density, then we should drop it in the pressure, too.
+As we remarked on page \pageref{tft:pressure_renormalization_discussion}, the pressure that we obtain directly from $\log Z$ is really undetermined up to the shift of a constant, anyway, justifying that we do indeed have the freedom to remove such an infinite contribution here as well.
+We will therefore \emph{drop the first term of the pressure \eqref{eq:nstars:pressure}}.
+Physically, the pressure should vanish when the energy density vanishes.
+For example, outside the surface of a star the pressure vanishes by definition and we assume we are in vacuum with no energy or mass density.
+We will see below that dropping the term does indeed ensure that this condition is satisfied.
+If you wish, peek ahead and note that both the energy density \eqref{eq:nstars:energy_density_zeroT} and pressure \eqref{eq:nstars:pressure_zeroT} both vanish when $x_F = 0$.
+
+\end{enumerate}
+
+Our ad-hoc removal of the vacuum energy has no doubt sparked the curiosity of the educated reader.
+The \emph{cosmological constant problem} is an unresolved problem in physics concerning the disagreement between small \emph{observed} values of the vacuum energy density and large -- here infinite -- values \emph{predicted} by quantum field theory.
+The presence of a nonzero vacuum energy density is related to the appearance of the cosmological constant $\Lambda$ in the Einstein field equations.
+However, we have used the field equations with $\Lambda = 0$ throughout.
+We ``resolve the problem'' by simply discarding the infinite contribution to the vacuum energy density, but make no attempt to conceal the deep theoretical questions underlying this ad-hoc resolution.
+For the interested reader, the Wikipedia article \cite{ref:wiki_cosmological_constant_problem} is a good starting point to learn more about the cosmological constant problem.
+
+Before completely losing track of what we were doing, let us get back to calculating the equation of state.
+Dropping terms as described above and noting that all integrals only depend on the magnitude $\abs{\vec{p}} = p$, we rebaptize $E(\vec{p}) = E(p)$ and are left with%
 \begin{subequations}%
 \begin{align}%
 	& \text{particle density} & n        &= 2               \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, n \left[ E(p)-\mu \right] , \\
@@ -88,8 +118,8 @@ Dropping terms as described in the last two paragraphs and noting that the integ
 \end{subequations}%
 The logarithm in the third integral looks annoyingly similar to the Fermi-Dirac distribution in the two first.
 Let us make one partial integration on the pressure with $u' = p^2$ and $v = \log \left[ e^{-\beta(E(\vec{p})-\mu)} + 1 \right]$.
-The boundary term $u v \propto p^3 \log \left[ e^{-\beta(E(p)-\mu)} + 1 \right]$ vanishes at $p=0$ because $p^3 = 0$, and also at $p = \infty$ where $\log \left[ e^{-\beta(E(p) - \mu)} + 1 \right] = \log \left[ e^{-\infty} + 1 \right] = \log 1 = 0$.
-After the partial integration, the three integrals are brought to the very similar and satisfying forms
+The boundary term $u v \propto p^3 \log \left[ e^{-\beta(E(p)-\mu)} + 1 \right]$ then vanishes at $p=0$ because $p^3 = 0$, and also at $p = \infty$ where $\log \left[ e^{-\beta(E(p) - \mu)} + 1 \right] = \log \left[ e^{-\infty} + 1 \right] = \log 1 = 0$.
+After the partial integration, the three integrals take the similar and satisfying forms
 \begin{subequations}%
 \begin{align}%
 	& \text{particle density} & n        &= 2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, n \left[ E(p)-\mu \right] ,          \label{eq:nstars:dropped_infinities_density} \\
@@ -215,6 +245,10 @@ Finally, using integral \TODO{ref}, the pressure \eqref{eq:nstars:dropped_infini
 \label{eq:nstars:pressure_zeroT}
 \end{equation}
 \end{subequations}
+
+At this point, let us remark that the assumption of ignoring the infinite contribution to the pressure is justified.
+We made the physical demand that the pressure vanishes when the energy density vanishes.
+Indeed, $\epsilon(x_F) = 0$ only if $x_F = 0$, and $P(x_F=0) = 0$.
 
 The equation of state $\epsilon = \epsilon(P)$ follows by eliminating $x_F$ from the energy density \eqref{eq:nstars:energy_density_zeroT} and pressure \eqref{eq:nstars:pressure_zeroT}.
 Due to their complicated dependence on $x_F$, we will do so in three cases of increasing difficulty.
