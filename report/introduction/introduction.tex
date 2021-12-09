@@ -233,8 +233,6 @@ Moreover, David Richards discovered that the period slightly increased with time
 This evidence convinced physicists that the signals were indeed from real, rotating and pulsating \textbf{neutron stars}.
 Controversially, Bell's supervisor and first author Hewish later got the Nobel prize for the discovery of the neutron star, although it was Jocelyn who made the actual measurements and in hindsight credited first.
 
-\TODO{$P_0$ to $P_c$}
-
 
 \section{Outline of this thesis}
 
@@ -253,7 +251,7 @@ from the Einstein field equations of general relativity.
 This is a system of two differential equations for the unknown pressure $P(r)$, mass $m(r)$ and energy density $\epsilon(r)$ at radius $r$ from the center of a star composed of a \emph{perfect fluid} in \emph{equilibrium}.
 An additional equation of state $\epsilon = \epsilon(P)$ that allows computation of the energy density corresponding to a given pressure is needed to solve the system.
 This is outside the scope of general relativity and belongs to the field of quantum theory and statistical mechanics.
-Given the equation of state, however, one may impose the boundary condition $m(0) = 0$ and any central pressure $P(0) = P_0$ and solve the system for the pressure profile $P(r)$ and mass profile $m(r)$ in the star.
+Given the equation of state, however, one may impose the boundary condition $m(0) = 0$ and any central pressure $P(0) = P_c$ and solve the system for the pressure profile $P(r)$ and mass profile $m(r)$ in the star.
 By defining the surface $r=R$ of the star where the pressure $P(R) = 0$ vanishes, one can obtain the radius $R$ and mass $M = m(R)$ of the star.
 In particular, we will solve the system analytically for a star of constant energy density $\epsilon(P) = \epsilon_0$ to derive the Buchdal limit
 \begin{equation*}
@@ -277,7 +275,7 @@ From the partition function $Z$ of \cref{chap:tft}, we find the equation of stat
 	\epsilon = \epsilon(P)
 \end{equation*}
 for the Fermi gas at zero temperature.
-We then solve the Tolman-Oppenheimer-Volkoff equation numerically for this equation of state to find a mass-radius curve $[R(P_0), \, M(P_0)]$ for such stars parametrized by their central pressure.
+We then solve the Tolman-Oppenheimer-Volkoff equation numerically for this equation of state to find a mass-radius curve $[R(P_c), \, M(P_c)]$ for such stars parametrized by their central pressure.
 Finally, we study whether stars on the curve are in stable or unstable equilibrium.
 We begin by establishing a set of necessary criteria from simple physical considerations.
 Then we develop a mathematically rigorous criterion for the stability of stars by using perturbation theory on the equilibrium Einstein field equations in \cref{chap:tov} to study the behavior of the perfect fluid as it is disturbed from equilibrium.

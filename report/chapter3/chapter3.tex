@@ -8,7 +8,7 @@ From the partition function, we can derive the pressure $P = P(T, \mu)$ and ener
 At some fixed temperature $T$, we can therefore eliminate $\mu$ to express $\epsilon$ in terms of $P$.
 This gives us an equation of state $\epsilon = \epsilon(T, P)$ for the energy density.
 In this chapter, we will see that inside neutron stars it is valid to consider the zero-temperature limit $T=0$, making the Fermi gas completely degenerate and directly relating pressure to energy density in the resulting temperature-independent equation of state $\epsilon = \epsilon(P)$.
-With this equation of state, we can finally solve the Tolman-Oppenheimer-Volkoff system \eqref{eq:tov:tovsys} for some central pressure $P(0)=P_0$.
+With this equation of state, we can finally solve the Tolman-Oppenheimer-Volkoff system \eqref{eq:tov:tovsys} for some central pressure $P(0)=P_c$.
 By doing so for a range of central pressures, we will parametrize a \textbf{mass-radius curve} of \textbf{ideal neutron stars} modelled by denegerate ideal Fermi gases of neutrons.
 
 In the second part of this chapter, we investigate whether the stars on the mass-radius curve we find are \textbf{stable or unstable}.
@@ -371,7 +371,7 @@ Carefully gathering all the prefactors under the same roof, we find
 \end{equation}
 With this power dependence, it is not easy, if even possible, to solve the TOV equation analytically.
 The trial solution \eqref{eq:nstars:ur_ansatz} we employed in \cref{sec:nstars:ur_limit} fails miserably, as we do not get the same fortunate cancellations of $r$.
-We therefore resort to the numerical solution method described in \cref{sec:nstars:numtov}, parametrizing different stars by their central pressure $P_0$ and integrating the TOV equation until the pressure $p(R)$ vanishes, using the corresponding radius $R$ to establish the mass $M = m(R)$ of the star.
+We therefore resort to the numerical solution method described in \cref{sec:nstars:numtov}, parametrizing different stars by their central pressure $P_c$ and integrating the TOV equation until the pressure $p(R)$ vanishes, using the corresponding radius $R$ to establish the mass $M = m(R)$ of the star.
 The results are shown in \cref{fig:nstars:massradius}.
 
 \TODO{compare with earlier results, most massive neutron stars}
@@ -444,7 +444,7 @@ and then calculate
 	xmin=0, xmax=50, xtick distance=5, minor x tick num=4,
 	ymin=0, ymax=1.1, ytick distance=0.1, minor y tick num=9,
 	grid=major,
-	colorbar horizontal, point meta=explicit, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_0 / \si{\pascal})$, xtick distance=1, minor x tick num=0, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+	colorbar horizontal, point meta=explicit, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c / \si{\pascal})$, xtick distance=1, minor x tick num=0, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
 	declare function={
 		e0 = 4.266500881855305e+34;
 	},
@@ -455,10 +455,10 @@ and then calculate
 \addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/nr.dat} node [pos=0.720, pin={[latex-, xshift=3.8em, ]0:relativistic $\odv{P}/{r}$, non-relativistic $\epsilon(P)$}] {};
 \addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/gr_newtonian.dat} node [pos=0.840, pin={[latex-, xshift=3.25em, ]0:Newtonian $\odv{P}/{r}$, general $\epsilon(P)$}] {};
 \addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/nr_newtonian.dat} node [pos=0.845, pin={[latex-, xshift=2.75em, ]0:Newtonian $\odv{P}/{r}$, non-relativistic $\epsilon(P)$}] {};
-\node [circle, fill, inner sep=1pt, label={[xshift=+0.2ex, yshift=-1.3ex]+90:{$\begin{aligned} R &= \pgfmathprintnumber\maxRnr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMnr \, \solarmass \\ P_0 &= \SI{1e35}{\pascal}\end{aligned}$}}] (maxnr) at (\maxRnr, \maxMnr) {};
-\node [circle, fill, inner sep=1pt, pin  ={[xshift=+2.0ex, yshift=-5.0ex]-90:{$\begin{aligned} R &= \pgfmathprintnumber\maxRgr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMgr \, \solarmass \\ P_0 &= \SI{4e34}{\pascal}\end{aligned}$}}] (maxnr) at (\maxRgr, \maxMgr) {};
-%\node [above=of maxnr, anchor=south, xshift= 0em, yshift=-3em, align=center] (maxnrlabel) {\small$\begin{aligned} R &= \pgfmathprintnumber\maxRnr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMnr \, \solarmass \\ P_0 &= \SI{1e35}{\pascal}\end{aligned}$};
-%\node [below=of maxgr, anchor=north, xshift=+1em, yshift=-1em, align=center] (maxgrlabel) {\small$\begin{aligned} R &= \pgfmathprintnumber\maxRgr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMgr \, \solarmass \\ P_0 &= \SI{4e34}{\pascal}\end{aligned}$};
+\node [circle, fill, inner sep=1pt, label={[xshift=+0.2ex, yshift=-1.3ex]+90:{$\begin{aligned} R &= \pgfmathprintnumber\maxRnr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMnr \, \solarmass \\ P_c &= \SI{1e35}{\pascal}\end{aligned}$}}] (maxnr) at (\maxRnr, \maxMnr) {};
+\node [circle, fill, inner sep=1pt, pin  ={[xshift=+2.0ex, yshift=-5.0ex]-90:{$\begin{aligned} R &= \pgfmathprintnumber\maxRgr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMgr \, \solarmass \\ P_c &= \SI{4e34}{\pascal}\end{aligned}$}}] (maxnr) at (\maxRgr, \maxMgr) {};
+%\node [above=of maxnr, anchor=south, xshift= 0em, yshift=-3em, align=center] (maxnrlabel) {\small$\begin{aligned} R &= \pgfmathprintnumber\maxRnr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMnr \, \solarmass \\ P_c &= \SI{1e35}{\pascal}\end{aligned}$};
+%\node [below=of maxgr, anchor=north, xshift=+1em, yshift=-1em, align=center] (maxgrlabel) {\small$\begin{aligned} R &= \pgfmathprintnumber\maxRgr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMgr \, \solarmass \\ P_c &= \SI{4e34}{\pascal}\end{aligned}$};
 %\draw [-latex, very thick] (maxgrlabel) -- (maxgr);
 %\node [] (maxgr) at (\maxRgr, \maxMgr) {};
 %\node [circle, fill, inner sep=1pt, label={90:$(\pgfmathprintnumber\maxRnr, \pgfmathprintnumber\maxMnr)$}] at ({\maxRnr}, \maxMnr) {};
@@ -473,9 +473,9 @@ and then calculate
 \end{tikzpicture}
 
 \caption{\label{fig:nstars:massradius}%
-Mass-radius relation for cold neutron stars parametrized by their central pressures $P_0$, obtained by numerically integrating the TOV equation from the center $r=0$ with pressure $P(0) = P_0$ until the pressure $P(R)=0$ vanishes at the surface $r=R$.
+Mass-radius relation for cold neutron stars parametrized by their central pressures $P_c$, obtained by numerically integrating the TOV equation from the center $r=0$ with pressure $P(0) = P_c$ until the pressure $P(R)=0$ vanishes at the surface $r=R$.
 The numerical integration is carried out using an explicit equation of state in the non-relativistic limit with Fermi momenta $p_F \ll m c$, and using a root-finding algorithm to calculate an implicit equation of state for general $p_F$.
-Stars are parametrized by central pressures $\SI{4.27e28}{\pascal} \le P_0 \le \SI{4.27e41}{\pascal}$, and $\solarmass$ is the mass of the sun.
+Stars are parametrized by central pressures $\SI{4.27e28}{\pascal} \le P_c \le \SI{4.27e41}{\pascal}$, and $\solarmass$ is the mass of the sun.
 }
 
 \end{figure}
@@ -568,8 +568,8 @@ However, the result is not completely useless, as it will be useful to assert th
 \begin{figure}
 \centering
 \begin{tikzpicture}
-%\begin{axis}[axis x line=bottom, axis y line=left, xlabel=$P_0$, ylabel=$M$, xtick=\empty, ytick=\empty]
-\begin{axis}[axis x line=bottom, axis y line=left, axis line style={very thick, -Latex[]}, xlabel=$P_0$, ylabel=$M$, xtick=\empty, ytick=\empty, xmax=1.15]
+%\begin{axis}[axis x line=bottom, axis y line=left, xlabel=$P_c$, ylabel=$M$, xtick=\empty, ytick=\empty]
+\begin{axis}[axis x line=bottom, axis y line=left, axis line style={very thick, -Latex[]}, xlabel=$P_c$, ylabel=$M$, xtick=\empty, ytick=\empty, xmax=1.15]
 	\addplot[thick, domain=-1:+1, black] {-x^2};
 
 	\node (E1inc) [draw=black, circle, fill, inner sep=1pt, label=left:$E_1^+$] at (axis cs:-0.7,-0.49) {};
@@ -585,16 +585,16 @@ However, the result is not completely useless, as it will be useful to assert th
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:nstars:stability_mass_pressure}%
-	Suppose an equilibrium star $E_1^+$ on an \emph{increasing} part of the mass-pressure curve $M(P_0)$ is compressed to a non-equilibrium star $C^+$ with the same mass.
+	Suppose an equilibrium star $E_1^+$ on an \emph{increasing} part of the mass-pressure curve $M(P_c)$ is compressed to a non-equilibrium star $C^+$ with the same mass.
 	Compared to the \emph{more massive} equilibrium star $E_2^+$ with the increased central pressure, it experiences \emph{less} gravitational attraction, causing it to expand back towards the original equilibrium configuration $E_1^+$.
 	In contrast, suppose an equilibrium star $E_1^-$ on a \emph{decreasing} part of the mass-pressure curve is compressed to a non-equilibrium star $C_-$ with the same mass.
 	Compared to the \emph{less massive} equilibrium star $E_2^-$ with the increased central pressure, it experiences \emph{more} gravitational attraction, causing it to compress even more and ultimately implode.
 }
 \end{figure}
 
-A fourth necessary condition for stars parametrized by their central pressure $P_0$ is
+A fourth necessary condition for stars parametrized by their central pressure $P_c$ is
 \begin{equation}
-	\odv{M(P_0)}{P_0} > 0
+	\odv{M(P_c)}{P_c} > 0
 	\qquad \text{(necessary condition)} .
 \label{eq:nstars:stability_mass_pressure}
 \end{equation}
@@ -916,7 +916,7 @@ From \cref{eq:nstars:perturbation_system_adiabadicity}, we see that this is equi
 \label{eq:nstars:deltaP_product}
 \end{equation}
 where we recognize the derivative from the speed of sound $v_0 = c \sqrt{\odv{P_0}/{\epsilon_0}}$.
-The surface $r = R$ is defined by $P_0 = 0$, and where there is no pressure, there can be no sound, so we should have $v_0 = 0$.
+The surface $r = R$ is defined by $P_0(r) = 0$, and where there is no pressure, there can be no sound, so we should have $v_0 = 0$.
 \TODO{but is not true for conformal limit where $\epsilon = 3 P$ ! write about this here?}
 This can be confirmed from the equation of state.
 Close to the surface, the pressure \eqref{eq:nstars:pressure_zeroT} is small, so $x_F$ is also small, and it is therefore the non-relativistic equation of state \eqref{eq:nstars:nr_eos} that reigns.
@@ -1184,13 +1184,13 @@ The results are very interesting.
       The effect is not as crystal clear as it is with the previous segments, however.
 \end{enumerate}
 
-Our computations suggest that at every local mass extremum point where $\odv{M(P_0)}/{P_0} = 0$, stars acquire one additional unstable vibration mode, starting with zero unstable modes for the lowest pressures $P_0 \rightarrow 0$.
+Our computations suggest that at every local mass extremum point where $\odv{M(P_c)}/{P_c} = 0$, stars acquire one additional unstable vibration mode, starting with zero unstable modes for the lowest pressures $P_c \rightarrow 0$.
 In fact, \cite{ref:stability_methods} presents a method for determining stability of stars based on this principle!
 For a sequence of \emph{cold} stars -- like ours -- in a mass-radius diagram like \cref{fig:nstars:massradius}, the following holds:
 \begin{itemize}
-\item For the lowermost central energy densities $\epsilon(P_0)$, we know from classical theory that stars are \emph{stable}.
-\item At every local mass extremum $\odv{M(P_0)}/{P_0} = 0$ where the curve bends \emph{counterclockwise} as the central pressure increases, one \emph{stable} mode becomes \emph{unstable}.
-\item At every local mass extremum $\odv{M(P_0)}/{P_0} = 0$ where the curve bends \emph{clockwise} as the central pressure increases, one \emph{unstable} mode becomes \emph{stable}.
+\item For the lowermost central energy densities $\epsilon(P_c)$, we know from classical theory that stars are \emph{stable}.
+\item At every local mass extremum $\odv{M(P_c)}/{P_c} = 0$ where the curve bends \emph{counterclockwise} as the central pressure increases, one \emph{stable} mode becomes \emph{unstable}.
+\item At every local mass extremum $\odv{M(P_c)}/{P_c} = 0$ where the curve bends \emph{clockwise} as the central pressure increases, one \emph{unstable} mode becomes \emph{stable}.
 \end{itemize}
 Our curve only includes a spiral turning counterclockwise and seem consistent with the first two rules.
 We have no spiral turning clockwise, however, and thus no grounds to support nor deny the third rule. \TODO{just drop saying this?}
@@ -1222,7 +1222,7 @@ As with the Buchdal bound \eqref{eq:incompressible_star:buchdal} that we looked 
 	minor x tick num=4, minor y tick num=9,
 ]
 \addplot [mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta=nu] {../code/data/gr2.dat}
-node [text=black, sloped, pos=0.66, yshift=10pt] {$\longleftarrow$ Increasing $P_0$};
+node [text=black, sloped, pos=0.66, yshift=10pt] {$\longleftarrow$ Increasing $P_c$};
 %\addplot [solid, very thick, domain=0:50, restrict y to domain=0:1] {4*x/(9*0.14766696910334393)}; % Buchdal bound invisible
 
 % decorate does not work with mesh, so redraw for arrows only!
