@@ -923,9 +923,9 @@ From \cref{eq:nstars:perturbation_system_adiabadicity}, we see that this is equi
 \end{equation}
 where we recognize the derivative from the speed of sound $v_0 = c \sqrt{\odv{P_0}/{\epsilon_0}}$.
 The surface $r = R$ is defined by $P_0(r) = 0$, and where there is no pressure, there can be no sound, so we should have $v_0 = 0$.
-\TODO{but is not true for conformal limit where $\epsilon = 3 P$ ! write about this here?}
+%\TODO{but is not true for conformal limit where $\epsilon = 3 P$ ! write about this here?}
 This can be confirmed from the equation of state.
-Close to the surface, the pressure \eqref{eq:nstars:pressure_zeroT} is small, so $x_F$ is also small, and it is therefore the non-relativistic equation of state \eqref{eq:nstars:nr_eos} that reigns.
+Close to the surface, the pressure \eqref{eq:nstars:pressure_zeroT} is small by definition, so $x_F$ is also small, and it is therefore the non-relativistic equation of state \eqref{eq:nstars:nr_eos} that reigns.
 Its derivative is
 \begin{equation}
 	\odv{\epsilon_0}{P_0} \propto \odv{P_0^{3/5}}{P_0} \propto P_0^{-2/5} = \infty ,
@@ -933,6 +933,7 @@ Its derivative is
 	v_s^2 \propto \odv{P_0}{\epsilon_0} = \frac{1}{\odv{\epsilon_0}/{P_0}} = \frac{1}{\infty} = 0
 	\quad \text{at } r = R.
 \end{equation}
+Of course, this is not the case for the ultra-relativistic equation of state \eqref{eq:nstars:ur_eos}, but it holds only near the core where $x_F$ is large, and nowhere near the surface!
 Hence, the first factor $\odv{P_0}/{\epsilon_0}$ of the product \eqref{eq:nstars:deltaP_product} is zero, and the whole product will vanish \emph{provided that} the second factor $\Delta \epsilon$ is finite.
 Glancing back at expression \eqref{eq:nstars:perturbation_system_adiabadicity} for $\Delta \epsilon$, it then follows that the boundary condition \eqref{eq:nstars:boundary_condition_surface_physical} is \emph{automatically} satisfied \emph{provided that}
 \begin{equation}
@@ -1254,4 +1255,4 @@ Here, the number of unstable modes with negative squared eigenfrequencies $\omeg
 
 \end{figure}
 
-\TODO{keywords: $dp/d\epsilon = 1/3$ = conformal limit? no mass in this EOS = scale invariance. $T^{\mu \nu}$ traceless?}
+%\TODO{keywords: $dp/d\epsilon = 1/3$ = conformal limit? no mass in this EOS = scale invariance. $T^{\mu \nu}$ traceless?}
