@@ -1207,7 +1207,7 @@ For later reference, recall that the upper and lower signs hold for bosons and f
 
 \formulawithproof{Scaled Gaussian integral}{
 	\begin{equation}
-		\int_{-\infty}^{+\infty} \dif x \, e^{-x^2} = \sqrt{\pi}
+		\int_{-\infty}^{+\infty} \dif x \, e^{-x^2} = \sqrt{\pi} .
 	\label{eq:integrals:gaussian_sqrtpi}
 	\end{equation}
 }{
@@ -1223,7 +1223,7 @@ For later reference, recall that the upper and lower signs hold for bosons and f
 
 \formulawithproof{Rescaled Gaussian integral}{
 	\begin{equation}
-	\int_{-\infty}^{+\infty} \dif x \, e^{-ax^2} = \sqrt{\frac{\pi}{a}}
+	\int_{-\infty}^{+\infty} \dif x \, e^{-ax^2} = \sqrt{\frac{\pi}{a}} .
 	\label{eq:integrals:gaussian_axx}
 	\end{equation}
 }{
@@ -1261,7 +1261,7 @@ For later reference, recall that the upper and lower signs hold for bosons and f
 	The Hermitean matrix $A$ can be diagonalized by a unitary transformation $U$ as $A = U^\dagger D U$, where $D$ is a diagonal matrix with the eigenvalues of $A$ on its diagonal.
 	Thus, 
 	\begin{equation*}
-		\psi^\dagger A \psi = \psi^\dagger U^\dagger D U \psi = (U \psi)^\dagger D (U \psi) = \tilde\psi^\dagger D \tilde\psi, \quad \text{where } \tilde\psi = U \psi.
+		\psi^\dagger A \psi = \psi^\dagger U^\dagger D U \psi = (U \psi)^\dagger D (U \psi) = \tilde\psi^\dagger D \tilde\psi, \quad \text{where } \tilde\psi = U \psi .
 	\end{equation*}
 	The unitary transformation has $\abs{\tdet U} = 1$, so the integration measure $\dif \psi = \dif \tilde\psi$ is unchanged upon changing variables.
 	A Hermitean matrix has real eigenvalues, so we can use integral \eqref{eq:integrals:gaussian_grassmann_one} to show that
@@ -1273,6 +1273,67 @@ For later reference, recall that the upper and lower signs hold for bosons and f
 	\end{split}
 	\end{equation*}
 }
+
+\formulawithproof{Degenerate Fermi gas energy density integral}{
+	\begin{equation}
+		\int_0^{x_F} \dif x \, x^2 \sqrt{x^2 + 1} = \frac{1}{8} \left[ \left( 2 x_F^3 + x_F \right) \sqrt{x_F^2 + 1} - \log \left( x_F + \sqrt{x_F^2 + 1} \right) \right] .
+	\label{eq:integrals:energy_density}
+	\end{equation}
+}{
+	The appearance of $\sqrt{x^2 + 1}$ makes it handy to change variables to $x = \sinh \theta$.
+	Using a number of hyperbolic identities, we then find
+	\begin{equation*}
+	\begin{aligned}
+		I &= \int_0^{x_F} \dif x \, x^2 \sqrt{x^2 + 1} \\
+		  &= \int_0^{\theta_F} \dif \theta \, \cosh^2 \theta \sinh^2 \theta               & \quad & \Big( \text{use } \cosh^2 \theta - \sinh^2 \theta = 1 \Big) \\
+		  &= \frac14 \int_0^{\theta_F} \dif \theta \, \sinh^2 (2 \theta)                  & \quad & \Big( \text{use } \sinh (2 \theta) = 2 \sinh \theta \cosh \theta \Big) \\
+		  &= \frac18 \int_0^{\theta_F} \dif \theta \, \left[ \cosh (4 \theta) - 1 \right] & \quad & \Big( \text{use } \sinh^2 \theta = \frac12 \left[ \cosh (2 \theta) - 1 \right] \Big) \\
+		  &= \frac{1}{8} \left[ \frac14 \sinh (4 \asinh x_F) - \asinh (x_F) \right] . \\
+	\end{aligned}
+	\end{equation*}
+	Inserting the definitions
+	\begin{equation*}
+		\sinh \theta = \frac12 \left( e^\theta - e^{-\theta} \right)
+		\qquad \text{and} \qquad
+		\asinh x = \log \left( x + \sqrt{x^2 + 1} \right)
+	\end{equation*}
+	and simplifying then eventually yields
+	\begin{equation*}
+		I = \frac{1}{8} \left[ \left( 2 x_F^3 + x_F \right) \sqrt{x_F^2 + 1} - \log \left( x_F + \sqrt{x_F^2 + 1} \right) \right] .
+	\end{equation*}
+}
+
+\formulawithproof{Degenerate Fermi gas pressure integral}{
+	\begin{equation}
+		\int_0^{x_F} \frac{\dif x \, x^4}{\sqrt{x^2 + 1}} = \frac{1}{8} \left[ \left( 2 x_F^3 - 3 x_F \right) \sqrt{x_F^2 + 1} + 3 \log \left( x_F + \sqrt{x_F^2 + 1} \right) \right] .
+	\label{eq:integrals:pressure}
+	\end{equation}
+}{
+	The appearance of $\sqrt{x^2 + 1}$ makes it handy to change variables to $x = \sinh \theta$.
+	Using a number of hyperbolic identities, we then find
+	\begin{equation*}
+	\begin{aligned}
+		I &= \int_0^{x_F} \frac{\dif x \, x^4}{\sqrt{x^2 + 1}} \\
+		  &= \int_0^{\theta_F} \dif \theta \, \sinh^4 \theta & & \Big( \text{use } \cosh^2 \theta - \sinh^2 \theta = 1 \Big) \\
+		  %&= \frac14 \int_0^{\theta_F} \dif \theta \, \left[ \cosh (2 \theta) - 1 \right]^2  & & \Big( \text{use } \sinh^2 \theta = \frac{1}{2} \left[ \cosh ( 2 \theta) - 1 \right] \Big) \\
+		  &= \frac14 \int_0^{\theta_F} \dif \theta \, \left[ \cosh^2 (2 \theta) - 2 \cosh (2 \theta) + 1 \right] & & \Big( \text{use } \sinh^2 \theta = \frac{1}{2} \left[ \cosh ( 2 \theta) - 1 \right] \Big) \\
+		  &= \frac18 \int_0^{\theta_F} \dif \theta \, \left[ \cosh (4 \theta) - 4 \cosh (2 \theta) + 3 \right] & & \Big( \text{use } \cosh^2 \theta = \frac12 \left[ \cosh (2 \theta) + 1 \right] \Big) \\
+		  &= \frac{1}{8} \left[ \frac14 \sinh (4 \asinh x_F) - 2 \sinh (2 \asinh x_F) + 3 \asinh (x_F) \right] . \\
+	\end{aligned}
+	\end{equation*}
+	Inserting the definitions
+	\begin{equation*}
+		\sinh \theta = \frac12 \left( e^\theta - e^{-\theta} \right)
+		\qquad \text{and} \qquad
+		\asinh x = \log \left( x + \sqrt{x^2 + 1} \right)
+	\end{equation*}
+	and simplifying then eventually yields
+	\begin{equation*}
+		I = \frac{1}{8} \left[ \left( 2 x_F^3 - 3 x_F \right) \sqrt{x_F^2 + 1} + 3 \log \left( x_F + \sqrt{x_F^2 + 1} \right) \right] .
+	\end{equation*}
+}
+
+\TODO{right-align right parentheses everywhere, fix overfull hbox in equation above}
 
 \chapter{Code}
 \label{chap:code}
