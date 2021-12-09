@@ -1,18 +1,15 @@
 \chapter{Ideal neutron stars}
 \label{chap:nstars}
 
-\TODO{make sure ``ideal neutron star'' is used throughout}
-
 \TODO{references throughout?}
 
 In \cref{chap:tft}, we found the partition function $Z = Z(T, \mu, V)$ for two sample systems, and in particular a gas of free Dirac fermions, referred to as an \textbf{ideal Fermi gas}.
 From the partition function, we can derive the pressure $P = P(T, \mu)$ and energy density $\epsilon = \thermalavg{E}/V = \epsilon(T, \mu)$ as functions of temperature and chemical potential using equation \eqref{eq:tft:average_number}, \eqref{eq:tft:average_energy} and \eqref{eq:tft:average_pressure}, eliminating the volume dependence as $P$ and $\epsilon$ are turned into intensive quantities by division.
 At some fixed temperature $T$, we can therefore eliminate $\mu$ to express $\epsilon$ in terms of $P$.
 This gives us an equation of state $\epsilon = \epsilon(T, P)$ for the energy density.
-In this chapter, we will see that inside neutron stars it is valid to consider the zero-temperature limit $T=0$, directly relating pressure to energy density in the resulting temperature-independent equation of state $\epsilon = \epsilon(P)$.
+In this chapter, we will see that inside neutron stars it is valid to consider the zero-temperature limit $T=0$, making the Fermi gas completely degenerate and directly relating pressure to energy density in the resulting temperature-independent equation of state $\epsilon = \epsilon(P)$.
 With this equation of state, we can finally solve the Tolman-Oppenheimer-Volkoff system \eqref{eq:tov:tovsys} for some central pressure $P(0)=P_0$.
-By doing so for a range of central pressures, we will parametrize a \textbf{mass-radius curve} of neutron stars.
-These \textbf{ideal neutron stars} are hence modelled by an ideal Fermi gas of neutrons with the additional assumption of zero temperature.
+By doing so for a range of central pressures, we will parametrize a \textbf{mass-radius curve} of \textbf{ideal neutron stars} modelled by denegerate ideal Fermi gases of neutrons.
 
 In the second part of this chapter, we investigate whether the stars on the mass-radius curve we find are \textbf{stable or unstable}.
 By applying perturbation theory to the equilibrium analysis of general relativity in \cref{chap:tov}, we will derive a differential equation for radial pulsations of stars slightly outside equilibrium.
@@ -22,7 +19,7 @@ To conclude our stability analysis, we therefore use the \textbf{shooting method
 
 \textit{This chapter is inspired by references \cite{ref:jensoluf}, \cite{ref:glendenning}, \cite{ref:mtw} and \cite{ref:stability_methods}.}
 
-\section{Equation of state for a cold free Fermi gas}
+\section{Equation of state for a degenerate ideal Fermi gas}
 
 For ease of reference, the logarithm of the free Dirac fermion partition function \eqref{eq:tft:dirac_partition_function} is
 \begin{equation}
@@ -137,7 +134,7 @@ At \emph{absolute} zero temperature $T = 0$, the Fermi-Dirac distribution
 \end{equation}
 behaves like a step function.
 To see this, observe that $T = 0$ corresponds to $\beta = \infty$, and that the sign of $E - \mu$ determines whether the exponential $e^{\beta (E - \mu)}$ in the denominator blows up or vanishes, and hence whether the fraction survives.
-Physically, this means that the system is completely degenerate, filling momentum states with $E(\vec{p}) < \mu$ only.
+Physically, this means that the system is completely degenerate, filling only momentum states with $E(\vec{p}) < \mu$.
 The filled states with highest momentum $p_F$ make up a so-called \emph{Fermi surface} $\abs{\vec{p}} = p_F$ in momentum space, and the corresponding maximum energy $E_F = \sqrt{p_F^2 c^2 + m^2 c^4}$ is called the \emph{Fermi energy}, and is equal to the chemical potential when $T = 0$.
 
 Typical neutron star core temperatures linger around $T_0 \approx \SI{1e6}{\kelvin}$, \cite{ref:glendenning} so how is this relevant for our purposes?
@@ -160,9 +157,9 @@ By rewriting the Fermi-Dirac distribution as
 \end{equation}
 we can again see that in the zero-temperature limit \eqref{eq:nstars:zero_temperature_limit}, the sign of $E - \mu$ will again force the distribution into a simple step function, as at absolute zero temperature.
 Thus, the zero-temperature behavior of the Fermi-Dirac distribution is restored in this limit.
-Although the temperature itself is far from zero, this approximation is therefore referred to as the \textbf{zero-temperature approximation}.
+Although the temperature itself is far from zero, this approximation is therefore referred to as the \textbf{zero-temperature limit} or \textbf{degenerate limit}, because it is equivalent to $T = 0$ or $\mu = \infty$.
 
-Alternatively, since the chemical potential is an independent variable in the partition function, we could simply have \emph{assumed} the zero-temperature limit \eqref{eq:nstars:zero_temperature_limit} when we said we \emph{chose} a ``large, positive value'' for the chemical potential.
+Alternatively, since the chemical potential is an independent variable in the partition function, we could simply have \emph{assumed} the degenerate limit \eqref{eq:nstars:zero_temperature_limit} when we said we \emph{chose} a ``large, positive value'' for the chemical potential.
 
 \iffalse
 \begin{figure}
@@ -247,7 +244,7 @@ Finally, using integral \TODO{ref}, the pressure \eqref{eq:nstars:dropped_infini
 \end{subequations}
 
 At this point, let us remark that the assumption of ignoring the infinite contribution to the pressure is justified.
-We made the physical demand that the pressure vanishes when the energy density vanishes.
+We stated the physical requirement that the pressure vanishes when the energy density vanishes.
 Indeed, $\epsilon(x_F) = 0$ only if $x_F = 0$, and $P(x_F=0) = 0$.
 
 The equation of state $\epsilon = \epsilon(P)$ follows by eliminating $x_F$ from the energy density \eqref{eq:nstars:energy_density_zeroT} and pressure \eqref{eq:nstars:pressure_zeroT}.
