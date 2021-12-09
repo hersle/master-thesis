@@ -298,15 +298,48 @@ Then the rightmost factor no longer depends on $r$, and both sides have the same
 Equality is established if we match the prefactors by choosing $A = c^4 / 56 \pi G$.
 Then the solutions for the pressure and mass are
 \begin{equation}
-	P(r) = \frac{c^4}{56 \pi G} \frac{1}{r^2}
+	P(r) = \frac{c^4}{56 \pi G r^2}
 	\qquad \text{and} \qquad
-	m(r) = \frac{3 c^2}{14 G} r .
+	m(r) = \frac{3 c^2 r}{14 G} .
 \end{equation}
 This is a highly unphysical result.
-The pressure diverges at the center, so nothing could ever hold such a star together.
+%As shown in \cref{fig:nstars:pressure_mass_ultrarelativistic}, the pressure diverges at the center, so gravity cannot hold such a star together.
+The pressure diverges at the center, so gravity cannot hold such a star together.
 In addition, $p(r) > 0$ for all $r$, so the star has no surface and hence infinite mass $M = m(\infty) = \infty$.
 
-\TODO{make plot of $P(r)$ and $m(r)$ for a star.}
+\iffalse
+\begin{figure}[ht!]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size=2 by 1, horizontal sep=2cm},
+	width = 7cm, height = 7cm,
+	xtick = \empty, ytick = \empty,
+	%ylabel near ticks,
+]
+
+\nextgroupplot[
+	xlabel = $r$, ylabel = $P(r)$,
+	xmin=0, xmax=10, ymin=0, ymax=1,
+];
+\addplot [thick, domain=0:10, restrict y to domain=0:2, samples=200] {1/x^2};
+
+\nextgroupplot[
+	xlabel = $r$, ylabel = $m(r)$,
+	xmin=0, xmax=1, ymin=0, ymax=1,
+	%yticklabel pos=right,
+];
+\addplot [thick, domain=0:1, restrict y to domain=0:2, samples=200] {x};
+
+\end{groupplot}
+\end{tikzpicture}
+\caption{\label{fig:nstars:pressure_mass_ultrarelativistic}%
+	With the ultra-relativistic equation of state $\epsilon(P) = 3 P$, the pressure $P(r)$ never vanishes, so a ``star'' has no surface.
+	Correspondingly, its mass increases linearly with the radius $r$ and diverges as $r \rightarrow \infty$.
+	The scale on the axes are irrelevant.
+}
+\end{figure}
+\fi
 
 \subsection{Non-relativistic limit}
 \label{sec:nstars:nr_limit}
