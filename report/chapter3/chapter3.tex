@@ -619,7 +619,7 @@ The criterion \eqref{eq:nstars:stability_mass_pressure} shows that the stars loc
 \label{sec:nstars:stability_general}
 
 The arguments presented above were necessary, but not sufficient for stellar stability.
-Let us analyze the stability of the stars in a more rigorous way by finding a mathematical definition \TODO{criterion?} of stability.
+Let us analyze the stability of the stars in a more rigorous way by finding a necessary \emph{and} sufficient criterion for stability.
 We will follow the path of Chandrasekhar \cite{ref:chandrasekhar_stability} and \cite[§ 26.4d]{ref:mtw}.
 
 \subsubsection{Perturbation theory for the fluid displacement}
@@ -1018,7 +1018,7 @@ If $U_m = U_n$ are equal, then $\braket{W U_m | U_n} \neq 0$, so $\omega_m^2 = \
 On the other hand, if $\omega_m^2 \neq \omega_n^2$, then $\braket{W U_m | U_n} = 0$, and $U_m \neq U_n$ must be different.
 \fi
 
-\subsubsection{Definition of stellar stability}
+\subsubsection{Necessary and sufficient criterion for stellar stability}
 
 At long last, we are now in position to state a rigorous mathematical criterion of stellar stability.
 Property \ref{item:nstars:sturm_liouville_completeness} implies that any physically reasonable displacement $\xi(t,r)$ can be written as a linear combination
@@ -1032,11 +1032,11 @@ Property \ref{item:nstars:sturm_liouville_eigenvalues} ensures all $\omega_n^2$ 
 
 \begin{itemize}
 \item If $\omega_0^2 > 0$, then all vibration modes have real frequencies $\omega_n > 0$.
-      Then all terms in the displacement \eqref{eq:nstars:displacement_general_solution} merely oscillate back and forth like $\xi \propto e^{i \omega_n t}$, so the star attempts to return to equilibrium, and we say it is \textbf{stable}.
+      Then all terms in the displacement \eqref{eq:nstars:displacement_general_solution} merely oscillate back and forth like $\xi \propto e^{i \omega_n t}$, so the star attempts to return to equilibrium, and it is \textbf{stable}.
 \item If $\omega_0^2 < 0$, then one or more vibration modes have imaginary frequencies $\omega_n = \pm i \abs{\omega_n}$.
-      Then some term in the displacement \eqref{eq:nstars:displacement_general_solution} takes off exponentially like $\xi \propto e^{\pm \abs{\omega_n} t}$, so the star either implodes or explodes, and we say it is \textbf{unstable}.
+      Then some term in the displacement \eqref{eq:nstars:displacement_general_solution} takes off exponentially like $\xi \propto e^{\pm \abs{\omega_n} t}$, so the star either implodes or explodes, and it is \textbf{unstable}.
 \end{itemize}
-A prerequisite for the above definition is that it is sufficient for \emph{one} mode in the displacement \eqref{eq:nstars:displacement_general_solution} to be unstable for the star as a whole to be unstable.
+A prerequisite for the above criterion is that it is sufficient for \emph{one} mode in the displacement \eqref{eq:nstars:displacement_general_solution} to be unstable for the star as a whole to be unstable.
 To understand this, suppose a star is exposed to some external perturbation $\xi(t,r)$.
 Whatever the source of this perturbation -- be it the touch of a finger, an imperfection in the star's material or the blast from a nearby supernova explosion -- it is the initial state $\xi(t,r)$ of this \emph{external} perturabtion that determines the contribution $c_n$ from each mode in the sum \eqref{eq:nstars:displacement_general_solution}, and subsequently the \emph{response} of the star to the perturbation.
 In the real world, we expect that any external perturbation will activate \emph{all} modes $U_n(r)$ to some extent -- for one would need remarkable finger precision to perturb the star in an \emph{exact} superposition of only a finite selection of modes.
@@ -1054,7 +1054,7 @@ If it reaches a new state of equilibrium, just repeat the process until it burst
 
 \subsubsection{Numerical solution of the Sturm-Liouville problem with the shooting method}
 
-Multiple methods for determining the stability of stars through our definition above are catalogued by \cite{ref:stability_methods}.
+Multiple methods for determining the stability of stars through the criterion above are catalogued by \cite{ref:stability_methods}.
 The \textbf{shooting method} is a particularly fun numerical technique for finding the eigenfunctions $U_n(r)$ and eigenvalues $\omega_n^2$ of the Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville_problem}.
 Let us put it to use and determine the stability of the stars along the curve in \cref{fig:nstars:massradius}.
 
