@@ -501,9 +501,9 @@ Only stars above this line would be unstable, and it therefore does not rule out
 \subsubsection{Causality}
 
 However exotic life inside a star may be, it cannot break causality. 
-In particular, the speed of sound $v = \sqrt{\odv{P}/{\rho}} = c \sqrt{\odv{P}/{\epsilon}}$ should not exceed the speed of light $c$.
+In particular, the speed of sound $v = \sqrt{\odv{P}/{\rho}} = c \, \sqrt{\odv{P}/{\epsilon}}$ should not exceed the speed of light $c$.
+For a derivation of this expression, see \cref{chap:relfluid}.
 The equation of state $\epsilon = \epsilon(P)$ must therefore satisfy
-\TODO{ref?}
 \begin{equation}
 	\odv{P}{\epsilon} < 1
 	\qquad \text{(necessary condition)} .
@@ -919,7 +919,7 @@ From \cref{eq:nstars:perturbation_system_adiabadicity}, we see that this is equi
 	\Delta P = \odv{P_0}{\epsilon_0} \Delta \epsilon = \left( \frac{v_0}{c} \right)^2 \Delta\epsilon ,
 \label{eq:nstars:deltaP_product}
 \end{equation}
-where we recognize the derivative from the speed of sound $v_0 = c \sqrt{\odv{P_0}/{\epsilon_0}}$.
+where we recognize the speed of sound $v_0 = c \sqrt{\odv{P_0}/{\epsilon_0}}$ that we derive in \cref{chap:relfluid}.
 The surface $r = R$ is defined by $P_0(r) = 0$, and where there is no pressure, there can be no sound, so we should have $v_0 = 0$.
 %\TODO{but is not true for conformal limit where $\epsilon = 3 P$ ! write about this here?}
 This can be confirmed from the equation of state.
