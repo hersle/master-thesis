@@ -21,37 +21,45 @@ def ϵGR(P):
     prefactor = mn**4*c**3*r0**3 / (6*π*b*m0*ħ**3)
     def f(x):
         Px = prefactor * ((2*x**3 - 3*x) * np.sqrt(x**2 + 1) + 3*np.arcsinh(x))
-        #asinhx4 = 4*np.arcsinh(x)
-        #Px = 24*prefactor * (1/3*x**3*np.sqrt(1+x**2) - (np.sinh(asinhx4)-asinhx4)/32)
         return Px - P
     sol = scipy.optimize.root_scalar(f, method="bisect", bracket=(0, 1e5))
     assert sol.converged, "ERROR: equation of state root finder did not converge"
     x = sol.root
     ϵx = 3*prefactor * ((2*x**3+x) * np.sqrt(x**2 + 1) - np.arcsinh(x))
-    #asinhx4 = 4*np.arcsinh(x)
-    #ϵx = 4*mn**4*c**3*r0**3 / (π*b*m0*ħ**3) * (np.sinh(asinhx4)-asinhx4)/32
     return ϵx
 
-# numerical instability for P2 > 1e7
-#massradiusplot(ϵNR, (1e-6, 1e0), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=False, visual=True, outfile="data/nr_newtonian.dat", newtonian=True)
-#massradiusplot(ϵGR, (1e-6, 1e0), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=False, visual=True, outfile="data/gr_newtonian.dat", newtonian=True)
-#massradiusplot(ϵNR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/nr2.dat")
-#massradiusplot(ϵGR, (1e-6, 1e7), tolD=0.05, tolP=1e-5, maxdr=1e-3, stability=True, visual=True, outfile="data/gr2.dat")
+opts_common = {
+    "tolD": 0.05,
+    "tolP": 1e-5,
+    "maxdr": 1e-3,
+    "visual": True,
+}
+massradiusplot(
+    ϵNR, (1e-6, 1e0), **opts, stability=False, outfile="data/nr_newt.dat", newtonian=True
+)
+massradiusplot(
+    ϵGR, (1e-6, 1e0), **opts, stability=False, outfile="data/gr_newt.dat", newtonian=True
+)
+massradiusplot(
+    ϵNR, (1e-6, 1e7), **opts, stability=True,  outfile="data/nr2.dat"
+)
+massradiusplot(
+    ϵGR, (1e-6, 1e7), **opts, stability=True,  outfile="data/gr2.dat"
+)
 
-"""
 r, m, P, α, ϵ = soltov(ϵGR, 1e3)
-ω2s, us = eigenmode(r, m, P, α, ϵ, [0], plot=True, outfileshoot="data/shoot.dat")# , outfile="data/nmodes.dat") # TODO: should print number of nodes, added this manually in the data file for plotting
-"""
+ω2s, us = eigenmode(r, m, P, α, ϵ, [0], plot=True, outfileshoot="data/shoot.dat")
 
-"""
-#P0 = 1e-1
 P0 = 3e2
 r, m, P, α, ϵ = soltov(ϵGR, P0)
 ns = range(0, 12)
-ω2s, us = eigenmode(r, m, P, α, ϵ, ns, plot=False, cut=True, normalize=False, outfile="data/nmodes.dat")
-ω2s, us = eigenmode(r, m, P, α, ϵ, ns, plot=False, cut=True, normalize=True, outfile="data/nmodes_norm.dat")
+ω2s, us = eigenmode(
+    r, m, P, α, ϵ, ns, cut=True, normalize=False, outfile="data/nmodes.dat"
+)
+ω2s, us = eigenmode(
+    r, m, P, α, ϵ, ns, cut=True, normalize=True, outfile="data/nmodes_norm.dat"
+)
 for ω2, u, n in zip(ω2s, us, ns):
     plt.plot(r, u, label=f"n = {n}, ω2 = {ω2}")
 plt.legend()
 plt.show()
-"""

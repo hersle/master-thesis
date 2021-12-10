@@ -13,7 +13,9 @@ def soltov(ϵ, P0, maxdr=1e-3, progress=True, newtonian=False):
     def printprogress(r, m, P, message="", end=""):
         print(f"\r", end="") # reset line
         print(f"Solving TOV: ", end="")
-        print(f"ϵ = {ϵ.__name__}, Newtonian={newtonian}, P0 = {P0:9.2e}, maxdr = {maxdr:9.2e}, ", end="")
+        print(f"ϵ = {ϵ.__name__}, ", end="")
+        print(f"Newtonian={newtonian}, ", end="")
+        print(f"P0 = {P0:9.2e}, maxdr = {maxdr:9.2e}, ", end="")
         print(f"r = {r:8.5f}, m = {m:8.5f}, P/P0 = {P/P0:8.5f}", end="")
         if message != "":
             print(f", {message}", end="")
@@ -58,13 +60,16 @@ def soltov(ϵ, P0, maxdr=1e-3, progress=True, newtonian=False):
     if progress: # finish progress printer with newline
         printprogress(rs[-1], ms[-1], Ps[-1], res.message, end="\n")
 
-    ϵs = np.array([ϵ(P) for P in Ps]) # TODO: compute more efficiently
+    ϵs = np.array([ϵ(P) for P in Ps]) # (can compute more efficiently than this)
 
     return rs, ms, Ps, αs, ϵs
 
 # Bisect [P1, P2] to make points evenly
-def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, outfile="", visual=False, newtonian=False):
-    def solvestar(P0, newtonian=False):
+def massradiusplot(
+    ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, newtonian=False,
+    outfile="", visual=False
+):
+    def solvestar(P0):
         rs, ms, Ps, αs, ϵs = soltov(ϵ, P0, maxdr=maxdr, newtonian=newtonian)
         R, M = rs[-1], ms[-1]
         if stability:
@@ -76,8 +81,8 @@ def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, 
         return R, M, nu
 
     P1, P2 = P1P2[0], P1P2[1]
-    R1, M1, nu1 = solvestar(P1, newtonian=newtonian)
-    R2, M2, nu2 = solvestar(P2, newtonian=newtonian)
+    R1, M1, nu1 = solvestar(P1)
+    R2, M2, nu2 = solvestar(P2)
     Ps, Ms, Rs, nus = [P1, P2], [M1, M2], [R1, R2], [nu1, nu2]
 
     if visual:
@@ -100,7 +105,7 @@ def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, 
         if D > tolD and P2 - P1 > tolP:
             # split [P1, P2] into [P1, (P1+P2)/2] and [(P1+P2)/2, P2]
             P3 = (P1 + P2) / 2
-            R3, M3, nu3 = solvestar(P3, newtonian=newtonian)
+            R3, M3, nu3 = solvestar(P3)
             Ps.insert(i+1, P3)
             Ms.insert(i+1, M3)
             Rs.insert(i+1, R3)
@@ -114,11 +119,6 @@ def massradiusplot(ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, 
                     scatt.set_offsets(np.transpose([Rs, Ms]))
                     scatt.set_array(np.array(nus))
                     scatt.set_cmap("jet")
-                    #norm = matplotlib.colors.TwoSlopeNorm(vmin=-1, vcenter=0, vmax=2)
-                    #print(nus)
-                    #norm = matplotlib.colors.BoundaryNorm(boundaries=nus, ncolors=np.max(nus)+1)
-                    #scatt.set_norm(norm)
-                    #cbar.set_clim(0, np.max(nus))
                     scatt.set_clim(0, np.max(nus))
                 plt.gca().relim() # autoscale only works in animation after this
                 plt.autoscale()

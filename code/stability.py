@@ -72,7 +72,9 @@ def search(r, Π, Q, W, N, p1, p2, plot=False, progress=False, outfile=""):
             else:
                 ω21, u1, n1 = ω23, u3, n3
             i += 1
-        ω2 = ω21 if N % 2 == 0 else ω22 # always choose the one that inflects at the end, so it derivative looks like zero right before it diverges
+        # always choose the one that inflects at the end,
+        # so its derivative looks like zero right before it diverges
+        ω2 = ω21 if N % 2 == 0 else ω22 
         u, n = shoot(r, Π, Q, W, ω2, p1, p2)
 
         if progress:
@@ -113,25 +115,32 @@ def coeffs(r, m, P, α, ϵ):
     Γ = (P + ϵ) / P * dPdϵ # already dimensionless
 
     Π = np.exp(β+3*α)/r**2 * Γ * P
-    Q = -4*np.exp(β+3*α)/r**3*dPdr - (8*π*G/(4*π/3))*np.exp(3*β+3*α)/r**2*P*(ϵ+P) + np.exp(β+3*α)*dPdr**2 / (r**2*(ϵ+P))
+    Q  = -4*np.exp(β+3*α)/r**3*dPdr 
+    Q -= (8*π*G/(4*π/3))*np.exp(3*β+3*α)/r**2*P*(ϵ+P) 
+    Q += np.exp(β+3*α)*dPdr**2 / (r**2*(ϵ+P))
     W = np.exp(3*β+α)*(ϵ+P)/r**2
 
     return Π, Q, W
 
-def eigenmode(r, m, P, α, ϵ, Ns, p1=0.01, p2=0.99, plot=False, progress=True, cut=False, normalize=False, outfile="", outfileshoot=""):
+def eigenmode(
+    r, m, P, α, ϵ, Ns, p1=0.01, p2=0.99, plot=False, progress=True,
+    cut=False, normalize=False, outfile="", outfileshoot=""
+):
     if type(Ns) == type(0):
-        ω2s, us = eigenmode(r, m, P, α, ϵ, [Ns], p1=p1, p2=p2, plot=plot, progress=progress, cut=cut, normalize=normalize, outfile=outfile)
+        ω2s, us = eigenmode(
+            r, m, P, α, ϵ, [Ns], p1=p1, p2=p2, plot=plot, progress=progress, 
+            cut=cut, normalize=normalize, outfile=outfile
+        )
         ω2, u = ω2s[0], us[0]
         return ω2, u
 
     Π, Q, W = coeffs(r, m, P, α, ϵ)
 
-    # TODO: remove values that are not used to prevent division by zero warnings?
-    #       β gives an error because of divisoin by zero in a region where its value is not used
-
     ω2s, us = [], []
     for N in Ns:
-        ω2, u, n = search(r, Π, Q, W, N, p1, p2, plot=plot, progress=progress, outfile=outfileshoot)
+        ω2, u, n = search(
+            r, Π, Q, W, N, p1, p2, plot=plot, progress=progress, outfile=outfileshoot
+        )
         if cut:
             uc = cut_divergence(u, r)
             u[:len(uc)] = uc
