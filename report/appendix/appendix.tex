@@ -703,13 +703,41 @@ we uncover the \textbf{Einstein field equations in the presence of matter},
 \label{chap:relfluid}
 
 In this appendix, we will derive a number of important results from relativistic fluid mechanics needed for stability analysis of stars.
-We will look at the \textbf{flow} of fluid elements along stream lines $x(\tau)$ in a \textbf{perfect fluid} with energy-momentum tensor
+We will look at the \textbf{flow} of fluid elements along stream lines $x(\tau)$ in a \textbf{perfect fluid} charaterized by its pressure $P = P(x)$ and energy density $\epsilon = \epsilon(x)$.
+
+\textit{This appendix is inspired by references \cite{ref:mtw} and \cite{ref:weinberg_gravity}.}
+
+\section{Definition of energy-momentum tensor}
+
+The definition of a perfect fluid is that the surrounding fluid appears isotropic from the rest frame that follows a given fluid element.
+In this frame, the energy-momentum tensor must take the standard, diagonal form
+\begin{equation}
+	T^{00} = \epsilon , \qquad
+	T^{0i} = T^{i0} = 0 , \qquad
+	T^{ij} = P \delta^{ij} .
+\end{equation}
+%We will say it extremely verbosely once: the energy-momentum tensor is a tensor, so it transforms as a tensor.
+In Minkowski space, the transformation matrix $\pdv{x^\mu}/{x^\nu}$ in the tensorial transformation law \eqref{eq:tensor_transformation} is the Lorentz transformation $\Lambda\indices{^\mu_\nu}$. \cite{ref:mika_gr_notes}
+If we are rather viewing the fluid element from the laboratory frame and it is moving with velocity $\vec{v}$ relative to us, we can therefore find the energy-momentum tensor by making the two Lorentz boosts
+\begin{equation}
+	T^{\mu \nu} \rightarrow \Lambda\indices{^\mu_\alpha}(\vec{v}) \Lambda\indices{^\nu_\beta}(\vec{v}) T^{\alpha \beta} .
+\end{equation}
+Explicitly carrying out the Lorentz transformation, we obtain the nonzero components
+\begin{subequations}
+\begin{align}
+	T^{00} &= \frac{\epsilon + P \vec{v}^2 / c^2}{1 - \vec{v}^2 / c^2} \\
+	T^{0i} = T^{i0} &= \frac{(\epsilon + P) v^i / c}{1 - \vec{v}^2 / c^2} \\
+	T^{ij} &= P \delta^{ij} + \frac{(P + \epsilon) v^i v^j / c^2}{1 - \vec{v}^2 / c^2} .
+\end{align}
+\end{subequations}
+With the four-velocity $u^\mu = (u^0, \vec{v})$ and normalization $u_\mu u^\mu = c^2$, \emph{all} of these elements can be written collectively as the tensor expression
+\begin{equation}
+	T_{\mu \nu} = \frac{1}{c^2} u_\mu u_\nu (\epsilon + P) - \eta_{\mu \nu} P .
+\end{equation}
+In a general metric $g_{\mu \nu}$, the \textbf{energy-momentum tensor} for a perfect fluid is therefore
 \begin{equation}
 	T_{\mu \nu} = \frac{1}{c^2} u_\mu u_\nu (\epsilon + P) - g_{\mu \nu} P .
 \end{equation}
-\TODO{show what this tensor really means in flat minkowski space?}
-
-\textit{This appendix is inspired by references \cite{ref:mtw} and \cite{ref:weinberg_gravity}.}
 
 \section{Conservation of baryon number}
 
