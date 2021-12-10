@@ -947,30 +947,69 @@ The last expression is possible to calculate from the equation of state $\epsilo
 
 \section{Speed of sound}
 
-Euler \eqref{eq:relfluid:euler_equation} with $P = \text{const}$, $\epsilon = \text{const}$, flat space (Minkowski metric).
-Apply perturbation on top, then last term is small and we get.
+Following \cite{ref:weinberg_gravity}, we can derive a simple expression for the speed of sound in an ideal fluid.
+Suppose we are in Minkowski space, and consider a background ideal fluid in equilibrium with four-velocity $u^\mu = (u^0, \vec{0})$, density $n_0$, pressure $P_0$ and energy density $\epsilon_0$ that are all \emph{constant} in time and space.
+On top of this background, let there be small variations $\delta n(x)$, $\delta P(x)$, $\delta \epsilon(x)$ and $\vec{v}(x)$ in the total density $n = n_0 + \delta n$, pressure $P = P_0 + \delta P$, energy density $\epsilon = \epsilon_0 + \delta \epsilon$ and four-velocity $u^\mu = (u^0, \vec{v})$.
+How do sound waves result from these variations?
+
+To first order in all the small quantities, the Euler equation \eqref{eq:relfluid:euler_equation} reads
 \begin{equation}
-	\pdv{\vec{v}}{t} = - \frac{c^2 \nabla (\delta P)}{\epsilon + P} .
+	\pdv{\vec{v}}{t} = - c^2 \frac{\nabla (\delta P)}{\epsilon_0 + P_0} .
+\label{eq:relfluid:speed_of_sound_dvdt}
 \end{equation}
-Adiabatic condition \eqref{eq:relfluid:energy_conservation_rewritten} gives
+Likewise, the adiabadicity condition \eqref{eq:relfluid:energy_conservation_rewritten} gives
 \begin{equation}
-	\delta \epsilon = \left( \epsilon + P \right) \frac{\delta n}{n} .
+	\pdv{(\delta \epsilon)}{t} = \frac{\epsilon_0 + P_0}{n_0} \pdv{(\delta n)}{t},
+	\qquad \text{or} \qquad
+	\delta \epsilon = \frac{\epsilon_0 + P_0}{n_0} \delta n
+\label{eq:relfluid:speed_of_sound_de_dn}
 \end{equation}
-Combining the two gives
+after integration, where we forget the integration constant, so $\delta \epsilon = 0$ when $\delta n = 0$.
+By eliminating $\epsilon_0 + P_0$ in equation \eqref{eq:relfluid:speed_of_sound_dvdt} using equation \eqref{eq:relfluid:speed_of_sound_de_dn}, we find
 \begin{equation}
-	\pdv{\vec{v}}{t} = -c^2 \frac{\nabla P}{\delta \epsilon} \frac{\delta n}{n}
-	                 = -c^2 \frac{\delta P}{\delta \epsilon} \frac{\nabla (\delta n)}{n}
-	                 = -v_s^2 \frac{\nabla (\delta n)}{n}
+	\pdv{\vec{v}}{t} = -c^2 \frac{\nabla (\delta P)}{\delta \epsilon} \frac{\delta n}{n_0}
+	                 %= -c^2 \frac{\delta P}{\delta \epsilon} \frac{\nabla (\delta n)}{n}
+	                 %= -v_s^2 \frac{\nabla (\delta n)}{n}
+\label{eq:relfluid:speed_of_sound_dvdt2}
 \end{equation}
-Combine this with first-order version of \eqref{eq:relfluid:baryon_number_rate_change},
+Intuitively, the pressure gradient $\nabla P$ should be parallel to the density gradient $\nabla n$.
+Mathematically, this can be expressed by the two equal unit vectors
+\begin{subequations}
 \begin{equation}
-	\odv{\delta n}{t} + n \nabla \cdot \vec{v} = 0,
+	\frac{\nabla (\delta P)}{\delta P} = \frac{\nabla (\delta n)}{\delta n} .
+\label{eq:relfluid:pressure_density_gradient_aligned}
 \end{equation}
-to find the wave equation
+A more rigorous way to see this is to note that the pressure depends on the density through an equation of state $P = P(n)$, so by the chain rule,
 \begin{equation}
-	\left( \odv[2]{}{t} - v_s^2 \nabla^2 \right) \delta n = 0
+	\nabla P = \odv{P}{n} \nabla P = \frac{\delta P}{\delta n} \nabla n ,
+\label{eq:relfluid:pressure_density_gradient_aligned_alternative}%
+\end{equation}%
+\end{subequations}%
+where we have interpreted the derivative $\odv{P}/{n}$ as the ratio $\delta P / \delta n$ between the two changes.
+Using either \eqref{eq:relfluid:pressure_density_gradient_aligned} or \eqref{eq:relfluid:pressure_density_gradient_aligned_alternative}, we can reexpress equation \eqref{eq:relfluid:speed_of_sound_dvdt2} as
+\begin{equation}
+	\pdv{\vec{v}}{t} = -c^2 \frac{\delta P}{\delta \epsilon} \frac{\nabla (\delta n)}{n_0}
+	                 = -c^2 \odv{P_0}{\epsilon_0} \frac{\nabla (\delta n)}{n_0}
+	                 = -v_s^2 \frac{\nabla (\delta n)}{n_0} .
+\label{eq:relfluid:speed_of_sound_dvdt3}
 \end{equation}
-showing that $v_s$ is indeed the velocity of sound waves.
+Again, we have interpreted $\delta P / \delta \epsilon$ as the derivative $\odv{P_0}/{\epsilon_0}$, because $\delta P = P - P_0$ and $\delta \epsilon = \epsilon - \epsilon_0$ are both changes from the equilibrium values.
+We claim that the \textbf{speed of sound} is
+\begin{equation}
+	v_s = c \, \sqrt{\odv{P_0}{\epsilon_0}} .
+\label{eq:relfluid:speed_of_sound}
+\end{equation}
+Why?
+To first order in the small quantities, the baryon number equation \eqref{eq:relfluid:baryon_number_rate_change} says
+\begin{equation}
+	\odv{(\delta n)}{t} + n_0 \nabla \cdot \vec{v} = 0 .
+\label{eq:relfluid:speed_of_sound_baryon_number_rate_of_change}
+\end{equation}
+Finally, combine equation \eqref{eq:relfluid:speed_of_sound_dvdt3} with equation \eqref{eq:relfluid:speed_of_sound_baryon_number_rate_of_change} to find
+\begin{equation}
+	\left( \odv[2]{}{t} - v_s^2 \, \nabla^2 \right) \delta n = 0 .
+\end{equation}
+This is a wave equation with solutions $\delta n = \delta n (\vec{x} \mp \vec{v} t)$ that describe density waves travelling at the speed of sound!
 
 
 \chapter{Matsubara energy summation}
