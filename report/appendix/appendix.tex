@@ -945,6 +945,33 @@ It then takes the practical form
 \end{equation}
 The last expression is possible to calculate from the equation of state $\epsilon = \epsilon(P)$.
 
+\section{Speed of sound}
+
+Euler \eqref{eq:relfluid:euler_equation} with $P = \text{const}$, $\epsilon = \text{const}$, flat space (Minkowski metric).
+Apply perturbation on top, then last term is small and we get.
+\begin{equation}
+	\pdv{\vec{v}}{t} = - \frac{c^2 \nabla (\delta P)}{\epsilon + P} .
+\end{equation}
+Adiabatic condition \eqref{eq:relfluid:energy_conservation_rewritten} gives
+\begin{equation}
+	\delta \epsilon = \left( \epsilon + P \right) \frac{\delta n}{n} .
+\end{equation}
+Combining the two gives
+\begin{equation}
+	\pdv{\vec{v}}{t} = -c^2 \frac{\nabla P}{\delta \epsilon} \frac{\delta n}{n}
+	                 = -c^2 \frac{\delta P}{\delta \epsilon} \frac{\nabla (\delta n)}{n}
+	                 = -v_s^2 \frac{\nabla (\delta n)}{n}
+\end{equation}
+Combine this with first-order version of \eqref{eq:relfluid:baryon_number_rate_change},
+\begin{equation}
+	\odv{\delta n}{t} + n \nabla \cdot \vec{v} = 0,
+\end{equation}
+to find the wave equation
+\begin{equation}
+	\left( \odv[2]{}{t} - v_s^2 \nabla^2 \right) \delta n = 0
+\end{equation}
+showing that $v_s$ is indeed the velocity of sound waves.
+
 
 \chapter{Matsubara energy summation}
 \label{chap:matsum}
