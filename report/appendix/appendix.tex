@@ -741,10 +741,8 @@ In a general metric $g_{\mu \nu}$, the \textbf{energy-momentum tensor} for a per
 
 \section{Conservation of baryon number}
 
-\TODO{make figure}
-
 Due to both the geometry of spacetime and spatial change of velocities, the volume $V(x(\tau))$ of a fluid element changes as it moves along a streamline.
-Let us derive the rate of change of this volume element in flat spacetime, then generalize the result using the equivalence principle \TODO{ref}.
+Let us derive the rate of change of this volume element in Minkowski space, then generalize the result using the equivalence principle \TODO{ref}.
 In flat spacetime and in a frame that follows the fluid element, $u^\mu(x) \taylor (c, \vec{v}(x))$, where $\vec{v}(x)$ is small close to the fluid element.
 As the fluid element flows from place to the next in a short time $\delta t = \delta \tau$, the length $L^i$ of the fluid element along a spatial dimension $i$ changes by
 \begin{equation}
@@ -763,15 +761,15 @@ The volume of the fluid element then changes by
 \end{equation}
 Since $u^0 = c$ in our reference frame, we make no mistake by including $\pdv{u^0}/{x^0} = 0$ in the sum.
 The rate of change is then given by the tensorial law
-\TODO{remark second equality due to vanishing Christoffel symbols?}
 \begin{equation}
-	\odv{V}{\tau} = V \pdv{u^\alpha}{x^\alpha} = V \nabla_\mu u^\mu .
+	\odv{V}{\tau} = V \pdv{u^\alpha}{x^\alpha} = V \nabla_\mu u^\mu ,
 \label{eq:relfluid:volume_rate_change}
 \end{equation}
-By the equivalence principle and its tensorial transformation properties, the same law holds in any spacetime and in any reference frame.
+where $\nabla_\mu = \partial_\mu$ because the Christoffel symbols vanish in Minkowski space.
+By the equivalence principle and its tensorial transformation properties, the same law holds in any spacetime and reference frame.
 
-Like the volume element, the baryon number density $n(x(\tau))$ can also change along a streamline.
-In contrast \TODO{to what?}, the total \textbf{baryon number} $N = n V$ must be conserved, as expressed by
+Like the volume element, the baryon number density $n(x(\tau))$ can change along a streamline.
+But the total \textbf{baryon number} $N = n V$ must be conserved, as expressed by
 \begin{equation}
 	\odv*{\left( n V \right)}{\tau} = 0 .
 \label{eq:relfluid:baryon_number_constant}
@@ -794,7 +792,6 @@ From \cref{eq:relfluid:baryon_number_divergence}, we can rewrite the conservatio
 \label{eq:relfluid:baryon_number_rate_change}
 \end{equation}
 expressing the rate of change of the density along a stream line.
-\TODO{show that this is a continuity equation?}
 
 In the Newtonian limit, $u^\mu = (c, \vec{v})$ and the vanishing divergence \cref{eq:relfluid:baryon_number_divergence} can be rewritten as the continuity equation
 \begin{equation}
