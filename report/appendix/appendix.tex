@@ -1542,7 +1542,7 @@ The shooting method finds any \emph{one} eigenvalue $\omega_n^2$ and its corresp
 \item \textbf{Guess} \emph{any} value $\omega^2$ for the eigenvalue $\omega_n^2$.
 \item \textbf{Impose} the boundary condition \eqref{eq:shooting:sturm_liouville_bc1} by setting $U(r) \propto r^3$ near $r = 0$. \label{item:shooting:bc1}
 \item \textbf{Shoot} the corresponding guess $U(r)$ for the eigenfunction $U_n(r)$ by numerically integrating the Sturm-Liouville equation \eqref{eq:shooting:sturm_liouville_diffeq} to $r=R$. \label{item:shooting:shoot}
-\item \textbf{Count} the number of nodes $n(\omega^2)$ of $U(r)$.  \TODO{rethink number of nodes notation?}
+\item \textbf{Count} the number of nodes $n(\omega^2)$ of $U(r)$.
       \begin{enumerate}
       \item If $n(\omega^2) > n$, then Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros} on page~\pageref{item:nstars:sturm_liouville_zeros} implies that $\omega^2 > \omega_n^2$, so \textbf{decrease} the guess for $\omega^2$.
       \item If $n(\omega^2) \leq n$, then Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros} on page~\pageref{item:nstars:sturm_liouville_zeros} implies that $\omega^2 < \omega_n^2$, so \textbf{increase} the guess for $\omega^2$.
