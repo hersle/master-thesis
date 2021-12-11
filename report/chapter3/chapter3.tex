@@ -259,7 +259,16 @@ First, consider the ultra-relativistic limit
 \label{eq:nstars:ur_limit}
 \end{equation}
 where the Fermi energy $E_F = \sqrt{p_F^2 c^2 + m^2 c^4} \taylor p_F c$ is dominated by the contribution from the Fermi momentum.
-Since $\log \left( x_F + \sqrt{x_F^2 + 1} \right) \taylor \log 2 x_F$ diverges logarithmically, we see that both the energy density \eqref{eq:nstars:energy_density_zeroT} and pressure \eqref{eq:nstars:pressure_zeroT} are dominated by their first term with $2 x_F^3 \sqrt{x_F^2 + 1} \taylor 2 x_F^4$.
+We can find the asymptotic behavior of the energy density \eqref{eq:nstars:energy_density_zeroT} and pressure \eqref{eq:nstars:pressure_zeroT} by expanding the square root up to $\sqrt{x_F^2 + 1} \taylor 1 + 1/2x^2 - 1/8x^4$ and the logarithm as $\log \left( x_F + \sqrt{x_F^2 + 1} \right) \taylor \log 2 x_F$.
+Then the energy density is asympotitc to
+\begin{equation}
+	\epsilon \taylor \frac{m^4 c^5}{8 \pi^2 \hbar^3} \left[ 2 x_F^4 + 2 x_F^2 + \frac14 - \log 2x_F \right] ,
+\end{equation}
+while the pressure is asymptotic to
+\begin{equation}
+	P \taylor \frac{m^4 c^5}{24 \pi^2 \hbar^3} \left[ 2 x_F^4 - 2 x_F^2 - \frac74 + 3 \log 2x_F \right] .
+\end{equation}
+The crudest approximation follows from considering both to be dominated by the first terms proportional to $x_F^4$.
 In the ultra-relativistic limit, then,
 \begin{equation}
 	\epsilon \taylor \frac{m^4 c^5 x_F^4}{4 \pi^2 \hbar^3}
