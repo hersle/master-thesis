@@ -707,7 +707,7 @@ We will look at the \textbf{flow} of fluid elements along stream lines $x(\tau)$
 
 \textit{This appendix is inspired by references \cite{ref:mtw} and \cite{ref:weinberg_gravity}.}
 
-\section{Definition of energy-momentum tensor}
+\section{Energy-momentum tensor}
 
 The definition of a perfect fluid is that the surrounding fluid appears isotropic from the rest frame that follows a given fluid element.
 In this frame, the energy-momentum tensor must take the standard, diagonal form
@@ -805,7 +805,7 @@ The conservation of energy-momentum $\nabla_\mu T^{\mu \nu} = 0$ implies
 \begin{equation}
 \begin{split}
 	0 &= \nabla_\mu T^{\mu \nu} \\
-	  &= \nabla_\mu \left[ \frac{1}{c^2} u_\mu u_\nu (\epsilon + P) - g_{\mu \nu} P \right] \\
+	  &= \nabla_\mu \left[ \frac{1}{c^2} u^\mu u^\nu (\epsilon + P) - g_{\mu \nu} P \right] \\
 	  &= \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( u^\nu \nabla_\mu u^\mu + u^\mu \nabla_\mu u^\nu \Big) + u^\mu u^\nu \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\nu P . \\
 \end{split}
 \label{eq:relfluid:conservation_energy_momentum}
@@ -833,9 +833,9 @@ From these expressions, it is convenient to define the parallel and orthogonal \
 \label{eq:relfluid:projection_tensors}
 \end{equation}
 that project out the parallel part $v_\parallel^\alpha = \left(P_\parallel\right)\indices{^\alpha_\beta} v^\beta$ and $v_\perp^\alpha = \left(P_\perp\right)\indices{^\alpha_\beta} v^\beta$ of the vector $v^\alpha$.
-These projectors are valid for any normalization $u^\mu u_\mu$.
-With our conventions and choice of units, $u^\mu u_\mu = c^2$.
-\TODO{show projector property $P^2 = P$!}
+With our conventions and choice of units, $u^\mu u_\mu = c^2$, but the projectors above are valid for any normalization $u^\mu u_\mu$.
+It is straightforward to verify that both projectors have the characteristic property $\left( P\indices{^\alpha_\beta} \right)^2 = P\indices{^\alpha_\gamma} P\indices{^\gamma_\beta} = P\indices{^\alpha_\beta}$.
+This is geometrically intuitive, since a projection does not modify an already projected vector.
 
 \subsection{Energy conservation}
 
