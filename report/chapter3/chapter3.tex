@@ -677,7 +677,7 @@ Following \cite{ref:chandrasekhar_stability}, let us use perturbation theory and
 \end{equation}
 with small perturbations $\delta \alpha$, $\delta \beta$, $\delta P$ and $\delta \epsilon$ around their equilibrium values and calculate everything only to first order in the small quantities.
 
-We want to determine the displacement of fluid elements from the unperturbed star to the perturbed star.
+We want to determine how these variations displace fluid elements from the unperturbed star to the perturbed star.
 Evolution of this quantity should give us insight into how the star responds to perturbations.
 Let us therefore define $\xi(t, r)$ so that if we attach a tracker to some fixed fluid element in the star, then
 \begin{equation}
@@ -687,6 +687,7 @@ Let us therefore define $\xi(t, r)$ so that if we attach a tracker to some fixed
 \end{split}
 \end{equation}
 Like $\delta \alpha$, $\delta \beta$, $\delta P$ and $\delta \epsilon$, we treat $\xi$ as a small quantity.
+We have chosen to name the displacement $\xi$ instead of, say, $\delta r$, to avoid confusion with the radial \emph{coordinate} $r$ and increase readability at the cost of consistency.
 
 What is the relation between the fluid element displacement $\xi(r,t)$ and the fluid's four-velocity?
 By our definition, $\pdv{\xi}/{t} = \odv{r}/{t}$, where right side is to be interpreted as the derivative of the fluid element's radial coordinate taken \emph{along its world line} -- or \emph{stream line} -- $x(\tau)$.
@@ -1047,8 +1048,6 @@ Similarly, a balloon in equilibrium can always be made to burst -- just blow mor
 If it reaches a new state of equilibrium, just repeat the process until it bursts.
 
 % \TODO{can the instability stuff be connect to attractor/chaos stuff from nonlinear dynamics? Svar: check fixed points from nonlinear dynamics, check stability by checking the sign of the jacobian matrix or something?}
-
-\TODO{write $\delta r$ instead of $\xi$ to be consistent with the $\delta$-quantities?}
 
 \subsubsection{Numerical solution of the Sturm-Liouville problem with the shooting method}
 
