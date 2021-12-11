@@ -133,6 +133,5 @@ def massradiusplot(
 
     if outfile != "":
         utils.writecols([Ps, Ms, Rs, nus], ["P", "M", "R", "nu"], outfile)
-        print(f"Wrote (P, M, R, nu) to {outfile}")
     
     return Ps, Ms, Rs

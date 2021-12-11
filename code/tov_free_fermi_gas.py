@@ -7,6 +7,9 @@ import utils
 import numpy as np
 import scipy.optimize
 
+def ϵUR(P):
+    return 3 * P
+
 # Non-relativistic limit
 def ϵNR(P):
     if P <= 0:
@@ -28,7 +31,14 @@ def ϵGR(P):
     ϵx = 3*prefactor * ((2*x**3+x) * np.sqrt(x**2 + 1) - np.arcsinh(x))
     return ϵx
 
-opts_common = {
+# Write equations of state
+P = np.linspace(0, 20, 500)
+ϵs = []
+for ϵ in (ϵUR, ϵNR, ϵGR):
+    ϵs.append([ϵ(P) for P in P])
+utils.writecols([P, ϵs[0], ϵs[1], ϵs[2]], ["P", "epsUR", "epsNR", "epsGR"], "data/eos.dat")
+
+opts = {
     "tolD": 0.05,
     "tolP": 1e-5,
     "maxdr": 1e-3,

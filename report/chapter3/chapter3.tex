@@ -372,6 +372,8 @@ where $P(x_F)$ is the pressure \eqref{eq:nstars:gr_limit_pressure} as a function
 Having found the root, we can simply calculate the corresponding energy density $\epsilon(x_F)$ from \cref{eq:nstars:gr_limit_energy_density}.
 This whole procedure can be elegantly encapsulated into a function that implements an implicit equation of state $\epsilon = \epsilon(P)$.
 
+All three equations of state are shown in \cref{fig:nstars:eos}.
+
 \iffalse
 \begin{equation}
 	\diml{P}(x_F) = \frac{m^4 c^3 r_0^3}{18 \pi m_0 \hbar^3} \left[ (2 x_F^3 - 3 x_F) \sqrt{x_F^2 + 1} + 3 \asinh x_F \right]
@@ -387,6 +389,33 @@ and then calculate
 	\diml{ϵ} = \diml{ϵ}(x_F) = \diml{P}(x_F) = \frac{m^4 c^3 r_0^3}{6 \pi m_0 \hbar^3} \left[ (2 x_F^3 + x_F) \sqrt{x_F^2 + 1} - \asinh x_F \right]
 \end{equation}
 \fi
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	width = 12cm, height=8cm,
+	xlabel = {$P \, / \, \left[ \solarmass c^2 / (4 \pi R_0^3 / 3) \right]$}, ylabel = {$\epsilon(P) \, / \, \left[ \solarmass c^2 / (4 \pi R_0^3 / 3) \right]$},
+	title = {Equations of state for degenerate Fermi gas},
+	enlargelimits = false, xmax=15,
+	legend pos = north west,
+	legend cell align = left,
+	declare function = {
+		E(\x) = 2;
+	},
+]
+\addplot [black, solid, semithick] table [x=P, y=epsGR] {../code/data/eos.dat};
+\addlegendentry{General $x_F$};
+\addplot [blue, densely dashed, semithick] table [x=P, y=epsNR] {../code/data/eos.dat};
+\addlegendentry{Non-relativistic $x_F \ll 1$};
+\addplot [red,  densely dashdotted, semithick] table [x=P, y=epsUR] {../code/data/eos.dat};
+\addlegendentry{Ultra-relativistic $x_F \gg 1$};
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:nstars:eos}%
+	Equations of state $\epsilon(P)$ for a degenerate Fermi gas for general Fermi momenta $p_F = m c \, x_F$, non-relativistic $p_F \ll mc$ and ultra-relativistic $p_F \gg mc$.
+}
+\end{figure}
 
 \section{Mass-radius curve parametrized by central pressure}
 

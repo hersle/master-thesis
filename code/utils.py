@@ -1,6 +1,7 @@
 import numpy as np
 
 def writecols(cols, headers, filename):
+    print(f"Wrote {headers} to {filename}")
     maxlen = max(len(col) for col in cols)
     for col in cols:
         while len(col) < maxlen:
