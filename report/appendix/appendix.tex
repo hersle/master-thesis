@@ -722,6 +722,16 @@ Using the stationary Christoffel symbols \eqref{eq:weak_field_limit:static_chris
 
 Inserting $h_{00} = 2V/c^2$ from \cref{eq:weak_field_limit:metric_with_potential} and comparing the result to \cref{eq:weak_field_limit:ricci_from_energy_momentum}, we see that the Einstein field equations yield the Poisson equation \eqref{eq:interpretation_m:poisson} in the Newtonian limit!
 
+\section{Derivation of the Tolman-Oppenheimer-Volkoff equation \texorpdfstring{\\}{} without using energy-momentum conservation}
+\label{sec:tov_cas_derivation}
+
+When deriving \cref{eq:tov} analytically, we made use of energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$ instead of making use of \cref{eq:einstein_to_tov:thetatheta}.
+Inspired by \cite{ref:sage_tov}, we have here written a small program that does the latter in the computer algebra system SAGE.
+
+\codefile{python}{../code/tov_derive.sage}
+
+The output of the program matches \cref{eq:tov} precisely.
+
 
 \chapter{Relativistic fluid dynamics}
 \label{chap:relfluid}
@@ -1451,20 +1461,8 @@ For later reference, recall that the upper and lower signs hold for bosons and f
 	\end{equation*}
 }
 
-\chapter{Code}
-\label{chap:code}
-
-\section{Derivation of the Tolman-Oppenheimer-Volkoff equation \texorpdfstring{\\}{} without using energy-momentum conservation}
-\label{sec:tov_cas_derivation}
-
-When deriving \cref{eq:tov} analytically, we made use of energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$ instead of substituting our results into the unused \cref{eq:einstein_to_tov:thetatheta}.
-Here, we do the latter in the computer algebra system SAGE, inspired by \cite{ref:sage_tov}.
-
-\codefile{python}{../code/tov_derive.sage}
-
-The output matches \cref{eq:tov} precisely.
-
 \chapter{Numerical implementations}
+\label{chap:code}
 
 \section{Integration of the Tolman-Oppenheimer-Volkoff equation}
 \label{sec:nstars:numtov}
