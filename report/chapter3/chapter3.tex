@@ -408,11 +408,11 @@ and then calculate
 }
 \end{figure}
 
-\section{Mass-radius curve parametrized by central pressure}
+\section{Mass-radius relation for ideal neutron stars}
 
 Having obtained the equation of state $\epsilon = \epsilon(P)$, we are finally in a position to solve the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}.
 
-\subsection{Ultra-relativistic limit}
+\subsection{Ultra-relativistic equation of state}
 
 With the ultra-relativistic equation of state \eqref{eq:nstars:ur_eos}, the Tolman-Oppenheimer-Volkoff can be solved analytically with the polynomial trial solution
 \begin{equation}
@@ -449,7 +449,7 @@ This is a highly unphysical result.
 The pressure diverges at the center, so gravity cannot hold such a star together.
 In addition, $p(r) > 0$ for all $r$, so the star has no surface and hence infinite mass $M = m(\infty) = \infty$.
 
-\subsection{Non-relativistic limit}
+\subsection{Non-relativistic equation of state}
 \label{sec:nstars:nr_limit_solve}
 
 With the power dependence of the non-relativistic equation of state \eqref{eq:nstars:nr_eos}, it is not easy, if even possible, to solve the TOV equation analytically.
@@ -458,7 +458,7 @@ We therefore resort to the numerical solution method described in \cref{sec:nsta
 This results in the mass-radius curve shown in \cref{fig:nstars:massradius}.
 Notably, the curve peaks at the maximum mass $M = 0.96 \solarmass$ around $R = \SI{8.11}{\kilo\meter}$ when using the full Tolman-Oppenheimer-Volkoff pressure gradient \eqref{eq:tov:tovsys_pressure}, but not when using its Newtonian limit \eqref{eq:weak_field_limit:newtonian_pressure_gradient}.
 
-\subsection{General Fermi momenta}
+\subsection{General equation of state}
 
 For general Fermi momenta, the equation of state $\epsilon = \epsilon(P)$ is calculated numerically as described in \cref{sec:nstars:gr_limit}, and the Tolman-Oppenheimer-Volkoff equations are integrated numerically as described in \cref{sec:nstars:nr_limit_solve}.
 The resulting mass-radius curve is also shown in \cref{fig:nstars:massradius}.
