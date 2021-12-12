@@ -133,7 +133,7 @@ At \emph{absolute} zero temperature $T = 0$, the Fermi-Dirac distribution
 behaves like a step function.
 To see this, observe that $T = 0$ corresponds to $\beta = \infty$, and that the sign of $E - \mu$ determines whether the exponential $e^{\beta (E - \mu)}$ in the denominator blows up or vanishes, and hence whether the fraction survives.
 Physically, this means that the system is completely degenerate, filling only momentum states with $E(\vec{p}) < \mu$.
-The filled states with highest momentum $p_F$ make up a so-called \emph{Fermi surface} $\abs{\vec{p}} = p_F$ in momentum space, and the corresponding maximum energy $E_F = \sqrt{p_F^2 c^2 + m^2 c^4}$ is called the \emph{Fermi energy}, and is equal to the chemical potential when $T = 0$.
+The filled states with highest momentum $p_F$ make up a so-called \emph{Fermi surface} $\abs{\vec{p}} = p_F$ in momentum space, and the corresponding maximum energy $E_F = \sqrt{\smash[b]{p_F^2 c^2 + m^2 c^4}}$ is called the \emph{Fermi energy}, and is equal to the chemical potential when $T = 0$.
 
 Typical neutron star core temperatures linger around $T_0 \approx \SI{1e6}{\kelvin}$, \cite{ref:glendenning} so how is this relevant for our purposes?
 By using a Sommerfeld expansion, it is possible to show mathematically that the chemical potential at a finite temperature $T > 0$ is corrected from the Fermi energy by
@@ -143,7 +143,7 @@ By using a Sommerfeld expansion, it is possible to show mathematically that the 
 	%\mu(T) = E_F - \frac{\pi^2}{6} (k_B T)^2 \frac{g'(E_F)}{g(E_F)}
 \end{equation}
 to first nonzero order in $T/T_F$, where $T_F = E_F / k_B$ is the \emph{Fermi temperature} corresponding to the Fermi energy $E_F$, and $g(E)$ the density of states.
-Neutrons have mass $m \approx \SI{1.67e-27}{\kilogram}$, so $T_F = \sqrt{p_F^2 c^2 + m^2 c^4} / k_B > m c^2 / k_B \approx \SI{1e13}{\kelvin}$.
+Neutrons have mass $m \approx \SI{1.67e-27}{\kilogram}$, so $T_F = \sqrt{\smash[b]{p_F^2 c^2 + m^2 c^4}} / k_B > m c^2 / k_B \approx \SI{1e13}{\kelvin}$.
 Thus, $T / T_F < T_0 / T_F \approx 10^{-7} \ll 1$, and it is therefore an excellent approximation to take the limit
 \begin{equation}
 	\beta \mu \gg 1 .
@@ -258,8 +258,8 @@ First, consider the ultra-relativistic limit
 	x_F \gg 1 , 
 \label{eq:nstars:ur_limit}
 \end{equation}
-where the Fermi energy $E_F = \sqrt{p_F^2 c^2 + m^2 c^4} \taylor p_F c$ is dominated by the contribution from the Fermi momentum.
-Since $\log \left( x_F + \sqrt{x_F^2 + 1} \right) \taylor \log 2 x_F$ diverges logarithmically, we see that both the energy density \eqref{eq:nstars:energy_density_zeroT} and pressure \eqref{eq:nstars:pressure_zeroT} are dominated by their first term with $2 x_F^3 \sqrt{x_F^2 + 1} \taylor 2 x_F^4$.
+where the Fermi energy $E_F = \sqrt{\smash[b]{p_F^2 c^2 + m^2 c^4}} \taylor p_F c$ is dominated by the contribution from the Fermi momentum.
+Since $\log \big( x_F + \sqrt{\smash[b]{x_F^2 + 1}} \big) \taylor \log 2 x_F$ diverges logarithmically, we see that both the energy density \eqref{eq:nstars:energy_density_zeroT} and pressure \eqref{eq:nstars:pressure_zeroT} are dominated by their first term with $2 x_F^3 \sqrt{\smash[b]{x_F^2 + 1}} \taylor 2 x_F^4$.
 In the ultra-relativistic limit, then,
 \begin{equation}
 	\epsilon \taylor \frac{m^4 c^5 x_F^4}{4 \pi^2 \hbar^3}
@@ -314,7 +314,7 @@ Next, let us consider the sligthly more complicated non-relativistic limit
 	x_F \ll 1,
 \label{eq:nstars:nr_limit}
 \end{equation}
-where the Fermi energy $E_F = \sqrt{p_F^2 c^2 + m^2 c^4} \taylor m c^2$ is dominated by the rest energy of the fermions.
+where the Fermi energy $E_F = \sqrt{\smash[b]{p_F^2 c^2 + m^2 c^4}} \taylor m c^2$ is dominated by the rest energy of the fermions.
 Taylor expanding the energy density \eqref{eq:nstars:energy_density_zeroT} and presure \eqref{eq:nstars:pressure_zeroT} around $x_F = 0$ to lowest order, we find
 \begin{equation}
 	%\epsilon &\taylor \frac{m c^2 p_F^3}{3 \pi^2 \hbar^3} + \frac{p_F^5}{10 \pi^2 \hbar^3 m} = n m c^2 + \frac{p_F^5}{10 \pi^2 \hbar^3 m} \\

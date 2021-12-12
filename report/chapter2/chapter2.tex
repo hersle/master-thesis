@@ -113,7 +113,7 @@ we have the Delta function $\delta(x'-x) = \int (\dif k / 2 \pi) \, e^{i k (x'-x
 \begin{split}
 	\braket{\pi_a | \pi_b} &= \int \dif \phi \braket{\pi_a | \phi} \braket{\phi | \pi_b} \\
 	                       &= \int \dif \phi \exp \left\{ \frac{i}{\hbar} \int \dif^3 x \, \left[ \pi_b(\vec{x}) - \pi_a(\vec{x}) \right] \phi(\vec{x}) \right\} \\
-						   &= 2 \pi \hbar \, \delta \left( \pi_a(\vec{x}) - \pi_b(\vec{x}) \right) .
+	                       &= 2 \pi \hbar \, \delta \left( \pi_a(\vec{x}) - \pi_b(\vec{x}) \right) .
 \end{split}
 \end{equation}
 To find the completeness relation, we postulate it up to a constant $B$.
@@ -168,8 +168,8 @@ We then obtain
 \begin{equation}
 \begin{split}
 	\Braket{\pi_n | e^{- i \hat{H} \Delta t / \hbar} | \phi_n} &\taylor \Braket{\pi_n | (1 - i \hat{H} \Delta t / \hbar) | \phi_n} \\
-	                                                   &=       \Braket{\pi_n | \phi_n} (1 - i H_n \Delta t / \hbar) \\
-	                                                   &\taylor \Braket{\pi_n | \phi_n} e^{- i H_n \Delta t / \hbar}, \\
+	                                                           &=       \Braket{\pi_n | \phi_n} (1 - i H_n \Delta t / \hbar) \\
+	                                                           &\taylor \Braket{\pi_n | \phi_n} e^{- i H_n \Delta t / \hbar}, \\
 \end{split}
 \label{eq:tft:path_integral_hamiltonian_assumption}
 \end{equation}
@@ -338,8 +338,8 @@ Under a standard, Abelian gauge transformation
 we can apply the product rule backwards to show that the Lagrangian density changes as
 \begin{equation}
 	\lagr = \lagr_0 + A_\mu j^\mu \quad \rightarrow \quad \lagr' = \lagr_0 + A'_\mu j^\mu
-	                                                             = \lagr   + (\partial_\mu \lambda) j^\mu
-	                                                             = \lagr   + \partial_\mu (\lambda j^\mu) - \lambda \underbrace{\partial_\mu j^\mu}_0 .
+	      = \lagr   + (\partial_\mu \lambda) j^\mu
+	      = \lagr   + \partial_\mu (\lambda j^\mu) - \lambda \partial_\mu j^\mu .
 \end{equation}
 Thus, the Lagrangian is invariant up to the surface term $\partial_\mu (\lambda j^\mu)$, provided that the current is conserved according to $\partial_\mu j^\mu = 0$, so the equations of motion are unchanged.
 To make contact between the field theory and the grand canonical ensemble where $\ham' = \ham - \mu \numdensity$, we see that the chemical potential $\mu$ is equivalent to the temporal component of a constant gauge field
@@ -520,7 +520,7 @@ Applying an annihilation operator to this state gives
 	%\destr_j \ket{\psi} = \destr_j \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} = + \psi_j \destr_j \creat_j \ket{0} = \psi_j \ket{0} .
 	\destr_j \ket{\psi} &= \destr_j \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} = \prod_{i \neq j} \left( 1 - \psi_i \creat_i \right) \destr_j \left( 1 - \psi_j \creat_j \right) \ket{0} \\
 	                    &= \prod_{i \neq j} \left( 1 - \psi_i \creat_i \right) \psi_j \ket{0} = \prod_{i \neq j} \left( 1 - \psi_i \creat_i \right) \psi_j \left( 1 - \psi_j \creat_j \right) \ket{0}   \\
-	                    &= \psi_j \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} = \psi_j \ket{\psi} . \\
+                    	&= \psi_j \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} = \psi_j \ket{\psi} . \\
 \end{aligned}
 \end{equation}
 In other words, the coherent state $\ket{\psi}$ is an eigenstate of every annihilation operator $\destr_j$ with eigenvalue $\psi_j$!
@@ -536,10 +536,10 @@ It is
 	                      &= \braket{0 | 0} + \sum_{i,j} \braket{0 | \destr_i \conj\psi_i \psi'_j \creat_j | 0}
 	                       = \braket{0 | 0} + \sum_{i,j} \conj\psi_i \psi'_j \braket{0 | \destr_i \creat_j | 0} \\
 	                      &= \braket{0 | 0} + \sum_{i  } \conj\psi_i \psi'_i
-						   = 1 + \sum_i \conj\psi_i \psi'_i = \exp \left( \sum_i \conj\psi_i \psi'_i \right) .
+	                       = 1 + \sum_i \conj\psi_i \psi'_i = \exp \left( \sum_i \conj\psi_i \psi'_i \right) .
 	\fi
 	\Braket{\psi | \psi'} &= \Braket{\psi | \prod_i (1 - \psi'_i \creat_i) | 0} = \Braket{\psi | \prod_i (1 + \creat_i \psi'_i) | 0} = \Braket{\psi | \prod_i (1 + \conj\psi_i \psi'_i) | 0} \\
-						  &= \underbrace{\Braket{0 | 0}}_{1} \prod_i (1 + \conj\psi_i \psi'_i) = \prod_i \exp(\conj\psi_i \psi'_i) = \exp \left( \sum_i \conj\psi_i \psi'_i \right) .
+	                      &= \underbrace{\Braket{0 | 0}}_{1} \prod_i (1 + \conj\psi_i \psi'_i) = \prod_i \exp(\conj\psi_i \psi'_i) = \exp \left( \sum_i \conj\psi_i \psi'_i \right) .
 \end{split}
 \label{eq:tft:grassmann_inner_product_discrete}
 \end{equation}
@@ -577,7 +577,7 @@ Based on this, we can derive three rules for what combinations of factors we can
 If we choose $\psi_i \conj\psi_i$ in the first parenthesis, we \emph{must} choose $1$ in the second to avoid a duplicate factor $\psi_i^2 = 0$.
 Conversely, if we choose $1$ in the first, we \emph{must} choose $-\psi_j \creat_j$ in the second to ``saturate'' the field product.
 \item \textbf{For $k = j = i$ in the third parenthesis:} 
-If we choose $-\psi_j \creat_j$ in the second, we \emph{must} choose $-\psi_k \creat_k$ in the third to get $\psi_j \conj\psi_j$ in the field product.
+If we choose $-\psi_j \creat_j$ in the second, we \emph{must} choose $\smash{-\psi_k \creat_k}$ in the third to get $\psi_j \conj\psi_j$ in the field product.
 Conversely, if we choose $1$ in the second, then we have already included $\psi_i \conj\psi_i$ from rule \ref{eq:tft:logic_tree_one}, and we \emph{must} choose $1$ in the third to not ``oversaturate'' the field product. \label{eq:tft:logic_tree_three}
 \end{enumerate}
 Following these rules, the first parenthesis expands to all possible $2^N$ terms.
@@ -611,7 +611,7 @@ With the same reasoning, we can work out that the trace of an operator $\hat{A}$
 \end{split}
 \label{eq:tft:trace_grassmann_discrete}
 \end{equation}
-Across the third equality, we (anti)commute $\psi_j$ and $\conj\psi_j$ all the way to the left to write $\braket{0 | \destr_j \conj\psi_j \hat{A} (-\psi_j \creat_j) | 0} = \psi_j \conj\psi_j \braket{0 | \destr_j \hat{A} \creat_j | 0}$ while assuming that $\hat{A}$ is a ``bosonic'' operator that \emph{commutes} with the Grassmann numbers.
+Across the third equality, we (anti)commute $\psi_j$ and $\conj\psi_j$ all the way to the left to write $\smash{\braket{0 | \destr_j \conj\psi_j \hat{A} (-\psi_j \creat_j) | 0} = \psi_j \conj\psi_j \braket{0 | \destr_j \hat{A} \creat_j | 0}}$ while assuming that $\smash{\hat{A}}$ is a ``bosonic'' operator that \emph{commutes} with the Grassmann numbers.
 The Hamiltonian \eqref{eq:tft:dirac_hamiltonian} for a Dirac field that we encounter later is one example of such an $\hat{A}$, as it contains two field operators.
 
 As we remarked at the start, this analysis was for discrete fields that satisfy the discrete anticommutators \eqref{eq:tft:fermionic_all_anticommutators}.
@@ -693,9 +693,9 @@ We have just seen that the partition function for bosons and fermions can be exp
 In other words, a bosonic \emph{or} fermionic field $\phi(\vec{x}, \tau)$ satisfies the (anti)periodicity
 \begin{equation}
 	\phi(\vec{x}, \tau) = \begin{cases}
-						      + \phi(\vec{x}, \tau + \beta \hbar) & \text{for bosons} \\
-						      - \phi(\vec{x}, \tau + \beta \hbar) & \text{for fermions} .
-	                      \end{cases}
+		+ \phi(\vec{x}, \tau + \beta \hbar) & \text{for bosons} \\
+		- \phi(\vec{x}, \tau + \beta \hbar) & \text{for fermions} .
+	\end{cases}
 \label{eq:tft:periodicity}
 \end{equation}
 Accordingly, we can expand either field in a Fourier series
@@ -705,9 +705,9 @@ Accordingly, we can expand either field in a Fourier series
 with \textbf{Matsubara frequencies} 
 \begin{equation}
 	\omega_n = \begin{cases}
-			       2 \pi n / \beta \hbar    & \text{for bosons} \\
-				   2 \pi (n+\frac12) / \beta \hbar & \text{for fermions} .
-	           \end{cases}
+		2 \pi n / \beta \hbar    & \text{for bosons} \\
+		2 \pi (n+\frac12) / \beta \hbar & \text{for fermions} .
+	\end{cases}
 \label{eq:tft:matsubara_frequencies}
 \end{equation}
 
