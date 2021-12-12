@@ -1327,13 +1327,42 @@ For later reference, recall that the upper and lower signs hold for bosons and f
 \newcommand\formulawithcomment[4]{%
 \textbf{#1:}
 #2
-\textbf{#3:} #4
+\textit{#3:} #4
 }
 
 \newcommand\formulawithproof[3]{\formulawithcomment{#1}{#2}{Proof}{#3}}
 \newcommand\formulawithreference[3]{\formulawithcomment{#1}{#2}{Reference}{#3}}
 
-\formulawithproof{Scaled Gaussian integral}{
+\formulawithproof{First rational integral for incompressible star}{
+\begin{equation}
+	\int \frac{x \, \dif x}{ax^2 + b} = \frac{1}{2a} \log \left( a x^2 + b \right) + C .
+	\label{eq:integrals:logarithm_xnum}
+\end{equation}
+}{
+	Substitute $y = a x^2 + b$ with $\dif y = 2 a x \dif x$ to obtain
+	\begin{equation*}
+		\int \frac{x \, \dif x}{ax^2 + b} = \frac{1}{2a} \int \frac{\dif y}{y} = \frac{1}{2a} \log y + C = \frac{1}{2a} \log \left( a x^2 + b \right) + C .
+	\end{equation*}
+}
+
+\formulawithproof{Second rational integral for incompressible star}{
+\begin{equation}
+	\int \frac{\dif x}{ax^2 + bx} = -\frac{1}{b} \log \left( a + \frac{b}{x} \right) + C .
+	\label{eq:integrals:logarithm_1num}
+\end{equation}
+}{
+	Complete the square in the denominator to obtain
+	\begin{align*}
+		I &= \int \frac{\dif x}{ax^2 + bx} \\
+		  &= \frac{1}{\sqrt{a}} \int \frac{\dif y}{y^2 - b^2 / 4a} & \qquad & \Big( \text{complete square with } y = \sqrt{a} x + b / 2 \sqrt{a} \Big) \\
+		  &= \frac{2}{b} \int \frac{\dif z}{z^2 - 1} & \qquad & \Big( \text{substitute } z = 2 \sqrt{a} y / b \Big) \\
+		  &= \frac{1}{b} \left( \int \frac{\dif z}{z-1} - \int \frac{\dif z}{z+1} \right) & \qquad & \Big( \text{partial fraction decomposition} \Big) \\
+		  &= \frac{1}{b} \log \left( \frac{z-1}{z+1} \right) + C \\
+		  &= -\frac{1}{b} \log \left( a + \frac{b}{x} \right) + C + \frac{\log a}{b} & \qquad & \Big( \text{reexpress $z$ in terms of $x$} \Big) . \\
+	\end{align*}
+}
+
+\formulawithproof{Unscaled Gaussian integral}{
 	\begin{equation}
 		\int_{-\infty}^{+\infty} \dif x \, e^{-x^2} = \sqrt{\pi} .
 	\label{eq:integrals:gaussian_sqrtpi}

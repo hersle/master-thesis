@@ -66,15 +66,15 @@ For our purposes, we therefore use the coordinates
 	0 \leq \theta \leq \pi, \quad
 	0 \leq \phi < 2 \pi .
 \end{equation}
-and consider the most general line element that exhibits spherical symmetry, \cite[equation 5.11]{ref:carroll}
+and consider the most general metric that exhibits spherical symmetry, \cite[equation 5.11]{ref:carroll}
 \begin{equation}
 	% coordinates x = (ct, r, θ, ϕ)
 	\dif s^2 = e^{2 \alpha(r)} c^2 \dif t^2 - e^{2 \beta(r)} \dif r^2 - r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
 \label{eq:tov:metric}
 \end{equation}
 
-We model the interior of the star as a perfect fluid.
-In \cref{chap:relfluid}, we show that it has the energy-momentum tensor
+We model the interior of the star as a perfect fluid in equilibrium.
+In \cref{chap:relfluid}, we show that a perfect fluid has the energy-momentum tensor
 \begin{equation}
 	T\indices{_\mu_\nu}(r) = \frac{u_\mu u_\nu}{c^2} \left[ \epsilon(r)+P(r) \right]  - g\indices{_\mu_\nu} P(r) .
 	\label{eq:tov:energy_momentum_perfect_fluid}
@@ -123,7 +123,7 @@ After inserting the energy-momentum tensor on the right and simplifying, we get 
 First, let us quickly review the Schwarzschild solution outside the star, where there is no pressure nor energy density and all right sides vanish.
 Adding equation \eqref{eq:einstein_to_tov:tt} and \eqref{eq:einstein_to_tov:rr} then yields $(\alpha + \beta)' = 0$, so $\alpha + \beta = C$ for some constant $C$.
 The constant can be found by noting that far away from the star, as $r \rightarrow \infty$, the metric should reduce to the Minkowski metric with $e^{2\alpha} = e^{2 \beta} = 1$, so we must have $\alpha + \beta = 0$.
-Inserting $\beta' = -\alpha'$ into equation \eqref{eq:einstein_to_tov:thetatheta} then gives a differential equation for $\alpha$ whose solution is $\alpha = \frac12 \log \left( 1 - D / r \right)$ for some constant $D$.
+Inserting $\beta' = -\alpha'$ into equation \eqref{eq:einstein_to_tov:thetatheta} then gives a differential equation for $\alpha$ whose solution is $\alpha = \log \left( 1 - D / r \right) / 2$ for some constant $D$.
 To determine it, we use that in the Newtonian limit \eqref{eq:weak_field_limit:metric_with_potential}, the temporal metric element should reduce to $e^{2 \alpha} = 1 + 2 V / c^2$ where $V = - G M / r$ is the Newtonian gravitational potential of the star and $M$ is the \emph{Newtonian mass} of the star.
 Thus, the metric outside the star is the well-known \textbf{Schwarzschild metric}
 \begin{equation}
@@ -285,13 +285,7 @@ The left side can now be split by the partial fraction decomposition
 \begin{equation*}
 	\frac{1}{(\epsilon_0+P)(\epsilon_0+3P)} = \frac{1}{2P} \left( \frac{1}{\epsilon_0+P} + \frac{1}{\epsilon_0+3P} \right) .
 \end{equation*}
-Performing all three integrals using the general antiderivatives
-\begin{equation*}
-	\int \frac{\dif x}{a x^2 + b x} = -\frac{1}{b} \log \left( a + \frac{b}{x} \right) + C
-	\quad \text{and} \quad
-	\int \frac{x \dif x}{a x^2 + b} = \frac{1}{2 a} \log \left( a x^2 + b \right) + C
-\end{equation*}
-and applying the boundary condition $P(R) = 0$ to determine the integration constant, we eventually find the radial pressure
+Applying integral \eqref{eq:integrals:logarithm_xnum} and \eqref{eq:integrals:logarithm_1num} and imposing the boundary condition $P(R) = 0$, we eventually find the pressure
 \begin{equation}
 	% p(r) in terms of M, R, 
 	P(r) = \epsilon_0 \, \frac{\sqrt{1-\frac{2GMr^2}{R^3c^2}} - \sqrt{1-\frac{2GM}{Rc^2}}}{3 \sqrt{1-\frac{2GM}{Rc^2}} - \sqrt{1-\frac{2GMr^2}{R^3c^2}}} .
