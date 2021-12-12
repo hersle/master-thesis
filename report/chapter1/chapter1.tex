@@ -118,13 +118,36 @@ After inserting the energy-momentum tensor on the right and simplifying, we get 
 \label{eq:einstein_to_tov:einstein_equation_in_star}
 \end{subequations}
 
-Next, let us introduce the mass of the star.
-Define the function $m(r)$ by
+\subsubsection{Exterior solution}
+
+First, let us quickly review the Schwarzschild solution outside the star, where there is no pressure nor energy density and all right sides vanish.
+Adding equation \eqref{eq:einstein_to_tov:tt} and \eqref{eq:einstein_to_tov:rr} then yields $(\alpha + \beta)' = 0$, so $\alpha + \beta = C$ for some constant $C$.
+The constant can be found by noting that far away from the star, as $r \rightarrow \infty$, the metric should reduce to the Minkowski metric with $e^{2\alpha} = e^{2 \beta} = 1$, so we must have $\alpha + \beta = 0$.
+Inserting $\beta' = -\alpha'$ into equation \eqref{eq:einstein_to_tov:thetatheta} then gives a differential equation for $\alpha$ whose solution is $\alpha = \frac12 \log \left( 1 - D / r \right)$ for some constant $D$.
+To determine it, we use that in the Newtonian limit \eqref{eq:weak_field_limit:metric_with_potential}, the temporal metric element should reduce to $e^{2 \alpha} = 1 + 2 V / c^2$ where $V = - G M / r$ is the Newtonian gravitational potential of the star and $M$ is the \emph{Newtonian mass} of the star.
+Thus, the metric outside the star is the well-known \textbf{Schwarzschild metric}
 \begin{equation}
-	e^{2 \beta(r)} = \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} ,
+	\dif s^2 = \left( 1 - \frac{2 G M}{r c^2} \right) c^2 \dif t^2 - \left( 1 - \frac{2 G M}{r c^2} \right)^{-1} \dif r^2 - r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
+\label{eq:tov:schwarzschild_metric}
+\end{equation}
+Observe that the metric is singular at the \textbf{Schwarzschild radius}
+\begin{equation}
+	r = R_S = 2 G M / c^2.
+\label{eq:tov:schwarzschild_radius}
+\end{equation}
+This is an \emph{event horizon}, from which not even light can escape out of. \cite[section 5.6]{ref:carroll}.
+If a star is so small and massive that its Schwarzschild radius $R_S > R$ lies \emph{outside} the surface, the star is invisible from the outside and we say it has collapsed to a \textbf{black hole}.
+
+\TODO{volkoff volkow}
+
+\subsubsection{Interior solution}
+
+We now return to the analysis inside the star.
+To imitate the Schwarzschild metric element $g_{11}$, let us define the function $m(r)$ by
+\begin{equation}
+	e^{2 \beta(r)} = \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
 	\label{eq:einstein_to_tov:def_m}
 \end{equation}
-so $g\indices{_1_1}$ resembles the Schwarzschild metric element.
 Then \cref{eq:einstein_to_tov:tt} becomes
 \begin{equation}
 	\odv{\left[m(r) c^2\right]}{r} = 4 \pi r^2 \epsilon(r) ,
@@ -137,16 +160,6 @@ If we set $m(0) = 0$, we can integrate to get
 	\label{eq:einstein_to_tov:m_integral}
 \end{equation}
 In \cite[page 602]{ref:mtw} it is shown that setting $m(0) \neq 0$ creates a singularity at the origin, which is not physically acceptable.
-Outside a star that extends to $r = R$, there is vacuum with $\epsilon = 0$ and our metric should match the Schwarzschild metric with $g\indices{_1_1} = -(1-2GM/rc^2)^{-1}$ and Schwarzschild mass $M$ \cite[equation 5.1]{ref:carroll}.
-By comparison with \cref{eq:einstein_to_tov:def_m}, the \textbf{Schwarzschild mass} of the star must be
-\begin{equation}
-	M = m(R) = \frac{1}{c^2} \integral{\epsilon(r) 4 \pi r^2}{r}{0}{R} = \integral{\rho(r) 4 \pi r^2}{r}{0}{R}.
-	\label{eq:einstein_to_tov:schwarzschild_mass}
-\end{equation}
-It is tempting to interpret the Schwarzschild mass $M$ as the Newtonian mass of the star and \eqref{eq:einstein_to_tov:m_integral} as the volume integral of the energy density $\epsilon(r)$.
-But $4 \pi r^2$ is not a proper volume element, as it does not involve the full spatial metric determinant.
-We return to this question in \cref{sec:weak_field_limit} after studying incompressible stars in \cref{sec:incompressible_star}, where we will see that the first interpretation is correct, while the latter is more subtle and differs by the binding energy of the star.
-
 Meanwhile, definition \eqref{eq:einstein_to_tov:def_m} turns \cref{eq:einstein_to_tov:rr} into
 \begin{equation}
 	\odv{\alpha(r)}{r} = \frac{G}{r^2 c^4} \frac{m(r) c^2 + 4 \pi r^3 P(r)}{1 - 2 G m(r) / r c^2} .
@@ -185,10 +198,12 @@ To determine them, an additional \textbf{equation of state}
 \label{eq:tov:eos}
 \end{equation}
 that relates the thermodynamic variables is required, typically obtained from statistical physics.
-Given all three equations \eqref{eq:einstein_to_tov:m_rho}, \eqref{eq:tov} and \eqref{eq:tov:eos} and the central pressure $P(0)$, we can integrate to find the pressure everywhere inside the star.
-We define the radius of the star to be the radius $R$ at which $P(R) = 0$.
-Carrying out this procedure for different values of $P(0)$, we can find a mass-radius relation $M(R)$ for stars parametrized by their central pressure $P(0)$.
+Given all three equations \eqref{eq:einstein_to_tov:m_rho}, \eqref{eq:tov} and \eqref{eq:tov:eos}, the initial mass $m(0) = 0$ and some central pressure $P(0) = P_c$ or energy density $\epsilon(0) = \epsilon_c$, we can integrate them to find the pressure $P(r)$, mass $m(r)$ and energy density $\epsilon(r)$ everywhere inside the star.
+We define the surface of the star to be the radius $r=R$ at which $P(r) = 0$, and the star's mass as the corresponding value $m(R) = M$.
+If desired, we can then calculate the metric function $\beta(r)$ from definition \eqref{eq:einstein_to_tov:def_m}, and $\alpha(r)$ by integrating \cref{eq:einstein_to_tov:dadr2} from the surface $r=R$, where it must match the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric}, and back into the center $r=0$.
+Solving these equations is therefore our ultimate goal.
 
+\iffalse
 For some purposes, such as when analyzing stability of stars in \cref{sec:nstars:stability_general}, it is also useful to obtain the metric function $\alpha(r)$.
 Inside the star, note that in both equation \eqref{eq:einstein_to_tov:einstein_equation_in_star} and \eqref{eq:einstein_to_tov:dadr2}, it is only the derivative $\alpha'(r)$ that enters, so the solution is only specified up to a constant.
 Outside the star, however, $\alpha(R)$ should match the Schwarzschild metric with
@@ -202,7 +217,50 @@ To integrate $\alpha(r)$, then, we can simply start with any value such as $\alp
 \end{equation}
 to match the Schwarzschild metric element \eqref{eq:tov:schwarzschild_metric_00_surface}.
 This is completely equivalent to instead setting $\alpha(R) = \log \left(1 - 2 G M / R c^2 \right) / 2$ and integrating $\odv{\alpha(r)}/{r}$ backwards from the surface $r=R$ into the center $r=0$, but the former method can be more natural to implement from a numerical perspective.
+\fi
 
+\subsubsection{Interpretation of mass}
+
+One matter that deserves comment is our definition of the star's mass $M = m(R)$.
+We should be a little careful about this, since it is not obvious how to think of ``mass'' in relativistic terms.
+At the surface $r=R$ of the star, our metric must match the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric}.
+Comparing the definition \eqref{eq:einstein_to_tov:def_m} of $m(r)$ to the Schwarzschild metric, we then see that
+\begin{equation}
+	m(R) = M = \frac{1}{c^2} \integral{\epsilon(r) 4 \pi r^2}{r}{0}{R} = \integral{\rho(r) 4 \pi r^2}{r}{0}{R}
+	\label{eq:einstein_to_tov:schwarzschild_mass}
+\end{equation}
+is the same mass that appears in the Schwarzschild metric, which we \emph{defined} to be the \emph{Newtonian mass} of the star.
+However, the factor $4 \pi r^2$ in the integral is not a proper volume element, as it is missing the factor $e^{\beta(r)}$ from the full spatial metric determinant.
+The true volume integral of the star's energy density is really
+\begin{equation*}
+	\bar{M} c^2 = \integral{\epsilon(r) e^{\beta(r)} 4 \pi r^2}{r}{0}{R} .
+\end{equation*}
+In fact, the difference
+\begin{equation*}
+	\bar{M} c^2 - M c^2 = \integral{\epsilon(r) \left[ \left( 1-\frac{2Gm(r)}{rc^2} \right)^{-1/2} - 1 \right] 4 \pi r^2}{r}{0}{R} > 0
+\end{equation*}
+is the binding energy that arises due to the gravitational attraction between the individual fluid elements in the star.
+To see this, take the Newtonian limit \eqref{eq:weak_field_limit:weak_field_metric} of the element $g_{00}$ of the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric} to see that we have the small quantity
+\begin{equation}
+	\frac{G m(r)}{rc^2} \ll 1 .
+	\label{eq:weak_field_limit:small_gmr}
+\end{equation}
+Using the Taylor expansion $(1 - x)^{-1/2} = 1 + x/2$ and the mass-energy equivalence relation \eqref{eq:tov:mass_energy_equivalence}, we then get
+\begin{equation}
+	\bar{M} c^2 - M c^2 \taylor \integral{\frac{\epsilon(r)}{c^2} \frac{GM}{r} 4 \pi r^2}{r}{0}{R}
+	                    =       \integral{\rho(r) \frac{GM}{r} 4 \pi r^2}{r}{0}{R} .
+\end{equation}
+As shown in \cite[exercise 23.7]{ref:mtw}, this is precisely the energy required to construct the star by sequentially placing thin shells of mass $\dif m = \rho(r) 4 \pi r^2 \dif r$ on top of each other, each subject to the gravitational attraction of the shells already placed below it.
+This explains that $\bar{M} c^2 - M c^2$ is indeed the binding energy that would be required to disperse all the matter in the star to infinity.
+
+The moral of this story is that the mass $M = m(R)$ in the Tolman-Oppenheimer-Volkoff equation should be interpreted as the \emph{Newtonian} mass of the star.
+But $M c^2$ is \emph{not} the total energy of the star, as we saw above that it differs by the binding energy.
+Experimentally, this implies that we can measure masses of distant stars using \emph{Newtonian} results like Kepler's third law \cite[chapter 19]{ref:mtw} that rely only on simple observations.
+Moreover, it makes it meaningful to compare masses obtained from general relativity to those found using Newtonian gravity.
+% confusion about M, \bar{M}, resources:
+% https://physics.stackexchange.com/q/196280/299916
+% see MTW p. 602-, box at p. 603, p. 453
+% see Schwarz p. 126
 \section{Solution for an incompressible star}
 \label{sec:incompressible_star}
 
@@ -267,7 +325,7 @@ In \cref{fig:incompressible_star:plot1}, we compare the mass-radius relation to 
 % * use title={\subcaption{...}} for subcaptions (https://tex.stackexchange.com/a/310403)
 % * set title style text width automatically (https://tex.stackexchange.com/a/276214)
 % * another example (https://tex.stackexchange.com/a/69729)
-\begin{figure}[ht!]
+\begin{figure}[t]
 	\centering
 	\begin{tikzpicture}[declare function={
 		G = 1;
@@ -305,224 +363,16 @@ Another way of looking at the Buchdal's theorem is that the radius of a star mus
 \begin{equation}
 	R > \frac94 \frac{G M}{c^2} = \frac98 R_S ,
 \end{equation}
-where $R_S = 2 G M / c^2$ is the \textbf{Schwarzschild radius} of the star.
-In general relativity, it is a well known result of the spherical Schwarzschild solution that anything that falls into $r < R_S$ outside a massive body $M$ can never escape back out to $r > R_S$ \cite[section 5.6]{ref:carroll}.
-Such a one-way gate is called an event horizon, and any object whose physical radius is smaller than its Schwarzschild radius is called a \textbf{black hole}.
-Not even light can escape from a black hole, so it is completely invisible for outside observers -- hence the name.
-Thus, a stable star that satisfies the Buchdal bound $R > 9 G M / 4 c^2$ is not a black hole.
-If we somehow \emph{do} manage to compress a star to the radius $R = 9 G M / 4 c^2$, it would be unsustainable, implode and turn into a black hole.
+where $R_S$ is the Schwarzschild radius \eqref{eq:tov:schwarzschild_radius}.
+Since $R > 9 R_S / 8 > R_S$, we see that a stable star that satisfies the Buchdal bound $R > 9 G M / 4 c^2$ is guaranteed to not be a black hole.
+If we somehow \emph{do} manage to compress a star to the radius $R = 9 R_S / 8$, we expect it would become unstable, implode and collapse further until its surface is inside the Schwarzschild radius, hence becoming a black hole.
 
-In \cref{sec:weak_field_limit} we will see that Buchdal's theorem is a relativistic result and that no such bound arises from Newtonian gravity.
+We will shortly see that Buchdal's theorem is a relativistic result and that no such bound arises from Newtonian gravity.
 
-\section{Newtonian limit and physical interpretation of mass}
-\label{sec:weak_field_limit}
+\section{Newtonian limit}
 
-%TODO: move everything about interpretation of mass, energy density integral etc. to one section which has one thing in common: we look at the weak-field limit
-%TODO: do weak-field limit of TOV equation, too
-
-In Newtonian gravity, the presence of mass $\rho(\vec{x})$ produces a gravitational field $-\nabla V(\vec{x})$ through the Poisson equation
-\begin{equation}
-	\nabla^2 V(\vec{x}) = 4 \pi G \rho(\vec{x}) .
-	\label{eq:interpretation_m:poisson}
-\end{equation}
-In turn, matter respond to the field as particles are accelerated by
-\begin{equation}
-	\odv[2]{\vec{x}}{t} = - \nabla V(\vec{x}) .
-	\label{eq:interpretation_m:newton2}
-\end{equation}
-Given the initial distribution and velocities of matter, these two coupled differential equations determine its movement forever and thus contain all of Newtonian gravity.
-Here we will show that general relativity is reducible to Newtonian gravity in the \textbf{Newtonian limit} characterized by \emph{slow movement} and a \emph{static} and \emph{weak} gravitational field.
-In particular, we will demonstrate that the response of matter to the field \eqref{eq:interpretation_m:newton2} follows from the geodesic equation \eqref{eq:geodesic}, and similarly that the response of the field to matter \eqref{eq:interpretation_m:poisson} follows from the Einstein field equations \eqref{eq:einstein}.
-Having established this correspondence, we move on to interpret the ``mass'' $M$ and ``energy'' $Mc^2$ that we encountered in \cref{eq:einstein_to_tov:schwarzschild_mass}, but struggled to understand the meaning of.
-Finally, we derive the Newtonian pressure gradient analogous to the relativistic gradient \eqref{eq:tov} and show that the latter reduces to the former in the Newtonian limit.
-
-Before we set out, however, let us make the Newtonian limit mathematically precise.
-First, by \emph{slow movement}, we mean that all velocities $v$ are much lower than the speed of light $c$, so
-\begin{subequations}
-\begin{equation}
-	\frac{v}{c} \ll 1 .
-	\label{eq:weak_field_limit:small_velocity}
-\end{equation}
-In a potential $V$ measured with respect to $V(\infty) = 0$, freely falling particles are accelerated to kinetic energies on the scale $\frac12 m v^2 = m V$.
-Consequently, particles could reach velocities that violate criterion \eqref{eq:weak_field_limit:small_velocity} unless the potential is bounded by
-\begin{equation}
-	\frac{V}{c^2} \ll 1 .
-	\label{eq:weak_field_limit:small_potential}
-\end{equation}
-In the presence of a fluid with energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid}, internal stresses in the fluid also generate motion.
-For example, the energy-momentum \eqref{eq:einstein_to_tov:T} would give rise to sound waves propagagating with velocity $v = \sqrt{\odv{P}/{\rho}} = c \sqrt{-\odv{T\indices{_i^i}}/{T\indices{_0^0}}}$, with no sum over $i$.
-More generally, we therefore assume slow movement corresponds to $\odv{T_{ij}}/{T_{00}} \ll 1$ or, by integration,
-\begin{equation}
-	\frac{T_{ij}}{T_{00}} \ll 1 .
-	\label{eq:weak_field_limit:small_pressure}
-\end{equation}
-\end{subequations}
-Glancing back at \cref{eq:tov:energy_momentum_perfect_fluid}, we see that we can neglect pressure $P$ in favor of energy density $\epsilon$ in the Newtonian limit.
-This result can be understood physically -- pressure is a result of randomized motion and decreases with the velocities of the motion, while energy is equivalent to mass and is unaffected by the velocity of the mass.
-In summary, slow motion is achieved only if \cref{eq:weak_field_limit:small_velocity,eq:weak_field_limit:small_potential,eq:weak_field_limit:small_pressure} are all satisfied.
-
-Second, the assumption of a \emph{static} gravitational field means that all time derivatives of the metric vanish like
-\begin{equation}
-	\partial_0 g_{\mu \nu} = 0 .
-	\label{eq:weak_field_limit:static_field}
-\end{equation}
-
-Third, a \emph{weak} field corresponds to a metric that can be written as a perturbation
-\begin{equation}
-	g\indices{_\mu_\nu} = \eta\indices{_\mu_\nu} + h\indices{_\mu_\nu}
-	\qquad \text{with} \qquad
-	\abs{h\indices{^\mu^\nu}} \ll 1
-	\label{eq:weak_field_limit:weak_field_metric}
-\end{equation}
-on top of flat Minkowski space $\eta\indices{^\mu^\nu} = \text{diag}(+1, -1, -1, -1)$.
-The inverse metric $g\indices{^\mu^\nu}$ should satisfy $g\indices{^\mu^\nu} g\indices{_\nu_\sigma} = \delta^\mu_\sigma$, so to first order in $h$ we must have
-\begin{equation}
-	g\indices{^\mu^\nu} = \eta\indices{^\mu^\nu} - h\indices{^\mu^\nu} ,
-	\label{eq:weak_field_limit:weak_field_metric_inverse}
-\end{equation}
-where $h\indices{^\mu^\nu} = \eta\indices{^\mu^\rho} \eta\indices{^\nu^\sigma} h\indices{_\rho_\sigma}$ is raised with the \emph{Minkowski} metric.
-
-\subsection{Newtonian limit of the response of matter to the field}
-
-In general relativity, matter responds to the gravitational field by moving along geodesics $x(\tau)$ that satisfy the \textbf{geodesic equation}
-\begin{equation}
-	\odv[2]{x^\mu}{\tau} + \Gamma^\mu_{\rho \sigma} \odv{x^\rho}{\tau} \odv{x^\sigma}{\tau} = 0 .
-	\label{eq:geodesic_duplicate}
-\end{equation}
-We explain the origin of the geodesic equation in \cref{sec:geodesic}, where we show that moving along geodesics corresponds to taking the shortest possible path between points in spacetime.
-Let us now show that we recover the Newtonian response \eqref{eq:interpretation_m:newton2} in the Newtonian limit.
-
-The criterion of slow movement \cref{eq:weak_field_limit:small_velocity} implies that a particle with velocity $\odv{x^\mu}/{\tau}$ has spatial components $\odv{x^i}/{t} \ll c$ and must be dominated by the temporal component $c \odv{t}/{\tau} \approx c$.
-Then $\odv{x^i}/{\tau} \ll \odv{x^0}/{\tau}$ and the geodesic equation can be approximated by
-\begin{equation}
-	\odv[2]{x^\mu}{\tau} + \Gamma^\mu_{00} \, c^2 \left( \odv{t}{\tau} \right)^2 = 0 .
-	\label{eq:weak_field_limit:geodesic_approximated}
-\end{equation}
-In a static field, the vanishing time derivatives \eqref{eq:weak_field_limit:static_field} simplifies the Christoffel symbols \eqref{eq:def_christoffel} to $\Gamma^\mu_{00} = -\frac{1}{2} g\indices{^\mu^\lambda} \partial_\lambda g\indices{_0_0}$.
-Inserting the weak-field metric \eqref{eq:weak_field_limit:weak_field_metric} and its inverse \eqref{eq:weak_field_limit:weak_field_metric_inverse} and calculating to first order in $h$, we find the Christoffel symbols
-\begin{equation}
-	\Gamma^\mu_{00} = -\frac{1}{2} \eta\indices{^\mu^\lambda} \partial_\lambda h\indices{_0_0} .
-	\label{eq:weak_field_limit:static_christoffel_symbols}
-\end{equation}
-In particular, the static metric implies that $\Gamma^0_{00} = 0$, so $\odv[2]{t}/{\tau} = 0$ by the approximated geodesic equation \eqref{eq:weak_field_limit:geodesic_approximated}.
-As we have neglected $\odv{x^i}/{\tau}$, we can now regard $x(\tau) = x(\tau(t))$ as a function of only $t$ and apply the chain rule and the product rule to get 
-\begin{equation}
-	\odv[2]{x}{\tau} = \odv*{\left( \odv{x}{t} \odv{t}{\tau} \right)}{\tau} = \left( \odv[2]{x}{t} \right) \left( \odv{t}{\tau} \right)^2 + \left( \odv{x}{t} \right) \left( \odv[2]{t}{\tau} \right) = \left( \odv[2]{x}{t} \right) \left( \odv{t}{\tau} \right)^2 .
-\end{equation}
-Upon insertion into the \cref{eq:weak_field_limit:geodesic_approximated}, we can cancel the common factor $(\odv{t}/{\tau})^2$ and write the geodesic equation purely in terms of time $t$ as
-\begin{equation*}
-	\odv[2]{x^\mu}{t} = \frac{1}{2} c^2 \eta\indices{^\mu^\lambda} \partial_\lambda h\indices{_0_0} .
-\end{equation*}
-The spatial components of this equation is precisely Newton's second law \cref{eq:interpretation_m:newton2} if we identify $h\indices{_0_0} = 2V/c^2$.
-In conclusion, we have showed that a weak relativistic gravitational field with
-\begin{equation}
-	g\indices{_0_0} = 1 + h_{00} = 1 + \frac{2V}{c^2} 
-	\label{eq:weak_field_limit:metric_with_potential}
-\end{equation}
-describes Newtonian motion in the gravitational potential $V$!
-
-\subsection{Newtonian limit of the response of the field to matter}
-\label{sec:einstein_to_poisson}
-
-In general relativity, the gravitational field is produced by matter that enter the Einstein field equations \eqref{eq:einstein} on the right.
-Let us show that they fall back the Poisson equation \eqref{eq:interpretation_m:poisson} to first nonzero order in the metric perturbation $h$ of the Newtonian limit.
-
-Suppose we are in the stationary reference frame of a perfect fluid with energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid} and velocity $u^\mu = (u^0, \vec{0})$.
-To first order in $h_{00}$, the normalization condition $u^\mu u_\mu = c^2$ then fixes the time component
-\begin{equation}
-	u^0 = \frac{c}{\sqrt{g_{00}}} = \frac{c}{\sqrt{1 + h_{00}}} \taylor c \left( 1 - \frac12 h_{00} \right) .
-\end{equation}
-To lowest order, the energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid} then simplifies to dust with
-\begin{equation}
-	T_{00} = \rho u_0 u_0 \taylor \epsilon
-	\qquad \text{and trace} \qquad
-	T = T\indices{^\mu_\mu} = g^{00} T_{00} \taylor \epsilon, 
-\end{equation}
-and the pressure components are negligible according to \cref{eq:weak_field_limit:small_pressure}.
-Now rewrite the Einstein field equations \eqref{eq:einstein} by taking the trace of both sides.
-Using $g\indices{^\mu_\mu} = \delta\indices{^\mu_\mu} = 4$, we find that the Ricci scalar can be expressed as $R = - 8 \pi G T / c^4$, so the field equations are equivalent to
-\begin{equation}
-	R_{\mu \nu} = \frac{8 \pi G}{c^4} \left( T_{\mu \nu} - \frac12 T g_{\mu \nu} \right) .
-	\label{eq:einstein_rewritten}
-\end{equation}
-Inserting our results from above, we find the Ricci tensor element
-\begin{equation}
-	R_{00} = \frac{4 \pi G \rho}{c^2} .
-	\label{eq:weak_field_limit:ricci_from_energy_momentum}
-\end{equation}
-
-Instead of calculating the Ricci tensor from the energy-momentum of matter, we can attack the problem from the geometric point of view and find it from the Riemann curvature tensor
-\begin{equation}
-	R\indices{^\rho_0_\mu_0} =
-	\partial\indices{_\mu} \Gamma^\rho_{0 0} -
-	\partial\indices{_0} \Gamma^{\rho}_{\mu 0} +
-	\Gamma^\rho_{\mu \lambda} \Gamma^{\lambda}_{0 0} -
-	\Gamma^\rho_{0 \lambda} \Gamma^{\lambda}_{\mu 0} .
-\end{equation}
-Each Christoffel symbol is of order $\bigo(h)$, so all the products are all of order $\bigo(h^2)$.
-Additionally, the time derivative vanishes for our stationary metric, so we are left with only $R\indices{^\rho_0_\mu_0} = \partial_\mu \Gamma^\rho_{00}$ to first order.
-Using the stationary Christoffel symbols \eqref{eq:weak_field_limit:static_christoffel_symbols}, the Ricci tensor is
-\begin{equation}
-	R_{00} =       R\indices{^\mu_{0 \mu 0}}
-		   %=       -\frac12 g^{\mu \nu} \partial_\mu \partial_\nu g_{00}
-		   %=       -\frac12 g^{i j} \partial_i \partial_j g_{00}
-		   = \partial_\mu \Gamma^\mu_{00}
-		   = -\frac12 \eta^{\mu \lambda} \partial_\mu \partial_\lambda h_{00}
-		   \taylor  \frac12 \delta^{i j} \partial_i \partial_j h_{00}
-		   =        \frac12 \nabla^2 h_{00} .
-	\label{eq:weak_field_limit:ricci_from_riemann}
-\end{equation}
-
-Inserting $h_{00} = 2V/c^2$ from \cref{eq:weak_field_limit:metric_with_potential} and comparing the result to \cref{eq:weak_field_limit:ricci_from_energy_momentum}, we see that the Einstein field equations yield the Poisson equation \eqref{eq:interpretation_m:poisson} in the Newtonian limit!
-
-\subsection{Interpretation of mass and integrated energy density}
-
-When we introduced the Schwarzschild mass $M$ given by \cref{eq:einstein_to_tov:schwarzschild_mass} in \cref{sec:einstein_to_tov}, we did not find it obvious how to interpret it.
-Outside a star, spacetime is described by the Schwarzschild metric with the element \cite[equation 5.1]{ref:carroll}
-\begin{equation}
-	g\indices{_0_0} = 1 - \frac{2 G M}{r c^2}
-	\quad \text{with} \quad
-	h\indices{_0_0} = -\frac{2GM}{rc^2} .
-	\label{eq:weak_field_limit:schwarzschild_metric_tt}
-\end{equation}
-But $V = c^2 h\indices{_0_0} / 2 = -G M / r$ is precisely the solution to the Poisson equation \eqref{eq:interpretation_m:poisson} for a spherical mass distribution, so we can in fact interpret the mass $M$ as the Newtonian mass of the star.
-This is reassuring, as it allows us to measure masses of distant stars using Newtonian results like Kepler's third law \cite[chapter 19]{ref:mtw} that rely only on observations.
-
-From the looks of \cref{eq:einstein_to_tov:schwarzschild_mass}, it is very tempting to also interpret $M c^2$ as the volume integral of the energy density over the star and thus its total energy.
-But $4 \pi r^2 \dif r$ is not a proper volume element.
-In a proper spatial integral, the volume element should be $\sqrt{\det{\gamma}} \dif^3 x = e^\beta r^2 \sin \theta \dif r \dif \theta \dif \phi$, where $\gamma\indices{_i_j} = g\indices{_i_j}$ is the spatial part of the metric and $\det{\gamma}$ its determinant.
-So the true volume integral of the energy density is really
-\begin{equation*}
-	\bar{M} c^2 = \integral{\epsilon(r) e^{\beta(r)} 4 \pi r^2}{r}{0}{R} .
-\end{equation*}
-The difference
-\begin{equation*}
-	\bar{M} c^2 - M c^2 = \integral{\epsilon(r) \left[ \left( 1-\frac{2Gm(r)}{rc^2} \right)^{-1/2} - 1 \right] 4 \pi r^2}{r}{0}{R} > 0
-\end{equation*}
-is in fact the binding energy that arises due to the gravitational attraction between the individual fluid elements in the star.
-To see this, consider again the weak-field limit.
-Comparing \cref{eq:weak_field_limit:weak_field_metric,eq:weak_field_limit:schwarzschild_metric_tt}, we see that we have the small parameter
-\begin{equation}
-	\frac{G m(r)}{rc^2} \ll 1 .
-	\label{eq:weak_field_limit:small_gmr}
-\end{equation}
-Using the Taylor expansion $(1 - x)^{-1/2} = 1 + x/2$ and the mass-energy equivalence relation \eqref{eq:tov:mass_energy_equivalence}, we get
-\begin{equation}
-	\bar{M} c^2 - M c^2 \taylor \integral{\frac{\epsilon(r)}{c^2} \frac{GM}{r} 4 \pi r^2}{r}{0}{R}
-	                    =       \integral{\rho(r) \frac{GM}{r} 4 \pi r^2}{r}{0}{R} .
-\end{equation}
-As shown in \cite[exercise 23.7]{ref:mtw}, this is precisely the energy required to construct the star by sequentially placing thin shells of mass $\dif m = \rho(r) 4 \pi r^2 \dif r$ on top of each other, each subject to the gravitational attraction of the shells already placed below it.
-This explains that $\bar{M} c^2 - M c^2$ is indeed the binding energy that would be required to disperse all the matter in the star to infinity.
-Although we saw it was correct to interpret $M$ as the Newtonian mass of the star, it is \emph{not} correct to interpret $Mc^2$ as its total energy.
-% confusion about M, \bar{M}, resources:
-% https://physics.stackexchange.com/q/196280/299916
-% see MTW p. 602-, box at p. 603, p. 453
-% see Schwarz p. 126
-
-\subsection{Newtonian limit of the TOV equation}
-
-Finally, let us compare the TOV equation \eqref{eq:tov} and findings for relativistic incompressible stars from \cref{sec:incompressible_star} to those of Newtonian gravity.
-To do so, we should first establish the Newtonian pressure gradient analogous to the relativistic one.
+In \cref{sec:weak_field_limit}, we thorougly discuss the conditions under which one should expect general relativity to reduce to Newtonian gravity.
+Let us derive the pressure gradient in a star using Newtonian gravity and show that the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov} reduces to it in the Newtonian limit.
 
 \begin{figure}
 \centering
@@ -562,7 +412,7 @@ Setting $\dif \textbf{F}_1 + \dif \textbf{F}_2 = 0$ then gives the \textbf{Newto
 	\label{eq:weak_field_limit:newtonian_pressure_gradient}
 \end{equation}
 
-Solving this differential equation for a star of constant mass density $\rho(r) = \rho_0$ like we solved the TOV equation \eqref{eq:tov} in \cref{sec:incompressible_star}, we get the pressures
+For example, solving this differential equation for a star of constant mass density $\rho(r) = \rho_0$, like we solved the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov} in \cref{sec:incompressible_star}, we get the pressures
 \begin{equation}
 	P(r) = \frac{\rho_0}{2} \frac{G M}{R} \left( 1 + \frac{r}{R} \right) \left( 1 - \frac{r}{R} \right)
 	\quad \text{and} \quad
@@ -577,18 +427,18 @@ This shows that Buchdal's theorem \eqref{eq:incompressible_star:buchdal} is a pu
 
 We expect that the Newtonian gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient} follows from the relativistic gradient \eqref{eq:tov} in the Newtonian limit.
 Comparing the two, we see that the latter indeed reduces to the former \emph{if} all the corrections to $1$ in the three parentheses vanish.
-This should come as no surprise, as we already saw in \cref{sec:einstein_to_poisson} that we recover Newtonian gravity from general relativity in this limit.
-For example, the pressure \eqref{eq:weak_field_limit:newtonian_pressure} is precisely what one finds by Taylor expanding the relativistic pressure \eqref{eq:incompressible_star:pressure} about the small parameter \eqref{eq:weak_field_limit:small_gmr}.
-To see that everything is consistent, let us nevertheless verify explicitly that this is the case.
+Let us verify that this is the case.
 
-First, note that the quantity \eqref{eq:weak_field_limit:small_gmr} in the rightmost parenthesis can be neglected.
-Second, by \cref{eq:weak_field_limit:small_pressure}, we can neglect the pressure-energy density ratio
+First, note that we already invoked the Newtonian limit in \cref{eq:weak_field_limit:small_gmr}, showing that the rightmost parenthesis in the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov} can be neglected.
+Second, condition \cref{eq:weak_field_limit:small_pressure} of the Newtonian limit ensures that we can neglect the pressure-energy density ratio
 \begin{equation}
 	\frac{P}{\epsilon} \ll 1
 	\label{eq:weak_field_limit:small1}
 \end{equation}
 in the leftmost parenthesis.
-Third, we argued in \cref{sec:incompressible_star} that all physical stars have non-increasing energy density $\epsilon(r)$ away from the center $r=0$.
+Third, all physical stars should have non-increasing energy density $\epsilon(r)$ away from the center $r=0$.
+The Tolman-Oppenheimer-Volkoff equation manifestly states that $\odv{P}/{r} < 0$, and therefore so is $\odv{\epsilon}/{r} = (\odv{\epsilon}/{P}) (\odv{P}/{r})$ provided that $\odv{\epsilon}/{P} > 0$.
+Indeed, stars must have $\odv{\epsilon}/{P} > 0$ in order to exhibit a real-valued speed of sound, and we will see in \cref{sec:nstars:stability_necessary} that they would otherwise be unstable.
 We can then pull the minimum density $\epsilon(r)$ outside the integral \eqref{eq:einstein_to_tov:m_integral} to bound $m(r) c^2 \geq \frac{4}{3} \pi r^3 \epsilon(r)$.
 It follows from \cref{eq:weak_field_limit:small1} that
 \begin{equation}
@@ -597,10 +447,10 @@ It follows from \cref{eq:weak_field_limit:small1} that
 						            \ll  1 .
 	\label{eq:weak_field_limit:small2}
 \end{equation}
-Thus, all three corrections in \cref{eq:tov} vanish, so we do indeed recover the Newtonian pressure gradient from the relativistic one in the Newtonian limit!
+Thus, all three corrections in the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov} vanish, so we do indeed recover the Newtonian pressure gradient in the Newtonian limit!
 
 In fact, there is an alternative way to see it that requires much less work.
-Replacing energy density $\epsilon$ with mass density $\rho$ using \cref{eq:tov:mass_energy_equivalence}, \cref{eq:tov} takes the form
+After replacing the energy density $\epsilon$ with the mass density $\rho = \epsilon / c^2$, the Tolman-Oppenheimer-Volkoff equation takes the form
 \begin{equation}
 	\odv{P(r)}{r} = -\frac{G m(r) \rho(r)}{r^2} \left[ 1 + \frac{P(r)}{\rho(r) c^2} \right] \left[ 1 + \frac{4 \pi r^3 P(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
 	\label{eq:tov_units}
@@ -612,22 +462,21 @@ But sending $c \rightarrow \infty$ kills all corrections in the three parenthese
 \section{Summary}
 
 The most important result of this chapter is the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}.
-Together with the mass gradient \eqref{eq:einstein_to_tov:m_rho}, one of the equations involving $\alpha(r)$ such as \cref{eq:einstein_to_tov:dadr1} and an equation of state \eqref{eq:tov:eos}, it is best viewed as the system of equations
+Together with the mass gradient \eqref{eq:einstein_to_tov:m_rho}, and an equation of state \eqref{eq:tov:eos}, it is best viewed as the system of three differential equations
 \begin{subequations}
 \label{eq:tov:tovsys}
 \begin{align}
 	\odv{P}{r} &= -\frac{G m \epsilon}{r^2 c^2} \left( 1 + \frac{P}{\epsilon} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \label{eq:tov:tovsys_pressure} \\
 	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon}{c^2} , \label{eq:tov:tovsys_mass} \\
-	\odv{\alpha}{r} &= -\frac{1}{\epsilon+P} \odv{P}{r} , \label{eq:tov:tovsys_alpha} \\
+	%\odv{\alpha}{r} &= -\frac{1}{\epsilon+P} \odv{P}{r} , \label{eq:tov:tovsys_alpha} \\
 	\epsilon &= \epsilon(P) . \label{eq:tov:tovsys_eos}
 \end{align}
 \end{subequations}
 The equation of state \eqref{eq:tov:tovsys_eos} allows one to eliminate all dependence on $\epsilon$ in favor of $P$ in the pressure and mass gradients \eqref{eq:tov:tovsys_pressure} and \eqref{eq:tov:tovsys_mass}.
 They then constitute a system of two differential equations for the two unknown functions $P(r)$ and $m(r)$ that is to be integrated from $m(0) = 0$ and some central pressure $P(0) = P_c$.
-We define the surface and radius $R$ of the star by a vanishing pressure $P(R) = 0$, and the corresponding mass $m(R) = M$ as the mass of the star.
-If needed, one can also integrate \eqref{eq:tov:tovsys_alpha} subject to $\alpha(R) = \log \left( 1 - 2 G M / r c^2 \right)$ to determine $\alpha(r)$ and hence the full form of the metric \eqref{eq:tov:metric} after calculating $\beta(r)$ from $m(r)$ through equation \eqref{eq:einstein_to_tov:def_m}.
+We defined the surface of the star as the radius $r=R$ with zero pressure $P(r) = 0$, and the corresponding mass $m(R) = M$ as the \emph{Newtonian} mass of the star.
+After solving the system, one can also calculate the metric function $\beta(r)$ from definition \eqref{eq:einstein_to_tov:def_m}, and $\alpha(r)$ by integrating \cref{eq:einstein_to_tov:dadr2} subject to matching the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric} at $r=R$.
 In \cref{sec:nstars:numtov}, we describe how to integrate the system numerically for an arbitrary equation of state.
 
 By solving this system for an incompressible star with constant energy density $\epsilon = \epsilon_0$, we derived the Buchdal limit $M < 4 c^2 R / 9 G = $.
-Finally, we looked in great detail at the Newtonian limit and saw that the TOV equation correctly reduced to its Newtonian counterpart.
-The Newtonian limit also enabled us to interpret the mass $M$ as the \emph{Newtonian} mass of the star -- precisely the mass measured by observations.
+Finally, we saw that the Tolman-Oppenheimer-Volkoff equation reduced to the Newtonian pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient} in the Newtonian limit.
