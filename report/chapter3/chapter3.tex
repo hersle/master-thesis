@@ -493,8 +493,8 @@ Again, the curve peaks at a maximum mass $M = 0.71 \solarmass$ only for the rela
 ]
 \addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/gr.dat} node [pos=0.720, pin={[latex-, xshift=4.15em, ]0:relativistic $\odv{P}/{r}$, general $\epsilon(P)$}] {};
 \addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/nr.dat} node [pos=0.720, pin={[latex-, xshift=3.8em, ]0:relativistic $\odv{P}/{r}$, non-relativistic $\epsilon(P)$}] {};
-\addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/gr_newtonian.dat} node [pos=0.840, pin={[latex-, xshift=3.25em, ]0:Newtonian $\odv{P}/{r}$, general $\epsilon(P)$}] {};
-\addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/nr_newtonian.dat} node [pos=0.845, pin={[latex-, xshift=2.75em, ]0:Newtonian $\odv{P}/{r}$, non-relativistic $\epsilon(P)$}] {};
+\addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/grnewt.dat} node [pos=0.840, pin={[latex-, xshift=3.25em, ]0:Newtonian $\odv{P}/{r}$, general $\epsilon(P)$}] {};
+\addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/nrnewt.dat} node [pos=0.845, pin={[latex-, xshift=2.75em, ]0:Newtonian $\odv{P}/{r}$, non-relativistic $\epsilon(P)$}] {};
 \node [circle, fill, inner sep=1pt, label={[xshift=+0.2ex, yshift=-1.3ex]+90:{$\begin{aligned} R &= \pgfmathprintnumber\maxRnr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMnr \, \solarmass \\ P_c &= \SI{1e35}{\pascal}\end{aligned}$}}] (maxnr) at (\maxRnr, \maxMnr) {};
 \node [circle, fill, inner sep=1pt, pin  ={[xshift=+2.0ex, yshift=-5.0ex]-90:{$\begin{aligned} R &= \pgfmathprintnumber\maxRgr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMgr \, \solarmass \\ P_c &= \SI{4e34}{\pascal}\end{aligned}$}}] (maxnr) at (\maxRgr, \maxMgr) {};
 %\node [above=of maxnr, anchor=south, xshift= 0em, yshift=-3em, align=center] (maxnrlabel) {\small$\begin{aligned} R &= \pgfmathprintnumber\maxRnr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMnr \, \solarmass \\ P_c &= \SI{1e35}{\pascal}\end{aligned}$};
@@ -508,7 +508,6 @@ Again, the curve peaks at a maximum mass $M = 0.71 \solarmass$ only for the rela
 
 %\edef\doplot{\noexpand\addplot [domain=-10:10, dashed, update limits=false] {\maxM};} % see https://tex.stackexchange.com/a/73916, https://tex.stackexchange.com/a/519
 %\doplot
-
 \end{axis}
 \end{tikzpicture}
 
@@ -1266,7 +1265,7 @@ The maximum mass is not only a limit on \emph{massiveness}, but also on \emph{st
 	%xticklabels=\empty,
 	minor x tick num=4, minor y tick num=9,
 ]
-\addplot [mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta=nu] {../code/data/gr2.dat}
+\addplot [mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta=nu] {../code/data/gr.dat}
 node [text=black, sloped, pos=0.66, yshift=10pt] {$\longleftarrow$ Increasing $P_c$};
 %\addplot [solid, very thick, domain=0:50, restrict y to domain=0:1] {4*x/(9*0.14766696910334393)}; % Buchdal bound invisible
 
