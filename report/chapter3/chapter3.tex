@@ -7,7 +7,7 @@ At some fixed temperature $T$, we can therefore eliminate $\mu$ to express $\eps
 This gives us an equation of state $\epsilon = \epsilon(T, P)$ for the energy density.
 In this chapter, we will see that inside neutron stars it is valid to consider the zero-temperature limit $T=0$, making the Fermi gas completely degenerate and directly relating pressure to energy density in the resulting temperature-independent equation of state $\epsilon = \epsilon(P)$.
 With this equation of state, we can finally solve the Tolman-Oppenheimer-Volkoff system \eqref{eq:tov:tovsys} for some central pressure $P(0)=P_c$.
-By doing so for a range of central pressures, we will parametrize a \textbf{mass-radius curve} of \textbf{ideal neutron stars} modelled by denegerate ideal Fermi gases of neutrons.
+By doing so for a range of central pressures, we will parametrize a \textbf{mass-radius curve} of \textbf{ideal neutron stars} modeled by degenerate ideal Fermi gases of neutrons.
 
 In the second part of this chapter, we investigate whether the stars on the mass-radius curve we find are \textbf{stable or unstable}.
 By applying perturbation theory to the equilibrium analysis of general relativity in \cref{chap:tov}, we will derive a differential equation for radial pulsations of stars slightly outside equilibrium.
@@ -67,7 +67,7 @@ From the particle density \eqref{eq:nstars:density} at constant temperature $T$,
 The total density $n$ is expressed as a balance between \emph{particles} living relative to the chemical potential $+\mu$ and \emph{antiparticles} living relative to the chemical potential $-\mu$.
 Thus, the chemical potential $\mu$ determines the balance between particles and antiparticles in the system.
 Similarly, the two last terms in the energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure} can be interpreted as contributions from particles and antiparticles, respectively.
-We \emph{choose} a large, positive value of $\mu > 0$, so that the presence of particles dominate, while antiparticles are more or less abscent.
+We \emph{choose} a large, positive value of $\mu > 0$, so that the presence of particles dominate, while antiparticles are more or less absent.
 With this choice, $n \left[ E(\vec{p}) - \mu \right] \gg n \left[ E(\vec{p}) + \mu \right]$, and we \emph{drop the last terms of the particle density \eqref{eq:nstars:density}, energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}}.
 
 \item
@@ -75,7 +75,7 @@ The first term of the energy density \eqref{eq:nstars:energy_density} is infinit
 It is like a sum over an infinite number of fermionic harmonic oscillators $\hat{H} = \hbar \omega \left( \frac12 + a^\dagger a \right)$, each with ground state energy $\braket{0 | \frac12 \hbar \omega | 0}$, two for spin up and down and two more for both particles and antiparticles.
 Therefore, it can be interpreted as an \emph{infinite shift of the vacuum energy}.
 We will make the assumption that there is no vacuum energy, or equivalently redefine the infinite contribution as a new zero-point energy.
-For exampe, in the vacuum outside a star there should be no mass density $\rho = \epsilon / c^2$, and hence no energy density $\epsilon$.
+For example, in the vacuum outside a star there should be no mass density $\rho = \epsilon / c^2$, and hence no energy density $\epsilon$.
 Do note, however, that the possible presence of vacuum energy is really an unresolved problem in physics -- we will briefly discuss this in a moment.
 Either way, we will \emph{drop the first term of the energy density \eqref{eq:nstars:energy_density}}.
 %In contrast, the two last terms are finite as the Fermi-Dirac distribution exponentially suppresses the integrand for large $\abs{\vec{p}}$.
@@ -309,13 +309,13 @@ and $x_F$ is easily eliminated, yielding the very simple equation of state
 \subsection{Non-relativistic limit}
 \label{sec:nstars:nr_limit}
 
-Next, let us consider the sligthly more complicated non-relativistic limit
+Next, let us consider the slightly more complicated non-relativistic limit
 \begin{equation}
 	x_F \ll 1,
 \label{eq:nstars:nr_limit}
 \end{equation}
 where the Fermi energy $E_F = \sqrt{\smash[b]{p_F^2 c^2 + m^2 c^4}} \taylor m c^2$ is dominated by the rest energy of the fermions.
-Taylor expanding the energy density \eqref{eq:nstars:energy_density_zeroT} and presure \eqref{eq:nstars:pressure_zeroT} around $x_F = 0$ to lowest order, we find
+Taylor expanding the energy density \eqref{eq:nstars:energy_density_zeroT} and pressure \eqref{eq:nstars:pressure_zeroT} around $x_F = 0$ to lowest order, we find
 \begin{equation}
 	%\epsilon &\taylor \frac{m c^2 p_F^3}{3 \pi^2 \hbar^3} + \frac{p_F^5}{10 \pi^2 \hbar^3 m} = n m c^2 + \frac{p_F^5}{10 \pi^2 \hbar^3 m} \\
 	%P        &\taylor \frac{p_F^5}{15 \pi^2 \hbar^3 m}
@@ -452,9 +452,9 @@ In addition, $p(r) > 0$ for all $r$, so the star has no surface and hence infini
 \subsection{Non-relativistic equation of state}
 \label{sec:nstars:nr_limit_solve}
 
-With the power dependence of the non-relativistic equation of state \eqref{eq:nstars:nr_eos}, it is not easy, if even possible, to solve the TOV equation analytically.
+With the power dependence of the non-relativistic equation of state \eqref{eq:nstars:nr_eos}, it is not easy, if even possible, to solve the Tolman-Oppenheimer-Volkoff equation analytically.
 The trial solution \eqref{eq:nstars:ur_ansatz} we employed in \cref{sec:nstars:ur_limit} fails miserably, as we do not get the same fortunate cancellations of $r$.
-We therefore resort to the numerical solution method described in \cref{sec:nstars:numtov}, parametrizing different stars by their central pressure $P_c$ and integrating the TOV equation until the pressure $p(R)$ vanishes, using the corresponding radius $R$ to establish the mass $M = m(R)$ of the star.
+We therefore resort to the numerical solution method described in \cref{sec:nstars:numtov}, parametrizing different stars by their central pressure $P_c$ and integrating the Tolman-Oppenheimer-Volkoff equation until the pressure $p(R)$ vanishes, using the corresponding radius $R$ to establish the mass $M = m(R)$ of the star.
 This results in the mass-radius curve shown in \cref{fig:nstars:massradius}.
 Notably, the curve peaks at the maximum mass $M = 0.96 \solarmass$ around $R = \SI{8.11}{\kilo\meter}$ when using the full Tolman-Oppenheimer-Volkoff pressure gradient \eqref{eq:tov:tovsys_pressure}, but not when using its Newtonian limit \eqref{eq:weak_field_limit:newtonian_pressure_gradient}.
 
@@ -787,14 +787,14 @@ By inserting the new four-velocity components \eqref{eq:nstars:velocity_componen
 The system \eqref{eq:nstars:field_equations_unstable} consists of \emph{three} equations for the \emph{five} unknowns $\xi$, $\delta P$, $\delta \epsilon$, $\delta \alpha$ and $\delta \beta$.
 To complete the set, we will make use of two further results of our study of relativistic fluid mechanics in \cref{chap:relfluid}.
 
-In order to make use of the results of \cref{chap:relfluid} in our context, we must first learn to distinguish between \emph{Eularian} and \emph{Lagrangian} changes in fluids.
+In order to make use of the results of \cref{chap:relfluid} in our context, we must first learn to distinguish between \emph{Eulerian} and \emph{Lagrangian} changes in fluids.
 The quantities
 \begin{subequations}
 \begin{equation}
 	\delta f(t, r) = f(t, r) - f_0(r)
 \label{eq:nstars:change_eularian}
 \end{equation}
-that we defined in \cref{eq:nstars:perturbation_expansion} are \textbf{Eularian changes} in the quantities $f$, measured by an observer who is sitting duck at some fixed position $x^\mu = (ct, r, \theta, \phi)$.
+that we defined in \cref{eq:nstars:perturbation_expansion} are \textbf{Eulerian changes} in the quantities $f$, measured by an observer who is sitting duck at some fixed position $x^\mu = (ct, r, \theta, \phi)$.
 In contrast, we define the \textbf{Lagrangian changes}
 \begin{equation}
 	\Delta f(r,t) = f(r+\xi(r,t), t) - f_0(r)
@@ -820,7 +820,7 @@ In our study of relativistic fluid mechanics in \cref{chap:relfluid}, we derive 
 \end{equation}
 First, note that because the equilibrium energy density $\epsilon_0(r)$ is independent of time, $\odv{\epsilon}/{\tau} = \odv{\Delta \epsilon}/{\tau}$.
 At first sight, it may sound more straightforward to write $\odv{\delta \epsilon}/{\tau}$ instead of $\odv{\Delta \epsilon}/{\tau}$.
-However, since the derivative $\odv{}/{\tau}$ is along the stream line of the fluid element, the Lagrangian changes are more accurate than the Eularian changes to first order in perturbation theory.
+However, since the derivative $\odv{}/{\tau}$ is along the stream line of the fluid element, the Lagrangian changes are more accurate than the Eulerian changes to first order in perturbation theory.
 To first order in the small quantities, only the time component contributes to the left side
 \begin{equation}
 \begin{split}
@@ -850,7 +850,7 @@ We then find our fourth main equation
 \label{eq:nstars:Delta_epsilon}
 \end{equation}
 
-The last result of \cref{chap:relfluid} that we make use of is adiabadicity of the flow.
+The last result of \cref{chap:relfluid} that we make use of is adiabaticity of the flow.
 In \cref{sec:relfluid:adiabadicity}, we show that the flow of a perfect fluid is adiabatic with the \textbf{adiabatic index}
 \begin{equation}
 	\gamma = \frac{\epsilon+P}{P} \odv{P}{\epsilon} .
@@ -890,7 +890,7 @@ Together, equations \eqref{eq:nstars:field_equations_unstable_01}, \eqref{eq:nst
 \label{eq:nstars:perturbation_system}%
 \end{subequations}%
 for the five unknowns $\xi$, $\delta \alpha$, $\delta \beta$, $\delta P$ and $\delta \epsilon$.
-Remember that any occurence of $\Delta P$ and $\Delta \epsilon$ can be traded for $\delta P$ and $\delta \epsilon$ by the Taylor expansion \eqref{eq:nstars:delta_taylor_expansion}.
+Remember that any occurrence of $\Delta P$ and $\Delta \epsilon$ can be traded for $\delta P$ and $\delta \epsilon$ by the Taylor expansion \eqref{eq:nstars:delta_taylor_expansion}.
 Except for the independent variables $t$ and $r$, the only other quantities are the equilibrium values $\alpha_0$, $\beta_0$, $P_0$ and $\epsilon_0$ and derivatives thereof.
 Solving the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} yield $P_0$, $m_0$ and $\alpha_0$, from which one can calculate $\epsilon_0$ by the equation of state \eqref{eq:tov:tovsys_eos} and $\beta_0$ from definition \eqref{eq:einstein_to_tov:def_m}.
 
@@ -1081,11 +1081,11 @@ Property \ref{item:nstars:sturm_liouville_eigenvalues} ensures all $\omega_n^2$ 
 \end{itemize}
 A prerequisite for the above criterion is that it is sufficient for \emph{one} mode in the displacement \eqref{eq:nstars:displacement_general_solution} to be unstable for the star as a whole to be unstable.
 To understand this, suppose a star is exposed to some external perturbation $\xi(t,r)$.
-Whatever the source of this perturbation -- be it the touch of a finger, an imperfection in the star's material or the blast from a nearby supernova explosion -- it is the initial state $\xi(t,r)$ of this \emph{external} perturabtion that determines the contribution $c_n$ from each mode in the sum \eqref{eq:nstars:displacement_general_solution}, and subsequently the \emph{response} of the star to the perturbation.
+Whatever the source of this perturbation -- be it the touch of a finger, an imperfection in the star's material or the blast from a nearby supernova explosion -- it is the initial state $\xi(t,r)$ of this \emph{external} perturbation that determines the contribution $c_n$ from each mode in the sum \eqref{eq:nstars:displacement_general_solution}, and subsequently the \emph{response} of the star to the perturbation.
 In the real world, we expect that any external perturbation will activate \emph{all} modes $U_n(r)$ to some extent -- for one would need remarkable finger precision to perturb the star in an \emph{exact} superposition of only a finite selection of modes.
 Given that all modes have even the slightest nonzero contribution $c_n \neq 0$, the presence of \emph{any} exponential term is sufficient for the whole sum to collapse or grow unbounded towards $0$ or $\infty$.
 
-A clever and perhaps sligthly nitpicky objection to our criterion, is that the perturbative exponential growth should not be valid once the perturbation has grown outside the domain where it is valid.
+A clever and perhaps slightly nitpicky objection to our criterion, is that the perturbative exponential growth should not be valid once the perturbation has grown outside the domain where it is valid.
 However, \emph{if} a star were to reach another state of equilibrium once it has grown outside this domain of validity, we could simply reapply perturbation theory again to the \emph{new} equilibrium configuration.
 This argument can be repeated indefinitely, and we would still reach the conclusion that it is unstable.
 Similarly, a balloon in equilibrium can always be made to burst -- just blow more air into it.
@@ -1286,7 +1286,7 @@ node [text=black, sloped, pos=0.66, yshift=10pt] {$\longleftarrow$ Increasing $P
 \caption{\label{fig:nstars:stability}%
 Stability analysis of the neutron stars with arbitrary Fermi momenta in \cref{fig:nstars:massradius}.
 Squared eigenfrequencies $\omega_n^2$ of the Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville_problem} are computed numerically with shooting method.
-The sign of the squared eigenfreuqency $\omega_0^2$ of the lowest normal vibration mode determines whether a star is stable and oscillates like $e^{i \omega_0 t}$, or if it is unstable and grows or decays like $e^{\pm \abs{\omega_0} t}$.
+The sign of the squared eigenfrequency $\omega_0^2$ of the lowest normal vibration mode determines whether a star is stable and oscillates like $e^{i \omega_0 t}$, or if it is unstable and grows or decays like $e^{\pm \abs{\omega_0} t}$.
 Here, the number of unstable modes with negative squared eigenfrequencies $\omega_n^2 < 0$ are counted for all stars along the mass-radius curve.
 \emph{Do note the presence of all four colors.}
 }

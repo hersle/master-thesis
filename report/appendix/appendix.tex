@@ -23,9 +23,9 @@ They are rather intertwined into \emph{spacetime} -- a $(3+1)$-dimensional const
 	x^\mu = (x^0, x^1, x^2, x^3) .
 \end{equation}
 In flat Minkowski space, the coordinates could be taken as $x^\mu = (ct, x, y, z)$.
-Mathematically, the geometry of spacetime is described by a \emph{Riemannian manifold} that generalizes flat Minkowski space to \emph{curved space}.
+Mathematically, the geometry of spacetime is described by a \emph{Riemannian manifold} that generalizes flat Minkowski space to \emph{curved space}.
 At every point on such a manifold, spacetime locally resembles Minkowski space in the \emph{tangent space} located at that point, and all such tangent spaces vary in a smooth manner from point to point.
-For example, \cref{fig:tangent_space} pictures the tangent space at a point of the $2$-sphere manifold.
+For example, \cref{fig:tangent_space} pictures the tangent space at a point of the $2$-sphere manifold.
 Familiar concepts like angles, lengths, area and volume apply locally in the tangent space at each point in infinitesimal form, and one can generalize such concepts to the full manifold by integrating the local contributions from one point on the manifold to another.
 
 \begin{figure}
@@ -85,7 +85,7 @@ We define an $n$-dimensional \textbf{covariant vector} as an $n$-tuple $V_\mu$ t
 	V_{\mu'} = \pdv{x^{\mu}}{x^{\mu'}} V_\mu .
 	\label{eq:covariant_transformation}
 \end{equation}
-Oppositely, we define an $n$-dimensional \textbf{contravariant vector} as an $n$-tuple $V^\mu$ that transforms with the \emph{inverse} matrix $\pdv{x^{\mu'}}/{x^{\mu}}$ as
+Oppositely, we define an $n$-dimensional \textbf{contravariant vector} as an $n$-tuple $V^\mu$ that transforms with the \emph{inverse} matrix $\pdv{x^{\mu'}}/{x^{\mu}}$ as
 \begin{equation}
 	V^{\mu'} = \pdv{x^{\mu'}}{x^\mu} V_\mu .
 	\label{eq:contravariant_transformation}
@@ -328,7 +328,7 @@ Inserted into the equation of parallel transport \eqref{eq:parallel_transport}, 
 	\label{eq:geodesic}
 \end{equation}
 In flat spacetime, it reduces to the equation of a straight line $\odv[2]{x^\mu}/{\tau} = 0$.
-One of Einstein's profound insights of general relativity was that gravity does not simply alter the path of a freely falling particle away from the straight line it would follow in Euclidean space in the abscence of gravity.
+One of Einstein's profound insights of general relativity was that gravity does not simply alter the path of a freely falling particle away from the straight line it would follow in Euclidean space in the absence of gravity.
 Instead, gravity presents itself in the geometry of spacetime, as the presence of energy-momentum curves spacetime and lays geodesic ``tracks'' according to \cref{eq:geodesic} that any freely falling particle is destined to follow.
 \emph{Gravity is geometry}.
 
@@ -415,7 +415,7 @@ We postulate the \textbf{Hilbert action}
 	\label{eq:einstein_derivation:hilbert_action}
 \end{equation}
 As the Lagrangian is a scalar quantity and we showed that the simplest scalar quantity we could create is the Ricci scalar \eqref{eq:def_ricci_scalar}, it is not an unreasonable guess.
-The prefactor has been conventiently chosen to yield correct result \eqref{eq:einstein_derivation:einstein_matter} in the end, which we saw in \cref{sec:einstein_to_poisson} led to Newtonian gravity in the Newtonian limit.
+The prefactor has been conveniently chosen to yield correct result \eqref{eq:einstein_derivation:einstein_matter} in the end, which we saw in \cref{sec:einstein_to_poisson} led to Newtonian gravity in the Newtonian limit.
 From an ignorant point of view, we could instead regard it as an arbitrary constant at this point, and eventually replace it with the right combination of constants that reproduce Newtonian gravity in the Newtonian limit.
 We could get the corresponding equations of motion by plugging the Lagrangian density $\hat{\lagr} = R c^3 / 16 \pi G$ into the Euler-Lagrange equations
 \begin{equation}
@@ -737,7 +737,7 @@ The output of the program matches \cref{eq:tov} precisely.
 \label{chap:relfluid}
 
 In this appendix, we will derive a number of important results from relativistic fluid mechanics needed for stability analysis of stars.
-We will look at the \textbf{flow} of fluid elements along stream lines $x(\tau)$ in a \textbf{perfect fluid} charaterized by its pressure $P = P(x)$ and energy density $\epsilon = \epsilon(x)$.
+We will look at the \textbf{flow} of fluid elements along stream lines $x(\tau)$ in a \textbf{perfect fluid} characterized by its pressure $P = P(x)$ and energy density $\epsilon = \epsilon(x)$.
 
 \textit{This appendix is inspired by references \cite{ref:mtw} and \cite{ref:weinberg_gravity}.}
 
@@ -846,7 +846,7 @@ The conservation of energy-momentum $\nabla_\mu T^{\mu \nu} = 0$ implies
 \label{eq:relfluid:conservation_energy_momentum}
 \end{equation}
 
-From this, it is possible to derive two separate results by \emph{projecting} the part of the vector $\nabla_\mu T^{\mu \nu}$ that is parallel and and orthogonal to $u^\mu$.
+From this, it is possible to derive two separate results by \emph{projecting} the part of the vector $\nabla_\mu T^{\mu \nu}$ that is parallel and orthogonal to $u^\mu$.
 If we have two vectors $\vec{u}$ and $\vec{v}$, then we define the parallel and orthogonal projection of $\vec{v}$ on $\vec{u}$ by
 \begin{equation}
 	\vec{v}_\parallel = \left( \hat{\vec{u}} \cdot \vec{v} \right) \hat{\vec{u}} = \frac{\vec{u} \cdot \vec{v}}{\vec{u} \cdot \vec{u}} \vec{u}
@@ -961,7 +961,7 @@ We therefore recover the Euler equation
 from fluid mechanics, expressing the acceleration of fluid elements on the left in terms of the gravitational field $\vec{g}$ and the pressure gradient $\nabla P$.
 
 
-\section{Adiabadicity}
+\section{Adiabaticity}
 \label{sec:relfluid:adiabadicity}
 
 The flow of a perfect fluid is adiabatic, meaning there is no transfer of heat between fluid elements.
@@ -975,7 +975,7 @@ Then the first law can be rewritten
 \begin{equation}
 	\dif \left( \epsilon \, \frac{N}{n} \right) = N T \dif s - P \dif \left( \frac{N}{n} \right) .
 \end{equation}
-Explicitly writing out the differentials and cancelling the constant $N$, we find
+Explicitly writing out the differentials and canceling the constant $N$, we find
 \begin{equation}
 	\dif \epsilon = \frac{\epsilon + P}{n} \dif n + n T \dif s .
 \label{eq:relfluid:thermodynamics_first_law_rewritten}
@@ -991,7 +991,7 @@ To relate this to our flow, combine conservation of energy \eqref{eq:relfluid:en
 \end{equation}
 \emph{This is precisely the first law of thermodynamics \eqref{eq:relfluid:thermodynamics_first_law_rewritten} with $\dif Q = T \dif S = 0$}, showing that the flow indeed is adiabatic!
 
-A useful consequence of adiabadicity is that it enables us to define the \textbf{adiabatic index}
+A useful consequence of adiabaticity is that it enables us to define the \textbf{adiabatic index}
 \begin{equation}
 	\gamma = \left( \pdv{\log (P/P_0)}{\log (n/n_0)} \right)_S
 \end{equation}
@@ -1019,7 +1019,7 @@ To first order in all the small quantities, the Euler equation \eqref{eq:relflui
 	\pdv{\vec{v}}{t} = - c^2 \frac{\nabla (\delta P)}{\epsilon_0 + P_0} .
 \label{eq:relfluid:speed_of_sound_dvdt}
 \end{equation}
-Likewise, the adiabadicity condition \eqref{eq:relfluid:energy_conservation_rewritten} gives
+Likewise, the adiabaticity condition \eqref{eq:relfluid:energy_conservation_rewritten} gives
 \begin{equation}
 	\pdv{(\delta \epsilon)}{t} = \frac{\epsilon_0 + P_0}{n_0} \pdv{(\delta n)}{t},
 	\qquad \text{or} \qquad
@@ -1071,7 +1071,7 @@ Finally, combine equation \eqref{eq:relfluid:speed_of_sound_dvdt3} with equation
 \begin{equation}
 	\left( \odv[2]{}{t} - v_s^2 \, \nabla^2 \right) \delta n = 0 .
 \end{equation}
-This is a wave equation with solutions $\delta n = \delta n (\vec{x} \mp \vec{v} t)$ that describe density waves travelling at the speed of sound!
+This is a wave equation with solutions $\delta n = \delta n (\vec{x} \mp \vec{v} t)$ that describe density waves traveling at the speed of sound!
 
 
 \chapter{Matsubara energy summation}
@@ -1399,7 +1399,7 @@ For later reference, recall that the upper and lower signs hold for bosons and f
 	\label{eq:integrals:gaussian_grassmann_one}
 	\end{equation}
 }{
-	Using the Taylor expansion \eqref{eq:gnums:exponential_taylor_series}, and the Grassmann number integral definitions \eqref{eq:gnums:integration_const} and \eqref{eq:gnums:integration_var} and the anticommutator \eqref{eq:gnums:anticommutators},
+	Using the Taylor expansion \eqref{eq:gnums:exponential_taylor_series}, and the Grassmann number integral definitions \eqref{eq:gnums:integration_const} and \eqref{eq:gnums:integration_var} and the anti-commutator \eqref{eq:gnums:anticommutators},
 	\begin{equation*}
 	\begin{split}
 		\int \dif \conj\psi \int \dif \psi \, e^{-\conj\psi a \psi} = \int \dif \conj\psi \int \dif \psi \, (1 - \conj\psi a \psi)
@@ -1411,17 +1411,17 @@ For later reference, recall that the upper and lower signs hold for bosons and f
 \formulawithproof{Gaussian integral over multiple pairs of Grassmann numbers}{
 	\begin{equation}
 		\int \dif \psi^\dagger \int \dif \psi \, e^{-\psi^\dagger A \psi} = \tdet A
-		\qquad \text{for Hermitean $A$ and Grassmann numbers $(\psi, \psi^\dagger)$} .
+		\qquad \text{for Hermitian $A$ and Grassmann numbers $(\psi, \psi^\dagger)$} .
 	\label{eq:integrals:gaussian_grassmann_multiple}
 	\end{equation}
 }{
-	The Hermitean matrix $A$ can be diagonalized by a unitary transformation $U$ as $A = U^\dagger D U$, where $D$ is a diagonal matrix with the eigenvalues of $A$ on its diagonal.
+	The Hermitian matrix $A$ can be diagonalized by a unitary transformation $U$ as $A = U^\dagger D U$, where $D$ is a diagonal matrix with the eigenvalues of $A$ on its diagonal.
 	Thus, 
 	\begin{equation*}
 		\psi^\dagger A \psi = \psi^\dagger U^\dagger D U \psi = (U \psi)^\dagger D (U \psi) = \tilde\psi^\dagger D \tilde\psi, \quad \text{where } \tilde\psi = U \psi .
 	\end{equation*}
 	The unitary transformation has $\abs{\tdet U} = 1$, so the integration measure $\dif \psi = \dif \tilde\psi$ is unchanged upon changing variables.
-	A Hermitean matrix has real eigenvalues, so we can use integral \eqref{eq:integrals:gaussian_grassmann_one} to show that
+	A Hermitian matrix has real eigenvalues, so we can use integral \eqref{eq:integrals:gaussian_grassmann_one} to show that
 	\begin{equation*}
 	\begin{split}
 		\int \dif \psi^\dagger \int \dif \psi \, e^{-\psi^\dagger A \psi} &= \int \dif \tilde\psi^\dagger \int \dif \tilde\psi \, e^{-\tilde\psi^\dagger D \tilde\psi} \\
@@ -1532,7 +1532,7 @@ where $m_0$ and $r_0$ are two natural scales of stellar masses and radii, and
 is a corresponding natural scale of energy density.
 For a neutron star, it would be appropriate to choose the solar mass $m_0 = \solarmass$ and $r_0 = \SI{10}{\kilo\meter}$, for example.
 In short, any variable that wears a hat $\hat{}$ is the dimensionless version of its hatless sibling.
-With the dimensionless variables \eqref{eq:numtov:dimensionless_variables}, the TOV system \eqref{eq:numtov:tovsys} becomes
+With the dimensionless variables \eqref{eq:numtov:dimensionless_variables}, the Tolman-Oppenheimer-Volkoff system \eqref{eq:numtov:tovsys} becomes
 \begin{subequations}
 \label{eq:numtov:tovsys_dimless_complicated}
 \begin{align}
@@ -1632,7 +1632,7 @@ To make it fast, our actual implementation carries out the search in the followi
             Find a lower bound by decreasing $\omega^2$ exponentially down from $\omega_+^2$ and shooting $U(r)$ with step \ref{item:shooting:bc1} and \ref{item:shooting:shoot} above until it has $n(\omega^2) \leq n$ nodes, then set the lower bound $\omega_-^2 = \omega^2$.
       \end{itemize}
       \label{item:shooting:bounds}
-\item Calulate the new guess $\omega^2 = (\omega_-^2 + \omega_+^2) / 2$, shoot $U(r)$ with step \ref{item:shooting:bc1} and \ref{item:shooting:shoot} above and count its number of nodes $n(\omega^2)$. \label{item:shooting:newguess}
+\item Calculate the new guess $\omega^2 = (\omega_-^2 + \omega_+^2) / 2$, shoot $U(r)$ with step \ref{item:shooting:bc1} and \ref{item:shooting:shoot} above and count its number of nodes $n(\omega^2)$. \label{item:shooting:newguess}
       \begin{itemize}
       \item If $n(\omega^2) \leq n$, then $\omega^2$ is a tighter lower bound than $\omega_-^2$, so set $\omega_-^2 = \omega^2$.
       \item If $n(\omega^2) >    n$, then $\omega^2$ is a tighter upper bound than $\omega_-^2$, so set $\omega_+^2 = \omega^2$.

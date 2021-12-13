@@ -21,12 +21,12 @@ If we can find the partition function, we can obtain all thermodynamic informati
 	\text{and } & \text{the average pressure}            & \thermalavg{P}   & = \frac{k_B T}{V} \log{Z}.                       & \label{eq:tft:average_pressure} % -\pdv{\Omega}{V}
 \end{align}
 \end{subequations}
-This is exactly what we eventually want to insert into the TOV equation \eqref{eq:tov}.
+This is exactly what we eventually want to insert into the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}.
 As all relevant information about a system can be derived from the partition function, we say that we have ``solved the system completely'' once we have found $Z$.
 
 First, we will review how the transition amplitude for a process can be expressed as a path integral.
 Then we will show how a few adjustments can be made to the path integral in order for it to express the partition function $Z$.
-We will show that the path integral expression for the partition function turns out to be the same for bosonic and fermionic fields, although their mathematical fundament is quite different.
+We will show that the path integral expression for the partition function turns out to be the same for bosonic and fermionic fields, although their mathematical foundation is quite different.
 Finally, we will consider the specific case of a fermionic gas and find its partition function.
 
 \textit{This chapter is inspired by references \cite{ref:kapusta}, \cite{ref:altland_simons}, \cite{ref:tft_basics} and \cite{ref:tft_random_note_1}.}
@@ -179,7 +179,7 @@ where we no longer have any operators, but only the Hamiltonian eigenvalue at th
 \label{eq:tft:hamiltonian_eigenvalues}
 \end{equation}
 We will only study Hamiltonians with this ordering, for which these steps are valid.
-Note the importance of expanding the exponential to first order in timeonly.
+Note the importance of expanding the exponential to first order in time only.
 If the Hamiltonian contained \emph{any} mixed sequence of operators such as $H \propto \hat{\pi} \hat{\phi}$, then higher powers like $\hat{H}^2 \propto \hat{\pi} \hat{\phi} \hat{\pi} \hat{\phi}$ in the power series expansion of the time evolution operator would not be in the assumed left-right order.
 
 \iffalse
@@ -286,7 +286,7 @@ with the action
 \fi
 The path integral expresses the transition amplitude for the process $A \rightarrow B$ as a sum over all possible paths through phase space, each weighted by the value on the unit circle with phase corresponding to the action of the path.
 This interpretation is illustrated in \cref{fig:phase_space}.
-Note that the position-space integral $\int \pathintdif \phi$ is constrained to start and end in the initial and final states due to the leftmost and righmost products with $\bra{\phi_B}$ and $\ket{\phi_A}$, but the momentum integral $\int \pathintdif \pi$ has no such constraint.
+Note that the position-space integral $\int \pathintdif \phi$ is constrained to start and end in the initial and final states due to the leftmost and rightmost products with $\bra{\phi_B}$ and $\ket{\phi_A}$, but the momentum integral $\int \pathintdif \pi$ has no such constraint.
 
 Why have we spent so much time on this transition amplitude, when we really are only interested in the partition function \eqref{eq:tft:partition_function}?
 If we evaluate the trace \eqref{eq:tft:partition_function} in the basis of fields $\ket{\phi_0}$, we obtain
@@ -328,7 +328,7 @@ Suppose that the field theory admits a conserved current
 	\odv{Q}{t} = 0.
 \end{equation}
 In the corresponding quantized quantum field theory, this is equivalent to the commutation $\comm{\hat{H}}{\hat{Q}} = 0$ between the Hamiltonian operator and charge operator.
-Then $\odv{\thermalavg{Q}}/{t} = \thermalavg{\comm{\hat{H}}{\hat{Q}}} = 0$ by Ehrenfest's theorem.
+Then $\odv{\thermalavg{Q}}/{t} = \thermalavg{\comm{\hat{H}}{\hat{Q}}} = 0$ by the Ehrenfest theorem.
 The conserved current $j^\mu(x)$ can be coupled to a gauge field $A_\mu(x)$ by adding the term $A_\mu(x) j^\mu(x)$ to the Lagrangian density $\lagr$, or $-A_\mu(x) j^\mu(x)$ to the Hamiltonian density $\ham$.
 Under a standard, Abelian gauge transformation
 \begin{equation}
@@ -376,7 +376,7 @@ For example, the Dirac Lagrangian is $\lagr = \bar{\psi} (i \hbar c \, \slashed\
 This is not a peculiarity of fermionic fields only -- for a complex scalar field $\phi$, for example, we would also be instructed to treat $\phi$ and $\conj\phi$ separately. 
 
 Why do we need to derive the path integral for fermions separately -- can we not just use the bosonic path integral \eqref{eq:tft:bosonic_partition_function} with the appropriate conjugate momentum?
-By assumption, the fermion field operators obey the fermionic \textbf{anticommutation relations}
+By assumption, the fermion field operators obey the fermionic \textbf{anti-commutation relations}
 \begin{subequations}%
 \begin{align}%
 	\acomm{\destr_\alpha(\vec{x})}{\creat_\beta(\vec{y})} &= \delta_{\alpha \beta} \delta(\vec{x}-\vec{y}) , \\
@@ -387,7 +387,7 @@ By assumption, the fermion field operators obey the fermionic \textbf{anticommut
 \end{subequations}%
 in contrast to the bosonic commutators \eqref{eq:tft:boson_field_commutators}.
 In the derivation of the bosonic path integral \eqref{eq:tft:bosonic_partition_function}, we treated the eigenvalues $\phi$ and $\pi$ of the operators $\hat\phi$ and $\hat\pi$ as ordinary numbers.
-However, the anticommutators \eqref{eq:tft:fermion_anticommutators} of the fermionic field operators in fact requires their eigenvalues to anticommute!
+However, the anti-commutators \eqref{eq:tft:fermion_anticommutators} of the fermionic field operators in fact requires their eigenvalues to anti-commute!
 For example,
 \begin{equation}
 \begin{split}
@@ -400,10 +400,10 @@ For example,
 By replacing only one operator with its eigenvalue, we can also deduce the requirements $\acomm{\psi}{\creat} = \acomm{\psi}{\destr} = 0$.
 The bosonic path integral \eqref{eq:tft:bosonic_partition_function} and its derivation is therefore not valid for fermions.
 
-To develop the fermionic path integral, we therefore replace the algebra of ordinary commuting numbers in the bosonic case with anticommuting \textbf{Grassmann numbers}.
+To develop the fermionic path integral, we therefore replace the algebra of ordinary commuting numbers in the bosonic case with anti-commuting \textbf{Grassmann numbers}.
 We will need only a few basic properties of Grassmann numbers, so let us quickly review them here.
 
-The algebra of a set of $N$ Grassmann numbers $\psi_i$ and their conjugates $\conj\psi_i$ is defined by the anticommutators
+The algebra of a set of $N$ Grassmann numbers $\psi_i$ and their conjugates $\conj\psi_i$ is defined by the anti-commutators
 \begin{equation}
 	\acomm{\psi_i}{\psi_j} = 
 	\acomm{\psi_i}{\conj\psi_j} = 
@@ -465,8 +465,8 @@ so, perhaps confusingly, we are instructed to treat the field and its conjugate 
 
 Let us get to work.
 Suppose we have a finite number $N$ of Grassmann numbers $\psi_i$ with conjugates $\conj\psi_i$ and as many creation and annihilation operators $\creat_i$ and $\destr_i$.
-Right after \cref{eq:tft:eigenvalues_must_anticommute}, we argued that Grassmann numbers anticommute not only with each other, but also with the operators.
-By assumption, we therefore start with all the anticommutators
+Right after \cref{eq:tft:eigenvalues_must_anticommute}, we argued that Grassmann numbers anti-commute not only with each other, but also with the operators.
+By assumption, we therefore start with all the anti-commutators
 \begin{subequations}%
 \begin{align}%
 	\acomm{\psi_i}{\psi_j} = \acomm{\psi_i}{\conj\psi_j} = \acomm{\conj\psi_i}{\conj\psi_j}                             &= 0            , \label{eq:tft:fermionic_anticommutator_gnums} \\
@@ -476,8 +476,8 @@ By assumption, we therefore start with all the anticommutators
 \end{align}%
 \label{eq:tft:fermionic_all_anticommutators}
 \end{subequations}%
-In other words, all field operators and all Grassmann numbers anticommute with themselves and each other.
-The anticommutators \eqref{eq:tft:fermionic_all_anticommutators} of the field operators $\creat_i$ and $\destr_i$ are the discrete analogues of \eqref{eq:tft:fermion_anticommutators}.
+In other words, all field operators and all Grassmann numbers anti-commute with themselves and each other.
+The anti-commutators \eqref{eq:tft:fermionic_all_anticommutators} of the field operators $\creat_i$ and $\destr_i$ are the discrete analogues of \eqref{eq:tft:fermion_anticommutators}.
 It will be more comfortable to carry out the formalism of fermionic coherent states in the discrete case and then take the continuum limit $\psi_i \rightarrow \psi(\vec{x})$ in the end.
 
 The Fock space of the fermionic field has a \textbf{ground state} or \textbf{vacuum state} that we denote by
@@ -489,7 +489,7 @@ We can apply any sequence of $n = \sum_i n_i$ different creation operators to it
 	\ket{n_1, n_2, \ldots, n_N} = \left( \creat_1 \right)^{n_1} \cdots \left( \creat_N \right)^{n_N} \ket{0} .
 \label{eq:tft:fermionic_many_particle_state}
 \end{equation}
-This results in a non-zero state only if $n_i \in \{0, 1\}$ for all $i$, because $(\creat_i)^2 \ket{0} = -(\creat_i)^2 \ket{0} = 0$ by the anticommutator \eqref{eq:tft:fermionic_anticommutator_sameops}.
+This results in a non-zero state only if $n_i \in \{0, 1\}$ for all $i$, because $(\creat_i)^2 \ket{0} = -(\creat_i)^2 \ket{0} = 0$ by the anti-commutator \eqref{eq:tft:fermionic_anticommutator_sameops}.
 Note that shuffling the sequence of operators in \cref{eq:tft:fermionic_many_particle_state} can change the sign of the state -- we define the $n$-particle state to have operators with indices that increase from left to right.
 In particular, we can build the \textbf{one-particle state}
 \begin{equation}
@@ -585,7 +585,7 @@ For every one of these terms, there is precisely one combination of factors in t
 This evaluates to $2^N$ terms with all possible combinations of $N_j = N_k$ creation and annihilation operators and $N_i = N - N_j$ Grassmann numbers.
 \emph{These $2^N$ terms are therefore precisely all the $2^N$ states \eqref{eq:tft:fermion_all_states} in the Fock space!}
 The sign ambiguity following different orders of operators in the state \eqref{eq:tft:fermionic_many_particle_state} does not cause any problems with signs in the sum over all the states, either.
-To understand why, note that rule \ref{eq:tft:logic_tree_three} forces us to apply the same sequence of operators to both $\ket{0}$ and $\bra{0}$, and any ordering that does not follow definition \eqref{eq:tft:fermionic_many_particle_state} can be made to do so, because anticommuting the same operators in each sequence would introduce \emph{two} negative signs that cancel.
+To understand why, note that rule \ref{eq:tft:logic_tree_three} forces us to apply the same sequence of operators to both $\ket{0}$ and $\bra{0}$, and any ordering that does not follow definition \eqref{eq:tft:fermionic_many_particle_state} can be made to do so, because anti-commuting the same operators in each sequence would introduce \emph{two} negative signs that cancel.
 This explains the transition to the final line.
 \iffalse
 \begin{itemize}
@@ -614,7 +614,7 @@ With the same reasoning, we can work out that the trace of an operator $\hat{A}$
 Across the third equality, we (anti)commute $\psi_j$ and $\conj\psi_j$ all the way to the left to write $\smash{\braket{0 | \destr_j \conj\psi_j \hat{A} (-\psi_j \creat_j) | 0} = \psi_j \conj\psi_j \braket{0 | \destr_j \hat{A} \creat_j | 0}}$ while assuming that $\smash{\hat{A}}$ is a ``bosonic'' operator that \emph{commutes} with the Grassmann numbers.
 The Hamiltonian \eqref{eq:tft:dirac_hamiltonian} for a Dirac field that we encounter later is one example of such an $\hat{A}$, as it contains two field operators.
 
-As we remarked at the start, this analysis was for discrete fields that satisfy the discrete anticommutators \eqref{eq:tft:fermionic_all_anticommutators}.
+As we remarked at the start, this analysis was for discrete fields that satisfy the discrete anti-commutators \eqref{eq:tft:fermionic_all_anticommutators}.
 We are studying fields $\psi(\vec{x})$ and $\conj\psi(\vec{x})$ with an infinite number of field operators $\creat(\vec{x})$ and $\destr(\vec{x})$ that satisfy the continuum generalization \eqref{eq:tft:fermion_anticommutators}.
 Our results carry over with the substitutions $\psi_i \rightarrow \psi(\vec{x})$, as if every Grassmann number corresponds to the field at one position, and $\sum_i \rightarrow \int \dif^3 x$.
 For example, the coherent state is
@@ -638,7 +638,7 @@ while the trace \eqref{eq:tft:trace_grassmann_discrete} is modified to
 \label{eq:tft:trace_grassmann}
 \end{equation}
 \end{subequations}
-The most important thing to note is the negative sign in $\bra{-\psi}$ of the trace \eqref{eq:tft:trace_grassmann} -- we will see that this requires fermionic fields to be \emph{antiperiodic} in imaginary time, in contrast to the periodic bosonic fields.
+The most important thing to note is the negative sign in $\bra{-\psi}$ of the trace \eqref{eq:tft:trace_grassmann} -- we will see that this requires fermionic fields to be \emph{anti-periodic} in imaginary time, in contrast to the periodic bosonic fields.
 
 Using equations \eqref{eq:tft:grassmann_inner_product}, \eqref{eq:tft:completeness_grassmann} and \eqref{eq:tft:trace_grassmann} as our toolbox, let us now construct the path integral for the fermionic partition function.
 We now revert from the above notation with single fermion fields $\psi$ and $\conj\psi$ back to the four-component spinors $\psi$ and $\psi^\dagger$.
@@ -669,9 +669,9 @@ We then obtain the \textbf{fermionic partition function}
 	Z = \oint_- \pathintdif \psi^\dagger \oint_- \pathintdif \psi \exp \left[ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( -\hbar \psi^\dagger \dot{\psi} - \ham \left( \psi^\dagger, \psi \right) + \mu \numdensity \right) \right] ,
 \label{eq:tft:fermion_partition_function}
 \end{equation}
-where $\oint_-$ means to integrate over \emph{antiperiodic} fields $\psi(\vec{x}, 0) = -\psi(\vec{x}, \beta \hbar)$, naturally extending the symbol $\oint_+$ we introduced for bosonic fields that were \emph{periodic}.
-Here, antiperiodicity follows from the negative sign in $\bra{-\psi}$ in \cref{eq:tft:trace_grassmann} that we hid in $\bra{\psi_{N+1}} = \bra{-\psi_0}$ right after \cref{eq:tft:fermion_path_integral_after_completeness}.
-Remarkably, this result looks identical to the bosonic partition function \eqref{eq:tft:bosonic_partition_function} with canonical momentum $\pi = i \hbar \psi^\dagger$, but here we integrate over Grassmann fields that are antiperiodic.
+where $\oint_-$ means to integrate over \emph{anti-periodic} fields $\psi(\vec{x}, 0) = -\psi(\vec{x}, \beta \hbar)$, naturally extending the symbol $\oint_+$ we introduced for bosonic fields that were \emph{periodic}.
+Here, anti-periodicity follows from the negative sign in $\bra{-\psi}$ in \cref{eq:tft:trace_grassmann} that we hid in $\bra{\psi_{N+1}} = \bra{-\psi_0}$ right after \cref{eq:tft:fermion_path_integral_after_completeness}.
+Remarkably, this result looks identical to the bosonic partition function \eqref{eq:tft:bosonic_partition_function} with canonical momentum $\pi = i \hbar \psi^\dagger$, but here we integrate over Grassmann fields that are anti-periodic.
 
 \iffalse
 The partition function is therefore
@@ -689,7 +689,7 @@ The partition function is therefore
 \section{Matsubara frequencies and box quantization}
 \label{sec:matsubara_quantization}
 
-We have just seen that the partition function for bosons and fermions can be expressed by path integrals over fields that are periodic and antiperiodic on the time interval $\beta \hbar$, respectively.
+We have just seen that the partition function for bosons and fermions can be expressed by path integrals over fields that are periodic and anti-periodic on the time interval $\beta \hbar$, respectively.
 In other words, a bosonic \emph{or} fermionic field $\phi(\vec{x}, \tau)$ satisfies the (anti)periodicity
 \begin{equation}
 	\phi(\vec{x}, \tau) = \begin{cases}
@@ -711,7 +711,7 @@ with \textbf{Matsubara frequencies}
 \label{eq:tft:matsubara_frequencies}
 \end{equation}
 
-The field is not periodic in space, but let us for a moment pretend that it is by putting it in a fictitous box of volume $V = L^3$ and impose periodic boundary conditions.
+The field is not periodic in space, but let us for a moment pretend that it is by putting it in a fictitious box of volume $V = L^3$ and impose periodic boundary conditions.
 Then the spatial part of the field can also be represented by a Fourier series
 \begin{equation}
 	\psi_n(\vec{x}) = \sum_\vec{k} \psi_n(\vec{k}) e^{i \vec{k} \cdot \vec{x}} ,
@@ -737,7 +737,7 @@ of the field, then take the continuum limit \eqref{eq:tft:continuum_limit} at th
 
 The infinite volume factor $V$ will come in handy when calculating thermodynamic observables.
 To obtain the pressure \eqref{eq:tft:average_pressure}, we are instructed to divide by volume.
-Similarly, we will need to divide by volume to convert extensive observables observables like the energy \eqref{eq:tft:average_energy} into intensive observables like the energy \emph{density} $\epsilon = \thermalavg{E} / V$ that we need in the TOV equation \eqref{eq:tov}.
+Similarly, we will need to divide by volume to convert extensive observables observables like the energy \eqref{eq:tft:average_energy} into intensive observables like the energy \emph{density} $\epsilon = \thermalavg{E} / V$ that we need in the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}.
 
 The wave number $\vec{k}$ and the Matsubara frequency $\omega_n$ here arose due to geometrical considerations of the periodicity of the field.
 Later on, we will see that they have important physical consequences.
@@ -799,7 +799,7 @@ Since $\tilde\pi$ can be regarded as a constant shift of the field $\pi$, we can
 We do not bother keeping track of the resulting constant or any other constants in front of the partition function.
 Physical quantities like the energy \eqref{eq:tft:average_energy} only involve derivatives of $\log Z$ and would be unaffected by such constants.
 The pressure \eqref{eq:tft:average_pressure}, however, contains $\log Z$ without derivatives and would really be shifted by an infinite constant, due to the infinite number of integrals in the functional integral \eqref{eq:tft:functional_integral}.
-It is most correct, therefore, to disregard constants in $Z$ with the attitude that we would have to renormalize the physical quantities in the end anyway, in order to get rid of infinites.
+It is most correct, therefore, to disregard constants in $Z$ with the attitude that we would have to renormalize the physical quantities in the end anyway, in order to get rid of infinities.
 
 Thus it only remains to tackle the $\phi$-integral
 \begin{equation}
@@ -1036,7 +1036,7 @@ This time, however, the correspondence to the Euclidean Lagrangian occurs immedi
 Notice in particular the similarity of the fermionic path integral \eqref{eq:tft:dirac_partition_function_first} to the bosonic path integral \eqref{eq:tft:boson_partition_function_momentum_out}.
 
 As in the bosonic case, we now Fourier expand the field.
-The fermionic antiperiodicity \eqref{eq:tft:periodicity} enables us to expand the Dirac field in the Fourier series
+The fermionic anti-periodicity \eqref{eq:tft:periodicity} enables us to expand the Dirac field in the Fourier series
 \begin{subequations}
 \begin{align}
 	\psi(\vec{x}, \tau)         &= \frac{1}{\sqrt{V}} \sum_n \sum_\vec{k} e^{i (\vec{k} \cdot \vec{x} + \omega_n \tau)} \psi_{n}(\vec{k}), \\
@@ -1159,7 +1159,7 @@ We can use this to rewrite the product in the partition function \eqref{eq:tft:d
 	=& \left[ E_n^2 + (E(\vec{p}) - \mu)^2 \right] \left[ E_n^2 + (E(\vec{p}) + \mu)^2 \right] . \\
 \end{split}
 \end{equation}
-Inserting this back into the partiton function \eqref{eq:tft:dirac_partition_function_splitting}, we find that it can be written
+Inserting this back into the partition function \eqref{eq:tft:dirac_partition_function_splitting}, we find that it can be written
 \begin{equation}
 \begin{split}
 	\log Z & = \sum_n \sum_\vec{p} \log \left\{ \beta^4 \left[ E_n^2 + (E(\vec{p}) - \mu)^2 \right] \left[ E_n^2 + (E(\vec{p}) + \mu)^2 \right] \right\} \\
@@ -1198,8 +1198,8 @@ Taking the continuum limit \eqref{eq:tft:continuum_limit}, we finally obtain the
 
 Having evaluated $\log Z$ for both a real scalar field and Dirac fermions, it is insightful to conclude this chapter by comparing the similarities and differences of the two cases.
 \begin{itemize}
-\item The bosonic and fermionic path integrals \eqref{eq:tft:bosonic_partition_function} and \eqref{eq:tft:fermion_partition_function} that we started with look very similar on the outside, yet are very different on the inside due to the algebra of commuting complex numbers in the bosonic case being replaced by anticommuting Grassmann numbers for fermions.
-\item The periodicity of the bosonic field and the antiperiodicity of the fermionic field allowed us to expand both as Fourier series, but with different Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
+\item The bosonic and fermionic path integrals \eqref{eq:tft:bosonic_partition_function} and \eqref{eq:tft:fermion_partition_function} that we started with look very similar on the outside, yet are very different on the inside due to the algebra of commuting complex numbers in the bosonic case being replaced by anti-commuting Grassmann numbers for fermions.
+\item The periodicity of the bosonic field and the anti-periodicity of the fermionic field allowed us to expand both as Fourier series, but with different Matsubara frequencies \eqref{eq:tft:matsubara_frequencies}.
 \item Only the Dirac field has a conserved charge that let us introduce a chemical potential $\mu$.
       The \emph{real} scalar field that we considered has no conserved current, unlike a \emph{complex} scalar field.
 \item In the bosonic case, we could integrate out the momentum $\pi$, leaving the Gaussian integrals \eqref{eq:tft:boson_gaussian_integral} over \emph{one} variable that we tackled using $\int \dif x \, e^{-ax^2} \propto a^{-1/2}$.
