@@ -47,13 +47,38 @@
 	\fvset{frame=single}
 	\newcommand{\codefile}[2]{\VerbatimInput{#2}}
 }{
-	\usepackage[cachedir=.cacheminted/]{minted} % nice, but slow
+	%\usepackage{minted} % nice, but slow
 	%\setminted{breaklines}
-	\setminted{frame=single}
-	\setminted{breakanywhere}
+	%\setminted{frame=single}
+	%\setminted{breakanywhere}
+	%\setminted{fontfamily=CodeFamily}
+	%\setminted{fontsize=\scriptsize}
+	%\newcommand{\codefile}[2]{\inputminted{#1}{#2}}
+
+	\usepackage[skins, breakable, minted]{tcolorbox}
+	\usepackage{lipsum}
 	\setminted{fontfamily=CodeFamily}
 	\setminted{fontsize=\scriptsize}
-	\newcommand{\codefile}[2]{\inputminted{#1}{#2}}
+	\newtcbinputlisting{\codefileunprotected}[3]{%
+		listing engine = minted,
+		minted language = {#1},
+		minted options = {
+			fontfamily = CodeFamily,
+			fontsize = \scriptsize,
+			style = bw,
+		},
+		listing file = {#2},
+		title={\textbf{\texttt{#3}}},
+		colback=white, colframe=black,
+		listing only,
+		breakable,
+		enhanced jigsaw, sharp corners,
+	}
+	\newcommand\codefile[3]{%
+		\tikzexternaldisable
+		\codefileunprotected{#1}{#2}{#3}
+		\tikzexternalenable
+	}
 }
 
 \usepackage{fancyhdr}

@@ -36,7 +36,7 @@ P = np.linspace(0, 20, 500)
 ϵs = []
 for ϵ in (ϵUR, ϵNR, ϵGR):
     ϵs.append([ϵ(P) for P in P])
-utils.writecols([P, ϵs[0], ϵs[1], ϵs[2]], ["P", "epsUR", "epsNR", "epsGR"], "data/eos.dat")
+utils.writecols([P, *ϵs], ["P", "epsUR", "epsNR", "epsGR"], "data/eos.dat")
 
 opts = {
     "tolD": 0.05,
@@ -45,16 +45,16 @@ opts = {
     "visual": True,
 }
 massradiusplot(
-    ϵNR, (1e-6, 1e0), **opts, stability=False, outfile="data/nr_newt.dat", newtonian=True
+    ϵNR, (1e-6, 1e0), **opts, stability=False, newtonian=True, outfile="data/nrnewt.dat"
 )
 massradiusplot(
-    ϵGR, (1e-6, 1e0), **opts, stability=False, outfile="data/gr_newt.dat", newtonian=True
+    ϵGR, (1e-6, 1e0), **opts, stability=False, newtonian=True, outfile="data/grnewt.dat"
 )
 massradiusplot(
-    ϵNR, (1e-6, 1e7), **opts, stability=True,  outfile="data/nr2.dat"
+    ϵNR, (1e-6, 1e7), **opts, stability=True,  newtonian=False, outfile="data/nr.dat"
 )
 massradiusplot(
-    ϵGR, (1e-6, 1e7), **opts, stability=True,  outfile="data/gr2.dat"
+    ϵGR, (1e-6, 1e7), **opts, stability=True,  newtonian=False, outfile="data/gr.dat"
 )
 
 r, m, P, α, ϵ = soltov(ϵGR, 1e3)

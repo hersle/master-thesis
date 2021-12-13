@@ -728,7 +728,7 @@ Inserting $h_{00} = 2V/c^2$ from \cref{eq:weak_field_limit:metric_with_potential
 When deriving \cref{eq:tov} analytically, we made use of energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$ instead of making use of \cref{eq:einstein_to_tov:thetatheta}.
 Inspired by \cite{ref:sage_tov}, we have here written a small program that does the latter in the computer algebra system SAGE.
 
-\codefile{python}{../code/tov_derive.sage}
+\codefile{python}{../code/tov_derive.sage}{tov\_derive.sage}
 
 The output of the program matches \cref{eq:tov} precisely.
 
@@ -1572,7 +1572,7 @@ Typically, stars distributed uniformly between two central pressures may be loca
 To circumvent this difficulty and make the mass-radius curve as smooth as possible, we take an adaptive approach by recursively splitting an initial central pressure interval $(\diml{P}_1, \diml{P}_2)$ until the Euclidean distance $[ \, (\smash[b]{\diml{R}}_2-\smash[b]{\diml{R}}_1)^2 + (\smash[b]{\diml{M}}_2-\smash[b]{\diml{M}}_1)^2 \, ]^{1/2}$ between all points on the curve is below some given tolerance.
 The program optionally checks the stability of stars by the definition in \cref{sec:nstars:stability_general} and numerical method described in the next section.
 
-\codefile{python}{../code/tov_solve.py}
+\codefile{python}{../code/tov_solve.py}{tov\_solve.py}
 
 \section{The shooting method}
 \label{sec:numerics:shooting_method}
@@ -1712,10 +1712,10 @@ Some further remarks about our implementation are in order.
 
 Below is our implementation of the shooting method in Python based on this description.
 
-\codefile{python}{../code/stability.py}
+\codefile{python}{../code/stability.py}{stability.py}
 
 \section{Cold free fermion neutron stars}
 
 Below, we use the general framework above to find the mass-radius relation for the equations of state for cold free fermion neutron stars that we found in \cref{sec:nstars:nr_limit} and \cref{sec:nstars:gr_limit}.
 
-\codefile{python}{../code/tov_free_fermi_gas.py}
+\codefile{python}{../code/tov_free_fermi_gas.py}{tov\_free\_fermi\_gas.py}
