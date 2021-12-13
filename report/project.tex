@@ -199,7 +199,7 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 \DeclareFieldFormat*{journaltitle}{#1} % no italics (in contrast to default)
 \DeclareFieldFormat*{volume}{volume #1}
 \newbibmacro*{journal+date}{
-	\printtext{Published in}%
+	\printtext{Article published in}%
 	\setunit*{\addspace}
 	\mkbibbold{\printfield{year}}%
 	\setunit*{\addspace}
@@ -221,7 +221,7 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 	\usebibmacro{begentry}%
 }
 \renewbibmacro*{publisher+location+date}{%
-	\printtext{Published in}%
+	\printtext{Book published in}%
 	\setunit*{\addspace}%
 	\mkbibbold{\printdate}%\printfield{year}%
 	\setunit*{\addspace}%
@@ -261,7 +261,7 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 }
 
 \newbibmacro*{university+date}{%
-	\printtext{Written in}%
+	\printtext{Thesis written in}%
 	\setunit*{\addspace}%
 	\mkbibbold{\printdate}%\printfield{year}%
 	\setunit*{\addspace}%
@@ -281,6 +281,7 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 
 \DeclareFieldFormat*{urldate}{#1}
 \newbibmacro*{published+viewed}{%
+	\printtext{Web resource}
 	\iffieldundef{year}{}{% print publication date if we have one
 		\printtext{\autocap{p}ublished}%
 		\setunit*{\addspace}
