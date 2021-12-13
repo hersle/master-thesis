@@ -8,11 +8,6 @@ mn = scipy.constants.neutron_mass
 
 r0 = 1e4 # m
 m0 = 1.98847e30 # kg, solar mass
-G = scipy.constants.G / (r0*c**2/m0) # dimensionless gravitational constant
 b = 3
 ϵ0 = m0*c**2 / (4*π*r0**3/b)
-
-print(f"r0 = {r0}")
-print(f"m0 = {m0}")
-print(f"G  = {G}")
-print(f"ϵ0 = {ϵ0}")
+G = scipy.constants.G / (r0*c**2/m0) # dimensionless gravitational constant

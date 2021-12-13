@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 
 from constants import *
-from tov_solve import *
+from tov import *
 from stability import *
-import utils
+from utils import *
 import numpy as np
 import scipy.optimize
 
+# Ultra-relativistic limit
 def ϵUR(P):
     return 3 * P
 
@@ -36,7 +37,7 @@ P = np.linspace(0, 20, 500)
 ϵs = []
 for ϵ in (ϵUR, ϵNR, ϵGR):
     ϵs.append([ϵ(P) for P in P])
-utils.writecols([P, *ϵs], ["P", "epsUR", "epsNR", "epsGR"], "data/eos.dat")
+writecols([P, *ϵs], ["P", "epsUR", "epsNR", "epsGR"], "data/eos.dat")
 
 opts = {
     "tolD": 0.05,

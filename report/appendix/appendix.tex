@@ -1496,6 +1496,29 @@ For later reference, recall that the upper and lower signs hold for bosons and f
 \chapter{Numerical implementations}
 \label{chap:code}
 
+In this appendix, we explain and list all code used to produce the results of this thesis.
+
+\section{Elimination of dimensionful quantities}
+
+In order to avoid issues with numerical instability, it is wise to eliminate physical scales from problems that we will solve numerically, so floating-point numbers can kept as close to $1$ as possible.
+To this end, we define the dimensionless
+\begin{subequations}
+\begin{align}
+	& \text{radius}                 & \hat{r}        &= \frac{r}{r_0}               , & \text{where} && r_0        &= \SI{10}{\kilo\meter} , \\
+	& \text{mass}                   & \hat{m}        &= \frac{m}{m_0}               , & \text{where} && m_0        &= \solarmass = \SI{1.99e30}{\kilogram} , \\
+	& \text{energy density}         & \hat{\epsilon} &= \frac{\epsilon}{\epsilon_0} , & \text{where} && \epsilon_0 &= \frac{m_0 c^2}{4 \pi r_0^3 / 3} , \\
+	& \text{pressure}               &  \hat{P}       &= \frac{P}{\epsilon_0}        , \\
+	& \text{gravitational constant} & \hat{G}        &= \frac{G}{G_0}               , & \text{where} && G_0 &= \frac{r_0 c^2}{m_0} , \\
+\end{align}%
+\label{eq:numtov:dimensionless_variables}%
+\end{subequations}%
+The precise values of $r_0$ and $m_0$ are chosen to be natural scales for the radius and mass of compact stars, and the values of the remaining quantities follow from these and fundamental physical constants.
+In short, any variable in this appendix that wears a hat $\, \hat{} \, $ is the dimensionless version of its hatless dimensionful sibling, obtained by dividing the latter by whatever constant in \cref{eq:numtov:dimensionless_variables} that has the same dimension.
+
+We define the required constants in a separate file.
+
+\codefile{python}{../code/constants.py}{constants.py}
+
 \section{Integration of the Tolman-Oppenheimer-Volkoff equation}
 \label{sec:nstars:numtov}
 
@@ -1514,43 +1537,7 @@ Explicitly inserting the equation of state \eqref{eq:tov:tovsys_eos} into the sy
 \end{align}
 \end{subequations}
 This is a system of three differential equations in the form $\odv{\vec{y}}/{t} = f(t, \vec{y})$ with $t=r$ and $\vec{y} = [P,\, m,\, \alpha]$ that is suitable for Runge-Kutta integration algorithms.
-In the following, we show how to integrate this system numerically.
-
-To avoid issues with numerical instability, it is wise to eliminate physical scales from the system and introduce dimensionless variables that can be kept as close to $1$ as possible.
-Define the dimensionless variables
-\begin{equation}
-	\diml{\epsilon}(r) = \frac{\epsilon(r)}{\epsilon_0}, \quad
-	\diml{P}(r) = \frac{P(r)}{\epsilon_0}, \quad
-	\diml{m}(r) = \frac{m(r)}{m_0} \quad \text{and} \quad
-	\diml{r}(r) = \frac{r}{r_0},
-\label{eq:numtov:dimensionless_variables}
-\end{equation}
-where $m_0$ and $r_0$ are two natural scales of stellar masses and radii, and
-\begin{equation}
-	\epsilon_0 = \frac{m_0 c^2}{4 \pi r_0^3 / 3}
-	%m_0 = \text{solar mass ?}, \quad
-	%r_0 = \text{10 km ?}.
-\label{eq:numtov:energy_density_scale}
-\end{equation}
-is a corresponding natural scale of energy density.
-For a neutron star, it would be appropriate to choose the solar mass $m_0 = \solarmass$ and $r_0 = \SI{10}{\kilo\meter}$, for example.
-In short, any variable that wears a hat $\hat{}$ is the dimensionless version of its hatless sibling.
-With the dimensionless variables \eqref{eq:numtov:dimensionless_variables}, the Tolman-Oppenheimer-Volkoff system \eqref{eq:numtov:tovsys} becomes
-\begin{subequations}
-\label{eq:numtov:tovsys_dimless_complicated}
-\begin{align}
-	\odv{\diml{P}}{\diml{r}} &= -\frac{G m_0}{r_0 c^2} \frac{\diml{m} \diml{\epsilon}(\diml{P})}{\diml{r}^2} \left[ 1 + \frac{\diml{P}}{\diml{\epsilon}(\diml{P})} \right] \left[ 1 + \frac{4 \pi r_0^3 \epsilon_0}{m_0 c^2} \frac{\diml{r}^3 \diml{P}}{\diml{m}} \right] \left[ 1 - \frac{2 G m_0}{r_0 c^2} \frac{\diml{m}}{\diml{r}} \right]^{-1} , \\
-	\odv{\diml{m}}{\diml{r}} &= \frac{4 \pi r_0^3 \epsilon_0}{m_0 c^2} \diml{r}^2\diml{\epsilon}(\diml{P}) , \\
-	\odv{\diml{\alpha}}{\diml{r}} &= -\frac{1}{\diml{\epsilon}(\diml{P})+\diml{P}} \odv{\diml{P}}{\diml{r}} .
-\end{align}
-\end{subequations}
-First, note that the energy density scale \eqref{eq:numtov:energy_density_scale} further simplifies $4 \pi r_0^3 \epsilon_0 / m_0 c^2 = 3$.
-Second, observe that $G_0 = r_0 c^2 / m_0$ has the same units as the gravitational constant $G$, so let us also introduce the dimensionless gravitational constant
-\begin{equation}
-	\diml{G} = \frac{G}{G_0} .
-\label{eq:numtov:dimensionless_gravitational_constant}
-\end{equation}
-With these observations, the system \eqref{eq:numtov:tovsys_dimless_complicated} simplifies to
+With the dimensionless variables \eqref{eq:numtov:dimensionless_variables}, the Tolman-Oppenheimer-Volkoff system \eqref{eq:numtov:tovsys} is
 \begin{subequations}
 \label{eq:numtov:tovsys_dimless_simple}
 \begin{align}
@@ -1575,9 +1562,9 @@ Typically, stars distributed uniformly between two central pressures may be loca
 To circumvent this difficulty and make the mass-radius curve as smooth as possible, we take an adaptive approach by recursively splitting an initial central pressure interval $(\diml{P}_1, \diml{P}_2)$ until the Euclidean distance $[ \, (\smash[b]{\diml{R}}_2-\smash[b]{\diml{R}}_1)^2 + (\smash[b]{\diml{M}}_2-\smash[b]{\diml{M}}_1)^2 \, ]^{1/2}$ between all points on the curve is below some given tolerance.
 The program optionally checks the stability of stars by the definition in \cref{sec:nstars:stability_general} and numerical method described in the next section.
 
-\codefile{python}{../code/tov_solve.py}{tov\_solve.py}
+\codefile{python}{../code/tov.py}{tov.py}
 
-\section{The shooting method}
+\section{Stability analysis with the shooting method}
 \label{sec:numerics:shooting_method}
 
 Here, we describe how the shooting method determines the eigenvalues $\omega_n^2$ and corresponding eigenfunctions $U_n(r)$ of the Sturm-Liouville problem
@@ -1648,33 +1635,27 @@ This algorithm runs \emph{logarithmically fast}, because the interval $[\omega_-
 \subsubsection{Implementation}
 
 The coefficient functions \eqref{eq:nstars:sturm_liouville_coefficients} of the Sturm-Liouville problem \eqref{eq:shooting:sturm_liouville_problem} are to be calculated from the output of the program in \cref{sec:nstars:numtov}.
-We therefore recast the problem to dimensionless form to make use of the dimensionless quantities \eqref{eq:numtov:dimensionless_variables} by defining the dimensionless variables
-\begin{equation}
-	\hat{U}_n    = \frac{U_n}{r_0^3} , \quad
-	\hat{\omega} = \frac{\omega_n}{c/r_0} , \quad
-	\hat{\Pi}    = \frac{\pi}{\epsilon_0 / r_0^2} , \quad % = e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^2} \gamma_0 \hat{P}_0 \\
-	\hat{Q}      = \frac{Q}{\epsilon_0 / r_0^4} , \quad %= -4 e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^3} \odv{\hat{P}_0}{\hat{r}} - \frac{8 \pi \hat{G}}{4 \pi / 3} \hat{P}_0 \left( \hat{P}_0 + \hat{\epsilon}_0 \right) \frac{1}{\hat{r}^2} e^{3 \beta_0 + 3 \alpha_0} + e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^2} \frac{\left( \odv{\hat{P}_0}/{\hat{r}} \right)^2}{\hat{P}_0 + \hat{\epsilon}_0} \\
-	\hat{W}      = \frac{W}{\epsilon_0 / r_0^2 c^2} . %= e^{3 \beta_0 + \alpha_0} \frac{1}{\hat{r}^2} \left( \hat{P}_0 + \hat{\epsilon}_0 \right)
-\label{eq:shooting:dimensionless_variables}
-\end{equation}
-The Sturm-Liouville problem then takes the unchanged, only ``hatted form''
+We therefore recast the problem to dimensionless form by making use of the dimensionless quantities \eqref{eq:numtov:dimensionless_variables}.
+It then takes the unchanged ``hatted form''
 \begin{subequations}
 \begin{align}
 	&\odv*{ \left[ \hat{\Pi}(\hat{r}) \odv{\hat{U}_n(\hat{r})}{\hat{r}} \right] }{\hat{r}} + \hat{Q}(\hat{r}) \, \hat{U}_n(\hat{r}) = -\hat{\omega}_n^2 \hat{W}(\hat{r}) \hat{U}_n(\hat{r}) && \text{for } 0 \leq \hat{r} \leq \hat{R} , \\
 	\text{subject to} \quad & \hat{U}_n(\hat{r})          \propto \hat{r}^3    && \text{near } \hat{r}=0 , \\
 	\text{and}        \quad & \odv{\hat{U}_n(\hat{r})}{\hat{r}} <       \infty && \text{at } \hat{r}=\hat{R} ,
 \end{align}%
-\end{subequations}
-while the coefficient functions become
+\end{subequations}%
+where we have defined the dimensionless quantities
 \begin{subequations}
 \begin{align}
-	\hat{\Pi} &= e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^2} \gamma_0 \hat{P}_0 , \\
-	\hat{Q}   &= -4 e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^3} \odv{\hat{P}_0}{\hat{r}} - \frac{8 \pi \hat{G}}{4 \pi / 3} \hat{P}_0 \left( \hat{P}_0 + \hat{\epsilon}_0 \right) \frac{1}{\hat{r}^2} e^{3 \beta_0 + 3 \alpha_0} + e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^2} \frac{\left( \odv{\hat{P}_0}/{\hat{r}} \right)^2}{\hat{P}_0 + \hat{\epsilon}_0} , \\
-	\hat{W}   &= e^{3 \beta_0 + \alpha_0} \frac{1}{\hat{r}^2} \left( \hat{P}_0 + \hat{\epsilon}_0 \right) ,
-\end{align}
-\end{subequations}
-where $\gamma_0$ is the adiabatic index \eqref{eq:nstars:adiabatic_index} and $\hat{G}$ is the dimensionless gravitational constant \eqref{eq:numtov:dimensionless_gravitational_constant}.
-Note the difference between the numerical prefactors in the second terms in $\hat{Q}$ above and its dimensionful counterpart \eqref{eq:nstars:sturm_liouville_coefficients_Q}.
+	\hat{U}_n    &= \frac{U_n}{r_0^3} , \\ 
+	\hat{\omega} &= \frac{\omega_n}{c/r_0} , \\ 
+	\hat{\Pi}    &= \frac{\Pi}{\epsilon_0 / r_0^2}   = e^{\beta_0 + 3 \alpha_0} \frac{1}{\hat{r}^2} \gamma_0 \hat{P}_0 , \\
+	\hat{Q}      &= \frac{Q}{\epsilon_0 / r_0^4}     = e^{\beta_0 + 3 \alpha_0} \left[ -4 \frac{1}{\hat{r}^3} \odv{\hat{P}_0}{\hat{r}} - \frac{8 \pi \hat{G}}{4 \pi / 3} \hat{P}_0 \left( \hat{P}_0 + \hat{\epsilon}_0 \right) \frac{e^{2 \beta_0}}{\hat{r}^2} + \frac{1}{\hat{r}^2} \frac{\big( \odv{\hat{P}_0}/{\hat{r}} \big)^2}{\hat{P}_0 + \hat{\epsilon}_0} \right] , \\
+	\hat{W}      &= \frac{W}{\epsilon_0 / r_0^2 c^2} = e^{3 \beta_0 + \alpha_0} \frac{1}{\hat{r}^2} \left( \hat{P}_0 + \hat{\epsilon}_0 \right) .
+\end{align}%
+\label{eq:shooting:dimensionless_variables}%
+\end{subequations}%
+Note that there is a difference between the numerical prefactors in the second terms of $\hat{Q}$ above and its dimensionful counterpart \eqref{eq:nstars:sturm_liouville_coefficients_Q}.
 
 On top of this, we implement the shooting method as described in \cref{sec:numerics:shooting_method_description}.
 Some further remarks about our implementation are in order.
@@ -1717,8 +1698,15 @@ Below is our implementation of the shooting method in Python based on this descr
 
 \codefile{python}{../code/stability.py}{stability.py}
 
-\section{Cold free fermion neutron stars}
+\section{Utilities}
 
-Below, we use the general framework above to find the mass-radius relation for the equations of state for cold free fermion neutron stars that we found in \cref{sec:nstars:nr_limit} and \cref{sec:nstars:gr_limit}.
+We also write a few utility functions for data management.
 
-\codefile{python}{../code/tov_free_fermi_gas.py}{tov\_free\_fermi\_gas.py}
+\codefile{python}{../code/utils.py}{utils.py}
+
+\section{Parameter sweeps for ideal neutron stars}
+
+Below, we use the general framework above to find the mass-radius relation for ideal neutron stars.
+We make a total of four sweeps for the mass-radius diagram \cref{fig:nstars:massradius}, using both the non-relativistic equation of state \cref{eq:nstars:nr_eos} and the general equation of state \cref{eq:nstars:gr_eos}, and solving both the relativistic Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov:tovsys} and the Newtonian limit with the pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient}.
+
+\codefile{python}{../code/neutron_stars.py}{neutron\_stars.py}

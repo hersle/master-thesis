@@ -1,7 +1,7 @@
 from constants import *
 import matplotlib.pyplot as plt
 import numpy as np
-import utils
+from utils import *
 
 def cut_divergence(u, r):
     # find index where derivative becomes zero, and cut away divergence after it
@@ -89,7 +89,7 @@ def search(r, Π, Q, W, N, p1, p2, plot=False, progress=False, outfile=""):
         if outfile:
             cols = [ω2s, r] + us
             headers = ["omega2", "r"] + [f"U{i}" for i in range(0, len(us))]
-            utils.writecols(cols, headers, outfile)
+            writecols(cols, headers, outfile)
             print(f"Wrote shooting method to {outfile}")
 
         return ω2, u, n
@@ -156,7 +156,7 @@ def eigenmode(
         for u, N in zip(us, Ns):
             cols.append(u)
             heads.append(f"U{N}")
-        utils.writecols(cols, heads, outfile)
+        writecols(cols, heads, outfile)
         print(f"Wrote (ω2, r, U) to {outfile}")
 
     return ω2s, us
