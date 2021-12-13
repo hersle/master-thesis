@@ -1261,15 +1261,13 @@ The maximum mass is not only a limit on \emph{massiveness}, but also on \emph{st
 	width=15cm, height=12cm,
 	xlabel=$R / \si{\kilo\meter}$, ylabel=$M / \solarmass$,
 	grid=major,
-	colormap={signnegpos}{samples of colormap=(4 of stability)}, colormap access=const, 
-	point meta=explicit, point meta min=0, point meta max=4,
+	colormap name=stability, colormap access=const,
+	point meta=explicit, point meta min=-0.5, point meta max=3.5,
 	every axis title/.style={at={(0.97,0.95)}, text width=3cm, anchor=north east, draw=black, fill=white},
 	xmin=0, xmax=50, ymin=0, ymax=0.8,
 ]
 \nextgroupplot[
-	%title={\subcaption{\label{fig:nstars:stability_computed}Computed}},
-	colorbar horizontal, colorbar sampled, colorbar style={xlabel={Number of unstable modes with $\omega_n^2 < 0$}, xtick={0.5, 1.5, 2.5, 3.5}, xticklabels={$0$, $1$, $2$, $3$}, at={(0.5,1.05)}, anchor=south, xticklabel pos=upper, tickwidth=0},
-	%xticklabels=\empty,
+	colorbar horizontal, colorbar sampled, colorbar style={xlabel={Number of unstable modes with $\omega_n^2 < 0$}, xtick={0, 1, 2, 3}, xticklabels={$0$, $1$, $2$, $3$}, at={(0.5,1.05)}, anchor=south, xticklabel pos=upper, tickwidth=0},
 	minor x tick num=4, minor y tick num=9,
 ]
 \addplot [mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta=nu] {../code/data/gr.dat}
