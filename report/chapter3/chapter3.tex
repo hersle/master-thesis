@@ -383,6 +383,7 @@ and then calculate
 
 \begin{figure}
 \centering
+\tikzsetnextfilename{eos}
 \begin{tikzpicture}
 \begin{axis}[
 	width = 12cm, height=8cm,
@@ -473,6 +474,7 @@ Again, the curve peaks at a maximum mass $M = 0.71 \solarmass$ only for the rela
 
 \begin{figure}
 \centering
+\tikzsetnextfilename{mass-radius}
 \begin{tikzpicture}[
 	every pin edge/.style={draw=black, latex-, thin},
 	every pin/.style={text=black, font=\small},
@@ -571,6 +573,7 @@ We see that $\odv{P}/{\epsilon} < 1$ for all $x_F$ and approaches $1/3$ in the u
 Hence, all the stars in \cref{fig:nstars:massradius} satisfy this condition and it does not rule out any stars.
 
 \begin{figure}
+\tikzsetnextfilename{star-explosion}
 \begin{tikzpicture}
 \newcommand\drawstarforcebalance[8]{
 	\draw [very thick, inner color=yellow!#6!gray, outer color=red!#6!gray] (#1,#2) circle [radius=#3];
@@ -612,6 +615,7 @@ However, the result is not completely useless, as it will be useful to assert th
 
 \begin{figure}
 \centering
+\tikzsetnextfilename{stability-mass-epsilon0}
 \begin{tikzpicture}
 %\begin{axis}[axis x line=bottom, axis y line=left, xlabel=$P_c$, ylabel=$M$, xtick=\empty, ytick=\empty]
 \begin{axis}[axis x line=bottom, axis y line=left, axis line style={very thick, -Latex[]}, xlabel=$P_c$, ylabel=$M$, xtick=\empty, ytick=\empty, xmax=1.15]
@@ -1099,6 +1103,7 @@ The \textbf{shooting method} is a particularly fun numerical technique for findi
 Let us put it to use and determine the stability of the stars along the curve in \cref{fig:nstars:massradius}.
 
 \begin{figure}
+\tikzsetnextfilename{shooting-convergence}
 \begin{tikzpicture}
 \pgfplotstableread{../code/data/shoot.dat}{\shoottable}
 \pgfplotstablegetrowsof{\shoottable}
@@ -1160,6 +1165,7 @@ Let us put it to use and determine the stability of the stars along the curve in
 \pgfplotsset{cycle list/Dark2} % or Dark2
 \begin{figure}
 \centering
+\tikzsetnextfilename{shooting-modes}
 \begin{tikzpicture}
 \pgfplotstableread{../code/data/nmodes_norm.dat}{\nmodestable};
 \pgfplotstablegetrowsof{\nmodestable}
@@ -1248,6 +1254,7 @@ The maximum mass is not only a limit on \emph{massiveness}, but also on \emph{st
 \pgfplotsset{
 	/pgfplots/colormap={stability}{rgb255=(65,171,93) rgb255=(254,178,76) rgb255=(252,78,42) rgb255=(122,1,119)}
 }
+\tikzsetnextfilename{mass-radius-stability}
 \begin{tikzpicture}
 \begin{groupplot}[
 	group style={group size=1 by 1, vertical sep=10pt},
