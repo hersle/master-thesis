@@ -486,17 +486,18 @@ Again, the curve peaks at a maximum mass $M = 0.71 \solarmass$ only for the rela
 	xmin=0, xmax=50, xtick distance=5, minor x tick num=4,
 	ymin=0, ymax=1.1, ytick distance=0.1, minor y tick num=9,
 	grid=major,
-	colorbar horizontal, point meta=explicit, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c / \si{\pascal})$, xtick distance=1, minor x tick num=0, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+	colorbar horizontal, point meta=explicit, colormap/Greens, colorbar style={xlabel=$\log_{10} (P_c / \si{\pascal})$, xtick distance=1, minor x tick num=0, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+	point meta min=26, point meta max=42,
 	declare function={
 		e0 = 4.266500881855305e+34;
 	},
 	%extra y ticks/.expanded={\maxMnr, \maxMgr}, extra y tick style={dashed}, % https://tex.stackexchange.com/a/333974
 	%extra x ticks/.expanded={{10*\maxRnr}, {10*\maxRgr}}, extra x tick style={dashed, tick label style={yshift=-1ex}},
 ]
-\addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/gr.dat} node [pos=0.720, pin={[latex-, xshift=4.15em, ]0:relativistic $\odv{P}/{r}$, general $\epsilon(P)$}] {};
-\addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/nr.dat} node [pos=0.720, pin={[latex-, xshift=3.8em, ]0:relativistic $\odv{P}/{r}$, non-relativistic $\epsilon(P)$}] {};
-\addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/grnewt.dat} node [pos=0.840, pin={[latex-, xshift=3.25em, ]0:Newtonian $\odv{P}/{r}$, general $\epsilon(P)$}] {};
-\addplot [mark=none, mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/nrnewt.dat} node [pos=0.845, pin={[latex-, xshift=2.75em, ]0:Newtonian $\odv{P}/{r}$, non-relativistic $\epsilon(P)$}] {};
+\addplot+ [mesh] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/gr.dat} node [pos=0.720, pin={[latex-, xshift=4.15em, ]0:relativistic $\odv{P}/{r}$, general $\epsilon(P)$}] {};
+\addplot+ [mesh] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/nr.dat} node [pos=0.720, pin={[latex-, xshift=3.8em, ]0:relativistic $\odv{P}/{r}$, non-relativistic $\epsilon(P)$}] {};
+\addplot+ [mesh] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/grnewt.dat} node [pos=0.840, pin={[latex-, xshift=3.25em, ]0:Newtonian $\odv{P}/{r}$, general $\epsilon(P)$}] {};
+\addplot+ [mesh] table [x expr={10*\thisrow{R}}, y=M, meta expr={log10(\thisrow{P} * e0)}] {../code/data/nrnewt.dat} node [pos=0.845, pin={[latex-, xshift=2.75em, ]0:Newtonian $\odv{P}/{r}$, non-relativistic $\epsilon(P)$}] {};
 \node [circle, fill, inner sep=1pt, label={[xshift=+0.2ex, yshift=-1.3ex]+90:{$\begin{aligned} R &= \pgfmathprintnumber\maxRnr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMnr \, \solarmass \\ P_c &= \SI{1e35}{\pascal}\end{aligned}$}}] (maxnr) at (\maxRnr, \maxMnr) {};
 \node [circle, fill, inner sep=1pt, pin  ={[xshift=+2.0ex, yshift=-5.0ex]-90:{$\begin{aligned} R &= \pgfmathprintnumber\maxRgr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMgr \, \solarmass \\ P_c &= \SI{4e34}{\pascal}\end{aligned}$}}] (maxnr) at (\maxRgr, \maxMgr) {};
 %\node [above=of maxnr, anchor=south, xshift= 0em, yshift=-3em, align=center] (maxnrlabel) {\small$\begin{aligned} R &= \pgfmathprintnumber\maxRnr \, \si{\kilo\meter} \\ M &= \pgfmathprintnumber\maxMnr \, \solarmass \\ P_c &= \SI{1e35}{\pascal}\end{aligned}$};
