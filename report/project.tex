@@ -125,6 +125,17 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 	% TODO: the contents of title={...} MUST change for the externalization library to recompile the figure
 	every axis title/.style={at={(0.5,1)}, align=center, above=1ex, text width=0.8*\pgfkeysvalueof{/pgfplots/width}]},
 }
+\pgfplotscreateplotcyclelist{Set1NoYellow}{
+	{Set1-A},
+	{Set1-B},
+	{Set1-C},
+	{Set1-D},
+	{Set1-E},
+	%{Set1-F},
+	{Set1-G},
+	{Set1-H},
+	{Set1-I}% <-- don't add a comma here
+}
 \usepgfplotslibrary{groupplots}
 \usepgfplotslibrary{colorbrewer}
 \pgfplotsset{
