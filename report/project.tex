@@ -186,128 +186,34 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 
 % urldate=long and dateabbrev=false for full date, language=british for getting 17th September 2001 format (in biblatex, without affecting rest of document)
 \usepackage[style=alphabetic,giveninits=true,maxnames=10,block=ragged,date=iso,urldate=iso,seconds=true,language=british]{biblatex} 
-\DeclareFieldFormat{pages}{%
-	page \mkfirstpage{#1}% print first page only
+\DeclareFieldFormat*{title}{\mkbibemph{#1}}
+\DefineBibliographyStrings{british}{%
+	volume = {volume},
+	edition = {edition},
+	page = {page},
+	pages = {pages},
+	mathesis = {master's thesis},
+	urlseen = {downloaded},
 }
 \AtEveryBibitem{
+	\clearfield{day} \clearfield{month} % only show year
 	\clearfield{series}
-	\clearlist{location}
 	\clearfield{pagetotal} % useless to se total number of pages
-}
-\DeclareFieldFormat*{edition}{\mkbibparens{\mkbibordedition{#1} edition}}
-\DeclareFieldFormat*{title}{\emph{#1}} % always italic (not the case for article titles by default)
-\DeclareFieldFormat*{journaltitle}{#1} % no italics (in contrast to default)
-\DeclareFieldFormat*{volume}{volume #1}
-\newbibmacro*{journal+date}{
-	\printtext{Article published in}%
-	\setunit*{\addspace}
-	\mkbibbold{\printfield{year}}%
-	\setunit*{\addspace}
-	\printtext{in}%
-	\setunit*{\addspace}
-	\printfield{journaltitle}%
-	\setunit*{\addcomma\space}
-	\printfield{volume}%
-	\setunit*{\addcomma\space}
-	\printfield{pages}
-}
-\DeclareBibliographyDriver{article}{%
-	\usebibmacro{begentry}%
-	\usebibmacro{author+title+edition}%
-	\newunit\newblock
-	\usebibmacro{journal+date}%
-	\newunit\newblock
-	\usebibmacro{isbn+doi+url}%
-	\usebibmacro{begentry}%
-}
-\renewbibmacro*{publisher+location+date}{%
-	\printtext{Book published in}%
-	\setunit*{\addspace}%
-	\mkbibbold{\printdate}%\printfield{year}%
-	\setunit*{\addspace}%
-	\printtext{by}%
-	\setunit*{\addspace}%
-	\printlist{publisher}%
-}
-\newbibmacro*{author+title+edition}{%
-	\printnames{author}%
-	\setunit*{\addcolon\space}%
-	\printfield{title}%
-	\iffieldundef{edition}{}{%
-		\setunit*{\addspace}%
-		\printfield{edition}%
-	}%
-	\newunit
-}
-\newbibmacro*{isbn+doi+url}{% ISBN -> DOI -> URL
-	\iffieldundef{isbn}{%
-		\iffieldundef{doi}{%
-			\printfield{url}% do not have ISBN or DOI, so try to print URL (priority 3)
-		}{%
-			\printfield{doi}% do not have ISBN, but have DOI (priority 2)
-		}%
-	}{% 
-		\printfield{isbn}% have ISBN (priority 1)
-	}%
-}
-\DeclareBibliographyDriver{book}{%
-	\usebibmacro{begentry}%
-	\usebibmacro{author+title+edition}%
-	\newunit\newblock
-	\usebibmacro{publisher+location+date}%
-	\newunit\newblock
-	\usebibmacro{isbn+doi+url}%
-	\usebibmacro{finentry}%
-}
 
-\newbibmacro*{university+date}{%
-	\printtext{Thesis written in}%
-	\setunit*{\addspace}%
-	\mkbibbold{\printdate}%\printfield{year}%
-	\setunit*{\addspace}%
-	\printtext{at}%
-	\setunit*{\addspace}%
-	\printlist{institution}%
-}
-\DeclareBibliographyDriver{thesis}{%
-	\usebibmacro{begentry}%
-	\usebibmacro{author+title+edition}%
-	\newunit\newblock
-	\usebibmacro{university+date}%
-	\newunit\newblock
-	\usebibmacro{isbn+doi+url}%
-	\usebibmacro{finentry}%
-}
+	\clearfield{issn} % never show issn
+	\iffieldundef{doi}{}{\clearfield{url}} % clear URL if have DOI
 
-\DeclareFieldFormat*{urldate}{#1}
-\newbibmacro*{published+viewed}{%
-	\printtext{Web resource}
-	\iffieldundef{year}{}{% print publication date if we have one
-		\printtext{\autocap{p}ublished}%
-		\setunit*{\addspace}
-		\iffieldundef{day}{%
-			\printtext{in}% YYYY       will follow
-		}{%
-			\printtext{on}% YYYY-MM-DD will follow
-		}%
-		\setunit*{\addspace}%
-		\mkbibbold{\printdate}%\printfield{year}%
-		\setunit*{\addcomma\space}% 
-	}%
-	\iffieldundef{urlyear}{}{% print download date if we have one
-		\printtext{\autocap{d}ownloaded on}%
-		\setunit*{\addspace}
-		\printurldate%
+	\ifentrytype{article}{\clearfield{urlday} \clearfield{urlmonth} \clearfield{urlyear}}{} % do not show visited on for articles
+	\ifentrytype{book}{\clearfield{urlday} \clearfield{urlmonth} \clearfield{urlyear}}{} % and books
+
+	\iffalse
+	% Forget location, except for books with no publisher (common for very old books)
+	\ifentrytype{book}{
+		\iflistundef{publisher}{}{\clearlist{location}}
+	}{
+		\clearlist{location}
 	}
-}
-\DeclareBibliographyDriver{online}{%
-	\usebibmacro{begentry}%
-	\usebibmacro{author+title+edition}%
-	\newunit\newblock
-	\usebibmacro{published+viewed}%
-	\newunit\newblock
-	\printfield{url}%
-	\usebibmacro{finentry}%
+	\fi
 }
 
 \addbibresource{project.bib}
