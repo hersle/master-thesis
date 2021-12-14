@@ -23,6 +23,7 @@
 \usepackage{slashed}
 \usepackage{parskip} % new paragraph: new line, no indent
 %\usepackage[title]{appendix}
+\usepackage{xurl} % makes URLs break anywhere! (must be loaded before hyperref)
 \usepackage[hidelinks]{hyperref} % hide colored boxes around links
 \usepackage[noabbrev]{cleveref}
 \usepackage{mdframed} % TODO: remove, only to draw frames for marking relevant sections to supervisor
@@ -35,6 +36,7 @@
 
 \usepackage{graphicx}
 \usepackage[usetransparent=false,inkscapepath=.cachesvginkscape/]{svg}
+\newcommand\credit[2]{\textbf{Credit:} #1 (\url{#2}).}
 
 %\usepackage{unicode-math} % make code display utf8 characters properly (seems that only fontspec below is enough?)
 %\setmonofont{DejaVu Sans Mono} % will affect whole document, including URLs etc.
