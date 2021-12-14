@@ -127,7 +127,10 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 }
 \usepgfplotslibrary{groupplots}
 \usepgfplotslibrary{colorbrewer}
-\pgfplotsset{lua debug=verbose} % output debug information
+\pgfplotsset{
+	lua debug=verbose,
+	every axis plot/.append style = {no markers, thick},
+} % output debug information
 
 \pgfplotsset{
 	/pgfplots/colormap={parametrize}{rgb255=(255,255,0) rgb255=(255,0,0)}
