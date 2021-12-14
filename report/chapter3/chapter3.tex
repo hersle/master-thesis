@@ -1176,7 +1176,7 @@ Let us put it to use and determine the stability of the stars along the curve in
 \pgfmathsetmacro{\maxR}{\pgfplotsretval}
 \begin{groupplot}[
 	group style={group size=1 by 2, horizontal sep=5pt, vertical sep=5pt},
-	width=15cm, height=9.5cm,
+	width=15cm, height=9.2cm,
 	xmin=-0.0, xmax=1.0, ymin=-1.1, ymax=+1.1, restrict y to domain=-50:+50,
 	xtick={0,0.25,0.5,0.75,1}, ytick distance=2.0, minor y tick num=3, extra y ticks={-1,1}, extra y tick style={grid=minor},
 	minor x tick num=4,
@@ -1216,9 +1216,9 @@ Let us put it to use and determine the stability of the stars along the curve in
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:nstars:modes}%
-Eight lowest vibration modes $U_n(r)$ and squared eigenfrequencies $\omega_n^2$ for an unstable ideal neutron star with central pressure $P = \SI{1.28e37}{\pascal} \epsilon_0$.
+Eight lowest vibration modes $U_n(r)$ and squared eigenfrequencies $\omega_n^2$ for an unstable ideal neutron star with central pressure $P = \SI{1.28e37}{\pascal}$.
 In \subref{fig:nstars:modes_normed_separate}, eigenfunctions are normalized to their own maxima, making their shape throughout the star and the boundary condition $U_n(R) < \infty$ clear.
-In \subref{fig:nstars:modes_normed_common}, they are instead normalized to a common scale, highlighting the boundary condition $U_n(r \rightarrow 0) \propto r^3$.
+In \subref{fig:nstars:modes_normed_common}, they are instead normalized to a common scale, highlighting the boundary condition $U_n(r \rightarrow 0) \propto r^3$ and their number of nodes.
 We have cut away the divergent parts as $r \rightarrow R$ from the final iteration of the shooting method.
 }
 \end{figure}
