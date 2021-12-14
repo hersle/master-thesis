@@ -1,6 +1,8 @@
 \chapter{Ideal neutron stars}
 \label{chap:nstars}
 
+\TODO{all functions use $()$}
+
 In \cref{chap:tft}, we found the partition function $Z = Z(T, \mu, V)$ for two sample systems, and in particular a gas of free Dirac fermions, referred to as an \textbf{ideal Fermi gas}.
 From the partition function, we can derive the pressure $P = P(T, \mu)$ and energy density $\epsilon = \thermalavg{E} / \, V = \epsilon(T, \mu)$ as functions of temperature and chemical potential using equation \eqref{eq:tft:average_number}, \eqref{eq:tft:average_energy} and \eqref{eq:tft:average_pressure}, eliminating the volume dependence as $P$ and $\epsilon$ are turned into intensive quantities by division.
 At some fixed temperature $T$, we can therefore eliminate $\mu$ to express $\epsilon$ in terms of $P$.
@@ -1144,7 +1146,7 @@ Let us put it to use and determine the stability of the stars along the curve in
 	\pgfplotstablegetelem{#1}{omega2}\of{\shoottable} % get value of \omega^2
 	\addlegendentryexpanded{$\pgfmathprintnumber[precision=10, fixed, fixed zerofill]{\pgfplotsretval}$}; % pgfplotsretval is still omega2
 }
-\node [text=black, anchor=north] at (axis description cs:0.5,-0.15) {Value of $\hat{\omega}^2 = \omega^2 \, / \, (c/r_0)^2$};
+\node [text=black, anchor=north] at (axis description cs:0.5,-0.15) {Value of $\hat{\omega}^2 = \omega^2 \, / \, (c/\SI{10}{\kilo\meter})^2$};
 %\addplot [forget plot, dashed, domain=0:5, restrict y to domain=0:2.0, samples=50] {(x*\maxR)^3 / 0.000312} node[pos=0.6, label={[xshift=+0ex]135:$\propto r^3$}] {};
 \addplot [forget plot, dashed, domain=0:0.2, restrict y to domain=0:2, samples=100] {700*x^3} node[pos=0.55, label={[xshift=+1ex]135:$\propto r^3$}] {};
 \end{axis}
@@ -1198,7 +1200,8 @@ Let us put it to use and determine the stability of the stars along the curve in
 \pgfplotsinvokeforeach{0,1,...,7} {
 	\addplot+ table [x expr=\thisrow{r}/\maxR, y=U#1] {\nmodestable};
 	\pgfplotstablegetelem{#1}{omega2}\of{\nmodestable}
-	\addlegendentryexpanded{$\omega_{#1}^2 = \pgfmathprintnumber[fixed, fixed zerofill, precision=2, showpos=true]{\pgfplotsretval} \, (c / r_0)^2$};
+	\pgfmathparse{sign(\pgfplotsretval)*sqrt(abs(\pgfplotsretval*3)) * 1e2)} % display in meaningful units, mult by c/r0
+	\addlegendentryexpanded{$\omega_{#1}^2 = \pgfmathprintnumber[fixed, fixed zerofill, precision=2, showpos=true]{\pgfmathresult}^2 \, \si{\per\second\squared}$};
 }
 
 \nextgroupplot[
@@ -1215,12 +1218,10 @@ Let us put it to use and determine the stability of the stars along the curve in
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:nstars:modes}%
-Eight lowest vibration modes $U_n(r)$ and squared eigenfrequencies $\omega_n^2$ for an ideal neutron star with central pressure $P = \SI{3e2}{} \epsilon_0$.
+Eight lowest vibration modes $U_n(r)$ and squared eigenfrequencies $\omega_n^2$ for an unstable ideal neutron star with central pressure $P = \SI{1.28e37}{\pascal} \epsilon_0$.
 In \subref{fig:nstars:modes_normed_separate}, eigenfunctions are normalized to their own maxima, making their shape throughout the star and the boundary condition $U_n(R) < \infty$ clear.
 In \subref{fig:nstars:modes_normed_common}, they are instead normalized to a common scale, highlighting the boundary condition $U_n(r \rightarrow 0) \propto r^3$.
 We have cut away the divergent parts as $r \rightarrow R$ from the final iteration of the shooting method.
-Here, $r_0 = \SI{10}{\kilo\meter}$.
-\TODO{fig text, new data set in this and prev figure?}
 }
 \end{figure}
 
