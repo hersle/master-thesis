@@ -1113,13 +1113,12 @@ Let us put it to use and determine the stability of the stars along the curve in
 \pgfmathsetmacro{\maxR}{\pgfplotsretval}
 \begin{axis}[
 	width=15cm, height=10cm,
-	xlabel=$r/R$, ylabel=$U(r) / \norm{U_0(r)}_\infty$,
+	xlabel=$r \, / \, R$, ylabel=$U(r) \, / \, \max \abs{U_0(r)}$,
 	title={Convergence of $U(r) \rightarrow U_0(r)$ as $\omega^2 \rightarrow \omega_0^2$ with the shooting method},
 	%every axis title/.style={at={(0.5,1)}, align=center, above=1ex, text width=0.8*\pgfkeysvalueof{/pgfplots/width}]},
 	xmin=0, xmax=1, ymin=-2.0, ymax=+2.0,
 	xtick distance=0.25, minor x tick num=4,
-	ytick distance=2, minor y tick num=3, ymajorgrids,
-	cycle list name=color list,
+	ytick distance=2, minor y tick num=3, ymajorgrids, minor grid style={loosely dashed}, yminorgrids, extra y ticks = {-1, +1}, extra y tick style={grid=none},
 	legend style={anchor=north, at={(0.5, -0.25)}},
 	legend columns=8, transpose legend,
 	legend cell align=right,
@@ -1129,23 +1128,25 @@ Let us put it to use and determine the stability of the stars along the curve in
 %\addlegendimage{empty legend}
 %\addlegendentry{\hspace{-0.6cm}\textbf{Value of $\omega^2$}} % hack for legend title: https://tex.stackexchange.com/questions/2311/add-a-legend-title-to-the-legend-box-with-pgfplots
 \pgfplotsinvokeforeach{0,...,31}{ % 31, it works but it is very slow
-	\pgfmathparse{int(100 * (0.0 + 0.6 * #1 / 31))} % lin interp 50 -> 100
+	\pgfmathparse{int(200 + 800 * (0.0 + 0.6 * #1 / 31))} % lin interp 50 -> 100
 	\pgfmathsetmacro{\clrintensity}{\pgfmathresult}
 	\pgfplotstablegetelem{#1}{nn}\of{\shoottable}
 	\ifthenelse{\equal{\pgfplotsretval}{1}}{
-		\edef\mycolor{black!\clrintensity!red}
+		%\edef\mycolor{purple!\clrintensity!red}
+		\edef\mycolor{color of colormap={\clrintensity of colormap/RdPu}}
 	}{
-		\edef\mycolor{black!\clrintensity!blue}
+		%\edef\mycolor{purple!\clrintensity!blue}
+		\edef\mycolor{color of colormap={\clrintensity of colormap/BuPu}}
 	}
-	\edef\temp{\noexpand\addplot+ [thick, color=\mycolor, restrict y to domain=-5:5] table [x expr=\noexpand\thisrow{r}/\maxR, y expr={\noexpand\thisrow{U#1} / 0.000312}] {../code/data/shoot.dat};} % faster to read directly from file for some reason
+	\edef\temp{\noexpand\addplot+ [\mycolor, restrict y to domain=-5:5] table [x expr=\noexpand\thisrow{r}/\maxR, y expr={\noexpand\thisrow{U#1} / 0.000312}] {../code/data/shoot.dat};} % faster to read directly from file for some reason
 	\temp
 	%\addplot+ [thick, restrict y to domain=-5:5] table [x expr=\thisrow{r}/\maxR, y expr={\thisrow{U#1} / 0.000312}] {../code/data/shoot.dat}; % faster to read directly from file for some reason
 	\pgfplotstablegetelem{#1}{omega2}\of{\shoottable} % get value of \omega^2
 	\addlegendentryexpanded{$\pgfmathprintnumber[precision=10, fixed, fixed zerofill]{\pgfplotsretval}$}; % pgfplotsretval is still omega2
 }
-\node [text=black, anchor=north] at (axis description cs:0.5,-0.15) {Value of $\hat{\omega}^2 = \omega^2 / (c/r_0)^2$};
+\node [text=black, anchor=north] at (axis description cs:0.5,-0.15) {Value of $\hat{\omega}^2 = \omega^2 \, / \, (c/r_0)^2$};
 %\addplot [forget plot, dashed, domain=0:5, restrict y to domain=0:2.0, samples=50] {(x*\maxR)^3 / 0.000312} node[pos=0.6, label={[xshift=+0ex]135:$\propto r^3$}] {};
-\addplot [forget plot, dashed, domain=0:0.2, restrict y to domain=0:2, samples=100] {700*x^3} node[pos=0.6, label={[xshift=+1ex]135:$\propto r^3$}] {};
+\addplot [forget plot, dashed, domain=0:0.2, restrict y to domain=0:2, samples=100] {700*x^3} node[pos=0.55, label={[xshift=+1ex]135:$\propto r^3$}] {};
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:nstars:shooting_convergence}%
@@ -1159,6 +1160,7 @@ Let us put it to use and determine the stability of the stars along the curve in
 	In the opposite case $n(\omega^2) \leq n$, $-8$ would rather be a better lower bound $\hat{\omega}_-^2$.
 	The algorithm continues to split the $[\omega_-^2, \, \omega_+^2]$ in this fashion until the bounds are so close that any value in the interval is satisfactory.
 	In the plot, \textcolor{blue}{blue} lines correspond to \textcolor{blue}{lower bounds $\omega_-^2$}, \textcolor{red}{red} lines to \textcolor{red}{upper bounds $\omega_+^2$}, brighter colors to initial guesses and darker colors to later guesses.
+	%That is, the most \textcolor{purple}{purple} line is closest to the real solution.
 }
 \end{figure}
 
