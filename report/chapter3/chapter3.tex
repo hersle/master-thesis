@@ -1,8 +1,6 @@
 \chapter{Ideal neutron stars}
 \label{chap:nstars}
 
-\TODO{all functions use $()$}
-
 In \cref{chap:tft}, we found the partition function $Z = Z(T, \mu, V)$ for two sample systems, and in particular a gas of free Dirac fermions, referred to as an \textbf{ideal Fermi gas}.
 From the partition function, we can derive the pressure $P = P(T, \mu)$ and energy density $\epsilon = \thermalavg{E} / \, V = \epsilon(T, \mu)$ as functions of temperature and chemical potential using equation \eqref{eq:tft:average_number}, \eqref{eq:tft:average_energy} and \eqref{eq:tft:average_pressure}, eliminating the volume dependence as $P$ and $\epsilon$ are turned into intensive quantities by division.
 At some fixed temperature $T$, we can therefore eliminate $\mu$ to express $\epsilon$ in terms of $P$.
@@ -27,7 +25,7 @@ For ease of reference, the logarithm of the free Dirac fermion partition functio
 \end{equation}
 and the Fermi-Dirac distribution is
 \begin{equation}
-	n(E) = \frac{1}{e^{\beta E} + 1}.
+	n(E-\mu) = \frac{1}{e^{\beta (E-\mu)} + 1}.
 \label{eq:nstars:fermi_dirac_distribution}
 \end{equation}
 
@@ -36,11 +34,11 @@ First, the particle number density $n = \thermalavg{N} / \, V$ follows from the 
 \begin{equation}
 	n = 
 	\frac{1}{\beta} \pdv{\log Z}{\mu} =
-	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ n\big[ E(\vec{p})-\mu \big] - n\big[ E(\vec{p})+\mu \big] \Big\} .
+	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ n\big( E(\vec{p})-\mu \big) - n\big( E(\vec{p})+\mu \big) \Big\} .
 \label{eq:nstars:density}
 \end{equation}
-Do not confuse the particle density $n$ on the left with the Fermi-Dirac distributions $n[E(\vec{p}) \mp \mu]$ on the right!
-We will soon perform the integral over $\vec{p}$ and get rid of $n[E(\vec{p}) \mp \mu]$, anyway.
+Do not confuse the particle density $n$ on the left with the Fermi-Dirac distributions $n\big(E(\vec{p}) \mp \mu\big)$ on the right!
+We will soon perform the integral over $\vec{p}$ and get rid of $n\big(E(\vec{p}) \mp \mu\big)$, anyway.
 From the density \eqref{eq:nstars:density}, we see that $n = n(\mu, T)$ is a function of the chemical potential $\mu$ and temperature $T$, so that at some fixed temperature, the value of $\mu$ determines the particle density $n$.
 
 Second, we calculate the energy density $\epsilon = \thermalavg{E} / \, V$ from \cref{eq:tft:average_energy}.
@@ -48,7 +46,7 @@ Inserting the particle number density \eqref{eq:nstars:density} and taking the d
 \begin{equation}
 	\epsilon = 
 	\mu n - \frac{1}{V} \pdv{\log Z}{\beta} =
-	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ -E(\vec{p}) + E(\vec{p}) \, n\big[ E(\vec{p})-\mu \big] + E(\vec{p}) \, n\big[ E(\vec{p})+\mu \big] \Big\}.
+	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ -E(\vec{p}) + E(\vec{p}) \, n\big( E(\vec{p})-\mu \big) + E(\vec{p}) \, n\big( E(\vec{p})+\mu \big) \Big\}.
 \label{eq:nstars:energy_density}
 \end{equation}
 
@@ -70,7 +68,7 @@ The total density $n$ is expressed as a balance between \emph{particles} living 
 Thus, the chemical potential $\mu$ determines the balance between particles and antiparticles in the system.
 Similarly, the two last terms in the energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure} can be interpreted as contributions from particles and antiparticles, respectively.
 We \emph{choose} a large, positive value of $\mu > 0$, so that the presence of particles dominate, while antiparticles are more or less absent.
-With this choice, $n \left[ E(\vec{p}) - \mu \right] \gg n \left[ E(\vec{p}) + \mu \right]$, and we \emph{drop the last terms of the particle density \eqref{eq:nstars:density}, energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}}.
+With this choice, $n \big( E(\vec{p}) - \mu \big) \gg n \big( E(\vec{p}) + \mu \big)$, and we \emph{drop the last terms of the particle density \eqref{eq:nstars:density}, energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}}.
 
 \item
 The first term of the energy density \eqref{eq:nstars:energy_density} is infinite, as the integrand increases unbounded like $\dif^3 p \, E(\vec{p}) = 4 \pi p^2 \sqrt{p^2 c^2 + m^2 c^4} \propto p^3$ for large $p$.
@@ -108,8 +106,8 @@ Before completely losing track of what we were doing, let us get back to calcula
 Dropping terms as described above and noting that all integrals only depend on the magnitude $\abs{\vec{p}} = p$, we rebaptize $E(\vec{p}) = E(p)$ and are left with%
 \begin{subequations}%
 \begin{align}%
-	& \text{particle density} & n        &= 2               \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, n \left[ E(p)-\mu \right] , \\
-	& \text{energy density}   & \epsilon &= 2               \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, E(p) \, n \left[ E(p)-\mu \right] , \\
+	& \text{particle density} & n        &= 2               \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, n \big( E(p)-\mu \big) , \\
+	& \text{energy density}   & \epsilon &= 2               \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, E(p) \, n \big( E(p)-\mu \big) , \\
 	& \text{pressure}         & P        &= \frac{2}{\beta} \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \log \left[ e^{-\beta(E(p)-\mu)} + 1 \right] . 
 \end{align}%
 \end{subequations}%
@@ -119,9 +117,9 @@ The boundary term $u v \propto p^3 \log \left[ e^{-\beta(E(p)-\mu)} + 1 \right]$
 After the partial integration, the three integrals take the similar and satisfying forms
 \begin{subequations}%
 \begin{align}%
-	& \text{particle density} & n        &= 2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, n \left[ E(p)-\mu \right] ,          \label{eq:nstars:dropped_infinities_density} \\
-	& \text{energy density}   & \epsilon &= 2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, E(p) \, n \left[ E(p)-\mu \right] ,  \label{eq:nstars:dropped_infinities_energy_density} \\
-	& \text{pressure}         & P        &= 2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{3 (2 \pi \hbar)^3} \, E'(p) \, n \left[ E(p)-\mu \right] . \label{eq:nstars:dropped_infinities_pressure}
+	& \text{particle density} & n        &= 2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, n \big( E(p)-\mu \big) ,          \label{eq:nstars:dropped_infinities_density} \\
+	& \text{energy density}   & \epsilon &= 2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, E(p) \, n \big( E(p)-\mu \big) ,  \label{eq:nstars:dropped_infinities_energy_density} \\
+	& \text{pressure}         & P        &= 2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{3 (2 \pi \hbar)^3} \, E'(p) \, n \big( E(p)-\mu \big) . \label{eq:nstars:dropped_infinities_pressure}
 \end{align}%
 \label{eq:nstars:dropped_infinities}%
 \end{subequations}%
@@ -130,7 +128,7 @@ In order to calculate them analytically, we will make one more approximation.
 
 At \emph{absolute} zero temperature $T = 0$, the Fermi-Dirac distribution
 \begin{equation}
-	n(E) = \frac{1}{e^{\beta (E - \mu)} + 1} = \Theta(\mu-E) = \begin{cases} 0 & (E > \mu) \\ 1 & (E < \mu) \end{cases}
+	n(E-\mu) = \frac{1}{e^{\beta (E - \mu)} + 1} = \Theta(\mu-E) = \begin{cases} 0 & (E > \mu) \\ 1 & (E < \mu) \end{cases}
 \end{equation}
 behaves like a step function.
 To see this, observe that $T = 0$ corresponds to $\beta = \infty$, and that the sign of $E - \mu$ determines whether the exponential $e^{\beta (E - \mu)}$ in the denominator blows up or vanishes, and hence whether the fraction survives.
@@ -154,7 +152,7 @@ But $T_F \gg T$ is equivalent to $E_F \gg k_B T$, and if this implies that $E_F 
 \end{equation}
 Let us now rewrite the Fermi-Dirac distribution as
 \begin{equation}
-	n(E) = \frac{1}{e^{\beta \mu (E/\mu - 1)} + 1} .
+	n(E-\mu) = \frac{1}{e^{\beta \mu (E/\mu - 1)} + 1} .
 \end{equation}
 As shown in \cref{fig:nstars:distribution_convergence}, the distribution again resembles the step function $\Theta(\mu - E)$ in the degenerate limit \eqref{eq:nstars:zero_temperature_limit}.
 Thus, the zero-temperature behavior of the Fermi-Dirac distribution is restored in this limit.
@@ -170,7 +168,7 @@ Alternatively, since the chemical potential is an independent variable in the pa
 		width=13cm, height=8cm,
 		xmin = 0, xmax = 2, xtick distance = 1, ytick distance=0.5, xmajorgrids, ymajorgrids, minor x tick num = 9, minor y tick num = 4,
 		title = {Fermi-Dirac distribution towards the degenerate limit},
-		xlabel = {$E / \mu$}, ylabel = {$n(E) = \left[ e^{\beta \mu \left( E / \mu - 1 \right)} + 1 \right]^{-1}$},
+		xlabel = {$E / \mu$}, ylabel = {$n(E-\mu) = \left[ e^{\beta \mu \left( E / \mu - 1 \right)} + 1 \right]^{-1}$},
 		legend cell align = left,
 		cycle list/Blues-7,
 	]
@@ -182,7 +180,7 @@ Alternatively, since the chemical potential is an independent variable in the pa
 	\end{axis}
 	\end{tikzpicture}
 \caption{\label{fig:nstars:distribution_convergence}
-	As $\beta \mu \rightarrow \infty$, the Fermi-Dirac distribution $n(E) = \left[ e^{\beta \mu \left( E / \mu - 1 \right)} + 1 \right]^{-1}$ increasingly resembles the step function $\Theta (E - \mu)$.
+	As $\beta \mu \rightarrow \infty$, the Fermi-Dirac distribution $n(E-\mu) = \left[ e^{\beta \mu \left( E / \mu - 1 \right)} + 1 \right]^{-1}$ increasingly resembles the step function $\Theta (\mu - E)$.
 }
 \end{figure}
 
@@ -211,7 +209,7 @@ the Fermi energy and the corresponding momentum $p_F$ the Fermi momentum, repres
 \begin{subequations}
 With the zero-temperature approximation, the particle density \eqref{eq:nstars:dropped_infinities_density} simply becomes
 \begin{equation}
-	n = 2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \Theta \left[ \mu - E(p) \right] \\
+	n = 2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \Theta \big( \mu - E(p) \big) \\
 	  = 2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \\
 	  = \frac{p_F^3}{3 \pi^2 \hbar^3} .
 \label{eq:nstars:density_zeroT}
@@ -219,7 +217,7 @@ With the zero-temperature approximation, the particle density \eqref{eq:nstars:d
 Defining the dimensionless momentum $x = p / mc$ and using integral \eqref{eq:integrals:energy_density}, the energy density \eqref{eq:nstars:dropped_infinities_energy_density} is
 \begin{equation}
 \begin{split}
-	\epsilon &=  2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, E(p) \, \Theta \left[ \mu - E(p) \right] \\
+	\epsilon &=  2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, E(p) \, \Theta \big( \mu - E(p) \big) \\
 	         &=  2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, \sqrt{p^2 c^2 + m^2 c^4} \\
 	         &= \frac{m^4 c^5}{\pi^2 \hbar^3} \int_0^{x_F} \dif x \, x^2 \sqrt{x^2 + 1} \\
 	         %&= \frac{m^4 c^5}{\pi^2 \hbar^3} \left[ \frac{1}{32} \sinh \Big( 4 \asinh x_F \Big) - \frac{1}{8} \asinh x_F \right] . \\
@@ -230,7 +228,7 @@ Defining the dimensionless momentum $x = p / mc$ and using integral \eqref{eq:in
 Finally, using integral \eqref{eq:integrals:pressure}, the pressure \eqref{eq:nstars:dropped_infinities_pressure} is
 \begin{equation}
 \begin{split}
-	P &= 2 \int_0^\infty \frac{\dif p \, 4 \pi p^3}{3 (2 \pi \hbar)^3} \, E'(p) \, \Theta \left[ \mu - E(p) \right] \\
+	P &= 2 \int_0^\infty \frac{\dif p \, 4 \pi p^3}{3 (2 \pi \hbar)^3} \, E'(p) \, \Theta \big( \mu - E(p) \big) \\
 	  &= 2 \int_0^{p_F} \frac{\dif p \, 4 \pi p^3}{3 (2 \pi \hbar)^3} \frac{p c^2}{\sqrt{p^2 c^2 + m^2 c^4}} \\
 	  &= \frac{m^4 c^5}{3 \pi^2 \hbar^3} \int_0^{x_F} \frac{\dif x \, x^4}{\sqrt{x^2 + 1}} \\
 	  %&= \frac{m^4 c^5}{\pi^2 \hbar^3} \left[ \frac{1}{96} \sinh \Big( 4 \asinh x_F \Big) - \frac{1}{12} \sinh \Big( 2 \asinh x_F \Big) + \frac{1}{8} \asinh x_F \right] . \\
