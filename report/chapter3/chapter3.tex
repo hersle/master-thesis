@@ -383,6 +383,7 @@ and then calculate
 \centering
 \tikzsetnextfilename{eos}
 \begin{tikzpicture}
+\pgfplotsset{cycle list/Set1}
 \begin{axis}[
 	width = 12cm, height=8cm,
 	xlabel = {$P \, / \, \left[ \solarmass c^2 / (4 \pi R_0^3 / 3) \right]$}, ylabel = {$\epsilon(P) \, / \, \left[ \solarmass c^2 / (4 \pi R_0^3 / 3) \right]$},
@@ -393,12 +394,13 @@ and then calculate
 	declare function = {
 		E(\x) = 2;
 	},
+	cycle multiindex list = {Set1\nextlist linestyles},
 ]
-\addplot [black, solid, semithick] table [x=P, y=epsGR] {../code/data/eos.dat};
+\addplot table [x=P, y=epsGR] {../code/data/eos.dat};
 \addlegendentry{General $x_F$};
-\addplot [blue, densely dashed, semithick] table [x=P, y=epsNR] {../code/data/eos.dat};
+\addplot table [x=P, y=epsNR] {../code/data/eos.dat};
 \addlegendentry{Non-relativistic $x_F \ll 1$};
-\addplot [red,  densely dashdotted, semithick] table [x=P, y=epsUR] {../code/data/eos.dat};
+\addplot table [x=P, y=epsUR] {../code/data/eos.dat};
 \addlegendentry{Ultra-relativistic $x_F \gg 1$};
 \end{axis}
 \end{tikzpicture}
