@@ -1371,37 +1371,23 @@ For later reference, recall that the upper and lower signs hold for bosons and f
 	\end{align*}
 }
 
-\formulawithproof{Unscaled Gaussian integral}{
+\formulawithproof{Gaussian integral over one real number}{
 	\begin{equation}
 		\int_{-\infty}^{+\infty} \dif x \, e^{-x^2} = \sqrt{\pi} .
-	\label{eq:integrals:gaussian_sqrtpi}
-	\end{equation}
-}{
-	Convert to spherical coordinates $(r, \theta)$ and take the square of the two-dimensional integral
-	\begin{equation*}
-	\begin{split}
-			\left[ \int_{-\infty}^{+\infty} \dif x \, e^{-x^2} \right]^2 &= \int_{-\infty}^{+\infty} \dif x \int_{-\infty}^{+\infty} \dif y \, e^{-(x^2 + y^2)} \\
-		                                                             &= \int_{0}^{2 \pi} \dif \theta \int_{0}^{\infty} \dif r \, r e^{-r^2} \\
-																	 &= 2 \pi \left[ -\frac12 e^{-r^2} \right]_{r=0}^{r=\infty} = \pi . \\
-	\end{split}
-	\end{equation*}
-}
-
-\formulawithproof{Rescaled Gaussian integral}{
-	\begin{equation}
-	\int_{-\infty}^{+\infty} \dif x \, e^{-ax^2} = \sqrt{\frac{\pi}{a}} .
 	\label{eq:integrals:gaussian_axx}
 	\end{equation}
 }{
-	Change the integration variable to $y = \sqrt{a} x$ with $\dif y = \sqrt{a} \dif x$ and use integral \eqref{eq:integrals:gaussian_sqrtpi} to obtain
-	\begin{equation*}
-		\int_{-\infty}^{+\infty} \dif x \, e^{-ax^2} = 
-		\int_{-\infty}^{+\infty} \frac{\dif y}{\sqrt{a}} \, e^{-y^2} = 
-		\sqrt{\frac{\pi}{a}} .
-	\end{equation*}
+	It is easier to calculate the \emph{square} of the integral using polar coordinates:
+	\begin{align*}
+		\left[ \int_{-\infty}^{+\infty} \dif x \, e^{-a x^2} \right]^2
+		&= \frac{1}{a} \left[ \int_{-\infty}^{+\infty} \dif x \, e^{-x^2} \right]^2 & \quad & \Big( \text{rescale } x \rightarrow \sqrt{a} x \Big) \\
+		&= \frac{1}{a} \int_{-\infty}^{+\infty} \dif x \int_{-\infty}^{+\infty} \dif y \, e^{-(x^2 + y^2)} \\
+		&= \frac{1}{a} \int_{0}^{2 \pi} \dif \theta \int_{0}^{\infty} \dif r \, r e^{-r^2} & \quad & \Big( \text{convert to polar coordinates } (r, \theta) \Big) \\
+		&= \frac{2 \pi}{a} \left[ -\frac12 e^{-r^2} \right]_{r=0}^{r=\infty} = \frac{\pi}{a} . \\
+	\end{align*}
 }
 
-\formulawithproof{Gaussian integral over two Grassmann numbers}{
+\formulawithproof{Gaussian integral over one pair of Grassmann numbers}{
 	\begin{equation}
 		\int \dif \conj\psi \int \dif \psi \, e^{-\conj\psi a \psi} = a
 		\qquad \text{for real $a$ and Grassmann numbers $(\psi, \conj\psi)$} .
