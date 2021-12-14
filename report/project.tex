@@ -126,6 +126,8 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 	every axis title/.style={at={(0.5,1)}, align=center, above=1ex, text width=0.8*\pgfkeysvalueof{/pgfplots/width}]},
 }
 \usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{lua debug=verbose} % output debug information
 
 \pgfplotsset{
 	/pgfplots/colormap={parametrize}{rgb255=(255,255,0) rgb255=(255,0,0)}

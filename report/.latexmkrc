@@ -3,4 +3,4 @@ $pdflatex = 'lualatex --shell-escape --file-line-error %O %S'; # use xelatex (fa
 $pdf_mode = 1;
 $out_dir = '.cachelatex/';
 $success_cmd = 'ln -s .cachelatex/project.pdf project.pdf';
-$clean_ext = "auxlock %R-figure-*.*";
+$clean_full_ext = "auxlock %R-figure-*.*";

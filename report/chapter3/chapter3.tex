@@ -142,50 +142,47 @@ By using a Sommerfeld expansion, it is possible to show mathematically that the 
 	\mu(T) = E_F + \bigo \left( \left( \frac{T}{T_F} \right)^2 \right) ,
 	%\mu(T) = E_F - \frac{\pi^2}{6} (k_B T)^2 \frac{g'(E_F)}{g(E_F)}
 \end{equation}
-to first nonzero order in $T/T_F$, where $T_F = E_F / k_B$ is the \emph{Fermi temperature} corresponding to the Fermi energy $E_F$, and $g(E)$ the density of states.
-Neutrons have mass $m \approx \SI{1.67e-27}{\kilogram}$, so $T_F = \sqrt{\smash[b]{p_F^2 c^2 + m^2 c^4}} / k_B > m c^2 / k_B \approx \SI{1e13}{\kelvin}$.
-Thus, $T / T_F < T_0 / T_F \approx 10^{-7} \ll 1$, and it is therefore an excellent approximation to take the limit
+to first nonzero order in $T/T_F$, where $T_F = E_F / k_B$ is the \emph{Fermi temperature} corresponding to the Fermi energy $E_F$.
+In other words, if $T \ll T_F$, then the chemical potential and Fermi energy are very close.
+Neutrons have mass $m = \SI{1.67e-27}{\kilogram}$, so $T_F = \sqrt{\smash[b]{p_F^2 c^2 + m^2 c^4}} / k_B > m c^2 / k_B \approx \SI{1e13}{\kelvin} \gg T$, and this is indeed the case for a neutron star.
+But $T_F \gg T$ is equivalent to $E_F \gg k_B T$, and if this implies that $E_F \approx \mu$, then it is also an excellent approximation to take the \textbf{degenerate limit}
 \begin{equation}
 	\beta \mu \gg 1 .
-\end{equation}
-By rewriting the Fermi-Dirac distribution as
-\begin{equation}
-	n(E) = \frac{1}{e^{\beta \mu (E/\mu - 1)} + 1} ,
 \label{eq:nstars:zero_temperature_limit}
 \end{equation}
-we can again see that in the zero-temperature limit \eqref{eq:nstars:zero_temperature_limit}, the sign of $E - \mu$ will again force the distribution into a simple step function, as at absolute zero temperature.
+Let us now rewrite the Fermi-Dirac distribution as
+\begin{equation}
+	n(E) = \frac{1}{e^{\beta \mu (E/\mu - 1)} + 1} .
+\end{equation}
+As shown in \cref{fig:nstars:distribution_convergence}, the distribution again resembles the step function $\Theta(\mu - E)$ in the degenerate limit \eqref{eq:nstars:zero_temperature_limit}.
 Thus, the zero-temperature behavior of the Fermi-Dirac distribution is restored in this limit.
 Although the temperature itself is far from zero, this approximation is therefore referred to as the \textbf{zero-temperature limit} or \textbf{degenerate limit}, because it is equivalent to $T = 0$ or $\mu = \infty$.
 
 Alternatively, since the chemical potential is an independent variable in the partition function, we could simply have \emph{assumed} the degenerate limit \eqref{eq:nstars:zero_temperature_limit} when we said we \emph{chose} a ``large, positive value'' for the chemical potential.
 
-\iffalse
 \begin{figure}
 	\centering
+	\tikzsetnextfilename{fermi-dirac-degenerate}
 	\begin{tikzpicture}
-		\begin{groupplot}[group style={group size=2 by 1, horizontal sep=5pt}, height=6cm, width=7cm, /tikz/declare function={
-			n(\b,\E) = 1/(exp(\b*\E)+1);
-		}]
-			\nextgroupplot[xlabel=$E$, ylabel=$1/(e^{\beta E}+1)$, 
-				colorbar horizontal, colorbar sampled, colorbar style={xlabel=$\beta$, samples=7, xtick={-0.5, 0.5, 1.5, 2.5, 3.5, 4.5}, xticklabels={$1/2$, $1$, $2$, $4$, $8$, $16$, $32$}, grid=none, xticklabel pos=upper, tickwidth=0, at={(0.0,1.03)}, anchor=south west},
-				every colorbar/.append style={width=2*\pgfkeysvalueof{/pgfplots/parent axis width}+\pgfkeysvalueof{/pgfplots/group/horizontal sep}},
-				xtick distance=10, ytick distance=0.5, grid=none, minor tick num=1,
-			]
-			\pgfplotsinvokeforeach{0.5, 1, 2, 4, 8, 16, 32}{
-				\addplot[domain=-10:+10, samples=200, mesh, point meta={log2(#1)}] {n(#1, x)};
-			}
-
-			\nextgroupplot[xlabel=$E$, ylabel=$\log (e^{-\beta E}+1)/\beta$, xtick distance=10, yticklabel pos=right, ytick distance=5, minor tick num=1, grid=none]
-			\pgfplotsinvokeforeach{0.5, 1, 2, 4, 8, 16, 32}{
-				\addplot[domain=-10:+10, samples=200, mesh, point meta={log2(#1)}] {ln(exp(-#1*x)+1)/#1};
-			}
-		\end{groupplot}
+	\begin{axis}[
+		width=13cm, height=8cm,
+		xmin = 0, xmax = 2, xtick distance = 1, ytick distance=0.5, xmajorgrids, ymajorgrids, minor x tick num = 9, minor y tick num = 4,
+		title = {Fermi-Dirac distribution towards the degenerate limit},
+		xlabel = {$E / \mu$}, ylabel = {$n(E) = \left[ e^{\beta \mu \left( E / \mu - 1 \right)} + 1 \right]^{-1}$},
+		legend cell align = left,
+		cycle list/Blues-7,
+	]
+		\pgfplotsinvokeforeach{5, 10, 20, 40, 80, 160, 320}{
+			\addplot+ [thick, domain=0:2, samples=2000] {1/(exp((#1 * (x-1))) + 1)};
+			\addlegendentry{$\beta \mu = #1 $};
+		}
+		\filldraw [black] (1, 0.5) circle (2pt);
+	\end{axis}
 	\end{tikzpicture}
-\caption{\label{fig:nstars:distribution_convergence}%
-	In the zero-temperature limit $\beta E \gg 1$, the Fermi-Dirac distribution $1/(e^{\beta E}+1) \rightarrow \theta(-E)$, while $\log (e^{-\beta E} + 1) \rightarrow -\beta E \, \theta(-E)$, where $\theta(E)$ is the step function.
+\caption{\label{fig:nstars:distribution_convergence}
+	As $\beta \mu \rightarrow \infty$, the Fermi-Dirac distribution $n(E) = \left[ e^{\beta \mu \left( E / \mu - 1 \right)} + 1 \right]^{-1}$ increasingly resembles the step function $\Theta (E - \mu)$.
 }
 \end{figure}
-\fi
 
 \iffalse
 In the zero-temperature limit, the Fermi-Dirac distribution can be replaced by
@@ -1162,12 +1159,11 @@ Let us put it to use and determine the stability of the stars along the curve in
 }
 \end{figure}
 
-\usepgfplotslibrary{colorbrewer}
-\pgfplotsset{cycle list/Dark2} % or Dark2
 \begin{figure}
 \centering
 \tikzsetnextfilename{shooting-modes}
 \begin{tikzpicture}
+\pgfplotsset{cycle list/Dark2} % or Dark2
 \pgfplotstableread{../code/data/nmodes_norm.dat}{\nmodestable};
 \pgfplotstablegetrowsof{\nmodestable}
 \pgfmathparse{int(\pgfmathresult-1)}
