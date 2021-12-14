@@ -320,12 +320,14 @@ In \cref{fig:incompressible_star:plot1}, we compare the mass-radius relation to 
 \begin{figure}[t]
 	\centering
 	\tikzsetnextfilename{incompressible-star}
-	\begin{tikzpicture}[declare function={
+	\begin{tikzpicture}[
+		declare function={
 		G = 1;
 		M(\R,\E) = 4/3*pi*(\R)^3*\E;
 		Mmax(\R) = 4*\R/(9*G);
 		p(\r,\M,\R) = \M / (4/3*pi*(\R)^3) * (sqrt(1-2*G*\M*(\r)^2/(\R)^3) - sqrt(1-2*G*\M/(\R))) / (3*sqrt(1-2*G*\M/(\R)) - sqrt(1-2*G*\M*(\r)^2/(\R)^3));
 	}]
+		\pgfplotsset{cycle list/YlOrBr-5} % initialite cycle list
 		\begin{groupplot}[group style={group size=2 by 1, horizontal sep=0.1\textwidth}, width=0.49\textwidth]
 		\nextgroupplot[
 			title={\subcaption{\label{fig:incompressible_star:plot1}Mass-radius relation}},
@@ -333,16 +335,17 @@ In \cref{fig:incompressible_star:plot1}, we compare the mass-radius relation to 
 			legend pos=north west, legend cell align=left,
 		]
 		\pgfplotsinvokeforeach{0.006} {
-			\addplot [domain=0:5, solid ] {M(x,#1) / M(1,#1)}; % node[pos=0.90, sloped, yshift=+6pt] {\scriptsize $\epsilon_0 = #1$};
-			\addplot [domain=0:5, dashed] {Mmax(x) / M(1,#1)}; % node[pos=0.2, pin=above:{$M_\text{max}(R)$}] {};
+			\addplot+ [Greens-J, domain=0:5, solid] {M(x,#1) / M(1,#1)}; % node[pos=0.90, sloped, yshift=+6pt] {\scriptsize $\epsilon_0 = #1$};
+			\addplot+ [red, domain=0:5, dashed] {Mmax(x) / M(1,#1)}; % node[pos=0.2, pin=above:{$M_\text{max}(R)$}] {};
 		}
 		\legend{$M(R)$, $M_\text{max}(R)$};
 		\nextgroupplot[
 			title={\subcaption{\label{fig:incompressible_star:plot2}Pressure profile}},
 			xlabel=$r\, /\, R_0$, ylabel=$P(r) \, / \, P(0)$, xtick distance=0.25,
+			cycle list name = YlOrBr-5, cycle list shift = 2,
 		]
 		\pgfplotsinvokeforeach{0.9, 0.99, 0.999} {
-			\addplot [domain=0:1,samples=200] {p(x,#1*Mmax(1),1)/p(0,#1*Mmax(1),1)} node[pos=0.54, sloped, yshift=+16pt] {\scriptsize $M = #1 M_\text{max}$};
+			\addplot+ [domain=0:1,samples=200] {p(x,#1*Mmax(1),1)/p(0,#1*Mmax(1),1)} node[pos=0.54, sloped, yshift=+16pt, text=black] {\scriptsize $M = #1 M_\text{max}$};
 		}
 		\end{groupplot}
 	\end{tikzpicture}
