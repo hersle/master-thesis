@@ -1180,7 +1180,7 @@ Let us put it to use and determine the stability of the stars along the curve in
 	xmin=-0.0, xmax=1.0, ymin=-1.1, ymax=+1.1, restrict y to domain=-50:+50,
 	xtick={0,0.25,0.5,0.75,1}, ytick distance=2.0, minor y tick num=3, extra y ticks={-1,1}, extra y tick style={grid=minor},
 	minor x tick num=4,
-	ymajorgrids, yminorgrids, minor grid style={loosely dashed}, %yminorgrids,
+	ymajorgrids, yminorgrids, minor grid style={loosely dashed},
 	%cycle list name=Dark2,%no markers, cycle list name=color list, % or exotic
 	cycle multi list={
 		solid, dashed\nextlist
@@ -1265,7 +1265,7 @@ The maximum mass is not only a limit on \emph{massiveness}, but also on \emph{st
 \begin{groupplot}[
 	group style={group size=1 by 1, vertical sep=10pt},
 	width=15cm, height=12cm,
-	xlabel=$R / \si{\kilo\meter}$, ylabel=$M / \solarmass$,
+	xlabel=$R \, / \, \si{\kilo\meter}$, ylabel=$M \, / \, \solarmass$,
 	grid=major,
 	colormap name=stability, colormap access=const,
 	point meta=explicit, point meta min=-0.5, point meta max=3.5,
@@ -1273,7 +1273,7 @@ The maximum mass is not only a limit on \emph{massiveness}, but also on \emph{st
 	xmin=0, xmax=50, ymin=0, ymax=0.8,
 ]
 \nextgroupplot[
-	colorbar horizontal, colorbar sampled, colorbar style={xlabel={Number of unstable modes with $\omega_n^2 < 0$}, xtick={0, 1, 2, 3}, xticklabels={$0$, $1$, $2$, $3$}, at={(0.5,1.05)}, anchor=south, xticklabel pos=upper, tickwidth=0},
+	colorbar horizontal, colorbar sampled, colorbar style={xlabel={$n =$ number of unstable modes with $\omega_n^2 < 0$}, xtick={0, 1, 2, 3}, xticklabels={$0$, $1$, $2$, $3$}, at={(0.5,1.05)}, anchor=south, xticklabel pos=upper, tickwidth=0},
 	minor x tick num=4, minor y tick num=9,
 ]
 \addplot [mesh, very thick] table [x expr={10*\thisrow{R}}, y=M, meta=nu] {../code/data/gr.dat}
