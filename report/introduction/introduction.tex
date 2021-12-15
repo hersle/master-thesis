@@ -122,14 +122,14 @@ In this thesis, we will review the fundamental gravitational and quantum theory 
 The mother of any star is an enormous accumulation of light elements called a \textbf{giant molecular cloud}.
 Such clouds consist predominantly of hydrogen and some helium produced in the nucleosynthesis that followed the Big Bang.
 In addition, there are trace amounts of heavier elements from the ashes of dying stars at the end of the life cycle we have just begun to describe.
-They can contain millions of solar masses distributed over a huge region hundreds of lightyears across with a relatively low average density.
+They can contain millions of solar masses distributed over a huge region measuring hundreds of lightyears across with a relatively low average density.
 Internally, the dynamics of a molecular cloud is chiefly governed by a balance between the attractive force of gravity between particles and the repulsive thermal pressure from their motion and collisions.
 
 Due to the force of gravity, parts of the cloud can clump together in regions of greater density.
 As more mass accumulates, the force of gravity attracting the surrounding material only increases, causing a snowball effect that amplifies the growth of the clump.
 Initially, the clump is not so dense, and thermal radiation can escape to the outside, resulting in low temperatures and pressure and allowing the clump to contract with little resistance.
 However, once the density reaches a sufficiently high level, the clump becomes opaque and traps the thermal radiation inside.
-When this happens, the temperature increases, in turn increasing the outwards pressure counteracting the inwards gravitational collapse, thus considerably slowing down the contraction.
+When this happens, the temperature rises, in turn causing the outwards pressure to increase, ultimately counteracting and slowing down the inwards gravitational collapse.
 During this stage, as the child ``clump'' grows by sucking up material from its parent cloud, it receives the honorable name \textbf{protostar} (\cref{fig:intro:star_evolution_protostar}).
 
 Sooner or later, the protostar has depleted the cloud of its available mass and is promoted to a \textbf{pre-main-sequence star}.
@@ -139,23 +139,25 @@ Provided that the protostar has accumulated at least $M \gtrsim 0.08 \solarmass$
 The ignition of hydrogen marks the transition into a \textbf{main sequence star} (\cref{fig:intro:star_evolution_mainseq}).
 For billions of years, the star supports itself in this state by burning hydrogen into helium.
 As time goes on, the hydrogen in the central region is depleted, leaving behind a helium \emph{core} surrounded by a hydrogen \emph{envelope}.
+Stars smaller than $M \lesssim 0.08 \solarmass$ never reach high enough temperatures for fusing hydrogen and are classified as \textbf{brown dwarfs} (not depicted in \cref{fig:intro:star_evolution}).
+Brown dwarfs slowly cool and fade away over hundreds of millions of years without undergoing any further major transitions.
 
 What happens once there is no more hydrogen that can burn depends heavily on the mass of the star.
 Stars up to $M \lesssim 8 \solarmass$ evolve into \textbf{red giants} (\cref{fig:intro:star_evolution_red_giant}).
 As the hydrogen is exhausted, the pressure falls and fails to support the star, so the core begins to contract again, in turn causing another increase in temperature.
 For heavier red giants, the temperature can increase to $T \gtrsim \SI{1e8}{\kelvin}$, activating both fusion of helium to carbon and carbon to oxygen, but not of heavier elements.
 As these processes take place and the burning of each element successively finishes, the core develops shells with elements of increasing mass towards the center as shown in the figure, from hydrogen to helium, carbon or oxygen, depending on the exact mass of the star.
-Due to the sudden increase in temperature, much energy is transported into the envelope, where it reignites leftover hydrogen and inflates the envelope up to 200 solar radii.
+Due to the sudden increase in temperature, much energy is transported into the envelope, where it reignites leftover hydrogen and inflates the envelope up to 200 solar radii, motivating the term \emph{giant}.
 
 Eventually, explosions in the envelope of a red giant trigger unstable pulsations of the hydrogen envelope.
 This causes a \textbf{planetary nebula} (\cref{fig:intro:star_evolution_planetary_nebula}) -- an ejection of the outer shells of the red giant into new clouds from which new stars are born.
 The remaining inert core that is left intact from the nebula forms a \textbf{white dwarf} (\cref{fig:intro:star_evolution_white_dwarf}).
-Since no further reactions occur in the core, it is supported against collapse solely by degeneracy pressure of electrons that are ripped away from the arms of their parent atoms at high density and forced to occupy different states by the Pauli exclusion principle.
+Since no further reactions occur in the core, it is supported against collapse solely by the degeneracy pressure of a sea of electrons that have been ripped away from their parent atoms due to the high density, forced to occupy different states by the Pauli exclusion principle.
 White dwarfs can be as hot as $T \approx \SI{1e7}{\kelvin}$ upon formation, but gradually cool down as they radiate away their energy.
 %Importantly, Chandrasekhar derived that ideal white dwarfs consisting of a relativistic degenerate electron gas can only support themselves for masses up to $M \lesssim 0.91\solarmass$. \cite{ref:chandrasekhar_limit_ideal} \TODO{ideal}
 %A few years later, he took more effects into account and derived the more accurate Chandrasekhar limit $M \lesssim 1.47$. \cite{ref:chandrasekhar_limit_nonideal}
 Importantly, Chandrasekhar showed that white dwarfs can only support masses up to $M \lesssim 1.47 \solarmass$. \cite{ref:chandrasekhar_limit_nonideal}
-He modeled the interior as a relativistic Fermi gas of protons, neutrons and electrons and demonstrated that virtually all the pressure that prevents collapse comes from the degeneracy of the electrons, while the protons and neutrons contribute most of the energy density due to their much greater mass.
+He modeled the interior as a relativistic Fermi gas of protons, neutrons and electrons and found that virtually all the pressure that prevents collapse comes from the degeneracy of the electrons, while the protons and neutrons contribute most of the energy density due to their much greater mass.
 In his honor, the true upper mass limit of white dwarfs is named the Chandrasekhar limit and is currently believed to be closer to $M \lesssim 1.44 \solarmass$. \cite{ref:glendenning}
 
 \begin{figure}
@@ -168,34 +170,33 @@ In his honor, the true upper mass limit of white dwarfs is named the Chandrasekh
 }
 \end{figure}
 
-If the mass of a main sequence star exceeds $M \gtrsim 8 \solarmass$, it first becomes a more intense red giant -- a \textbf{red supergiant} (\cref{fig:intro:star_evolution_red_supergiant}), for lack of a better word.
+If the mass of a main sequence star exceeds $M \gtrsim 8 \solarmass$, it first becomes a larger and more intense red giant -- a \textbf{red supergiant} (\cref{fig:intro:star_evolution_red_supergiant}).
 The increased mass sends the temperature soaring well above $T \gtrsim \SI{1e8}{\kelvin}$, activating not only fusion from hydrogen to helium, carbon and oxygen, but even to heavier elements such as neon and iron.
 When the reactions reach iron, something dramatic happens.
-As shown in \cref{fig:intro:iron_peak}, fusion from lighter elements \emph{release} energy, while fusion from iron or heavier elements \emph{require} energy, causing the burning to stop at iron.
+As shown in \cref{fig:intro:iron_peak}, fusion from elements lighter than iron \emph{release} energy, while fusion from heavier elements \emph{require} energy, causing the burning to stop at iron.
 At this point, due to the heavy elements, the core of a red supergiant is so massive that it exceeds the Chandrasekhar limit.
 Inevitably, the core collapses and produces an extremely powerful explosion called a \textbf{supernova} (\cref{fig:intro:star_evolution_supernova}).
 
-For supergiants whose mass does not exceed $M \lesssim 40 \solarmass$, the supernova leaves behind an inert core called a \textbf{neutron star} (\cref{fig:intro:star_evolution_neutron_star}).
-The core is then too massive that it is compressed \emph{past} the Chandrasekhar limit of white dwarfs.
+For supergiants lighter than $M \lesssim 40 \solarmass$, the supernova leaves behind an inert core called a \textbf{neutron star} (\cref{fig:intro:star_evolution_neutron_star}).
+The core is then so massive that it is compressed \emph{past} the Chandrasekhar limit for white dwarfs.
 The resulting extreme density and Fermi energy makes it energetically favorable for electrons and protons to combine into neutrons in inverse beta decay.
 In general, the outer core of a neutron star can consist of a neutron ($n$) superfluid mixed with superconducting protons ($p$), electrons ($e^-$) and muons ($\mu^-$). % Potekhin section 2.2
-The precise composition of the inner core is an open question, but it is believed that it may contain $\lambda$ and $\Sigma^-$ baryons, $\pi$ and $K$ mesons and deconfined quark matter. % Potekhin section 2.2 list 1-4
+The precise composition of the inner core is an open question, but it is believed that it may contain $\lambda$ and $\Sigma^-$ baryons, $\pi$ and $K$ mesons and deconfined quark matter. \cite{ref:neutron_star_physics} % Potekhin section 2.2 list 1-4
 Thus, compact stars are not only important for astrophysics as an isolated field, but also serve as a test bed for nuclear and particle physics.
 Outside the core, there is an envelope consisting of more ``ordinary'' matter with isolated atomic nuclei, such as iron. % Potekhin 2.2 last paragraph
 %making a neutron star consist protons, hyperons, leptons and possibly quarks. % Glendenning somewhere
 Despite their differences, all the particles group up for a last stand against gravity, reaching a new equilibrium configuration that is known as a neutron star.
 As with white dwarfs, there is a limit for the gravitational force that their degeneracy pressure can withstand.
 Assuming a neutron star consists of an ideal Fermi gas of pure neutrons, Oppenheimer and Volkoff computed the mass bound $M \lesssim 0.7 \solarmass$ in 1939, building upon earlier work by Tolman. \cite{ref:tov,ref:tolman}
-More advanced theories and observations place the so named Tolman-Oppenheimer-Volkoff limit for the maximum mass of real neutron stars somewhere between $2 \solarmass$ and $3 \solarmass$. % Potekhin section 2.3
+More advanced theories and observations place the so named \emph{Tolman-Oppenheimer-Volkoff limit} for the maximum mass of real neutron stars somewhere between $2 \solarmass$ and $3 \solarmass$. % Potekhin section 2.3
 Like white dwarfs, neutron stars only cool down by radiating their stored energy, from initial core temperatures $T \approx \SI{1e10}{\kelvin}$ to $T \approx \SI{1e8}{\kelvin}$ in a month, then to $T \approx \SI{1e6}{\kelvin}$ in less than a million years. \cite{ref:glendenning} % Glendenning page 115
 
-Finally, for even more massive supergiants with $M \gtrsim 40 \solarmass$, the Oppenheimer-Volkoff limit is exceeded, and not even the degeneracy pressure of neutrons can resist gravity.
+Finally, for supergiants more massive than $M \gtrsim 40 \solarmass$, the Tolman-Oppenheimer-Volkoff limit is exceeded, and not even the degeneracy pressure of neutrons can resist gravity.
 Beyond this limit, no known star has escaped the collapse to a \textbf{black hole} (\cref{fig:intro:star_evolution_black_hole}).
-It is, however, an open question whether there can be even more classes of stars that fall between the Oppenheimer-Volkoff limit and the lightest observed black holes.
-No such stars have been observed yet, and they are therefore referred to as \textbf{exotic stars}, of which \textbf{quark stars} is one example.
+However, it is an open question whether there can be other types of stars that fall between the Tolman-Oppenheimer-Volkoff limit and the lightest observed black holes.
+No such star has been observed yet, and they are therefore referred to as \textbf{exotic stars}, of which \textbf{quark stars} is one example.
 
 This marks the last possible path of evolution in the somewhat simplified diagram in \cref{fig:intro:star_evolution}.
-Notably, we ignored the possibility that main sequence stars with $M \lesssim 0.08 \solarmass$ never reach the temperature necessary to ignite hydrogen and become \textbf{brown dwarfs}.
 
 \section{Proposition and observation of neutron stars}
 
@@ -232,13 +233,12 @@ In contrast, radial pulsations did not explain the shape nor the extreme regular
 Not long after, Richard Lovelace and others measured a similar signal from the pulsar NP 0532 in the Crab Nebula -- also referred to as the Crab Pulsar -- with a period of only \SI{33}{\milli\second}, which was even more challenging to explain by radial oscillations. \cite{ref:crab_pulsar_period_discovery}
 Moreover, David Richards discovered that the period slightly increased with time in the way that it should for a rotating object that radiates away its energy.
 This evidence convinced physicists that the signals were indeed from real, rotating and pulsating \textbf{neutron stars}.
-Controversially, Bell's supervisor and first author Hewish later got the Nobel prize for the discovery of the neutron star, although it was Jocelyn who made the actual measurements and in hindsight credited first.
+Controversially, Bell's supervisor and first author Hewish later got the Nobel prize for the discovery of the neutron star, although it was Jocelyn who made the actual measurements and in hindsight is credited first.
 
 
 \section{Outline of this thesis}
 
-In this thesis, we first develop the fundamental theoretical tools that are necessary to study neutron stars.
-Then we apply them to calculate masses and radii of neutron stars and study the stability of these stars.
+In this thesis, we first develop the fundamental theoretical tools that are necessary to study neutron stars, then apply them to calculate their masses and radii and study their stability.
 
 In \textbf{\cref{chap:intro}}, you already know that we have presented the life cycle of stars and the history of the proposition and discovery of neutron stars.
 
@@ -254,11 +254,7 @@ An additional equation of state $\epsilon = \epsilon(P)$ that allows computation
 This is outside the scope of general relativity and belongs to the field of quantum theory and statistical mechanics.
 Given the equation of state, however, one may impose the boundary condition $m(0) = 0$ and any central pressure $P(0) = P_c$ and solve the system for the pressure profile $P(r)$ and mass profile $m(r)$ in the star.
 By defining the surface $r=R$ of the star where the pressure $P(R) = 0$ vanishes, one can obtain the radius $R$ and mass $M = m(R)$ of the star.
-In particular, we will solve the system analytically for a star of constant energy density $\epsilon(P) = \epsilon_0$ to derive the Buchdal limit
-\begin{equation*}
-	\frac{M}{R} < \frac{4 c^2}{9 G}
-\end{equation*}
-on the mass-radius ratio of \emph{any} star.
+In particular, we will solve the system analytically for a star of constant energy density $\epsilon(P) = \epsilon_0$ to derive the Buchdal limit $M/R < 4 c^2 / 9 G$ on the mass-radius ratio of \emph{any} star.
 
 In \textbf{\cref{chap:tft}}, we will study \textbf{thermal field theory} -- the formalism needed to find the effects of quantum fields at nonzero temperature.
 We will show how to write the quantum partition function
@@ -279,8 +275,8 @@ for the Fermi gas at zero temperature.
 We then solve the Tolman-Oppenheimer-Volkoff equation numerically for this equation of state to find a mass-radius curve $[R(P_c), \, M(P_c)]$ for such stars parametrized by their central pressure.
 Finally, we study whether stars on the curve are in stable or unstable equilibrium.
 We begin by establishing a set of necessary criteria from simple physical considerations.
-Then we develop a mathematically rigorous criterion for the stability of stars by using perturbation theory on the equilibrium Einstein field equations in \cref{chap:tov} to study the behavior of the perfect fluid as it is disturbed from equilibrium.
-This results in a Sturm-Liouville problem for normal vibration modes $U_n(r)$ with squared frequencies $\omega_n^2$ whose sign determine whether an exponential time dependence $e^{i \omega_n t}$ on the motion of disturbed fluid elements oscillate or grow exponentially.
+Then we derive a necessary \emph{and} sufficient criterion for stability by using perturbation theory on the treatment in \cref{chap:tov}, studying the behavior of the perfect fluid as it is disturbed from equilibrium.
+This results in a Sturm-Liouville problem for radial vibration modes $U_n(r)$ of fluid elements with corresponding squared eigenfrequencies $\omega_n^2$ that will determine whether the star is in a stable or unstable state of equilibrium.
 
 In \textbf{\cref{chap:conclusion}}, we \textbf{conclude} by \textbf{discussing} our results in light of observations and presenting an \textbf{outlook} on more advanced theories of neutron stars.
 
@@ -299,4 +295,4 @@ In \textbf{\cref{chap:integrals}}, we give concise derivations of all \textbf{in
 Whenever we encounter difficult integrals in the main text, we will always write the result directly and refer back to this appendix for readers who wish to investigate them in more detail.
 
 In \textbf{\cref{chap:code}}, we describe implementations of \textbf{numerical methods and algorithms}.
-Here, we present dimensionless forms of the Tolman-Oppenheimer-Volkoff equations from \cref{chap:tov} and the equations of stellar instability in \cref{chap:nstars}, and show how they can be solved with Runge-Kutta methods and the shooting method, respectively.
+Here, we present dimensionless forms of the Tolman-Oppenheimer-Volkoff equations from \cref{chap:tov} and the equations of stellar instability in \cref{chap:nstars}, and solve them with Runge-Kutta methods and the shooting method, respectively.
