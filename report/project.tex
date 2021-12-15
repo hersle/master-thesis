@@ -1,11 +1,11 @@
-\documentclass[a4paper,11pt,twoside]{report}
+\documentclass[a4paper,11pt,twoside,openany]{book}
 
 \overfullrule=5pt % draw overfull hboxes for visual inspection
 
 \usepackage[
 	%showframe, % show frame for page margins etc.
 	scale=0.75, % fraction of page width/height to use
-	headheight=30pt,
+	headheight=14pt, % see project.log for suggestions from fancyhdr package if you get warning
 	%marginpar=2cm, % define to avoid \marginpar{} from overflowing
 ]{geometry}
 \newcommand\TODO[1]{\textcolor{red}{(\textbf{TODO:} #1)}}
@@ -34,6 +34,8 @@
 \DeclareCaptionLabelFormat{bold}{\textbf{(#2)}}
 \captionsetup{subrefformat=bold}
 
+\usepackage{nextpage}
+\usepackage{pdfpages}
 \usepackage{graphicx}
 \usepackage[usetransparent=false,inkscapepath=.cachesvginkscape/]{svg}
 \newcommand\credit[2]{\textbf{Credit:} #1 (\url{#2}).}
@@ -87,8 +89,8 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[LE,RO]{\textbf{\thepage}}
-\fancyhead[RE]{\leftmark}
-\fancyhead[LO]{\rightmark}
+\fancyhead[RE]{\rightmark}
+\fancyhead[LO]{\leftmark}
 \fancyfoot[CE,CO]{}
 
 \usepackage{csquotes}
@@ -228,14 +230,12 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 	\ifentrytype{article}{\clearfield{urlday} \clearfield{urlmonth} \clearfield{urlyear}}{} % do not show visited on for articles
 	\ifentrytype{book}{\clearfield{urlday} \clearfield{urlmonth} \clearfield{urlyear}}{} % and books
 
-	\iffalse
 	% Forget location, except for books with no publisher (common for very old books)
-	\ifentrytype{book}{
-		\iflistundef{publisher}{}{\clearlist{location}}
-	}{
-		\clearlist{location}
-	}
-	\fi
+	%\ifentrytype{book}{
+		%\iflistundef{publisher}{}{\clearlist{location}}
+	%}{
+		%\clearlist{location}
+	%}
 }
 
 \addbibresource{project.bib}
@@ -292,10 +292,17 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 
 \begin{document}
 
-\maketitle
+%\maketitle
+\frontmatter
+\begin{titlepage}
+\includepdf[pages={1,{},2,{}}]{cover.pdf} % odd-even-odd-even
+\end{titlepage}
+
 \input{abstract/abstract.tex}
 \tableofcontents
 \input{prologue/prologue.tex}
+
+\mainmatter
 \input{introduction/introduction.tex}
 \input{chapter1/chapter1.tex}
 \input{chapter2/chapter2.tex}
@@ -303,6 +310,12 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 \input{conclusion/conclusion.tex}
 \input{appendix/appendix.tex}
 
-\printbibliography
+\backmatter
+\printbibliography[heading=bibintoc, title={References}]
+
+\cleartoevenpage % make sure back cover is at even page for proper folding
+%\begin{titlepage} % DO NOT USE, this forces cover to start on ODD page
+\includepdf[pages={3}]{cover.pdf}
+%\end{titlepage}
 
 \end{document}
