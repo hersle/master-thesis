@@ -1254,7 +1254,7 @@ Our curve only includes a spiral turning counterclockwise and seem consistent wi
 The maximum mass is not only a limit on \emph{massiveness}, but also on \emph{stability}.
 
 
-\begin{figure}[b]
+\begin{figure}[b!]
 \centering
 \pgfplotsset{
 	/pgfplots/colormap={stability}{rgb255=(65,171,93) rgb255=(254,178,76) rgb255=(252,78,42) rgb255=(122,1,119)}
@@ -1293,11 +1293,11 @@ node [text=black, sloped, pos=0.66, yshift=10pt] {$\longleftarrow$ Increasing $P
 \end{tikzpicture}
 
 \caption{\label{fig:nstars:stability}%
-Stability analysis of the neutron stars with arbitrary Fermi momenta in \cref{fig:nstars:massradius}.
+Stability analysis of the relativistic neutron star sequence with the general equation of state in \cref{fig:nstars:massradius}.
 Squared eigenfrequencies $\omega_n^2$ of the Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville_problem} are computed numerically with shooting method.
-The sign of the squared eigenfrequency $\omega_0^2$ of the lowest normal vibration mode determines whether a star is stable and oscillates like $e^{i \omega_0 t}$, or if it is unstable and grows or decays like $e^{\pm \abs{\omega_0} t}$.
-Here, the number of unstable modes with negative squared eigenfrequencies $\omega_n^2 < 0$ are counted for all stars along the mass-radius curve.
-\emph{Do note the presence of all four colors.}
+Here, the number of unstable modes $n$ with $\omega_n^2 < 0$ for each star is displayed.
+A star is stable only if it has $n = 0$ unstable modes.
+\emph{Note the presence of all four colors.}
 }
 
 \end{figure}
