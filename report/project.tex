@@ -4,8 +4,10 @@
 
 \usepackage[
 	%showframe, % show frame for page margins etc.
-	scale=0.75, % fraction of page width/height to use
 	headheight=14pt, % see project.log for suggestions from fancyhdr package if you get warning
+	outer=2cm, vmargin=2cm, hscale=0.75, % fix 0.75 textwidth a,d 2cm out margins, then inner margin is whatever is left over (and wider than inner margin, for printing!)
+	%scale=0.75, % fraction of page width/height to use
+	%bindingoffset = 1cm,
 	%marginpar=2cm, % define to avoid \marginpar{} from overflowing
 ]{geometry}
 \newcommand\TODO[1]{\textcolor{red}{(\textbf{TODO:} #1)}}
