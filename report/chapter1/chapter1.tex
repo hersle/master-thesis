@@ -7,10 +7,10 @@ In 1687, Sir Isaac Newton sparked a revolution in the field of physics when he d
 	\vec{F} = - G \frac{m_1 m_2}{r^2} \vec{\hat{r}} .
 \end{equation*}
 For a long time, his three laws of motion and law of gravity seemed to accurately explain all observable macroscopic motion.
-In particular, his laws provided an explanation for the three laws of planetary motion that Johannes Kepler found by empirical observation many years earlier in 1609 \cite{ref:kepler1} and 1619 \cite{ref:kepler2}.
+In particular, his laws provided an explanation for the three laws of planetary motion that Johannes Kepler found by empirical observation many years earlier in 1609 and 1619. \cite{ref:kepler1,ref:kepler2} 
 
-However, in 1859, Urbain Le Verrier observed that Mercury's orbit deviates from the one predicted by Kepler's and Newton's laws \cite{ref:le_verrier}.
-The resolution came half a century later, when Albert Einstein proposed his theory of special relativity in 1905 \cite{ref:einstein_special} and ten years later incorporated gravity into this framework with the theory of general relativity \cite{ref:einstein_general}.
+However, in 1859, Urbain Le Verrier observed that Mercury's orbit deviates from the one predicted by Kepler's and Newton's laws. \cite{ref:le_verrier}
+The resolution came half a century later, when Albert Einstein proposed his theory of special relativity in 1905 and ten years later incorporated gravity into this framework with the theory of general relativity. \cite{ref:einstein_special,ref:einstein_general}
 %Newton: gravity affects body, body does not move along straight path
 %Einstein: gravity affects space, body moves along straight path
 While Newton thought gravity \emph{disturbs a body} from moving straight through spacetime, Einstein explained gravity as \emph{curvature of spacetime} that instead reshapes the straight paths along which a body moves.
@@ -32,10 +32,12 @@ The most important result of this chapter will be the Tolman-Oppenheimer-Volkoff
 which we will derive from the Einstein field equations.
 With this equation, we can find the pressure profile and radius of a star once we have an equation of state that relates the pressure and energy of the material inside.
 This will be an essential tool for our following analysis of different equations of state.
-The equation was originally derived in 1939 by Robert Oppenheimer and George Volkoff \cite{ref:tov}, building on earlier work of Richard Tolman \cite{ref:tolman}.
+The equation was originally derived in 1939 by Robert Oppenheimer and George Volkoff, building on earlier work of Richard Tolman. \cite{ref:tov,ref:tolman}
 
 We will also examine the general consequences of this equation applied to the extreme case of an incompressible star. 
-To make sense of our results, we will investigate the correspondence between general relativity and Newtonian gravity in the limit of small velocities and weak gravitational fields.
+To make sense of our results, we also investigate the Newtonian limit of the Tolman-Oppenheimer-Volkoff equation.
+
+We make heavy use of the results from our review of general relativity in \cref{chap:gr}.
 
 \textit{This chapter is inspired by references \cite{ref:carroll}, \cite{ref:mtw} and \cite{ref:mika_gr_notes}.}
 
@@ -43,16 +45,20 @@ To make sense of our results, we will investigate the correspondence between gen
 \label{sec:einstein_to_tov}
 
 To analyze astrophysical objects like stars, it is of considerable interest to relate the pressure $P(x)$ and energy density $\epsilon(x)$ or mass density $\rho(x)$ at every position $x$ inside the object.
-We will derive the relativistic relation between these quantities from the \textbf{Einstein field equations} \cite[equation 4.44]{ref:carroll}
+We will derive the relativistic relation between these quantities from the \textbf{Einstein field equations} % \cite[equation 4.44]{ref:carroll}
 \begin{equation}
 	G\indices{_\mu_\nu} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = \frac{8 \pi G}{c^4} T_{\mu \nu} .
 	\label{eq:einstein}
 \end{equation}
-It describes how the geometry of spacetime, described by the Ricci tensor $R\indices{_\mu_\nu}$ and Ricci scalar $R$ that are ultimately built from the metric $g\indices{_\mu_\nu}$ and encapsulated in the Einstein tensor $G\indices{_\mu_\nu}$ (see \cref{chap:gr_summary} for a summary), responds to the presence of energy-momentum in the energy-momentum tensor $T\indices{_\mu_\nu}$.
+It describes how the geometry of spacetime, expressed by the Ricci tensor $R\indices{_\mu_\nu}$ and Ricci scalar $R$ and encapsulated in the Einstein tensor $G\indices{_\mu_\nu}$, responds to the presence of energy-momentum in the energy-momentum tensor $T\indices{_\mu_\nu}$.
+In \cref{chap:gr_summary}, we review how one begins with the metric \eqref{eq:def_metric} to successively construct the Christoffel symbols \eqref{eq:def_christoffel}, Riemann tensor \eqref{eq:def_riemann_tensor}, Ricci tensor \eqref{eq:def_ricci_tensor} and Ricci scalar \eqref{eq:def_ricci_scalar}.
+Since these quantities ultimately depend on only the metric and nothing else, \emph{the metric alone encodes all information about the geometry of spacetime}.
+In \cref{sec:einstein_derivation}, we show how the Einstein field equations arises from the least-action principle of a classical field theory involving a Lagrangian density built from the Ricci scalar.
 Here, $G$ is the gravitational constant and $c$ is the speed of light.
-As we later compare our findings to those of Newtonian gravity, it will be useful to connect the energy density to the mass density by the \textbf{mass-energy equivalence relation}
+
+As we later compare our findings to those of Newtonian gravity, it will be useful to connect the energy density $\epsilon$ to the mass density $\rho$ by the \textbf{mass-energy equivalence relation}
 \begin{equation}
-	\epsilon(x) = \rho(x) c^2 .
+	\epsilon = \rho c^2 .
 	\label{eq:tov:mass_energy_equivalence}
 \end{equation}
 
@@ -64,9 +70,9 @@ For our purposes, we therefore use the coordinates
 	-\infty < t < \infty, \quad
 	0 \leq r < \infty, \quad
 	0 \leq \theta \leq \pi, \quad
-	0 \leq \phi < 2 \pi .
+	0 \leq \phi < 2 \pi ,
 \end{equation}
-and consider the most general metric that exhibits spherical symmetry, \cite[equation 5.11]{ref:carroll}
+and consider the most general form of a spherically symmetric metric, \cite[equation 5.11]{ref:carroll}
 \begin{equation}
 	% coordinates x = (ct, r, θ, ϕ)
 	\dif s^2 = e^{2 \alpha(r)} c^2 \dif t^2 - e^{2 \beta(r)} \dif r^2 - r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
@@ -74,14 +80,15 @@ and consider the most general metric that exhibits spherical symmetry, \cite[equ
 \end{equation}
 
 We model the interior of the star as a perfect fluid in equilibrium.
-In \cref{chap:relfluid}, we show that a perfect fluid has the energy-momentum tensor
+In \cref{chap:relfluid}, we show that a perfect fluid with four-velocity field $u^\mu$ has the energy-momentum tensor
 \begin{equation}
-	T\indices{_\mu_\nu}(r) = \frac{u_\mu u_\nu}{c^2} \left[ \epsilon(r)+P(r) \right]  - g\indices{_\mu_\nu} P(r) .
+	T\indices{_\mu_\nu} = \frac{u_\mu u_\nu}{c^2} \left( \epsilon + P \right)  - g\indices{_\mu_\nu} P .
 	\label{eq:tov:energy_momentum_perfect_fluid}
 \end{equation}
-The analysis is simplest in the rest frame of the fluid, where $u_\mu = (u_0, \textbf{0})$ and the normalization condition $u_\mu u^\mu = c^2$ requires $u_0 = \pm e^\alpha c$.
-We choose the positive sign so the four-velocity lies in the future light cone, as we are interested in the evolution of the star.
-Dropping the function argument $r$ from now, the energy-momentum tensor then takes the diagonal form
+Due to the combination of equilibrium and spherical symmetry, we assume that $\epsilon = \epsilon(r)$ and $P = P(r)$ only depend on the radial coordinate $r$, and not on time nor angles.
+In the rest frame of the fluid, the four-velocity is $u_\mu = (u_0, \textbf{0})$, and the normalization condition $u_\mu u^\mu = c^2$ requires $u_0 = \pm e^\alpha c$.
+As we are interested in the evolution of the star, we choose the positive sign so the four-velocity lies in the future light cone.
+The energy-momentum tensor then takes the diagonal form
 \begin{equation}
 T\indices{_\mu_\nu} =
 \begin{bmatrix}
@@ -102,9 +109,9 @@ T\indices{_\mu^\nu} =
 \label{eq:einstein_to_tov:T}
 \end{equation}
 
-Starting with the metric, it is now straightforward, although tedious, to compute the left side of \cref{eq:einstein} from \cref{eq:def_christoffel,eq:def_riemann_tensor,eq:def_ricci_tensor,eq:def_ricci_scalar}.
-For the details, refer to \cite[equation 5.11-5.15]{ref:carroll} or \cref{sec:tov_cas_derivation}.
-After inserting the energy-momentum tensor on the right and simplifying, we get the three independent equations
+Starting with the metric \eqref{eq:tov:metric}, it is now straightforward, although tedious, to compute the left side of the Einstein field equations \eqref{eq:einstein} from the Christoffel symbols \eqref{eq:def_christoffel}, Riemann tensor \eqref{eq:def_riemann_tensor}, Ricci tensor \eqref{eq:def_ricci_tensor} and Ricci scalar \eqref{eq:def_ricci_scalar}.
+For the details, inspect the algebra script in \cref{sec:tov_cas_derivation} or refer to \cite[equation 5.11-5.15]{ref:carroll}.
+After also inserting the energy-momentum tensor on the right and simplifying, we find the three independent equations
 (the fourth turns out proportional to the third)
 \begin{subequations}
 \begin{align}
@@ -122,7 +129,7 @@ After inserting the energy-momentum tensor on the right and simplifying, we get 
 
 First, let us quickly review the Schwarzschild solution outside the star, where there is no pressure nor energy density and all right sides vanish.
 Adding equation \eqref{eq:einstein_to_tov:tt} and \eqref{eq:einstein_to_tov:rr} then yields $(\alpha + \beta)' = 0$, so $\alpha + \beta = C$ for some constant $C$.
-The constant can be found by noting that far away from the star, as $r \rightarrow \infty$, the metric should reduce to the Minkowski metric with $e^{2\alpha} = e^{2 \beta} = 1$, so we must have $\alpha + \beta = 0$.
+The constant can be found by noting that far away from the star, as $r \rightarrow \infty$, the metric should reduce to the spherical Minkowski metric with $e^{2\alpha} = e^{2 \beta} = 1$, so we must have $\alpha + \beta = 0$.
 Inserting $\beta' = -\alpha'$ into equation \eqref{eq:einstein_to_tov:thetatheta} then gives a differential equation for $\alpha$ whose solution is $\alpha = \log \left( 1 - D / r \right) / 2$ for some constant $D$.
 To determine it, we use that in the Newtonian limit \eqref{eq:weak_field_limit:metric_with_potential}, the temporal metric element should reduce to $e^{2 \alpha} = 1 + 2 V / c^2$ where $V = - G M / r$ is the Newtonian gravitational potential of the star and $M$ is the \emph{Newtonian mass} of the star.
 Thus, the metric outside the star is the well-known \textbf{Schwarzschild metric}
@@ -130,12 +137,14 @@ Thus, the metric outside the star is the well-known \textbf{Schwarzschild metric
 	\dif s^2 = \left( 1 - \frac{2 G M}{r c^2} \right) c^2 \dif t^2 - \left( 1 - \frac{2 G M}{r c^2} \right)^{-1} \dif r^2 - r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
 \label{eq:tov:schwarzschild_metric}
 \end{equation}
-Observe that the metric is singular at the \textbf{Schwarzschild radius}
+In particular, the metric is singular at the \textbf{Schwarzschild radius}
 \begin{equation}
 	r = R_S = 2 G M / c^2.
 \label{eq:tov:schwarzschild_radius}
 \end{equation}
-This is an \emph{event horizon}, from which not even light can escape out of. \cite[section 5.6]{ref:carroll}.
+This is an \textbf{event horizon}.
+No event occurring inside $r < R_S$ can ever affect an event occurring outside $r > R_S$. \cite[section 5.6]{ref:carroll}.
+In other words, nothing that has crossed into the horizon can ever come back out -- not even light!
 If a star is so small and massive that its Schwarzschild radius $R_S > R$ lies \emph{outside} the surface, the star is invisible from the outside and we say it has collapsed to a \textbf{black hole}.
 
 \subsubsection{Interior solution}
@@ -164,11 +173,10 @@ Meanwhile, definition \eqref{eq:einstein_to_tov:def_m} turns \cref{eq:einstein_t
 	\label{eq:einstein_to_tov:dadr1}
 \end{equation}
 To finally eliminate $\alpha$, we can replace all occurrences of $\alpha'$ and $\beta$ in the remaining \cref{eq:einstein_to_tov:thetatheta} with the expressions \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:def_m}.
-Doing so is straightforward, but cumbersome and most easily done by a computer algebra system.
-We show how to do this in \cref{sec:tov_cas_derivation}.
-An elegant, but less straightforward argument is to use local energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$, which is both physically reasonable and in fact possible to prove directly from the Einstein field equations \eqref{eq:einstein}.
+Doing so is straightforward, but cumbersome and most easily done by a computer algebra system -- this is the approach we take in \cref{sec:tov_cas_derivation}.
+A more elegant, but less straightforward argument is to use local energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$, which is both physically reasonable and in fact possible to prove directly from the Einstein field equations \eqref{eq:einstein}.
 For two different proofs, see \cite{ref:einstein_conservation_energy_momentum} and \cite[section 8.3.2]{ref:mika_gr_notes}.
-Using \cref{eq:def_cov_deriv}, the component $\nu=1$ gives
+Calculating the necessary Christoffel symbols and taking the covariant derivative \eqref{eq:def_cov_deriv}, the component $\nu=1$ gives
 \begin{equation*}
 \begin{split}
 	0 &= \nabla_\mu T\indices{^\mu_1} \\
@@ -177,13 +185,13 @@ Using \cref{eq:def_cov_deriv}, the component $\nu=1$ gives
 \end{split}
 \end{equation*}
 Using $T\indices{^0_0} = \epsilon$ and $T\indices{^1_1} = T\indices{^2_2} = T\indices{^3_3} = -P$ from \cref{eq:einstein_to_tov:T}, the explicit sums cancel.
-With $\Gamma^0_{10} = \frac12 g^{00} \partial_1 g_{00} = \odv{\alpha}/{r}$, we are left with
+With $\Gamma^0_{10} = \frac12 g^{00} \partial_1 g_{00} = \odv{\alpha}/{r}$, we are left with only
 \begin{equation}
 	\odv{\alpha}{r} = \frac{-1}{\epsilon+P} \odv{P}{r} .
 	\label{eq:einstein_to_tov:dadr2}
 \end{equation}
 Now $\alpha$ is easily eliminated by equating \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:dadr2}. 
-Whichever approach we follow, we end up with the \textbf{Tolman-Oppenheimer-Volkoff (TOV) equation}
+Whichever approach we follow, we end up with the \textbf{Tolman-Oppenheimer-Volkoff equation (TOV equation)}
 \begin{equation}
 	\odv{P(r)}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left[ 1 + \frac{P(r)}{\epsilon(r)} \right] \left[ 1 + \frac{4 \pi r^3 P(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
 	\label{eq:tov}
@@ -196,9 +204,17 @@ To determine them, an additional \textbf{equation of state}
 \label{eq:tov:eos}
 \end{equation}
 that relates the thermodynamic variables is required, typically obtained from statistical physics.
+
+Note that the Tolman-Oppenheimer-Volkoff equation states that $\odv{P}/{r} < 0$, provided that the last factor is positive.
+Indeed, we should have $1 - 2 G m(r) / c^2 r > 0$ for all $r$, for otherwise the region inside would be a black hole.
+Near the center $r \rightarrow 0$, we can see this explicitly by using the boundary condition $m(0)=0$ and the mass gradient \eqref{eq:einstein_to_tov:m_rho} to Taylor expand $1 - 2 G m(r) / r c^2 \taylor 1 - 2 G m'(r) c^2 = 1 - 8 \pi G \epsilon(0) r^2 / c^4 \rightarrow 1$.
+Moreover, in \cref{sec:nstars:stability_necessary} we will see that equations of state $\epsilon = \epsilon(P)$ must satisfy $\odv{P}/{\epsilon} > 0$ to be stable and exhibit non-imaginary speeds of sound.
+Since $\epsilon = \epsilon(P) = \epsilon(P(r))$, this implies that $\left( \odv{P}/{r} \right) / \left( \odv{\epsilon}/{r} \right) > 0$ too, so we must also have $\odv{\epsilon}/{r} < 0$.
+In summary, we have shown that \emph{both the pressure and energy density strictly decreases away from the center}.
+
 Given all three equations \eqref{eq:einstein_to_tov:m_rho}, \eqref{eq:tov} and \eqref{eq:tov:eos}, the initial mass $m(0) = 0$ and some central pressure $P(0) = P_c$ or energy density $\epsilon(0) = \epsilon_c$, we can integrate them to find the pressure $P(r)$, mass $m(r)$ and energy density $\epsilon(r)$ everywhere inside the star.
-We define the surface of the star to be the radius $r=R$ at which $P(r) = 0$, and the star's mass as the corresponding value $m(R) = M$.
-If desired, we can then calculate the metric function $\beta(r)$ from definition \eqref{eq:einstein_to_tov:def_m}, and $\alpha(r)$ by integrating \cref{eq:einstein_to_tov:dadr2} from the surface $r=R$, where it must match the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric}, and back into the center $r=0$.
+We define the surface of the star to be the radius $r=R$ at which the pressure $P(r) = 0$ vanishes, and the star's mass as the corresponding value $m(R) = M$.
+After obtaining these functions, we can even calculate the full metric functions $\alpha(r)$ and $\beta(r)$ from definition \eqref{eq:einstein_to_tov:def_m} and by integrating \cref{eq:einstein_to_tov:dadr2} subject to matching the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric} at $r=R$.
 Solving these equations is therefore our ultimate goal.
 
 \iffalse
@@ -218,6 +234,8 @@ This is completely equivalent to instead setting $\alpha(R) = \log \left(1 - 2 G
 \fi
 
 \subsubsection{Interpretation of mass}
+
+\TODO{continue here on Thursday}
 
 One matter that deserves comment is our definition of the star's mass $M = m(R)$.
 We should be a little careful about this, since it is not obvious how to think of ``mass'' in relativistic terms.
