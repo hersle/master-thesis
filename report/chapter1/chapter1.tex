@@ -157,19 +157,19 @@ To imitate the Schwarzschild metric element $g_{11}$, let us define the function
 \end{equation}
 Then \cref{eq:einstein_to_tov:tt} becomes
 \begin{equation}
-	\odv{\left[m(r) c^2\right]}{r} = 4 \pi r^2 \epsilon(r) ,
+	\odv{m(r)}{r} = \frac{1}{c^2} 4 \pi r^2 \epsilon(r) ,
 	\label{eq:einstein_to_tov:m_rho}
 \end{equation}
 directly relating $m(r)$ and $\epsilon(r)$.
 If we set $m(0) = 0$, we can integrate to get
 \begin{equation}
-	m(r) c^2 = \integral{\epsilon(r') 4 \pi r'^2}{r'}{0}{r} .
+	m(r) = \frac{1}{c^2} \integral{4 \pi r'^2 \epsilon(r')}{r'}{0}{r} .
 	\label{eq:einstein_to_tov:m_integral}
 \end{equation}
 In \cite[page 602]{ref:mtw} it is shown that setting $m(0) \neq 0$ creates a singularity at the origin, which is not physically acceptable.
 Meanwhile, definition \eqref{eq:einstein_to_tov:def_m} turns \cref{eq:einstein_to_tov:rr} into
 \begin{equation}
-	\odv{\alpha(r)}{r} = \frac{G}{r^2 c^4} \frac{m(r) c^2 + 4 \pi r^3 P(r)}{1 - 2 G m(r) / r c^2} .
+	\odv{\alpha(r)}{r} = \frac{G}{r^2 c^4} \frac{m(r) c^2 + 4 \pi r^3 P(r)}{1 - 2 G m(r) / r c^2} .
 	\label{eq:einstein_to_tov:dadr1}
 \end{equation}
 To finally eliminate $\alpha$, we can replace all occurrences of $\alpha'$ and $\beta$ in the remaining \cref{eq:einstein_to_tov:thetatheta} with the expressions \eqref{eq:einstein_to_tov:dadr1} and \eqref{eq:einstein_to_tov:def_m}.
@@ -196,7 +196,7 @@ Whichever approach we follow, we end up with the \textbf{Tolman-Oppenheimer-Volk
 	\odv{P(r)}{r} = -\frac{G m(r) \epsilon(r)}{r^2 c^2} \left[ 1 + \frac{P(r)}{\epsilon(r)} \right] \left[ 1 + \frac{4 \pi r^3 P(r)}{m(r) c^2} \right] \left[ 1 - \frac{2 G m(r)}{r c^2} \right]^{-1} .
 	\label{eq:tov}
 \end{equation}
-It relates the pressure gradient $\odv{P}/{r}$ and energy density $\epsilon$ at radius $r$ from the center of a spherical static star composed of a perfect fluid.
+It expresses the pressure gradient $\odv{P}/{r}$ at radius $r$ from the center of a spherical star composed of a perfect fluid in equilibrium.
 \Cref{eq:einstein_to_tov:m_rho,eq:tov} constitute two equations for the three unknowns $P$, $\epsilon$ and $m$.
 To determine them, an additional \textbf{equation of state}
 \begin{equation}
@@ -206,11 +206,11 @@ To determine them, an additional \textbf{equation of state}
 that relates the thermodynamic variables is required, typically obtained from statistical physics.
 
 Note that the Tolman-Oppenheimer-Volkoff equation states that $\odv{P}/{r} < 0$, provided that the last factor is positive.
-Indeed, we should have $1 - 2 G m(r) / c^2 r > 0$ for all $r$, for otherwise the region inside would be a black hole.
+Indeed, we should have $1 - 2 G m(r) / c^2 r > 0$ for all $r$, for otherwise the region inside $r$ would be a black hole.
 Near the center $r \rightarrow 0$, we can see this explicitly by using the boundary condition $m(0)=0$ and the mass gradient \eqref{eq:einstein_to_tov:m_rho} to Taylor expand $1 - 2 G m(r) / r c^2 \taylor 1 - 2 G m'(r) c^2 = 1 - 8 \pi G \epsilon(0) r^2 / c^4 \rightarrow 1$.
 Moreover, in \cref{sec:nstars:stability_necessary} we will see that equations of state $\epsilon = \epsilon(P)$ must satisfy $\odv{P}/{\epsilon} > 0$ to be stable and exhibit non-imaginary speeds of sound.
 Since $\epsilon = \epsilon(P) = \epsilon(P(r))$, this implies that $\left( \odv{P}/{r} \right) / \left( \odv{\epsilon}/{r} \right) > 0$ too, so we must also have $\odv{\epsilon}/{r} < 0$.
-In summary, we have shown that \emph{both the pressure and energy density strictly decreases away from the center}.
+In summary, we have shown that \emph{both the pressure and energy density strictly decreases away from the center of a star}.
 
 Given all three equations \eqref{eq:einstein_to_tov:m_rho}, \eqref{eq:tov} and \eqref{eq:tov:eos}, the initial mass $m(0) = 0$ and some central pressure $P(0) = P_c$ or energy density $\epsilon(0) = \epsilon_c$, we can integrate them to find the pressure $P(r)$, mass $m(r)$ and energy density $\epsilon(r)$ everywhere inside the star.
 We define the surface of the star to be the radius $r=R$ at which the pressure $P(r) = 0$ vanishes, and the star's mass as the corresponding value $m(R) = M$.
@@ -235,43 +235,47 @@ This is completely equivalent to instead setting $\alpha(R) = \log \left(1 - 2 G
 
 \subsubsection{Interpretation of mass}
 
-\TODO{continue here on Thursday}
-
 One matter that deserves comment is our definition of the star's mass $M = m(R)$.
 We should be a little careful about this, since it is not obvious how to think of ``mass'' in relativistic terms.
-At the surface $r=R$ of the star, our metric must match the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric}.
-Comparing the definition \eqref{eq:einstein_to_tov:def_m} of $m(r)$ to the Schwarzschild metric, we then see that
+At the surface $r=R$ of the star, the radial metric element \eqref{eq:einstein_to_tov:def_m} matches the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric} with the mass
 \begin{equation}
-	m(R) = M = \frac{1}{c^2} \integral{\epsilon(r) 4 \pi r^2}{r}{0}{R} = \integral{\rho(r) 4 \pi r^2}{r}{0}{R}
+	M = m(R) = \frac{1}{c^2} \integral{4 \pi r^2 \epsilon(r)}{r}{0}{R} = \integral{4 \pi r^2 \rho(r)}{r}{0}{R} .
 	\label{eq:einstein_to_tov:schwarzschild_mass}
 \end{equation}
-is the same mass that appears in the Schwarzschild metric, which we \emph{defined} to be the \emph{Newtonian mass} of the star.
-However, the factor $4 \pi r^2$ in the integral is not a proper volume element, as it is missing the factor $e^{\beta(r)}$ from the full spatial metric determinant.
-The true volume integral of the star's energy density is really
-\begin{equation*}
-	\bar{M} c^2 = \integral{\epsilon(r) e^{\beta(r)} 4 \pi r^2}{r}{0}{R} .
-\end{equation*}
-In fact, the difference
-\begin{equation*}
-	\bar{M} c^2 - M c^2 = \integral{\epsilon(r) \left[ \left( 1-\frac{2Gm(r)}{rc^2} \right)^{-1/2} - 1 \right] 4 \pi r^2}{r}{0}{R} > 0
-\end{equation*}
-is the binding energy that arises due to the gravitational attraction between the individual fluid elements in the star.
-To see this, take the Newtonian limit \eqref{eq:weak_field_limit:weak_field_metric} of the element $g_{00}$ of the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric} to see that we have the small quantity
+We \emph{defined} the mass in the Schwarzschild metric to be the \emph{Newtonian mass} of the star.
+
+However, the mass-energy equivalence \eqref{eq:tov:mass_energy_equivalence} suggests that we should think of mass proportional to the volume integral of the energy density.
+The proper volume integral contains the factor $\sqrt{-\det{g_{ij}}} = e^{\beta(r)} 4 \pi r^2$ from the full spatial metric, with an extra factor compared to the Newtonian mass \eqref{eq:einstein_to_tov:schwarzschild_mass}.
+With this interpretation, the ``mass'' is instead
+\begin{equation}
+	\bar{M} = \frac{1}{c^2} \integral{4 \pi r^2 e^{\beta(r)} \epsilon(r)}{r}{0}{R}
+	        = \integral{4 \pi r^2 e^{\beta(r)} \rho(r)}{r}{0}{R} .
+\label{eq:einstein_to_tov:alternative_mass}
+\end{equation}
+
+What is the difference between the two masses \eqref{eq:einstein_to_tov:schwarzschild_mass} and \eqref{eq:einstein_to_tov:alternative_mass}?
+In fact, we can show that
+\begin{equation}
+	\bar{M} c^2 - M c^2 = \integral{4 \pi r^2 \epsilon(r) \left[ \left( 1-\frac{2Gm(r)}{rc^2} \right)^{-1/2} - 1 \right]}{r}{0}{R} > 0
+\end{equation}
+is the \emph{binding energy} that arises due to the gravitational attraction between the individual fluid elements in the star.
+To see this, let us take the Newtonian limit \eqref{eq:weak_field_limit:weak_field_metric}.
+Corresponding to the element $g_{00}$ of the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric}, we then have the small quantity
 \begin{equation}
 	\frac{G m(r)}{rc^2} \ll 1 .
 	\label{eq:weak_field_limit:small_gmr}
 \end{equation}
-Using the Taylor expansion $(1 - x)^{-1/2} = 1 + x/2$ and the mass-energy equivalence relation \eqref{eq:tov:mass_energy_equivalence}, we then get
+Using the Taylor expansion $(1 - x)^{-1/2} = 1 + x/2$, we then get
 \begin{equation}
-	\bar{M} c^2 - M c^2 \taylor \integral{\frac{\epsilon(r)}{c^2} \frac{GM}{r} 4 \pi r^2}{r}{0}{R}
-	                    =       \integral{\rho(r) \frac{GM}{r} 4 \pi r^2}{r}{0}{R} .
+	\bar{M} c^2 - M c^2 \taylor \integral{4 \pi r^2 \frac{\epsilon(r)}{c^2} \frac{GM}{r}}{r}{0}{R}
+	                    =       \integral{4 \pi r^2 \rho(r) \frac{GM}{r}}{r}{0}{R} .
 \end{equation}
 As shown in \cite[exercise 23.7]{ref:mtw}, this is precisely the energy required to construct the star by sequentially placing thin shells of mass $\dif m = \rho(r) 4 \pi r^2 \dif r$ on top of each other, each subject to the gravitational attraction of the shells already placed below it.
-This explains that $\bar{M} c^2 - M c^2$ is indeed the binding energy that would be required to disperse all the matter in the star to infinity.
+This is indeed the binding energy that would be required to disperse all the matter in the star to infinity.
 
 The moral of this story is that the mass $M = m(R)$ in the Tolman-Oppenheimer-Volkoff equation should be interpreted as the \emph{Newtonian} mass of the star.
 But $M c^2$ is \emph{not} the total energy of the star, as we saw above that it differs by the binding energy.
-Experimentally, this implies that we can measure masses of distant stars using \emph{Newtonian} results like Kepler's third law \cite[chapter 19]{ref:mtw} that rely only on simple observations.
+Experimentally, this implies that we can measure masses of distant stars using \emph{Newtonian} results like Kepler's third law that rely only on simple observations.
 Moreover, it makes it meaningful to compare masses obtained from general relativity to those found using Newtonian gravity.
 % confusion about M, \bar{M}, resources:
 % https://physics.stackexchange.com/q/196280/299916
@@ -282,27 +286,31 @@ Moreover, it makes it meaningful to compare masses obtained from general relativ
 
 % TODO: an incompressible star is unphysical
 
-Although it may sound unphysical from the outset, we can make a somewhat realistic model of a star by assuming that the fluid is incompressible, meaning the energy density
+Although meaningful equations of state must generally come from quantum theory, statistical physics, thermodynamics and the likes, we can imagine a simple, special and semi-realistic one from our current gravitational mindset.
+Namely, suppose that the energy density
 \begin{equation}
-	\epsilon(r) = \epsilon_0
+	\epsilon(P) = \epsilon_0
+\label{eq:incompressible_star:eos}
 \end{equation}
-is constant inside the star.
-For example, the speed of sound \eqref{eq:relfluid:speed_of_sound} takes the completely unrealistic value $v = c \sqrt{\odv{P}/{\epsilon}} = c \sqrt{1/(\odv{\epsilon}/{P})} = c \sqrt{1/0} = \infty$.
-Anyway, integrating \cref{eq:einstein_to_tov:m_integral,eq:einstein_to_tov:schwarzschild_mass} yield
+is independent of pressure, and thus constant throughout an \emph{incompressible star}.
+For example, this means the speed of sound \eqref{eq:relfluid:speed_of_sound} takes the completely unrealistic value $v = c \sqrt{\odv{P}/{\epsilon}} = c \sqrt{1/(\odv{\epsilon}/{P})} = c \sqrt{1/0} = \infty$.
+Anyway, let us press on and see what we get.
+Integrating the masses \eqref{eq:einstein_to_tov:m_integral} and \eqref{eq:einstein_to_tov:schwarzschild_mass} yield
 \begin{equation}
 	m(r) c^2 = \frac{4}{3} \pi r^3 \epsilon_0 
 	\quad \text{and} \quad
 	M c^2 = \frac{4}{3} \pi R^3 \epsilon_0 
 	.
+\label{eq:incompressible_star:mass}
 \end{equation}
-Inserting the energy density $\epsilon(r)$ and mass $m(r)$ into \cref{eq:tov}, $P$ and $r$ separate to
-\begin{equation*}
+Inserting the energy density \eqref{eq:incompressible_star:eos} and mass \eqref{eq:incompressible_star:mass} into the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}, $P$ and $r$ separate to
+\begin{equation}
 	\int \frac{\dif P}{(\epsilon_0+P)(\epsilon_0+3P)} = - \int \frac{4 \pi G r \dif r}{3 c^4 - 8\pi G r^2 \epsilon_0} .
-\end{equation*}
+\end{equation}
 The left side can now be split by the partial fraction decomposition
-\begin{equation*}
+\begin{equation}
 	\frac{1}{(\epsilon_0+P)(\epsilon_0+3P)} = \frac{1}{2P} \left( \frac{1}{\epsilon_0+P} + \frac{1}{\epsilon_0+3P} \right) .
-\end{equation*}
+\end{equation}
 Applying integral \eqref{eq:integrals:logarithm_xnum} and \eqref{eq:integrals:logarithm_1num} and imposing the boundary condition $P(R) = 0$, we eventually find the pressure
 \begin{equation}
 	% p(r) in terms of M, R, 
@@ -318,18 +326,20 @@ In particular, the central pressure is
 	\label{eq:incompressible_star:central_pressure}
 \end{equation}
 It is interesting to note that the pressure is positive for $GM/Rc^2 < 4/9$, but explodes at $GM/Rc^2 = 4/9$ and becomes negative for $GM/Rc^2 > 4/9$.
-The pressure profile of stars approaching this limit is shown in \cref{fig:incompressible_star:plot2}.
-Physically, this means that any star compressed to this limit could only be supported by an unattainable infinite central pressure, so it would have no other choice than to collapse.
-This is an example of a more general result -- \textbf{Buchdal's theorem} states that all static spherical stars composed of perfect fluids must have
+The pressure profile for stars approaching this limit is shown in \cref{fig:incompressible_star:plot2}.
+Physically, this means that a star compressed to this limit could only be supported by an infinite central pressure.
+Nothing can provide such a pressure, so the star would have no other choice than to collapse.
+In fact, \textbf{Buchdal's theorem} states that for an \emph{arbitrary} energy density profile $\epsilon(r)$ that decreases outwards, \emph{any} static spherical star composed of a perfect fluid must satisfy
+\cite{ref:buchdal}
 \begin{equation}
-	M(R) < M_\text{max}(R) = \frac{4c^2}{9G} R
+	\frac{M}{R} < \frac{4c^2}{9G} .
 	\label{eq:incompressible_star:buchdal}
 \end{equation}
-for any energy density profile $\epsilon(r)$ that does not decrease outwards \cite{ref:buchdal}.
-The proof requires careful work, but we can still understand the result intuitively.
-If there is a maximum density that is supported by nature, then the most massive object we can make would necessarily have that density everywhere.
+We have already shown that the energy density must decrease away from the center for stable stars.
+His original proof requires careful work, but we can still understand the result intuitively.
+If there is a maximum density that is supported by nature, then the most massive object we can make should necessarily have that density everywhere.
 Thus, the bound we have found in our computation with constant energy density should be the most extreme bound.
-In \cref{fig:incompressible_star:plot1}, we compare the mass-radius relation to this maximum supported mass.
+In \cref{fig:incompressible_star:plot1}, we compare the mass-radius relation \eqref{eq:incompressible_star:mass} for incompressible stars to this maximum supported mass.
 
 % Ideal use of groupplot + subcaption:
 % * use title={\subcaption{...}} for subcaptions (https://tex.stackexchange.com/a/310403)
@@ -349,17 +359,17 @@ In \cref{fig:incompressible_star:plot1}, we compare the mass-radius relation to 
 		\begin{groupplot}[group style={group size=2 by 1, horizontal sep=0.1\textwidth}, width=0.49\textwidth]
 		\nextgroupplot[
 			title={\subcaption{\label{fig:incompressible_star:plot1}Mass-radius relation}},
-			xlabel=$R \, / \, R_0$, ylabel=$M(R) \, / \, M(R_0)$, xtick distance=1, 
+			xlabel=$R \, / \, R_0$, ylabel=$M \, / \, M_0$, xtick distance=1, 
 			legend pos=north west, legend cell align=left,
 		]
 		\pgfplotsinvokeforeach{0.006} {
 			\addplot+ [Greens-J, domain=0:5, solid] {M(x,#1) / M(1,#1)}; % node[pos=0.90, sloped, yshift=+6pt] {\scriptsize $\epsilon_0 = #1$};
 			\addplot+ [red, domain=0:5, dashed] {Mmax(x) / M(1,#1)}; % node[pos=0.2, pin=above:{$M_\text{max}(R)$}] {};
 		}
-		\legend{$M(R)$, $M_\text{max}(R)$};
+		\legend{{$M = 4 \pi R^3 \epsilon_0 / 3 c^2$}, {$M = 4 c^2 R / 9 G$}};
 		\nextgroupplot[
 			title={\subcaption{\label{fig:incompressible_star:plot2}Pressure profile}},
-			xlabel=$r\, /\, R_0$, ylabel=$P(r) \, / \, P(0)$, xtick distance=0.25,
+			xlabel=$r\, /\, R$, ylabel=$P(r) \, / \, P(0)$, xtick distance=0.25,
 			cycle list name = YlOrBr-5, cycle list shift = 2,
 		]
 		\pgfplotsinvokeforeach{0.9, 0.99, 0.999} {
@@ -368,8 +378,9 @@ In \cref{fig:incompressible_star:plot1}, we compare the mass-radius relation to 
 		\end{groupplot}
 	\end{tikzpicture}
 	\caption{
-		\subref{fig:incompressible_star:plot1} Mass-radius relation $M(R) = 4 \pi R^3 \epsilon_0 / 3 c^2$ for a star of constant energy density $\epsilon_0$ compared to the maximum supported mass $M_\text{max}(R) = 4 c^2 R / 9 G$.
-		\subref{fig:incompressible_star:plot2} Pressure profile $P(r)$ for stars of radius $R_0 = \sqrt{c^4 / G \epsilon_0}$ and masses $M$ approaching the limit $M_\text{max}(R_0)$.
+		\subref{fig:incompressible_star:plot1} Mass-radius relation $M = 4 \pi R^3 \epsilon_0 / 3 c^2$ for stars of constant energy density $\epsilon_0$ compared to the Buchdal bound $M < 4 c^2 R / 9 G = M_\text{max}$.
+		\subref{fig:incompressible_star:plot2} Pressure profile $P(r)$ for stars of radius $R = R_0$ and masses $M$ approaching the Buchdal bound.
+		The constants $R_0 = \sqrt{c^4 / G \epsilon_0}$ and $M_0 = 4 \pi R_0^3 \epsilon_0 / 3 c^2$ are two scales of mass and radius.
 	}
 \end{figure}
 
@@ -423,11 +434,11 @@ If the star is in hydrostatic equilibrium, this force must be exactly canceled b
 that arises from the pressure difference above and below the element.
 Setting $\dif \textbf{F}_1 + \dif \textbf{F}_2 = 0$ then gives the \textbf{Newtonian pressure gradient}
 \begin{equation}
-	\odv{P}{r} = -\frac{G m(r) \rho(r)}{r^2} .
+	\odv{P(r)}{r} = -\frac{G m(r) \rho(r)}{r^2} .
 	\label{eq:weak_field_limit:newtonian_pressure_gradient}
 \end{equation}
 
-For example, solving this differential equation for a star of constant mass density $\rho(r) = \rho_0$, like we solved the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov} in \cref{sec:incompressible_star}, we get the pressures
+For example, solving this differential equation for a star of constant mass density $\rho(r) = \rho_0$, like we solved the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov} for constant energy density $\epsilon(r) = \epsilon_0$ in \cref{sec:incompressible_star}, we get the pressures
 \begin{equation}
 	P(r) = \frac{\rho_0}{2} \frac{G M}{R} \left( 1 + \frac{r}{R} \right) \left( 1 - \frac{r}{R} \right)
 	\quad \text{and} \quad
@@ -435,7 +446,7 @@ For example, solving this differential equation for a star of constant mass dens
 	\label{eq:weak_field_limit:newtonian_pressure}
 \end{equation}
 In this case, the pressure is well-behaved for all $r$.
-This shows that Buchdal's theorem \eqref{eq:incompressible_star:buchdal} is a purely \emph{relativistic} result, and that no such limitation arises in Newtonian gravity!
+This shows that Buchdal's theorem \eqref{eq:incompressible_star:buchdal} is a purely \emph{relativistic} result.
 
 % TODO: makes us suspect that Newton is taylor expansion of TOV
 % TODO: check limit
@@ -445,24 +456,22 @@ Comparing the two, we see that the latter indeed reduces to the former \emph{if}
 Let us verify that this is the case.
 
 First, note that we already invoked the Newtonian limit in \cref{eq:weak_field_limit:small_gmr}, showing that the rightmost parenthesis in the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov} can be neglected.
-Second, condition \cref{eq:weak_field_limit:small_pressure} of the Newtonian limit ensures that we can neglect the pressure-energy density ratio
+Second, condition \eqref{eq:weak_field_limit:small_pressure} of the Newtonian limit ensures that we can neglect the pressure-energy density ratio
 \begin{equation}
 	\frac{P}{\epsilon} \ll 1
 	\label{eq:weak_field_limit:small1}
 \end{equation}
 in the leftmost parenthesis.
-Third, all physical stars should have non-increasing energy density $\epsilon(r)$ away from the center $r=0$.
-The Tolman-Oppenheimer-Volkoff equation manifestly states that $\odv{P}/{r} < 0$, and therefore so is $\odv{\epsilon}/{r} = (\odv{\epsilon}/{P}) (\odv{P}/{r})$ provided that $\odv{\epsilon}/{P} > 0$.
-Indeed, stars must have $\odv{\epsilon}/{P} > 0$ in order to exhibit a real-valued speed of sound, and we will see in \cref{sec:nstars:stability_necessary} that they would otherwise be unstable.
-We can then pull the minimum density $\epsilon(r)$ outside the integral \eqref{eq:einstein_to_tov:m_integral} to bound $m(r) c^2 \geq \frac{4}{3} \pi r^3 \epsilon(r)$.
-It follows from \cref{eq:weak_field_limit:small1} that
+Third, we have already argued that stable stars should have non-increasing energy density $\epsilon(r)$ away from the center $r=0$.
+We can then pull the minimum density $\epsilon(r)$ outside the integral \eqref{eq:einstein_to_tov:m_integral} to bound $m(r) c^2 \geq 4 \pi r^3 \epsilon(r) / 3$.
+From this and \cref{eq:weak_field_limit:small1}, it follows that
 \begin{equation}
 	\frac{4 \pi r^3 P(r)}{m(r) c^2} \leq \frac{4 \pi r^3 P(r)}{\frac{4}{3} \pi r^3 \epsilon(r)}
 	                                =    \frac{3 P(r)}{\epsilon(r)}
 						            \ll  1 .
 	\label{eq:weak_field_limit:small2}
 \end{equation}
-Thus, all three corrections in the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov} vanish, so we do indeed recover the Newtonian pressure gradient in the Newtonian limit!
+Thus, all three corrections in the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov} vanish, so we do indeed recover the Newtonian pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient} in the Newtonian limit!
 
 In fact, there is an alternative way to see it that requires much less work.
 After replacing the energy density $\epsilon$ with the mass density $\rho = \epsilon / c^2$, the Tolman-Oppenheimer-Volkoff equation takes the form
@@ -477,21 +486,21 @@ But sending $c \rightarrow \infty$ kills all corrections in the three parenthese
 \section{Summary}
 
 The most important result of this chapter is the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}.
-Together with the mass gradient \eqref{eq:einstein_to_tov:m_rho}, and an equation of state \eqref{eq:tov:eos}, it is best viewed as the system of three differential equations
+Together with the mass gradient \eqref{eq:einstein_to_tov:m_rho} and an assumed \emph{known} equation of state $\epsilon = \epsilon(P)$, they are best viewed as the system of two differential equations
 \begin{subequations}
 \label{eq:tov:tovsys}
 \begin{align}
-	\odv{P}{r} &= -\frac{G m \epsilon}{r^2 c^2} \left( 1 + \frac{P}{\epsilon} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \label{eq:tov:tovsys_pressure} \\
-	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon}{c^2} , \label{eq:tov:tovsys_mass} \\
+	\odv{P}{r} &= -\frac{G m \epsilon(P)}{r^2 c^2} \left( 1 + \frac{P}{\epsilon(P)} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \label{eq:tov:tovsys_pressure} \\
+	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon}{c^2} , \label{eq:tov:tovsys_mass}
 	%\odv{\alpha}{r} &= -\frac{1}{\epsilon+P} \odv{P}{r} , \label{eq:tov:tovsys_alpha} \\
-	\epsilon &= \epsilon(P) . \label{eq:tov:tovsys_eos}
+	%\epsilon &= \epsilon(P) . \label{eq:tov:tovsys_eos}
 \end{align}
 \end{subequations}
-The equation of state \eqref{eq:tov:tovsys_eos} allows one to eliminate all dependence on $\epsilon$ in favor of $P$ in the pressure and mass gradients \eqref{eq:tov:tovsys_pressure} and \eqref{eq:tov:tovsys_mass}.
-They then constitute a system of two differential equations for the two unknown functions $P(r)$ and $m(r)$ that is to be integrated from $m(0) = 0$ and some central pressure $P(0) = P_c$.
+%The equation of state \eqref{eq:tov:tovsys_eos} allows one to eliminate all dependence on $\epsilon$ in favor of $P$ in the pressure and mass gradients \eqref{eq:tov:tovsys_pressure} and \eqref{eq:tov:tovsys_mass}.
+for the two unknown functions $P(r)$ and $m(r)$, to be integrated from $m(0) = 0$ and some central pressure $P(0) = P_c$ or energy density $\epsilon(0) = \epsilon_c$.
 We defined the surface of the star as the radius $r=R$ with zero pressure $P(r) = 0$, and the corresponding mass $m(R) = M$ as the \emph{Newtonian} mass of the star.
-After solving the system, one can also calculate the metric function $\beta(r)$ from definition \eqref{eq:einstein_to_tov:def_m}, and $\alpha(r)$ by integrating \cref{eq:einstein_to_tov:dadr2} subject to matching the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric} at $r=R$.
-In \cref{sec:nstars:numtov}, we describe how to integrate the system numerically for an arbitrary equation of state.
+After solving the system, we can also calculate the full metric functions $\alpha(r)$ and $\beta(r)$ from definition \eqref{eq:einstein_to_tov:def_m} and by integrating \cref{eq:einstein_to_tov:dadr2} subject to matching the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric} at $r=R$.
+In \cref{sec:nstars:numtov}, we present a program that integrates the system numerically for an arbitrary equation of state.
 
-By solving this system for an incompressible star with constant energy density $\epsilon = \epsilon_0$, we derived the Buchdal limit $M < 4 c^2 R / 9 G = $.
+By solving this system for an incompressible star with constant energy density $\epsilon_0$, we derived the Buchdal limit $M < 4 c^2 R / 9 G$.
 Finally, we saw that the Tolman-Oppenheimer-Volkoff equation reduced to the Newtonian pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient} in the Newtonian limit.
