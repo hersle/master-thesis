@@ -26,7 +26,12 @@
 \usepackage{parskip} % new paragraph: new line, no indent
 %\usepackage[title]{appendix}
 \usepackage{xurl} % makes URLs break anywhere! (must be loaded before hyperref)
-\usepackage[hidelinks]{hyperref} % hide colored boxes around links
+\usepackage[]{hyperref} % hide colored boxes around links
+\hypersetup{
+	colorlinks=true,
+	allcolors=[rgb]{0.34,0.13,0.49}, % same purple as in cover
+	linktocpage=true
+}
 \usepackage[noabbrev]{cleveref}
 \usepackage{mdframed} % TODO: remove, only to draw frames for marking relevant sections to supervisor
 
