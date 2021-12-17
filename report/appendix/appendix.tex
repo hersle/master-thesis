@@ -1015,6 +1015,7 @@ It then takes the practical form
 The last expression is possible to calculate from the equation of state $\epsilon = \epsilon(P)$.
 
 \section{Speed of sound}
+\label{sec:relfluid:sound}
 
 We can derive a simple expression for the speed of sound in an ideal fluid.
 Suppose we are in Minkowski space, and consider a background ideal fluid in equilibrium with four-velocity $u^\mu = (u^0, \vec{0})$, density $n_0$, pressure $P_0$ and energy density $\epsilon_0$ that are all \emph{constant} in time and space.
@@ -1686,6 +1687,7 @@ We also write a few utility functions for data management.
 \codefile{python}{../code/utils.py}{utils.py}
 
 \section{Parameter sweeps for ideal neutron stars}
+\label{sec:num:nstars}
 
 Below, we use the general framework above to find the mass-radius relation for ideal neutron stars.
 We make a total of four sweeps for the mass-radius diagram \cref{fig:nstars:massradius}, using both the non-relativistic equation of state \cref{eq:nstars:nr_eos} and the general equation of state \cref{eq:nstars:gr_eos}, and solving both the relativistic Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov:tovsys} and the Newtonian limit with the pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient}.
