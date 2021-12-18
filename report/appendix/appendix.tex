@@ -11,7 +11,7 @@
 \newcommand\pdvx[2]{\pdv{x^{#1}}{x^{#2}}}
 
 In this section, we review the geometrical aspects of general relativity.
-We make no attempt to be mathematically rigorous, but rather focus on listing important quantities and equations and the intuitive connection between them.
+We make no attempt to be mathematically rigorous, but rather focus on listing important quantities and equations and the intuitive connections between them.
 For more details, we refer to the references listed above which this summary is based on.
 
 \subsection{Coordinates and tensors}
@@ -22,7 +22,7 @@ They are rather intertwined into \emph{spacetime} -- a $(3+1)$-dimensional const
 \begin{equation}
 	x^\mu = (x^0, x^1, x^2, x^3) .
 \end{equation}
-In flat Minkowski space, the coordinates could be taken as $x^\mu = (ct, x, y, z)$.
+In flat Minkowski space, the coordinates can be taken as $x^\mu = (ct, x, y, z)$.
 Mathematically, the geometry of spacetime is described by a \emph{Riemannian manifold} that generalizes flat Minkowski space to \emph{curved space}.
 At every point on such a manifold, spacetime locally resembles Minkowski space in the \emph{tangent space} located at that point, and all such tangent spaces vary in a smooth manner from point to point.
 For example, \cref{fig:tangent_space} pictures the tangent space at a point of the $2$-sphere manifold.
@@ -32,7 +32,8 @@ Familiar concepts like angles, lengths, area and volume apply locally in the tan
 \centering
 \includesvg[width=0.60\textwidth]{figures/tangent-space.svg}
 \caption{\label{fig:tangent_space}%
-	The tangent space at a point on the $2$-sphere manifold can be pictured as the tangent plane at that point. If a vector field is placed on the manifold, the vector would lie in this tangent space.
+	The tangent space at a point on the $2$-sphere manifold can be pictured as the tangent plane at that point.
+	If a vector field is placed on the manifold, then one vector would lie in such a tangent space at every point on the manifold.
 	\credit{``BenFrantzDale''}{https://commons.wikimedia.org/wiki/File:Image_Tangent-plane.svg}
 }
 \end{figure}
@@ -44,45 +45,60 @@ Familiar concepts like angles, lengths, area and volume apply locally in the tan
 We will place vector fields $V^\mu(x^\nu)$, and later tensor fields, that associate a vector $V^\mu$ to every point $x^\nu$ on a manifold.
 As explained in \cref{fig:tangent_space}, such a vector lies in the tangent vector space at every point on the manifold.
 To motivate the transformation properties of tensors on a manifold, we can use the fact that the set of directional derivatives constitute a vector space with basis vectors given by the partial derivatives. 
-Suppose $\phi(x)$ is a scalar function and $x(\tau)$ and $x(\lambda)$ are two paths on the manifold with directional derivatives given through the chain rule as
+Suppose $\phi(x)$ is a scalar function and $x(\tau)$ and $x(\lambda)$ are two paths on the manifold with directional derivatives given by the chain rule as
 \begin{equation}
-	\odv{\phi}{\tau} = \odv{x^\mu}{\tau} \partial_\mu \phi
+	\odv{\phi}{\tau} = \odv{x^\mu}{\tau} \pdv{\phi}{x^\mu}
+	                 = \odv{x^\mu}{\tau} \partial_\mu \phi
 	\qquad \text{and} \qquad
-	\odv{\phi}{\lambda} = \odv{x^\mu}{\lambda} \partial_\mu \phi .
+	\odv{\phi}{\lambda} = \odv{x^\mu}{\lambda} \pdv{\phi}{x^\mu}
+	                    = \odv{x^\mu}{\lambda} \partial_\mu \phi .
 \end{equation}
-Then the linear combination $\lincomboslash{}$ is also a perfectly good derivative operator, as it is both linear and satisfies the product rule
+Like $\odv{}/{\tau}$ and $\odv{}/{\lambda}$, the linear combination $\lincomboslash{}$ is a perfectly good derivative operator, as it is both linear and satisfies the product rule
 \begin{equation}
-	\lincombo{}(fg) = \ldots = \lincombo{f} g + \lincombo{g} f .
+	\lincombo{}(fg) = \lincombo{f} g + \lincombo{g} f .
 \end{equation}
 One can verify that the set of all differential operators, implicitly assumed to work on some scalar function, satisfy all criteria for being a vector space.
-Thus, like one can regard $\vec{V} = V^\mu \vec{e}_\mu$ as a vector with components $V^\mu$ and basis vectors $\vec{e}_\mu$, one can regard
+Thus, like one can regard $\vec{V} = V^\mu \vec{e}_\mu$ as a vector with components $V^\mu$ and basis vectors $\vec{e}_\mu$, one can regard
 \begin{equation}
 	\odv{}{\lambda} = \odv{x^{\mu}}{\lambda} \partial_{\mu} 
 \end{equation}
-as a vector with components $\odv{x^{\mu}}/{\lambda}$ and basis vectors $\partial_\mu$.
+as a vector with components $\odv{x^{\mu}}/{\lambda}$ and basis vectors $\partial_\mu = \pdv{}/{x^\mu}$.
 To see this clearly, make a coordinate transformation
 \begin{equation}
 	x \rightarrow x'(x)
 	\qquad \text{with inverse} \qquad
-	x' \rightarrow x(x')
-	\qquad \text{and Jacobians} \qquad
-	\pdv{x'^{\alpha}}{x^\gamma} \pdv{x^{\gamma}}{x'^{\beta}} = \delta^{\alpha}_{\beta} .
+	x' \rightarrow x(x') .
+	%\qquad \text{and Jacobians} \qquad
+	%\pdv{x'^{\alpha}}{x^\gamma} \pdv{x^{\gamma}}{x'^{\beta}} = \delta^{\alpha}_{\beta} .
 	\label{eq:gr_summary:coordinate_transformation}
+\end{equation}
+The product of the Jacobian matrices for a transformation and its inverse is the identity
+\begin{equation}
+	\pdv{x'^{\alpha}}{x^\gamma} \pdv{x^{\gamma}}{x'^{\beta}} = \delta^{\alpha}_{\beta} .
 \end{equation}
 Using the chain rule and the Jacobian property, the directional derivative transforms as
 \begin{equation}
 	\odv{}{\lambda} = \odv{x^{\mu'}}{\lambda} \partial_{\mu'} = \underbrace{\Bigg( \odv{x^{\alpha}}{\lambda} \pdvx{\mu'}{\alpha} \Bigg)}_\text{components} \underbrace{\Bigg( \pdvx{\beta}{\mu'} \partial_{\beta} \Bigg)}_\text{basis} = \odv{x^{\mu}}{\lambda} \partial_{\mu} .
+\label{eq:gr_summary:directional_derivative_transformation}
 \end{equation}
 We see that the transformation of the components and the basis vectors exactly cancel each other, so the directional derivative is unchanged -- consistent with it being a vector.
 
-Note that we adopted the convention $x^{\mu'} = x'^\mu$ of placing the prime on the \emph{index} rather than the underlying object, but defined to mean the same.
-The benefit is that an index transforms with the partial derivative that has the primed coordinate in the \emph{same position as the index}, so we can always deduce the right transformation by simply staring at the expression.
+Note that we almost always use the convention $x^{\mu'} = x'^\mu$ of placing the prime on the \emph{index} rather than the underlying object, but defined to mean the same.
+This makes it easy to see which indices are associated with transformed quantities.
+This is a matter of taste.
+For example, we find it easier to read, remember and reason about the index operations in the left version of the transformation
+\begin{equation}
+	x^{\mu'} = \pdv{x^{\mu'}}{x^\mu} x^\mu
+	\qquad \text{compared to} \qquad
+	x'^{\mu} = \pdv{x'^{\mu}}{x^\nu} x^\nu .
+\end{equation}
+%The benefit is that an index transforms with the partial derivative that has the primed coordinate in the \emph{same position as the index}, so we can always deduce the right transformation by simply staring at the expression.
 %If there is a prime on an index, it means that a coordinate transformation has been applied to that index.
 %The benefit of this is that an index transforms with the partial derivative that has the primed coordinate in the \emph{same position as the index} -- upper indices go with primed coordinates in the numerator, and lower indices with primes in the denominator.
 %In addition, we are free to ``reuse'' the same index twice -- once as a free index, and once for the contraction.
 %With this convention, we can always deduce the correct transformation laws from the index position, and we can place remaining indices so that they are contracted to yield an expression with the right number of free indices.
 
-We define an $n$-dimensional \textbf{covariant vector} as an $n$-tuple $V_\mu$ that transforms with the \emph{same} matrix $\pdv{x^{\mu}}/{x^{\mu'}}$ as the change of basis as
+We define an $n$-dimensional \textbf{covariant vector} as an $n$-tuple $V_\mu$ that transforms with the \emph{same} matrix $\pdv{x^{\mu}}/{x^{\mu'}}$ as the change of basis in transformation \eqref{eq:gr_summary:directional_derivative_transformation} as
 \begin{subequations}
 \begin{equation}
 	V_{\mu'} = \pdv{x^{\mu}}{x^{\mu'}} V_\mu .
@@ -156,21 +172,22 @@ The \textbf{metric tensor}
 \label{eq:def_metric}
 \end{equation}
 is defined as the inner products between basis vectors $\vec{e}_\mu$ that span the tangent spaces at each point $x$ on the manifold.
-It thus encodes the lengths vectors of the basis vectors and angles between them and is a fundamental object that describes the geometry of the manifold.
+It thus encodes lengths of the basis vectors and angles between them, and is therefore a fundamental object that describes the geometry of the manifold.
+For example, in Minkowski space with coordinates $x^\mu = (ct, x, y, z)$, the metric is $\eta\indices{^\mu^\nu} = \diag (+1, -1, -1, -1)$.
 
-We define the \textbf{inverse metric tensor} $g^{\mu \nu}$ as the inverse matrix satisfying
+In addition, we define the \textbf{inverse metric tensor} $g^{\mu \nu}$ as the inverse matrix satisfying
 \begin{equation}
 	g^{\mu \nu} g_{\nu \sigma} = \delta^\mu_\sigma .
 \end{equation}
 Using the metric and its inverse, we can \textbf{raise and lower indices} on tensors.
 For example, the object $g_{\mu \nu} V^\nu$, according to definition \eqref{eq:tensor_transformation}, transforms as a covariant vector
 \begin{equation}
-	g_{\mu' \nu'} V^{\nu'} = \left( \pdvx{\alpha}{\mu'} \pdvx{\beta}{\nu'} g_{\alpha \beta} \right) \left( \pdvx{\nu'}{\nu} V^{\nu} \right) = \pdvx{\alpha}{\mu'} g_{\alpha \nu} V^\nu ,
+	g_{\mu' \nu'} V^{\nu'} = \bigg( \pdvx{\alpha}{\mu'} \pdvx{\beta}{\nu'} g_{\alpha \beta} \bigg) \bigg( \pdvx{\nu'}{\nu} V^{\nu} \bigg) = \pdvx{\alpha}{\mu'} \bigg( g_{\alpha \nu} V^\nu \bigg) ,
 \end{equation}
 so it is meaningful to label it as a covariant vector with a lower index $V_\mu = g_{\mu \nu} V^\nu$.
-Similarly, we can use the inverse metric $g^{\mu \nu}$ to raise indices.
-As this argument only relied on the defining transformation law \eqref{eq:tensor_transformation}, it is clear that any tensor of rank $(2,0)$ or $(0,2)$ would suffice to raise or lower indices.
-But the metric is the most natural choice, as it is inherent to the manifold and always available to us.
+Similarly, we can use the inverse metric $g^{\mu \nu}$ to raise indices.
+%As this argument only relied on the defining transformation law \eqref{eq:tensor_transformation}, it is clear that any tensor of rank $(2,0)$ or $(0,2)$ would suffice to raise or lower indices.
+%But the metric is the most natural choice, as it is inherent to the manifold and always available to us.
 
 \subsection{Line element and volume}
 
@@ -196,14 +213,14 @@ The factor $\sqrt{-\det{\gamma}}$ arises to make the volume element $\dif^n x \s
 
 \subsection{Covariant derivatives and connection coefficients}
 
-Knowing how vectors and general tensors transform, let us generalize the notion of a derivative to curved space.
-By the transformation rules we have found so far, the normal partial derivative of a vector transforms as
+Knowing how vectors and general tensors transform, let us generalize the concept of derivatives to curved space.
+By the transformation rules we have found so far and the product rule, the normal partial derivative of a vector transforms like
 \begin{equation}
 	\partial_{\mu'} V^{\nu'} = \bigg( \pdvx{\mu}{\mu'} \partial_\mu \bigg) \bigg( \pdvx{\nu'}{\nu} V^\nu \bigg)
 	                         = \pdvx{\mu}{\mu'} \pdvx{\nu'}{\nu} \partial_\mu V^\nu + \pdvx{\mu}{\mu'} \pdv{x^{\nu'}}{x^\mu, x^\nu} V^\nu .
 \end{equation}
-The first term respects the tensor transformation law \eqref{eq:tensor_transformation}, but the second does not, so $\partial_\mu V^\nu$ is \emph{not} a tensor.
-We define a tensorial derivative $\nabla_\mu$ that by demanding that it transforms as
+The first term respects the tensor transformation law \eqref{eq:tensor_transformation}, but the second does not, so $\partial_\mu V^\nu$ is \emph{not a tensor}.
+We define a tensorial derivative $\nabla_\mu$ that by \emph{demanding} that it adheres to the tensorial transformation
 \begin{equation}
 	\nabla_{\mu'} V^{\nu'} = \pdvx{\mu}{\mu'} \pdvx{\nu'}{\nu} \nabla_\mu V^\nu .
 \label{eq:gr_summary:covariant_derivative_demand}
@@ -214,13 +231,13 @@ It turns out that our requirements can be met if we define the \textbf{covariant
 	%\qquad \text{or} \qquad
 	%\nabla_\mu V_\nu = \partial_\mu V_\nu - \Gamma_{\nu \mu}^\sigma V_\sigma ,
 \end{equation}
-It is possible to show that it obeys the tensorial transformation \eqref{eq:gr_summary:covariant_derivative_demand} if the so-called \textbf{connection coefficients} $\Gamma_{\sigma _\mu}^\nu$ transform according to \cite[equation 3.6-3.10]{ref:carroll} 
+\cite[equation 3.6-3.10]{ref:carroll} shows that it obeys the tensorial transformation \eqref{eq:gr_summary:covariant_derivative_demand} if the so-called \textbf{connection coefficients} $\Gamma_{\sigma _\mu}^\nu$ transform according to
 \begin{equation}
 	\Gamma^{\nu'}_{\mu' \lambda'} = \pdvx{\mu}{\mu'} \pdvx{\lambda}{\lambda'} \pdvx{\nu'}{\nu}  \Gamma^{\nu}_{\mu \lambda} + \pdvx{\mu}{\mu'} \pdvx{\lambda}{\lambda'} \pdv{x^{\nu'}}{x^\mu, x^\lambda} .
 	\label{eq:connection_transformation}
 \end{equation}
-It is possible to generalize the covariant derivative to an arbitrary tensor $T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s}$ of rank $(r,s)$ (where we suppress the order of the indices) by adding more terms with connection coefficients.
-The general \textbf{covariant derivative} that respects the tensorial transformation law \eqref{eq:tensor_transformation} turns out to be \cite[equation 3.11-3.16]{ref:carroll}
+It is possible to generalize the covariant derivative to an arbitrary tensor $T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s}$ of rank $(r,s)$ by adding more terms with connection coefficients.
+\cite[equation 3.11-3.16]{ref:carroll} shows that the general \textbf{covariant derivative} that respects the tensorial transformation law \eqref{eq:tensor_transformation} is
 \begin{equation}
 \begin{split}
 	\nabla_\mu T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} &= \partial_\mu T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_s} \\
@@ -230,12 +247,13 @@ The general \textbf{covariant derivative} that respects the tensorial transforma
 \end{split}
 \end{equation}
 That is, for each upper index $\alpha_i$, add $+\Gamma^{\alpha_i}_{\sigma \mu} T^{\alpha_1 \ldots \alpha_{i-1} \sigma \alpha_{i+1} \ldots \alpha_r}_{\beta_1 \ldots \beta_s}$,
-and for each lower index $\beta_i$, add $-\Gamma^{\sigma}_{\beta_i \mu} T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_{i-1} \sigma \beta_{i+1} \ldots \beta_s}$,
+and for each lower index $\beta_i$, subtract $\Gamma^{\sigma}_{\beta_i \mu} T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_{i-1} \sigma \beta_{i+1} \ldots \beta_s}$.
 
 Note that the connection coefficients \eqref{eq:connection_transformation} \emph{do not} transform like tensors -- the whole point is to stash the non-tensorial behavior into the connection coefficients so that the \emph{covariant derivative} transforms as a tensor.
 However, since $\nabla_\mu V^\nu$ and $\hat{\nabla}_\mu V^\nu$ for two different connection coefficients $\Gamma^\alpha_{\beta \mu}$ and $\hat{\Gamma}^\alpha_{\beta \mu}$ by definition are tensors, the \emph{difference}
 \begin{equation}
 	S\indices{^\alpha_\beta_\gamma} = \Gamma^\alpha_{\beta \gamma} - \hat{\Gamma}^\alpha_{\beta \gamma}
+\label{eq:gr_summary:christoffel_difference}
 \end{equation}
 between two connection coefficients \emph{does} transform like a tensor.
 
@@ -251,16 +269,17 @@ Equivalently, the connection coefficients $ \Gamma^\alpha_{\beta\gamma} = \Gamma
 Second, we require \textbf{metric compatibility}
 \begin{equation}
 	\nabla_\rho g_{\mu \nu} = 0 ,
+\label{eq:gr_summary:metric_compatibility}
 \end{equation}
 expressing that the metric is covariantly constant.
-One can show that this guarantees that lengths of vectors and angles between them are preserved under parallel transport, which we will study in the next section, making this a reasonable demand \cite[equation 2.10]{ref:hehl}.
+One can show that this guarantees that lengths of vectors and angles between them are preserved under parallel transport, which we will study in the next section, making this a reasonable demand. \cite[equation 2.10]{ref:hehl}
 The covariantly constant nature of the metric implies that we can view spacetime as a continuum of flat Minkowski spacetimes, sewn together by the connection $\Gamma^\alpha_{\beta \gamma}$.
 Metric compatibility implies that
 \begin{equation}
 	g_{\mu \lambda} \nabla_\rho V^\lambda = \nabla_\rho (g_{\mu \lambda} V^\lambda) = \nabla_\rho V_\mu ,
 \end{equation}
 so we can raise and lower indices inside covariant derivatives, even if the metric is outside.
-Using both of these assumptions, we can write out three metric compatibility requirements
+Using both of these assumptions, we can write out the metric compatibility requirement \eqref{eq:gr_summary:metric_compatibility} for three permutations of the indices:
 \newcommand\metriccompatibilityequation[3]{\nabla_{#1} g_{{#2}{#3}} &= \partial_{#1} g_{{#2}{#3}} - \Gamma^\lambda_{{#1}{#2}} g_{\lambda {#3}} - \Gamma^\lambda_{{#1}{#3}} g_{{#2} \lambda} = 0}
 \begin{subequations}
 \begin{align}
@@ -283,7 +302,7 @@ With this choice, the metric single-handedly determines the geometry of spacetim
 In fact, the requirements of zero torsion and metric compatibility that led to this metric can be viewed as defining features of general relativity.
 By relaxing either of these requirements, one can come up with various generalizations of general relativity.
 For example, by allowing for nonzero torsion \eqref{eq:torsion_tensor}, one obtains the \emph{Einstein-Cartan theory} of gravitation.
-One can show that the inclusion of torsion is equivalent to accounting for the \emph{spin} of the microscopic particles that make up the macroscopic matter \cite{ref:hehl}.
+According to \cite{ref:hehl}, the inclusion of torsion is equivalent to accounting for the \emph{spin} of the microscopic particles that make up the macroscopic matter.
 However, general relativity is concerned with describing \emph{macroscopic} objects, which justifies our demand of zero torsion.
 
 \iffalse
@@ -307,9 +326,9 @@ However, general relativity is concerned with describing \emph{macroscopic} obje
 }
 \end{figure}
 
-Now that we know how to take proper derivatives of vector fields and general tensor fields on manifolds, we can discuss how to parallel transport vectors on the manifold.
-In flat space, we can move a vector around and keep its Cartesian components constant to parallel transport it.
-But on a curved $2$-sphere, a vector that is parallel transported will end up being different depending on the route taken, as illustrated in \cref{fig:parallel_transport}.
+Now that we know how to take proper derivatives of vector fields and general tensor fields on manifolds, we can discuss how to \emph{parallel transport} vectors on the manifold.
+In flat space, we can move a vector around, and it will keep pointing in the same direction.
+But on a curved $2$-sphere, a vector that is parallel transported will end up different depending on the route taken, as illustrated in \cref{fig:parallel_transport}.
 Generalizing the directional derivative $\odv{}/{\tau} = (\odv{x^\mu}/{\tau}) \partial_\mu$ from calculus, we define the \textbf{directional covariant derivative} along a path $x(\tau)$ as
 \begin{equation}
 	\frac{D}{\mathrm{d} \tau} = \odv{x^\mu}{\tau} \nabla_\mu,
@@ -329,7 +348,7 @@ The solution of this first-order differential equation is the continuation $V^\m
 In Euclidean space, a straight line is the shortest path between two points.
 In curved space, we call the shortest path between two points on a manifold a \textbf{geodesic}.
 An equivalent definition of both a straight line and a geodesic is that it is the path $x(\tau)$ that parallel transports its own tangent vector $\odv{x^\mu}/{\tau}$.
-Inserted into the equation of parallel transport \eqref{eq:parallel_transport}, we find the \textbf{geodesic equation}
+Inserting this vector into the equation of parallel transport \eqref{eq:parallel_transport}, we find the \textbf{geodesic equation}
 \begin{equation}
 	\odv[2]{x^\mu}{\tau} + \Gamma^\mu_{\rho \sigma} \odv{x^\rho}{\tau} \odv{x^\sigma}{\tau} = 0 .
 	\label{eq:geodesic}
@@ -349,11 +368,12 @@ Instead, gravity presents itself in the geometry of spacetime, as the presence o
 
 So far we have used the term ``curvature'' quite informally -- let us now formalize this.
 We already saw that parallel transporting a vector along different paths on a curved manifold like the $2$-sphere yield different results.
-We have also seen that the covariant derivative measures the rate of change of a vector along some direction compared to what it would've been if it was parallel transported.
-Thus, the commutator $[ \nabla_\mu, \nabla_\nu ] V^\rho = \nabla_\mu V^\rho - \nabla_\nu V^\rho$ measures the difference of parallel transporting a vector along the two different directions.
-Using \cref{eq:def_cov_deriv}, it turns out we can write this as
+We have also seen that the covariant derivative measures the rate of change of a vector along some direction compared to what it would have been if it was parallel transported.
+Thus, the commutator $[ \nabla_\mu, \nabla_\nu ] V^\rho = \nabla_\mu \nabla_\nu V^\rho - \nabla_\nu \nabla_\mu V^\rho$ measures the difference of parallel transporting a vector along two different directions.
+Explicitly inserting the covariant derivative \eqref{eq:def_cov_deriv}, this commutator can be written
 \begin{equation}
 	[ \nabla_\mu, \nabla_\nu ] V^\rho = R\indices{^\rho_{\sigma \mu \nu}} V^\sigma - T\indices{^\lambda_{\mu \nu}} \nabla_\lambda V^\rho ,
+\label{eq:gr_summary:derivative_commutator}
 \end{equation}
 where $T\indices{^\lambda_{\mu \nu}}$ is the torsion tensor \eqref{eq:torsion_tensor} that we assume to vanish and we define the \textbf{Riemann curvature tensor}
 \begin{equation}
@@ -364,7 +384,7 @@ where $T\indices{^\lambda_{\mu \nu}}$ is the torsion tensor \eqref{eq:torsion_te
 	\Gamma^\rho_{\nu \lambda} \Gamma^{\lambda}_{\mu \sigma} .
 	\label{eq:def_riemann_tensor}
 \end{equation}
-We expect that if space is flat, then a parallel transported vector should not depend on the path, so the commutator and thus the Riemann tensor should vanish.
+We expect that if space is flat, then a parallel transported vector should not depend on the path taken, so the commutator \eqref{eq:gr_summary:derivative_commutator} and thus the Riemann tensor \eqref{eq:def_riemann_tensor} should vanish.
 If there exists \emph{any} choice of coordinates in which the curvature tensor vanishes, then it vanishes in \emph{all} coordinates by its tensorial nature, and this is our ultimate definition of \textbf{flat space}.
 In fact, it turns out that at any point $x_0$ we can find \textbf{normal coordinates} $x^\mu$ in which the metric locally resembles Minkowski space with $g_{\mu \nu} = \eta_{\mu \nu}$ and $\partial_\sigma g_{\mu \nu} = 0$ to first order in the displacement.
 To second order in the displacement, \cite{ref:metric_taylor_expansion} shows that the metric can be written
@@ -380,18 +400,19 @@ Moreover, \textbf{Einstein's equivalence principle} and the related \textbf{prin
 % and great motivation at https://physics.stackexchange.com/a/219682
 
 From the curvature tensor, we can form tensors of lower rank by contracting some of its indices.
-We know that the energy-momentum tensor $T^{\mu \nu}$ that enter the Einstein field equations \eqref{eq:einstein} are of second rank, so if it is to determine the curvature of spacetime by a tensor equation, then the curvature tensor must be contracted to form a tensor of equal rank.
-With the Christoffel connection \cref{eq:def_christoffel}, it turns out that the only independent contraction we can make is the \textbf{Ricci tensor}
+%We know that the energy-momentum tensor $T^{\mu \nu}$ that enter the Einstein field equations \eqref{eq:einstein} are of second rank, so if it is to determine the curvature of spacetime by a tensor equation, then the curvature tensor must be contracted to form a tensor of equal rank.
+With the Christoffel connection \cref{eq:def_christoffel}, it the only independent contraction we can make is the \textbf{Ricci tensor}
 \begin{equation}
 	R\indices{_\mu_\nu} = R\indices{^\lambda_\mu_\lambda_\nu} .
 	\label{eq:def_ricci_tensor}
 \end{equation}
 The two other possible contractions either vanish or are related to the Ricci tensor.
-Thus, the simplest scalar quantity we can form that represents curvature is the \textbf{Ricci scalar}
+Thus, the simplest scalar quantity we can form that says something about curvature is the \textbf{Ricci scalar}
 \begin{equation}
 	R = R\indices{^\mu_\mu} .
 	\label{eq:def_ricci_scalar}
 \end{equation}
+In the next section, we will use the Ricci scalar to derive the Einstein field equations.
 
 
 
@@ -405,12 +426,12 @@ Following \cite[section 4.3]{ref:carroll}, we will derive the Einstein field equ
 from the principle of least action.
 We will \emph{postulate} the action
 \begin{equation}
-	S[g_{\mu \nu}, \nabla_\sigma g_{\mu \nu}] = \int \dif^n x \lagr(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu})
-	                                          = \int \dif^n x \sqrt{-\det{g}} \hat{\lagr}(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu})
+	S[g_{\mu \nu}, \nabla_\sigma g_{\mu \nu}] = \int \dif^n x \, \lagr(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu})
+	                                          = \int \dif^n x \, \sqrt{-\det{g}} \hat{\lagr}(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu})
 \end{equation}
 that, when varied with respect to the metric $g_{\mu \nu}$ and subject to the principle of least action $\variation{S} = 0$, yields the Einstein field equations.
 Here $\lagr$ and $\hat{\lagr}$ are Lagrangian densities with and without the metric determinant $\det{g} < 0$.
-As the strategy simply involves \emph{guessing} the correct action that produces the desired equations, this derivation is not based on any physical first principles, so its consequences would ultimately have to be experimentally verified.
+As the strategy simply involves \emph{guessing} the correct action that produces the desired equations, this derivation is not based on any physical first principles, so its consequences would ultimately have to be experimentally verified.
 Nevertheless, \cite[page 160-161]{ref:carroll} explains how one can at the very least narrow down the choice of action based on scalar quantities that are relevant for describing curved space.
 
 We postulate the \textbf{Hilbert action}
@@ -421,14 +442,15 @@ We postulate the \textbf{Hilbert action}
 	S_H = \frac{c^3}{16 \pi G} \int \dif^n x \sqrt{-\det{g}} \, R .
 	\label{eq:einstein_derivation:hilbert_action}
 \end{equation}
-As the Lagrangian is a scalar quantity and we showed that the simplest scalar quantity we could create is the Ricci scalar \eqref{eq:def_ricci_scalar}, it is not an unreasonable guess.
-The prefactor has been conveniently chosen to yield correct result \eqref{eq:einstein_derivation:einstein_matter} in the end, which we saw in \cref{sec:einstein_to_poisson} led to Newtonian gravity in the Newtonian limit.
-From an ignorant point of view, we could instead regard it as an arbitrary constant at this point, and eventually replace it with the right combination of constants that reproduce Newtonian gravity in the Newtonian limit.
-We could get the corresponding equations of motion by plugging the Lagrangian density $\hat{\lagr} = R c^3 / 16 \pi G$ into the Euler-Lagrange equations
+As the Lagrangian is a scalar quantity and we showed that the simplest scalar quantity we could create that somehow describes curvature is the Ricci scalar \eqref{eq:def_ricci_scalar}, it is not an unreasonable guess.
+The prefactor has been conveniently chosen to yield correct result \eqref{eq:einstein_derivation:einstein_matter} in the end, which we will see in \cref{sec:einstein_to_poisson} leads to Newtonian gravity in the Newtonian limit.
+From an ignorant point of view, we could instead regard the prefactor as an arbitrary constant at this point, and eventually replace it with whichever combination of constants that reproduces Newtonian gravity in the Newtonian limit.
+
+We \emph{could} get the corresponding equations of motion by plugging the Lagrangian density $\hat{\lagr} = R c^3 / 16 \pi G$ into the Euler-Lagrange equations
 \begin{equation}
 	\pdv{\hat{\lagr}}{\phi} - \nabla_\mu \left( \pdv{\hat{\lagr}}{{\left(\nabla_\mu \phi\right)}} \right) = 0 .
 \end{equation}
-In fact Hilbert himself did this \cite{ref:hilbert_from_lagrange}, but doing so requires a great deal of effort.
+In fact Hilbert himself did this, \cite{ref:hilbert_from_lagrange} but doing so requires a great deal of effort.
 Instead, we will vary the action with respect to the metric and express the variation in the form 
 \begin{equation}
 	\variation{S_H} = \int \dif^n x \sqrt{-\det{g}} F(g_{\mu \nu}, \nabla_\sigma g_{\mu \nu}) \, \variation{g^{\mu \nu}} = 0 .
@@ -447,11 +469,11 @@ We vary with respect to the inverse metric, as it makes the derivation flow more
 
 Using $R = R\indices{^\mu_\mu} = g^{\mu \nu} R_{\mu \nu}$ and varying the action \eqref{eq:einstein_derivation:hilbert_action} with the product rule, we obtain
 \begin{equation}
-	\variation{S_H} = \frac{c^3}{16 \pi G} \left(
+	\variation{S_H} = \frac{c^3}{16 \pi G} \bigg[
 	                  \underbrace{\int \dif^n x \sqrt{-\det{g}} \, g^{\mu \nu} \variation{R_{\mu \nu}}}_{\textstyle \variation{S}_1}
 	                + \underbrace{\int \dif^n x \sqrt{-\det{g}} \, R_{\mu \nu} \variation{g^{\mu \nu}}}_{\textstyle \variation{S}_2}
 	                + \underbrace{\int \dif^n x \, R \, \variation{\sqrt{-\det{g}}}                      }_{\textstyle \variation{S}_3}
-					\right) .
+					\bigg] .
 %\begin{split}
 %	                                                                                               \variation{S}_1 &= \int \dif^n x \sqrt{-\det{g}} g^{\mu \nu} \variation{R_{\mu \nu}} \\
 %	\variation{S} = \variation{S}_1 + \variation{S}_2 + \variation{S}_3 , \quad \text{where} \quad \variation{S}_2 &= \int \dif^n x \sqrt{-\det{g}} R_{\mu \nu} \variation{g^{\mu \nu}} \\
@@ -482,7 +504,7 @@ Varying it, we get
 	\label{eq:einstein_derivation:var_riemann}
 \end{equation}
 Now reexpress the variations of the Christoffel symbols.
-Instead of hammering straight through their definition \eqref{eq:def_christoffel}, we observe that while single Christoffel symbols do not transform as a tensor, their \emph{variation} is the difference between two Christoffel symbols and \emph{do} \cite[page 96,98]{ref:carroll}.
+Instead of hammering straight through their definition \eqref{eq:def_christoffel}, we observe that while single Christoffel symbols do not transform as a tensor, their \emph{variation} is the difference between two Christoffel symbols and \emph{do}, as in \cref{eq:gr_summary:christoffel_difference}.
 It is therefore meaningful to use \cref{eq:def_cov_deriv} to take its covariant derivative
 \begin{equation}
 	\nabla_\lambda \variation{\Gamma^\rho_{\nu \mu}} = \partial_\lambda \variation{\Gamma^\rho_{\nu \mu}} 
@@ -516,18 +538,20 @@ But the variational method that we have used here asserts that there is no varia
 	\variation{S}_1 = 0 .
 \end{equation}
 
-Let us now express $\variation{S}_3$ in terms of $\variation{g^{\mu \nu}}$.
+Let us now express $\variation{S}_3$ in terms of $\variation{g^{\mu \nu}}$.
 We will need the matrix identity
 \begin{equation}
-	\log \, \det{M} = \trace \log M  .
+	\log \, \det{M} = \trace \log M
+	\qquad \big( \text{where $\det{M} = \tdet{M}$} \big) .
 	\label{eq:matrix_log_det_trace}
 \end{equation}
 This is trivial for diagonal matrices $M$.
 By using the property $\det{AB} = \det{A} \det{B}$, we can easily extend it to diagonalizable matrices $M = P D P^{-1}$.
-Varying both sides of \cref{eq:matrix_log_det_trace}, we obtain \cite{ref:matrix_ln_det_tr_exercise}
+Varying both sides of \cref{eq:matrix_log_det_trace}, we obtain
 \begin{equation}
-	\frac{\variation{\det{M}}}{\det{M}} = \trace(M^{-1} \variation{M}) .
+	\frac{\variation{\det{M}}}{\det{M}} = \trace \left( M^{-1} \variation{M} \right) .
 \end{equation}
+For details on variations of matrix functions, we recommend working through \cite{ref:matrix_ln_det_tr_exercise}.
 Taking $M$ to be the metric $g_{\mu \nu}$ and $M^{-1}$ its inverse $g^{\mu \nu}$, we find
 \begin{equation}
 	\variation{\det{g}} = \det{g} g^{\mu \nu} \variation{g_{\mu \nu}} = -\det{g} g_{\mu \nu} \variation{g^{\mu \nu}} ,
@@ -535,20 +559,20 @@ Taking $M$ to be the metric $g_{\mu \nu}$ and $M^{-1}$ its inverse $g^{\mu \nu}$
 where we used \cref{eq:einstein_derivation:var_g_ginv} to convert $\variation{g_{\mu \nu}}$ to $\variation{g^{\mu \nu}}$.
 Now the chain rule gives
 \begin{equation}
-	\variation{\sqrt{-\det{g}}} = -\frac{1}{2} \frac{\variation{\det{g}}}{\sqrt{-\det{g}}} = -\frac{1}{2} \sqrt{-\det{g}} g_{\mu \nu} \variation{g^{\mu \nu}},
+	\variation{\sqrt{-\det{g}}} = -\frac{1}{2} \frac{\variation{\det{g}}}{\sqrt{-\det{g}}} = -\frac{1}{2} \sqrt{-\det{g}} g_{\mu \nu} \variation{g^{\mu \nu}},
 \end{equation}
 so the third contribution to the variation of the action \eqref{eq:einstein_derivation:ds_split} is
 \begin{equation}
-	\variation{S}_3 = \int \dif^n x \sqrt{-\det{g}} \left( \frac{-1}{2} R g_{\mu \nu} \right) \variation{g^{\mu \nu}} .
+	\variation{S}_3 = \int \dif^n x \sqrt{-\det{g}} \left( -\frac{1}{2} R g_{\mu \nu} \right) \variation{g^{\mu \nu}} .
 \end{equation}
 
 At last, we have brought the variation of the action to the form \eqref{eq:einstein_derivation:action_form} with
 \begin{equation}
-	\variation{S_H} = \frac{c^3}{16 \pi G} \int \dif^n x \sqrt{-\det{g}} \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) \variation{g^{\mu \nu}} = 0 .
+	\variation{S_H} = \frac{c^3}{16 \pi G} \int \dif^n x \sqrt{-\det{g}} \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) \variation{g^{\mu \nu}} = 0 .
 \end{equation}
 The variation of the integral can only vanish if the integrand vanishes, so we have found the \textbf{Einstein field equations in vacuum},
 \begin{equation}
-	 \frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \fdv{S_H}{g^{\mu \nu}} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 0 .
+	 \frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \fdv{S_H}{g^{\mu \nu}} = R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} = 0 .
 	\label{eq:einstein_derivation:einstein_vacuum}
 \end{equation}
 To unveil the Einstein field equations in the presence of matter, we add a contribution $S_M = \int \dif^n x \sqrt{-\det{g}} \, \lagr_M$ that represents matter to a new total action
@@ -557,7 +581,7 @@ To unveil the Einstein field equations in the presence of matter, we add a contr
 \end{equation}
 Repeating the same procedure as above yields the equations of motion
 \begin{equation}
-	\frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \fdv{S}{g^{\mu \nu}} = \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) + \frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \frac{\variation{S_M}}{\variation{g^{\mu \nu}}} = 0 .
+	\frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \fdv{S}{g^{\mu \nu}} = \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) + \frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \frac{\variation{S_M}}{\variation{g^{\mu \nu}}} = 0 .
 \end{equation}
 If we now \emph{define} the energy-momentum tensor
 \begin{equation}
@@ -575,7 +599,7 @@ we uncover the \textbf{Einstein field equations in the presence of matter},
 %TODO: move everything about interpretation of mass, energy density integral etc. to one section which has one thing in common: we look at the weak-field limit
 %TODO: do weak-field limit of TOV equation, too
 
-In Newtonian gravity, the presence of mass $\rho(\vec{x})$ produces a gravitational field $-\nabla V(\vec{x})$ through the Poisson equation
+In Newtonian gravity, the presence of mass density $\rho(\vec{x})$ produces a gravitational field $-\nabla V(\vec{x})$ through the Poisson equation
 \begin{equation}
 	\nabla^2 V(\vec{x}) = 4 \pi G \rho(\vec{x}) .
 	\label{eq:interpretation_m:poisson}
@@ -604,7 +628,8 @@ Consequently, particles could reach velocities that violate criterion \eqref{eq:
 \end{equation}
 Motion is also generated by internal stresses in the system.
 For example, in \cref{chap:relfluid} we study perfect fluids with energy-momentum \eqref{eq:relfluid:energy_momentum}.
-We show that sound waves propagate with the velocity $v = c \, \sqrt{\odv{P}/{\epsilon}}$ on top of a fluid in equilibrium with $T\indices{_\mu^\nu} = \diag \left( \epsilon, -P, -P, -P \right)$, so it can also be expressed as $v = c \, \sqrt{-\smash[b]{\odv{T\indices{_i^i}}/{T\indices{_0^0}}}}$ (no sum over $i$).
+We show that sound waves propagate with the velocity $v = c \, \sqrt{\odv{P}/{\epsilon}}$ on top of a fluid in equilibrium with $T\indices{_\mu^\nu} = \diag \left( \epsilon, -P, -P, -P \right)$.
+It can therefore also be expressed as $v = c \, \sqrt{-\smash[b]{\odv{T\indices{_i^i}}/{T\indices{_0^0}}}}$, where $T\indices{_i^i}$ is \emph{one} diagonal element and there is no sum over $i$.
 More generally, we therefore assume slow movement corresponds to $\odv{T_{ij}}/{T_{00}} \ll 1$ or, by integration,
 \begin{equation}
 	\frac{T_{ij}}{T_{00}} \ll 1 .
@@ -613,7 +638,7 @@ More generally, we therefore assume slow movement corresponds to $\odv{T_{ij}}/{
 \end{subequations}
 In other words, we can neglect pressure $P$ in favor of energy density $\epsilon$ in the Newtonian limit.
 This result can be understood physically -- pressure is a result of randomized motion and decreases with the velocities of the motion, while energy is equivalent to mass and its presence is unaffected by the velocity of the mass.
-In summary, slow motion is achieved only if \cref{eq:weak_field_limit:small_velocity,eq:weak_field_limit:small_potential,eq:weak_field_limit:small_pressure} are all satisfied.
+In summary, slow motion is achieved only if equations \eqref{eq:weak_field_limit:small_velocity}, \eqref{eq:weak_field_limit:small_potential} and \eqref{eq:weak_field_limit:small_pressure} are all satisfied.
 
 The second assumption of a \emph{static} gravitational field means that all time derivatives of the metric vanish like
 \begin{equation}
@@ -634,7 +659,7 @@ The inverse metric $g\indices{^\mu^\nu}$ should satisfy $g\indices{^\mu^\nu} g\i
 	g\indices{^\mu^\nu} = \eta\indices{^\mu^\nu} - h\indices{^\mu^\nu} ,
 	\label{eq:weak_field_limit:weak_field_metric_inverse}
 \end{equation}
-where $h\indices{^\mu^\nu} = \eta\indices{^\mu^\rho} \eta\indices{^\nu^\sigma} h\indices{_\rho_\sigma}$ is raised with the \emph{Minkowski} metric.
+where we raise indices of the perturbation $h\indices{^\mu^\nu} = \eta\indices{^\mu^\rho} \eta\indices{^\nu^\sigma} h\indices{_\rho_\sigma}$ with the \emph{Minkowski} metric $\eta^{\mu\nu}$.
 
 \subsection{The response of matter to the field}
 
@@ -645,20 +670,20 @@ In general relativity, matter responds to the gravitational field by moving alon
 \end{equation}
 Let us now show that we recover Newton's second law \eqref{eq:interpretation_m:newton2} in the Newtonian limit.
 
-The criterion of slow movement \cref{eq:weak_field_limit:small_velocity} implies that a particle with velocity $\odv{x^\mu}/{\tau}$ has spatial components $\odv{x^i}/{t} \ll c$ and must be dominated by the temporal component $c \odv{t}/{\tau} \approx c$.
+The criterion of slow movement \cref{eq:weak_field_limit:small_velocity} implies that a particle with four-velocity $\odv{x^\mu}/{\tau}$ has spatial components $\odv{x^i}/{t} \ll c$, so it must be dominated by the temporal component $c \odv{t}/{\tau} \approx c$.
 Then $\odv{x^i}/{\tau} \ll \odv{x^0}/{\tau}$ and the geodesic equation can be approximated by
 \begin{equation}
 	\odv[2]{x^\mu}{\tau} + \Gamma^\mu_{00} \, c^2 \left( \odv{t}{\tau} \right)^2 = 0 .
 	\label{eq:weak_field_limit:geodesic_approximated}
 \end{equation}
 In a static field, the vanishing time derivatives \eqref{eq:weak_field_limit:static_field} simplifies the Christoffel symbols \eqref{eq:def_christoffel} to $\Gamma^\mu_{00} = -\frac{1}{2} g\indices{^\mu^\lambda} \partial_\lambda g\indices{_0_0}$.
-Inserting the weak-field metric \eqref{eq:weak_field_limit:weak_field_metric} and its inverse \eqref{eq:weak_field_limit:weak_field_metric_inverse} and calculating to first order in $h$, we find the Christoffel symbols
+Inserting the weak-field metric \eqref{eq:weak_field_limit:weak_field_metric} and its inverse \eqref{eq:weak_field_limit:weak_field_metric_inverse} and calculating to first order in $h$, we then find the Christoffel symbols
 \begin{equation}
 	\Gamma^\mu_{00} = -\frac{1}{2} \eta\indices{^\mu^\lambda} \partial_\lambda h\indices{_0_0} .
 	\label{eq:weak_field_limit:static_christoffel_symbols}
 \end{equation}
-In particular, the static metric implies that $\Gamma^0_{00} = 0$, so $\odv[2]{t}/{\tau} = 0$ by the approximated geodesic equation \eqref{eq:weak_field_limit:geodesic_approximated}.
-As we have neglected $\odv{x^i}/{\tau}$, we can now regard the geodesic $x(\tau) = x(\tau(t))$ as a function of only $t$ and apply the chain rule and the product rule to get 
+In particular, the static metric \eqref{eq:weak_field_limit:static_field} implies that $\Gamma^0_{00} = 0$, so $\odv[2]{t}/{\tau} = 0$ by the approximated geodesic equation \eqref{eq:weak_field_limit:geodesic_approximated}.
+As we have neglected $\odv{x^i}/{\tau} \ll c$, we can now regard the geodesic $x(\tau) = x(\tau(t))$ as a function of only $t$ and apply the chain rule and the product rule to get 
 \begin{equation}
 	\odv[2]{x}{\tau} = \odv*{\left( \odv{x}{t} \odv{t}{\tau} \right)}{\tau} = \left( \odv[2]{x}{t} \right) \left( \odv{t}{\tau} \right)^2 + \left( \odv{x}{t} \right) \left( \odv[2]{t}{\tau} \right) = \left( \odv[2]{x}{t} \right) \left( \odv{t}{\tau} \right)^2 .
 \end{equation}
@@ -677,7 +702,7 @@ describes Newtonian motion in the gravitational potential $V$!
 \subsection{The response of the field to matter}
 \label{sec:einstein_to_poisson}
 
-In general relativity, the gravitational field is produced by matter that enter the Einstein field equations \eqref{eq:einstein} on the right.
+In general relativity, the gravitational field is produced by matter that enter the Einstein field equations \eqref{eq:einstein_derivation:einstein_matter} on the right.
 Let us show that they fall back the Poisson equation \eqref{eq:interpretation_m:poisson} to first nonzero order in the metric perturbation $h$ of the Newtonian limit.
 
 Suppose we are in the stationary reference frame of a perfect fluid with energy-momentum \eqref{eq:relfluid:energy_momentum} and velocity $u^\mu = (u^0, \vec{0})$.
@@ -685,21 +710,21 @@ To first order in $h_{00}$, the normalization condition $u^\mu u_\mu = c^2$ then
 \begin{equation}
 	u^0 = \frac{c}{\sqrt{g_{00}}} = \frac{c}{\sqrt{1 + h_{00}}} \taylor c \left( 1 - \frac12 h_{00} \right) .
 \end{equation}
-To lowest order, the energy-momentum \eqref{eq:tov:energy_momentum_perfect_fluid} then simplifies to dust with
+To lowest order, the energy-momentum \eqref{eq:relfluid:energy_momentum} then simplifies to that of pure dust with
 \begin{equation}
 	T_{00} = \rho u_0 u_0 \taylor \epsilon
 	\qquad \text{and trace} \qquad
 	T = T\indices{^\mu_\mu} = g^{00} T_{00} \taylor \epsilon, 
 \label{eq:energy_momentum_dust}
 \end{equation}
-and the pressure components are negligible according to \cref{eq:weak_field_limit:small_pressure}.
+where we have neglected the pressure components in accordance with criterion \eqref{eq:weak_field_limit:small_pressure}.
 Now rewrite the Einstein field equations \eqref{eq:einstein_derivation:einstein_matter} by taking the trace of both sides.
 Using $g\indices{^\mu_\mu} = \delta\indices{^\mu_\mu} = 4$, we find that the Ricci scalar can be expressed as $R = - 8 \pi G T / c^4$, so the field equations are equivalent to
 \begin{equation}
 	R_{\mu \nu} = \frac{8 \pi G}{c^4} \left( T_{\mu \nu} - \frac12 T g_{\mu \nu} \right) .
 	\label{eq:einstein_rewritten}
 \end{equation}
-Inserting our results \eqref{eq:energy_momentum_dust} from above, we find the Ricci tensor element
+Inserting the energy-momentum \eqref{eq:energy_momentum_dust} from above, we find the Ricci tensor element
 \begin{equation}
 	R_{00} = \frac{4 \pi G \rho}{c^2} .
 	\label{eq:weak_field_limit:ricci_from_energy_momentum}
@@ -714,8 +739,8 @@ Instead of calculating the Ricci tensor from the energy-momentum of matter, we c
 	\Gamma^\rho_{0 \lambda} \Gamma^{\lambda}_{\mu 0} .
 \end{equation}
 Each Christoffel symbol is of order $\bigo(h)$, so the two last terms are of order $\bigo(h^2)$.
-Additionally, the time derivative vanishes for our stationary metric, so we are left with only $R\indices{^\rho_0_\mu_0} = \partial_\mu \Gamma^\rho_{00}$ to first order.
-Using the stationary Christoffel symbols \eqref{eq:weak_field_limit:static_christoffel_symbols}, the Ricci tensor is then
+Additionally, the time derivative vanishes for our stationary metric \eqref{eq:weak_field_limit:static_field}, so we are left with only $R\indices{^\rho_0_\mu_0} = \partial_\mu \Gamma^\rho_{00}$ to first order.
+Using the Christoffel symbols \eqref{eq:weak_field_limit:static_christoffel_symbols}, the Ricci tensor is then
 \begin{equation}
 	R_{00} =       R\indices{^\mu_{0 \mu 0}}
 		   %=       -\frac12 g^{\mu \nu} \partial_\mu \partial_\nu g_{00}
@@ -737,7 +762,7 @@ Inspired by \cite{ref:sage_tov}, we present a small program that derives the Tol
 
 \codefile{python}{../code/tov.sage}{tov.sage}
 
-The output of the program is precisely equation \eqref{eq:tov} and \eqref{eq:einstein_to_tov:m_rho}.
+The output of the program precisely matches equation \eqref{eq:einstein_to_tov:m_rho} and \eqref{eq:tov}!
 
 
 \chapter{Relativistic fluid dynamics}

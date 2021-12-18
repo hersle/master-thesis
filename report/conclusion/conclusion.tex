@@ -6,18 +6,18 @@
 
 In this thesis, we have laid a solid foundation for continued study of neutron stars and other kinds of compact stars.
 In great detail, we have derived the Tolman-Oppenheimer-Volkoff equations from general relativity, and shown how the partition function for a theory with some specified Lagrangian can be expressed as a path integral in the framework of thermal field theory.
-In particular, we calculated the partition function for free Dirac fermions and solved the Tolman-Oppenheimer-Volkoff equations with the resulting equation of state for a cold Fermi gas of neutrons.
-Finally, we applied perturbation theory to general relativity and performed a detailed analysis of the stability of stars.
+In particular, we calculated the partition function for a cold Fermi gas composed of free Dirac neutrons and solved the Tolman-Oppenheimer-Volkoff equations with the resulting equation of state.
+Finally, we applied perturbation theory to general relativity and performed a detailed analysis of stellar stability.
 This work constitutes a broad and thorough introduction to the most important aspects of the study of compacts stars, starting from first principles of general relativity, quantum mechanics and field theory.
 
 Our main results are the computed mass-radius curve in \cref{fig:nstars:massradius} and the computed stability analysis in \cref{fig:nstars:stability}.
 Together, they show that neutron stars are stable up to the maximum central pressure $P_c \approx \SI{1e35}{\pascal} $ with a corresponding maximum mass $M = 0.71 \solarmass$ and minimum radius $R = \SI{9.1}{\kilo\meter}$, but become unstable for greater central pressures.
 In comparison, \cite{ref:tov}, building upon the work of \cite{ref:tolman}, studied the same model in 1939 and obtained the same limit $M_\text{TOV} = 0.71 \solarmass$ with the slightly different radius $R = \SI{9.5}{\kilo\meter}$ by approximate analytical techniques.
-Our computational stability analysis is also consistent with a set of qualitative rules established by \cite{ref:stability_methods}.
+Our computational stability analysis is also consistent with a set of qualitative rules established by \cite{ref:stability_methods} based on curvature and extrema in the mass-radius diagram.
 
 However, most observed neutron stars exceed the mass limit we have found.
 Even slowly rotating pulsars, for whom our results are comparable, \cite[section 2.1]{ref:neutron_star_physics} are typically observed with masses in the range $1.0 \solarmass < M < 2.2 \solarmass$. \cite[figure 2 and 3]{ref:neutron_star_masses_paper}
-The recent observation of the gravitational wave GW170817 from the merging of two neutron stars even suggests that the true value of the so-called Tolman-Oppenheimer-Volkoff upper mass limit $M \lesssim M_\text{TOV}$ for neutron stars is at least $M_\text{TOV} \gtrsim 2.3 \solarmass$. \cite{ref:gravitational_wave_tov_limit}
+The recent observation of the gravitational wave GW170817 from the merging of two neutron stars even suggests that the true value of the upper mass limit $M_\text{TOV}$ for neutron stars, named in honor of Tolman, Oppenheimer and Volkoff, is at least $M_\text{TOV} \gtrsim 2.3 \solarmass$. \cite{ref:gravitational_wave_tov_limit}
 %For ridigly rotating neutron stars, the TOV limit is believed to increase by $18\%-20\%$. \TODO{ref/drop?}
 
 Observations of massive neutron stars give a lower bound on $M_\text{TOV}$, and hence impose constraints on stellar equations of state.
@@ -30,9 +30,9 @@ Nevertheless, it is both surprising and impressive that a simple model of a neut
 
 \section{Outlook}
 
-From the mismatch between our result and observations, it is clear that we should seek improvements to our model.
+From the mismatch between our results and observations, it is clear that we should seek improvements to our model.
 Instead of going further in the same direction, it is also possible to turn around and pursue a different path by studying other types of stars.
-Let us take a look at some of the roads available to us at the current crossroad.
+Let us take a look at some of the roads available to us at the current crossing.
 
 \iffalse
 \subsection*{Renormalization}
@@ -52,7 +52,7 @@ There is little doubt that the greatest simplification in our free Fermi gas mod
 This is not true, and we should expect different results by accounting for a greater variety of particles with more advanced models.
 In order to keep the model simple enough for accurate calculations, it is of practical importance to include only the particles that are most relevant.
 When adding several types of charged particles, one must impose additional constraints of chemical equilibrium and charge neutrality, neither of which we have needed to worry about for the neutral neutron.
-\cite[chapter 4]{ref:glendenning} studies relativistic nuclear field theory and outlines a series of successive improvements of our model:
+For example, \cite[chapter 4]{ref:glendenning} studies relativistic nuclear field theory and outlines a series of successive improvements of our model:
 
 \begin{enumerate}
 \begin{subequations}
@@ -66,32 +66,32 @@ Our original model includes only neutrons $n$ with the free Dirac Lagrangian
 \end{equation}
 
 \item
-One improvement is to account for inverse beta decay $ n \rightarrow e^- + p + \bar\nu_e $ of neutrons into electrons and protons.
-A simple extension is then to make the Lagrangian a sum
+One improvement is to account for inverse beta decay $ n \rightarrow e^- + p + \bar\nu_e $ of neutrons into electrons, protons and (anti)neutrinos.
+It can be shown that (anti)neutrinos will diffuse out of the star, so a simple extension is then to make the Lagrangian a sum
 \begin{equation}
 	\lagr_{\psi_n} + \lagr_{\psi_p} + \lagr_{\psi_n}
 \end{equation}
-of three Dirac Lagrangians of the form \eqref{eq:outlook:lagrangian_original}, with one independent field and mass corresponding to each particle.
+of three Dirac Lagrangians of the form \eqref{eq:outlook:lagrangian_original}, with one independent field and mass corresponding to neutrons, protons and electrons.
 The partition function then separates into a product of three factors, and the energy density and pressure accordingly becomes a sum of three terms of the form that we have found here.
-Numerical results show that this only gives a \emph{softer} equation of state with a slightly \emph{lower} maximum mass $M_\text{TOV} = 0.70 \solarmass$, and although it is a more accurate description, it takes us in the wrong direction. \cite[section 3.9.8]{ref:glendenning},
+Numerical results show that this only gives a \emph{softer} equation of state with a slightly \emph{lower} maximum mass $M_\text{TOV} = 0.70 \solarmass$, and although it is a more accurate description, it really takes us in the wrong direction. \cite[section 3.9.8]{ref:glendenning}
 
 \item
 %(Glendenning section 4.6)
 Yet another improvement is made by appending the $\sigma-\omega$ model, also referred to as the Walecka model.
 It consists of a scalar meson $\omega$ and a vector meson $\omega_\mu$ with
 \begin{align}
-	& \text{free scalar meson Lagrangian} & \lagr_\sigma &= \frac12 \left[ \left( \partial_\mu \sigma \right) \left( \partial^\mu \sigma \right) - m_\sigma^2 \sigma^2 \right] , \\
-	& \text{free vector meson Lagrangian} & \lagr_\omega &= -\frac14 \omega_{\mu\nu} \omega^{\mu\nu} + \frac12 m_\omega^2 \omega_\mu \omega^\mu , \\
-	& \text{scalar meson-nucleon interaction} & \lagr_{\sigma\psi} &= g_\sigma \sigma \bar\psi \psi , \\
+	& \text{free scalar meson Lagrangian}     & \lagr_{\sigma\phantom\psi} &= \frac12 \left[ \left( \partial_\mu \sigma \right) \left( \partial^\mu \sigma \right) - m_\sigma^2 \sigma^2 \right] , \\
+	& \text{free vector meson Lagrangian}     & \lagr_{\omega\phantom\psi} &= -\frac14 \omega_{\mu\nu} \omega^{\mu\nu} + \frac12 m_\omega^2 \omega_\mu \omega^\mu , \\
+	& \text{scalar meson-nucleon interaction} & \lagr_{\sigma\psi} &= g_\sigma \sigma \bar\psi \psi , \\[0.5ex]
 	& \text{vector meson-nucleon interaction} & \lagr_{\omega\psi} &= g_\omega \omega^\mu \bar\psi \gamma_\mu \psi , \\
-	& \text{scalar self-interactions} & \lagr_{\sigma\sigma} &= -\frac13 b m \left( g_\sigma \sigma \right)^3 - \frac14 c \left( g_\sigma \sigma \right)^4 .
+	& \text{scalar self-interactions}         & \lagr_{\sigma\sigma} &= -\frac13 b m \left( g_\sigma \sigma \right)^3 - \frac14 c \left( g_\sigma \sigma \right)^4 .
 \end{align}
 
 \item
 The $\sigma-\omega$ model is extended to the $\sigma-\omega-\rho$ model by including a $\rho$ meson with
 \begin{align}
-	& \text{free Lagrangian} & \lagr_\rho &= -\frac14 \vec\rho_{\mu\nu} \cdot \vec\rho^{\mu\nu} + \frac12 m_\rho^2 \vec\rho_\mu \cdot \vec\rho^\mu , \\
-	& \text{isospin force} & \lagr_{\rho \psi} &= -\frac12 g_\rho \gamma_\mu \vec\rho^\mu \cdot \vec\tau \psi .
+	& \text{free Lagrangian} & \lagr_{\rho \phantom\psi} &= -\frac14 \vec\rho_{\mu\nu} \cdot \vec\rho^{\mu\nu} + \frac12 m_\rho^2 \vec\rho_\mu \cdot \vec\rho^\mu , \\
+	& \text{isospin force} & \lagr_{\rho \psi}           &= -\frac12 g_\rho \gamma_\mu \vec\rho^\mu \cdot \vec\tau \psi .
 \end{align}
 
 \item
@@ -181,20 +181,20 @@ To come closer to an answer regarding what lies in the core of a neutron star, o
 }
 \end{figure}
 
-Neutrons are composed of quarks, and quarks are described by the theory of quantum chromodynamics that exhibits \emph{asymptotic freedom}.
-At extreme density, this feature causes quarks to become free of interactions, resulting in a new state of matter known as \emph{quark matter}.
-In quark matter, the individuality of neutrons is lost, and it is instead free quarks that make up the fundamental degrees of freedom.
-This is illustrated in \cref{fig:conclusion:neutron_vs_quark_star}.
-In fact, it is likely that the universe passed through a phase of quark matter during the first few seconds.
-Furthermore, it is speculated that the conditions in the cores of neutron stars are so extreme that it allows for the presence of quark matter.
-If this is true, some or all neutron stars may really be \emph{hybrid stars} with a phase transition between a central quark matter core that is surrounded by an envelope of nuclear matter.
+Neutrons are composed of quarks, and quarks are described by quantum chromodynamics.
+This theory features \emph{asymptotic freedom}.
+At extreme density, it causes quarks to become free of interactions, resulting in a new state of matter known as \emph{quark matter}.
+As illustrated in \cref{fig:conclusion:neutron_vs_quark_star}, neutrons lose their individuality, and it is instead free quarks that make up the fundamental degrees of freedom.
+%In fact, it is likely that the universe passed through a phase of quark matter during the first few seconds.
+It is speculated that the conditions in the cores of neutron stars are so extreme that it allows for the presence of quark matter.
+If this is true, some or all neutron stars may really be \emph{hybrid stars} with a phase transition between a central quark matter core surrounded by a nuclear matter envelope.
 \emph{Quark stars} refer to such hypothetical stars composed of pure quark matter only, with no nuclear envelope.
 \cite[chapter 8]{ref:glendenning}
 
 Indeed, there have been observed objects of unknown nature whose mass exceeds the currently accepted value of Tolman-Oppenheimer-Volkoff limit, but falls short of the least massive known black holes. \cite{ref:wiki_list_star_massess}
-These objects may turn out to be neutron stars or black holes after all, but they are also candidates for hybrid stars and quark stars -- both of which are yet to be observed.
+These objects may turn out to be neutron stars or black holes after all, but they are also candidates for hybrid stars and quark stars -- both of which are hypothetical objects yet to be observed.
 
-However, it is notoriously difficult to make practical computations of quantum chromodynamics.
+Unfortunately, it is notoriously difficult to make practical computations of quantum chromodynamics.
 Therefore, alternative and more practical models such as the \emph{MIT bag model} have been developed to study quark stars.
 
 It is this path that I aim to study in my master thesis following this specialization project.
