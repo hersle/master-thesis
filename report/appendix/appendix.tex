@@ -769,7 +769,7 @@ The output of the program precisely matches equation \eqref{eq:einstein_to_tov:m
 \label{chap:relfluid}
 
 In this appendix, we will derive a number of important results from relativistic fluid mechanics needed for stability analysis of stars.
-We will look at the \textbf{flow} of fluid elements along stream lines $x(\tau)$ in a \textbf{perfect fluid} characterized by its pressure $P = P(x)$ and energy density $\epsilon = \epsilon(x)$.
+We will look at the flow of fluid elements along stream lines $x(\tau)$ in a \textbf{perfect fluid} characterized by its pressure $P = P(x)$ and energy density $\epsilon = \epsilon(x)$.
 
 \textit{This appendix is inspired by references \cite{ref:mtw} and \cite{ref:weinberg_gravity}.}
 
@@ -788,7 +788,7 @@ If we are rather viewing the fluid element from the laboratory frame and it is m
 \begin{equation}
 	T^{\mu \nu} \rightarrow \Lambda\indices{^\mu_\alpha}(\vec{v}) \Lambda\indices{^\nu_\beta}(\vec{v}) T^{\alpha \beta} .
 \end{equation}
-Explicitly carrying out the Lorentz transformation, we obtain the nonzero components
+Explicitly carrying out the Lorentz transformations, we obtain the nonzero components
 \begin{subequations}
 \begin{align}
 	T^{00} &= \frac{\epsilon + P \vec{v}^2 / c^2}{1 - \vec{v}^2 / c^2} \\
@@ -796,11 +796,11 @@ Explicitly carrying out the Lorentz transformation, we obtain the nonzero compon
 	T^{ij} &= P \delta^{ij} + \frac{(P + \epsilon) v^i v^j / c^2}{1 - \vec{v}^2 / c^2} .
 \end{align}
 \end{subequations}
-With the four-velocity $u^\mu = (u^0, \vec{v})$ and normalization $u_\mu u^\mu = c^2$, \emph{all} of these elements can be written collectively as the tensor expression
+With the four-velocity $u^\mu = (u^0, \vec{v})$ and normalization $u_\mu u^\mu = c^2$, \emph{all} these sixteen elements can be written collectively as the \emph{single} tensor expression
 \begin{equation}
 	T_{\mu \nu} = \frac{1}{c^2} u_\mu u_\nu (\epsilon + P) - \eta_{\mu \nu} P .
 \end{equation}
-In a general metric $g_{\mu \nu}$, the equivalence principle therefore states that the \textbf{energy-momentum tensor} for a perfect fluid is
+By the equivalence principle, the \textbf{energy-momentum tensor} for a perfect fluid in a general metric $g_{\mu \nu}$ is therefore
 \begin{equation}
 	T_{\mu \nu} = \frac{1}{c^2} u_\mu u_\nu (\epsilon + P) - g_{\mu \nu} P .
 \label{eq:relfluid:energy_momentum}
@@ -810,11 +810,12 @@ In a general metric $g_{\mu \nu}$, the equivalence principle therefore states th
 
 Due to both the geometry of spacetime and spatial change of velocities, the volume $V(x(\tau))$ of a fluid element changes as it moves along a streamline.
 Let us derive the rate of change of this volume element in Minkowski space, then generalize the result to curved space using the equivalence principle.
-In flat spacetime and in a frame that follows the fluid element, $u^\mu(x) \taylor (c, \vec{v}(x))$, where $\vec{v}(x)$ is small close to the fluid element.
-As the fluid element flows from place to the next in a short time $\delta t = \delta \tau$, the length $L^i$ of the fluid element along a spatial dimension $i$ changes by
+In a flat spacetime frame that follows the fluid element, the four-velocity is $u^\mu(x) \taylor (c, \vec{v}(x))$, where $\vec{v}(x)$ is a small velocity field in the vicinity of the fluid element.
+As the fluid element flows from one place to the next in a short time $\dif t = \dif \tau$, the length $L^i$ of the fluid element along a spatial dimension $i$ changes by
 \begin{equation}
 	\dif L^i = \Big[ v^i(x+L^i) - v^i(x) \Big] \dif \tau 
-	         = \pdv{v^i(x)}{x^i} L^i \dif \tau.
+	         = \pdv{v^i(x)}{x^i} L^i \dif \tau
+	\qquad \Big( \text{no sum} \Big) .
 \end{equation}
 The volume of the fluid element then changes by
 \begin{equation}
@@ -822,18 +823,18 @@ The volume of the fluid element then changes by
 	\dif V &= \dif \left( L^1 L^2 L^3 \right) \\
 	       &= \dif \left( L^1 \right) L^2 L^3 + L^1 \left( \dif L^2 \right) L^3 + L^1 L^2 \left( \dif L^3 \right) \\
 	       &= V \left( \frac{\dif L^1}{L^1} + \frac{\dif L^2}{L^2} + \frac{\dif L^3}{L^3} \right) \\
-	       &= V \left( \pdv{v^1}{x^1} + \pdv{v^2}{x^2} + \pdv{v^3}{x^3} \right) \dif \tau \\
-	       &= V \pdv{u^i}{x^i} \dif \tau .
+	       &= V \left( \pdv{v^1}{x^1} + \pdv{v^2}{x^2} + \pdv{v^3}{x^3} \right) \dif \tau . \\
+	       %&= V \pdv{u^i}{x^i} \dif \tau .
 \end{split}
 \end{equation}
-Since $u^0 = c$ in our reference frame, we make no mistake by including $\pdv{u^0}/{x^0} = 0$ in the sum.
+Since $u^0 = c$ in our reference frame, we make no mistake by including $\pdv{u^0}/{x^0} = 0$ in this sum.
 The rate of change is then given by the tensorial law
 \begin{equation}
-	\odv{V}{\tau} = V \pdv{u^\alpha}{x^\alpha} = V \nabla_\mu u^\mu ,
+	\odv{V}{\tau} = V \pdv{u^\mu}{x^\mu} = V \nabla_\mu u^\mu ,
 \label{eq:relfluid:volume_rate_change}
 \end{equation}
 where $\nabla_\mu = \partial_\mu$ because the Christoffel symbols vanish in Minkowski space.
-By the equivalence principle and its tensorial transformation properties, the same law holds in any spacetime and reference frame.
+By the equivalence principle, this law holds in any spacetime and reference frame.
 
 Like the volume element, the baryon number density $n(x(\tau))$ can change along a streamline.
 But the total \textbf{baryon number} $N = n V$ must be conserved, as expressed by
@@ -842,16 +843,15 @@ But the total \textbf{baryon number} $N = n V$ must be conserved, as expressed b
 \label{eq:relfluid:baryon_number_constant}
 \end{equation}
 It will be very useful to rewrite this law in multiple different ways.
-First, let us differentiate it with the product rule and insert the volume element rate of change \eqref{eq:relfluid:volume_rate_change}.
-Then the conservation law is equivalent to
-\begin{equation}
-	0 = \frac{1}{V} \odv*{\left( n u^\mu \right)}{\tau}
-	  = \odv{n}{\tau} + \frac{n}{V} \odv{V}{\tau}
-	  = u^\mu \nabla_\mu n + n \nabla_\mu u^\mu
-	  = \nabla_\mu \left( n u^\mu \right) ,
-\label{eq:relfluid:baryon_number_divergence}
-\end{equation}
-which has the elegant interpretation that there is no flux of the baryon number density current $n u^\mu$ out of the volume element.
+First, let us differentiate it and insert the volume element rate of change \eqref{eq:relfluid:volume_rate_change}.
+Then the conservation law \eqref{eq:relfluid:baryon_number_constant} is equivalent to
+\begin{align}
+	0 &= \frac{1}{V} \odv*{\left( n V \right)}{\tau} && \qquad \big( \text{by \eqref{eq:relfluid:baryon_number_constant}} \big) \nonumber \\
+	  &= \odv{n}{\tau} + \frac{n}{V} \odv{V}{\tau} && \qquad \big( \text{by forward product rule} \big) \nonumber \\
+	  &= u^\mu \nabla_\mu n + n \nabla_\mu u^\mu && \qquad \big( \text{by chain rule and \eqref{eq:relfluid:volume_rate_change}} \big) \nonumber \\[1.0ex]
+	  &= \nabla_\mu \left( n u^\mu \right) && \qquad \big( \text{by backwards product rule} \big), \label{eq:relfluid:baryon_number_divergence}
+\end{align}
+with the elegant interpretation that there is no flux of the baryon number density current $n u^\mu$ out of the volume element.
 From \cref{eq:relfluid:baryon_number_divergence}, we can rewrite the conservation law in the alternative form
 \begin{equation}
 	\odv{n}{\tau} = u^\mu \nabla_\mu n
@@ -860,75 +860,79 @@ From \cref{eq:relfluid:baryon_number_divergence}, we can rewrite the conservatio
 \end{equation}
 expressing the rate of change of the density along a stream line.
 
-In the Newtonian limit, $u^\mu = (c, \vec{v})$ and the vanishing divergence \cref{eq:relfluid:baryon_number_divergence} can be rewritten as the continuity equation
+In the Newtonian limit, $u^\mu = (c, \vec{v})$ and the vanishing divergence \cref{eq:relfluid:baryon_number_divergence} can be rewritten as a familiar continuity equation for the baryon number density,
 \begin{equation}
-	\pdv{n}{t} - \vec{\nabla} \cdot \left( n \vec{v} \right) = 0
+	\pdv{n}{t} - \vec{\nabla} \cdot \left( n \vec{v} \right) = 0.
 \end{equation}
-for the baryon number density $n$.
 
 \section{Conservation of energy and Euler equation}
 
 The conservation of energy-momentum $\nabla_\mu T^{\mu \nu} = 0$ implies
-\begin{equation}
-\begin{split}
-	0 &= \nabla_\mu T^{\mu \nu} \\
-	  &= \nabla_\mu \left[ \frac{1}{c^2} u^\mu u^\nu (\epsilon + P) - g_{\mu \nu} P \right] \\
-	  &= \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( u^\nu \nabla_\mu u^\mu + u^\mu \nabla_\mu u^\nu \Big) + u^\mu u^\nu \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\nu P . \\
-\end{split}
-\label{eq:relfluid:conservation_energy_momentum}
-\end{equation}
+\begin{align}
+	0 &= \nabla_\mu T^{\mu \nu} \nonumber \\
+	  &= \nabla_\mu \left[ \frac{1}{c^2} u^\mu u^\nu (\epsilon + P) - g_{\mu \nu} P \right] \nonumber \\
+	  &= \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( u^\nu \nabla_\mu u^\mu + u^\mu \nabla_\mu u^\nu \Big) + u^\mu u^\nu \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\nu P . \label{eq:relfluid:conservation_energy_momentum}
+\end{align}
 
-From this, it is possible to derive two separate results by \emph{projecting} the part of the vector $\nabla_\mu T^{\mu \nu}$ that is parallel and orthogonal to $u^\mu$.
+It is convenient to rewrite this as one scalar equation and another vector equation.
+To do so, we can \emph{project} out the part of the vector $\nabla_\mu T^{\mu \nu}$ that is parallel and orthogonal to $u^\mu$.
 If we have two vectors $\vec{u}$ and $\vec{v}$, then we define the parallel and orthogonal projection of $\vec{v}$ on $\vec{u}$ by
 \begin{equation}
 	\vec{v}_\parallel = \left( \hat{\vec{u}} \cdot \vec{v} \right) \hat{\vec{u}} = \frac{\vec{u} \cdot \vec{v}}{\vec{u} \cdot \vec{u}} \vec{u}
 	\qquad \text{and} \qquad
 	\vec{v}_\perp = \vec{v} - \vec{v}_\parallel .
 \end{equation}
-Then $\vec{v}_\parallel + \vec{v}_\perp = \vec{v}$, $\vec{u} \cdot \vec{v} = \vec{u} \cdot \vec{v_\parallel}$ and $\vec{u} \cdot \vec{v}_\perp = 0$, so the naming makes sense.
-With index notation, this becomes
+%Then $\vec{v}_\parallel + \vec{v}_\perp = \vec{v}$, $\vec{u} \cdot \vec{v} = \vec{u} \cdot \vec{v_\parallel}$ and $\vec{u} \cdot \vec{v}_\perp = 0$, so the naming makes sense.
+With index notation, this can be written
 \begin{equation}
-	v_\parallel^\alpha = \frac{u_\beta v^\beta}{u_\mu u^\mu} \, u^\alpha
+	%v_\parallel^\alpha = \frac{u_\beta v^\beta}{u_\mu u^\mu} \, u^\alpha
+	%\qquad \text{and} \qquad
+	%v_\perp^\alpha = v^\alpha - v_\parallel^\alpha = \left( \delta\indices{^\alpha_\beta} - \frac{u^\alpha u_\beta}{u_\mu u^\mu} \right) v^\beta .
+	v_\parallel^\alpha = \left(P_\parallel\right)\indices{^\alpha_\beta} v^\beta
 	\qquad \text{and} \qquad
-	v_\perp^\alpha = v^\alpha - v_\parallel^\alpha = \left( \delta\indices{^\alpha_\beta} - \frac{u^\alpha u_\beta}{u_\mu u^\mu} \right) v^\beta .
+	v_\perp^\alpha = \left(P_\perp\right)\indices{^\alpha_\beta} v^\beta ,
 \end{equation}
-From these expressions, it is convenient to define the parallel and orthogonal \textbf{projection tensors}
+where we define the parallel and orthogonal \textbf{projection tensors}
 \begin{equation}
 	\left(P_\parallel\right) \indices{^\alpha_\beta} = \frac{u^\alpha u_\beta}{u^\mu u_\mu}
 	\qquad \text{and} \qquad
-	\left(P_\perp\right) \indices{^\alpha_\beta} = \left( \delta\indices{^\alpha_\beta} - \frac{u^\alpha u_\beta}{u^\mu u_\mu} \right)
+	\left(P_\perp\right) \indices{^\alpha_\beta} = \left( \delta\indices{^\alpha_\beta} - \frac{u^\alpha u_\beta}{u^\mu u_\mu} \right) .
 \label{eq:relfluid:projection_tensors}
 \end{equation}
-that project out the parallel part $v_\parallel^\alpha = \left(P_\parallel\right)\indices{^\alpha_\beta} v^\beta$ and $v_\perp^\alpha = \left(P_\perp\right)\indices{^\alpha_\beta} v^\beta$ of the vector $v^\alpha$.
-With our conventions and choice of units, $u^\mu u_\mu = c^2$, but the projectors above are valid for any normalization $u^\mu u_\mu$.
-It is straightforward to verify that both projectors have the characteristic property $( P\indices{^\alpha_\beta} )^2 = P\indices{^\alpha_\gamma} P\indices{^\gamma_\beta} = P\indices{^\alpha_\beta}$.
-This is geometrically intuitive, since a projection does not modify an already projected vector.
+%that project out the parallel part $v_\parallel^\alpha = \left(P_\parallel\right)\indices{^\alpha_\beta} v^\beta$ and $v_\perp^\alpha = \left(P_\perp\right)\indices{^\alpha_\beta} v^\beta$ of the vector $v^\alpha$.
+These projectors are valid for any normalization $u^\mu u_\mu$, but with our conventions and choice of units we can always replace $u^\mu u_\mu = c^2$.
+It is straightforward to verify that both projectors have the characteristic property $( P\indices{^\alpha_\beta} )^2 = P\indices{^\alpha_\gamma} P\indices{^\gamma_\beta} = P\indices{^\alpha_\beta}$,
+expressing the geometrically intuitive property that a projection does not alter a vector that has already been projected.
 
 \subsection{Energy conservation}
 
 First, let us see what the parallel part of $\nabla_\mu T^{\mu \nu} = 0$ gives us.
-Instead of multiplying it by $\left(P_\parallel\right)\indices{^\alpha_\nu} = u^\alpha u_\nu /c^2$, however, let us only multiply by $u_\nu$ -- the result must still be equal to zero.
-Then we obtain
+Multiplying \cref{eq:relfluid:conservation_energy_momentum} with the parallel projector \eqref{eq:relfluid:projection_tensors}, we obtain
+%Instead of multiplying it by $\left(P_\parallel\right)\indices{^\alpha_\nu} = u^\alpha u_\nu /c^2$, however, let us only multiply by $u_\nu$ -- the result must still be equal to zero.
+%Then we obtain
 \begin{equation}
 \begin{split}
-	0 &= u_\nu \nabla_\mu T^{\mu \nu} \\
-	  &= \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( u_\nu u^\nu \nabla_\mu u^\mu + u^\mu u_\nu \nabla_\mu u^\nu \Big) + u^\mu u_\nu u^\nu \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\nu P . \\
+	0 &= \frac{u^\alpha u_\nu}{c^2} \nabla_\mu T^{\mu \nu} \\
+	  &= \frac{u^\alpha}{c^2} \left\{ \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( u_\nu u^\nu \nabla_\mu u^\mu + u^\mu u_\nu \nabla_\mu u^\nu \Big) + u^\mu u_\nu u^\nu \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\nu P \right\} . \\
 \end{split}
+\label{eq:relfluid:conservation_projected_parallel}
 \end{equation}
-We can simplify this equation by using
+We can simplify this equation by using the normalization
 \begin{equation}
 	u^\nu u_\nu = c^2 
 	\qquad \text{and its implication} \qquad
 	\nabla_\mu \left( u^\nu u_\nu \right) = 2 u^\nu \nabla_\mu u^\nu = 0 .
 \label{eq:relfluid:tricks}
 \end{equation}
-This kills one term in the square brackets and multiplies the two others by $c^2$, leaving
+The first property multiplies two terms by $c^2$, while the second kills one term in the square brackets.
+Since the right side of \cref{eq:relfluid:conservation_projected_parallel} must vanish for arbitrary $u^\alpha$, the whole expression inside the curly parenthesis must vanish.
+This leaves
 \begin{subequations}
 \begin{align}
 	  0 &= \Big(\epsilon + P \Big) \nabla_\mu u^\mu + u^\mu \nabla_\mu \Big( \epsilon + P \Big) - u_\nu \nabla^\nu P \nonumber \\
-	    &= \nabla_\mu \bigg[ u^\mu \Big( \epsilon + p \Big)  \bigg] - u^\mu \nabla_\mu P && \quad \text{(by ``backward'' product rule)} \nonumber \\
-	    &= \nabla_\mu \bigg( \epsilon \, u^\mu \bigg) + P \, \nabla_\mu u^\mu && \quad \text{(by ``forward'' product rule)} \label{eq:relfluid:energy_conservation_before_product} \\
-	    &= u^\mu \nabla_\mu \epsilon + \left( \epsilon + P \right) \nabla_\mu u^\mu && \quad \text{(by ``forward'' product rule)} \label{eq:relfluid:energy_conservation_after_product} \\
+	    &= \nabla_\mu \bigg[ u^\mu \Big( \epsilon + p \Big)  \bigg] - u^\mu \nabla_\mu P && \quad \text{(by backward product rule)} \nonumber \\
+	    &= \nabla_\mu \bigg( \epsilon \, u^\mu \bigg) + P \, \nabla_\mu u^\mu && \quad \text{(by forward product rule)} \label{eq:relfluid:energy_conservation_before_product} \\
+	    &= u^\mu \nabla_\mu \epsilon + \left( \epsilon + P \right) \nabla_\mu u^\mu && \quad \text{(by forward product rule)} \label{eq:relfluid:energy_conservation_after_product} \\
 	    &= \odv{\epsilon}{\tau} + \left( \epsilon + P \right) \nabla_\mu u^\mu && \quad \text{(by chain rule)} . \label{eq:relfluid:energy_conservation_after_chain}
 	    %&= \odv{\epsilon}{\tau} + \frac{\epsilon + P}{n} \, n \nabla_\mu u^\mu \nonumber \\
 	    %&= \odv{\epsilon}{\tau} - \frac{\epsilon + P}{n} \, u^\mu \nabla_\mu n && \quad \text{(by baryon number conservation \eqref{eq:relfluid:baryon_number_divergence})} \\
@@ -936,15 +940,15 @@ This kills one term in the square brackets and multiplies the two others by $c^2
 \end{align}%
 \label{eq:relfluid:energy_conservation}%
 \end{subequations}%
+This is the announced scalar equation that follows from conservation of energy-momentum.
 Either of the equivalent forms is known as the \textbf{relativistic equation of energy conservation}.
-In the Newtonian limit \eqref{eq:weak_field_limit:small_pressure}, the pressure term is negligible and the form \eqref{eq:relfluid:energy_conservation_after_product} reduces to the familiar continuity equation
+In the Newtonian limit \eqref{eq:weak_field_limit:small_pressure}, the pressure term is negligible and the form \eqref{eq:relfluid:energy_conservation_after_product} reduces to the familiar continuity equation for mass density $\rho = \epsilon / c^2$ from fluid mechanics,
 \cite[equation 7.1]{ref:iver}
 \begin{equation}
-	0 = \nabla_\mu \bigg( \epsilon \, u^\mu \bigg) = \pdv{\epsilon}{t} - \vec{\nabla} \cdot \Big( \epsilon \vec{v} \Big)
-	\qquad \text{or} \qquad
-	0 = \nabla_\mu \bigg( \rho \, u^\mu \bigg) = \pdv{\rho}{t} - \vec{\nabla} \cdot \Big( \rho \vec{v} \Big)
+	%0 = \nabla_\mu \bigg( \epsilon \, u^\mu \bigg) = \pdv{\epsilon}{t} - \vec{\nabla} \cdot \Big( \epsilon \vec{v} \Big)
+	%\qquad \text{or} \qquad
+	0 = \nabla_\mu \bigg( \rho \, u^\mu \bigg) = \pdv{\rho}{t} - \vec{\nabla} \cdot \Big( \rho \vec{v} \Big).
 \end{equation}
-for either the energy density $\epsilon$ or the mass density $\rho$, by the mass-energy equivalence \eqref{eq:tov:mass_energy_equivalence}.
 
 \iffalse
 It is useful to have the Euler equation in a form that involves derivatives $\odv{}/{\tau} = u^\mu \nabla_\mu$ along a streamline.
@@ -965,19 +969,17 @@ This is in the form we wanted.
 
 \subsection{Euler equation}
 
-Second, let us inspect the component of $\nabla_\mu T^{\mu \nu}$ orthogonal to $u^\mu$ using the orthogonal projection tensor $\left(P_\perp\right)\indices{^\alpha_\nu}$.
-A straightforward calculation using the same tricks \eqref{eq:relfluid:tricks} shows that
-\begin{equation}
-\begin{split}
-	0 &=      \left(P_\perp\right)\indices{^\alpha_\nu} \nabla_\mu T^{\mu \nu} \\
-	  &=      \left\{ \delta\indices{^\alpha_\nu} - \frac{u^\alpha u_\nu}{c^2} \right\} \\
-	  &\times \Bigg \{ \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( u^\nu \nabla_\mu u^\mu + u^\mu \nabla_\mu u^\nu \Big) + u^\mu u^\nu \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\nu P \Bigg\} \\
-	  &=      \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( u^\alpha \nabla_\mu u^\mu + u^\mu \nabla_\mu u^\alpha \Big) + u^\mu u^\alpha \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\alpha P \\
-	  &-      \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) u^\alpha \nabla_\mu u^\mu + u^\alpha u^\mu \nabla_\mu \Big( \epsilon + P \Big) - u^\alpha u^\nu \nabla_\nu P \bigg] \\
-	  &=      \frac{1}{c^2} \Big( \epsilon + P \Big) u^\mu \nabla_\mu u^\alpha - \nabla^\alpha P + \frac{1}{c^2} u^\alpha u^\mu \nabla_\mu P .
-\end{split}
-\label{eq:relfluid:euler_equation}
-\end{equation}
+Second, let us inspect the component of $\nabla_\mu T^{\mu \nu}$ orthogonal to $u^\mu$.
+Multiplying \cref{eq:relfluid:conservation_energy_momentum} by the orthogonal projection tensor \eqref{eq:relfluid:projection_tensors},
+a straightforward calculation using the same properties \eqref{eq:relfluid:tricks} gives
+\begin{align}
+	0 &=      \left(P_\perp\right)\indices{^\alpha_\nu} \nabla_\mu T^{\mu \nu} \nonumber \\
+	  &=      \left\{ \delta\indices{^\alpha_\nu} - \frac{u^\alpha u_\nu}{c^2} \right\} \nonumber \\
+	  &\times \Bigg \{ \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( u^\nu \nabla_\mu u^\mu + u^\mu \nabla_\mu u^\nu \Big) + u^\mu u^\nu \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\nu P \Bigg\} \nonumber \\
+	  &=      \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( u^\alpha \nabla_\mu u^\mu + u^\mu \nabla_\mu u^\alpha \Big) + u^\mu u^\alpha \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\alpha P \nonumber \\
+	  &-      \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) u^\alpha \nabla_\mu u^\mu + u^\alpha u^\mu \nabla_\mu \Big( \epsilon + P \Big) - u^\alpha u^\nu \nabla_\nu P \bigg] \nonumber \\
+	  &=      \frac{1}{c^2} \Big( \epsilon + P \Big) u^\mu \nabla_\mu u^\alpha - \nabla^\alpha P + \frac{1}{c^2} u^\alpha u^\mu \nabla_\mu P . \label{eq:relfluid:euler_equation}
+\end{align}
 This is the \textbf{relativistic Euler equation}. 
 In the Newtonian limit $u^\mu = (c, \vec{v})$ with small velocity \eqref{eq:weak_field_limit:small_velocity} and pressure \eqref{eq:weak_field_limit:small_pressure}, the rightmost term is negligible because it contains the product of two velocities, and so is the pressure contribution in the leftmost term.
 Then the three spatial indices $\alpha = a = \{1, 2, 3\}$ reduce to $\rho u^\mu \nabla_\mu u^a - \nabla^a P = 0$, where $\rho = \epsilon / c^2$ by the mass-energy equivalence \eqref{eq:tov:mass_energy_equivalence}.
@@ -997,12 +999,12 @@ from fluid mechanics, expressing the acceleration of fluid elements on the left 
 \label{sec:relfluid:adiabadicity}
 
 The flow of a perfect fluid is adiabatic, meaning there is no transfer of heat between fluid elements.
-One way to understand this is that the energy-momentum tensor is diagonal, and that any exchange of heat would have to come from energy flux terms, which are represented by off-diagonal elements.
-A more verbose way is to consider the first law of thermodynamics,
+One way to understand this is that the energy-momentum tensor is diagonal, and that any exchange of heat would have to come from off-diagonal energy flux terms.
+A more verbose way to understand it is to consider the first law of thermodynamics,
 \begin{equation}
 	\dif E = \dif Q + \dif W = T \dif S - P \dif V .
 \end{equation}
-Consider a fluid element with volume $V$, internal energy $E = V \epsilon$, a constant number of particles $N = n V$ and entropy $s = S/N$ per particle.
+Consider a fluid element with volume $V$, internal energy $E = V \epsilon$, fixed number of particles $N = n V$ and entropy $s = S/N$ per particle.
 Then the first law can be rewritten
 \begin{equation}
 	\dif \left( \epsilon \, \frac{N}{n} \right) = N T \dif s - P \dif \left( \frac{N}{n} \right) .
@@ -1012,16 +1014,13 @@ Explicitly writing out the differentials and canceling the constant $N$, we find
 	\dif \epsilon = \frac{\epsilon + P}{n} \dif n + n T \dif s .
 \label{eq:relfluid:thermodynamics_first_law_rewritten}
 \end{equation}
-To relate this to our flow, combine conservation of energy \eqref{eq:relfluid:energy_conservation_after_product} and baryon number \eqref{eq:relfluid:baryon_number_divergence} into
-\begin{equation}
-\begin{aligned}
-	0 &= u^\mu \nabla_\mu \epsilon + \frac{\epsilon+P}{n} \, n \nabla_\mu u^\mu \\
-	  &= u^\mu \nabla_\mu \epsilon - \frac{\epsilon+P}{n} \, u^\mu \nabla_\mu n && \qquad \text{(by baryon number conservation \eqref{eq:relfluid:baryon_number_divergence})} \\
-	  &= \odv{\epsilon}{\tau} - \frac{\epsilon+P}{n} \odv{n}{\tau}      && \qquad \text{(by chain rule)} . \\
-\end{aligned}
-\label{eq:relfluid:energy_conservation_rewritten}
-\end{equation}
-\emph{This is precisely the first law of thermodynamics \eqref{eq:relfluid:thermodynamics_first_law_rewritten} with $\dif Q = T \dif S = 0$}, showing that the flow indeed is adiabatic!
+To relate this to our flow, combine conservation of energy and baryon number into
+\begin{align}
+	0 &= u^\mu \nabla_\mu \epsilon + \frac{\epsilon+P}{n} \, n \nabla_\mu u^\mu && \qquad \text{(by conservation of energy \eqref{eq:relfluid:energy_conservation_after_product})} \nonumber \\
+	  &= u^\mu \nabla_\mu \epsilon - \frac{\epsilon+P}{n} \, u^\mu \nabla_\mu n && \qquad \text{(by baryon number conservation \eqref{eq:relfluid:baryon_number_divergence})} \nonumber \\
+	  &= \odv{\epsilon}{\tau} - \frac{\epsilon+P}{n} \odv{n}{\tau}      && \qquad \text{(by chain rule)} . \label{eq:relfluid:energy_conservation_rewritten}
+\end{align}
+\emph{This is precisely the first law of thermodynamics \eqref{eq:relfluid:thermodynamics_first_law_rewritten} with $\dif Q = n T \dif s = 0$}, showing that the flow is adiabatic!
 
 A useful consequence of adiabaticity is that it enables us to define the \textbf{adiabatic index}
 \begin{equation}
@@ -1031,10 +1030,10 @@ at constant entropy, relative to some irrelevant pressure and number density sca
 In our case, we can take the derivative and rewrite the adiabatic index by eliminating the baryon number density with \cref{eq:relfluid:energy_conservation_rewritten}.
 It then takes the practical form
 \begin{equation}
-	\gamma = \frac{n}{P} \left( \pdv{P}{n} \right)_S
+	\gamma = \frac{n}{P} \left( \pdv{P}{n} \right)_s
 	       = \frac{n}{P} \frac{\odv{P}/{\tau}}{\odv{n}/{\tau}}
 	       = \frac{\epsilon+P}{P} \frac{\odv{P}/{\tau}}{\odv{\epsilon}/{\tau}}
-	       = \frac{\epsilon+P}{P} \odv{P}{\epsilon} .
+	       = \frac{\epsilon+P}{P} \left( \odv{P}{\epsilon} \right)_s .
 \label{eq:relfluid:adiabadicity}
 \end{equation}
 The last expression is possible to calculate from the equation of state $\epsilon = \epsilon(P)$.
@@ -1042,9 +1041,9 @@ The last expression is possible to calculate from the equation of state $\epsilo
 \section{Speed of sound}
 \label{sec:relfluid:sound}
 
-We can derive a simple expression for the speed of sound in an ideal fluid.
-Suppose we are in Minkowski space, and consider a background ideal fluid in equilibrium with four-velocity $u^\mu = (u^0, \vec{0})$, density $n_0$, pressure $P_0$ and energy density $\epsilon_0$ that are all \emph{constant} in time and space.
-On top of this background, let there be small variations $\delta n(x)$, $\delta P(x)$, $\delta \epsilon(x)$ and $\vec{v}(x)$ in the total density $n = n_0 + \delta n$, pressure $P = P_0 + \delta P$, energy density $\epsilon = \epsilon_0 + \delta \epsilon$ and four-velocity $u^\mu = (u^0, \vec{v})$.
+We can derive a simple expression for the speed of sound in a perfect fluid.
+Suppose we are in Minkowski space, and consider a background equilibrium fluid with four-velocity $u^\mu = (u^0, \vec{0})$, density $n_0$, pressure $P_0$ and energy density $\epsilon_0$ that are all \emph{constant} in both time and space.
+On top of this background, place \emph{small} variations $\delta n(x)$, $\delta P(x)$, $\delta \epsilon(x)$ and $\vec{v}(x)$ in the total density $n = n_0 + \delta n$, pressure $P = P_0 + \delta P$, energy density $\epsilon = \epsilon_0 + \delta \epsilon$ and four-velocity $u^\mu = (u^0, \vec{v})$.
 How do sound waves result from these variations?
 
 To first order in all the small quantities, the Euler equation \eqref{eq:relfluid:euler_equation} reads
@@ -1059,15 +1058,15 @@ Likewise, the adiabaticity condition \eqref{eq:relfluid:energy_conservation_rewr
 	\delta \epsilon = \frac{\epsilon_0 + P_0}{n_0} \delta n
 \label{eq:relfluid:speed_of_sound_de_dn}
 \end{equation}
-after integration, where we forget the integration constant, so $\delta \epsilon = 0$ when $\delta n = 0$.
-By eliminating $\epsilon_0 + P_0$ in equation \eqref{eq:relfluid:speed_of_sound_dvdt} using equation \eqref{eq:relfluid:speed_of_sound_de_dn}, we find
+after integration, where we forget the integration constant, so $\delta \epsilon = 0$ when we are back in equilibrium with $\delta n = 0$.
+Using equation \eqref{eq:relfluid:speed_of_sound_de_dn} to eliminate $\epsilon_0 + P_0$ in equation \eqref{eq:relfluid:speed_of_sound_dvdt}, we find
 \begin{equation}
-	\pdv{\vec{v}}{t} = -c^2 \frac{\nabla (\delta P)}{\delta \epsilon} \frac{\delta n}{n_0}
+	\pdv{\vec{v}}{t} = -c^2 \frac{\nabla (\delta P)}{\delta \epsilon} \frac{\delta n}{n_0} .
 	                 %= -c^2 \frac{\delta P}{\delta \epsilon} \frac{\nabla (\delta n)}{n}
 	                 %= -v_s^2 \frac{\nabla (\delta n)}{n}
 \label{eq:relfluid:speed_of_sound_dvdt2}
 \end{equation}
-Intuitively, the pressure gradient $\nabla P$ should be parallel to the density gradient $\nabla n$.
+Intuitively, the pressure and density gradients $\nabla P$ and $\nabla n$ should be parallel.
 Mathematically, this can be expressed by the two equal unit vectors
 \begin{subequations}
 \begin{equation}
@@ -1080,37 +1079,35 @@ A more rigorous way to see this is to note that the pressure depends on the dens
 \label{eq:relfluid:pressure_density_gradient_aligned_alternative}%
 \end{equation}%
 \end{subequations}%
-where we have interpreted the derivative $\odv{P}/{n}$ as the ratio $\delta P / \delta n$ between the two changes.
-Using either \eqref{eq:relfluid:pressure_density_gradient_aligned} or \eqref{eq:relfluid:pressure_density_gradient_aligned_alternative}, we can reexpress equation \eqref{eq:relfluid:speed_of_sound_dvdt2} as
+where we have interpreted the derivative $\odv{P}/{n}$ as the ratio $\delta P / \delta n$ between the two small changes.
+Using either equation \eqref{eq:relfluid:pressure_density_gradient_aligned} or \eqref{eq:relfluid:pressure_density_gradient_aligned_alternative}, we can reexpress equation \eqref{eq:relfluid:speed_of_sound_dvdt2} as
 \begin{equation}
 	\pdv{\vec{v}}{t} = -c^2 \frac{\delta P}{\delta \epsilon} \frac{\nabla (\delta n)}{n_0}
-	                 = -c^2 \odv{P_0}{\epsilon_0} \frac{\nabla (\delta n)}{n_0}
-	                 = -v_s^2 \frac{\nabla (\delta n)}{n_0} .
+	                 = -c^2 \odv{P_0}{\epsilon_0} \frac{\nabla (\delta n)}{n_0} .
+	                 %= -v_s^2 \frac{\nabla (\delta n)}{n_0} .
 \label{eq:relfluid:speed_of_sound_dvdt3}
 \end{equation}
 Again, we have interpreted $\delta P / \delta \epsilon$ as the derivative $\odv{P_0}/{\epsilon_0}$, because $\delta P = P - P_0$ and $\delta \epsilon = \epsilon - \epsilon_0$ are both changes from the equilibrium values.
-We claim that the \textbf{speed of sound} is
+Next, to first order in the small quantities, the baryon number equation \eqref{eq:relfluid:baryon_number_rate_change} says
+\begin{equation}
+	\pdv{(\delta n)}{t} + n_0 \nabla \cdot \vec{v} = 0 .
+\label{eq:relfluid:speed_of_sound_baryon_number_rate_of_change}
+\end{equation}
+Finally, differentiate this equation with respect to time and substitute expression \eqref{eq:relfluid:speed_of_sound_dvdt3} for $\pdv{\vec{v}}/{t}$ to obtain
+\begin{equation}
+	\left( \pdv[2]{}{t} - c^2 \odv{P_0}{\epsilon_0} \, \nabla^2 \right) \delta n = 0 .
+\end{equation}
+\emph{This is a \textbf{wave equation} for density waves $\delta n = \delta n (\vec{x} \mp \vec{v}_s t)$ traveling at the \textbf{speed of sound}}
 \begin{equation}
 	v_s = c \, \sqrt{\odv{P_0}{\epsilon_0}} .
 \label{eq:relfluid:speed_of_sound}
 \end{equation}
-Why?
-To first order in the small quantities, the baryon number equation \eqref{eq:relfluid:baryon_number_rate_change} says
-\begin{equation}
-	\odv{(\delta n)}{t} + n_0 \nabla \cdot \vec{v} = 0 .
-\label{eq:relfluid:speed_of_sound_baryon_number_rate_of_change}
-\end{equation}
-Finally, combine equation \eqref{eq:relfluid:speed_of_sound_dvdt3} with equation \eqref{eq:relfluid:speed_of_sound_baryon_number_rate_of_change} to find
-\begin{equation}
-	\left( \odv[2]{}{t} - v_s^2 \, \nabla^2 \right) \delta n = 0 .
-\end{equation}
-This is a wave equation with solutions $\delta n = \delta n (\vec{x} \mp \vec{v} t)$ that describe density waves traveling at the speed of sound!
 
 
 \chapter{Matsubara energy summation}
 \label{chap:matsum}
 
-\textit{This appendix is based on reference \cite{ref:altland_simons}.}
+\textit{This appendix is inspired by reference \cite{ref:altland_simons}.}
 
 When doing thermal field theory, one often encounters sums
 \begin{equation}
@@ -1124,12 +1121,12 @@ of functions $s(E_n)$ over all \textbf{Matsubara energies}
 	          2 \pi \left( n+\frac12 \right) / \beta & \text{for fermions} .\\
 	      \end{cases}
 \end{equation}
-For example, we encountered sums in the form
+For example, we encountered the sum
 \begin{equation}
 	S = \sum_{n=-\infty}^{+\infty} \frac{1}{E_n^2 + E^2}
 \label{eq:matsum:motivating_example}
 \end{equation}
-in \cref{eq:tft:matsubara_sum_bosons} and \cref{eq:tft:matsubara_sum_fermions}.
+for bosons in equation \eqref{eq:tft:matsubara_sum_bosons}, and again for fermions \eqref{eq:tft:matsubara_sum_fermions}.
 In this appendix we will demonstrate an elegant general method for computing such sums by contour integration in the complex plane.
 
 First, we define the complex functions
@@ -1143,7 +1140,7 @@ First, we define the complex functions
 \end{equation}
 Here and below, the upper and lower signs correspond to bosons and fermions, respectively.
 This is the familiar Bose-Einstein distribution $n_+(z)$ for bosons and the Fermi-Dirac distribution $n_-(z)$ for fermions.
-Importantly, they have simple poles at all imaginary Matsubara frequencies $z = i E_n$, as indicated by blue crosses in \cref{fig:matsum:contours}.
+Importantly, they have simple poles at all imaginary Matsubara frequencies $z = i E_n$, as indicated by the crosses in \cref{fig:matsum:contours}.
 
 % Draw cross from https://tex.stackexchange.com/questions/123760/draw-crosses-in-tikz
 \tikzset{cross/.style={cross out, draw=black, fill=none, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt}, cross/.default={2pt}}
@@ -1305,7 +1302,7 @@ Now
 \end{equation}
 where $C_N^C$ is the contour shown in \cref{fig:matsum:contourB}.
 The overlapping circular parts of $C_N^A$ run opposite ways and cancel, producing the vertical parts of $C_N^C$.
-The clockwise circular contour $C_N^B$ cancels the top and bottom part of $C_N^A$, and also closes the contour with semicircles in the real half planes.
+The clockwise circular contour $C_N^B$ cancels the top and bottom parts of $C_N^A$, and also closes the contour with semicircles in the real half planes.
 
 Finally, include all poles by taking the limit $N \rightarrow \infty$.
 This sends the radii of the two semicircles to infinity, inflating the contour $C_N^C$ to the full real half planes, except the imaginary axis $\real z = 0$.
@@ -1313,33 +1310,36 @@ Assume now that $s(-i z)$ -- as in our motivating example \eqref{eq:matsum:motiv
 \begin{equation}
 	\abs{s(-iz) n_\pm(z)} < \frac{1}{\abs{z}} \quad \text{as} \quad \abs{z} \rightarrow \infty .
 \end{equation}
-Our motivating example \eqref{eq:matsum:motivating_example} satisfies this.
+%Our motivating example \eqref{eq:matsum:motivating_example} satisfies this.
 For general $s(-iz)$, this assumption is not as restrictive as it may sound, since there must be some bound on $s(-iz)$ anyway if the sum \eqref{eq:matsum:sum} is to converge at all.
-With this assumption, $\oint_{C_B} \dif z \, s(-iz) n_\pm(z) \rightarrow 0$ as $N \rightarrow \infty$, and by \cref{eq:matsum:contour_superposition} we can then trade the contour $C_N^A$ for $C_N^C$ in \cref{eq:matsum:sum_as_contour_integral}.
+With this assumption, $\oint_{C_B} \dif z \, s(-iz) n_\pm(z) \rightarrow 0$ as $N \rightarrow \infty$, and by \cref{eq:matsum:contour_superposition} we can then trade $C_N^A$ for $C_N^C$ in the contour integral \eqref{eq:matsum:sum_as_contour_integral}!
 
-There is a big benefit to exchanging the contour $C_N^A$ for $C_N^C$.
-We can now apply the residue theorem again with the new contour $C_\infty^C$ to obtain
+There is a big benefit to this change of contour.
+After sending $N \rightarrow \infty$ and using the new contour $C_\infty^C$, we can apply the residue theorem \emph{again} to the contour integral \eqref{eq:matsum:sum_as_contour_integral} to obtain
 \begin{equation}
-	S = \frac{\pm \beta}{2 \pi i} \oint_{C_\infty^C} \dif z \, s(-iz) n_\pm(z) = \mp \beta \sum_n \res_{z=z_n} [s(-iz) n_\pm(z)] ,
+	S = \frac{\pm \beta}{2 \pi i} \oint_{C_\infty^C} \dif z \, s(-iz) n_\pm(z) = \mp \beta \sum_n \res_{z=z_n} [s(-iz) n_\pm(z)] .
 \label{eq:matsum:sum_finite_residues}
 \end{equation}
-\emph{where the sum now runs over the poles of $s(-iz)$ in the real half planes, and not the poles of $n_\pm(z)$ like in \cref{eq:matsum:connection_integral_sum}}.
-Note also that the sign change following the clockwise orientation of $C_\infty^C$.
-Like in our example \eqref{eq:matsum:motivating_example}, most $s(-iz)$ will have a \emph{finite} number of poles, in stark contrast to the infinite number of poles of $n_\pm(z)$.
-We have thus transformed the Matsubara sum over an infinite number of residues of $n_\pm(z)$ to a sum over a finite number of residues of $s(-iz)$ -- a much more manageable task.
+\emph{The sum now runs over the poles of $s(-iz)$ in the real half planes, and not the poles of $n_\pm(z)$ like in \cref{eq:matsum:connection_integral_sum}}.
+Note also that the sign change following the \emph{clockwise} orientation of $C_\infty^C$ compared to the \emph{counter-clockwise} orientation of $C_\infty^A$.
+Like in our example \eqref{eq:matsum:motivating_example}, most $s(-iz)$ will have a \emph{finite} number of poles, in stark contrast to the \emph{infinite} number of poles of $n_\pm(z)$.
+We have thus transformed the Matsubara sum over an infinite number of residues of $n_\pm(z)$ to a sum over a finite number of residues of $s(-iz)$ -- a much more manageable task!
 This is our proclaimed elegant and general method of evaluating the Matsubara sum \eqref{eq:matsum:sum}.
 
 \textbf{Example:}
 Let us use now use this technique to evaluate the sum \eqref{eq:matsum:motivating_example} with
 \begin{equation}
+	S = \sum_{n=-\infty}^{+\infty} \frac{1}{E_n^2 + E^2}
+	  = \sum_{n=-\infty}^{+\infty} s(E_n)
+	\qquad \text{and} \qquad
 	s(-iz) = \frac{1}{-z^2 + E^2} .
 \end{equation}
-It has poles at $z = E$ and $z = -E$.
-Using \cref{eq:matsum:residue_quotient} with $f(z) = n_\pm(z)$ and $g(z) = f(-iz)^{-1}$, we obtain the residues
+It has two poles at $z = +E$ and $z = -E$.
+Using \cref{eq:matsum:residue_quotient} with $f(z) = n_\pm(z)$ and $g(z) = s(-iz)^{-1} = -z^2 + E^2$, we obtain the residues
 \begin{equation}
-	\res_{z =  E}[s(-iz) n_\pm(z)] = -\frac{1}{2 E} n_\pm(+E) 
+	\res_{z = +E}[s(-iz) n_\pm(z)] = -\frac{n_\pm(+E)}{2 E}  
 	\qquad \text{and} \qquad
-	\res_{z = -E}[s(-iz) n_\pm(z)] =  \frac{1}{2 E} n_\pm( E) .
+	\res_{z = -E}[s(-iz) n_\pm(z)] = +\frac{n_\pm(-E)}{2 E}  .
 \end{equation}
 Using our main result \eqref{eq:matsum:sum_finite_residues}, the Matsubara sum \eqref{eq:matsum:motivating_example} is therefore
 \begin{equation}
@@ -1351,11 +1351,11 @@ We can now evaluate the sum explicitly by inserting the Bose-Einstein distributi
 After some simplification, we obtain
 \begin{equation}
 	S = \sum_{n=-\infty}^{+\infty} \frac{1}{E_n^2 + E^2}
-	  = \frac{\beta}{2 E} \left( 1 \pm \frac{2}{e^{\beta E} \mp 1} \right)
-	  = \frac{\beta}{2 E} \left[ 1 \pm 2 n_\pm(E) \right] .
+	  = \frac{\beta}{2 E} \bigg[ 1 \pm \frac{2}{e^{\beta E} \mp 1} \bigg]
+	  = \frac{\beta}{2 E} \bigg[ 1 \pm 2 n_\pm(E) \bigg] .
 \label{eq:matsum:example_result}
 \end{equation}
-For later reference, recall that the upper and lower signs hold for bosons and fermions, respectively.
+Recall that the upper and lower signs hold for bosons and fermions, respectively.
 
 \chapter{Integrals}
 \label{chap:integrals}
@@ -1400,7 +1400,7 @@ For later reference, recall that the upper and lower signs hold for bosons and f
 
 \formulawithproof{Gaussian integral over one real number}{
 	\begin{equation}
-		\int_{-\infty}^{+\infty} \dif x \, e^{-x^2} = \sqrt{\pi} .
+		\int_{-\infty}^{+\infty} \dif x \, e^{-ax^2} = \sqrt{\frac{\pi}{a}} .
 	\label{eq:integrals:gaussian_axx}
 	\end{equation}
 }{
@@ -1442,7 +1442,7 @@ For later reference, recall that the upper and lower signs hold for bosons and f
 	\begin{equation*}
 		\psi^\dagger A \psi = \psi^\dagger U^\dagger D U \psi = (U \psi)^\dagger D (U \psi) = \tilde\psi^\dagger D \tilde\psi, \quad \text{where } \tilde\psi = U \psi .
 	\end{equation*}
-	The unitary transformation has $\abs{\tdet U} = 1$, so the integration measure $\dif \psi = \dif \tilde\psi$ is unchanged upon changing variables.
+	The unitary transformation has $\abs{\tdet U} = 1$, so the integration measure $\dif \psi = \dif \tilde\psi$ is unchanged upon changing variables from $\psi$ to $\tilde\psi$.
 	A Hermitian matrix has real eigenvalues, so we can use integral \eqref{eq:integrals:gaussian_grassmann_one} to show that
 	\begin{equation*}
 	\begin{split}
@@ -1519,10 +1519,10 @@ To this end, we define the dimensionless
 \end{align}%
 \label{eq:numtov:dimensionless_variables}%
 \end{subequations}%
-The precise values of $r_0$ and $m_0$ are chosen to be natural scales for the radius and mass of compact stars, and the values of the remaining quantities follow from these and fundamental physical constants.
+The precise values of $r_0$ and $m_0$ are chosen to be natural scales for radii and masses of compact stars, and the values of the remaining quantities follow from these and fundamental physical constants.
 In short, any variable in this appendix that wears a hat $\, \hat{} \, $ is the dimensionless version of its hatless dimensionful sibling, obtained by dividing the latter by whatever constant in \cref{eq:numtov:dimensionless_variables} that has the same dimension.
 
-We define the required constants in a separate file.
+We define the required constants in a separate file:
 
 \codefile{python}{../code/constants.py}{constants.py}
 
@@ -1544,7 +1544,7 @@ With this additional equation, the system reads
 \end{align}
 \end{subequations}
 This is a system of three differential equations in the form $\odv{\vec{y}}/{t} = f(t, \vec{y})$ with $t=r$ and $\vec{y} = [P,\, m,\, \alpha]$ that is suitable for Runge-Kutta integration algorithms.
-With the dimensionless variables \eqref{eq:numtov:dimensionless_variables}, the Tolman-Oppenheimer-Volkoff system \eqref{eq:numtov:tovsys} is
+With the dimensionless variables \eqref{eq:numtov:dimensionless_variables}, the Tolman-Oppenheimer-Volkoff system \eqref{eq:numtov:tovsys} is equivalent to
 \begin{subequations}
 \label{eq:numtov:tovsys_dimless_simple}
 \begin{align}
@@ -1560,20 +1560,21 @@ As explained at the start of this chapter, we implement the latter boundary cond
 \end{equation}
 
 To find the mass and radius of some star with central pressure $\diml{P}_0$, we integrate the system \eqref{eq:numtov:tovsys_dimless_simple} until $\diml{P} \le 0$.
-We then terminate the integration algorithm and call the final radius $\diml{r} = \diml{R}$ and mass $\diml{m}(\diml{R}) = \diml{M}$ the radius and mass of the star.
-By parametrizing multiple stars with a range of central pressures $\diml{P}_0$ and performing this task for each of them, we obtain a mass-radius relation of the star.
+We then terminate the integration algorithm and call the final radius $\diml{r} = \diml{R}$ the radius of the star, and the corresponding mass $\diml{m}(\diml{R}) = \diml{M}$ the mass of the star.
+By parametrizing multiple stars with a range of central pressures $\diml{P}_0$ and performing this task for each of them, we obtain a mass-radius curve for the stars.
 
 Below is a small Python program that accomplishes all of this for an arbitrary equation of state $\diml\epsilon = \diml\epsilon(\diml{P})$.
 The function \verb|massradiusplot| can be run with the optional parameter \verb|visual=True| to show the mass-radius relation in real-time, updating it every time the mass and radius of a new star is found.
 Typically, stars distributed uniformly between two central pressures may be located very non-uniformly in the mass-radius space.
-To circumvent this difficulty and make the mass-radius curve as smooth as possible, we take an adaptive approach by recursively splitting an initial central pressure interval $(\diml{P}_1, \diml{P}_2)$ until the Euclidean distance $[ \, (\smash[b]{\diml{R}}_2-\smash[b]{\diml{R}}_1)^2 + (\smash[b]{\diml{M}}_2-\smash[b]{\diml{M}}_1)^2 \, ]^{1/2}$ between all points on the curve is below some given tolerance.
-The program optionally checks the stability of stars by the definition in \cref{sec:nstars:stability_general} and numerical method described in the next section.
+To circumvent this difficulty and make the mass-radius curve as smooth as possible, we take an adaptive approach by recursively splitting an initial central pressure interval $(\diml{P}_1, \diml{P}_2)$ until the Euclidean distance $[ \, (\smash[b]{\diml{R}}_2-\smash[b]{\diml{R}}_1)^2 + (\smash[b]{\diml{M}}_2-\smash[b]{\diml{M}}_1)^2 \, ]^{1/2}$ between all points in the mass-radius diagram is below some given tolerance.
+Optionally, the program checks the stability of stars using the numerical method described in the next section.
 
 \codefile{python}{../code/tov.py}{tov.py}
 
 \section{Stability analysis with the shooting method}
 \label{sec:numerics:shooting_method}
 
+In \cref{sec:nstars:stability_general}, we showed that the stability of a star could be determined by checking the sign of the lowest squared eigenvalue of a Sturm-Liouville problem.
 Here, we describe how the shooting method determines the eigenvalues $\omega_n^2$ and corresponding eigenfunctions $U_n(r)$ of the Sturm-Liouville problem
 \begin{subequations}
 \begin{align}
@@ -1584,7 +1585,7 @@ Here, we describe how the shooting method determines the eigenvalues $\omega_n^2
 \label{eq:shooting:sturm_liouville_problem}%
 \end{subequations}%
 with the coefficient functions \eqref{eq:nstars:sturm_liouville_coefficients} that we encountered in \cref{eq:nstars:sturm_liouville_problem} in \cref{sec:nstars:stability_general} and our numerical implementation of it.
-We recommend looking at \cref{fig:nstars:shooting_convergence} while reading this explanation, where it is illustrated how the method finds the mode $n=0$ for such a Sturm-Liouville problem.
+We recommend reading this explanation in parallel with \cref{fig:nstars:shooting_convergence}, which illustrates how this method finds the mode $n=0$ for such a Sturm-Liouville problem.
 
 \subsubsection{Description}
 \label{sec:numerics:shooting_method_description}
@@ -1596,25 +1597,28 @@ The shooting method finds any \emph{one} eigenvalue $\omega_n^2$ and its corresp
 \item \textbf{Shoot} the corresponding guess $U(r)$ for the eigenfunction $U_n(r)$ by numerically integrating the Sturm-Liouville equation \eqref{eq:shooting:sturm_liouville_diffeq} to $r=R$. \label{item:shooting:shoot}
 \item \textbf{Count} the number of nodes $n(\omega^2)$ of $U(r)$.
       \begin{enumerate}
-      \item If $n(\omega^2) > n$, then Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros} on page~\pageref{item:nstars:sturm_liouville_zeros} implies that $\omega^2 > \omega_n^2$, so \textbf{decrease} the guess for $\omega^2$.
-      \item If $n(\omega^2) \leq n$, then Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros} on page~\pageref{item:nstars:sturm_liouville_zeros} implies that $\omega^2 < \omega_n^2$, so \textbf{increase} the guess for $\omega^2$.
+      \item If $n(\omega^2) > n$, then Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros} on page~\pageref{item:nstars:sturm_liouville_zeros} implies that $\omega^2 > \omega_n^2$, so \textbf{decrease} the guess for $\omega^2$ and repeat this process. \label{item:shooting:count_decrease}
+      \item If $n(\omega^2) \leq n$, then Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros} on page~\pageref{item:nstars:sturm_liouville_zeros} implies that $\omega^2 < \omega_n^2$, so \textbf{increase} the guess for $\omega^2$ and repeat this process. \label{item:shooting:count_increase}
       \end{enumerate}
       \label{item:shooting:count}
 % catalogue paper, see paragraph across page 507-508
 \end{enumerate}
+By repeating the process with increasingly better guesses $\omega^2$, we get ever closer to the true eigenvalue $\omega_n^2$.
+
 In \cref{fig:nstars:shooting_convergence}, it is shown that every $U(r)$ seems to diverge as $r \rightarrow R$, breaking boundary condition \eqref{eq:shooting:sturm_liouville_bc2}.
-In theory, $U(r)$ does not diverge and hence satisfies the boundary condition only if one guesses the \emph{exact} correct eigenvalue $\omega_n^2$.
+In theory, $U(r)$ does not diverge and hence satisfies the boundary condition \emph{only} if one guesses the \emph{exact} correct eigenvalue $\omega_n^2$.
 In practice, inaccuracy of the numerical integration will prevent one from guessing the exact eigenvalue -- it will only be possible to guess a value very close to it.
 As our guess gets very close to the true eigenvalue, the function $U(r)$ will diverge towards $+\infty$ or $-\infty$ with $n$ nodes for guesses $\omega^2 < \omega_n^2$ slightly below the true eigenvalue.
 For guesses $\omega^2 > \omega_n^2$ slightly above the true eigenvalue, the function will have $n+1$ nodes and diverge towards the oppositely signed infinity.
 Essentially, we are looking for the precise value of $\omega^2$ that causes the blowup of $U(r)$ close to $r=R$ to ``tip over'' from one infinity $\pm \infty$ to other infinity $\mp \infty$, as shown with the \textcolor{red}{red} and \textcolor{blue}{blue} guesses in \cref{fig:nstars:shooting_convergence}.
 
-The rule that we should increase our guess not only if $n(\omega^2) < n$, but also if $n(\omega^2) = n$, is a little technical and deserves an explanation.
+Rule \ref{item:shooting:count_increase} that we should increase our guess not only if $n(\omega^2) < n$, but also if $n(\omega^2) = n$, is a little technical and deserves an explanation.
 Suppose we are looking for the lowest mode $n = 0$ and have guessed a value of $\omega^2$ with $n(\omega^2) = 0$ zeros.
+Is the true eigenvalue $\omega_n^2$ less than or greater than the guess $\omega^2$?
 If the true eigenvalue $\omega_n^2$ had been \emph{less} than $\omega^2$, then any lower guess of $\omega^2$ would also give $n(\omega^2) = 0$ zeros, for a function cannot have less than zero zeros!
-But then we could repeat the same reasoning infinitely many times and ultimately reach the conclusion that the eigenvalue is $\omega_0^2 = -\infty$, which is neither physically sound or consistent with the mathematical Sturm-Liouville property \ref{item:nstars:sturm_liouville_eigenvalues} on page~\pageref{item:nstars:sturm_liouville_eigenvalues}.
+But then we could repeat the same reasoning indefinitely and ultimately reach the conclusion that the eigenvalue is $\omega_0^2 = -\infty$, which is neither physically sound or consistent with the mathematical Sturm-Liouville property \ref{item:nstars:sturm_liouville_eigenvalues} on page~\pageref{item:nstars:sturm_liouville_eigenvalues}.
 By contradiction, then, the eigenvalue must be \emph{greater} than the initial guess, explaining why we should increase our guess also if $n(\omega^2) = n$ with $n = 0$.
-If instead $n = 1$ and we guess $\omega^2$ with $n(\omega^2) = 1$ zeros, then decreasing our guess would eventually yield the incorrect eigenvalue $\omega_0^2$, and not the desired eigenvalue $\omega_1^2$.
+If instead $n = 1$ and we guess $\omega^2$ with $n(\omega^2) = n = 1$ zeros, then decreasing our guess would eventually yield the incorrect eigenvalue $\omega_0^2$, and not the desired eigenvalue $\omega_1^2$.
 Thus, we have to increase our guess if $n=1$ too, and the rule now follows for all $n$ by induction.
 
 The efficiency of the shooting method hinges on the precise way in which it refines the guesses for the eigenvalues in step \ref{item:shooting:count} above.
@@ -1623,9 +1627,9 @@ To make it fast, our actual implementation carries out the search in the followi
 \item Establish a lower bound $\omega_-^2$ and an upper bound $\omega_+^2$ for $\omega_n^2$ that have $n(\omega_-^2) \leq n$ and $n(\omega_+^2) > n$ zeros.
       To do so, guess \emph{any} eigenvalue, for example $\omega^2 = 0$, shoot $U(r)$ and count its number of nodes $n(\omega^2)$.
       \begin{itemize}
-      \item If $n(\omega^2) \leq n$, set the lower bound $\omega_-^2 = \omega^2$.
+      \item If $n(\omega^2) \leq n$, set the lower bound to $\omega_-^2 = \omega^2$.
             Find an upper bound by increasing $\omega^2$ exponentially up from $\omega_-^2$ and shooting $U(r)$ with step \ref{item:shooting:bc1} and \ref{item:shooting:shoot} above until it has $n(\omega^2) > n$ nodes, then set the upper bound $\omega_+^2 = \omega^2$.
-      \item If $n(\omega^2) >    n$, then $\omega_+^2 = \omega^2$ is an upper bound.
+      \item If $n(\omega^2) >    n$, set the upper bound to $\omega_+^2 = \omega^2$.
             Find a lower bound by decreasing $\omega^2$ exponentially down from $\omega_+^2$ and shooting $U(r)$ with step \ref{item:shooting:bc1} and \ref{item:shooting:shoot} above until it has $n(\omega^2) \leq n$ nodes, then set the lower bound $\omega_-^2 = \omega^2$.
       \end{itemize}
       \label{item:shooting:bounds}
@@ -1634,7 +1638,7 @@ To make it fast, our actual implementation carries out the search in the followi
       \item If $n(\omega^2) \leq n$, then $\omega^2$ is a tighter lower bound than $\omega_-^2$, so set $\omega_-^2 = \omega^2$.
       \item If $n(\omega^2) >    n$, then $\omega^2$ is a tighter upper bound than $\omega_-^2$, so set $\omega_+^2 = \omega^2$.
       \end{itemize}
-\item Repeat step \ref{item:shooting:newguess} until the bounds $\omega_-^2$ and $\omega_+^2$ are so close that any value in the interval $[\omega_-^2, \, \omega_+^2]$ is a satisfactory approximation for the true eigenvalue $\omega_n^2$.
+\item Repeat step \ref{item:shooting:newguess} until the bounds $\omega_-^2$ and $\omega_+^2$ are so close that any value in the interval $[\omega_-^2, \, \omega_+^2]$ is a satisfactory approximation to the true eigenvalue $\omega_n^2$.
 \item Output $\omega^2 = (\omega_-^2 + \omega_+^2) / 2 \approx \omega_n^2$ as the final approximation of the true eigenvalue.
 \end{enumerate}
 This algorithm runs \emph{logarithmically fast}, because the interval $[\omega_-^2, \, \omega_+^2]$ is enlarged \emph{exponentially} in step \ref{item:shooting:bounds} and \emph{halved} at every iteration of step \ref{item:shooting:newguess}.
@@ -1668,46 +1672,46 @@ On top of this, we implement the shooting method as described in \cref{sec:numer
 Some further remarks about our implementation are in order.
 \begin{itemize}
 \item To impose boundary condition \eqref{eq:shooting:sturm_liouville_bc1} in step \ref{item:shooting:bc1} on page~\pageref{item:shooting:bc1}, we set $\hat{U}(\hat{r}) = \hat{r}^3$ for all discrete points with $\hat{r} < 0.01 \hat{R}$.
-\item To numerically integrate the Sturm-Liouville differential equation \eqref{eq:shooting:sturm_liouville_diffeq} for after $\hat{r} \geq 0.01 \hat{R}$ in step \ref{item:shooting:shoot} on page~\pageref{item:shooting:shoot}, we first use the product rule to rewrite it as
+\item To numerically integrate the Sturm-Liouville differential equation \eqref{eq:shooting:sturm_liouville_diffeq} for $\hat{r} \geq 0.01 \hat{R}$ in step \ref{item:shooting:shoot} on page~\pageref{item:shooting:shoot}, we first use the product rule to rewrite it as
       \begin{equation}
 	      0 = \hat{\Pi} \hat{U}'' + \hat{\Pi}' \hat{U}' + \left( \hat{Q} + \hat{\omega}^2 \hat{W} \right) \hat{U} .
       \end{equation}
-      Denoting the discrete points by $r_i$ and values of functions there by $f_i = f(r_i)$, we approximate all derivatives with the central finite differences
+      Denoting the discrete points by $\hat{r}_i$ and values of functions there by $\hat{f}_i = \hat{f}(\hat{r}_i)$, we approximate all derivatives with the central finite differences
       \begin{equation}
-          f_i'' \approx \frac{f'_{i+1/2}-f'_{i-1/2}}{r_{i+1/2}-r_{i-1/2}}
+          \hat{f}_i'' \approx \frac{\hat{f}'_{i+1/2}-\hat{f}'_{i-1/2}}{\hat{r}_{i+1/2}-\hat{r}_{i-1/2}}
           \qquad \text{and} \qquad
-          f_i' \approx \frac{f_{i+1}-f_{i-1}}{r_{i+1}-r_{i-1}} .
+          \hat{f}_i' \approx \frac{\hat{f}_{i+1}-\hat{f}_{i-1}}{\hat{r}_{i+1}-\hat{r}_{i-1}} .
       \end{equation}
       This lets us compute the next, unknown value
       \begin{equation}
-            U_{i+1} = \frac{1}{C_+} \Big( C \cdot U_i + C_- \cdot U_{i-1} \Big)
+            \hat{U}_{i+1} = \frac{1}{C_+} \Big( C \cdot \hat{U}_i + C_- \cdot \hat{U}_{i-1} \Big)
       \end{equation}
-      from the previous known values $U_i$ and $U_{i-1}$ and the known coefficients
+      from the two previous known values $\hat{U}_i$ and $\hat{U}_{i-1}$ and the known coefficients
       \begin{subequations}
       \begin{align}
-          C_-             &= -\frac{2 \Pi_i}{r_i-r_{i-1}} + \Pi'_i , \\
-          C_{\phantom{-}} &= +\frac{2 \Pi_i}{r_{i+1}-r_i} + \frac{2 \Pi_i}{r_i-r_{i-1}} - \Big( r_{i+1} - r_{i-1} \Big) \Big( Q_i + \omega^2 W_i \Big) , \\
-          C_+             &= +\frac{2 \Pi_i}{r_{i+1}-r_i} + \Pi'_i .
+          C_-             &= -\frac{2 \hat{\Pi}_i}{\hat{r}_i-\hat{r}_{i-1}} + \hat{\Pi}'_i , \\
+          C_{\phantom{-}} &= +\frac{2 \hat{\Pi}_i}{\hat{r}_{i+1}-\hat{r}_i} + \frac{2 \hat{\Pi}_i}{\hat{r}_i-\hat{r}_{i-1}} - \Big( \hat{r}_{i+1} - \hat{r}_{i-1} \Big) \Big( \hat{Q}_i + \hat{\omega}^2 \hat{W}_i \Big) , \\
+          C_+             &= +\frac{2 \hat{\Pi}_i}{\hat{r}_{i+1}-\hat{r}_i} + \hat{\Pi}'_i .
       \end{align}
       \end{subequations}
 \item To prevent numerical integration from breaking down, we stop the numerical integration at $\hat{r} = 0.99 \hat{R}$ and linearly interpolate
       \begin{equation}
-          U_{i+1} = U_i + \frac{U_i - U_{i-1}}{r_i - r_{i-1}} \Big( r_{i+1} - r_i \Big) .
+          \hat{U}_{i+1} = \hat{U}_i + \frac{\hat{U}_i - \hat{U}_{i-1}}{\hat{r}_i - \hat{r}_{i-1}} \Big( \hat{r}_{i+1} - \hat{r}_i \Big)
       \end{equation}
       for the remaining points $\hat{r} > 0.99 \hat{R}$.
-      The point $r=R$ is a singular point because $Q(R) = W(R) = 0$, causing $U(r)$ to blow up there and making it very difficult for numerical integration to follow it.
-      Our assumption is that at $r = 0.99 R$, the blowup has already started, and the purpose of the linear interpolation is merely to capture the blowup all the way out to $r=R$ without care of the exact functional form of $U(r)$ there.
-\item It should also be noted that numerical errors may occur due to division by zero in the coefficient functions in the regions $r < 0.01 R$ and $r > 0.99 R$, but not in the intermediate region $0.01 R < r < 0.99 R$.
-      This is not an issue, because we enforce the form of $U(r)$ in these two regions independently of the coefficient functions.
+      The point $r=R$ is a singular point because $Q(R) = W(R) = 0$, causing $\hat{U}(\hat{r})$ to blow up there and making it very difficult for numerical integration to follow it.
+      Our assumption is that at $\hat{r} = 0.99 \hat{R}$, the blowup has already started, and the purpose of the linear interpolation is merely to capture the blowup all the way out to $\hat{r}=\hat{R}$ without care of the exact functional form of $\hat{U}(\hat{r})$ there.
+\item It should also be noted that numerical errors may occur due to division by zero in the coefficient functions in the regions $\hat{r} < 0.01 \hat{R}$ and $\hat{r} > 0.99 \hat{R}$, but not in the intermediate region $0.01 \hat{R} < \hat{r} < 0.99 \hat{R}$.
+      This is not an issue, because we enforce the form of $\hat{U}(\hat{r})$ in these two regions independently of the coefficient functions.
 \end{itemize}
 
-Below is our implementation of the shooting method in Python based on this description.
+Here is our implementation of the shooting method in Python based on this description:
 
 \codefile{python}{../code/stability.py}{stability.py}
 
 \section{Utilities}
 
-We also write a few utility functions for data management.
+We also write a few utility functions for data management:
 
 \codefile{python}{../code/utils.py}{utils.py}
 
@@ -1715,6 +1719,6 @@ We also write a few utility functions for data management.
 \label{sec:num:nstars}
 
 Below, we use the general framework above to find the mass-radius relation for ideal neutron stars.
-We make a total of four sweeps for the mass-radius diagram \cref{fig:nstars:massradius}, using both the non-relativistic equation of state \cref{eq:nstars:nr_eos} and the general equation of state \cref{eq:nstars:gr_eos}, and solving both the relativistic Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov:tovsys} and the Newtonian limit with the pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient}.
+We make a total of four sweeps for the mass-radius diagram in \cref{fig:nstars:massradius}, using both the non-relativistic equation of state \eqref{eq:nstars:nr_eos} and the general equation of state \eqref{eq:nstars:gr_eos}, and solving both the relativistic Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov:tovsys} and the Newtonian limit with the pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient}.
 
 \codefile{python}{../code/neutron_stars.py}{neutron\_stars.py}
