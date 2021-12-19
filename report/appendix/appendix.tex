@@ -24,7 +24,7 @@ They are rather intertwined into \emph{spacetime} -- a $(3+1)$-dimensional const
 \end{equation}
 In flat Minkowski space, the coordinates can be taken as $x^\mu = (ct, x, y, z)$.
 Mathematically, the geometry of spacetime is described by a \emph{Riemannian manifold} that generalizes flat Minkowski space to \emph{curved space}.
-At every point on such a manifold, spacetime locally resembles Minkowski space in the \emph{tangent space} located at that point, and all such tangent spaces vary in a smooth manner from point to point.
+At every point on such a manifold, spacetime locally resembles Minkowski space in the \emph{tangent space} located at that point, and all such tangent spaces vary smoothly from point to point.
 For example, \cref{fig:tangent_space} pictures the tangent space at a point of the $2$-sphere manifold.
 Familiar concepts like angles, lengths, area and volume apply locally in the tangent space at each point in infinitesimal form, and one can generalize such concepts to the full manifold by integrating the local contributions from one point on the manifold to another.
 
@@ -321,7 +321,7 @@ However, general relativity is concerned with describing \emph{macroscopic} obje
 \centering
 \includesvg[width=0.5\textwidth]{figures/parallel_transport.svg}
 \caption{\label{fig:parallel_transport}%
-	When a vector is parallel transported around a closed loop on the $2$-sphere, its final direction depends on the path taken.
+	When a vector is parallel transported around the closed loop $A \rightarrow N \rightarrow B \rightarrow A$ on the $2$-sphere, its final direction depends on the path taken.
 	\credit{``Fred the Oyster''}{https://commons.wikimedia.org/wiki/File:Parallel_Transport.svg}
 }
 \end{figure}
@@ -375,7 +375,7 @@ Explicitly inserting the covariant derivative \eqref{eq:def_cov_deriv}, this com
 	[ \nabla_\mu, \nabla_\nu ] V^\rho = R\indices{^\rho_{\sigma \mu \nu}} V^\sigma - T\indices{^\lambda_{\mu \nu}} \nabla_\lambda V^\rho ,
 \label{eq:gr_summary:derivative_commutator}
 \end{equation}
-where $T\indices{^\lambda_{\mu \nu}}$ is the torsion tensor \eqref{eq:torsion_tensor} that we assume to vanish and we define the \textbf{Riemann curvature tensor}
+where $T\indices{^\lambda_{\mu \nu}}$ is the torsion tensor \eqref{eq:torsion_tensor} that we assume to vanish, and we define the \textbf{Riemann curvature tensor}
 \begin{equation}
 	R\indices{^\rho_\sigma_\mu_\nu} =
 	\partial\indices{_\mu} \Gamma^\rho_{\nu \sigma} -
@@ -401,7 +401,7 @@ Moreover, \textbf{Einstein's equivalence principle} and the related \textbf{prin
 
 From the curvature tensor, we can form tensors of lower rank by contracting some of its indices.
 %We know that the energy-momentum tensor $T^{\mu \nu}$ that enter the Einstein field equations \eqref{eq:einstein} are of second rank, so if it is to determine the curvature of spacetime by a tensor equation, then the curvature tensor must be contracted to form a tensor of equal rank.
-With the Christoffel connection \cref{eq:def_christoffel}, it the only independent contraction we can make is the \textbf{Ricci tensor}
+With the Christoffel connection \cref{eq:def_christoffel}, the only independent contraction we can make is the \textbf{Ricci tensor}
 \begin{equation}
 	R\indices{_\mu_\nu} = R\indices{^\lambda_\mu_\lambda_\nu} .
 	\label{eq:def_ricci_tensor}
@@ -442,7 +442,7 @@ We postulate the \textbf{Hilbert action}
 	S_H = \frac{c^3}{16 \pi G} \int \dif^n x \sqrt{-\det{g}} \, R .
 	\label{eq:einstein_derivation:hilbert_action}
 \end{equation}
-As the Lagrangian is a scalar quantity and we showed that the simplest scalar quantity we could create that somehow describes curvature is the Ricci scalar \eqref{eq:def_ricci_scalar}, it is not an unreasonable guess.
+It is not an unreasonable guess, for the Lagrangian is a scalar quantity, and we showed that the simplest scalar quantity we could create that somehow describes curvature is the Ricci scalar \eqref{eq:def_ricci_scalar}.
 The prefactor has been conveniently chosen to yield correct result \eqref{eq:einstein_derivation:einstein_matter} in the end, which we will see in \cref{sec:einstein_to_poisson} leads to Newtonian gravity in the Newtonian limit.
 From an ignorant point of view, we could instead regard the prefactor as an arbitrary constant at this point, and eventually replace it with whichever combination of constants that reproduces Newtonian gravity in the Newtonian limit.
 
@@ -769,7 +769,7 @@ The output of the program precisely matches equation \eqref{eq:einstein_to_tov:m
 \label{chap:relfluid}
 
 In this appendix, we will derive a number of important results from relativistic fluid mechanics needed for stability analysis of stars.
-We will look at the flow of fluid elements along stream lines $x(\tau)$ in a \textbf{perfect fluid} characterized by its pressure $P = P(x)$ and energy density $\epsilon = \epsilon(x)$.
+We will look at the flow of fluid elements along streamlines $x(\tau)$ in a \textbf{perfect fluid} characterized by its pressure $P = P(x)$ and energy density $\epsilon = \epsilon(x)$.
 
 \textit{This appendix is inspired by references \cite{ref:mtw} and \cite{ref:weinberg_gravity}.}
 
@@ -858,7 +858,7 @@ From \cref{eq:relfluid:baryon_number_divergence}, we can rewrite the conservatio
 	              = -n \nabla_\mu u^\mu ,
 \label{eq:relfluid:baryon_number_rate_change}
 \end{equation}
-expressing the rate of change of the density along a stream line.
+expressing the rate of change of the density along a streamline.
 
 In the Newtonian limit, $u^\mu = (c, \vec{v})$ and the vanishing divergence \cref{eq:relfluid:baryon_number_divergence} can be rewritten as a familiar continuity equation for the baryon number density,
 \begin{equation}
@@ -1509,7 +1509,7 @@ In this appendix, we explain and list all code used to produce the results of th
 
 \section{Elimination of dimensionful quantities}
 
-In order to avoid issues with numerical instability, it is wise to eliminate physical scales from problems that we will solve numerically, so floating-point numbers can kept as close to $1$ as possible.
+In order to avoid issues with numerical instability, it is wise to eliminate physical scales from problems that we will solve numerically, so floating-point numbers can be kept as close to $1$ as possible.
 To this end, we define the dimensionless
 \begin{subequations}
 \begin{align}
@@ -1522,7 +1522,7 @@ To this end, we define the dimensionless
 \label{eq:numtov:dimensionless_variables}%
 \end{subequations}%
 The precise values of $r_0$ and $m_0$ are chosen to be natural scales for radii and masses of compact stars, and the values of the remaining quantities follow from these and fundamental physical constants.
-In short, any variable in this appendix that wears a hat $\, \hat{} \, $ is the dimensionless version of its hatless dimensionful sibling, obtained by dividing the latter by whatever constant in \cref{eq:numtov:dimensionless_variables} that has the same dimension.
+In short, any variable in this appendix that wears a hat $\, \hat{} \, $ is the dimensionless version of its hatless dimensionful sibling, obtained by dividing the latter by whichever constant in \cref{eq:numtov:dimensionless_variables} that has the same dimension.
 
 We define the required constants in a separate file:
 
@@ -1607,7 +1607,7 @@ The shooting method finds any \emph{one} eigenvalue $\omega_n^2$ and its corresp
 \end{enumerate}
 By repeating the process with increasingly better guesses $\omega^2$, we get ever closer to the true eigenvalue $\omega_n^2$.
 
-In \cref{fig:nstars:shooting_convergence}, it is shown that every $U(r)$ seems to diverge as $r \rightarrow R$, breaking boundary condition \eqref{eq:shooting:sturm_liouville_bc2}.
+\Cref{fig:nstars:shooting_convergence} shows that every $U(r)$ seems to diverge as $r \rightarrow R$, breaking boundary condition \eqref{eq:shooting:sturm_liouville_bc2}.
 In theory, $U(r)$ does not diverge and hence satisfies the boundary condition \emph{only} if one guesses the \emph{exact} correct eigenvalue $\omega_n^2$.
 In practice, inaccuracy of the numerical integration will prevent one from guessing the exact eigenvalue -- it will only be possible to guess a value very close to it.
 As our guess gets very close to the true eigenvalue, the function $U(r)$ will diverge towards $+\infty$ or $-\infty$ with $n$ nodes for guesses $\omega^2 < \omega_n^2$ slightly below the true eigenvalue.
@@ -1618,7 +1618,7 @@ Rule \ref{item:shooting:count_increase} that we should increase our guess not on
 Suppose we are looking for the lowest mode $n = 0$ and have guessed a value of $\omega^2$ with $n(\omega^2) = 0$ zeros.
 Is the true eigenvalue $\omega_n^2$ less than or greater than the guess $\omega^2$?
 If the true eigenvalue $\omega_n^2$ had been \emph{less} than $\omega^2$, then any lower guess of $\omega^2$ would also give $n(\omega^2) = 0$ zeros, for a function cannot have less than zero zeros!
-But then we could repeat the same reasoning indefinitely and ultimately reach the conclusion that the eigenvalue is $\omega_0^2 = -\infty$, which is neither physically sound or consistent with the mathematical Sturm-Liouville property \ref{item:nstars:sturm_liouville_eigenvalues} on page~\pageref{item:nstars:sturm_liouville_eigenvalues}.
+But then we could repeat the same reasoning indefinitely and ultimately reach the conclusion that the eigenvalue is $\omega_0^2 = -\infty$, which is neither physically sound nor consistent with the mathematical Sturm-Liouville property \ref{item:nstars:sturm_liouville_eigenvalues} on page~\pageref{item:nstars:sturm_liouville_eigenvalues}.
 By contradiction, then, the eigenvalue must be \emph{greater} than the initial guess, explaining why we should increase our guess also if $n(\omega^2) = n$ with $n = 0$.
 If instead $n = 1$ and we guess $\omega^2$ with $n(\omega^2) = n = 1$ zeros, then decreasing our guess would eventually yield the incorrect eigenvalue $\omega_0^2$, and not the desired eigenvalue $\omega_1^2$.
 Thus, we have to increase our guess if $n=1$ too, and the rule now follows for all $n$ by induction.

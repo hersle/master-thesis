@@ -90,7 +90,7 @@ It is reasonable that if we drop the infinite contribution to the energy density
 As we remarked on page \pageref{tft:pressure_renormalization_discussion}, the pressure that we obtain directly from $\log Z$ is really undetermined up to the shift of a constant, anyway, justifying that we do indeed have the freedom to remove such an infinite contribution here as well.
 We will therefore \emph{drop the first term of the pressure \eqref{eq:nstars:pressure}}.
 Physically, the pressure should vanish when the energy density vanishes.
-For example, outside the surface of a star the pressure vanishes by definition and we assume we are in vacuum with no energy or mass density.
+For example, outside the surface of a star the pressure vanishes by definition, and we assume we are in vacuum with no energy or mass density.
 We will see below that dropping the term does indeed ensure that this condition is satisfied.
 If you wish, peek ahead and note that both the energy density \eqref{eq:nstars:energy_density_zeroT} and pressure \eqref{eq:nstars:pressure_zeroT} both vanish when $x_F = 0$.
 
@@ -135,7 +135,7 @@ At \emph{absolute} zero temperature $T = 0$, the Fermi-Dirac distribution
 behaves like a step function.
 To see this, observe that $T = 0$ corresponds to $\beta = \infty$, and that the sign of $E - \mu$ then determines whether the exponential $e^{\beta (E - \mu)}$ in the denominator blows up or vanishes, and hence whether the fraction survives.
 Physically, this means that the system is completely degenerate, filling momentum states with $E(\vec{p}) < \mu$ only.
-The filled states with highest momentum $p_F$ make up a so-called \emph{Fermi surface} $\abs{\vec{p}} = p_F$ in momentum space, and the corresponding maximum energy $E_F = \sqrt{\smash[b]{p_F^2 c^2 + m^2 c^4}}$ is called the \emph{Fermi energy}, and is equal to the chemical potential when $T = 0$.
+The occupied states with the greatest momentum $p_F$ make up a so-called \emph{Fermi surface} $\abs{\vec{p}} = p_F$ in momentum space, and the corresponding maximum energy $E_F = \sqrt{\smash[b]{p_F^2 c^2 + m^2 c^4}}$ is called the \emph{Fermi energy}, and is equal to the chemical potential when $T = 0$.
 
 Typical neutron star core temperatures linger around $T_0 \approx \SI{1e6}{\kelvin}$, \cite{ref:glendenning} so how is this relevant for our purposes?
 In the grand canonical ensemble, the temperature $T$ and chemical potential $\mu$ are formally \emph{independent} variables.
@@ -244,9 +244,9 @@ Finally, the pressure \eqref{eq:nstars:dropped_infinities_pressure} is
 \end{equation}
 \end{subequations}
 
-At this point, let us remark that the neglection of the infinite contribution to the pressure \eqref{eq:nstars:pressure} is justified.
+At this point, let us justify the act of dropping the infinite contribution to the pressure \eqref{eq:nstars:pressure}.
 Outside a star, for example, we required that the pressure should vanish when the energy density vanishes.
-Indeed, $\epsilon(x_F) = 0$ only if $x_F = 0$, and $P(x_F=0) = 0$.
+Indeed, now we see that $\epsilon(x_F) = 0$ only if $x_F = 0$, and $P(x_F=0) = 0$.
 
 The equation of state $\epsilon = \epsilon(P)$ follows by eliminating $x_F$ from the energy density \eqref{eq:nstars:energy_density_zeroT} and pressure \eqref{eq:nstars:pressure_zeroT}.
 Due to their complicated dependence on $x_F$, we will do so in three cases of increasing difficulty.
@@ -581,7 +581,7 @@ Then we can apply the chain rule and the rule of inverse derivatives to obtain
 \end{equation}
 We see that $\odv{P}/{\epsilon} < 1$ for all $x_F$ and approaches $1/3$ in the ultra-relativistic limit $x_F \rightarrow \infty$, as we should expect from the corresponding equation of state \eqref{eq:nstars:ur_eos}.
 Alternatively, this can be seen by inspecting the slopes $\odv{\epsilon}/{P} > 1$ of the equations of state in \cref{fig:nstars:eos}.
-Hence, all the stars in \cref{fig:nstars:massradius} satisfy this condition and it does not rule out any stars.
+Hence, all the stars in \cref{fig:nstars:massradius} satisfy this condition, so it does not rule out any of them.
 
 \begin{figure}
 \tikzsetnextfilename{star-explosion}
@@ -752,7 +752,7 @@ Like $\delta \alpha$, $\delta \beta$, $\delta P$ and $\delta \epsilon$, we treat
 We have chosen to name the displacement $\xi$ instead of, say, $\delta r$, to avoid some confusion that can arise with the radial \emph{coordinate} $r$, hoping to increase readability at the cost of some consistency.
 
 What is the relation between the fluid element displacement $\xi(r,t)$ and the fluid's four-velocity?
-By our definition, $\pdv{\xi}/{t} = \odv{r}/{t}$, where the right side is to be interpreted as the derivative of the fluid element's radial coordinate taken \emph{along its world line} -- or \emph{stream line} -- $x(\tau)$.
+By our definition, $\pdv{\xi}/{t} = \odv{r}/{t}$, where the right side is to be interpreted as the derivative of the fluid element's radial coordinate taken \emph{along its worldline} -- or \emph{streamline} -- $x(\tau)$.
 The chain rule then gives
 \begin{equation}
 	\dot\xi = \pdv{\xi}{t} = \odv{r}{t} = \frac{\odv{r}/{\tau}}{\odv{t}/{\tau}} = c \, \frac{u^1}{u^0} .
@@ -839,7 +839,7 @@ In our study of relativistic fluid mechanics in \cref{chap:relfluid}, we also de
 \end{equation}
 On the left side, note that because the equilibrium energy density $\epsilon_0(r)$ is independent of time, we have $\odv{\epsilon}/{\tau} = \odv{\Delta \epsilon}/{\tau}$.
 At first sight, it may sound more correct to write $\odv{\delta \epsilon}/{\tau}$ instead of $\odv{\Delta \epsilon}/{\tau}$.
-However, since the derivative $\odv{}/{\tau}$ is \emph{along the stream line} of the fluid element, it is more accurate to use a Lagrangian change over a Eulerian changes to first order in perturbation theory.
+However, since the derivative $\odv{}/{\tau}$ is \emph{along the streamline} of the fluid element, it is more accurate to use a Lagrangian change over an Eulerian change to first order in perturbation theory.
 Since the radial velocity component \eqref{eq:nstars:velocity_component_r} is already a first-order quantity, only the time component \eqref{eq:nstars:velocity_component_t} contributes to
 \begin{equation}
 \begin{split}
@@ -954,7 +954,7 @@ Substituting the trial solution \eqref{eq:nstars:separation_of_variables} into t
 	\frac{\ddot{T}(t)}{T(t)} = \frac{\left[ \Pi(r) \, U'(r) \right]' + Q(r) \, U(r)}{W(r) \, U(r)} = -\omega^2
 \end{equation}
 must be a constant $-\omega^2$, which can be any complex number at this stage.
-We then find the temporal solutions solutions $T(t) = e^{\pm i \omega t}$, while the spatial function $U(r)$ and $\omega^2$ must solve
+We then find the temporal solutions $T(t) = e^{\pm i \omega t}$, while the spatial function $U(r)$ and $\omega^2$ must solve
 \begin{equation}
 	\odv*{ \left[ \Pi(r) \odv{U(r)}{r} \right] }{r} + \left[ Q(r) + \omega^2 W(r) \right] U(r) = 0 .
 \label{eq:nstars:diffeq_U}
@@ -1122,7 +1122,7 @@ Ultimately, what is physically interesting to us are the stable configurations, 
 
 Multiple methods for determining the stability of stars through the criterion above are catalogued by \cite{ref:stability_methods}.
 The \textbf{shooting method} is a particularly fun numerical technique for finding the eigenfunctions $U_n(r)$ and eigenvalues $\omega_n^2$ of the Sturm-Liouville problem \eqref{eq:nstars:sturm_liouville_problem}.
-Let us put it to use so we can determine the stability of the stars along the curve in \cref{fig:nstars:massradius}.
+Let us put it to use, so we can determine the stability of the stars along the curve in \cref{fig:nstars:massradius}.
 
 \begin{figure}
 \tikzsetnextfilename{shooting-convergence}
@@ -1255,7 +1255,7 @@ We then simply count the number of unstable modes with $\omega_n^2 < 0$ and disp
 The results are very interesting.
 \begin{enumerate}
 \item Starting from the lowest central pressure, and hence lowest central energy and mass densities, all stars are \emph{stable} up until the maximum mass.
-      The part on this segment with lowest central energy density is the territory of Newtonian theory, where we should already expect stars to be stable, but that the situation remains so as relativistic effects take over is not necessarily obvious.
+      The part on this segment with the lowest central energy density is the territory of Newtonian theory, where we should already expect stars to be stable, but that the situation remains so as relativistic effects take over is not necessarily obvious.
 \item At the point of maximum mass, stars gain \emph{one unstable mode}, and the number stays constant as we follow the curve down to the point of the spiral with minimal mass.
       From the necessary stability condition \eqref{eq:nstars:stability_mass_pressure}, we already know that stars on this segment should indeed be unstable.
 \item Beyond the spiral's point of minimal mass, stars acquire a \emph{second unstable mode}.
