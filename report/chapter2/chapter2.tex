@@ -135,14 +135,14 @@ This would be inconsistent unless $B = 2 \pi \hbar$, so completeness in momentum
 \end{equation}
 
 Let us use these properties to demonstrate how a transition amplitude between two states can be written as a path integral.
-When the Hamiltonian $\hat{H}$ is independent of time, a quantum system evolves from an initial state $\ket{\phi_A}$ to the state $\smash[b]{e^{-i \hat{H} T / \hbar}} \ket{\phi_A}$ during the time $T$. \cite[equation 2.28]{ref:sakurai}
+When the Hamiltonian $\hat{H}$ is independent of time, a quantum system evolves from an initial state $\ket{\phi_A}$ to the state $\smash[t]{e^{-i \hat{H} T / \hbar}} \ket{\phi_A}$ during the time $T$. \cite[equation 2.28]{ref:sakurai}
 Later we will study statistical mechanics for a star in thermal equilibrium -- then the Hamiltonian is always independent of time, otherwise the system would not be in equilibrium.
 The transition amplitude for going from the state $\ket{\phi_A}$ to a different state $\ket{\phi_B}$ in the time $T$ is therefore
 \begin{equation}
 	\transampl \qquad (A \rightarrow B) .
 	\label{eq:tft:transition_amplitude_intro}
 \end{equation}
-Now split the time interval $T$ into $N$ intervals $\Delta t = T / N$, and decompose the evolution operator $e^{- i \hat{H} T / \hbar}$ into equally many products of $e^{- i \hat{H} \Delta t / \hbar}$ to write
+Now split the time interval $T$ into $N$ intervals $\Delta t = T / N$, and decompose the evolution operator $\smash[t]{e^{- i \hat{H} T / \hbar}}$ into equally many products of $e^{- i \hat{H} \Delta t / \hbar}$ to write
 \newcommand\pointarrow[1]{\underset{\underset{\displaystyle #1}{\displaystyle \uparrow}}{}}
 \begin{equation}
 	\transampl = \Braket{\phi_B | e^{- i \hat{H} \Delta t / \hbar} \cdots e^{- i \hat{H} \Delta t / \hbar} \cdots e^{- i \hat{H} \Delta t / \hbar} | \phi_A} .
@@ -170,7 +170,7 @@ where we have defined the first and last states
 \label{eq:tft:bosonic_end_states}
 \end{equation}
 The inner products $\braket{\phi_{n+1} | \pi_n}$ can simply be replaced by the exponential \eqref{eq:tft:inner_product_position_momentum}, so let us turn our attention to the matrix elements $\braket{\pi_n | e^{- i \hat{H} \Delta t / \hbar} | \phi_n}$.
-Since the time step $\Delta t$ is assumed to be small, we can expand the exponential $e^{- i \hat{H} \Delta t / \hbar} \taylor 1 - i \hat{H} \Delta t / \hbar$ to first order in time.
+Since the time step $\Delta t$ is assumed to be small, we can expand the exponential $\smash[t]{e^{- i \hat{H} \Delta t / \hbar}} \taylor 1 - i \hat{H} \Delta t / \hbar$ to first order in time.
 Under the assumption that the Hamiltonian $\hat{H}$ is a sum of terms with all \emph{position}-space operators $\hat{\phi}$ on the \emph{right} and all \emph{momentum}-space operators $\hat{\pi}$ on the \emph{left}, we can pull it out of the product at the additional benefit of replacing its operators by their eigenvalues.
 We then obtain
 \begin{equation}
@@ -384,7 +384,7 @@ The associated chemical potential essentially functions as a knob with which we 
 \newcommand\destr{\hat\psi        }
 
 We will now develop a path integral for a fermionic field described by a four-spinor $\psi = [ \psi_0, \psi_1, \psi_2, \psi_3 ]$,
-For example, the Dirac Lagrangian is $\lagr = \bar{\psi} (i \hbar c \, \slashed\partial - m c^2) \psi$ with conjugate momentum $\pi = \fdv{\lagr}/{\dot\psi} = i \hbar \psi^\dagger$, so we are instructed to treat the field and its conjugate \emph{independently} in the path integral.
+For example, the Dirac Lagrangian is $\lagr = \bar{\psi} (i \hbar c \, \slashed\partial - m c^2) \psi$ with conjugate momentum $\pi = \fdv{\lagr}/{\dot\psi} = i \hbar \smash[b]{\psi^\dagger}$, so we are instructed to treat the field and its conjugate \emph{independently} in the path integral.
 This is not a peculiarity of fermionic fields only -- for a complex scalar field $\phi$, for example, we would also be instructed to treat $\phi$ and $\conj\phi$ separately. 
 
 Why do we need to derive the path integral for fermions separately -- can we not just use the bosonic path integral \eqref{eq:tft:bosonic_partition_function} with the appropriate conjugate momentum?
