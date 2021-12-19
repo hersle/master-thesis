@@ -60,17 +60,17 @@ For example, \cite[chapter 4]{ref:glendenning} studies relativistic nuclear fiel
 
 \item
 Our original model includes only neutrons $n$ with the free Dirac Lagrangian
-\begin{equation}
+\begin{equation*}
 	\lagr_\psi = \bar\psi \left( i \gamma^\mu \partial_\mu - m \right) \psi .
 \label{eq:outlook:lagrangian_original}
-\end{equation}
+\end{equation*}
 
 \item
 One improvement is to account for inverse beta decay $ n \rightarrow e^- + p + \bar\nu_e $ of neutrons into electrons, protons and (anti)neutrinos.
 It can be shown that (anti)neutrinos will diffuse out of the star, so a simple extension is then to make the Lagrangian a sum
-\begin{equation}
+\begin{equation*}
 	\lagr_{\psi_n} + \lagr_{\psi_p} + \lagr_{\psi_n}
-\end{equation}
+\end{equation*}
 of three Dirac Lagrangians of the form \eqref{eq:outlook:lagrangian_original}, with one independent field and mass corresponding to neutrons, protons and electrons.
 The partition function then separates into a product of three factors, and the energy density and pressure accordingly becomes a sum of three terms of the form that we have found here.
 Numerical results show that this only gives a \emph{softer} equation of state with a slightly \emph{lower} maximum mass $M_\text{TOV} = 0.70 \solarmass$, and although it is a more accurate description, it really takes us in the wrong direction. \cite[section 3.9.8]{ref:glendenning}
@@ -115,7 +115,7 @@ For each lepton $L$, only a free Dirac Lagrangian $\lagr_{\psi_L}$ is added -- t
 
 Several fields are treated approximately in a relativistic mean field approach.
 Throwing all these particles into the mix, one ends up with the quite complicated Lagrangian
-\begin{equation}
+\begin{equation*}
 \begin{split}
 	\lagr &= \sum_B \left( \lagr_{\psi_B} + \lagr_{\sigma \psi_{B}} + \lagr_{\omega \psi_{B}} + \lagr_{\rho \psi_{B}} \right) + \lagr_\sigma + \lagr_\omega + \lagr_{\sigma \sigma} + \lagr_\rho + \sum_L \lagr_{\psi_L} . \\
 	      %&= \sum_B \bar\psi_B \left( i \gamma^\mu \partial_\mu - m_B + g_{\sigma B} \sigma - g_{\omega B} \gamma_\mu \omega^\mu - \frac12 g_{\rho B} \gamma_\mu \vec{\tau} \cdot \vec\rho^\mu \right) \psi_B \\
@@ -123,7 +123,7 @@ Throwing all these particles into the mix, one ends up with the quite complicate
 	      %&- \frac14 \vec\rho_{\mu\nu}^2 + \frac12 m_\rho^2 \vec\rho_\mu^2 - \frac13 b m_n \left( g_\sigma \sigma \right)^3 - \frac14 c \left( g_\sigma \sigma \right)^4 \\
 	      %&+ \sum_L \bar\psi_L \left( i \gamma^\mu \partial_\mu - m_L \right) \psi_L ,
 \end{split}
-\end{equation}
+\end{equation*}
 With all these effects, numerical results give a maximum mass in the range $1.42 \solarmass < M_\text{TOV} < 2.02 \solarmass$ depending on the values chosen for the coupling constants. \cite[table 1]{ref:neutron_star_hyperon_effect}
 This is much more in line with observations.
 For a gradual, step-by-step exposure to these successive improvements, see also the theses \cite{ref:master_caroline,ref:master_francesco}.
@@ -134,10 +134,10 @@ Since observed neutron stars are pulsars, another relevant path of study is that
 A rotating neutron star breaks spherical symmetry, but retains axial symmetry about its rotation axis.
 This requires a more advanced treatment of general relativity, where the spherically symmetric metric \eqref{eq:tov:metric} must be replaced with the axially symmetric metric
 \cite[section 6]{ref:glendenning}
-\begin{equation}
+\begin{equation*}
 	%\dif s^2 = e^{2 \nu} \dif t^2 - e^{2 \psi} \left( \dif r^2 + r^2 \dif \theta^2 \right) - e^{2 \psi} \left( \dif \phi - \omega \dif t \right)^2
 	\dif s^2 = e^{2\nu(r,\theta)} \dif t^2 - e^{2\lambda(r,\theta)} \dif r^2 - r^2 e^{2 \mu(r,\theta)} \left\{ \dif \theta^2 + \sin^2 \theta \left[ \dif \theta  - \omega(r,\theta) \dif t \right]^2 \right\} ,
-\end{equation}
+\end{equation*}
 and the fluid's four-velocity $u^\mu = (u^0, 0, 0, u^3)$ gains an angular component $u^3 = \odv{\phi}/{\tau}$ in equilibrium.
 The star is then no longer governed by the familiar Tolman-Oppenheimer-Volkoff equations, which were derived under the assumption of no rotation.
 Study of rotating neutron stars is useful because it is directly comparable to observations of pulsars.
