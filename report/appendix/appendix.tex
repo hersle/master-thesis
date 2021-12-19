@@ -1073,7 +1073,9 @@ Mathematically, this can be expressed by the two equal unit vectors
 	\frac{\nabla (\delta P)}{\delta P} = \frac{\nabla (\delta n)}{\delta n} .
 \label{eq:relfluid:pressure_density_gradient_aligned}
 \end{equation}
-A more rigorous way to see this is to note that the pressure depends on the density through an equation of state $P = P(n)$, so by the chain rule,
+A more rigorous way to see this is to note that the pressure at a point $\vec{x}$ depends on the density at that point through an equation of state $P = P(n(t, \vec{x}))$.
+For example, the pressure \eqref{eq:nstars:pressure_zeroT} is a function of $x_F = p_F / mc$, which in turn is determined by the density \eqref{eq:nstars:density_zeroT}.
+By the chain rule, then,
 \begin{equation}
 	\nabla P = \odv{P}{n} \nabla P = \frac{\delta P}{\delta n} \nabla n ,
 \label{eq:relfluid:pressure_density_gradient_aligned_alternative}%

@@ -619,10 +619,10 @@ Based on this, we can derive three rules for what combinations of factors we can
 \item \textbf{For any $i$ in the first parenthesis:} Given that we follow the two next rules, we are free to choose either the factor $1$ or $\psi_i \conj\psi_i$. \label{eq:tft:logic_tree_one}
 \item \textbf{For $j=i$ in the second parenthesis:} 
 If we choose $\psi_i \conj\psi_i$ in the first parenthesis, we \emph{must} choose $1$ in the second to avoid a duplicate factor $\psi_i^2 = 0$.
-Conversely, if we choose $1$ in the first, we \emph{must} choose $-\psi_j \creat_j$ in the second to ``saturate'' the product \eqref{eq:tft:integral_saturated}.
+Conversely, if we choose $1$ in the first, we \emph{must} choose $-\psi_j \smash[t]{\creat_j}$ in the second to ``saturate'' the product \eqref{eq:tft:integral_saturated}.
 \item \textbf{For $k = j = i$ in the third parenthesis:} 
 If we choose $-\psi_j \creat_j$ in the second, we \emph{must} choose $\smash{-\psi_k \creat_k}$ in the third to get $\psi_j \conj\psi_j$ in the field product.
-Conversely, if we choose $1$ in the second, then we have already included $\psi_i \conj\psi_i$ from rule \ref{eq:tft:logic_tree_one}, and we \emph{must} choose $1$ in the third to not ``oversaturate'' the field product. \label{eq:tft:logic_tree_three}
+Conversely, if we choose $1$ in the second, then we have already included $\psi_i \conj\psi_i$ from rule \ref{eq:tft:logic_tree_one}, and we \emph{must} choose $1$ in the third to avoid a duplicate factor $(\conj\psi_i)^2 = 0$. \label{eq:tft:logic_tree_three}
 \end{enumerate}
 Following these rules, the first parenthesis expands to all possible $2^N$ terms.
 For every one of these terms, there is precisely one combination of factors in the second and third parentheses that yields a nonzero contribution.
@@ -646,7 +646,7 @@ With the same reasoning, we can work out that the trace of an operator $\hat{A}$
 \begin{aligned}
 	 & \int \dif \conj{\psi} \int \dif \psi \, \exp \left( -\sum_i \conj{\psi}_i \psi_i \right) \braket{-\psi | \hat{A} | \psi} \\
 	=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i \Big( 1 + \psi_i \conj\psi_i \Big) \braket{0 | \prod_j \Big( 1 + \destr_j \conj\psi_j \Big) \hat{A} \prod_k \Big( 1 - \psi_k \creat_k \Big) | 0} \\
-	=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i \Big( 1 + \psi_i \conj\psi_i \Big) \braket{0 | \prod_j \Big( 1 + \destr_j \conj\psi_j \Big) \hat{A} \Big( 1 - \psi_j \creat_j \Big) | 0} && \big( \text{$k=j$} \big) \\
+	%=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i \Big( 1 + \psi_i \conj\psi_i \Big) \braket{0 | \prod_j \Big( 1 + \destr_j \conj\psi_j \Big) \hat{A} \Big( 1 - \psi_j \creat_j \Big) | 0} && \big( \text{$k=j$} \big) \\
 	%=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i \Big(1 + \conj\psi_i \psi_i \Big) \prod_j \conj\psi_j \psi_j \braket{0 | (1 + \destr_j \psi_j) \hat{A} (1 + \conj\psi_j \creat_j) | 0} \\
 	=& \sum_{n_1=0}^1 \sum_{n_2=0}^1\cdots \sum_{n_N=0}^1 \braket{n_1, n_2, \ldots, n_N | \hat{A} | n_1, n_2, \ldots, n_N} = \trace{\hat{A}} . \\
 	%=& \int \dif \conj{\psi} \int \dif \psi \left[ (-\sum_i \conj\psi_i \psi_i) \braket{0 | \hat{A} | 0} + \braket{0 | (+\sum_j \destr_j \conj\psi_j) \hat{A} (-\sum_k \psi_k \creat_k) | 0} \right] \\
@@ -655,9 +655,13 @@ With the same reasoning, we can work out that the trace of an operator $\hat{A}$
 \end{aligned}
 \label{eq:tft:trace_grassmann_discrete}
 \end{equation}
-Across the third equality, we (anti-)commute $\psi_j$ and $\conj\psi_j$ out of the inner product to write $\smash{\braket{0 | \destr_j \conj\psi_j \hat{A} (-\psi_j \creat_j) | 0} = \psi_j \conj\psi_j \braket{0 | \destr_j \hat{A} \creat_j | 0}}$ while assuming that $\smash{\hat{A}}$ is a ``bosonic'' operator that \emph{commutes} with the Grassmann numbers.
+The rules for multiplying out the parentheses are virtually identical to those in \cref{eq:tft:completeness_grassmann_discrete}.
+Schematically, the two last parentheses give contributions in the form $\smash[b]{\braket{0 | ( \destr_j \conj\psi_j ) \hat{A} ( -\psi_k \creat_k ) | 0}} = + \smash[b]{\psi_k \conj\psi_j \braket{0 | \destr_j \hat{A} \creat_k | 0}}$ and all its multi-particle generalizations, where we must set $j=k$ to get a non-zero contribution.
+In addition, we have \emph{assumed} that $\smash{\hat{A}}$ is a ``bosonic'' operator that \emph{commutes} with the Grassmann numbers, allowing us to move the Grassmann numbers out of the inner product in this way.
 For example, the Dirac Hamiltonian \eqref{eq:tft:dirac_hamiltonian} that we will work with later is such an $\hat{A}$, as it contains \emph{two} field operators.
-Again, the details of the transition to the final line are the same as for \cref{eq:tft:completeness_grassmann_discrete}.
+\emph{Pay special attention to the minus sign in $\bra{-\psi} = \bra{0} \prod_j [1 - \creat_j (-\psi_j)] = \bra{0} \prod_j [1 + \creat_j \psi_j]$ in the first line!}
+Without it, we would not obtain the trace when multiplying out the parentheses.
+\emph{We will soon see that this minus sign is perhaps the most important result of this whole chapter, yet surely the least visible one!}
 
 As we remarked at the start, this analysis was for discrete fields that satisfy the discrete anti-commutators \eqref{eq:tft:fermionic_all_anticommutators}.
 We are studying fields $\psi(\vec{x})$ and $\conj\psi(\vec{x})$ with an infinite number of field operators $\creat(\vec{x})$ and $\destr(\vec{x})$ that satisfy the continuum generalization \eqref{eq:tft:fermion_anticommutators}.
@@ -689,8 +693,8 @@ The most important thing to note is the necessity of the \emph{minus sign} in $\
 
 Using equations \eqref{eq:tft:grassmann_inner_product}, \eqref{eq:tft:completeness_grassmann} and \eqref{eq:tft:trace_grassmann} as our toolbox, let us now construct the path integral for the fermionic partition function.
 We now revert from the above notation with single fermion fields $\psi$ and $\conj\psi$ back to the four-component spinors $\psi$ and $\psi^\dagger$.
-Accordingly, we will write $\prod_{\alpha=0}^3 \dif \psi_\alpha = \dif \psi$ and $\prod_{\alpha=0}^3 \dif \conj\psi_\alpha = \dif \psi^\dagger$ to indicate integration over all four components.
-The partition function \eqref{eq:tft:partition_function} follows from the trace \eqref{eq:tft:trace_grassmann} with $\smash[b]{\hat{A}} = \smash[b]{e^{-\beta (\hat{H} - \mu \hat{N})}}$ as
+Accordingly, we write $\prod_{\alpha=0}^3 \dif \psi_\alpha = \dif \psi$ and $\prod_{\alpha=0}^3 \dif \conj\psi_\alpha = \dif \psi^\dagger$ to indicate integration over all four components.
+The partition function \eqref{eq:tft:partition_function} follows from the trace \eqref{eq:tft:trace_grassmann} with $\smash[t]{\hat{A}} = \smash[t]{e^{-\beta (\hat{H} - \mu \hat{N})}}$ as
 \begin{equation}
 	Z = \int \dif \psi_0^\dagger \int \dif \psi_0 \, e^{-\int \dif^3 x \, \psi_{0}^\dagger(\vec{x}) \psi_{0}(\vec{x})} \Braket{-\psi_0 | e^{-\beta(\hat{H} - \mu \hat{N})} | \psi_0} .
 \label{eq:tft:fermion_path_integral_after_completeness}
@@ -704,6 +708,8 @@ where we defined the left end state
 	\bra{\psi_{N+1}} = \bra{-\psi_0} \qquad \big( \text{\textbf{note the minus sign!}} \big) .
 \label{eq:tft:fermionic_end_state}
 \end{equation}
+We are hiding the minus sign to be able to write the expression in compact product notation.
+Do not forget it!
 Next, expand the Hamiltonian to first order as in \cref{eq:tft:path_integral_hamiltonian_assumption}.
 Then we obtain
 \begin{equation}
