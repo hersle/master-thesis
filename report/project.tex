@@ -66,6 +66,7 @@
 	%\setminted{fontsize=\scriptsize}
 	%\newcommand{\codefile}[2]{\inputminted{#1}{#2}}
 
+	\usepackage[cachedir=.cacheminted/]{minted}
 	\usepackage[skins, breakable, minted]{tcolorbox}
 	\usepackage{lipsum}
 	\setminted{fontfamily=CodeFamily}
@@ -305,7 +306,7 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 %\maketitle
 \frontmatter
 \begin{titlepage}
-\includepdf[pages={1,{},2,{}}]{cover.pdf} % odd-even-odd-even
+\includepdf[pages={1,{},2,{}}]{cover-optimized.pdf} % odd-even-odd-even
 \end{titlepage}
 
 \input{abstract/abstract.tex}
@@ -325,7 +326,7 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 
 \cleartoevenpage % make sure back cover is at even page for proper folding
 %\begin{titlepage} % DO NOT USE, this forces cover to start on ODD page
-\includepdf[pages={3}]{cover.pdf}
+\includepdf[pages={3}]{cover-optimized.pdf}
 %\end{titlepage}
 
 \end{document}
