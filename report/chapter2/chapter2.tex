@@ -3,7 +3,7 @@
 
 \newcommand{\transampl}{\Braket{\phi_B | e^{- i \hat{H} T / \hbar} | \phi_A}}
 
-In this chapter, we will develop a theory for studying quantum fields at finite temperature $T$.
+In this chapter, we will develop the theory for studying quantum fields at finite temperature $T$.
 We will see that there is an elegant mathematical analogy between the path integral for the transition amplitude of a process and the partition function $Z$ of statistical mechanics, allowing us to express the latter in terms of the former.
 
 In a quantum system in the grand canonical ensemble, the partition function is \cite[equation 4.23]{ref:altland_simons}
@@ -11,23 +11,23 @@ In a quantum system in the grand canonical ensemble, the partition function is \
 	Z = \trace \left[ e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} \right] = e^{-\beta \Omega} ,
 \label{eq:tft:partition_function}
 \end{equation}
-where $\hat{H}$ is the Hamiltonian operator, $\beta = 1 / k_B T$ is the inverse temperature, $\mu$ is the chemical potential, $\hat{N}_i$ are number operators and $k_B$ is the Boltzmann constant.
+where $\hat{H}$ is the Hamiltonian operator, $\beta = 1 / k_B T$ is the inverse temperature, $\mu_i$ are chemical potentials with corresponding number operators $\hat{N}_i$, and $k_B$ is the Boltzmann constant.
 The trace can be evaluated in any basis.
 If we find $\log Z$, then we have established the link to thermodynamics with the grand potential $\Omega = -k_B T \log{Z}$, and can obtain thermodynamic observables such as 
 \cite[chapter 5]{ref:jensoluf}
 \begin{subequations}
 \begin{align}
 	%\text{the entropy}                     \quad \thermalavg{S}   &= -\pdv{\Omega}{T} \\
-	            & \text{the average number of particles} & \thermalavg{N_i} & = k_B T \pdv{\log{Z}}{\mu_i},                    & \label{eq:tft:average_number} \\
-	            & \text{the average energy}              & \thermalavg{E}   & = \mu_i \thermalavg{N_i} - \pdv{\log{Z}}{\beta}, & \label{eq:tft:average_energy} \\ % \Omega + T S + \mu_i \thermalavg{N_i} \\
-	\text{and } & \text{the         pressure}            &             P    & = \frac{k_B T}{V} \log{Z}.                       & \label{eq:tft:average_pressure} % -\pdv{\Omega}{V}
+	& \text{the average number of particles} & \thermalavg{N_i} & = k_B T \pdv{\log{Z}}{\mu_i},                    & \label{eq:tft:average_number} \\
+	& \text{the average energy}              & \thermalavg{E}   & = \mu_i \thermalavg{N_i} - \pdv{\log{Z}}{\beta}, & \label{eq:tft:average_energy} \\ % \Omega + T S + \mu_i \thermalavg{N_i} \\
+	& \text{the         pressure}            &             P    & = \frac{k_B T}{V} \log{Z}.                       & \label{eq:tft:average_pressure} % -\pdv{\Omega}{V}
 \end{align}
 \end{subequations}
 In the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}, it is precisely the energy density $\epsilon = \thermalavg{E} / \, V$ expressed in terms of the pressure $P$ that we want to insert.
 As all relevant information about a system can be derived from the partition function, we say that we have ``solved the system completely'' once we have found $Z$.
 
 First, we will review how the transition amplitude for a process can be expressed as a path integral.
-Then we will show how the partition function $Z$ can be expressed as a path integral by Wick rotating the transition amplitude.
+Then we will show how the bosonic partition function $Z$ can be expressed as a path integral by Wick rotating the transition amplitude.
 By introducing anti-commuting Grassmann numbers, we will see that the partition function for a fermionic field looks quite similar to the bosonic one, although their mathematical foundation is very different.
 Finally, we will explicitly calculate the partition function for a bosonic and fermionic gas.
 
@@ -92,7 +92,7 @@ If we find the inner product $\braket{\phi | \pi}$, we can use it together with 
 	\qquad \text{and} \qquad
 	\ket\phi = \int \dif \pi \ket\pi \braket{\pi | \phi} . %= \int \dif \phi \mompos{\pi}{\phi} .
 \end{equation}
-To do so, let us use the position-space representation $\hat{\pi} = (\hbar / i) \fdv{}/{\phi}$ of the momentum operator.
+To do so, let us use the position-space representation $\hat{\pi} = (\hbar / i) \fdv{}/{\phi}$ (like $\hat{p} = (\hbar/i) \pdv{}/{x}$) of the momentum operator.
 This gives us a first-order differential equation
 \begin{equation}
 	\braket{\phi | \hat{\pi} | \pi} = \pi(\vec{x}) \braket{\phi | \pi} = \frac{\hbar}{i} \fdv*{\braket{\phi | \pi}}{\phi}
@@ -113,9 +113,9 @@ Using the Fourier transformation convention
 we have the Delta function $\delta(x'-x) = \int (\dif k / 2 \pi) \, e^{i k (x'-x)}$, so orthogonality takes the form
 \begin{equation}
 \begin{split}
-	\braket{\pi_a | \pi_b} &= \int \dif \phi \braket{\pi_a | \phi} \braket{\phi | \pi_b} \\
-	                       &= \int \dif \phi \exp \left\{ \frac{i}{\hbar} \int \dif^3 x \, \left[ \pi_b(\vec{x}) - \pi_a(\vec{x}) \right] \phi(\vec{x}) \right\} \\
-	                       &= 2 \pi \hbar \, \delta \big( \pi_a(\vec{x}) - \pi_b(\vec{x}) \big) .
+	\braket{\pi | \pi'} &= \int \dif \phi \braket{\pi | \phi} \braket{\phi | \pi'} \\
+	                       &= \int \dif \phi \exp \left\{ \frac{i}{\hbar} \int \dif^3 x \, \left[ \pi'(\vec{x}) - \pi(\vec{x}) \right] \phi(\vec{x}) \right\} \\
+	                       &= 2 \pi \hbar \, \delta \big( \pi(\vec{x}) - \pi'(\vec{x}) \big) .
 \end{split}
 \end{equation}
 To find the completeness relation for $\hat\pi(\vec{x})$, we postulate it up to a constant $B$.
@@ -175,22 +175,22 @@ Under the assumption that the Hamiltonian $\hat{H}$ is a sum of terms with all \
 We then obtain
 \begin{equation}
 \begin{split}
-	\Braket{\pi_n | e^{- i \hat{H} \Delta t / \hbar} | \phi_n} &\taylor \Braket{\pi_n | (1 - i \hat{H} \Delta t / \hbar) | \phi_n} \\
-	                                                           &=       \Braket{\pi_n | \phi_n} (1 - i H_n \Delta t / \hbar) \\
-	                                                           &\taylor \Braket{\pi_n | \phi_n} e^{- i H_n \Delta t / \hbar}, \\
+	\Braket{\pi_n | e^{- i \hat{H} \Delta t / \hbar} | \phi_n} &\taylor \Braket{\pi_n | \Big( 1 - i \hat{H} \Delta t / \hbar \Big) | \phi_n} \\
+	                                                           &=       \Braket{\vphantom{\hat{H}} \pi_n | \phi_n} \Big( 1 - i H_n \Delta t / \hbar \Big) \\
+	                                                           &\taylor \Braket{\vphantom{\hat{H}} \pi_n | \phi_n} e^{- i H_n \Delta t / \hbar}, \\
 \end{split}
 \label{eq:tft:path_integral_hamiltonian_assumption}
 \end{equation}
-where we no longer have any operators, but only the Hamiltonian eigenvalue at the $n$-th timestep,
+where we have no more \emph{operators}, but only the Hamiltonian \emph{eigenvalue} at the $n$-th timestep,
 \begin{equation}
 	H_n = \int \dif^3 x \, \ham \left( \pi_n(\vec{x}), \phi_n(\vec{x}) \right) .
 \label{eq:tft:hamiltonian_eigenvalues}
 \end{equation}
-Since the Hamiltonian $\hat{H} = \hat{H}^\dagger$ is Hermitian, this is still valid if the operators are ordered right-to-left instead of left-to-right.
-The left-right from $\hat{\pi}$ to $\hat{\phi}$ order was only assumed for pedagogical reasons to match the left $\bra{\pi_n}$ and right $\ket{\phi_n}$ in \cref{eq:tft:path_integral_hamiltonian_assumption}.
+Since $\smash[t]{\hat{H}} = \smash[t]{\hat{H}^\dagger}$ is Hermitian, this should still be valid if $\hat{\pi}$ and $\hat{\phi}$ are ordered right-to-left instead of left-to-right.
+The left-right ordering was only assumed for pedagogical reasons to match the left $\bra{\pi_n}$ and right $\ket{\phi_n}$ in \cref{eq:tft:path_integral_hamiltonian_assumption}.
 We will only study Hamiltonians that is fully left-right or right-left ordered, for which these steps are valid.
 Note the importance of expanding the exponential to first order in time only.
-If the Hamiltonian contained \emph{any} mixed sequence of operators such as $H \propto \hat{\pi} \hat{\phi}$, then higher powers like $\hat{H}^2 \propto \hat{\pi} \hat{\phi} \hat{\pi} \hat{\phi}$ in the power series expansion of the time evolution operator would not be in the assumed left-right order.
+If the Hamiltonian contained \emph{any} mixed sequence of operators such as $H \propto \hat{\pi} \hat{\phi}$, then higher powers like $\hat{H}^2 \propto \hat{\pi} \hat{\phi} \hat{\pi} \hat{\phi}$ in the power series expansion of the time evolution operator would not be in the assumed left-right or right-left order.
 
 \iffalse
 (TODO: If the Hamiltonian is \emph{not} in the order we assumed above, we could always bring it into this order by commuting operators using the commutation relation \eqref{eq:tft:boson_field_commutators}.
@@ -298,12 +298,13 @@ with the action
 \fi
 The path integral expresses the transition amplitude for the process $A \rightarrow B$ as a sum over all possible paths through phase space, each weighted by the value on the unit circle with phase corresponding to the action of the path.
 This interpretation is illustrated in \cref{fig:phase_space}.
-Note that the position-space integral $\int \pathintdif \phi$ is constrained to start and end in the initial and final states due to the leftmost and rightmost products with the states \eqref{eq:tft:bosonic_end_states}, but the momentum integral $\int \pathintdif \pi$ has no such constraint.
+Note that the position-space integral $\int \pathintdif \phi$ is constrained to start and end in the initial and final states due to the leftmost and rightmost products with the edge states $\bra{\phi_B}$ and $\ket{\phi_A}$ in the transition amplitude, but the momentum integral $\int \pathintdif \pi$ has no such constraint.
 
 Why have we spent so much time on this transition amplitude, when we really are only interested in the partition function \eqref{eq:tft:partition_function}?
-If we evaluate the trace \eqref{eq:tft:partition_function} in the basis of fields $\ket{\phi_0}$, we obtain
+If we evaluate the trace in the basis of fields $\ket{\phi_0}$, we obtain
 \begin{equation}
 	Z = \int \dif \phi_0 \Braket{\phi_0 | e^{-\beta (\hat{H} - \mu_i \hat{N}_i)} | \phi_0} .
+\label{eq:tft:partition_function_trace_fields}
 \end{equation}
 This is precisely an integral over transition amplitudes \eqref{eq:tft:path_integral_hamiltonian}, but now with 
 \begin{itemize}
@@ -311,15 +312,15 @@ This is precisely an integral over transition amplitudes \eqref{eq:tft:path_inte
 \item the Hamiltonian $\hat{H} - \mu_i \hat{N}_i$ and 
 \item a purely imaginary time variable $t = -i \tau$ with $\tau$ running from $0$ to $\beta \hbar$.
 \end{itemize}
-Thus, we can express the partition function \eqref{eq:tft:path_integral_hamiltonian} as path integrals \eqref{eq:tft:path_integral_hamiltonian} with these simple substitutions!
+Thus, we can express the partition function \eqref{eq:tft:partition_function_trace_fields} as path integrals \eqref{eq:tft:path_integral_hamiltonian} with these simple substitutions!
 We redefine the field $\phi(\vec{x}, t) \rightarrow \phi(\vec{x}, \tau)$ to be functions of the new ``inverse temperature time'' $\tau$.
 Therefore, we substitute $i \int \dif t \rightarrow \int \dif \tau$ and $\dot\phi(x, t) = \pdv{\phi(\vec{x},t)}/{t} \rightarrow \pdv{\phi(\vec{x},\tau)}/{(-i \tau)} = i \dot\phi(\vec{x},\tau)$.
-Omitting the arguments of the fields from now, we obtain
+Omitting the arguments of the fields from now, we obtain the \textbf{bosonic partition function}
 \begin{equation}
 	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \, \exp \left[ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \left( i \pi \dot{\phi} - \ham + \mu \numdensity \right) \right]
 \label{eq:tft:bosonic_partition_function}
 \end{equation}
-where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintdif \phi$ and write $\oint_+$ to indicate that we integrate over all fields $\phi(x, \tau) = \phi(x, \tau + \beta \hbar)$ that are \emph{periodic} in $\tau$, due to the equal start and end states $\phi_A(\vec{x}) = \phi_B(\vec{x})$ in \cref{eq:tft:path_integral_hamiltonian}.
+where we have absorbed $\int \dif \phi_0$ into the path integral $\int \pathintdif \phi$ and write $\oint_+$ to indicate that we integrate over all fields $\phi(x, \tau) = \phi(x, \tau + \beta \hbar)$ that are \emph{periodic} in $\tau$, due to the equal start and end states $\phi_A(\vec{x}) = \phi_B(\vec{x})$ in \cref{eq:tft:partition_function_trace_fields}.
 Thus, thermal field theory -- statistical mechanics for quantum fields at finite temperature -- is essentially equivalent to ordinary quantum field theory with temperature-dependent time and periodic fields, and the partition function is obtained by integrating along closed paths in phase space!
 
 % inspiration:
@@ -339,8 +340,8 @@ Suppose that the field theory admits a conserved current
 	\text{ with }
 	\odv{Q}{t} = 0.
 \end{equation}
-In the corresponding quantized quantum field theory, this is equivalent to the commutation $\comm{\hat{H}}{\hat{Q}} = 0$ between the Hamiltonian operator and charge operator.
-Then $\odv{\thermalavg{Q}}/{t} = \big< \comm{\hat{H}}{\hat{Q}} \big> = 0$ by the Ehrenfest theorem.
+In the corresponding quantized quantum field theory, this is equivalent to the commutation $\comm{\hat{H}}{\hat{Q}} = 0$ between the Hamiltonian operator and charge operator,
+for then $\odv{\thermalavg{Q}}/{t} = \big< \comm{\hat{H}}{\hat{Q}} \big> = 0$ by the Ehrenfest theorem.
 The conserved current $j^\nu(x)$ can be coupled to a gauge field $A_\nu(x)$ by adding the term $A_\nu(x) j^\nu(x)$ to the Lagrangian density $\lagr$, or $-A_\nu(x) j^\nu(x)$ to the Hamiltonian density $\ham$.
 Under a standard, Abelian gauge transformation
 \begin{equation}
@@ -361,7 +362,7 @@ To make contact between the field theory and the grand canonical ensemble where 
 	\numdensity(x) = j^0(x)!
 \label{eq:tft:chemical_potential}
 \end{equation}
-In conclusion, the so far unspecified density $\numdensity$ in the partition function is identified with the charge density $j^0$ corresponding to the conserved charge $Q = \int \dif^3 x \, j^0(x)$.
+In conclusion, the so far unspecified density $\numdensity$ in the partition function is identified with the charge density $j^0$ corresponding to a conserved charge $Q = \int \dif^3 x \, j^0(x)$.
 
 To what extent is this coupling physical?
 In other words, is it possible to remove the gauge field $A_\nu$ with a gauge transformation \eqref{eq:tft:gauge_transformation} such that $A'_\nu = 0$?
@@ -408,7 +409,7 @@ For example,
 \end{split}
 \label{eq:tft:eigenvalues_must_anticommute}
 \end{equation}
-By replacing only one operator with its eigenvalue in the second line, we can also deduce the requirements $\acomm{\psi}{\creat} = \acomm{\psi}{\destr} = 0$.
+By replacing only one operator with its eigenvalue in the second line, we can also deduce the requirements $\acomm{\psi}{\creat} = \acomm{\psi}{\destr} = 0$ between operators and eigenvalues.
 The bosonic path integral \eqref{eq:tft:bosonic_partition_function} and its derivation is therefore not valid for fermions.
 
 \subsubsection{Grassmann numbers}
@@ -429,7 +430,7 @@ Functions of Grassmann numbers are defined by their Taylor expansion, but the pr
 Thus, the most general function of $N$ Grassmann numbers and their conjugates can be written
 \begin{equation}
 \begin{split}
-	f(\psi) &= A + \sum_i A_i \psi_i + \sum_i B_i \conj\psi_i + \sum_{i,j} A_{ij} \psi_i \psi_j + \sum_{i,j} B_{ij} \psi_i \conj\psi_j + \sum_{i,j} C_{i,j} \conj\psi_i \conj\psi_j \\
+	f(\psi) &= A + \sum_i A_i \psi_i + \sum_i B_i \conj\psi_i + \sum_{i,j} A_{ij} \psi_i \psi_j + \sum_{i,j} B_{ij} \psi_i \conj\psi_j + \sum_{i,j} C_{ij} \conj\psi_i \conj\psi_j \\
 	        &+ \ldots + Z_{1 \cdots N} \psi_1 \conj\psi_1 \cdots \psi_N \conj\psi_N .
 \end{split}
 \label{eq:gnums:function_taylor_series}
@@ -485,7 +486,7 @@ By assumption, we therefore start with all the anti-commutators
 \begin{subequations}%
 \begin{align}%
 	\acomm{\destr_i}{\destr_j} = \acomm{\creat_i}{\creat_j}                                                             &= 0            && \quad \text{(similar operators)} , \label{eq:tft:fermionic_anticommutator_sameops} \\
-	\acomm{\destr_i}{\creat_j} = \acomm{\creat_j}{\destr_i}                                                             &= \delta_{i j} && \quad \text{(different operators)} , \label{eq:tft:fermionic_anticommutator_diffops} \\
+	\acomm{\destr_i}{\creat_j} = \acomm{\creat_i}{\destr_j}                                                             &= \delta_{i j} && \quad \text{(different operators)} , \label{eq:tft:fermionic_anticommutator_diffops} \\
 	\acomm{\psi_i}{\psi_j} = \acomm{\psi_i}{\conj\psi_j} = \acomm{\conj\psi_i}{\conj\psi_j}                             &= 0            && \quad \text{(numbers)} , \label{eq:tft:fermionic_anticommutator_gnums} \\
 	\acomm{\psi_i}{\destr_j} = \acomm{\psi_i}{\creat_j} = \acomm{\conj\psi_i}{\destr_j} = \acomm{\conj\psi_i}{\creat_j} &= 0            && \quad \text{(numbers and operators)} . \label{eq:tft:fermionic_anticommutator_gnum_op}
 \end{align}%
@@ -526,7 +527,7 @@ More generally, we can apply any sequence of $n = \sum_i n_i$ different creation
 \end{equation}
 This results in a non-zero state only if all $n_i \in \{0, 1\}$, because $(\creat_i)^2 \ket{0} = -(\creat_i)^2 \ket{0} = 0$ by the anti-commutator \eqref{eq:tft:fermionic_anticommutator_sameops}.
 Note that shuffling the sequence of operators in \cref{eq:tft:fermionic_many_particle_state} can change the sign of the state.
-To avoid ambiguity in our definition, we simply adopt any ordering convention, such as defining the $n$-particle state to have operators with indices that increase from left to right, as in the equation.
+To avoid ambiguity in our definition, we simply adopt any ordering convention, such as defining the $n$-particle state to have operators whose indices increase from left to right, as in the equation above.
 
 The interpretation of this analysis is that the \textbf{creation operator} $\creat_i$ adds a particle in the state $i$, while the \textbf{annihilation operator} $\destr_i$ removes a particle from the same state.
 The restriction that $n_i \in \{0, 1\}$ implies that there can be at most one particle in every state and is called the \emph{Pauli exclusion principle}.
@@ -553,7 +554,7 @@ Applying an annihilation operator to this state gives
 	%\destr_j \ket{\psi} = \destr_j \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} = + \psi_j \destr_j \creat_j \ket{0} = \psi_j \ket{0} .
 	\destr_j \ket{\psi} &= \destr_j \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} && \qquad \big( \text{by \eqref{eq:tft:coherent_state_definition}} \big) \\
 	                    &= \phantom{\destr_j} \prod_{i \neq j} \left( 1 - \psi_i \creat_i \right) \destr_j \left( 1 - \psi_j \creat_j \right) \ket{0} && \qquad \big( \text{by \eqref{eq:tft:fermionic_anticommutator_diffops} and \eqref{eq:tft:fermionic_anticommutator_gnum_op}} \big) \\
-	                    &= \phantom{\destr_j} \prod_{i \neq j} \left( 1 - \psi_i \creat_i \right) \psi_j \ket{0} && \qquad \big( \text{by \eqref{eq:tft:fermionic_anticommutator_diffops}, \eqref{eq:tft:fermionic_anticommutator_gnum_op}, \eqref{eq:tft:destroy_zero} and \eqref{eq:tft:destroy_one}} \big) \\
+	                    &= \phantom{\destr_j} \prod_{i \neq j} \left( 1 - \psi_i \creat_i \right) \psi_j \ket{0} && \qquad \big( \text{by \eqref{eq:tft:fermionic_anticommutator_gnum_op}, \eqref{eq:tft:destroy_zero} and \eqref{eq:tft:destroy_one}} \big) \\
 	                    &= \phantom{\destr_j} \prod_{i \neq j} \left( 1 - \psi_i \creat_i \right) \psi_j \left( 1 - \psi_j \creat_j \right) \ket{0}   && \qquad \big( \text{by \eqref{eq:tft:fermionic_anticommutator_gnums}} \big) \\
                     	&= \psi_j \prod_i \left( 1 - \psi_i \creat_i \right) \ket{0} && \qquad \big( \text{by \eqref{eq:tft:fermionic_anticommutator_gnums} and \eqref{eq:tft:fermionic_anticommutator_gnum_op}} \big) \\
 	                    &= \psi_j \ket{\psi} && \qquad \big( \text{by \eqref{eq:tft:coherent_state_definition}} \big) .
@@ -616,13 +617,16 @@ Any term with duplicate fields $\psi_i^2 = -\psi_i^2 = 0$ will yield zero.
 Similarly, if a term has a product that does not contain \emph{all} the factors $\psi_1,\, \conj\psi_1,\, \ldots,\, \psi_N,\, \conj\psi_N$, then after integrating out the \emph{present} factors with integral \eqref{eq:gnums:integration_var}, there will always be left behind a vanishing constant integral in the form \eqref{eq:gnums:integration_const} over the \emph{absent} factors, causing the whole integral to vanish.
 Based on this, we can derive three rules for what combinations of factors we can choose when multiplying out the three parentheses.
 \begin{enumerate}
-\item \textbf{For any $i$ in the first parenthesis:} Given that we follow the two next rules, we are free to choose either the factor $1$ or $\psi_i \conj\psi_i$. \label{eq:tft:logic_tree_one}
+\item \textbf{For any $i$ in the first parenthesis:} Given that we follow the two next rules, we are free to choose either the factor $1$ or $\psi_i \conj\psi_i$.
+\label{eq:tft:logic_tree_one}
 \item \textbf{For $j=i$ in the second parenthesis:} 
 If we choose $\psi_i \conj\psi_i$ in the first parenthesis, we \emph{must} choose $1$ in the second to avoid a duplicate factor $\psi_i^2 = 0$.
 Conversely, if we choose $1$ in the first, we \emph{must} choose $-\psi_j \smash[t]{\creat_j}$ in the second to ``saturate'' the product \eqref{eq:tft:integral_saturated}.
+\label{eq:tft:logic_tree_two}
 \item \textbf{For $k = j = i$ in the third parenthesis:} 
 If we choose $-\psi_j \creat_j$ in the second, we \emph{must} choose $\smash{-\psi_k \creat_k}$ in the third to get $\psi_j \conj\psi_j$ in the field product.
-Conversely, if we choose $1$ in the second, then we have already included $\psi_i \conj\psi_i$ from rule \ref{eq:tft:logic_tree_one}, and we \emph{must} choose $1$ in the third to avoid a duplicate factor $(\conj\psi_i)^2 = 0$. \label{eq:tft:logic_tree_three}
+Conversely, if we choose $1$ in the second, then we have already included $\psi_i \conj\psi_i$ in the first by rule \ref{eq:tft:logic_tree_two}, and we \emph{must} choose $1$ in the third to avoid a duplicate factor $(\conj\psi_i)^2 = 0$.
+\label{eq:tft:logic_tree_three}
 \end{enumerate}
 Following these rules, the first parenthesis expands to all possible $2^N$ terms.
 For every one of these terms, there is precisely one combination of factors in the second and third parentheses that yields a nonzero contribution.
@@ -659,14 +663,14 @@ The rules for multiplying out the parentheses are virtually identical to those i
 Schematically, the two last parentheses give contributions in the form $\smash[b]{\braket{0 | ( \destr_j \conj\psi_j ) \hat{A} ( -\psi_k \creat_k ) | 0}} = + \smash[b]{\psi_k \conj\psi_j \braket{0 | \destr_j \hat{A} \creat_k | 0}}$ and all its multi-particle generalizations, where we must set $j=k$ to get a non-zero contribution.
 In addition, we have \emph{assumed} that $\smash{\hat{A}}$ is a ``bosonic'' operator that \emph{commutes} with the Grassmann numbers, allowing us to move the Grassmann numbers out of the inner product in this way.
 For example, the Dirac Hamiltonian \eqref{eq:tft:dirac_hamiltonian} that we will work with later is such an $\hat{A}$, as it contains \emph{two} field operators.
-\emph{Pay special attention to the minus sign in $\bra{-\psi} = \bra{0} \prod_j [1 - \creat_j (-\psi_j)] = \bra{0} \prod_j [1 + \creat_j \psi_j]$ in the first line!}
+\emph{Pay special attention to the minus sign in $\bra{-\psi} = \bra{0} \prod_j [1 - \destr_j (-\conj\psi_j)] = \bra{0} \prod_j [1 + \destr_j \conj\psi_j]$ in the first line!}
 Without it, we would not obtain the trace when multiplying out the parentheses.
 \emph{We will soon see that this minus sign is perhaps the most important result of this whole chapter, yet surely the least visible one!}
 
 As we remarked at the start, this analysis was for discrete fields that satisfy the discrete anti-commutators \eqref{eq:tft:fermionic_all_anticommutators}.
 We are studying fields $\psi(\vec{x})$ and $\conj\psi(\vec{x})$ with an infinite number of field operators $\creat(\vec{x})$ and $\destr(\vec{x})$ that satisfy the continuum generalization \eqref{eq:tft:fermion_anticommutators}.
 Our results carry over with the substitutions $\psi_i \rightarrow \psi(\vec{x})$, as if every Grassmann number corresponds to the field at one position, and $\sum_i \rightarrow \int \dif^3 x$.
-The continuum version of the coherent state is
+The continuum version of the coherent state is therefore
 \begin{equation}
 	\ket{\psi} = \exp \left[ -\int \dif^3 x\, \psi(\vec{x}) \hat\psi^\dagger(\vec{x}) \right] \ket{0} .
 \end{equation}
@@ -846,7 +850,7 @@ Thus, the shift can be regarded as a shift by a \emph{constant}.
 We also defined the remaining terms as the Lagrangian density $\lagr_E$.
 It is exactly the original Lagrangian density \eqref{eq:tft:boson_lagrangian}, only with $\tau \rightarrow i \tau$.
 This can be interpreted as a change from Minkowski space to Euclidean space, and we therefore call $\lagr_E(\tau) = \lagr(i \tau)$ the Euclidean Lagrangian density.
-The path integral \eqref{eq:tft:bosonic_partition_function} is now
+There is no conserved current, so the path integral \eqref{eq:tft:bosonic_partition_function} is now
 \begin{equation}
 	Z = \int \pathintdif \pi \oint_+ \pathintdif \phi \exp \left\{ \frac{1}{\hbar} \int_0^{\beta \hbar} \dif \tau \int_V \dif^3 x \left[ - \frac12 c^2 \tilde\pi^2 + \lagr_E \right] \right\} .
 \label{eq:tft:boson_integrate_out_momentum}
@@ -875,7 +879,7 @@ with the Euclidean action
 By assumption, the action has no variation on the boundaries, so we can integrate by parts to convert $\pdv{\phi}/{\tau}^2$ into $-\phi \pdv[2]{\phi}/{\tau}$ and forget the boundary term.
 It then becomes
 \begin{equation}
-	S_E = \frac12 \int_0^{\beta \hbar} \dif \tau \int_V \dif^3 x \, \phi \left( \frac{1}{c^2} \pdv[2]{}{\tau} + \nabla^2 - \frac{m^2 c^2}{\hbar^2} \right) \phi .
+	S_E = \frac12 \int_0^{\beta \hbar} \dif \tau \int_V \dif^3 x \, \left[ \phi \left( \frac{1}{c^2} \pdv[2]{}{\tau} + \nabla^2 - \frac{m^2 c^2}{\hbar^2} \right) \phi \right] .
 \label{eq:tft:boson_euclidean_action_nice}
 \end{equation}
 
@@ -1008,7 +1012,7 @@ We then find
 \begin{equation}
 \begin{split}
 	\log Z &= -\frac{\beta}{2} \sum_\vec{p} \int \dif E  (\vec{p}) \, \left[ 1 + \frac{2}{e^{\beta E(\vec{p})} - 1} \right] \\
-	       &= -\frac{\beta}{2} \sum_\vec{p} \left\{ -E(\vec{p}) + \frac{2}{\beta} \log \left[ 1 - e^{-\beta E(\vec{p})} \right] \right\} .
+	       &= -\frac{\beta}{2} \sum_\vec{p} \left\{ E(\vec{p}) + \frac{2}{\beta} \log \left[ 1 - e^{-\beta E(\vec{p})} \right] \right\} .
 \end{split}
 \end{equation}
 Finally, take the continuum limit \eqref{eq:tft:continuum_limit} to obtain the \textbf{partition function for a real scalar field}
@@ -1021,11 +1025,11 @@ Finally, take the continuum limit \eqref{eq:tft:continuum_limit} to obtain the \
 
 Let us now find the partition function \eqref{eq:tft:fermion_partition_function} for \textbf{free Dirac fermions} with half-spin and Lagrangian density
 \begin{equation}
-	\lagr = \bar\psi \left( i \hbar c \, \slashed\partial - m c^2 \right) \psi
-	      = \bar\psi \left( i \hbar \gamma^0 \pdv{}{\tau} + i \hbar c \, \vec{\gamma} \cdot \nabla - m c^2 \right) \psi .
+	\lagr = \bar\psi \Big( i \hbar c \, \slashed\partial - m c^2 \Big) \psi
+	      = \bar\psi \Big( i \hbar \gamma^0 \pdv{}{\tau} + i \hbar c \, \vec{\gamma} \cdot \nabla - m c^2 \Big) \psi .
 \label{eq:tft:dirac_lagrangian}
 \end{equation}
-Here, the four-component Dirac spinor $\psi = [ \psi_0, \psi_1, \psi_2, \psi_3 ] $ is the basic field and $\psi^\dagger$ is its conjugate, while $\bar\psi = \psi^\dagger \gamma^0$ and $\slashed\partial = \gamma^\mu \partial_\mu$, where $\gamma^\mu$ are the $4 \times 4$ \textbf{Gamma matrices} defined by the Clifford algebra
+Here, the four-component Dirac spinor $\psi = [ \psi_0, \psi_1, \psi_2, \psi_3 ] $ is the basic field and $\psi^\dagger$ is its conjugate, while $\bar\psi = \psi^\dagger \gamma^0$ and $\slashed\partial = \gamma^\mu \partial_\mu = \gamma^0 \partial_0 + \vec{\gamma} \cdot \vec{\nabla}$, where $\gamma^\mu$ are the $4 \times 4$ \textbf{Gamma matrices} defined by the Clifford algebra
 \begin{equation}
 	\acomm{\gamma^\mu}{\gamma^\nu} = 2 \eta^{\mu \nu} .
 \end{equation}
@@ -1034,10 +1038,10 @@ We will use the \textbf{Dirac basis}
 \begin{equation}
 	\gamma^0 = \begin{bmatrix} I_2 & 0 \\ 0 & -I_2 \\ \end{bmatrix}
 	\qquad \text{and} \qquad
-	\gamma^0 = \begin{bmatrix} 0 & \sigma^i \\ -\sigma^i & 0 \\ \end{bmatrix} ,
+	\gamma^i = \begin{bmatrix} 0 & \sigma^i \\ -\sigma^i & 0 \\ \end{bmatrix} ,
 \label{eq:tft:gamma_dirac_basis}
 \end{equation}
-and $\sigma^i$ are the \textbf{Pauli matrices}
+where $\sigma^i$ are the \textbf{Pauli matrices}
 \begin{equation}
 	\sigma^1 = \begin{bmatrix} 0 & 1 \\ 1 & 0 \\ \end{bmatrix} ,
 	\qquad
@@ -1053,13 +1057,13 @@ The conjugate momentum \eqref{eq:tft:conjugate_mometum_definition} of the field 
 \end{equation}
 so the Hamiltonian density is
 \begin{equation}
-	\ham = \pi \dot\psi - \lagr = \bar\psi ( -i \hbar c \, \vec{\gamma} \cdot \vec{\nabla} + m c^2 ) \psi .
+	\ham = \pi \dot\psi - \lagr = \bar\psi \left( -i \hbar c \, \vec{\gamma} \cdot \vec{\nabla} + m c^2 \right) \psi .
 \label{eq:tft:dirac_hamiltonian}
 \end{equation}
-In addition, the Dirac Lagrangian is invariant under the symmetry transformation $\psi_\alpha \rightarrow \psi_\alpha e^{i \theta} \taylor \psi_\alpha - i \theta \psi_\alpha = \psi_\alpha + \delta\psi_\alpha$.
+In addition, the Dirac Lagrangian is invariant under the symmetry transformation $\psi_\alpha \rightarrow \psi_\alpha e^{i \theta} \taylor \psi_\alpha + i \theta \psi_\alpha = \psi_\alpha + \delta\psi_\alpha$.
 By Noether's theorem \cite[equation 5.7]{ref:kachelriess}, there is a corresponding conserved current
 \begin{equation}
-	j^\mu \propto \fdv{\lagr}{\partial_\mu \psi_\alpha} \delta \psi_\alpha = \bar\psi_\beta i \hbar c \, (\gamma^\mu)_{\beta \alpha} (-i \theta \psi_\alpha) = \hbar c \, \bar\psi \gamma^\mu \psi .
+	j^\mu \propto \fdv{\lagr}{\partial_\mu \psi_\alpha} \delta \psi_\alpha = \bar\psi_\beta i \hbar c \, (\gamma^\mu)_{\beta \alpha} i \theta \psi_\alpha = - \hbar c \, \bar\psi \gamma^\mu \psi .
 \end{equation}
 Ignoring the constant factors, we take the conserved current to be
 \begin{equation}
@@ -1086,8 +1090,8 @@ Inserting this into the partition function \eqref{eq:tft:fermion_partition_funct
 with the Euclidean action
 \begin{equation}
 \begin{split}
-	S_E &= \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \left( \lagr_E + \mu j^0 \right) \\
-	    &= \int_0^{\beta \hbar} \dif \tau \int \dif^3 x \, \bar\psi \left( -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \, \vec{\gamma} \cdot \vec{\nabla} - mc^2 + \mu \gamma^0 \right) \psi .
+	S_E &= \int_0^{\beta \hbar} \dif \tau \int_V \dif^3 x \, \left( \lagr_E + \mu j^0 \right) \\
+	    &= \int_0^{\beta \hbar} \dif \tau \int_V \dif^3 x \, \bar\psi \left( -\hbar \gamma^0 \pdv{}{\tau} + i \hbar c \, \vec{\gamma} \cdot \vec{\nabla} - mc^2 + \mu \gamma^0 \right) \psi .
 \end{split}
 \label{eq:tft:dirac_action_euclidean}
 \end{equation}
@@ -1097,7 +1101,7 @@ This time, however, the correspondence to the Euclidean Lagrangian occurs immedi
 Notice in particular the similarity of the fermionic path integral \eqref{eq:tft:dirac_partition_function_first} to the bosonic path integral \eqref{eq:tft:boson_partition_function_momentum_out}.
 
 As in the bosonic case, we now Fourier expand the field.
-The fermionic anti-periodicity \eqref{eq:tft:periodicity} enables us to expand the Dirac field in the Fourier series
+The fermionic anti-periodicity \eqref{eq:tft:periodicity} enables us to expand the Dirac field and its conjugate in the Fourier series
 \begin{subequations}
 \begin{align}
 	\psi(\vec{x}, \tau)         &= \frac{1}{\sqrt{V}} \sum_n \sum_\vec{k} e^{i (\vec{k} \cdot \vec{x} + \omega_n \tau)} \psi_{n}(\vec{k}), \\
@@ -1135,6 +1139,7 @@ Using the Grassmann exponential integral \eqref{eq:integrals:gaussian_grassmann_
 	Z = \prod_n \prod_\vec{p} \tdet \Big( i \beta D_n(\vec{p}) \Big)
 	\qquad \text{with} \qquad
 	D_n(\vec{p}) = -E_n + i c \gamma^0 \vec{\gamma} \cdot \vec{p} + i mc^2 \gamma^0 - i \mu .
+\label{eq:tft:fermionic_partition_function_before_log}
 \end{equation}
 Let us calculate the determinant of the $4 \times 4$ matrices $D_n(\vec{p})$ explicitly.
 First, let us use the Dirac basis representation \eqref{eq:tft:gamma_dirac_basis} of the Gamma matrices to write the $4 \times 4$ matrix as a block matrix of $2 \times 2$ matrices.
@@ -1144,6 +1149,7 @@ This gives the block matrix
 	                   -E_n - i \mu + i m c^2         & i c \, \vec{\sigma} \cdot \vec{p}    \\ 
 	                   i c \, \vec{\sigma} \cdot \vec{p} & -E_n - i \mu - i m c^2 \\ 
 	               \end{bmatrix} .
+\label{eq:tft:matrix_Dnp}
 \end{equation}
 Calculating the determinant becomes easier by applying the formula
 \cite[theorem 3]{ref:determinant_block_matrix}
@@ -1153,7 +1159,8 @@ Calculating the determinant becomes easier by applying the formula
 which is familiar for a non-block $2 \times 2$ matrix, but in fact also valid for a block matrix if $CD = DC$.
 This is applicable in our situation, where $D$ is diagonal.
 %Ignoring the factor $i \beta$ for now and taking care of it later using $\tdet AB  = \tdet{A} \tdet{B}$ and $\tdet{i \beta} = (i \beta)^4 = \beta^4$, we get
-We then have $AD = (E_n + i \mu)^2 + (mc^2)^2$ and $BC = - (\vec{\sigma} \cdot \vec{p})^2 c^2$.
+Matching the block matrices $A$, $B$, $C$ and $D$ with those in \cref{eq:tft:matrix_Dnp},
+we then have $AD = (E_n + i \mu)^2 + (mc^2)^2$ and $BC = - (\vec{\sigma} \cdot \vec{p})^2 c^2$.
 From the Pauli matrices \eqref{eq:tft:pauli_matrices}, it is straightforward to verify the property $(\vec{\sigma} \cdot \vec{p})^2 = \vec{p}^2$.
 Introducing the relativistic dispersion relation \eqref{eq:tft:dispersion} again, we then get the simple diagonal $2 \times 2$ matrix
 $AD - BC = (E_n + i \mu)^2 + E^2(\vec{p})$.
@@ -1179,7 +1186,7 @@ The determinant then becomes
 (TODO: to 4th or 2nd power when taking determinant of diagonal matrix?)
 \fi
 
-The logarithm of the partition function is now the sum
+The logarithm of the partition function \eqref{eq:tft:fermionic_partition_function_before_log} is now the sum
 \begin{equation}
 \begin{split}
 	\log Z & = \sum_n \sum_\vec{p} \tdet \Big( i \beta D_n(\vec{p}) \Big) \\
@@ -1187,6 +1194,7 @@ The logarithm of the partition function is now the sum
 	       %& = \sum_n \sum_\vec{p} \left\{ \log \beta^2 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] +
 	                                       %\log \beta^2 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] \right\} . \\
 \end{split}
+\label{eq:tft:dirac_partition_function_with_i}
 \end{equation}
 % not too different from the bosonic logarithm \eqref{eq:tft:matsubara_sum_bosons}, but the Grassmann Gaussian integral has produced the prefactor $1$ instead of $-1/2$.
 
@@ -1195,17 +1203,17 @@ Let us see if we can make it disappear.
 The logarithm involves a sum $\sum_n s(E_n)$ of some function $s(E_n)$ over all Matsubara energies $E_n$.
 Because the Matsubara energies satisfy $E_n = -E_{-n}$ by definitions \eqref{eq:tft:matsubara_frequencies} and \eqref{eq:tft:matsubara_energies}, we have
 $\sum_n s(E_n) = \sum_n s(E_{-n}) = \sum_n s(-E_n)$ for any function $s(E_n)$ of the energies.
-We can then split up the logarithm of the square into two logarithms and exchange $E_n \rightarrow -E_n$ in one sum without changing its value.
-More precisely,
+We can then split up the logarithm of the square into \emph{two} logarithms and exchange $E_n \rightarrow -E_n$ in \emph{one} sum without changing the value:
+%More precisely,
 \begin{equation}
 \begin{split}
-	\log Z & = \sum_n \sum_\vec{p} \log \left\{ \beta^4 \left[ (E_n + i \mu)^2 + E^2(\vec{p})  \right]^2 \right\}   \\
-	       & = \sum_n \sum_\vec{p} \log \left\{ \beta^2 \left[ (E_n + i \mu)^2 + E^2(\vec{p})  \right]   \right\}
-	         + \sum_n \sum_\vec{p} \log \left\{ \beta^2 \left[ (E_n + i \mu)^2 + E^2(\vec{p})  \right]   \right\}   \\
-	       & = \sum_n \sum_\vec{p} \log \left\{ \beta^2 \left[ (E_n + i \mu)^2 + E^2(\vec{p})  \right]   \right\}
-	         + \sum_n \sum_\vec{p} \log \left\{ \beta^2 \left[ (-E_n + i \mu)^2 + E^2(\vec{p}) \right]   \right\}   \\
-	       & = \sum_n \sum_\vec{p} \log \left\{ \beta^4 \left[ (E_n + i \mu)^2 + E^2(\vec{p})  \right] 
-	                                                    \left[ (-E_n + i \mu)^2 + E^2(\vec{p}) \right]   \right\} . \\
+	\log Z & = \sum_n \sum_\vec{p} \log \Big\{ \beta^4 \left[ ( E_n + i \mu)^2 + E^2(\vec{p})  \right]^2 \Big\}   \\
+	       & = \sum_n \sum_\vec{p} \log \Big\{ \beta^2 \left[ ( E_n + i \mu)^2 + E^2(\vec{p})  \right]   \Big\}
+	         + \sum_n \sum_\vec{p} \log \Big\{ \beta^2 \left[ (+E_n + i \mu)^2 + E^2(\vec{p})  \right]   \Big\}   \\
+	       & = \sum_n \sum_\vec{p} \log \Big\{ \beta^2 \left[ ( E_n + i \mu)^2 + E^2(\vec{p})  \right]   \Big\}
+	         + \sum_n \sum_\vec{p} \log \Big\{ \beta^2 \left[ (-E_n + i \mu)^2 + E^2(\vec{p}) \right]   \Big\}   \\
+	       & = \sum_n \sum_\vec{p} \log \Big\{ \beta^4 \left[ ( E_n + i \mu)^2 + E^2(\vec{p})  \right] 
+	                                                   \left[ (-E_n + i \mu)^2 + E^2(\vec{p}) \right]   \Big\} . \\
 \end{split}
 \label{eq:tft:dirac_partition_function_splitting}
 \end{equation}
@@ -1229,8 +1237,8 @@ Inserting this back into the partition function \eqref{eq:tft:dirac_partition_fu
 \end{split}
 \label{eq:tft:fermion_log_sum}
 \end{equation}
-We have accomplished our mission of removing the awkward $i$ from the partition function, manifesting it as a real quantity.
-Moreover, the two sums over $n$ are in the same form as the bosonic sum \eqref{eq:tft:matsubara_sum_bosons}, but this time over fermionic Matsubara energies.
+We have accomplished our mission of removing the awkward $i$ from the partition function \eqref{eq:tft:dirac_partition_function_with_i}, manifesting it as a real quantity.
+Moreover, the two sums over $n$ are now in the same form as the bosonic sum \eqref{eq:tft:matsubara_sum_bosons}, but this time over fermionic Matsubara energies.
 Defining the energies $\tilde E_\pm(\vec{p}) = E(\vec{p}) \pm \mu$ relative to the chemical potential, we can use the same method as we did back there to rewrite it as the two integrals
 \begin{equation}
 	\log Z = \sum_\vec{p} \left[ \int \dif \tilde E_+^2(\vec{p}) \sum_n \frac{1}{E_n^2 + \tilde E_+^2(\vec{p})} +

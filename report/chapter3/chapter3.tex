@@ -34,7 +34,7 @@ and the Fermi-Dirac distribution is
 First, the particle number density $n = \thermalavg{N} / \, V$ follows from the derivative \eqref{eq:tft:average_number} and is
 \begin{equation}
 	n = 
-	\frac{1}{\beta} \pdv{\log Z}{\mu} =
+	\frac{1}{\beta V} \pdv{\log Z}{\mu} =
 	2 \int \frac{\dif^3 p}{(2 \pi \hbar)^3} \Big\{ n\big( E(\vec{p})-\mu \big) - n\big( E(\vec{p})+\mu \big) \Big\} .
 \label{eq:nstars:density}
 \end{equation}
@@ -68,7 +68,7 @@ From the particle density \eqref{eq:nstars:density} at constant temperature $T$,
 The total density $n$ is expressed as a balance between \emph{particles} living relative to the chemical potential $+\mu$ and \emph{antiparticles} living relative to the chemical potential $-\mu$.
 Thus, the chemical potential $\mu$ determines the balance between particles and antiparticles in the system.
 Similarly, the two last terms in the energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure} can be interpreted as contributions from particles and antiparticles, respectively.
-We \emph{choose} a large, positive value of $\mu > 0$, so that the presence of particles dominate, while antiparticles are more or less absent.
+We \emph{choose} a large positive value of $\mu > 0$, so that the presence of particles dominate, while antiparticles are more or less absent.
 With this choice, $n \big( E(\vec{p}) - \mu \big) \gg n \big( E(\vec{p}) + \mu \big)$, and we \emph{drop the last terms of the particle density \eqref{eq:nstars:density}, energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}}.
 
 \item
@@ -121,7 +121,7 @@ After the partial integration, the three integrals take the satisfyingly similar
 \begin{align}%
 	& \text{particle density} & n        &= 2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, n \big( E(p)-\mu \big) ,          \label{eq:nstars:dropped_infinities_density} \\
 	& \text{energy density}   & \epsilon &= 2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, E(p) \, n \big( E(p)-\mu \big) ,  \label{eq:nstars:dropped_infinities_energy_density} \\
-	& \text{pressure}         & P        &= 2 \int_0^\infty \frac{\dif p \, 4 \pi p^2}{3 (2 \pi \hbar)^3} \, E'(p) \, n \big( E(p)-\mu \big) . \label{eq:nstars:dropped_infinities_pressure}
+	& \text{pressure}         & P        &= 2 \int_0^\infty \frac{\dif p \, 4 \pi p^3}{3 (2 \pi \hbar)^3} \, E'(p) \, n \big( E(p)-\mu \big) . \label{eq:nstars:dropped_infinities_pressure}
 \end{align}%
 \label{eq:nstars:dropped_infinities}%
 \end{subequations}%
@@ -133,7 +133,7 @@ At \emph{absolute} zero temperature $T = 0$, the Fermi-Dirac distribution
 	n(E-\mu) = \frac{1}{e^{\beta (E - \mu)} + 1} = \Theta(\mu-E) = \begin{cases} 0 & (E > \mu) \\ 1 & (E < \mu) \end{cases}
 \end{equation}
 behaves like a step function.
-To see this, observe that $T = 0$ corresponds to $\beta = \infty$, and that the sign of $E - \mu$ then determines whether the exponential $e^{\beta (E - \mu)}$ in the denominator blows up or vanishes, and hence whether the fraction survives.
+To see this, observe that $T = 0$ corresponds to $\beta = 1 / k_B T = \infty$, and that the sign of $E - \mu$ then determines whether the exponential $e^{\beta (E - \mu)}$ in the denominator blows up or vanishes, and hence whether the fraction survives.
 Physically, this means that the system is completely degenerate, filling momentum states with $E(\vec{p}) < \mu$ only.
 The occupied states with the greatest momentum $p_F$ make up a so-called \emph{Fermi surface} $\abs{\vec{p}} = p_F$ in momentum space, and the corresponding maximum energy $E_F = \sqrt{\smash[b]{p_F^2 c^2 + m^2 c^4}}$ is called the \emph{Fermi energy}, and is equal to the chemical potential when $T = 0$.
 
@@ -151,7 +151,7 @@ For a more detailed discussion of the Sommerfeld expansion and the inter-depende
 In other words, if $T \ll T_F$, then $\mu \approx E_F$.
 Neutrons have mass $m = \SI{1.67e-27}{\kilogram}$, so the Fermi temperature is at least $T_F = \sqrt{\smash[b]{p_F^2 c^2 + m^2 c^4}} / k_B > m c^2 / k_B \approx \SI{1e13}{\kelvin}$.
 Thus, we do indeed have $T / T_F \approx 10^{-7} \ll 1$ for a neutron star.
-This is equivalent to $\beta E_F \ll 1$, and since this \emph{implies} that $E_F \approx \mu$, then it is also an excellent approximation to take the \textbf{degenerate limit}
+This is equivalent to $\beta E_F \gg 1$, and since this \emph{implies} that $E_F \approx \mu$, then it is also an excellent approximation to take the \textbf{degenerate limit}
 \begin{equation}
 	\beta \mu \gg 1 .
 \label{eq:nstars:zero_temperature_limit}
@@ -164,7 +164,7 @@ As shown in \cref{fig:nstars:distribution_convergence}, this distribution again 
 Thus, the zero-temperature behavior of the Fermi-Dirac distribution is restored in this limit.
 Although the core temperature is far from zero in everyday terms, it is small \emph{compared to} the Fermi temperature, and this approximation is therefore also referred to as the \textbf{zero-temperature limit}.
 
-Alternatively, since the chemical potential is an independent variable in the partition function, we could simply have \emph{assumed} the degenerate limit \eqref{eq:nstars:zero_temperature_limit} when we said we \emph{chose} a ``large, positive value'' for the chemical potential.
+In hindsight, since the chemical potential is an independent variable in the partition function, we do have the freedom to simply \emph{assume} the degenerate limit \eqref{eq:nstars:zero_temperature_limit} from the beginning, at the point where we said we \emph{chose} a ``large positive value'' for the chemical potential.
 
 \begin{figure}
 	\centering
@@ -413,13 +413,14 @@ and then calculate
 \end{tikzpicture}
 \caption{\label{fig:nstars:eos}%
 	Equations of state $\epsilon(P)$ for a degenerate Fermi gas for general Fermi momenta $p_F = m c \, x_F$, non-relativistic $p_F \ll mc$ and ultra-relativistic $p_F \gg mc$.
+	Here $\solarmass$ is the solar mass and $R_0 = \SI{10}{\kilo\meter}$.
 }
 \end{figure}
 
 \section{Mass-radius relation for ideal neutron stars}
 
-Having obtained equations of state $\epsilon = \epsilon(P)$, we are finally in a position to solve the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}.
-We will do so for all three equations of state that we encountered in \cref{sec:nstars:eos}.
+Having obtained equations of state $\epsilon = \epsilon(P)$, we are finally in a position to solve the Tolman-Oppenheimer-Volkoff system \eqref{eq:tov:tovsys}.
+We will do so for all three equations of state that we found in \cref{sec:nstars:eos}.
 
 \subsection{Ultra-relativistic equation of state}
 
@@ -439,14 +440,14 @@ With $\epsilon = 3 P = 3 A r^n$, the mass gradient \eqref{eq:tov:tovsys_mass} re
 Inserting the mass, pressure and energy density into the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov:tovsys_pressure}, it becomes
 \begin{equation}
 	n A r^{n-1} =
-	-\frac{48 \pi G A^2 r^{2n+1}}{(n+3) c^4} \left[ 2 + \frac{n}{3} \right] \left[ 1 - \frac{24 \pi G A r^{n+2}}{(n+3) c^4} \right]^{-1} .
+	-\frac{48 \pi G A^2 r^{2n+1}}{(n+3) c^4} \bigg[ 2 + \frac{n}{3} \bigg] \left[ 1 - \frac{24 \pi G A r^{n+2}}{(n+3) c^4} \right]^{-1} .
 \end{equation}
 We can attain equality for all $r$ if we choose $n = -2$.
 Then the rightmost factor no longer depends on $r$, and both sides have the same $r^{-3}$-dependence
 \begin{equation}
 	- 2 A r^{-3} = - \frac{64 \pi G A^2 r^{-3}}{c^4} \left[ 1 - \frac{24 \pi G A}{c^4} \right]^{-1} .
 \end{equation}
-Equality is established if we match the prefactors by choosing $A = c^4 / 56 \pi G$.
+Equality is established if we match the constant factors by choosing $A = c^4 / 56 \pi G$.
 Then the solutions for the pressure and mass are
 \begin{equation}
 	P(r) = \frac{c^4}{56 \pi G r^2}
@@ -540,7 +541,7 @@ In particular, the curves obtained with the relativistic pressure gradient enter
 As we derived the Tolman-Oppenheimer-Volkoff equations, we assumed the star to be in hydrostatic equilibrium.
 Our use of statistical mechanics in the grand canonical ensemble to obtain the equation of state is consistent with this, as it describes a system in thermal and chemical equilibrium.
 So all stars on the mass-radius curve are in \emph{equilibrium}, but just like a pendulum can be in a stable or unstable equilibrium, the equilibrium state of a star can also be either \emph{stable} or \emph{unstable} with respect to small perturbations.
-Let us investigate the stability of the sequence of stars on the curve in \cref{fig:nstars:massradius}.
+Let us investigate the stability of the sequences of stars in \cref{fig:nstars:massradius}.
 
 \subsection{Necessary conditions for stability}
 \label{sec:nstars:stability_necessary}
@@ -670,7 +671,7 @@ Let us repeat the argument on the decreasing part of the curve, where condition 
 After compressing $E_1^-$ to $C^-$, we see that $C^-$ has more mass, and hence \emph{stronger gravitational forces} but the \emph{same central pressure} as $E_2^-$.
 As a result, $C^+$ contracts, and repeating the argument then shows that it drifts away from the equilibrium curve in \cref{fig:nstars:stability_mass_pressure} and collapses.
 
-The criterion \eqref{eq:nstars:stability_mass_pressure} shows that the stars located between the maximum mass and the bottom of the spiral in \cref{fig:nstars:massradius} are unstable!
+Criterion \eqref{eq:nstars:stability_mass_pressure} shows that the stars located between the maximum mass and the bottom of the spiral in \cref{fig:nstars:massradius} are unstable!
 Moreover, it suggests that there is a change in character of stability across a stationary point $\odv{M(P_c)}/{P_c} = 0$ on the mass-radius curve.
 We will now investigate this further.
 
@@ -685,7 +686,7 @@ We will follow the path of Chandrasekhar \cite{ref:chandrasekhar_stability} and 
 
 In \cref{sec:einstein_to_tov}, we showed that in the spherically symmetric metric
 \begin{equation}
-	\dif s^2 = e^{2 \alpha_0(r)} \dif t^2 - e^{2 \beta_0(r)} \dif r^2 - r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) ,
+	\dif s^2 = e^{2 \alpha_0(r)} c^2 \dif t^2 - e^{2 \beta_0(r)} \dif r^2 - r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) ,
 \end{equation}
 for a perfect fluid with energy-momentum
 \begin{equation}
@@ -722,7 +723,7 @@ In a rotating neutron star -- a pulsar -- for example, the situation would be mo
 The metric should therefore still be spherically symmetric, but $\alpha_0(r) \rightarrow \alpha(r,t)$ and $\beta_0(r) \rightarrow \beta(r,t)$ are now promoted to time-dependent functions, and therefore so are the pressure $P_0(r) \rightarrow P(r,t)$ and energy density $\epsilon_0(r) \rightarrow \epsilon(r,t)$.
 We therefore have the new metric
 \begin{equation}
-	\dif s^2 = e^{2 \alpha(t, r)} \dif t^2 - e^{2 \beta(t, r)} \dif r^2 - r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
+	\dif s^2 = e^{2 \alpha(t, r)} c^2 \dif t^2 - e^{2 \beta(t, r)} \dif r^2 - r^2 \left( \dif \theta^2 + \sin^2 \theta \dif \phi^2 \right) .
 \label{eq:nstars:metric_unstable}
 \end{equation}
 To make calculations tractable, we assume that the fluid is only \emph{slightly perturbed} from equilibrium.
@@ -758,14 +759,14 @@ The chain rule then gives
 	\dot\xi = \pdv{\xi}{t} = \odv{r}{t} = \frac{\odv{r}/{\tau}}{\odv{t}/{\tau}} = c \, \frac{u^1}{u^0} .
 \end{equation}
 We can now express $u^0$ and $u^1$ in terms of $\dot\xi$ by combining this equation with the normalization condition $u_\mu u^\mu = e^{2 \alpha} \left( u^0 \right)^2 - e^{2 \beta} \left( u^1 \right)^2 = c^2$.
-To first order in $\dot\xi$ and $\delta \alpha$, we find
+To first order in $\dot\xi$ and $\delta \alpha$, we then find
 \begin{subequations}
 \begin{align}
 	u^0 &= \frac{c \, e^{-\alpha}}{\sqrt{1 - \left( e^{\beta-\alpha} \dot\xi / c \right)^2 }} \taylor c \, e^{-\alpha_0} \, (1 - \delta \alpha), \label{eq:nstars:velocity_component_t} \\
 	u^1 &= \frac{\dot\xi \, e^{-\alpha}}{\sqrt{1 - \left( e^{\beta-\alpha} \dot\xi / c \right)^2 }} \taylor \dot\xi \, e^{-\alpha_0} . \label{eq:nstars:velocity_component_r}
-\end{align}
-\label{eq:nstars:velocity_components}
-\end{subequations}
+\end{align}%
+\label{eq:nstars:velocity_components}%
+\end{subequations}%
 
 In the perturbed system, the field equations \eqref{eq:nstars:field_equations_equilibrium} also change and must be rederived from the Einstein equations \eqref{eq:einstein} in the new metric \eqref{eq:nstars:metric_unstable} subject to the energy-momentum \eqref{eq:nstars:energy_momentum} with the non-equilibrium velocity \eqref{eq:nstars:velocity_components}.
 As always, the field equations follow from the machinery of \cref{eq:def_christoffel,eq:def_riemann_tensor,eq:def_ricci_tensor,eq:def_ricci_scalar}.
@@ -792,18 +793,18 @@ The simplest form of the field equations is therefore
 The non-equilibrium equations \eqref{eq:nstars:field_equations_unstable_01} and \eqref{eq:nstars:field_equations_unstable_11} are analogous to the equilibrium equations \eqref{eq:nstars:field_equations_equilibrium_00} and \eqref{eq:nstars:field_equations_equilibrium_11}.
 What is the third equation corresponding to \cref{eq:nstars:field_equations_equilibrium_T}, which we found from conservation of energy-momentum $\nabla_\mu T^{\mu \nu} = 0$ back in \cref{sec:einstein_to_tov}?
 In \cref{chap:relfluid}, we study relativistic fluid mechanics and start from $\nabla_\mu T^{\mu \nu} = 0$ to derive the relativistic generalization of the Euler equation,
-\begin{equation}
+\begin{equation*}
 	  \frac{1}{c^2} \Big( \epsilon + P \Big) u^\mu \nabla_\mu u^\alpha = \nabla^\alpha P - \frac{1}{c^2} u^\alpha u^\mu \nabla_\nu P
 	  \qquad \bigg( \nabla_\mu T^{\mu \nu} = 0 \bigg) .
-\end{equation}
-By inserting the new four-velocity components \eqref{eq:nstars:velocity_components} and the expansions \eqref{eq:nstars:perturbation_expansion} into the relativistic Euler equation and performing calculations in the new metric \eqref{eq:nstars:metric_unstable} to first order, \cite[§26.5]{ref:mtw} finds
+\end{equation*}
+By inserting the new four-velocity components \eqref{eq:nstars:velocity_components} and the perturbation expansions \eqref{eq:nstars:perturbation_expansion} into the relativistic Euler equation and performing calculations in the new metric \eqref{eq:nstars:metric_unstable} to first order, \cite[§26.5]{ref:mtw} finds
 \begin{equation}
 	\Big[ \epsilon_0 + P_0 \Big] e^{2 \beta_0 - 2 \alpha_0} \ddot \xi = -c^2 \Big[ \delta P' - \left( \delta \epsilon + \delta P \right) \alpha_0' - \left( \epsilon_0 + P_0 \right) \delta \alpha' \Big] .
 \label{eq:nstars:field_equations_unstable_T}
 \end{equation}%
 \label{eq:nstars:field_equations_unstable}%
 \end{subequations}%
-The system \eqref{eq:nstars:field_equations_unstable} consists of \emph{three} equations for the \emph{five} unknowns $\xi$, $\delta P$, $\delta \epsilon$, $\delta \alpha$ and $\delta \beta$.
+The non-equilibrium system \eqref{eq:nstars:field_equations_unstable} is analogous to equilibrium system \eqref{eq:nstars:field_equations_equilibrium} and consists of \emph{three} equations for the \emph{five} unknowns $\xi$, $\delta P$, $\delta \epsilon$, $\delta \alpha$ and $\delta \beta$.
 To complete the set, we will make use of two further results of our study of relativistic fluid mechanics in \cref{chap:relfluid}.
 
 In order to make use of the results of \cref{chap:relfluid} in our context, we must first learn to distinguish between \emph{Eulerian} and \emph{Lagrangian} changes in fluids.
@@ -887,11 +888,11 @@ However, since the derivative should be taken \emph{along the flow}, we can rewr
 The latter is a relation between two first-order quantities, and so for the purpose of perturbation theory, \emph{the only relevant part of $\gamma$ is the known zeroth-order part}
 \begin{equation}
 	\gamma_0 = \frac{\epsilon_0+P_0}{P_0} \odv{P_0}{\epsilon_0}
-	         = \frac{\epsilon_0+P_0}{P_0} \frac{\Delta P_0}{\Delta \epsilon_0} .
+	         = \frac{\epsilon_0+P_0}{P_0} \frac{\Delta P}{\Delta \epsilon} .
 \label{eq:nstars:adiabatic_index_first_order}
 \end{equation}
 The two forms in equation \eqref{eq:nstars:adiabatic_index_first_order} are very similar, but serve distinct uses.
-The first version allows us to \emph{calculate} $\gamma_0$ from the equation of state, while the latter gives us our fifth and final main equation
+The first version allows us to \emph{calculate} $\gamma_0$ from the equation of state $\epsilon_0(P_0)$ in equilibrium, while the latter gives us our fifth and final main equation
 \begin{equation}
 	\Delta P = \frac{P_0}{\epsilon_0 + P_0} \, \gamma_0 \, \Delta \epsilon
 	         = \odv{P_0}{\epsilon_0} \, \Delta\epsilon .
@@ -956,7 +957,7 @@ Substituting the trial solution \eqref{eq:nstars:separation_of_variables} into t
 must be a constant $-\omega^2$, which can be any complex number at this stage.
 We then find the temporal solutions $T(t) = e^{\pm i \omega t}$, while the spatial function $U(r)$ and $\omega^2$ must solve
 \begin{equation}
-	\odv*{ \left[ \Pi(r) \odv{U(r)}{r} \right] }{r} + \left[ Q(r) + \omega^2 W(r) \right] U(r) = 0 .
+	\odv*{ \left[ \Pi(r) \odv{U(r)}{r} \right] }{r} + \bigg[ Q(r) + \omega^2 W(r) \bigg] U(r) = 0 .
 \label{eq:nstars:diffeq_U}
 \end{equation}
 
@@ -980,7 +981,7 @@ Here, the boundary condition is therefore the vanishing of the \emph{Lagrangian}
 	\qquad \text{at } r = R.
 \label{eq:nstars:boundary_condition_surface_physical}
 \end{equation}
-From \cref{eq:nstars:perturbation_system_adiabadicity}, we see that this is equivalent to
+From \cref{eq:nstars:Delta_P}, we see that this is equivalent to
 \begin{equation}
 	\Delta P = \odv{P_0}{\epsilon_0} \Delta \epsilon = \left( \frac{v_0}{c} \right)^2 \Delta\epsilon ,
 \label{eq:nstars:deltaP_product}
@@ -989,6 +990,8 @@ where we recognize the speed of sound $v_0 = c \sqrt{\odv{P_0}/{\epsilon_0}}$.
 The surface $r = R$ is defined by $P_0(r) = 0$, and where there is no pressure, there can be no sound, so we should have $v_0 = 0$.
 %\TODO{but is not true for conformal limit where $\epsilon = 3 P$ ! write about this here?}
 This can be confirmed from the equation of state.
+Close to the surface, the density \eqref{eq:nstars:density_zeroT} is small, so $x_F$ is small, and $\odv{P_0}/{\epsilon_0} \rightarrow 0$ as $x_F \rightarrow 0$ by \cref{eq:nstars:dPde}.
+\iffalse
 Close to the surface, the pressure \eqref{eq:nstars:pressure_zeroT} is small by definition, so $x_F$ is also small, and it is therefore the non-relativistic equation of state \eqref{eq:nstars:nr_eos} that reigns.
 Its derivative is
 \begin{equation}
@@ -998,6 +1001,7 @@ Its derivative is
 	\quad \text{at } r = R.
 \end{equation}
 Of course, this is not the case for the ultra-relativistic equation of state \eqref{eq:nstars:ur_eos}, but it holds only where $x_F$ is large and thus nowhere near the surface!
+\fi
 Hence, the first factor $\odv{P_0}/{\epsilon_0}$ of the product \eqref{eq:nstars:deltaP_product} is zero, and the whole product will vanish \emph{provided that} the second factor $\Delta \epsilon$ is finite.
 Glancing back at expression \eqref{eq:nstars:perturbation_system_adiabadicity} for $\Delta \epsilon$, it then follows that the boundary condition \eqref{eq:nstars:boundary_condition_surface_physical} is \emph{automatically} satisfied \emph{provided that}
 \begin{equation}
@@ -1028,23 +1032,19 @@ Let us show that in the form above, the Sturm-Liouville equation is expressed in
 	\braket{f | g} = \int_0^R \dif r \, f(r) g(r) .
 \label{eq:nstars:function_inner_product}
 \end{equation}
-Denoting the left side by $\hat{L} U_n = \hat{L}(r) U_n(r)$, we can integrate by parts twice to show that for two solutions $U_m(r)$ and $U_n(r)$,
+Denoting the left side of \cref{eq:nstars:sturm_liouville} by $\hat{L} U_n = \hat{L}(r) U_n(r)$, we can integrate by parts twice to show that for two solutions $U_m(r)$ and $U_n(r)$,
 \begin{equation}
 \begin{split}
 	\Braket{\hat{L} U_m | U_n} &= \int_0^R \dif r \, \left[ \left( \Pi U_m' \right)' U_n + Q U_m U_n \right] \\
-	                           &= \Big[ \Pi U_m' U_n \Big]_{r=0}^{r=R} + \int_0^R \dif r \, \Big[ - \Pi U_m' U_n' + Q U_m U_n \Big] \\
-	                           &= \Big[ \Pi U_m' U_n \Big]_{r=0}^{r=R} - \Big[ \Pi U_m U_n' \Big]_{r=0}^{r=R} + \int_0^R \dif r \, \Big[ \left( \Pi U_n' \right)' U_m + Q U_m U_n \Big] \\
-	                           &= \Big[ \Pi \, U_m' \, U_n \Big]_{r=0}^{r=R} - \Big[ \Pi \, U_m \, U_n' \Big]_{r=0}^{r=R} + \Braket{U_m | \hat{L} U_n} . \\
+	                           &= \Big[ \Pi \, U_m' \, U_n \Big]_{r=0}^{r=R} + \int_0^R \dif r \, \Big[ - \Pi U_m' U_n' + Q U_m U_n \Big] \\
+	                           &= \Big[ \Pi \, U_m' \, U_n \Big]_{r=0}^{r=R} - \Big[ \Pi \, U_m \, U_n' \Big]_{r=0}^{r=R} + \int_0^R \dif r \, \Big[ \left( \Pi U_n' \right)' U_m + Q U_m U_n \Big] \\
+	                           &= \Big[ \Pi \, U_m' \, U_n \Big]_{r=0}^{r=R} - \Big[ \Pi \, U_m \, U_n' \Big]_{r=0}^{r=R} + \Braket{U_m | \hat{L} U_n} \\
+	                           &= \Braket{U_m | \hat{L} U_n} .
+\label{eq:nstars:inner_product_hermitean}
 \end{split}
 \end{equation}
 The surface terms at $r = 0$ vanish because $U_n(0) = U_m(0) = 0$ there by boundary condition \eqref{eq:nstars:boundary_condition_center_mathematical}, while the surface terms at $r = R$ vanish because $P_0(R) = 0$ there, causing $\Pi(R) = 0$ from its definition \eqref{eq:nstars:sturm_liouville_coefficients_Pi}.
-Using the inner product \eqref{eq:nstars:function_inner_product} and the property 
-\begin{equation}
-	\braket{\hat{L} U_m | U_n} = \braket{U_m | \hat{L} U_n}
-	%\qquad \text{for real solutions $U_m(r)$, $U_n(r)$}
-\label{eq:nstars:inner_product_hermitean}
-\end{equation}
-that follows, one can dive into the field of Sturm-Liouville theory, where one will discover the following important properties:
+Using the inner product \eqref{eq:nstars:function_inner_product} and property \eqref{eq:nstars:inner_product_hermitean}, one can dive into the field of Sturm-Liouville theory, where one will discover the following important properties:
 \begin{subequations}
 \begin{enumerate}
 \item \label{item:nstars:sturm_liouville_eigenvalues} The eigenvalues $\omega_n^2$ are real and form an infinite, discrete sequence
@@ -1114,7 +1114,7 @@ Either way, we would still say that the star is \emph{locally} unstable in the i
 \emph{If} a star were to reach another state of equilibrium once it has grown outside this domain of validity, then that new state must necessarily also be either stable or unstable.
 If it is stable, then it is either a neutron star on a different part of the mass-radius curve we have found, or it has evolved to a completely different type of star on a mass-radius curve that we do not know about.
 If it is unstable, then we would recursively enter the beginning of this argument again.
-Ultimately, what is physically interesting to us are the stable configurations, as any unstable star will either explode, collapse, evolve to one of the stable configurations or transition to a completely different type of star.
+Ultimately, what is physically interesting to us are the (locally) stable configurations, as any unstable star will either explode, collapse, evolve to one of the stable configurations or transition to a completely different type of star.
 
 % \TODO{can the instability stuff be connect to attractor/chaos stuff from nonlinear dynamics? Svar: check fixed points from nonlinear dynamics, check stability by checking the sign of the jacobian matrix or something?}
 
@@ -1247,7 +1247,7 @@ We have cut away the divergent parts as $r \rightarrow R$ from the final iterati
 We describe the shooting method and our implementation of it in detail in \cref{sec:numerics:shooting_method}.
 It is also possible to understand the gist of it from \cref{fig:nstars:shooting_convergence}, where we show how it establishes the fundamental vibration mode $U_0(r)$ and $\omega_0^2$ for some star by an intelligent form of ``trial and error''.
 In \cref{fig:nstars:modes}, we display the eight lowest modes obtained with the shooting method for some star.
-It is meant to demonstrate the boundary conditions \eqref{eq:nstars:boundary_condition_center_mathematical} and \eqref{eq:nstars:boundary_condition_surface_mathematical} and that the eigenfunctions $U_n(r)$ have exactly $n$ nodes.
+It is meant to demonstrate the boundary conditions \eqref{eq:nstars:boundary_condition_center_mathematical} and \eqref{eq:nstars:boundary_condition_surface_mathematical} and that the eigenfunction $U_n(r)$ has exactly $n$ nodes.
 
 Finally, we use the shooting method to examine the stability of every star along the curve in \cref{fig:nstars:massradius}.
 For every star, we repeatedly apply the shooting method for $n = 0, \, 1, \, 2, \, \ldots$ to find all negative eigenvalues $\omega_n^2 < 0$ until we encounter the first positive value $\omega_n^2 > 0$.
@@ -1272,7 +1272,7 @@ For a sequence of \emph{cold} stars -- like ours -- in a mass-radius diagram lik
 \item At every local mass extremum $\odv{M(P_c)}/{P_c} = 0$ where the curve bends \emph{clockwise} as the central pressure increases, one \emph{unstable} mode becomes \emph{stable}.
 \end{itemize}
 Our curve only includes a spiral turning counterclockwise and seem consistent with the first two rules.
-\cite{ref:stability_rules_thorne} gives a detailed discussion and proofs of these three rules.
+A detailed discussion and proofs of these three rules is given by \cite{ref:stability_rules_thorne}.
 As we speculated when we derived the necessary stability criterion \eqref{eq:nstars:stability_mass_pressure}, stability does indeed change of character at the mass extrema of the mass-radius curve.
 Thus, the maximum mass is not only a limit on \emph{massiveness}, but also on \emph{stability}.
 

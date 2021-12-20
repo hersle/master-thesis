@@ -52,7 +52,7 @@ There is little doubt that the greatest simplification in our free Fermi gas mod
 This is not true, and we should expect different results by accounting for a greater variety of particles with more advanced models.
 In order to keep the model simple enough for accurate calculations, it is of practical importance to include only the particles that are most relevant.
 When adding several types of charged particles, one must impose additional constraints of chemical equilibrium and charge neutrality, neither of which we have needed to worry about for the neutral neutron.
-For example, \cite[chapter 4]{ref:glendenning} studies relativistic nuclear field theory and outlines a series of successive improvements of our model:
+For example, \cite[chapter 4]{ref:glendenning} studies relativistic nuclear field theory and outlines a series of successive improvements to our model:
 
 \begin{enumerate}
 \begin{subequations}
@@ -61,7 +61,8 @@ For example, \cite[chapter 4]{ref:glendenning} studies relativistic nuclear fiel
 \item
 Our original model includes only neutrons $n$ with the free Dirac Lagrangian
 \begin{equation*}
-	\lagr_\psi = \bar\psi \left( i \gamma^\mu \partial_\mu - m \right) \psi .
+	\lagr_\psi = \bar\psi \left( i \gamma^\mu \partial_\mu - m \right) \psi 
+	\qquad \big( \text{with $\hbar = c = 1$ from here on} \big) .
 \label{eq:outlook:lagrangian_original}
 \end{equation*}
 
@@ -136,7 +137,7 @@ This requires a more advanced treatment of general relativity, where the spheric
 \cite[section 6]{ref:glendenning}
 \begin{equation*}
 	%\dif s^2 = e^{2 \nu} \dif t^2 - e^{2 \psi} \left( \dif r^2 + r^2 \dif \theta^2 \right) - e^{2 \psi} \left( \dif \phi - \omega \dif t \right)^2
-	\dif s^2 = e^{2\nu(r,\theta)} \dif t^2 - e^{2\lambda(r,\theta)} \dif r^2 - r^2 e^{2 \mu(r,\theta)} \left\{ \dif \theta^2 + \sin^2 \theta \left[ \dif \theta  - \omega(r,\theta) \dif t \right]^2 \right\} ,
+	\dif s^2 = e^{2\nu(r,\theta)} c^2 \dif t^2 - e^{2\lambda(r,\theta)} \dif r^2 - r^2 e^{2 \mu(r,\theta)} \left\{ \dif \theta^2 + \sin^2 \theta \left[ \dif \theta  - \omega(r,\theta) \dif t \right]^2 \right\} ,
 \end{equation*}
 and the fluid's four-velocity $u^\mu = (u^0, 0, 0, u^3)$ gains an angular component $u^3 = \odv{\phi}/{\tau}$ in equilibrium.
 The star is then no longer governed by the familiar Tolman-Oppenheimer-Volkoff equations, which were derived under the assumption of no rotation.
