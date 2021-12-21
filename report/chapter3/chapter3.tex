@@ -473,7 +473,9 @@ Notably, the curve peaks at the maximum mass $M = 0.96 \solarmass$ around $R = \
 For general Fermi momenta, the equation of state $\epsilon = \epsilon(P)$ is calculated numerically as described in \cref{sec:nstars:gr_limit}, and the Tolman-Oppenheimer-Volkoff equations are again integrated numerically as described in \cref{sec:nstars:nr_limit_solve}.
 The resulting mass-radius curve is also shown in \cref{fig:nstars:massradius}.
 Again, the curve peaks at a maximum mass $M = 0.71 \solarmass$ only for the relativistic pressure gradient.
-This is the most accurate equation of state, and it is therefore the lowermost curve in \cref{fig:nstars:massradius} that we should pay most attention to.
+This is the most accurate equation of state, and it is therefore the bottom curve in \cref{fig:nstars:massradius} that we should pay most attention to.
+In addition, we show the pressure profiles for some stars on this curve in \cref{fig:nstars:pressure_profiles}.
+Notice that the normalized profiles are quite similar for central pressures below that corresponding to the maximum mass, but begin to change dramatically once it is exceeded!
 
 \tablemaximum{../code/data/nr.dat}{M}{\maxMnr}{R}{\maxRnr}
 \pgfmathparse{10*\maxRnr}
@@ -531,7 +533,60 @@ The numerical integration is carried out using both the explicit non-relativisti
 Consult \cref{chap:code} for the implementation of the computer program.
 Stars are parametrized by central pressures $\SI{4.27e28}{\pascal} \le P_c \le \SI{4.27e41}{\pascal}$, and $\solarmass$ is the mass of the sun.
 }
+\end{figure}
 
+\begin{figure}
+\centering
+\tikzsetnextfilename{neutron-star-pressures}
+\begin{tikzpicture}[
+	every pin edge/.style={draw=black, latex-, thin},
+	every pin/.style={text=black, font=\small},
+	every node/.style={text=black, font=\small},
+]
+\begin{axis}[
+	width=15cm, height=14cm,
+	xlabel=$r / R$, ylabel=$P(r) / P(0)$, title={Pressure profiles for ideal neutron stars}, title style={yshift=2.3cm},
+	xmin=0, xmax=1, xtick distance=0.1, minor x tick num=9,
+	ymin=0, ymax=1, ytick distance=0.1, minor y tick num=9,
+	grid=major,
+	colorbar horizontal, point meta=explicit, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c / \si{\pascal})$, xtick distance=1, minor x tick num=0, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+	point meta min=28, point meta max=42,
+	declare function={
+		e0 = 4.266500881855305e+34;
+	},
+]
+\pgfplotstableread{../code/data/pressures.dat}{\pressuretable}
+\pgfplotsinvokeforeach{0,...,13}{
+	\pgfplotstablegetelem{#1}{P0}\of{\pressuretable}
+	\edef\temp{\noexpand\addplot+ [solid, mesh] table [x={x#1}, y={p#1}, meta expr={log10(e0 * \pgfplotsretval)}] {../code/data/pressures.dat};}
+	\temp
+}
+
+\pgfplotstablegetelem{0}{P0}\of{\pressuretable}
+\edef\temp{\noexpand\addplot [draw=none] table [x={x0}, y={p0}] {../code/data/pressures.dat} node [pos=0.42, sloped, yshift=+0.6em] {$P_c = \SI{4.27e28}{\pascal}$};}
+\temp
+\pgfplotstablegetelem{6}{P0}\of{\pressuretable}
+\edef\temp{\noexpand\addplot [draw=none] table [x={x6}, y={p6}] {../code/data/pressures.dat} node [pos=0.42, sloped, yshift=+0.6em] {$P_c = \SI{4.27e34}{\pascal}$};}
+\temp
+\pgfplotstablegetelem{7}{P0}\of{\pressuretable}
+\edef\temp{\noexpand\addplot [draw=none] table [x={x7}, y={p7}] {../code/data/pressures.dat} node [pos=0.42, sloped, yshift=+0.6em] {$P_c = \SI{4.27e35}{\pascal}$};}
+\temp
+\pgfplotstablegetelem{8}{P0}\of{\pressuretable}
+\edef\temp{\noexpand\addplot [draw=none] table [x={x8}, y={p8}] {../code/data/pressures.dat} node [pos=0.42, sloped, yshift=+0.6em] {$P_c = \SI{4.27e36}{\pascal}$};}
+\temp
+\pgfplotstablegetelem{9}{P0}\of{\pressuretable}
+\edef\temp{\noexpand\addplot [draw=none] table [x={x9}, y={p9}] {../code/data/pressures.dat} node [pos=0.42, sloped, yshift=+0.6em] {$P_c = \SI{4.27e37}{\pascal}$};}
+\temp
+\pgfplotstablegetelem{10}{P0}\of{\pressuretable}
+\edef\temp{\noexpand\addplot [draw=none] table [x={x10}, y={p10}] {../code/data/pressures.dat} node [pos=0.42, sloped, yshift=+0.6em] {$P_c = \SI{4.27e38}{\pascal}$};}
+\temp
+
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:nstars:pressure_profiles}%
+	Normalized pressure profiles $P(r) / P(0)$ for the $14$ neutron stars with central pressures $P_c = P(0) = \SI{4.27e28}{\pascal},\, \SI{4.27e29}{\pascal},\, \ldots,\, \SI{4.27e41}{\pascal}$ along the bottom sequence in \cref{fig:nstars:massradius}.
+	Where there is sufficient space, the central pressure is written above the pressure profile of the star it corresponds to.
+}
 \end{figure}
 
 \section{Stability analysis}
@@ -1329,7 +1384,7 @@ Therefore, we say that a star is stable only if it has $n = 0$ unstable modes.
 
 \section{Summary}
 
-The main result of this chapter is the lowermost sequence of ideal neutron stars in \cref{fig:nstars:massradius} that we obtained by numerically integrating the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} with the general equation of state \eqref{eq:nstars:gr_eos}.
+The main result of this chapter is the bottom sequence of ideal neutron stars in \cref{fig:nstars:massradius} that we obtained by numerically integrating the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} with the general equation of state \eqref{eq:nstars:gr_eos}.
 Unlike the Newtonian curves, general relativity produces an upper mass limit $M \approx 0.71 \solarmass$.
 Finally, we used the shooting method to solve a Sturm-Liouville problem describing stars perturbed from equilibrium, yielding the number of unstable normal pulsation modes for all stars on the sequence.
 %As we speculated when we derived the necessary stability criterion \eqref{eq:nstars:stability_mass_pressure}, stability dramatically changes character at the mass extrema on the mass-radius curve.

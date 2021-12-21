@@ -58,6 +58,21 @@ massradiusplot(
     ϵGR, (1e-6, 1e7), **opts, stability=True,  newtonian=False, outfile="data/gr.dat"
 )
 
+"""
+P0s = list(np.geomspace(1e-6, 1e7, 14))
+xs, ps = [], []
+for P0 in P0s:
+    r, m, P, α, ϵ = soltov(ϵGR, P0)
+    #N = 500 # sample N points
+    #P = np.interp(np.linspace(r[0], r[-1], N), r, P)
+    #r = np.linspace(r[0], r[-1], N)
+    xs.append(list(r / r[-1]))
+    ps.append(list(P / P0))
+P0head = ["P0"]
+xheads = [f"x{i}" for i in range(0, len(P0s))]
+pheads = [f"p{i}" for i in range(0, len(P0s))]
+writecols([P0s] + xs + ps, P0head + xheads + pheads, "data/pressures.dat")
+
 r, m, P, α, ϵ = soltov(ϵGR, 1e3)
 ω2s, us = eigenmode(r, m, P, α, ϵ, [0], plot=True, outfileshoot="data/shoot.dat")
 
