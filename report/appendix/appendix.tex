@@ -173,7 +173,7 @@ The \textbf{metric tensor}
 \end{equation}
 is defined as the inner products between basis vectors $\vec{e}_\mu$ that span the tangent spaces at each point $x$ on the manifold.
 It thus encodes lengths of the basis vectors and angles between them, and is therefore a fundamental object that describes the geometry of the manifold.
-For example, in Minkowski space with coordinates $x^\mu = (ct, x, y, z)$, the metric is $\eta\indices{^\mu^\nu} = \diag (+1, -1, -1, -1)$.
+For example, in Minkowski space with coordinates $x^\mu = (ct, x, y, z)$, the metric is $\eta\indices{_\mu_\nu} = \diag (+1, -1, -1, -1)$.
 
 In addition, we define the \textbf{inverse metric tensor} $g^{\mu \nu}$ as the inverse matrix satisfying
 \begin{equation}
@@ -202,7 +202,7 @@ By integrating the line element from one point on the manifold to another, one c
 \begin{equation}
 	s = \int_1^2 \dif s = \int_1^2 \sqrt{g\indices{_\mu_\nu} \dif x^\mu \dif x^\nu}
 \end{equation}
-between the points.
+between two points $1$ and $2$.
 Similarly, one can compute the \textbf{volume} of a region
 \begin{equation}
 	V = \int \dif V = \int \sqrt{-\det{\gamma}} \dif x^1 \dif x^2 \dif x^3 ,
@@ -220,7 +220,7 @@ By the transformation rules we have found so far and the product rule, the norma
 	                         = \pdvx{\mu}{\mu'} \pdvx{\nu'}{\nu} \partial_\mu V^\nu + \pdvx{\mu}{\mu'} \pdv{x^{\nu'}}{x^\mu, x^\nu} V^\nu .
 \end{equation}
 The first term respects the tensor transformation law \eqref{eq:tensor_transformation}, but the second does not, so $\partial_\mu V^\nu$ is \emph{not a tensor}.
-We define a tensorial derivative $\nabla_\mu$ that by \emph{demanding} that it adheres to the tensorial transformation
+We define a tensorial derivative $\nabla_\mu$ by \emph{demanding} that it adheres to the tensorial transformation
 \begin{equation}
 	\nabla_{\mu'} V^{\nu'} = \pdvx{\mu}{\mu'} \pdvx{\nu'}{\nu} \nabla_\mu V^\nu .
 \label{eq:gr_summary:covariant_derivative_demand}
@@ -249,8 +249,8 @@ It is possible to generalize the covariant derivative to an arbitrary tensor $T^
 That is, for each upper index $\alpha_i$, add $+\Gamma^{\alpha_i}_{\sigma \mu} T^{\alpha_1 \ldots \alpha_{i-1} \sigma \alpha_{i+1} \ldots \alpha_r}_{\beta_1 \ldots \beta_s}$,
 and for each lower index $\beta_i$, subtract $\Gamma^{\sigma}_{\beta_i \mu} T^{\alpha_1 \ldots \alpha_r}_{\beta_1 \ldots \beta_{i-1} \sigma \beta_{i+1} \ldots \beta_s}$.
 
-Note that the connection coefficients \eqref{eq:connection_transformation} \emph{do not} transform like tensors -- the whole point is to stash the non-tensorial behavior into the connection coefficients so that the \emph{covariant derivative} transforms as a tensor.
-However, since $\nabla_\mu V^\nu$ and $\hat{\nabla}_\mu V^\nu$ for two different connection coefficients $\Gamma^\alpha_{\beta \mu}$ and $\hat{\Gamma}^\alpha_{\beta \mu}$ by definition are tensors, the \emph{difference}
+Note that the connection coefficients \eqref{eq:connection_transformation} \emph{do not} transform like tensors -- the whole point is to stash the non-tensorial behavior into the connection coefficients so that the \emph{covariant derivative} \eqref{eq:def_cov_deriv} transforms as a tensor.
+However, since $\nabla_\mu V^\nu$ and $\hat{\nabla}_\mu V^\nu$ for two different connection coefficients $\Gamma^\alpha_{\beta \mu}$ and $\hat{\Gamma}^\alpha_{\beta \mu}$ are tensors by definition, subtracting them shows that the \emph{difference}
 \begin{equation}
 	S\indices{^\alpha_\beta_\gamma} = \Gamma^\alpha_{\beta \gamma} - \hat{\Gamma}^\alpha_{\beta \gamma}
 \label{eq:gr_summary:christoffel_difference}
@@ -261,7 +261,7 @@ There are many possible choices of the connection coefficients that satisfy \cre
 However, it turns out that we can find a set of \emph{unique} connection coefficients from the \emph{metric} if we impose two additional requirements.
 First, we demand that the \textbf{torsion tensor}
 \begin{equation}
-	T\indices{^\alpha_\beta_\gamma} = \Gamma^\alpha_{\beta\gamma} - \Gamma^\alpha_{\gamma\beta}
+	T\indices{^\alpha_\beta_\gamma} = \Gamma^\alpha_{\beta\gamma} - \Gamma^\alpha_{\gamma\beta} = 0
 	\label{eq:torsion_tensor}
 \end{equation}
 vanishes.
@@ -273,7 +273,7 @@ Second, we require \textbf{metric compatibility}
 \end{equation}
 expressing that the metric is covariantly constant.
 One can show that this guarantees that lengths of vectors and angles between them are preserved under parallel transport, which we will study in the next section, making this a reasonable demand. \cite[equation 2.10]{ref:hehl}
-The covariantly constant nature of the metric implies that we can view spacetime as a continuum of flat Minkowski spacetimes, sewn together by the connection $\Gamma^\alpha_{\beta \gamma}$.
+The covariantly constant nature of the metric implies that we can view spacetime as a continuum of flat Minkowski spacetimes, ``sewn together'' by the connection $\Gamma^\alpha_{\beta \gamma}$.
 Metric compatibility implies that
 \begin{equation}
 	g_{\mu \lambda} \nabla_\rho V^\lambda = \nabla_\rho (g_{\mu \lambda} V^\lambda) = \nabla_\rho V_\mu ,
@@ -334,7 +334,7 @@ Generalizing the directional derivative $\odv{}/{\tau} = (\odv{x^\mu}/{\tau}) \p
 	\frac{D}{\mathrm{d} \tau} = \odv{x^\mu}{\tau} \nabla_\mu,
 \end{equation}
 where $\nabla_\mu$ is the covariant derivative \eqref{eq:def_cov_deriv}.
-We say that a tensor is parallel transported if its components are kept constant during transport, as expressed by
+We say that a tensor is \textbf{parallel transported} if its components are kept constant during transport, as expressed by
 \begin{equation}
 	\frac{D}{\mathrm{d} \tau} T^{\mu_1 \ldots \mu_m}_{\nu_1 \ldots \nu_n} = 0 .
 \end{equation}
@@ -401,7 +401,7 @@ Moreover, \textbf{Einstein's equivalence principle} and the related \textbf{prin
 
 From the curvature tensor, we can form tensors of lower rank by contracting some of its indices.
 %We know that the energy-momentum tensor $T^{\mu \nu}$ that enter the Einstein field equations \eqref{eq:einstein} are of second rank, so if it is to determine the curvature of spacetime by a tensor equation, then the curvature tensor must be contracted to form a tensor of equal rank.
-With the Christoffel connection \cref{eq:def_christoffel}, the only independent contraction we can make is the \textbf{Ricci tensor}
+With the Christoffel connection \eqref{eq:def_christoffel}, the only independent contraction we can make is the \textbf{Ricci tensor}
 \begin{equation}
 	R\indices{_\mu_\nu} = R\indices{^\lambda_\mu_\lambda_\nu} .
 	\label{eq:def_ricci_tensor}
@@ -443,6 +443,7 @@ We postulate the \textbf{Hilbert action}
 	\label{eq:einstein_derivation:hilbert_action}
 \end{equation}
 It is not an unreasonable guess, for the Lagrangian is a scalar quantity, and we showed that the simplest scalar quantity we could create that somehow describes curvature is the Ricci scalar \eqref{eq:def_ricci_scalar}.
+The factor $\sqrt{-\det{g}}$ ensures that the volume element is invariant.
 The prefactor has been conveniently chosen to yield correct result \eqref{eq:einstein_derivation:einstein_matter} in the end, which we will see in \cref{sec:einstein_to_poisson} leads to Newtonian gravity in the Newtonian limit.
 From an ignorant point of view, we could instead regard the prefactor as an arbitrary constant at this point, and eventually replace it with whichever combination of constants that reproduces Newtonian gravity in the Newtonian limit.
 
@@ -579,13 +580,14 @@ To unveil the Einstein field equations in the presence of matter, we add a contr
 \begin{equation}
 	S = S_H + S_M .
 \end{equation}
-Repeating the same procedure as above yields the equations of motion
+Repeating the same procedure as above then yields the equations of motion
 \begin{equation}
 	\frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \fdv{S}{g^{\mu \nu}} = \left( R_{\mu \nu} - \frac{1}{2} R g_{\mu \nu} \right) + \frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \frac{\variation{S_M}}{\variation{g^{\mu \nu}}} = 0 .
 \end{equation}
-If we now \emph{define} the energy-momentum tensor
+If we now \emph{define} the energy-momentum tensor $T_{\mu \nu}$ by
 \begin{equation}
-	T_{\mu \nu} = \frac{-c}{2 \sqrt{-\det{g}}} \frac{\variation{S_M}}{\variation{g^{\mu \nu}}} ,
+	%T_{\mu \nu} = \frac{-c}{2 \sqrt{-\det{g}}} \frac{\variation{S_M}}{\variation{g^{\mu \nu}}} ,
+	\frac{c^3}{16 \pi G} \frac{1}{\sqrt{-\det{g}}} \frac{\variation{S_M}}{\variation{g^{\mu \nu}}} = -\frac{8 \pi G}{c^4} T_{\mu \nu} ,
 \end{equation}
 we uncover the \textbf{Einstein field equations in the presence of matter},
 \begin{equation}
@@ -629,8 +631,8 @@ Consequently, particles could reach velocities that violate criterion \eqref{eq:
 Motion is also generated by internal stresses in the system.
 For example, in \cref{chap:relfluid} we study perfect fluids with energy-momentum \eqref{eq:relfluid:energy_momentum}.
 We show that sound waves propagate with the velocity $v = c \, \sqrt{\odv{P}/{\epsilon}}$ on top of a fluid in equilibrium with $T\indices{_\mu^\nu} = \diag \left( \epsilon, -P, -P, -P \right)$.
-It can therefore also be expressed as $v = c \, \sqrt{-\smash[b]{\odv{T\indices{_i^i}}/{T\indices{_0^0}}}}$, where $T\indices{_i^i}$ is \emph{one} diagonal element and there is no sum over $i$.
-More generally, we therefore assume slow movement corresponds to $\odv{T_{ij}}/{T_{00}} \ll 1$ or, by integration,
+It can therefore also be expressed as $v = c \, \sqrt{-\smash[b]{\odv{T\indices{_i^i}}/{T\indices{_0^0}}}}$, where $T\indices{_i^i}$ is any \emph{one} diagonal element and there is no sum over $i$.
+More generally, we therefore assume slow movement corresponds to $\odv{T_{ij}}/{T_{00}} \ll 1$, and by integration,
 \begin{equation}
 	\frac{T_{ij}}{T_{00}} \ll 1 .
 	\label{eq:weak_field_limit:small_pressure}
@@ -651,10 +653,10 @@ Third, a \emph{weak} field corresponds to a metric that can be written as a pert
 \begin{equation}
 	g\indices{_\mu_\nu} = \eta\indices{_\mu_\nu} + h\indices{_\mu_\nu}
 	\qquad \text{with} \qquad
-	\abs{h\indices{^\mu^\nu}} \ll 1
+	\abs{h\indices{_\mu_\nu}} \ll 1
 	\label{eq:weak_field_limit:weak_field_metric}
 \end{equation}
-on top of flat Minkowski space $\eta\indices{^\mu^\nu} = \diag (+1, -1, -1, -1)$.
+on top of flat Minkowski space $\eta\indices{_\mu_\nu} = \diag (+1, -1, -1, -1)$.
 The inverse metric $g\indices{^\mu^\nu}$ should satisfy $g\indices{^\mu^\nu} g\indices{_\nu_\sigma} = \delta^\mu_\sigma$, so to first order in $h$ we must have
 \begin{equation}
 	g\indices{^\mu^\nu} = \eta\indices{^\mu^\nu} - h\indices{^\mu^\nu} ,
@@ -688,7 +690,10 @@ Inserting the weak-field metric \eqref{eq:weak_field_limit:weak_field_metric} an
 In particular, the static metric \eqref{eq:weak_field_limit:static_field} implies that $\Gamma^0_{00} = 0$, so $\odv[2]{t}/{\tau} = 0$ by the approximated geodesic equation \eqref{eq:weak_field_limit:geodesic_approximated}.
 As we have neglected $\odv{x^i}/{\tau} \ll c$, we can now regard the geodesic $x(\tau) = x(\tau(t))$ as a function of only $t$ and apply the chain rule and the product rule to get 
 \begin{equation}
-	\odv[2]{x}{\tau} = \odv*{\left( \odv{x}{t} \odv{t}{\tau} \right)}{\tau} = \left( \odv[2]{x}{t} \right) \left( \odv{t}{\tau} \right)^2 + \left( \odv{x}{t} \right) \left( \odv[2]{t}{\tau} \right) = \left( \odv[2]{x}{t} \right) \left( \odv{t}{\tau} \right)^2 .
+	\odv[2]{x}{\tau} =
+	\odv*{\left( \odv{x}{t} \odv{t}{\tau} \right)}{\tau} =
+	\left( \odv{}{\tau} \odv{x}{t} \right) \left( \odv{t}{\tau} \right) + \left( \odv{x}{t} \right) \left( \odv[2]{t}{\tau} \right) =
+	\left( \odv[2]{x}{t} \right) \left( \odv{t}{\tau} \right)^2 .
 \end{equation}
 Upon insertion into the \cref{eq:weak_field_limit:geodesic_approximated}, we can cancel the common factor $(\odv{t}/{\tau})^2$ and write the geodesic equation purely in terms of time $t$ as
 \begin{equation}
@@ -727,7 +732,7 @@ Using $g\indices{^\mu_\mu} = \delta\indices{^\mu_\mu} = 4$, we find that the Ric
 	R_{\mu \nu} = \frac{8 \pi G}{c^4} \left( T_{\mu \nu} - \frac12 T g_{\mu \nu} \right) .
 	\label{eq:einstein_rewritten}
 \end{equation}
-Inserting the energy-momentum \eqref{eq:energy_momentum_dust} from above, we find the Ricci tensor element
+Inserting the energy-momentum \eqref{eq:energy_momentum_dust} and setting $\rho = \epsilon / c^2$, we then find the Ricci tensor element
 \begin{equation}
 	R_{00} = \frac{4 \pi G \rho}{c^2} .
 	\label{eq:weak_field_limit:ricci_from_energy_momentum}
@@ -786,7 +791,7 @@ In this frame, the energy-momentum tensor must take the standard, diagonal form
 	T^{ij} = P \delta^{ij} .
 \end{equation}
 %We will say it extremely verbosely once: the energy-momentum tensor is a tensor, so it transforms as a tensor.
-In Minkowski space, the transformation matrix $\pdv{x^\mu}/{x^\nu}$ in the tensorial transformation law \eqref{eq:tensor_transformation} is the Lorentz transformation $\Lambda\indices{^\mu_\nu}$. \cite{ref:mika_gr_notes}
+In Minkowski space, the transformation matrix $\pdv{x^\mu}/{x^\nu}$ in the tensorial transformation law \eqref{eq:tensor_transformation} is the Lorentz transformation $\Lambda\indices{^\mu_\nu}$ given in \cite{ref:mika_gr_notes}, for example.
 If we are rather viewing the fluid element from the laboratory frame and it is moving with velocity $\vec{v}$ relative to us, we can therefore find the energy-momentum tensor by making the two Lorentz boosts
 \begin{equation}
 	T^{\mu \nu} \rightarrow \Lambda\indices{^\mu_\alpha}(\vec{v}) \Lambda\indices{^\nu_\beta}(\vec{v}) T^{\alpha \beta} .
@@ -794,8 +799,8 @@ If we are rather viewing the fluid element from the laboratory frame and it is m
 Explicitly carrying out the Lorentz transformations, we obtain the nonzero components
 \begin{subequations}
 \begin{align}
-	T^{00} &= \frac{\epsilon + P \vec{v}^2 / c^2}{1 - \vec{v}^2 / c^2} \\
-	T^{0i} = T^{i0} &= \frac{(\epsilon + P) v^i / c}{1 - \vec{v}^2 / c^2} \\
+	T^{00} &= \frac{\epsilon + P \vec{v}^2 / c^2}{1 - \vec{v}^2 / c^2}, \\
+	T^{0i} = T^{i0} &= \frac{(\epsilon + P) v^i / c}{1 - \vec{v}^2 / c^2}, \\
 	T^{ij} &= P \delta^{ij} + \frac{(P + \epsilon) v^i v^j / c^2}{1 - \vec{v}^2 / c^2} .
 \end{align}
 \end{subequations}
@@ -824,20 +829,20 @@ The volume of the fluid element then changes by
 \begin{equation}
 \begin{split}
 	\dif V &= \dif \left( L^1 L^2 L^3 \right) \\
-	       &= \dif \left( L^1 \right) L^2 L^3 + L^1 \left( \dif L^2 \right) L^3 + L^1 L^2 \left( \dif L^3 \right) \\
+	       &= \left( \dif L^1 \right) L^2 L^3 + L^1 \left( \dif L^2 \right) L^3 + L^1 L^2 \left( \dif L^3 \right) \\
 	       &= V \left( \frac{\dif L^1}{L^1} + \frac{\dif L^2}{L^2} + \frac{\dif L^3}{L^3} \right) \\
 	       &= V \left( \pdv{v^1}{x^1} + \pdv{v^2}{x^2} + \pdv{v^3}{x^3} \right) \dif \tau . \\
 	       %&= V \pdv{u^i}{x^i} \dif \tau .
 \end{split}
 \end{equation}
 Since $u^0 = c$ in our reference frame, we make no mistake by including $\pdv{u^0}/{x^0} = 0$ in this sum.
-The rate of change is then given by the tensorial law
+The rate of change is then given by the \emph{tensorial} law
 \begin{equation}
 	\odv{V}{\tau} = V \pdv{u^\mu}{x^\mu} = V \nabla_\mu u^\mu ,
 \label{eq:relfluid:volume_rate_change}
 \end{equation}
 where $\nabla_\mu = \partial_\mu$ because the Christoffel symbols vanish in Minkowski space.
-By the equivalence principle, this law holds in any spacetime and reference frame.
+By the equivalence principle, this law then holds in any spacetime and reference frame.
 
 Like the volume element, the baryon number density $n(x(\tau))$ can change along a streamline.
 But the total \textbf{baryon number} $N = n V$ must be conserved, as expressed by
@@ -847,7 +852,7 @@ But the total \textbf{baryon number} $N = n V$ must be conserved, as expressed b
 \end{equation}
 It will be very useful to rewrite this law in multiple different ways.
 First, let us differentiate it and insert the volume element rate of change \eqref{eq:relfluid:volume_rate_change}.
-Then the conservation law \eqref{eq:relfluid:baryon_number_constant} is equivalent to
+Then it is equivalent to
 \begin{align}
 	0 &= \frac{1}{V} \odv*{\left( n V \right)}{\tau} && \qquad \big( \text{by \eqref{eq:relfluid:baryon_number_constant}} \big) \nonumber \\
 	  &= \odv{n}{\tau} + \frac{n}{V} \odv{V}{\tau} && \qquad \big( \text{by forward product rule} \big) \nonumber \\
@@ -905,7 +910,7 @@ where we define the parallel and orthogonal \textbf{projection tensors}
 %that project out the parallel part $v_\parallel^\alpha = \left(P_\parallel\right)\indices{^\alpha_\beta} v^\beta$ and $v_\perp^\alpha = \left(P_\perp\right)\indices{^\alpha_\beta} v^\beta$ of the vector $v^\alpha$.
 These projectors are valid for any normalization $u^\mu u_\mu$, but with our conventions and choice of units we can always replace $u^\mu u_\mu = c^2$.
 It is straightforward to verify that both projectors have the characteristic property $( P\indices{^\alpha_\beta} )^2 = P\indices{^\alpha_\gamma} P\indices{^\gamma_\beta} = P\indices{^\alpha_\beta}$,
-expressing the geometrically intuitive property that a projection does not alter a vector that has already been projected.
+expressing the geometrically intuitive fact that a projection does not alter a vector that has already been projected.
 
 \subsection{Energy conservation}
 
@@ -916,7 +921,7 @@ Multiplying \cref{eq:relfluid:conservation_energy_momentum} with the parallel pr
 \begin{equation}
 \begin{split}
 	0 &= \frac{u^\alpha u_\nu}{c^2} \nabla_\mu T^{\mu \nu} \\
-	  &= \frac{u^\alpha}{c^2} \left\{ \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( u_\nu u^\nu \nabla_\mu u^\mu + u^\mu u_\nu \nabla_\mu u^\nu \Big) + u^\mu u_\nu u^\nu \nabla_\mu \Big( \epsilon + P \Big) \bigg] - \nabla^\nu P \right\} . \\
+	  &= \frac{u^\alpha}{c^2} \left\{ \frac{1}{c^2} \bigg[ \Big( \epsilon + P \Big) \Big( u_\nu u^\nu \nabla_\mu u^\mu + u^\mu u_\nu \nabla_\mu u^\nu \Big) + u^\mu u_\nu u^\nu \nabla_\mu \Big( \epsilon + P \Big) \bigg] - u_\nu \nabla^\nu P \right\} . \\
 \end{split}
 \label{eq:relfluid:conservation_projected_parallel}
 \end{equation}
@@ -945,7 +950,7 @@ This leaves
 \end{subequations}%
 This is the announced scalar equation that follows from conservation of energy-momentum.
 Either of the equivalent forms is known as the \textbf{relativistic equation of energy conservation}.
-In the Newtonian limit \eqref{eq:weak_field_limit:small_pressure}, the pressure term is negligible and the form \eqref{eq:relfluid:energy_conservation_after_product} reduces to the familiar continuity equation for mass density $\rho = \epsilon / c^2$ from fluid mechanics,
+In the Newtonian limit \eqref{eq:weak_field_limit:small_pressure}, the pressure term in the form \eqref{eq:relfluid:energy_conservation_before_product} is negligible, so it reduces to the familiar continuity equation for mass density $\rho = \epsilon / c^2$ from fluid mechanics,
 \cite[equation 7.1]{ref:iver}
 \begin{equation}
 	%0 = \nabla_\mu \bigg( \epsilon \, u^\mu \bigg) = \pdv{\epsilon}{t} - \vec{\nabla} \cdot \Big( \epsilon \vec{v} \Big)
@@ -1027,16 +1032,17 @@ To relate this to our flow, combine conservation of energy and baryon number int
 
 A useful consequence of adiabaticity is that it enables us to define the \textbf{adiabatic index}
 \begin{equation}
-	\gamma = \left( \pdv{\log (P/P_0)}{\log (n/n_0)} \right)_S
+	\gamma = \left( \pdv{\log (P/P_0)}{\log (n/n_0)} \right)_s ,
 \end{equation}
-at constant entropy, relative to some irrelevant pressure and number density scales $P_0$ and $n_0$.
+relative to some arbitrary pressure and number density scales $P_0$ and $n_0$.
+The derivative must be taken at constant specific entropy $s$, or equivalently \emph{along the flow}.
 In our case, we can take the derivative and rewrite the adiabatic index by eliminating the baryon number density with \cref{eq:relfluid:energy_conservation_rewritten}.
 It then takes the practical form
 \begin{equation}
 	\gamma = \frac{n}{P} \left( \pdv{P}{n} \right)_s
 	       = \frac{n}{P} \frac{\odv{P}/{\tau}}{\odv{n}/{\tau}}
 	       = \frac{\epsilon+P}{P} \frac{\odv{P}/{\tau}}{\odv{\epsilon}/{\tau}}
-	       = \frac{\epsilon+P}{P} \left( \odv{P}{\epsilon} \right)_s .
+	       = \frac{\epsilon+P}{P} \left( \pdv{P}{\epsilon} \right)_s .
 \label{eq:relfluid:adiabadicity}
 \end{equation}
 The last expression is possible to calculate from the equation of state $\epsilon = \epsilon(P)$.
@@ -1054,7 +1060,7 @@ To first order in all the small quantities, the Euler equation \eqref{eq:relflui
 	\pdv{\vec{v}}{t} = - c^2 \frac{\nabla (\delta P)}{\epsilon_0 + P_0} .
 \label{eq:relfluid:speed_of_sound_dvdt}
 \end{equation}
-Likewise, the adiabaticity condition \eqref{eq:relfluid:energy_conservation_rewritten} gives
+Likewise, the adiabaticity equation \eqref{eq:relfluid:energy_conservation_rewritten} gives
 \begin{equation}
 	\pdv{(\delta \epsilon)}{t} = \frac{\epsilon_0 + P_0}{n_0} \pdv{(\delta n)}{t},
 	\qquad \text{or} \qquad
@@ -1080,7 +1086,7 @@ A more rigorous way to see this is to note that the pressure at a point $\vec{x}
 For example, the pressure \eqref{eq:nstars:pressure_zeroT} is a function of $x_F = p_F / mc$, which in turn is determined by the density \eqref{eq:nstars:density_zeroT}.
 By the chain rule, then,
 \begin{equation}
-	\nabla P = \odv{P}{n} \nabla P = \frac{\delta P}{\delta n} \nabla n ,
+	\nabla P = \odv{P}{n} \nabla n = \frac{\delta P}{\delta n} \nabla n ,
 \label{eq:relfluid:pressure_density_gradient_aligned_alternative}%
 \end{equation}%
 \end{subequations}%
@@ -1098,7 +1104,7 @@ Next, to first order in the small quantities, the baryon number equation \eqref{
 	\pdv{(\delta n)}{t} + n_0 \nabla \cdot \vec{v} = 0 .
 \label{eq:relfluid:speed_of_sound_baryon_number_rate_of_change}
 \end{equation}
-Finally, differentiate this equation with respect to time and substitute expression \eqref{eq:relfluid:speed_of_sound_dvdt3} for $\pdv{\vec{v}}/{t}$ to obtain
+Finally, differentiate this equation with respect to time and then substitute expression \eqref{eq:relfluid:speed_of_sound_dvdt3} for $\pdv{\vec{v}}/{t}$ to obtain
 \begin{equation}
 	\left( \pdv[2]{}{t} - c^2 \odv{P_0}{\epsilon_0} \, \nabla^2 \right) \delta n = 0 .
 \end{equation}
@@ -1338,6 +1344,7 @@ Let us use now use this technique to evaluate the sum \eqref{eq:matsum:motivatin
 	  = \sum_{n=-\infty}^{+\infty} s(E_n)
 	\qquad \text{and} \qquad
 	s(-iz) = \frac{1}{-z^2 + E^2} .
+\label{eq:matsum:motivating_example_repeat}
 \end{equation}
 It has two poles at $z = +E$ and $z = -E$.
 Using \cref{eq:matsum:residue_quotient} with $f(z) = n_\pm(z)$ and $g(z) = s(-iz)^{-1} = -z^2 + E^2$, we obtain the residues
@@ -1346,7 +1353,7 @@ Using \cref{eq:matsum:residue_quotient} with $f(z) = n_\pm(z)$ and $g(z) = s(-iz
 	\qquad \text{and} \qquad
 	\res_{z = -E}[s(-iz) n_\pm(z)] = +\frac{n_\pm(-E)}{2 E}  .
 \end{equation}
-Using our main result \eqref{eq:matsum:sum_finite_residues}, the Matsubara sum \eqref{eq:matsum:motivating_example} is therefore
+Using our main result \eqref{eq:matsum:sum_finite_residues}, the Matsubara sum \eqref{eq:matsum:motivating_example_repeat} is therefore
 \begin{equation}
 	S = \sum_{n=-\infty}^{+\infty} \frac{1}{E_n^2 + E^2}
 	  = \mp \beta \sum_i \res_{z=z_n}[s(-i z) n_\pm(z)]
@@ -1508,7 +1515,7 @@ Recall that the upper and lower signs hold for bosons and fermions, respectively
 \chapter{Numerical implementations}
 \label{chap:code}
 
-In this appendix, we explain and list all code used to produce the results of this thesis.
+In this appendix, we explain and list all Python code used to produce the results of this thesis.
 
 \section{Elimination of dimensionful quantities}
 
@@ -1520,14 +1527,14 @@ To this end, we define the dimensionless
 	& \text{mass}                   & \hat{m}        &= \frac{m}{m_0}               , & \text{where} && m_0        &= \solarmass = \SI{1.99e30}{\kilogram} , \\
 	& \text{energy density}         & \hat{\epsilon} &= \frac{\epsilon}{\epsilon_0} , & \text{where} && \epsilon_0 &= \frac{m_0 c^2}{4 \pi r_0^3 / 3} , \\
 	& \text{pressure}               &  \hat{P}       &= \frac{P}{\epsilon_0}        , \\
-	& \text{gravitational constant} & \hat{G}        &= \frac{G}{G_0}               , & \text{where} && G_0 &= \frac{r_0 c^2}{m_0} , \\
+	& \text{gravitational constant} & \hat{G}        &= \frac{G}{G_0}               , & \text{where} && G_0 &= \frac{r_0 c^2}{m_0} .
 \end{align}%
 \label{eq:numtov:dimensionless_variables}%
 \end{subequations}%
 The precise values of $r_0$ and $m_0$ are chosen to be natural scales for radii and masses of compact stars, and the values of the remaining quantities follow from these and fundamental physical constants.
 In short, any variable in this appendix that wears a hat $\, \hat{} \, $ is the dimensionless version of its hatless dimensionful sibling, obtained by dividing the latter by whichever constant in \cref{eq:numtov:dimensionless_variables} that has the same dimension.
 
-We define the required constants in a separate file:
+We define the constants we require in a separate file:
 
 \codefile{python}{../code/constants.py}{constants.py}
 
@@ -1558,15 +1565,15 @@ With the dimensionless variables \eqref{eq:numtov:dimensionless_variables}, the 
 	\odv{\diml{\alpha}}{\diml{r}} &= -\frac{1}{\diml{\epsilon}(\diml{P})+\diml{P}} \odv{\diml{P}}{\diml{r}} ,
 \end{align}
 \end{subequations}
-which we wish to solve subject to the boundary conditions $\diml{P}(0) = \diml{P}_0$ and $\diml{m}(0) = 0$ for some dimensionless central pressure $\diml{P}_0$, and $\alpha(R) = \log ( 1 - 2 \diml{G} \diml{M} / \diml{R} ) / 2$ to match the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric} at the surface.
+which we wish to solve subject to the boundary conditions $\diml{P}(0) = \diml{P}_c$ and $\diml{m}(0) = 0$ for some dimensionless central pressure $\diml{P}_c$, and $\alpha(R) = \log ( 1 - 2 \diml{G} \diml{M} / \diml{R} ) / 2$ to match the Schwarzschild metric \eqref{eq:tov:schwarzschild_metric} at the surface.
 As explained at the start of this chapter, we implement the latter boundary condition by integrating from $\alpha(0) = 0$, then finally shift all values of $\alpha(r)$ by
 \begin{equation}
 	\alpha(r) \rightarrow \alpha(r) - \alpha(\diml{R}) + \frac12 \log \left( 1 - \frac{2 \diml{G} \diml{M} }{ \diml{R}} \right) .
 \end{equation}
 
-To find the mass and radius of some star with central pressure $\diml{P}_0$, we integrate the system \eqref{eq:numtov:tovsys_dimless_simple} until $\diml{P} \le 0$.
+To find the mass and radius of some star with central pressure $\diml{P}_c$, we integrate the system \eqref{eq:numtov:tovsys_dimless_simple} until $\diml{P} \le 0$.
 We then terminate the integration algorithm and call the final radius $\diml{r} = \diml{R}$ the radius of the star, and the corresponding mass $\diml{m}(\diml{R}) = \diml{M}$ the mass of the star.
-By parametrizing multiple stars with a range of central pressures $\diml{P}_0$ and performing this task for each of them, we obtain a mass-radius curve for the stars.
+By parametrizing multiple stars with a range of central pressures $\diml{P}_c$ and performing this task for each of them, we obtain a mass-radius curve for the stars.
 
 Below is a small Python program that accomplishes all of this for an arbitrary equation of state $\diml\epsilon = \diml\epsilon(\diml{P})$.
 The function \verb|massradiusplot| can be run with the optional parameter \verb|visual=True| to show the mass-radius relation in real-time, updating it every time the mass and radius of a new star is found.
@@ -1580,7 +1587,7 @@ Optionally, the program checks the stability of stars using the numerical method
 \label{sec:numerics:shooting_method}
 
 In \cref{sec:nstars:stability_general}, we showed that the stability of a star could be determined by checking the sign of the lowest squared eigenvalue of a Sturm-Liouville problem.
-Here, we describe how the shooting method determines the eigenvalues $\omega_n^2$ and corresponding eigenfunctions $U_n(r)$ of the Sturm-Liouville problem
+Here, we describe how we use the shooting method to determine the eigenvalues $\omega_n^2$ and corresponding eigenfunctions $U_n(r)$ of the Sturm-Liouville problem that we encountered in \cref{eq:nstars:sturm_liouville_problem} in \cref{sec:nstars:stability_general},
 \begin{subequations}
 \begin{align}
 	&\odv*{ \left[ \Pi(r) \odv{U_n(r)}{r} \right] }{r} + Q(r) \, U_n(r) = -\omega_n^2 W(r) U_n(r) && \text{for } 0 \leq r \leq R , \label{eq:shooting:sturm_liouville_diffeq} \\
@@ -1589,7 +1596,7 @@ Here, we describe how the shooting method determines the eigenvalues $\omega_n^2
 \end{align}%
 \label{eq:shooting:sturm_liouville_problem}%
 \end{subequations}%
-with the coefficient functions \eqref{eq:nstars:sturm_liouville_coefficients} that we encountered in \cref{eq:nstars:sturm_liouville_problem} in \cref{sec:nstars:stability_general} and our numerical implementation of it.
+with the coefficient functions \eqref{eq:nstars:sturm_liouville_coefficients}.
 We recommend reading this explanation in parallel with \cref{fig:nstars:shooting_convergence}, which illustrates how this method finds the mode $n=0$ for such a Sturm-Liouville problem.
 
 \subsubsection{Description}
@@ -1600,7 +1607,7 @@ The shooting method finds any \emph{one} eigenvalue $\omega_n^2$ and its corresp
 \item \textbf{Guess} \emph{any} value $\omega^2$ for the eigenvalue $\omega_n^2$.
 \item \textbf{Impose} the boundary condition \eqref{eq:shooting:sturm_liouville_bc1} by setting $U(r) \propto r^3$ near $r = 0$. \label{item:shooting:bc1}
 \item \textbf{Shoot} the corresponding guess $U(r)$ for the eigenfunction $U_n(r)$ by numerically integrating the Sturm-Liouville equation \eqref{eq:shooting:sturm_liouville_diffeq} to $r=R$. \label{item:shooting:shoot}
-\item \textbf{Count} the number of nodes $n(\omega^2)$ of $U(r)$.
+\item \textbf{Count} the number of nodes $n(\omega^2)$ of $U(r)$ corresponding to the guess $\omega^2$.
       \begin{enumerate}
       \item If $n(\omega^2) > n$, then Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros} on page~\pageref{item:nstars:sturm_liouville_zeros} implies that $\omega^2 > \omega_n^2$, so \textbf{decrease} the guess for $\omega^2$ and repeat this process. \label{item:shooting:count_decrease}
       \item If $n(\omega^2) \leq n$, then Sturm-Liouville property \ref{item:nstars:sturm_liouville_zeros} on page~\pageref{item:nstars:sturm_liouville_zeros} implies that $\omega^2 < \omega_n^2$, so \textbf{increase} the guess for $\omega^2$ and repeat this process. \label{item:shooting:count_increase}
@@ -1608,7 +1615,7 @@ The shooting method finds any \emph{one} eigenvalue $\omega_n^2$ and its corresp
       \label{item:shooting:count}
 % catalogue paper, see paragraph across page 507-508
 \end{enumerate}
-By repeating the process with increasingly better guesses $\omega^2$, we get ever closer to the true eigenvalue $\omega_n^2$.
+By repeating this process with increasingly better guesses $\omega^2$, we get ever closer to the true eigenvalue $\omega_n^2$.
 
 \Cref{fig:nstars:shooting_convergence} shows that every $U(r)$ seems to diverge as $r \rightarrow R$, breaking boundary condition \eqref{eq:shooting:sturm_liouville_bc2}.
 In theory, $U(r)$ does not diverge and hence satisfies the boundary condition \emph{only} if one guesses the \emph{exact} correct eigenvalue $\omega_n^2$.
@@ -1617,7 +1624,7 @@ As our guess gets very close to the true eigenvalue, the function $U(r)$ will di
 For guesses $\omega^2 > \omega_n^2$ slightly above the true eigenvalue, the function will have $n+1$ nodes and diverge towards the oppositely signed infinity.
 Essentially, we are looking for the precise value of $\omega^2$ that causes the blowup of $U(r)$ close to $r=R$ to ``tip over'' from one infinity $\pm \infty$ to other infinity $\mp \infty$, as shown with the \textcolor{red}{red} and \textcolor{blue}{blue} guesses in \cref{fig:nstars:shooting_convergence}.
 
-Rule \ref{item:shooting:count_increase} that we should increase our guess not only if $n(\omega^2) < n$, but also if $n(\omega^2) = n$, is a little technical and deserves an explanation.
+Rule \ref{item:shooting:count_increase}, that we should increase our guess not only if $n(\omega^2) < n$, but also if $n(\omega^2) = n$, is a little technical and deserves an explanation.
 Suppose we are looking for the lowest mode $n = 0$ and have guessed a value of $\omega^2$ with $n(\omega^2) = 0$ zeros.
 Is the true eigenvalue $\omega_n^2$ less than or greater than the guess $\omega^2$?
 If the true eigenvalue $\omega_n^2$ had been \emph{less} than $\omega^2$, then any lower guess of $\omega^2$ would also give $n(\omega^2) = 0$ zeros, for a function cannot have less than zero zeros!
@@ -1633,9 +1640,9 @@ To make it fast, our actual implementation carries out the search in the followi
       To do so, guess \emph{any} eigenvalue, for example $\omega^2 = 0$, shoot $U(r)$ and count its number of nodes $n(\omega^2)$.
       \begin{itemize}
       \item If $n(\omega^2) \leq n$, set the lower bound to $\omega_-^2 = \omega^2$.
-            Find an upper bound by increasing $\omega^2$ exponentially up from $\omega_-^2$ and shooting $U(r)$ with step \ref{item:shooting:bc1} and \ref{item:shooting:shoot} above until it has $n(\omega^2) > n$ nodes, then set the upper bound $\omega_+^2 = \omega^2$.
+            Find an upper bound by increasing $\omega^2$ \emph{exponentially} up from $\omega_-^2$ and shooting $U(r)$ with step \ref{item:shooting:bc1} and \ref{item:shooting:shoot} above until it has $n(\omega^2) > n$ nodes, then set the upper bound $\omega_+^2 = \omega^2$.
       \item If $n(\omega^2) >    n$, set the upper bound to $\omega_+^2 = \omega^2$.
-            Find a lower bound by decreasing $\omega^2$ exponentially down from $\omega_+^2$ and shooting $U(r)$ with step \ref{item:shooting:bc1} and \ref{item:shooting:shoot} above until it has $n(\omega^2) \leq n$ nodes, then set the lower bound $\omega_-^2 = \omega^2$.
+            Find a lower bound by decreasing $\omega^2$ \emph{exponentially} down from $\omega_+^2$ and shooting $U(r)$ with step \ref{item:shooting:bc1} and \ref{item:shooting:shoot} above until it has $n(\omega^2) \leq n$ nodes, then set the lower bound $\omega_-^2 = \omega^2$.
       \end{itemize}
       \label{item:shooting:bounds}
 \item Calculate the new guess $\omega^2 = (\omega_-^2 + \omega_+^2) / 2$, shoot $U(r)$ with step \ref{item:shooting:bc1} and \ref{item:shooting:shoot} above and count its number of nodes $n(\omega^2)$. \label{item:shooting:newguess}
@@ -1655,10 +1662,11 @@ We therefore recast the problem to dimensionless form by making use of the dimen
 It then takes the unchanged ``hatted form''
 \begin{subequations}
 \begin{align}
-	&\odv*{ \left[ \hat{\Pi}(\hat{r}) \odv{\hat{U}_n(\hat{r})}{\hat{r}} \right] }{\hat{r}} + \hat{Q}(\hat{r}) \, \hat{U}_n(\hat{r}) = -\hat{\omega}_n^2 \hat{W}(\hat{r}) \hat{U}_n(\hat{r}) && \text{for } 0 \leq \hat{r} \leq \hat{R} , \\
-	\text{subject to} \quad & \hat{U}_n(\hat{r})          \propto \hat{r}^3    && \text{near } \hat{r}=0 , \\
-	\text{and}        \quad & \odv{\hat{U}_n(\hat{r})}{\hat{r}} <       \infty && \text{at } \hat{r}=\hat{R} ,
+	&\odv*{ \left[ \hat{\Pi}(\hat{r}) \odv{\hat{U}_n(\hat{r})}{\hat{r}} \right] }{\hat{r}} + \hat{Q}(\hat{r}) \, \hat{U}_n(\hat{r}) = -\hat{\omega}_n^2 \hat{W}(\hat{r}) \hat{U}_n(\hat{r}) && \text{for } 0 \leq \hat{r} \leq \hat{R} , \label{eq:shooting:sturm_liouville_diffeq_dimless} \\
+	\text{subject to} \quad & \hat{U}_n(\hat{r})          \propto \hat{r}^3    && \text{near } \hat{r}=0 , \label{eq:shooting:sturm_liouville_bc1_dimless} \\
+	\text{and}        \quad & \odv{\hat{U}_n(\hat{r})}{\hat{r}} <       \infty && \text{at } \hat{r}=\hat{R} \label{eq:shooting:sturm_liouville_bc2_dimless} ,
 \end{align}%
+\label{eq:shooting:sturm_liouville_problem_dimless}%
 \end{subequations}%
 where we have defined the dimensionless quantities
 \begin{subequations}
@@ -1673,11 +1681,11 @@ where we have defined the dimensionless quantities
 \end{subequations}%
 Note that there is a difference between the numerical prefactors in the second terms of $\hat{Q}$ above and its dimensionful counterpart \eqref{eq:nstars:sturm_liouville_coefficients_Q}.
 
-On top of this, we implement the shooting method as described in \cref{sec:numerics:shooting_method_description}.
+On top of this, we implement the shooting method as described in this appendix.
 Some further remarks about our implementation are in order.
 \begin{itemize}
-\item To impose boundary condition \eqref{eq:shooting:sturm_liouville_bc1} in step \ref{item:shooting:bc1} on page~\pageref{item:shooting:bc1}, we set $\hat{U}(\hat{r}) = \hat{r}^3$ for all discrete points with $\hat{r} < 0.01 \hat{R}$.
-\item To numerically integrate the Sturm-Liouville differential equation \eqref{eq:shooting:sturm_liouville_diffeq} for $\hat{r} \geq 0.01 \hat{R}$ in step \ref{item:shooting:shoot} on page~\pageref{item:shooting:shoot}, we first use the product rule to rewrite it as
+\item To impose boundary condition \eqref{eq:shooting:sturm_liouville_bc1_dimless} in step \ref{item:shooting:bc1} on page~\pageref{item:shooting:bc1}, we set $\hat{U}(\hat{r}) = \hat{r}^3$ for all discrete points with $\hat{r} < 0.01 \hat{R}$.
+\item To numerically integrate the Sturm-Liouville differential equation \eqref{eq:shooting:sturm_liouville_diffeq_dimless} for $\hat{r} \geq 0.01 \hat{R}$ in step \ref{item:shooting:shoot} on page~\pageref{item:shooting:shoot}, we first use the product rule to rewrite it as
       \begin{equation}
 	      0 = \hat{\Pi} \hat{U}'' + \hat{\Pi}' \hat{U}' + \left( \hat{Q} + \hat{\omega}^2 \hat{W} \right) \hat{U} .
       \end{equation}
@@ -1689,14 +1697,14 @@ Some further remarks about our implementation are in order.
       \end{equation}
       This lets us compute the next, unknown value
       \begin{equation}
-            \hat{U}_{i+1} = \frac{1}{C_+} \Big( C \cdot \hat{U}_i + C_- \cdot \hat{U}_{i-1} \Big)
+            \hat{U}_{i+1} = \frac{1}{C^+_i} \Big( C_i \cdot \hat{U}_i + C^-_i \cdot \hat{U}_{i-1} \Big)
       \end{equation}
       from the two previous known values $\hat{U}_i$ and $\hat{U}_{i-1}$ and the known coefficients
       \begin{subequations}
       \begin{align}
-          C_-             &= -\frac{2 \hat{\Pi}_i}{\hat{r}_i-\hat{r}_{i-1}} + \hat{\Pi}'_i , \\
-          C_{\phantom{-}} &= +\frac{2 \hat{\Pi}_i}{\hat{r}_{i+1}-\hat{r}_i} + \frac{2 \hat{\Pi}_i}{\hat{r}_i-\hat{r}_{i-1}} - \Big( \hat{r}_{i+1} - \hat{r}_{i-1} \Big) \Big( \hat{Q}_i + \hat{\omega}^2 \hat{W}_i \Big) , \\
-          C_+             &= +\frac{2 \hat{\Pi}_i}{\hat{r}_{i+1}-\hat{r}_i} + \hat{\Pi}'_i .
+          C^-_i             &= -\frac{2 \hat{\Pi}_i}{\hat{r}_i-\hat{r}_{i-1}} + \hat{\Pi}'_i , \\
+          C^{\phantom{-}}_i &= +\frac{2 \hat{\Pi}_i}{\hat{r}_{i+1}-\hat{r}_i} + \frac{2 \hat{\Pi}_i}{\hat{r}_i-\hat{r}_{i-1}} - \Big( \hat{r}_{i+1} - \hat{r}_{i-1} \Big) \Big( \hat{Q}_i + \hat{\omega}^2 \hat{W}_i \Big) , \\
+          C^+_i             &= +\frac{2 \hat{\Pi}_i}{\hat{r}_{i+1}-\hat{r}_i} + \hat{\Pi}'_i .
       \end{align}
       \end{subequations}
 \item To prevent numerical integration from breaking down, we stop the numerical integration at $\hat{r} = 0.99 \hat{R}$ and linearly interpolate
@@ -1705,7 +1713,7 @@ Some further remarks about our implementation are in order.
       \end{equation}
       for the remaining points $\hat{r} > 0.99 \hat{R}$.
       The point $r=R$ is a singular point because $Q(R) = W(R) = 0$, causing $\hat{U}(\hat{r})$ to blow up there and making it very difficult for numerical integration to follow it.
-      Our assumption is that at $\hat{r} = 0.99 \hat{R}$, the blowup has already started, and the purpose of the linear interpolation is merely to capture the blowup all the way out to $\hat{r}=\hat{R}$ without care of the exact functional form of $\hat{U}(\hat{r})$ there.
+      Our assumption is that at $\hat{r} = 0.99 \hat{R}$, the blowup has already started, and the purpose of the linear interpolation is merely to capture the blowup all the way out to $\hat{r}=\hat{R}$ without care of the exact functional form of $\hat{U}(\hat{r})$ there, so we can check boundary condition \eqref{eq:shooting:sturm_liouville_bc2_dimless}.
 \item It should also be noted that numerical errors may occur due to division by zero in the coefficient functions in the regions $\hat{r} < 0.01 \hat{R}$ and $\hat{r} > 0.99 \hat{R}$, but not in the intermediate region $0.01 \hat{R} < \hat{r} < 0.99 \hat{R}$.
       This is not an issue, because we enforce the form of $\hat{U}(\hat{r})$ in these two regions independently of the coefficient functions.
 \end{itemize}
@@ -1724,6 +1732,6 @@ We also write a few utility functions for data management:
 \label{sec:num:nstars}
 
 Below, we use the general framework above to find the mass-radius relation for ideal neutron stars.
-We make a total of four sweeps for the mass-radius diagram in \cref{fig:nstars:massradius}, using both the non-relativistic equation of state \eqref{eq:nstars:nr_eos} and the general equation of state \eqref{eq:nstars:gr_eos}, and solving both the relativistic Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov:tovsys} and the Newtonian limit with the pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient}.
+We make a total of four sweeps for the mass-radius diagram in \cref{fig:nstars:massradius}, using both the non-relativistic equation of state \eqref{eq:nstars:nr_eos} and the general equation of state \eqref{eq:nstars:gr_eos}, and solving both the relativistic Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov:tovsys} and its Newtonian limit with the pressure gradient \eqref{eq:weak_field_limit:newtonian_pressure_gradient}.
 
 \codefile{python}{../code/neutron_stars.py}{neutron\_stars.py}
