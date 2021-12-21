@@ -66,28 +66,29 @@ def soltov(ϵ, P0, maxdr=1e-3, progress=True, newtonian=False):
 
 # Bisect [P1, P2] to make points evenly
 def massradiusplot(
-    ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, stability=False, newtonian=False,
+    ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, nmodes=0, newtonian=False,
     outfile="", visual=False
 ):
     def solvestar(P0):
         rs, ms, Ps, αs, ϵs = soltov(ϵ, P0, maxdr=maxdr, newtonian=newtonian)
         R, M = rs[-1], ms[-1]
-        if stability:
-            nu = 0
-            while eigenmode(rs, ms, Ps, αs, ϵs, nu)[0] < 0:
-                nu += 1 # count number of unstable modes with ω2 < 0
-        else:
-            nu = np.nan
-        return R, M, nu
+
+        nunstable, ω2s = 0, []
+        for mode in range(0, nmodes):
+            ω2, _ = eigenmode(rs, ms, Ps, αs, ϵs, mode)
+            ω2s.append(ω2)
+            if ω2 < 0:
+                nunstable += 1 # count number of unstable modes with ω2 < 0
+        return R, M, ω2s, nunstable
 
     P1, P2 = P1P2[0], P1P2[1]
-    R1, M1, nu1 = solvestar(P1)
-    R2, M2, nu2 = solvestar(P2)
-    Ps, Ms, Rs, nus = [P1, P2], [M1, M2], [R1, R2], [nu1, nu2]
+    R1, M1, ω2s1, nu1 = solvestar(P1)
+    R2, M2, ω2s2, nu2 = solvestar(P2)
+    Ps, Ms, Rs, ω2s, nus = [P1, P2], [M1, M2], [R1, R2], [ω2s1, ω2s2], [nu1, nu2]
 
     if visual:
         plt.ion() # automatically update open figure
-        if stability:
+        if nmodes > 0: # check stability
             graph, = plt.plot([], [], "k-", zorder=0) # modify graph data later
             scatt = plt.scatter([], [], zorder=1) # modify graph data later
             cbar = plt.colorbar()
@@ -105,17 +106,18 @@ def massradiusplot(
         if D > tolD and P2 - P1 > tolP:
             # split [P1, P2] into [P1, (P1+P2)/2] and [(P1+P2)/2, P2]
             P3 = (P1 + P2) / 2
-            R3, M3, nu3 = solvestar(P3)
+            R3, M3, ω2s3, nu3 = solvestar(P3)
             Ps.insert(i+1, P3)
             Ms.insert(i+1, M3)
             Rs.insert(i+1, R3)
+            ω2s.insert(i+1, ω2s3)
             nus.insert(i+1, nu3)
 
             if visual:
                 # Animate plot in real-time for immediate feedback
                 # inspired by https://stackoverflow.com/a/10944967
                 graph.set_data(Rs, Ms)
-                if stability:
+                if nmodes > 0: # check stability
                     scatt.set_offsets(np.transpose([Rs, Ms]))
                     scatt.set_array(np.array(nus))
                     scatt.set_cmap("jet")
@@ -132,6 +134,13 @@ def massradiusplot(
         plt.show() # leave final plot open
 
     if outfile != "":
-        utils.writecols([Ps, Ms, Rs, nus], ["P", "M", "R", "nu"], outfile)
+        heads = ["P", "M", "R"] + [f"omega2{mode}" for mode in range(0, nmodes)] + ["nu"]
+        cols  = [Ps, Ms, Rs]
+        for m in range(0, nmodes): # for all modes
+            cols.append([]) # append one column for this mode
+            for n in range(0, len(Ps)): # for all stars
+                cols[-1].append(ω2s[n][m]) # add frequencies for all stars
+        cols += [nus]
+        utils.writecols(cols, heads, outfile)
     
     return Ps, Ms, Rs

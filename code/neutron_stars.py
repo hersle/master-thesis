@@ -7,21 +7,16 @@ from utils import *
 import numpy as np
 import scipy.optimize
 
-# Ultra-relativistic limit
-def ϵUR(P):
+def ϵUR(P): # ultra-relativistic equation of state
     return 3 * P
 
-# Non-relativistic limit
-def ϵNR(P):
-    if P <= 0:
-        return 0
+def ϵNR(P): # non-relativistic equation of state
+    if P <= 0: return 0
     prefactor = (5**3*4**2 / (3**2*π**2*b**2) * mn**8*c**6*r0**6 / (m0**2*ħ**6))**(1/5)
     return prefactor * P**(3/5)
 
-# Arbitrary Fermi momentum
-def ϵGR(P):
-    if P <= 0:
-        return 0
+def ϵGR(P): # general equation of state
+    if P <= 0: return 0
     prefactor = mn**4*c**3*r0**3 / (6*π*b*m0*ħ**3)
     def f(x):
         Px = prefactor * ((2*x**3 - 3*x) * np.sqrt(x**2 + 1) + 3*np.arcsinh(x))
@@ -39,33 +34,24 @@ for ϵ in (ϵUR, ϵNR, ϵGR):
     ϵs.append([ϵ(P) for P in P])
 writecols([P, *ϵs], ["P", "epsUR", "epsNR", "epsGR"], "data/eos.dat")
 
-opts = {
-    "tolD": 0.05,
-    "tolP": 1e-5,
-    "maxdr": 1e-3,
-    "visual": True,
-}
+opts = { "tolD": 0.05, "tolP": 1e-5, "maxdr": 1e-3, "visual": True }
 massradiusplot(
-    ϵNR, (1e-6, 1e0), **opts, stability=False, newtonian=True, outfile="data/nrnewt.dat"
+    ϵNR, (1e-6, 1e0), **opts, nmodes=0, newtonian=True, outfile="data/nrnewt.dat"
 )
 massradiusplot(
-    ϵGR, (1e-6, 1e0), **opts, stability=False, newtonian=True, outfile="data/grnewt.dat"
+    ϵGR, (1e-6, 1e0), **opts, nmodes=0, newtonian=True, outfile="data/grnewt.dat"
 )
 massradiusplot(
-    ϵNR, (1e-6, 1e7), **opts, stability=True,  newtonian=False, outfile="data/nr.dat"
+    ϵNR, (1e-6, 1e7), **opts, nmodes=0,  newtonian=False, outfile="data/nr.dat"
 )
 massradiusplot(
-    ϵGR, (1e-6, 1e7), **opts, stability=True,  newtonian=False, outfile="data/gr.dat"
+    ϵGR, (1e-6, 1e7), **opts, nmodes=6,  newtonian=False, outfile="data/gr.dat"
 )
 
-"""
 P0s = list(np.geomspace(1e-6, 1e7, 14))
 xs, ps = [], []
 for P0 in P0s:
     r, m, P, α, ϵ = soltov(ϵGR, P0)
-    #N = 500 # sample N points
-    #P = np.interp(np.linspace(r[0], r[-1], N), r, P)
-    #r = np.linspace(r[0], r[-1], N)
     xs.append(list(r / r[-1]))
     ps.append(list(P / P0))
 P0head = ["P0"]
@@ -85,7 +71,3 @@ ns = range(0, 12)
 ω2s, us = eigenmode(
     r, m, P, α, ϵ, ns, cut=True, normalize=True, outfile="data/nmodes_norm.dat"
 )
-for ω2, u, n in zip(ω2s, us, ns):
-    plt.plot(r, u, label=f"n = {n}, ω2 = {ω2}")
-plt.legend()
-plt.show()

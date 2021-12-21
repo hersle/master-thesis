@@ -1274,8 +1274,12 @@ Let us put it to use, so we can determine the stability of the stars along the c
 \pgfplotsinvokeforeach{0,1,...,7} {
 	\addplot+ table [x expr=\thisrow{r}/\maxR, y=U#1] {\nmodestable};
 	\pgfplotstablegetelem{#1}{omega2}\of{\nmodestable}
-	\pgfmathparse{sign(\pgfplotsretval)*sqrt(abs(\pgfplotsretval*3)) * 1e2)} % display in meaningful units, mult by c/r0
-	\addlegendentryexpanded{$\omega_{#1}^2 = \pgfmathprintnumber[fixed, fixed zerofill, precision=2, showpos=true]{\pgfmathresult}^2 \, \si{\per\second\squared}$};
+	%\pgfmathparse{sign(\pgfplotsretval)*sqrt(abs(\pgfplotsretval)) * 2.99e+1} % display in meaningful units, mult by c/r0
+	\pgfkeys{/pgf/fpu=true}
+	\pgfmathparse{\pgfplotsretval * 2.99^2 * 1e2} % express ω2 = ω2hat * KHz^2
+	\pgfmathparse{sign(\pgfmathresult) * sqrt(abs(\pgfmathresult))} % take square, but keep sign
+	\addlegendentryexpanded{$\omega_{#1}^2 = \pgfmathprintnumber[fixed, fixed zerofill, precision=0, set thousands separator={}, showpos=true]{\pgfmathresult}^2 \, \si{\kilo\hertz\squared}$};
+	\pgfkeys{/pgf/fpu=false}
 }
 
 \nextgroupplot[
@@ -1299,14 +1303,46 @@ We have cut away the divergent parts as $r \rightarrow R$ from the final iterati
 }
 \end{figure}
 
+\begin{figure}
+\centering
+\tikzsetnextfilename{stability-frequencies}
+\begin{tikzpicture}
+\begin{axis}[
+	width=15cm, height=10cm,
+	xlabel = $\log_{10} \left( P_c \, / \, \si{\pascal} \right)$,
+	ylabel = $\omega_n^2 \, / \, \si{\kilo\hertz\squared}$,
+	enlarge x limits=false,
+	ymin=-25000, ymax=+25000,
+	scaled y ticks=false, yticklabel={$\pgfmathprintnumber[fixed]{\tick}$},
+	%title = {},
+	cycle list name = {Set1NoYellow},
+	grid style={solid}, grid,
+	declare function={
+		e0 = 4.266500881855305e+34;
+	},
+	legend pos = south west,
+]
+\pgfplotsinvokeforeach{0,...,5}{
+	\addplot+ [solid] table [x expr={log10(\thisrow{P}*e0)}, y expr={\thisrow{omega2#1} * 2.99^2 * 1e2}] {../code/data/gr.dat};
+	\addlegendentryexpanded{$\omega_{#1}^2$};
+}
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:nstars:stability_frequencies}
+	Squared eigenfrequencies $\omega_n^2$ of the six lowest vibration modes for all stars on the bottom sequence in \cref{fig:nstars:massradius} obtained with the shooting method.
+	As the central pressure rises, numerical difficulties of integrating the Sturm-Liouville equation makes the curves shaky.
+}
+\end{figure}
+
 We describe the shooting method and our implementation of it in detail in \cref{sec:numerics:shooting_method}.
 It is also possible to understand the gist of it from \cref{fig:nstars:shooting_convergence}, where we show how it establishes the fundamental vibration mode $U_0(r)$ and $\omega_0^2$ for some star by an intelligent form of ``trial and error''.
-In \cref{fig:nstars:modes}, we display the eight lowest modes obtained with the shooting method for some star.
-It is meant to demonstrate the boundary conditions \eqref{eq:nstars:boundary_condition_center_mathematical} and \eqref{eq:nstars:boundary_condition_surface_mathematical} and that the eigenfunction $U_n(r)$ has exactly $n$ nodes.
+In \cref{fig:nstars:modes}, we display the eight lowest modes obtained with the shooting method for one particular star.
+It is meant to demonstrate the boundary conditions \eqref{eq:nstars:sturm_liouville_boundary_condition1} and \eqref{eq:nstars:sturm_liouville_boundary_condition2}, and that the eigenfunction $U_n(r)$ has exactly $n$ nodes.
 
 Finally, we use the shooting method to examine the stability of every star along the curve in \cref{fig:nstars:massradius}.
-For every star, we repeatedly apply the shooting method for $n = 0, \, 1, \, 2, \, \ldots$ to find all negative eigenvalues $\omega_n^2 < 0$ until we encounter the first positive value $\omega_n^2 > 0$.
-We then simply count the number of unstable modes with $\omega_n^2 < 0$ and display this number in \cref{fig:nstars:stability}.
+In \cref{fig:nstars:stability_frequencies}, we show the six lowest squared eigenvalues $\omega_n^2$ for all stars on the curve.
+As the central pressure increases, we see that more squared eigenvalues become negative.
+We then simply count the number of unstable modes with $\omega_n^2 < 0$ for every star, and display this number in \cref{fig:nstars:stability}.
 The results are very interesting.
 \begin{enumerate}
 \item Starting from the lowest central pressure, and hence lowest central energy and mass densities, all stars are \emph{stable} up until the maximum mass.
