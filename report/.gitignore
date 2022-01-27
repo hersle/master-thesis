@@ -1,5 +1,6 @@
 *.swp
-*.pdf
+project.pdf
+cover-optimized.pdf
 .cachelatex
 .cacheminted
 .cachetikz
