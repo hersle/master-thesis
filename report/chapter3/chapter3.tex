@@ -2,7 +2,7 @@
 \label{chap:nstars}
 
 In \cref{chap:tft}, we found the partition function $Z = Z(T, \mu, V)$ for two sample systems, and in particular a gas of free Dirac fermions, referred to as an \textbf{ideal Fermi gas}.
-From the partition function, we can derive the pressure $P = P(T, \mu)$ and energy density $\epsilon = \thermalavg{E} / \, V = \epsilon(T, \mu)$ as functions of the temperature and chemical potential using equation \eqref{eq:tft:average_number}, \eqref{eq:tft:average_energy} and \eqref{eq:tft:average_pressure}, eliminating the volume dependence as $P$ and $\epsilon$ are turned into intensive quantities by division.
+From the partition function, we can derive the pressure $P = P(T, \mu)$ and energy density $\epsilon = \Avg{E} / \, V = \epsilon(T, \mu)$ as functions of the temperature and chemical potential using equation \eqref{eq:tft:average_number}, \eqref{eq:tft:average_energy} and \eqref{eq:tft:average_pressure}, eliminating the volume dependence as $P$ and $\epsilon$ are turned into intensive quantities by division.
 At some fixed temperature $T$, we can therefore eliminate $\mu$ to express $\epsilon$ in terms of $P$.
 This gives us an equation of state $\epsilon = \epsilon(T, P)$ for the energy density.
 In this chapter, we will see that inside neutron stars it is valid to consider the zero-temperature limit $T=0$, making the Fermi gas completely degenerate and directly relating pressure to energy density in the resulting temperature-independent equation of state $\epsilon = \epsilon(P)$.
@@ -31,7 +31,7 @@ and the Fermi-Dirac distribution is
 \end{equation}
 
 \begin{subequations}
-First, the particle number density $n = \thermalavg{N} / \, V$ follows from the derivative \eqref{eq:tft:average_number} and is
+First, the particle number density $n = \Avg{N} / \, V$ follows from the derivative \eqref{eq:tft:average_number} and is
 \begin{equation}
 	n = 
 	\frac{1}{\beta V} \pdv{\log Z}{\mu} =
@@ -42,7 +42,7 @@ Do not confuse the particle density $n$ on the left with the Fermi-Dirac distrib
 We will soon perform the integral over $\vec{p}$ and get rid of $n\big(E(\vec{p}) \mp \mu\big)$, anyway.
 From the density \eqref{eq:nstars:density}, we see that $n = n(\mu, T)$ is a function of the chemical potential $\mu$ and temperature $T$, so that at some fixed temperature, the value of $\mu$ determines the particle density $n$.
 
-Second, we calculate the energy density $\epsilon = \thermalavg{E} / \, V$ from \cref{eq:tft:average_energy}.
+Second, we calculate the energy density $\epsilon = \Avg{E} / \, V$ from \cref{eq:tft:average_energy}.
 Inserting the particle number density \eqref{eq:nstars:density} and taking the derivative of $\log Z$, we get
 \begin{equation}
 	\epsilon = 
@@ -79,7 +79,7 @@ We will make the assumption that there is no vacuum energy, or equivalently rede
 For example, in the vacuum outside a star there should be no mass density $\rho = \epsilon / c^2$, and hence no energy density $\epsilon$.
 Do note, however, that the possible presence of vacuum energy is really an unresolved problem in physics -- we will briefly discuss this in a moment.
 Either way, we will \emph{drop the first term of the energy density \eqref{eq:nstars:energy_density}}.
-%In contrast, the two last terms are finite as the Fermi-Dirac distribution exponentially suppresses the integrand for large $\abs{\vec{p}}$.
+%In contrast, the two last terms are finite as the Fermi-Dirac distribution exponentially suppresses the integrand for large $\Abs{\vec{p}}$.
 %It makes no sense to include a term that integrates over every possible value of the momentum $\vec{p}$ for physical particles whose momentum cannot exceed a certain value due to energy conservation.
 %We will therefore simply drop the infinite, first terms of the energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}.
 %\TODO{discuss renormalization/regularization/vacuum energy shift/counter terms in outlook?}
@@ -105,7 +105,7 @@ For the interested reader, the Wikipedia article \cite{ref:wiki_cosmological_con
 
 Before completely losing track of what we were doing, let us get back to calculating the equation of state.
 After dropping terms as described above, only the penultimate terms are left in the number density \eqref{eq:nstars:density}, energy density \eqref{eq:nstars:energy_density} and pressure \eqref{eq:nstars:pressure}.
-Noting that all integrals only depend on the magnitude $\abs{\vec{p}} = p$ of the momentum, we rebaptize $E(\vec{p}) = E(p)$ and are left with%
+Noting that all integrals only depend on the magnitude $\Abs{\vec{p}} = p$ of the momentum, we rebaptize $E(\vec{p}) = E(p)$ and are left with%
 \begin{subequations}%
 \begin{align}%
 	& \text{particle density} & n        &= 2               \int_0^\infty \frac{\dif p \, 4 \pi p^2}{(2 \pi \hbar)^3} \, n \big( E(p)-\mu \big) , \\
@@ -135,7 +135,7 @@ At \emph{absolute} zero temperature $T = 0$, the Fermi-Dirac distribution
 behaves like a step function.
 To see this, observe that $T = 0$ corresponds to $\beta = 1 / k_B T = \infty$, and that the sign of $E - \mu$ then determines whether the exponential $e^{\beta (E - \mu)}$ in the denominator blows up or vanishes, and hence whether the fraction survives.
 Physically, this means that the system is completely degenerate, filling momentum states with $E(\vec{p}) < \mu$ only.
-The occupied states with the greatest momentum $p_F$ make up a so-called \emph{Fermi surface} $\abs{\vec{p}} = p_F$ in momentum space, and the corresponding maximum energy $E_F = \sqrt{\smash[b]{p_F^2 c^2 + m^2 c^4}}$ is called the \emph{Fermi energy}, and is equal to the chemical potential when $T = 0$.
+The occupied states with the greatest momentum $p_F$ make up a so-called \emph{Fermi surface} $\Abs{\vec{p}} = p_F$ in momentum space, and the corresponding maximum energy $E_F = \sqrt{\smash[b]{p_F^2 c^2 + m^2 c^4}}$ is called the \emph{Fermi energy}, and is equal to the chemical potential when $T = 0$.
 
 Typical neutron star core temperatures linger around $T_0 \approx \SI{1e6}{\kelvin}$, \cite{ref:glendenning} so how is this relevant for our purposes?
 In the grand canonical ensemble, the temperature $T$ and chemical potential $\mu$ are formally \emph{independent} variables.
@@ -193,13 +193,13 @@ In hindsight, since the chemical potential is an independent variable in the par
 \iffalse
 In the zero-temperature limit, the Fermi-Dirac distribution can be replaced by
 \begin{equation}
-	n(E)       =                 \begin{cases} 1 / (e^{+\beta \abs{E}}+1) & (E>0) \\ 1 / (e^{-\beta \abs{E}}+1) & (E<0) \end{cases}
+	n(E)       =                 \begin{cases} 1 / (e^{+\beta \Abs{E}}+1) & (E>0) \\ 1 / (e^{-\beta \Abs{E}}+1) & (E<0) \end{cases}
 	     \quad \rightarrow \quad \begin{cases} 0 & (E>0) \\ 1 & (E<0) \end{cases}
 	     \quad =                 \theta(-E) ,
 \end{equation}
 while the logarithm in the pressure behaves as
 \begin{equation}
-	\log (e^{-\beta E}+1)       =                 \begin{cases} \log (e^{-\beta \abs{E}}+1) & (E>0) \\ \log (e^{+\beta \abs{E}}+1) & (E<0) \end{cases}
+	\log (e^{-\beta E}+1)       =                 \begin{cases} \log (e^{-\beta \Abs{E}}+1) & (E>0) \\ \log (e^{+\beta \Abs{E}}+1) & (E<0) \end{cases}
 	                      \quad \rightarrow \quad \begin{cases} \log 1 & (E>0) \\ \log e^{-\beta E} & (E<0) \end{cases}
 	                      \quad =                 -\beta E \, \theta(-E) .
 \end{equation}
@@ -242,6 +242,7 @@ Finally, the pressure \eqref{eq:nstars:dropped_infinities_pressure} is
 \end{aligned}
 \label{eq:nstars:pressure_zeroT}
 \end{equation}
+\label{eq:nstars:everything_zeroT}
 \end{subequations}
 
 At this point, let us justify the act of dropping the infinite contribution to the pressure \eqref{eq:nstars:pressure}.
@@ -1122,7 +1123,7 @@ that is bounded from below, but not from above.
 
 The property that the eigenvalues are real is possible for us to prove, and we should, because we will take it as an assumption when we solve the Sturm-Liouville problem numerically.
 Applying property \eqref{eq:nstars:inner_product_hermitean} with $U_m = U_n$, we have $\braket{\hat{L} U_n | U_n} = \conj{\braket{\hat{L} U_n | U_n}}$.
-Exchanging the left side of $\hat{L} U_n = -\omega_n^2 W U_n$ with the right and noting that $\braket{W U_n | U_n}$ is real because $W$ and $\abs{U_n}^2$ are real, this is equivalent to $-\omega_n^2 \braket{W U_n | U_n} = \conj{\left( -\omega_n^2 \right)} \braket{W U_n | U_n}$, so $\omega_n^2$ is real.
+Exchanging the left side of $\hat{L} U_n = -\omega_n^2 W U_n$ with the right and noting that $\braket{W U_n | U_n}$ is real because $W$ and $\Abs{U_n}^2$ are real, this is equivalent to $-\omega_n^2 \braket{W U_n | U_n} = \conj{\left( -\omega_n^2 \right)} \braket{W U_n | U_n}$, so $\omega_n^2$ is real.
 %Proving the last part takes more work, but we will that it plays out in practice when solving the Sturm-Liouville problem numerically soon.
 
 We can also understand intuitively why the number of zeros must increase with $\omega_n^2$.
@@ -1155,8 +1156,8 @@ Property \ref{item:nstars:sturm_liouville_eigenvalues} ensures all $\omega_n^2$ 
 \begin{itemize}
 \item If $\omega_0^2 > 0$, then all vibration modes have real frequencies $\omega_n > 0$.
       Then all terms in the displacement \eqref{eq:nstars:displacement_general_solution} merely oscillate back and forth like $\xi \propto e^{i \omega_n t}$, so the star attempts to return to equilibrium, and it is \textbf{stable}.
-\item If $\omega_0^2 < 0$, then one or more vibration modes have imaginary frequencies $\omega_n = \pm i \abs{\omega_n}$.
-      Then some term in the displacement \eqref{eq:nstars:displacement_general_solution} takes off exponentially like $\xi \propto e^{\pm \abs{\omega_n} t}$, so the star either implodes or explodes, and it is \textbf{unstable}.
+\item If $\omega_0^2 < 0$, then one or more vibration modes have imaginary frequencies $\omega_n = \pm i \Abs{\omega_n}$.
+      Then some term in the displacement \eqref{eq:nstars:displacement_general_solution} takes off exponentially like $\xi \propto e^{\pm \Abs{\omega_n} t}$, so the star either implodes or explodes, and it is \textbf{unstable}.
 \end{itemize}
 A prerequisite for the above criterion is that it is sufficient for \emph{one} mode in the displacement \eqref{eq:nstars:displacement_general_solution} to be unstable for the star as a whole to be unstable.
 To understand this, suppose a star is exposed to some external perturbation $\xi(t,r)$.
@@ -1189,7 +1190,7 @@ Let us put it to use, so we can determine the stability of the stars along the c
 \pgfmathsetmacro{\maxR}{\pgfplotsretval}
 \begin{axis}[
 	width=15cm, height=10cm,
-	xlabel=$r \, / \, R$, ylabel=$U(r) \, / \, \max \abs{U_0(r)}$,
+	xlabel=$r \, / \, R$, ylabel=$U(r) \, / \, \max \Abs{U_0(r)}$,
 	title={Convergence of $U(r) \rightarrow U_0(r)$ as $\omega^2 \rightarrow \omega_0^2$ with the shooting method},
 	%every axis title/.style={at={(0.5,1)}, align=center, above=1ex, text width=0.8*\pgfkeysvalueof{/pgfplots/width}]},
 	xmin=0, xmax=1, ymin=-2.0, ymax=+2.0,
@@ -1266,7 +1267,7 @@ Let us put it to use, so we can determine the stability of the stars along the c
 \nextgroupplot[
 	every axis title/.style={at={(0.03,0.07)}, text width=5cm, anchor=south west, draw=black, fill=white},
 	title={\subcaption{\label{fig:nstars:modes_normed_separate}Separate normalization}},
-	ylabel={$U_n(r) \, / \, \max \abs{U_n(r)}$},
+	ylabel={$U_n(r) \, / \, \max \Abs{U_n(r)}$},
 	legend cell align=left, legend columns=3, legend style={at={(0.5, 1.03)}, anchor=south},
 	xticklabels={},
 	%title = {Lowest normal vibration modes}, title style = {anchor=south, at={(0.5, 1.3)}, draw=none}, % TODO: already have title for this
@@ -1285,7 +1286,7 @@ Let us put it to use, so we can determine the stability of the stars along the c
 \nextgroupplot[
 	every axis title/.style={at={(0.97,0.07)}, text width=5cm, anchor=south east, draw=black, fill=white},
 	title={\subcaption{\label{fig:nstars:modes_normed_common}Common normalization}},
-	xlabel={$r \, / \, R$}, ylabel={$U_n(r) \, / \, \max \abs{U_0(r)}$},
+	xlabel={$r \, / \, R$}, ylabel={$U_n(r) \, / \, \max \Abs{U_0(r)}$},
 ];
 \tablemaximum{../code/data/nmodes.dat}{U0}{\maxU}{r}{\maxr}
 \pgfplotsinvokeforeach{0,1,...,7} {

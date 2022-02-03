@@ -258,19 +258,21 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 \usepackage{bm}
 
 \newcommand\dif{\mathop{}\!\mathrm{d}}
-\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\Abs}[1]{\left\lvert #1 \right\rvert}
 \newcommand{\norm}[1]{\| {#1} \|} % TODO: remove?
-\renewcommand{\det}[1]{\abs{#1}}
+\renewcommand{\det}[1]{\Abs{#1}}
 %\newcommand{\tdet}{\text{det}}
 \DeclareMathOperator{\tdet}{det}
 \DeclareMathOperator{\asin}{asin}
 \DeclareMathOperator{\asinh}{asinh}
 \DeclareMathOperator{\acosh}{acosh}
 \DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\trace}{tr}
 \newcommand{\integral}[4]{\int_{#3}^{#4} \dif #2 \, #1}
 \newcommand{\variation}[1]{\delta #1}
-\newcommand{\trace}[1]{\text{tr} #1}
 \newcommand{\lagr}{\mathcal{L}}
+\newcommand{\pot}{\mathcal{V}}
 \newcommand{\ham}{\mathcal{H}}
 \newcommand{\numdensity}{\mathcal{N}}
 \DeclareMathOperator{\diag}{diag}
@@ -282,7 +284,10 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 \newcommand{\pathint}[2]{\int \pathintdif #1 \, #2}
 \newcommand{\comm}[2]{[ #1 , #2 ]}
 \newcommand{\acomm}[2]{\{ #1 , #2 \}}
-\newcommand{\thermalavg}[1]{ \left< #1 \right>}
+\newcommand{\avg}[1]{ \langle #1 \rangle}
+\newcommand{\Avg}[1]{ \left\langle #1 \right\rangle}
+\newcommand{\unit}[1]{[#1]}
+\newcommand{\Unit}[1]{\left[#1\right]}
 \newcommand{\conj}[1]{{#1}^*}
 %\newcommand{\res}{\text{Res}}
 \DeclareMathOperator*{\res}{Res}
@@ -291,6 +296,8 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 \newcommand{\1}{\mathds{1}}
 \newcommand{\diml}[1]{\hat{#1}} % use to denote dimensionless quantity
 \newcommand{\solarmass}{M_\odot}
+
+\renewcommand{\comment}[2]{#1 \text{#2}} % #1 = spacing, #2 = comment text
 
 % useful intro to Latex thesis: https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_1):_Basic_Structure
 
@@ -319,6 +326,7 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 \input{chapter2/chapter2.tex}
 \input{chapter3/chapter3.tex}
 \input{conclusion/conclusion.tex}
+\input{chapter4/chapter4.tex}
 \input{appendix/appendix.tex}
 
 \backmatter

@@ -531,7 +531,7 @@ Then the first term in the variation of the action becomes
 We still have not brought the variation to the form \eqref{eq:einstein_derivation:action_form}, but it does not matter.
 By \textbf{Stokes theorem} \cite[equation 3.35]{ref:carroll}
 \begin{equation}
-	\int_M \dif^n x \sqrt{\abs{g}} \nabla_\mu V^\mu = \int_{\partial M} \dif^{n-1} \sqrt{\abs{\gamma}} n_\mu V^\mu ,
+	\int_M \dif^n x \sqrt{\Abs{g}} \nabla_\mu V^\mu = \int_{\partial M} \dif^{n-1} \sqrt{\Abs{\gamma}} n_\mu V^\mu ,
 \end{equation}
 our integral for $\variation{S}_1$ over $n$-space can be converted into a boundary integral over $(n-1)$-space at infinity.
 But the variational method that we have used here asserts that there is no variation on the boundary, so
@@ -653,7 +653,7 @@ Third, a \emph{weak} field corresponds to a metric that can be written as a pert
 \begin{equation}
 	g\indices{_\mu_\nu} = \eta\indices{_\mu_\nu} + h\indices{_\mu_\nu}
 	\qquad \text{with} \qquad
-	\abs{h\indices{_\mu_\nu}} \ll 1
+	\Abs{h\indices{_\mu_\nu}} \ll 1
 	\label{eq:weak_field_limit:weak_field_metric}
 \end{equation}
 on top of flat Minkowski space $\eta\indices{_\mu_\nu} = \diag (+1, -1, -1, -1)$.
@@ -1319,7 +1319,7 @@ Finally, include all poles by taking the limit $N \rightarrow \infty$.
 This sends the radii of the two semicircles to infinity, inflating the contour $C_N^C$ to the full real half planes, except the imaginary axis $\real z = 0$.
 Assume now that $s(-i z)$ -- as in our motivating example \eqref{eq:matsum:motivating_example} -- satisfies
 \begin{equation}
-	\abs{s(-iz) n_\pm(z)} < \frac{1}{\abs{z}} \quad \text{as} \quad \abs{z} \rightarrow \infty .
+	\Abs{s(-iz) n_\pm(z)} < \frac{1}{\Abs{z}} \quad \text{as} \quad \Abs{z} \rightarrow \infty .
 \end{equation}
 %Our motivating example \eqref{eq:matsum:motivating_example} satisfies this.
 For general $s(-iz)$, this assumption is not as restrictive as it may sound, since there must be some bound on $s(-iz)$ anyway if the sum \eqref{eq:matsum:sum} is to converge at all.
@@ -1454,7 +1454,7 @@ Recall that the upper and lower signs hold for bosons and fermions, respectively
 	\begin{equation*}
 		\psi^\dagger A \psi = \psi^\dagger U^\dagger D U \psi = (U \psi)^\dagger D (U \psi) = \tilde\psi^\dagger D \tilde\psi, \quad \text{where } \tilde\psi = U \psi .
 	\end{equation*}
-	The unitary transformation has $\abs{\tdet U} = 1$, so the integration measure $\dif \psi = \dif \tilde\psi$ is unchanged upon changing variables from $\psi$ to $\tilde\psi$.
+	The unitary transformation has $\Abs{\tdet U} = 1$, so the integration measure $\dif \psi = \dif \tilde\psi$ is unchanged upon changing variables from $\psi$ to $\tilde\psi$.
 	A Hermitian matrix has real eigenvalues, so we can use integral \eqref{eq:integrals:gaussian_grassmann_one} to show that
 	\begin{equation*}
 	\begin{split}

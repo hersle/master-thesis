@@ -17,13 +17,14 @@ If we find $\log Z$, then we have established the link to thermodynamics with th
 \cite[chapter 5]{ref:jensoluf}
 \begin{subequations}
 \begin{align}
-	%\text{the entropy}                     \quad \thermalavg{S}   &= -\pdv{\Omega}{T} \\
-	& \text{the average number of particles} & \thermalavg{N_i} & = k_B T \pdv{\log{Z}}{\mu_i},                    & \label{eq:tft:average_number} \\
-	& \text{the average energy}              & \thermalavg{E}   & = \mu_i \thermalavg{N_i} - \pdv{\log{Z}}{\beta}, & \label{eq:tft:average_energy} \\ % \Omega + T S + \mu_i \thermalavg{N_i} \\
+	%\text{the entropy}                     \quad \Avg{S}   &= -\pdv{\Omega}{T} \\
+	& \text{the average number of particles} & \Avg{N_i} & = k_B T \pdv{\log{Z}}{\mu_i},                    & \label{eq:tft:average_number} \\
+	& \text{the average energy}              & \Avg{E}   & = \mu_i \Avg{N_i} - \pdv{\log{Z}}{\beta}, & \label{eq:tft:average_energy} \\ % \Omega + T S + \mu_i \Avg{N_i} \\
 	& \text{the         pressure}            &             P    & = \frac{k_B T}{V} \log{Z}.                       & \label{eq:tft:average_pressure} % -\pdv{\Omega}{V}
 \end{align}
+\label{eq:tft:average_quantities}
 \end{subequations}
-In the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}, it is precisely the energy density $\epsilon = \thermalavg{E} / \, V$ expressed in terms of the pressure $P$ that we want to insert.
+In the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}, it is precisely the energy density $\epsilon = \Avg{E} / \, V$ expressed in terms of the pressure $P$ that we want to insert.
 As all relevant information about a system can be derived from the partition function, we say that we have ``solved the system completely'' once we have found $Z$.
 
 First, we will review how the transition amplitude for a process can be expressed as a path integral.
@@ -341,7 +342,7 @@ Suppose that the field theory admits a conserved current
 	\odv{Q}{t} = 0.
 \end{equation}
 In the corresponding quantized quantum field theory, this is equivalent to the commutation $\comm{\hat{H}}{\hat{Q}} = 0$ between the Hamiltonian operator and charge operator,
-for then $\odv{\thermalavg{Q}}/{t} = \big< \comm{\hat{H}}{\hat{Q}} \big> = 0$ by the Ehrenfest theorem.
+for then $\odv{\Avg{Q}}/{t} = \big< \comm{\hat{H}}{\hat{Q}} \big> = 0$ by the Ehrenfest theorem.
 The conserved current $j^\nu(x)$ can be coupled to a gauge field $A_\nu(x)$ by adding the term $A_\nu(x) j^\nu(x)$ to the Lagrangian density $\lagr$, or $-A_\nu(x) j^\nu(x)$ to the Hamiltonian density $\ham$.
 Under a standard, Abelian gauge transformation
 \begin{equation}
@@ -652,10 +653,10 @@ With the same reasoning, we can work out that the trace of an operator $\hat{A}$
 	=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i \Big( 1 + \psi_i \conj\psi_i \Big) \braket{0 | \prod_j \Big( 1 + \destr_j \conj\psi_j \Big) \hat{A} \prod_k \Big( 1 - \psi_k \creat_k \Big) | 0} \\
 	%=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i \Big( 1 + \psi_i \conj\psi_i \Big) \braket{0 | \prod_j \Big( 1 + \destr_j \conj\psi_j \Big) \hat{A} \Big( 1 - \psi_j \creat_j \Big) | 0} && \big( \text{$k=j$} \big) \\
 	%=& \int \dif \conj{\psi} \int \dif \psi \, \prod_i \Big(1 + \conj\psi_i \psi_i \Big) \prod_j \conj\psi_j \psi_j \braket{0 | (1 + \destr_j \psi_j) \hat{A} (1 + \conj\psi_j \creat_j) | 0} \\
-	=& \sum_{n_1=0}^1 \sum_{n_2=0}^1\cdots \sum_{n_N=0}^1 \braket{n_1, n_2, \ldots, n_N | \hat{A} | n_1, n_2, \ldots, n_N} = \trace{\hat{A}} . \\
+	=& \sum_{n_1=0}^1 \sum_{n_2=0}^1\cdots \sum_{n_N=0}^1 \braket{n_1, n_2, \ldots, n_N | \hat{A} | n_1, n_2, \ldots, n_N} = \trace \hat{A} . \\
 	%=& \int \dif \conj{\psi} \int \dif \psi \left[ (-\sum_i \conj\psi_i \psi_i) \braket{0 | \hat{A} | 0} + \braket{0 | (+\sum_j \destr_j \conj\psi_j) \hat{A} (-\sum_k \psi_k \creat_k) | 0} \right] \\
 	%=& \int \dif \conj{\psi} \int \dif \psi \left[ \sum_i \psi_i \conj\psi_i \braket{0 | \hat{A} | 0} + \sum_{j,k} \psi_k \conj\psi_j \braket{1_j | \hat{A} | 1_k} \right] \\
-	%=& \braket{0 | \hat{A} | 0} + \sum_j \braket{1_j | \hat{A} | 1_j} = \trace{\hat{A}} . \\
+	%=& \braket{0 | \hat{A} | 0} + \sum_j \braket{1_j | \hat{A} | 1_j} = \trace \hat{A}  . \\
 \end{aligned}
 \label{eq:tft:trace_grassmann_discrete}
 \end{equation}
@@ -687,7 +688,7 @@ and the identity operator \eqref{eq:tft:completeness_grassmann_discrete} becomes
 \end{equation}
 while the trace \eqref{eq:tft:trace_grassmann_discrete} is modified to 
 \begin{equation}
-	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \Braket{-\psi | \hat{A} | \psi} = \trace{\hat{A}} .
+	\int \dif \conj\psi \int \dif \psi \, \exp \left[ -\int \dif^3 x \, \conj\psi(\vec{x}) \psi(\vec{x}) \right] \Braket{-\psi | \hat{A} | \psi} = \trace \hat{A} .
 \label{eq:tft:trace_grassmann}
 \end{equation}
 \end{subequations}
@@ -798,7 +799,7 @@ of the field, then take the continuum limit \eqref{eq:tft:continuum_limit} at th
 
 The infinite volume factor $V$ will come in handy when calculating thermodynamic observables.
 To obtain the pressure \eqref{eq:tft:average_pressure}, we are instructed to divide by volume.
-Similarly, we will need to divide by volume to convert extensive observables like the energy \eqref{eq:tft:average_energy} into intensive observables like the energy \emph{density} $\epsilon = \thermalavg{E} / \, V$ that we need in the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}.
+Similarly, we will need to divide by volume to convert extensive observables like the energy \eqref{eq:tft:average_energy} into intensive observables like the energy \emph{density} $\epsilon = \Avg{E} / \, V$ that we need in the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov}.
 
 The wave number $\vec{k}$ and the Matsubara frequency $\omega_n$ here arose due to geometrical considerations of the periodicity of the field.
 We will soon see that they have important physical consequences, too.
@@ -915,7 +916,7 @@ The action then becomes
 	    & = -\frac12 \hbar \beta^2
 	        \sum_n \sum_\vec{p}
 	  	    \left( E_n^2 + E^2(\vec{p}) \right)
-		    \abs{\phi_{n}(\vec{p})}^2 ,
+		    \Abs{\phi_{n}(\vec{p})}^2 ,
 \end{split}
 \label{eq:tft:boson_action_fourier}
 \end{equation}
@@ -946,12 +947,12 @@ Integrating over the new variables \eqref{eq:tft:boson_integral_new_variables} a
 		-\frac12 \beta^2 \left[
 			E_n^2 + E^2(\vec{p})
 		\right]
-		\abs{\phi_n(\vec{p})}^2
+		\Abs{\phi_n(\vec{p})}^2
 	\right\} . \\
 \end{split}
 \label{eq:tft:boson_gaussian_integral}
 \end{equation}
-The integrand depends only on the magnitude of $\phi_n(\vec{p}) = \abs{\phi_n(\vec{p})} e^{i \theta_n(\vec{p})}$.
+The integrand depends only on the magnitude of $\phi_n(\vec{p}) = \Abs{\phi_n(\vec{p})} e^{i \theta_n(\vec{p})}$.
 The reality of the field $\phi(\vec{x}, \tau) = \conj\phi(\vec{x}, \tau)$ implies that $\conj\phi_n(\vec{p}) = \phi_{-n}(-\vec{p})$ and consequently that $\theta_{-n}(-\vec{p}) = -\theta_n(\vec{p})$, so all phases in the measures $\dif \phi_n(\vec{p})$ cancel after taking the product over all $n$ and $\vec{p}$.
 Thus, we can carry out the integral using the Gaussian integral \eqref{eq:integrals:gaussian_axx} to obtain
 \begin{equation}
@@ -968,7 +969,7 @@ Thus, we can carry out the integral using the Gaussian integral \eqref{eq:integr
 More careful way (???):
 \begin{equation}
 \begin{split}
-	Z &= \int \prod_i \dif \phi(x_i) \exp \left( -\frac12 \sum_n \sum_\vec{p} f_n(\vec{p}) \abs{\tilde\phi_n(\vec{p})}^2 \right) \\
+	Z &= \int \prod_i \dif \phi(x_i) \exp \left( -\frac12 \sum_n \sum_\vec{p} f_n(\vec{p}) \Abs{\tilde\phi_n(\vec{p})}^2 \right) \\
 	  &= \int \prod_{n>0} \prod_\vec{p} \dif \tilde\phi_n^R(\vec{p}) \dif \tilde\phi_n^I \exp \left\{ -\sum_{n>0} \sum_\vec{p} f_n(\vec{p}) [(\tilde\phi_n^R)^2 + (\tilde\phi_n^I)^2] \right\} \\
 	  &= \prod_{n>0} \prod_\vec{p} \int \dif \tilde\phi_n^R(\vec{p}) \exp \left\{ -f_n(\vec{p}) (\tilde\phi_n^R)^2 \right\} \prod_{n>0} \prod_\vec{p} \int \dif \tilde\phi_n^I \exp \left\{ -f_n(\vec{p}) (\tilde\phi_n^I)^2 \right\} \\
 	  &= \prod_{n>0} \prod_\vec{p} (f^2_n(\vec{p}))^{-1/2} \prod_{n>0} \prod_\vec{p} (f^2_n(\vec{p}))^{-1/2} \\
