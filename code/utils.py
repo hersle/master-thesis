@@ -11,6 +11,7 @@ def writecols(cols, headers, filename):
     file.write(" ".join(headers) + "\n")
     for r in range(0, maxlen):
         for col in cols:
-            file.write(str(col[r]) + " ")
+            if len(str(col[r])) > 0:
+                file.write(str(col[r]) + " ")
         file.write("\n")
     file.close()
