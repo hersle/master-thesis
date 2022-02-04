@@ -1,5 +1,9 @@
 \chapter{Linear sigma model}
 
+\TODO{section on solving TOV with more particles using charge neutrality and chemical equilibrium}
+
+\TODO{different title}
+
 \begin{figure}
 \centering
 \tikzsetnextfilename{potential}
@@ -34,6 +38,7 @@ The Lagrangian density for the linear sigma model coupled to quarks is
 	      + \frac12 \left[ \left( \partial_\mu \sigma \right)^2 + \left( \partial_\mu \vec\pi \right)^2 \right] - \pot(\sigma,\vec\pi) ,
 \label{eq:lsm:lagrangian}
 \end{equation}
+\TODO{should I have $h \avg{\sigma}$, too?}
 with the potential
 \begin{equation}
 	\pot(\sigma,\vec\pi) = -\frac12 m^2 \left( \sigma^2 + \vec\pi^2 \right) + \frac{\lambda}{4!} \left( \sigma^2 + \vec\pi^2 \right)^2
@@ -97,16 +102,20 @@ The partition function then reads
 \begin{equation}
 \begin{split}
 	Z &\taylor \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{c=1}^{N_c} \bar{q}_c \left( i \slashed\partial + \mu \gamma^0 - m_q \right) q_c + \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 \right] \right\} \\
-	  &=       \prod_{f=1}^{N_f} \prod_{c=1}^{N_c} \oint_- \pathintdif \bar{q}_f^c \oint_- \pathintdif q_f^c \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{f=1}^{N_f} \sum_{c=1}^{N_c} \bar{q}_f^c \left( i \slashed\partial + \mu_f \gamma^0 - m_q \right) q_f^c + \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 \right] \right\} \\
+	  &=       \prod_{f=1}^{\smash{N_f}} \prod_{c=1}^{\smash{N_c}} \oint_- \pathintdif \bar{q}_f^c \oint_- \pathintdif q_f^c \\
+	  &\times  \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{f=1}^{\smash{N_f}} \sum_{c=1}^{N_c} \bar{q}_f^c \left( i \slashed\partial + \mu_f \gamma^0 - m_q \right) q_f^c + \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 \right] \right\}.
 \end{split}
 \end{equation}
 The two last terms in the exponential are independent of the fields, so
 \begin{equation}
-	\log Z = \frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 + \sum_{f=1}^{N_f} \sum_{c=1}^{N_c} \log \oint_- \pathintdif \bar{q}_f^c \oint_- \pathintdif q_f^c \exp \left\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \bar{q}_f^c (i \slashed\partial + \mu_f \gamma^0 - m_q) q_f^c \right\}
+\begin{split}
+	\log Z &= \frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 \\
+	       &+ \sum_{f=1}^{N_f} \sum_{c=1}^{N_c} \log \oint_- \pathintdif \bar{q}_f^c \oint_- \pathintdif q_f^c \exp \left\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \bar{q}_f^c (i \slashed\partial + \mu_f \gamma^0 - m_q) q_f^c \right\} .
+\end{split}
 \end{equation}
-We have already calculated the path integral in the last term in \cref{eq:tft:dirac_partition_function_first}, where we obtained the result \eqref{eq:tft:dirac_partition_function}!
-Here, the color sum $\sum_c = N_c$ produces an additional factor because the summand is independent of $c$,
-while the flavor sum $\sum_f$ yields $N_f$ terms that differ only by the unique chemical potentials $\mu_f$ associated with each quark flavor. 
+We have already calculated the path integral in the last term from \cref{eq:tft:dirac_partition_function_first} to \cref{eq:tft:dirac_partition_function}!
+Here, we get an additional factor $\sum_{c=1}^{N_c} = N_c$ from the color sum because the summand is independent of $c$,
+while the flavor sum $\sum_{f=1}^{\smash{N_f}}$ yields $N_f$ terms that differ only by the unique chemical potentials $\mu_f$ associated with each quark flavor. 
 Thus, we obtain
 \begin{equation}
 \begin{split}
@@ -130,12 +139,12 @@ Thus, we obtain
 	       &+ N_c \frac{m_q^4 \beta V}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right],
 \end{split}
 \end{equation}
-where $x_f = p_f / m_q$ are normalized Fermi momenta, $\mu_f = \sqrt{p_f^2 + m_q^2}$ are Fermi energies and the vacuum contribution is
+where $x_f = p_f / m_q$ are normalized Fermi momenta, $\mu_f = \smash{\sqrt{p_f^2 + m_q^2}}$ are Fermi energies and the vacuum contribution is
 \begin{equation}
 	\log Z_0 = 2 \beta V \int \frac{\dif^3 p}{(2 \pi)^3} \sqrt{p^2 + m_q^2 } .
 \label{eq:lsm:vacuum_contribution_3dim}
 \end{equation}
-Instead of simply throwing away the vacuum contribution, let us be more careful and renormalize it with dimensional regularization in the minimal subtraction scheme.
+To renormalize the vacuum contribution, let us use dimensional regularization in the minimal subtraction scheme \TODO{?}.
 In $d = 3 - 2 \epsilon$ spatial dimensions, the vacuum contribution is
 \TODO{can I do this in a more ``well-defined way'' by rescaling the momentum instead, like $p' = p / \Lambda^{(1-3/d)}$ where $\unit{p} = \unit{\Lambda}$, so $\unit{\dif^d p'} = \unit{\dif^3 p}$, so $\log Z$ remains dimensionless.?}
 \begin{equation}
@@ -159,22 +168,22 @@ if we substitute $t = p^2/m_q^2$ with $\dif t = 2 p \dif p / m_q^2$.
 We then find
 \begin{equation}
 \begin{split}
-	\log Z_0 &= \beta V \Lambda^{3-d} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} m_q^{d+1} \int_0^\infty \dif t \, \frac{t^{d/2-1}}{(1+t)^{-1/2}} \\
-	         &= \beta V \Lambda^{3-d} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} m_q^{d+1} \frac{\Gamma\big(\frac{d}{2}\big) \Gamma\big( -\frac{d+1}{2} \big)}{\Gamma\big( -\frac{1}{2} \big)} .
+	\log Z_0 &= \beta V \Lambda^{3-d} m_q^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \int_0^\infty \dif t \, \frac{t^{d/2-1}}{(1+t)^{-1/2}} \\
+	         &= \beta V \Lambda^{3-d} m_q^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \frac{\Gamma\big(\frac{d}{2}\big) \Gamma\big( \textstyle{-\frac{d+1}{2}} \big)}{\Gamma\big( \textstyle{-\frac{1}{2}} \big)} .
 \end{split}
 \end{equation}
 We now cancel the two factors $\Gamma(d/2)$ and replace $\Gamma(-1/2) = -2\sqrt{\pi}$.
 Then we insert $d = 3 - 2 \epsilon$ back and use the property $\Gamma(z) = \Gamma(z+1) / z$ twice to transport the argument of the Gamma function as close as possible to its pole at $0$,
-where we use its asymptotic expansion $\Gamma(\epsilon) = 1/\epsilon + \gamma$ upon arrival.
+where we use its asymptotic expansion $\Gamma(\epsilon) = 1/\epsilon + \gamma + \bigo(\epsilon)$ upon arrival.
 Expanding everything to zeroth order in $\epsilon$ then yields
 \begin{equation}
 \begin{split}
 	\log Z_0 &=       -\frac{\beta V m_q^4}{8 \pi^2} \left( 4 \pi \frac{\Lambda^2}{m_q^2} \right)^\epsilon \Gamma(-2 + \epsilon) \\
-	         &\taylor -\frac{\beta V m_q^4}{16 \pi^2} \left( \frac{1}{\epsilon} + \log \frac{\Lambda^2}{m_q^2} + \frac32 - \gamma + \log 4 \pi \right)
+	         &\taylor -\frac{\beta V m_q^4}{16 \pi^2} \left( \frac{1}{\epsilon} + \log \frac{\Lambda^2}{m_q^2} + \frac32 - \gamma + \log 4 \pi \right) .
 \end{split}
 \label{eq:lsm:vacuum_contribution_final}
 \end{equation}
-With the vacuum contribution \eqref{eq:lsm:vacuum_contribution_final}, the potential \eqref{eq:lsm:potential_divergent_logz0} is
+With the vacuum contribution \eqref{eq:lsm:vacuum_contribution_final}, the full logarithm \eqref{eq:lsm:potential_divergent_logz0} is
 \begin{equation}
 \begin{split}
 	\log Z &= \frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 - N_c N_f \frac{\beta V m_q^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} - \gamma + \log 4 \pi + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
@@ -203,8 +212,12 @@ From $\log Z$, we can finally build a bridge to thermodynamics with the grand po
 	                                                    &- N_c \frac{m_q^4}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right] .
 \end{split}
 \end{equation}
+
 \TODO{seems to be same as Berge got, only with different sign of $m^2$}
 
+\TODO{things below here are unfinished}
+
+\TODO{why renormalize vacuum? seems like it only adds minor corrections to grand potential?}
 
 \TODO{retrace and check calculation}
 
@@ -216,7 +229,13 @@ From $\log Z$, we can finally build a bridge to thermodynamics with the grand po
 
 \TODO{eliminate three chemical potentials for electrons, ups, downs with charge neutrality and chemical equilibrium for one process, so that only one chemical potential is left?}
 
-\TODO{plot $\Omega(\mu,\avg{\sigma})$ in 3D plot and show phase transition?}
+\TODO{
+do I determine $\lambda P$ from
+\begin{equation}
+	\avg{\sigma}_\text{min} = f_\pi = \frac{\sqrt{6} m}{\sqrt{\lambda}} = \frac{\sqrt{6} m}{\sqrt{\lambda_P \left( 1 + \frac{\delta \lambda}{\lambda_p} \right)}} \taylor \frac{\sqrt{6} m}{\lambda_P}
+\end{equation}
+???
+}
 
 \begin{equation}
 	m_q = \SI{300}{\mega\electronvolt}, \qquad
@@ -276,6 +295,6 @@ From $\log Z$, we can finally build a bridge to thermodynamics with the grand po
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:grand_potential}%
-\TODO{unfinished}
+\TODO{(unfinished, something wrong?) plot $\Omega(\mu,\avg{\sigma})$, show phase transition?}
 }
 \end{figure}
