@@ -47,6 +47,8 @@ We conclude that for all practical purposes, stars are \emph{globally} charge ne
 
 \TODO{what about contribution from pressure and other things to $F_\text{out}$?}
 
+\TODO{can I recast inequality in charge per solar mass? see discussion at beginning of \url{www.if.ufrgs.br/hadrons/MMalheiro.pdf}}
+
 \subsection{Local charge neutrality}
 
 The argument in the previous section shows that a star can have no \emph{total} charge, but it places absolutely no limitations on its \emph{distribution}.
@@ -58,6 +60,16 @@ To make use of charge neutrality in our approach, we will promote charge neutral
 \TODO{TOV equation is derived by assuming ideal fluid in equilibrium -- would local charge destroy that?}
 
 \TODO{draw inspiration from standard argument that $\vec{E} = 0$ everywhere inside a conductor?}
+
+Satisfied by
+\begin{equation}
+	\sum_p q_p \, n(\mu_p) = 0 ,
+\end{equation}
+where the sum is over all particles present, each with charge $q_p$.
+In the zero-temperature approximation with the density \eqref{eq:nstars:density_zeroT}, this is satisfied if
+\begin{equation}
+	\sum_p q_p \left( \mu_p^2 - m_p^2 \right)^{3/2} = 0 .
+\end{equation}
 
 \subsection{Chemical equilibrium}
 
@@ -80,6 +92,7 @@ Then chemical equilibrium implies
 	\mu_s &= \mu_u .
 \end{align}
 \end{subequations}
+(the third follows automatically from the two first)
 
 \section{Linear sigma model}
 
