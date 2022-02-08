@@ -234,7 +234,7 @@ The partition function then reads
 \begin{split}
 	Z &\taylor \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{c=1}^{N_c} \bar{q}_c \left( i \slashed\partial -m_q + \mu \gamma^0 \right) q_c + \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 + h \avg{\sigma} \right] \right\} \\
 	  &=       \prod_{f=1}^{\smash{N_f}} \prod_{c=1}^{\smash{N_c}} \oint_- \pathintdif \bar{q}_f^c \oint_- \pathintdif q_f^c \\
-	  &\times  \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{f=1}^{\smash{N_f}} \sum_{c=1}^{N_c} \bar{q}_f^c \left( i \slashed\partial + \mu_f \gamma^0 - m_q \right) q_f^c + \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 + h \avg{\sigma} \right] \right\}.
+	  &\times  \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{f=1}^{\smash{N_f}} \sum_{c=1}^{N_c} \bar{q}_f^c \left( i \slashed\partial - m_q + \mu_f \gamma^0 \right) q_f^c + \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 + h \avg{\sigma} \right] \right\}.
 \end{split}
 \end{equation}
 The two last terms in the exponential are independent of the fields, so
@@ -356,6 +356,27 @@ Then the second line of the grand potential is absent, and the first three terms
 	\quad \text{yielding} \quad
 	\Lambda = \frac{g f_\pi}{\sqrt{e}} = \SI{182}{\mega\electronvolt}.
 \end{equation}
+
+To ensure the star is charge neutral, we take our linear sigma model coupled to quarks and place it on top of a background of electrons by modifying.
+This amounts to adding one more fermion term to the Lagrangian density \eqref{eq:lsm:lagrangian} and, ultimately, the grand potential \eqref{eq:lsm:grand_potential}.
+Since the electrons are so light compared to the quarks, we approximate them as massless \TODO{do properly}.
+\TODO{what about their renormalized vacuum term?}
+Thus,
+\begin{equation}
+\begin{split}
+	\omega = \frac{\Omega}{V} = -\frac{\log Z}{\beta V} &= -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda_P}{4!} \avg{\sigma}^4 - h \avg{\sigma} + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
+	                                                    &- \frac{\mu_e^4}{12 \pi^4} - N_c \frac{m_q^4}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right] .
+\end{split}
+\label{eq:lsm:grand_potential}
+\end{equation}
+
+\TODO{my idea for what to do next:}
+\begin{enumerate}
+\item Have $\omega(\avg{\sigma}, \mu)$.
+\item Must ensure that $P = 0$ in vacuum, i.e. when $n(\mu) = 0$, or $x_f = 0$ or $\mu = m$ (generally).
+\item Therefore shift $\omega(\avg{\sigma},\mu) \rightarrow \omega(\avg{\sigma},\mu) - \omega(\avg{\sigma},m)$, or something along those lines.
+\end{enumerate}
+
 
 
 \TODO{determine all $4$ couplings from $4$ requirements, only use physical values $h \neq 0$ (?)}
