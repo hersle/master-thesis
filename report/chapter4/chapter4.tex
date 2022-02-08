@@ -110,20 +110,20 @@ Then chemical equilibrium implies
 	width = 20cm, height=15cm,
 	%title = {Potential},
 	xlabel = $\sigma$, ylabel = $\vec\pi$, zlabel = {$V(\sigma,\vec\pi)$},
-	xmin=-5, xmax=+5, ymin=-5, ymax=+5, zmin=0, zmax=2,
+	xmin=-4.0, xmax=+4.0, ymin=-4.0, ymax=+4.0, zmin=0, zmax=2.2,
 	xtick=\empty, ytick=\empty, ztick=\empty,
 	axis lines=center,
 	axis line style = thick,
-	view={135}{40},
+	view={135}{25},
 	%colormap/blackwhite, mesh/interior colormap name=plasmarev,
 ]
-	\addplot3 [surf, thin, domain=0:3.0, domain y=0:2*pi, samples=30, samples y=40, z buffer=sort] ({x*cos(deg(y))},{x*sin(deg(y))},{-1/2*((x*cos(deg(y)))^2+(x*sin(deg(y)))^2) + 1/24*((x*cos(deg(y)))^2+(x*sin(deg(y)))^2)^2 + 3/2});
+	\addplot3 [surf, thin, domain=0:3.0, domain y=0:2*pi, samples=30, samples y=40, z buffer=sort] ({x*cos(deg(y))},{x*sin(deg(y))},{-1/2*((x*cos(deg(y)))^2+(x*sin(deg(y)))^2) + 1/24*((x*cos(deg(y)))^2+(x*sin(deg(y)))^2)^2 + 3/2 - 0.15*x*cos(deg(y)) + 0.15*sqrt(6)});
 	%\addplot3 [domain=0:2*pi, samples=50, samples y=1] ({sqrt(6)*cos(deg(x))},{sqrt(6)*sin(deg(x))},{0});
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:potential}%
-	The potential \eqref{eq:lsm:potential} is shaped like a Mexican hat with a continuous region of minima for $\sigma^2 + \vec\pi^2 = 6 m^2 / \lambda$.
-	\TODO{include $h \sigma$}
+	With $h \neq 0$, the potential \eqref{eq:lsm:potential} looks like a tilted Mexican hat with a global minimum at $\sigma = \sqrt{6 m^2 / \lambda}, \, \vec\pi = 0$ \TODO{NO!}.
+	If $h = 0$, it would rather look like an upright hat with a continuous range of minima around the brim $\sigma^2 + \vec\pi^2 = 6 m^2 / \lambda$.
 	\TODO{mention this only visualizes $O(2)$}
 }
 \end{figure}
@@ -139,8 +139,8 @@ The Lagrangian density for the linear sigma model coupled to quarks is
 \TODO{should I have $h \sigma$, too? YES!}
 with the potential
 \begin{equation}
-	\pot(\sigma,\vec\pi) = -\frac12 m^2 \left( \sigma^2 + \vec\pi^2 \right) + \frac{\lambda}{4!} \left( \sigma^2 + \vec\pi^2 \right)^2
-	                     = \frac{\lambda}{4!} \left( \sigma^2 + \vec\pi^2 - \frac{6m^2}{\lambda} \right)^2 -\frac{3 m^4}{2 \lambda} .
+	\pot(\sigma,\vec\pi) = -\frac12 m^2 \left( \sigma^2 + \vec\pi^2 \right) + \frac{\lambda}{4!} \left( \sigma^2 + \vec\pi^2 \right)^2 - h \sigma .
+	                     % = \frac{\lambda}{4!} \left( \sigma^2 + \vec\pi^2 - \frac{6m^2}{\lambda} \right)^2 -\frac{3 m^4}{2 \lambda} .
 \label{eq:lsm:potential}
 \end{equation}
 Here $q_c = (u_c, d_c)^T$ represents quarks of the $N_c = 3$ colors red, green and blue and the $N_f = 2$ flavors up and down, so $(q_c)_f$ make up a total of $N_c \times N_f = 6$ Dirac spinors.
@@ -149,48 +149,76 @@ At this point, the quarks are massless Dirac fermions whose conserved charge den
 The mesons have ``imaginary mass'' $\sqrt{-m^2} = i m$ and feature a $\lambda \phi^4$-coupling.
 \TODO{write $(\sigma, \vec\pi)^T$ as 4-vector and mention $O(4)$ symmetry, explain from $SU(2)_L$, $SU(2)_R$, etc.?}
 
-To make sense of this theory, we must investigate how it behaves around the classical ground states of the potential \eqref{eq:lsm:potential}.
-As shown in \cref{fig:lsm:potential}, the potential is shaped like a Mexican hat with a continuous ``brim'' of classical ground states along $\sigma^2 + \vec\pi^2 = 6 m^2 / \lambda$.
-Without any loss of generality due to the symmetry of the theory, we pick out \emph{the} classical ground state at
+To make sense of this theory, we must investigate how it behaves around the classical ground state of the potential \eqref{eq:lsm:potential}.
+As shown in \cref{fig:lsm:potential}, the potential is shaped like a tilted Mexican hat with a classical ground state at $\sigma = \avg{\sigma} \neq 0$ and $\pi = \vec\pi = 0$.
+Hence, the value of $\avg{\sigma}$ is determined implicitly by
 \begin{equation}
-	\sigma = \Avg{\sigma} = \sqrt{6 m^2 / \lambda}
-	\qquad \text{and} \qquad
-	\vec\pi = \Avg{\vec\pi} = 0 .
+	\pdv{\pot}{\sigma}_{(\sigma,\vec\pi)=(\avg{\sigma},\vec{0})} = -m^2 \avg{\sigma} + \frac{\lambda}{6} \avg{\sigma}^3 - h = 0 .
+\label{eq:lsm:ground_state_implicit}
 \end{equation}
 We account for quantum fluctuations around the classical ground state by shifting
 \begin{equation}
-	\sigma \rightarrow \Avg{\sigma} + \sigma
+	\sigma \rightarrow \Avg{\sigma} + \tilde{\sigma}
 	\qquad \text{and} \qquad
-	\vec\pi \rightarrow \Avg{\vec\pi} + \vec\pi.
+	\vec\pi \rightarrow \Avg{\vec\pi} + \tilde{\vec\pi}.
 \end{equation}
-In terms of the new fields, the original Lagrangian \eqref{eq:lsm:lagrangian} is
+In terms of the new fields $\tilde\sigma$ and $\tilde{\vec\pi}$, the Lagrangian \eqref{eq:lsm:lagrangian} is now
 \begin{equation}
-	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \Big[ i \slashed\partial - g \Avg{\sigma} + \mu \gamma^0 - g \left( \sigma + i \gamma^5 \vec\tau \cdot \vec\pi \right) \Big] q_c
-	      + \frac12 \left[ \left( \partial_\mu \sigma \right)^2 + \left( \partial_\mu \vec\pi \right)^2 \right] - V(\sigma,\vec\pi) ,
+	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \Big[ i \slashed\partial - m_q + \mu \gamma^0 - g \left( \tilde{\sigma} + i \gamma^5 \vec\tau \cdot \vec\pi \right) \Big] q_c
+	      + \frac12 \left[ \left( \partial_\mu \tilde{\sigma} \right)^2 + \left( \partial_\mu \tilde{\vec\pi} \right)^2 \right] - \tilde{\pot}(\tilde{\sigma},\tilde{\vec\pi}) , %\pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) ,
 \end{equation}
-where the potential up to second order in the shifted fields is
+where the quark fields $q$ have acquired effective masses
 \begin{equation}
-	V(\sigma, \vec\pi) \taylor -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda}{4!} \avg{\sigma}^4 + \frac12 (\sqrt{2} m)^2 \sigma^2 .
+	m_q = g \avg{\sigma} .
+\label{eq:lsm:mass_quark}
+\end{equation}
+The potential up to second order in the shifted fields is
+\begin{equation}
+\begin{split}
+	\tilde{\pot}(\tilde{\sigma},\tilde{\vec\pi}) &= \pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) \\
+	                                             &\taylor -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda}{4!} \avg{\sigma}^4 - h \avg{\sigma} + \frac12 m_\sigma^2 \sigma^2  + \frac12 m_\pi^2 \vec\pi^2 ,
+	%V(\sigma, \vec\pi) \taylor -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda}{4!} \avg{\sigma}^4 + \frac12 (\sqrt{2} m)^2 \sigma^2 .
 	%V(\sigma, \vec\pi) \taylor -\frac{3 m^4}{2 \lambda} + \frac12 (\sqrt{2} m)^2 \sigma^2 .
 \label{eq:lsm:potential_shifted}
+\end{split}
 \end{equation}
-We see that shifting the fields has produced effective quark and meson masses
-\begin{equation}
-	m_q = g \Avg{\sigma} = \frac{\sqrt{6} m g}{\sqrt{\lambda}}
-	\text{\TODO{non-mentioned comment Møte 4}}
-	, \qquad
-	m_\sigma = \sqrt{2} m
-	\qquad \text{and} \qquad
-	m_\pi = 0.
-	\text{\TODO{$m_\pi^2 \avg{\sigma} = h$ (or similar)}}
-\end{equation}
-The three massless $\pi$-mesons are a result of spontaneous symmetry breaking --
-shifting the origin of $[\avg{\sigma}, \vec\pi]^T$ from $[0, \vec{0}]^T$ to $[\avg{\sigma}, \vec{0}]^T$ has broken the symmetry of the Lagrangian under rotations of all four fields in $SO(4)$ to rotations of only the three last fields in $SO(3)$, and hence reduced the number of generators from $4(4-1)/2=6$ to $3(3-1)/2=3$.
-%whereas the potential \eqref{eq:lsm:potential} is invariant under rotations of $[\sigma, \vec\pi]^T$ in $SO(4)$ about the origin $[0, \vec{0}]^T$ with $4 (4-1) / 2 = 6$ generators,
-%shifting the origin to $[\avg{\sigma}, \vec{0}]^T$ has broken the symmetry down to rotations of the last three elements under $SO(3)$ with $3 (3 - 1) / 2 = 3$ generators.
-Thus, the three $\vec\pi$-mesons are the $6 - 3 = 3$ massless Goldstone bosons that arise from Goldstone's theorem, and are to be interpreted as \emph{pions}.
-\TODO{non-understandable comment, but Goldstone becomes only approximate when $h \neq 0$, and $m_\pi^2 \avg{\sigma} = h$ essentially becomes the approximate Goldstone theorem, only perfectly valid when $h = 0$?}
+where the $\sigma$ and $\vec\pi$ fields have acquired the effective masses
+\begin{subequations}
+\begin{align}
+	m_\sigma^2 &= \pdv[2]{\pot}{\sigma}_{(\sigma,\vec\pi)=(\avg{\sigma},\vec{0})} = -m^2 + \frac{\lambda}{2} \avg{\sigma}^2 \equalexplabove{\text{by \eqref{eq:lsm:ground_state_implicit}}} \frac{3h}{\avg{\sigma}} + 2 m^2 , \label{eq:lsm:mass_sigma} \\
+	m_\pi^2    &= \pdv[2]{\pot}{\pi   }_{(\sigma,\vec\pi)=(\avg{\sigma},\vec{0})} = -m^2 + \frac{\lambda}{6} \avg{\sigma}^2 \equalexplbelow{\text{by \eqref{eq:lsm:ground_state_implicit}}} \frac{h}{\avg{\sigma}} , \label{eq:lsm:mass_pi}
+\end{align}
+\end{subequations}
 The linear sigma model is an effective low-energy model of quantum chromodynamics, so accordingly we should take it seriously only in terms of the shifted fields around the stable ground states, and not in terms of the unshifted fields around the unstable equilibrium at the top of the Mexican hat.
+
+Although we have and will continue to assume $h \neq 0$ in general, this is an excellent time to reflect upon the special case $h = 0$.
+In this case, the potential \eqref{eq:lsm:potential} is symmetric under rotations in $O(4)$ of the field vector $(\sigma, \vec\pi)^T$.
+This corresponds to movement along the ``brim'' of \emph{continuous} minima satisfying $\sigma^2 + \vec\pi^2 = 6 m^2 / \lambda$ in a flattened Mexican hat in \cref{fig:lsm:potential}.
+\TODO{number of generators $=$ number of massless Goldstone bosons, $O(4)$ or $SO(4)$}
+Upon choosing \emph{one} minima where $\sigma = \avg{\sigma} \neq 0$ and $\vec\pi = \avg{\vec\pi} = 0$, the symmetry would be broken to rotations of only the three $\vec\pi$ fields, and three massless Goldstone bosons would appear.
+With $h \neq 0$, however, the $O(4)$ symmetry is explicitly broken, and \cref{eq:lsm:mass_pi} says $h = m_\pi^2 \avg{\sigma}$.
+This is essentially Goldstone's theorem -- if $h = 0$, then $m_\pi = 0$ to ensure $\avg{\sigma} \neq 0$; but if $h \neq 0$, then $m_\pi \neq 0$.
+Moreover, the smaller the value of $h$, the smaller the value of $m_\pi$, so the if $h$ is \emph{small}, the spontaneous symmetry breaking is \emph{approximate}, and the $\vec\pi$ fields are \emph{light}, but not massless.
+\TODO{refine this messy paragraph}
+
+We determine the four parameters $g$, $h$, $m$ and $\lambda$ in the original Lagrangian \eqref{eq:lsm:lagrangian} by comparing the four \emph{effective} quantities $\avg{\sigma}$, $m_\pi$, $m_\sigma$ and $m_q$ to the measurements
+\begin{subequations}
+\begin{alignat}{2}
+	\avg{\sigma} &= \SI{93}{\mega\electronvolt}  &\qquad& \text{(\TODO{source})}, \\
+	m_\pi        &= \SI{138}{\mega\electronvolt} &\qquad& \text{(\TODO{source})}, \\
+	m_\sigma     &= \SI{550}{\mega\electronvolt} &\qquad& \text{(in range $\SI{400}{\mega\electronvolt} < m_\sigma < \SI{700}{\mega\electronvolt}$, by \cite{ref:pdg_review_2021})}, \\
+	m_q          &= \SI{300}{\mega\electronvolt} &\qquad& \text{(by)}.
+\end{alignat}
+\end{subequations}
+Thus, the parameters are
+\begin{subequations}
+\begin{alignat}{3}
+	g       &= \frac{m_q}{\avg{\sigma}}                                           &&= \SI{3.23}{}                            &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
+	h       &= m_\pi^2 \avg{\sigma}                                               &&= \SI{1771092}{\mega\electronvolt\cubed} &\qquad& \text{(by \eqref{eq:lsm:mass_pi})} , \\
+	m       &= \sqrt{\frac12 \left( m_\sigma^2 - \frac{3h}{\avg{\sigma}} \right)} &&= \SI{350}{\mega\electronvolt}           &\qquad& \text{(by \eqref{eq:lsm:mass_sigma})} , \\
+	\lambda &= \frac{6}{\avg{\sigma}^3} \left( h + m^2 \avg{\sigma} \right)       &&= \SI{98}{}                              &\qquad& \text{(by \eqref{eq:lsm:ground_state_implicit})} .
+\end{alignat}
+\end{subequations}
 
 According to what we learned in \cref{chap:tft} in \cref{eq:tft:boson_partition_function_momentum_out} and \eqref{eq:tft:dirac_partition_function_first},
 the exact partition function corresponding to this theory is obtained by a path integral over periodic bosonic fields and anti-periodic fermionic fields, weighted by a Euclidean action in imaginary time:
@@ -204,15 +232,15 @@ but calculate only to zeroth order (or tree-level) in the meson fields and hence
 The partition function then reads
 \begin{equation}
 \begin{split}
-	Z &\taylor \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{c=1}^{N_c} \bar{q}_c \left( i \slashed\partial + \mu \gamma^0 - m_q \right) q_c + \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 \right] \right\} \\
+	Z &\taylor \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{c=1}^{N_c} \bar{q}_c \left( i \slashed\partial -m_q + \mu \gamma^0 \right) q_c + \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 + h \avg{\sigma} \right] \right\} \\
 	  &=       \prod_{f=1}^{\smash{N_f}} \prod_{c=1}^{\smash{N_c}} \oint_- \pathintdif \bar{q}_f^c \oint_- \pathintdif q_f^c \\
-	  &\times  \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{f=1}^{\smash{N_f}} \sum_{c=1}^{N_c} \bar{q}_f^c \left( i \slashed\partial + \mu_f \gamma^0 - m_q \right) q_f^c + \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 \right] \right\}.
+	  &\times  \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{f=1}^{\smash{N_f}} \sum_{c=1}^{N_c} \bar{q}_f^c \left( i \slashed\partial + \mu_f \gamma^0 - m_q \right) q_f^c + \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 + h \avg{\sigma} \right] \right\}.
 \end{split}
 \end{equation}
 The two last terms in the exponential are independent of the fields, so
 \begin{equation}
 \begin{split}
-	\log Z &= \frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 \\
+	\log Z &= \frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 + \beta V h \avg{\sigma} \\
 	       &+ \sum_{f=1}^{N_f} \sum_{c=1}^{N_c} \log \oint_- \pathintdif \bar{q}_f^c \oint_- \pathintdif q_f^c \exp \left\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \bar{q}_f^c (i \slashed\partial + \mu_f \gamma^0 - m_q) q_f^c \right\} .
 \end{split}
 \end{equation}
@@ -222,7 +250,7 @@ while the flavor sum $\sum_{f=1}^{\smash{N_f}}$ yields $N_f$ terms that differ o
 Thus, we obtain
 \begin{equation}
 \begin{split}
-	\log Z &= \frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 \\
+	\log Z &= \frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 + \beta V h \avg{\sigma} \\
 	       &+ 2 V N_c \sum_{f=1}^{N_f} \int \frac{\dif^3 p}{(2 \pi)^3} \left\{ \beta E(\vec{p}) + \log \left[ e^{-\beta (E(\vec{p}) - \mu_f)}+1 \right] + \log \left[ e^{-\beta (E(\vec{p}) + \mu_f)} + 1\right] \right\} ,
 \end{split}
 \label{eq:lsm:potential_divergent_logz0}
@@ -238,7 +266,7 @@ This time, however, we will renormalize the infinite vacuum contribution from th
 Thus, we obtain
 \begin{equation}
 \begin{split}
-	\log Z &= \frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 + N_c N_f \log Z_0 \\
+	\log Z &= \frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 + \beta V h \avg{\sigma} + N_c N_f \log Z_0 \\
 	       &+ N_c \frac{m_q^4 \beta V}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right],
 \end{split}
 \end{equation}
@@ -307,7 +335,7 @@ We also see that the preceding term can shield society from this criminal if we 
 Then the innocent, finite and renormalized expression for $\log Z$ is
 \begin{equation}
 \begin{split}
-	\log Z &= \frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda_P}{4!} \beta V \avg{\sigma}^4 - N_c N_f \frac{\beta V m_q^4}{16 \pi^2} \left[ \frac{3}{2} - \gamma + \log 4 \pi + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
+	\log Z &= \frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda_P}{4!} \beta V \avg{\sigma}^4 + \beta V h \avg{\sigma} - N_c N_f \frac{\beta V m_q^4}{16 \pi^2} \left[ \frac{3}{2} - \gamma + \log 4 \pi + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
 	       &+ N_c \frac{m_q^4 \beta V}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right] .
 \end{split}
 \end{equation}
@@ -315,7 +343,7 @@ From $\log Z$, we can finally build a bridge to thermodynamics with the grand po
 \TODO{I remove $\gamma$ and $\log 4 \pi$, use modified minimal subtraction?}
 \begin{equation}
 \begin{split}
-	\omega = \frac{\Omega}{V} = -\frac{\log Z}{\beta V} &= -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda_P}{4!} \avg{\sigma}^4 + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
+	\omega = \frac{\Omega}{V} = -\frac{\log Z}{\beta V} &= -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda_P}{4!} \avg{\sigma}^4 - h \avg{\sigma} + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
 	                                                    &- N_c \frac{m_q^4}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right] .
 \end{split}
 \end{equation}

@@ -47,6 +47,11 @@
 \usepackage[usetransparent=false,inkscapepath=.cachesvginkscape/]{svg}
 \newcommand\credit[2]{\textbf{Credit:} #1 (\url{#2}).}
 
+% inspired by https://tex.stackexchange.com/a/117408
+% can use mathrlap/mathllap instead of mathclap to right/left justify instead of centering
+\newcommand{\equalexplabove}[1]{\overset{\substack{\mathrlap{\text{\hspace{-1em}#1}}\\\big\downarrow}}{=}}
+\newcommand{\equalexplbelow}[1]{\underset{\substack{\big\uparrow\\\mathrlap{\text{\hspace{-1em}#1}}}}{=}}
+
 %\usepackage{unicode-math} % make code display utf8 characters properly (seems that only fontspec below is enough?)
 %\setmonofont{DejaVu Sans Mono} % will affect whole document, including URLs etc.
 \usepackage{fontspec}
@@ -253,6 +258,9 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 
 \usepackage{derivative}
 \derivset{\odv}[style-inf=\mathrm] % write normal derivatives with upright d
+\derivset{\pdv}[delims-eval=. \rvert]
+\derivset{\pdv}[sep-eval-sb=0]
+\derivset{\pdv}[sep-eval-sp=0]
 %\derivset{\odv}[switch-/=true]
 
 \usepackage{bm}

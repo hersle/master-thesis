@@ -8,16 +8,22 @@ import scipy.signal
 
 Nc = 3
 Nf = 2
-mσ = 800
-mπ = 0
+mσ = 550
+mπ = 138
 mq0 = 300
 fπ = 93
 
-m = np.sqrt(2)*mσ
-h = fπ * mπ**2
 g = mq0 / fπ
-λ = 6*m**2 / fπ**2
-Λ = mq0 / np.sqrt(np.e)
+h = fπ * mπ**2
+m = np.sqrt(1/2*(mσ**2-3*h/fπ))
+λ = 6/fπ**3 * (h+m**2*fπ)
+
+print(f"g = {g}")
+print(f"h = {h} MeV^3")
+print(f"m = {m} MeV")
+print(f"λ = {λ}")
+
+# Λ = mq0 / np.sqrt(np.e)
 
 def localmini(x, tol=0):
     i = scipy.signal.argrelmin(x)[0]

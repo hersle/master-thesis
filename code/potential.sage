@@ -8,10 +8,10 @@
 π1 = var("π1", latex_name=r"\pi_1")
 m = var("m")
 λ = var("λ", latex_name=r"\lambda")
+h = var("h")
 
-V(σ,π) = -1/2*m^2*(σ^2+π^2) + λ/24*(σ^2+π^2)^2
+V(σ,π) = -1/2*m^2*(σ^2+π^2) + λ/24*(σ^2+π^2)^2 - h*σ
 
-"""
 π0 = 0
 σ0 = solve(diff(V(σ,π0), σ) == 0, σ)[1].rhs()
 
@@ -19,4 +19,3 @@ print(f"σ0 = {σ0}")
 print(f"π0 = {π0}")
 
 V(σ,π) = V(σ0+σ,π0+π).expand().maxima_methods().collectterms(σ,π)
-"""
