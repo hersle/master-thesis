@@ -8,8 +8,10 @@
 
 \section{Electric charge neutrality and chemical equilibrium in stars}
 
+\TODO{generally, see Halvor's detailed discussion about this}
+
 When we solved the Tolman-Oppenheimer-Volkoff equations for ideal neutron stars in \cref{chap:nstars}, our lives were quite simple.
-The stars consisted of only one charge neutral particle, and we simply eliminated its chemical potential to find an equation of state.
+The stars consisted of only one charge neutral particle, and we simply eliminated its chemical potential to find the equation of state.
 Now we will consider stellar models with a greater variety of particles and non-zero electric charge.
 
 How do we now find the equation of state, when there is one chemical potential for each kind of particle?
@@ -18,13 +20,13 @@ With these conditions, we will relate all but one of the chemical potentials to 
 
 \subsection{Global electric charge neutrality}
 
-We can make a very simple classical argument for why there can be no \emph{global} electric charge in stars by comparing Newton's law of gravity and Coulomb's law.
-Consider a test particle of mass $m$ and electric charge $q$ at the surface $R$ from the center of a star with total mass $M$ and electric charge $Q$.
-In an idealized situation, the test particle is affected by the gravitational and electrostatic force, so that the total outwards force on it is
+We can make a very simple classical argument for why there can be no \emph{global} net electric charge in stars by comparing Newton's law of gravity and Coulomb's law.
+Consider a test particle of mass $m$ and electric charge $q$ on the surface $R$ from the center of a star with total mass $M$ and electric charge $Q$.
+In an idealized situation, the test particle is affected by the gravitational and electrostatic force, so that the total outwards \TODO{radial?} force on it is
 \begin{equation}
 	F_\text{out} = -G \frac{M m}{R^2} + k_e \frac{Q q}{R^2} .
 \end{equation}
-Furthermore, suppose the star consists of $N$ particles weighing no more than some heavy baryon with mass $m_B$, so $M < N M_B$ and $m < m_B$.
+Furthermore, suppose the star consists of $N$ particles weighing \TODO{weight $\rightarrow$ mass} no more than some heavy baryon with mass $m_B$, so $M < N M_B$ and $m < m_B$.
 Any electrically charged particle has about one elementary charge $q \approx \pm e$.
 If the star has an opposite charge $Q = \mp Z e$, then $F_\text{out} < 0$ and the test particle stays in the star.
 On the other hand, if the star has a like charge $Q = \pm Z e$, then
@@ -50,6 +52,10 @@ We conclude that for all practical purposes, stars are \emph{globally} electrica
 \TODO{can I recast inequality in charge per solar mass? see discussion at beginning of \url{www.if.ufrgs.br/hadrons/MMalheiro.pdf}}
 
 \subsection{Local electric charge neutrality}
+
+\TODO{non-understandable comment from Møte 4, Gibbs/Maxwell contstruction etc?}
+
+\TODO{Glendenning has papers regarding local charge neutrality (?)}
 
 The argument in the previous section shows that a star can have no \emph{total} electric charge, but it places absolutely no limitations on its \emph{distribution}.
 Moreover, our approach to calculating equations of state is inherently \emph{local} -- we obtain the equation of state $\epsilon(P)$ by eliminating the density $n$ at any \emph{single point} from the energy density $\epsilon(n)$ and pressure $P(n)$.
@@ -116,11 +122,13 @@ Then chemical equilibrium implies
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:potential}%
-	The potential \eqref{eq:lsm:potential} has a continuous region of minima for $\sigma^2 + \vec\pi^2 = 6 m^2 / \lambda$.
+	The potential \eqref{eq:lsm:potential} is shaped like a Mexican hat with a continuous region of minima for $\sigma^2 + \vec\pi^2 = 6 m^2 / \lambda$.
+	\TODO{include $h \sigma$}
+	\TODO{mention this only visualizes $O(2)$}
 }
 \end{figure}
 
-\TODO{justify this effective theory from QCD}
+\TODO{justify this effective MODEL from QCD}
 
 The Lagrangian density for the linear sigma model coupled to quarks is
 \begin{equation}
@@ -128,7 +136,7 @@ The Lagrangian density for the linear sigma model coupled to quarks is
 	      + \frac12 \left[ \left( \partial_\mu \sigma \right)^2 + \left( \partial_\mu \vec\pi \right)^2 \right] - \pot(\sigma,\vec\pi) ,
 \label{eq:lsm:lagrangian}
 \end{equation}
-\TODO{should I have $h \sigma$, too?}
+\TODO{should I have $h \sigma$, too? YES!}
 with the potential
 \begin{equation}
 	\pot(\sigma,\vec\pi) = -\frac12 m^2 \left( \sigma^2 + \vec\pi^2 \right) + \frac{\lambda}{4!} \left( \sigma^2 + \vec\pi^2 \right)^2
@@ -137,8 +145,9 @@ with the potential
 \end{equation}
 Here $q_c = (u_c, d_c)^T$ represents quarks of the $N_c = 3$ colors red, green and blue and the $N_f = 2$ flavors up and down, so $(q_c)_f$ make up a total of $N_c \times N_f = 6$ Dirac spinors.
 In addition, $\sigma$ and $\vec\pi = [\pi^+, \pi^0, \pi^-]^T$ are four bosonic scalar fields representing sigma and pion mesons.
-At this point, the quarks are massless Dirac fermions whose conserved charge densities $j^0 = \bar\psi \gamma^0 \psi$ are coupled to chemical potentials $\mu = \diag(\mu_u, \mu_d)$, interacting with a Yukawa coupling of strength $g$ that models the strong force, where $\vec\tau$ are the Pauli matrices \eqref{eq:tft:pauli_matrices}.
+At this point, the quarks are massless Dirac fermions whose conserved charge densities $j^0 = \bar\psi \gamma^0 \psi$ are coupled to chemical potentials $\mu = \diag(\mu_u, \mu_d)$, interacting with a Yukawa coupling of strength $g$ that models the strong force \TODO{non-mentioned comment in Møte 4}, where $\vec\tau$ are the Pauli matrices \eqref{eq:tft:pauli_matrices}.
 The mesons have ``imaginary mass'' $\sqrt{-m^2} = i m$ and feature a $\lambda \phi^4$-coupling.
+\TODO{write $(\sigma, \vec\pi)^T$ as 4-vector and mention $O(4)$ symmetry, explain from $SU(2)_L$, $SU(2)_R$, etc.?}
 
 To make sense of this theory, we must investigate how it behaves around the classical ground states of the potential \eqref{eq:lsm:potential}.
 As shown in \cref{fig:lsm:potential}, the potential is shaped like a Mexican hat with a continuous ``brim'' of classical ground states along $\sigma^2 + \vec\pi^2 = 6 m^2 / \lambda$.
@@ -168,17 +177,20 @@ where the potential up to second order in the shifted fields is
 We see that shifting the fields has produced effective quark and meson masses
 \begin{equation}
 	m_q = g \Avg{\sigma} = \frac{\sqrt{6} m g}{\sqrt{\lambda}}
+	\text{\TODO{non-mentioned comment Møte 4}}
 	, \qquad
 	m_\sigma = \sqrt{2} m
 	\qquad \text{and} \qquad
 	m_\pi = 0.
+	\text{\TODO{$m_\pi^2 \avg{\sigma} = h$ (or similar)}}
 \end{equation}
 The three massless $\pi$-mesons are a result of spontaneous symmetry breaking --
 shifting the origin of $[\avg{\sigma}, \vec\pi]^T$ from $[0, \vec{0}]^T$ to $[\avg{\sigma}, \vec{0}]^T$ has broken the symmetry of the Lagrangian under rotations of all four fields in $SO(4)$ to rotations of only the three last fields in $SO(3)$, and hence reduced the number of generators from $4(4-1)/2=6$ to $3(3-1)/2=3$.
 %whereas the potential \eqref{eq:lsm:potential} is invariant under rotations of $[\sigma, \vec\pi]^T$ in $SO(4)$ about the origin $[0, \vec{0}]^T$ with $4 (4-1) / 2 = 6$ generators,
 %shifting the origin to $[\avg{\sigma}, \vec{0}]^T$ has broken the symmetry down to rotations of the last three elements under $SO(3)$ with $3 (3 - 1) / 2 = 3$ generators.
 Thus, the three $\vec\pi$-mesons are the $6 - 3 = 3$ massless Goldstone bosons that arise from Goldstone's theorem, and are to be interpreted as \emph{pions}.
-The linear sigma model is an effective low-energy theory of quantum chromodynamics, so accordingly we should take it seriously only in terms of the shifted fields around the stable ground states, and not in terms of the unshifted fields around the unstable equilibrium at the top of the Mexican hat.
+\TODO{non-understandable comment, but Goldstone becomes only approximate when $h \neq 0$, and $m_\pi^2 \avg{\sigma} = h$ essentially becomes the approximate Goldstone theorem, only perfectly valid when $h = 0$?}
+The linear sigma model is an effective low-energy model of quantum chromodynamics, so accordingly we should take it seriously only in terms of the shifted fields around the stable ground states, and not in terms of the unshifted fields around the unstable equilibrium at the top of the Mexican hat.
 
 According to what we learned in \cref{chap:tft} in \cref{eq:tft:boson_partition_function_momentum_out} and \eqref{eq:tft:dirac_partition_function_first},
 the exact partition function corresponding to this theory is obtained by a path integral over periodic bosonic fields and anti-periodic fermionic fields, weighted by a Euclidean action in imaginary time:
@@ -188,6 +200,7 @@ the exact partition function corresponding to this theory is obtained by a path 
 As before, we are interested in $\log Z$ so we can calculate the thermodynamic quantities \eqref{eq:tft:average_quantities} and ultimately an equation of state $\epsilon(P)$, so we can solve the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov:tovsys}.
 Here we will account for quantum effects of the quarks by treating them up to quadratic order (or one-loop),
 but calculate only to zeroth order (or tree-level) in the meson fields and hence consider them only at the classical level.
+\TODO{this is an \emph{exact} approximation as $N_c \rightarrow \infty$, because in the $\log Z$ we find below, the boson terms are $\propto N_c^0$, while the quark terms are $\propto N_c^1$}
 The partition function then reads
 \begin{equation}
 \begin{split}
@@ -214,14 +227,14 @@ Thus, we obtain
 \end{split}
 \label{eq:lsm:potential_divergent_logz0}
 \end{equation}
-where the dispersion relation is now
+where the dispersion \TODO{comment Møte 4?} relation is now
 \begin{equation}
 	E(\vec{p}) = \sqrt{p^2 + m_q^2} .
 \end{equation}
-Like in \cref{chap:nstars}, we assume that the chemical potentials are chosen so that anti-particles are more or less absent, so we drop their contribution in the last term on the second line.
-From the middle term on the second line, we obtained the contribution $\log Z = \beta V P$ with the pressure \eqref{eq:nstars:pressure_zeroT} after taking the zero-temperature approximation.
-\TODO{justify validity of zero-temperature approximation with the new masses?}
-This time, however, we will renormalize the infinite vacuum contribution from the first term on the second line, instead of simply dropping it, like we did back in \cref{chap:nstars}.
+Like in \cref{chap:nstars}, we assume that the chemical potentials are chosen so that anti-particles are more or less absent, so we drop their contribution in the last term in the second line.
+From the middle term in the second line, we obtained the contribution $\log Z = \beta V P$ with the pressure \eqref{eq:nstars:pressure_zeroT} after taking the zero-temperature approximation.
+\TODO{justify validity of zero-temperature approximation with the new masses? no, can really only do this in a retrospective way, since I don't know a priori what the temperature is inside an unknown quark star}
+This time, however, we will renormalize the infinite vacuum contribution from the first term in the second line, instead of simply dropping it, like we did back in \cref{chap:nstars}.
 Thus, we obtain
 \begin{equation}
 \begin{split}
@@ -244,13 +257,16 @@ In $d = 3 - 2 \epsilon$ spatial dimensions, the vacuum contribution is
 \end{split}
 \label{eq:lsm:vacuum_contribution_ddim}
 \end{equation}
+\TODO{what happens to the dimensions of the potential $V$ (as consequence of requiring $\log Z$ to be dimensionless)? $V \rightarrow V \lambda^{-2\epsilon}$?}
 We have also multiplied the integral by $\Lambda^{3-d}$,
 where $\Lambda$ is some number with $\unit{\Lambda} = \unit{p}$,
 so that $\unit{\lambda^{3-d} \dif^d p} = \unit{\dif^3 p}$ and $\log Z$ remains dimensionless in all dimensions.
 There is nothing that forbids us from doing so, 
 as the regulator still does its only job of reducing the new integral \eqref{eq:lsm:vacuum_contribution_ddim} to the old integral \eqref{eq:lsm:vacuum_contribution_3dim} when we send $\epsilon \rightarrow 0$,
 only now in a way that is well-defined in all dimensions.
-The momentum integral can be written in terms of the \emph{Beta function} \TODO{general reference}
+The momentum integral can be written in terms of the \emph{Beta function}
+\TODO{general reference}
+\TODO{state that this is analytic continuation}
 \begin{equation}
 	B(x,y) = \int_0^\infty \dif t \, \frac{t^{x-1}}{(1+t)^{x+y}} = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)}
 \end{equation}
@@ -273,6 +289,7 @@ Expanding everything to zeroth order in $\epsilon$ then yields
 \end{split}
 \label{eq:lsm:vacuum_contribution_final}
 \end{equation}
+\TODO{use MS-bar now and get rid of $\gamma$ and $4 \pi$}
 With the vacuum contribution \eqref{eq:lsm:vacuum_contribution_final}, the full logarithm \eqref{eq:lsm:potential_divergent_logz0} is
 \begin{equation}
 \begin{split}
@@ -285,7 +302,7 @@ We also see that the preceding term can shield society from this criminal if we 
 \begin{equation}
 	\lambda = \lambda_P + \delta\lambda
 	\qquad \text{with the counterterm} \qquad
-	\delta\lambda = -N_c N_f \frac{3 m_q^4}{2 \pi^2 \epsilon \avg{\sigma}^4} .
+	\delta\lambda = -N_c N_f \frac{3 g^4}{2 \pi^2 \epsilon} .
 \end{equation}
 Then the innocent, finite and renormalized expression for $\log Z$ is
 \begin{equation}
@@ -302,6 +319,8 @@ From $\log Z$, we can finally build a bridge to thermodynamics with the grand po
 	                                                    &- N_c \frac{m_q^4}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right] .
 \end{split}
 \end{equation}
+
+\TODO{determine all $4$ couplings from $4$ requirements, only use physical values $h \neq 0$ (?)}
 
 \TODO{seems to be same as Berge got, only with different sign of $m^2$}
 
