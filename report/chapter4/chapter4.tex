@@ -346,7 +346,17 @@ From $\log Z$, we can finally build a bridge to thermodynamics with the grand po
 	\omega = \frac{\Omega}{V} = -\frac{\log Z}{\beta V} &= -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda_P}{4!} \avg{\sigma}^4 - h \avg{\sigma} + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
 	                                                    &- N_c \frac{m_q^4}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right] .
 \end{split}
+\label{eq:lsm:grand_potential}
 \end{equation}
+The renormalization procedure has introduced the an unknown parameter $\Lambda$.
+To determine it, we require that the minimum of the grand potential \eqref{eq:lsm:grand_potential} \emph{as a function of $\avg{\sigma}$} remains at the minimum $f_\pi = \SI{93}{\mega\electronvolt}$ of the potential \eqref{eq:lsm:potential}, defined by \eqref{eq:lsm:ground_state_implicit}, when we are in vacuum.
+Then the second line of the grand potential is absent, and the first three terms already satisfies, so this is satisfied if
+\begin{equation}
+	\pdv*{\left[ N_c N_f \frac{m_q^4}{16 \pi^2} \left( \frac32 + \log \frac{\Lambda^2}{m_q^2} \right) \right] }{\avg{\sigma}} = 0,
+	\quad \text{yielding} \quad
+	\Lambda = \frac{g f_\pi}{\sqrt{e}} = \SI{182}{\mega\electronvolt}.
+\end{equation}
+
 
 \TODO{determine all $4$ couplings from $4$ requirements, only use physical values $h \neq 0$ (?)}
 
@@ -418,17 +428,18 @@ do I determine $\lambda P$ from
 \tikzsetnextfilename{grand-potential}
 \begin{tikzpicture}
 \begin{axis}[
-	view={165}{5},
-	width=13cm, height=15cm,
+	view={135}{20},
+	width=14cm, height=12cm,
 	%xmin=-125, xmax=+125, ymin=250, ymax=1000, zmin=-275, zmax=0,
-	zmax=0, zmin=-500,
+	%zmax=0, zmin=-500,
+	zmax=4, zmin=-10,
 	xlabel = {$\avg{\sigma}$}, ylabel = {$\mu$}, zlabel = {$\omega(\avg{\sigma}, \mu)$},
 	colormap/blackwhite, mesh/interior colormap name=plasmarev,
 	3d box=complete,
 ]
 \addplot3 [surf, very thin, mesh/ordering=x varies] table [x=sigma, y=mu, z=omega] {../code/data/lsmpot.dat};
 \addplot3 [blue] table [x=sigma, y=mu, z=omega] {../code/data/lsmpotmin.dat}; % plot line of minima
-\addplot  [gray] table [x=sigma, y=mu, z expr={-500}] {../code/data/lsmpotmin.dat}; % plot its "shadow" in bottom plane
+\addplot  [gray] table [x=sigma, y=mu, z expr={-10}] {../code/data/lsmpotmin.dat}; % plot its "shadow" in bottom plane
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:grand_potential}%

@@ -17,11 +17,13 @@ g = mq0 / fπ
 h = fπ * mπ**2
 m = np.sqrt(1/2*(mσ**2-3*h/fπ))
 λ = 6/fπ**3 * (h+m**2*fπ)
+Λ = g*fπ / np.sqrt(np.e)
 
 print(f"g = {g}")
 print(f"h = {h} MeV^3")
 print(f"m = {m} MeV")
 print(f"λ = {λ}")
+print(f"Λ = {Λ}")
 
 # Λ = mq0 / np.sqrt(np.e)
 
@@ -40,18 +42,21 @@ def localmini(x, tol=0):
     return None
 
 def mq(σ): return g * np.abs(σ)
-def ω0(σ): return -1/2*m**2*σ**2 + λ/24*σ**4
+def ω0(σ): return -1/2*m**2*σ**2 + λ/24*σ**4 - h*σ
 def ωr(σ): return Nc*Nf * mq(σ)**4 / (16*np.pi**2) * (3/2 + np.log(Λ**2/mq(σ)**2))
 def ωf(σ,μ):
+    x = 0 if μ**2-mq(σ)**2 < 0 else np.sqrt(μ**2 - mq(σ)**2) / mq(σ) # arg in sqrt(arg) should always be positive; if it is not then it is only slightly negative
+    return -Nc * mq(σ)**4 / (24*np.pi**2) * ((2*x**3-3*x)*np.sqrt(x**2+1) + 3*np.arcsinh(x))
     if mq(σ) > 1: #and μ**2 - mq(σ)**2 > 0:
+        # TODO: fix this with new term?
         x = 0 if μ**2-mq(σ)**2 < 0 else np.sqrt(μ**2 - mq(σ)**2) / mq(σ) # arg in sqrt(arg) should always be positive; if it is not then it is only slightly negative
         return -Nc * mq(σ)**4 / (24*np.pi**2) * ((2*x**3-3*x)*np.sqrt(x**2+1) + 3*np.arcsinh(x))
     else:
         return -1/12*Nc*μ**4/np.pi**2
 
 minσ, minω, minμ = [], [], []
-μs = np.arange(250, 1100, 25)
-σs = np.linspace(-200, +200, 100)
+μs = np.linspace(200, 400, 50)
+σs = np.linspace(-150, +150, 100)
 rows = [[], [], []]
 for μ in μs:
     #σ = np.linspace(-μ/g, μ/g, 1000)
