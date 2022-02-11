@@ -1,6 +1,6 @@
 import numpy as np
 
-def writecols(cols, headers, filename):
+def writecols(cols, headers, filename, skipevery=-1):
     print(f"Wrote {headers} to {filename}")
     maxlen = max(len(col) for col in cols)
     for col in cols:
@@ -14,4 +14,6 @@ def writecols(cols, headers, filename):
             if len(str(col[r])) > 0:
                 file.write(str(col[r]) + " ")
         file.write("\n")
+        if skipevery > 0 and r % skipevery == skipevery - 1:
+            file.write("\n")
     file.close()

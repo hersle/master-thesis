@@ -3,6 +3,7 @@
 # TODO: use splrep (splines) to interpolate equation of state instead of linear interpolation?
 
 from constants import *
+import utils
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -86,18 +87,34 @@ plt.show()
 """
 
 # grand potential with charge neutrality and chemical equilibrium
-μu = np.linspace(255, 400, 50)
-σ = np.linspace(-150, +150, 100)
+μu = np.linspace(0, 600, 60)
+σ = np.linspace(-200, +200, 50)
 σ0 = minσ(μu)
 ω0 = np.array([ω(σ0[i], μu[i]) for i in range(0, len(μu))])
 fig, ax = plt.subplots()
-for j in range(0, len(μu)):
-    ax.plot(σ, ω(σ, μu[j]) / fπ**4, "-k")
+rows = np.zeros((4, len(μu)*len(σ)))
+for i in range(0, len(μu)):
+    ωs = ω(σ, μu[i])
+    dωs = np.gradient(ωs, σ) # dω / dσ
+    ax.plot(σ, ωs / fπ**4, "-k")
+    rows[0][i*len(σ):(i+1)*len(σ)] = σ
+    rows[1][i*len(σ):(i+1)*len(σ)] = μu[i]
+    rows[2][i*len(σ):(i+1)*len(σ)] = ωs / fπ**4
+    rows[3][i*len(σ):(i+1)*len(σ)] = dωs / fπ**4
+utils.writecols(rows, ["sigma", "mu", "omega", "domega"], "data/lsmpot_neutral.dat", skipevery=len(σ))
+print(σ0[1:]-σ0[:-1])
+pti = np.argmax(np.abs(σ0[1:]-σ0[:-1])) + 1
+ptμ = μu[pti]
+σ0break = np.insert(σ0, pti, np.nan)
+μubreak = np.insert(μu, pti, np.nan)
+ω0break = np.insert(ω0, pti, np.nan)
+print(f"phase transition between (μu,σ)[{pti-1}] = ({μu[pti-1]},{σ0[pti-1]}) and (μu,σ)[{pti}] = ({μu[pti]},{σ0[pti]})")
+utils.writecols([σ0break, μubreak, ω0break/fπ**4], ["sigma", "mu", "omega"], "data/lsmpot_neutral_min.dat")
 ax.plot(σ0, ω0 / fπ**4, "-ro")
 plt.show()
 
 # equation of state with charge neutrality and chemical equilibrium
-μu = np.linspace(255, 400, 50) # TODO: phase transition 255-256
+μu = np.linspace(0, 500, 100) # TODO: phase transition 255-256
 σ0 = minσ(μu)
 μ = np.array([μelim(σ0[j], μu[j]) for j in range(0, len(μu))])
 μu, μd, μe = μ[:,0], μ[:,1], μ[:,2]
@@ -126,6 +143,7 @@ plt.xlabel(r"$\sigma$")
 plt.ylabel(r"$P$")
 plt.show()
 
+print(σ0[0])
 P0 = P0 - P0[0] # subtract vacuum pressure (at σ=fπ=93, see previous plot?)
 ϵ0 = μe*ne + μu*nu + μd*nd - P0 # TODO: also subtract from energy density??
 

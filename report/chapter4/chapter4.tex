@@ -472,22 +472,29 @@ do I determine $\lambda P$ from
 \tikzsetnextfilename{grand-potential}
 \begin{tikzpicture}
 \begin{axis}[
-	view={135}{20},
+	view={147}{18},
 	width=14cm, height=12cm,
 	%xmin=-125, xmax=+125, ymin=250, ymax=1000, zmin=-275, zmax=0,
 	%zmax=0, zmin=-500,
-	zmax=4, zmin=-10,
-	xlabel = {$\avg{\sigma}$}, ylabel = {$\mu$}, zlabel = {$\omega(\avg{\sigma}, \mu)$},
+	zmin=-80,
+	xlabel = {$\avg{\sigma} \, / \, \si{\mega\electronvolt}$}, ylabel = {$\mu_u \, / \, \si{\mega\electronvolt}$}, zlabel = {$\omega(\avg{\sigma}, \mu) \, / \, f_\pi^4$},
 	colormap/blackwhite, mesh/interior colormap name=plasmarev,
 	3d box=complete,
+	unbounded coords=jump, % skip at nan (i.e. the phase transition)
+	%grid=major,
+	xtick distance=150, minor x tick num=5,
+	ytick distance=200, minor y tick num=3,
+	extra x ticks={0, 93},
+	extra y ticks={260},
+	extra tick style={grid=major, grid style={dashed}},
 ]
-\addplot3 [surf, very thin, mesh/ordering=x varies] table [x=sigma, y=mu, z=omega] {../code/data/lsmpot.dat};
-\addplot3 [blue] table [x=sigma, y=mu, z=omega] {../code/data/lsmpotmin.dat}; % plot line of minima
-\addplot  [gray] table [x=sigma, y=mu, z expr={-10}] {../code/data/lsmpotmin.dat}; % plot its "shadow" in bottom plane
+\addplot3 [surf, very thin, mesh/ordering=x varies] table [x=sigma, y=mu, z=omega] {../code/data/lsmpot_neutral.dat};
+\addplot3 [red]  table [x=sigma, y=mu, z=omega] {../code/data/lsmpot_neutral_min.dat}; % plot line of minima
+\addplot  [gray] table [x=sigma, y=mu, z expr={-80}] {../code/data/lsmpot_neutral_min.dat}; % plot its "shadow" in bottom plane
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:grand_potential}%
-$\mu_u = \mu_d = \mu$, no electrons: phase transition
+Chemical potentials coupled with charge neutrality.
 \TODO{(unfinished, something wrong?) plot $\Omega(\mu,\avg{\sigma})$, show phase transition?}
 }
 \end{figure}
