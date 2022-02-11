@@ -11,11 +11,15 @@ import scipy.optimize
 
 Nc = 3
 Nf = 2
-mσ = 700 # TODO: important! mσ=550 means not always a minimum, but mσ=800 does!
+mσ = 800 # TODO: important! mσ=550 means not always a minimum, but mσ=800 does!
 mπ = 138
 mq0 = 300
 fπ = 93
 me = 0
+
+# TODO: discuss three parameter choices: (neutral=False,μside=any), (neutral=True,μside=left), (neutral=True,μside=right)
+neutral = True
+μside = "left" # TODO: is left or right charge neutrality solution correct? left/right gives few/many up and many/few electrons
 
 g = mq0 / fπ
 h = fπ * mπ**2
@@ -23,41 +27,59 @@ m = np.sqrt(1/2*(mσ**2-3*h/fπ))
 λ = 6/fπ**3 * (h+m**2*fπ)
 Λ = g*fπ / np.sqrt(np.e)
 
+# results:
+# 1. mπ=0, neutral=False, μside=arbitrary: discontinuous phase transition around μ = 320 MeV (chiral limit)
+
 def mq(σ): return g * σ
 def pf(μ, m): return np.real(np.sqrt(μ**2 - m**2 + 0j)) # TODO: correct?
-#def pf(μ, m): return np.nan if μ**2-m**2 < 0 else np.sqrt(np.maximum(μ**2 - m**2, 0)) # TODO: correct?
-    # assert μ**2-m**2 >= -1e-2, f"very bad {μ**2-m**2}"
-    #return np.sqrt(np.maximum(μ**2 - m**2, 0))
 def xf(μ, m): return pf(μ, m) / np.abs(m)
 def n(μ, m): return pf(μ, m)**3 / (3*π**2)
+def q(σ, μ):
+    qu, qd, qe = +2/3, -1/3, -1
+    μu, μd, μe = μ[0], μ[1], μ[2]
+    mu, md = mq(σ), mq(σ) # me is global
+    return qu * n(μu,mu) - qd * n(μd,md) - qe * n(μe,me) # charge neutrality
 
-def μelim(σ, μu, μdmax=1e3, verbose=True, ftol=1e-5):
-    def f(μd):
-        μe = μd - μu # chemical equilibrium
-        ret = 2/3 * n(μu,mq(σ)) - 1/3 * n(μd,mq(σ)) - 1 * n(μe,me) # charge neutrality
-        return -ret # negate f(μd), so it has a min instead of max, enabling use of minimize_scalar
+def μelim(σ, μu, neutral, side, μdmax=1e3, verbose=False, ftol=1e-5):
+    assert np.shape(σ) == np.shape(μu), "σ and μu has different shapes"
+    if np.ndim(σ) >= 1:
+        return np.array([μelim(σ[i], μu[i], μdmax=μdmax, verbose=verbose, ftol=ftol, neutral=neutral, side=side) for i in range(0, len(σ))])
+        
+    if not neutral:
+        μd = μu
+        μe = 0
+    else:
+        def f(μd):
+            μe = μd - μu # chemical equilibrium
+            ret = 2/3 * n(μu,mq(σ)) - 1/3 * n(μd,mq(σ)) - 1 * n(μe,me) # charge neutrality
+            return -ret # negate f(μd), so it has a min instead of max, enabling use of minimize_scalar
 
-    # first find extremum (practical to use as one endpoint in bisection method later)
-    # then find the root to its right
-    # TODO: sometimes there is a root for μd < mq(σ). is this root relevant?
-    μd = scipy.optimize.minimize_scalar(f, bounds=(0, μdmax), method="bounded").x # use as endpoint on next line
-    assert f(μd) < ftol, f"f(μd = {μd}) = {f(μd)} >= ftol = {ftol}, no solution to charge neutrality"
-    if f(μd) < 0: # if function has a root, find it (otherwise proceed with approximate root)
-        μd = scipy.optimize.root_scalar(f, bracket=(μd, μdmax), method="bisect").root # final value
-    μe = μd - μu
-    return μu, μd, μe
+        # first find extremum (practical to use as one endpoint in bisection method later)
+        # then find the root to its right
+        # TODO: sometimes there is a root for μd < mq(σ). is this root relevant?
+        μd = scipy.optimize.minimize_scalar(f, bounds=(0, μdmax), method="bounded").x # use as endpoint on next line
 
-def ω(σ, μu, μd=None, μe=None, verbose=False):
-    if type(σ) == np.ndarray:
-        return np.array([ω(σ, μu, μd=μd, μe=μe, verbose=verbose) for σ in σ])
+        assert f(μd) < ftol, f"f(μd = {μd}) = {f(μd)} >= ftol = {ftol}, no solution to charge neutrality"
+        if f(μd) < 0: # if function has a root, find it (otherwise proceed with approximate root)
+            if side == "left":
+                μd = scipy.optimize.root_scalar(f, bracket=(0, μd), method="bisect").root # final value (left solution)
+            elif side == "right":
+                μd = scipy.optimize.root_scalar(f, bracket=(μd, μdmax), method="bisect").root # final value (right solution)
+            else:
+                assert False, "side must be left or right"
+        μe = μd - μu
+
+    return np.array([μu, μd, μe])
+
+def ωf(σ, μ, verbose=False):
+    #assert np.shape(σ) == np.shape(μu) == np.shape(μd) == np.shape(μe), "σ and μ have different shapes"
+    if np.ndim(σ) >= 1:
+        return np.array([ωf(σ[i], μ[i], verbose=verbose) for i in range(0, len(σ))])
+
     if verbose:
-        print(f"ω(σ={σ}, μu={μu}); mq = {mq(σ)}")
+        print(f"ω(σ={σ}, μ={μ}); mq = {mq(σ)}")
 
-    if μd is None or μe is None:
-        if verbose:
-            print("eliminating", μd, μe)
-        μu, μd, μe = μelim(σ, μu)
-
+    μu, μd, μe = μ[0], μ[1], μ[2]
     ω0 = -1/2*m**2*σ**2 + λ/24*σ**4 - h*σ + Nc*Nf*mq(σ)**4/(16*π**2)*(3/2+np.log(Λ**2/mq(σ)**2))
     ωe = -μe**4 / (12*π**2)
     xu = xf(μu, mq(σ))
@@ -66,94 +88,77 @@ def ω(σ, μu, μd=None, μe=None, verbose=False):
     ωd = -Nc/(24*π**2) * mq(σ)**4 * ((2*xd**3-3*xd)*np.sqrt(xd**2+1) + 3*np.arcsinh(xd))
     return ω0 + ωe + ωu + ωd
 
-def minσ(μu, μd=None, μe=None, σmax=1e2):
-    if μd is None:
-        μd = [None] * len(μu)
-    if μe is None:
-        μe = [None] * len(μu)
-    #return np.array([scipy.optimize.minimize_scalar(ω, bounds=(0, μu[j]/g), method="bounded", args=(μu[j], μd[j], μe[j])).x for j in range(0, len(μu))])
-    return np.array([scipy.optimize.minimize_scalar(ω, bounds=(0, σmax), method="bounded", args=(μu[j], μd[j], μe[j])).x for j in range(0, len(μu))])
+def σμω(σ, μu, neutral, μside, verbose=False):
+    μ = μelim(σ, μu, neutral, μside) # [nσ, nμu, 3]
+    ω = ωf(σ, μ)
+    μu, μd, μe = μ[...,0], μ[...,1], μ[...,2]
+    return σ, μu, μd, μe, ω
 
-"""
-# grand potential with μu=μd, μe=0
-μu = np.linspace(0, 400, 100)[1:]
-σ = np.linspace(-200, +200, 100)
-σ0 = minσ(μu, μd=μu, μe=0*μu)
-fig, ax = plt.subplots()
-for j in range(0, len(μu)):
-    ax.plot(σ, ω(σ, μu[j], μd=μu[j], μe=0) / fπ**4)
-    ax.scatter(σ0[j], ω(σ0[j], μu[j], μd=μu[j], μe=0) / fπ**4)
-plt.show()
-"""
+def σμω0(μu, neutral, μside, σmax=200):
+    if np.ndim(μu) >= 1:
+        return np.array([σμω0(μu, neutral, μside, σmax=σmax) for μu in μu])
 
-# grand potential with charge neutrality and chemical equilibrium
-μu = np.linspace(0, 600, 60)
+    def ωf2(σ):
+        μus = np.full(np.shape(σ), μu)
+        _, _, _, _, ω = σμω(σ, μus, neutral, μside)
+        return ω
+    σ0 = scipy.optimize.minimize_scalar(ωf2, bounds=(0, σmax), method="bounded").x
+    μ0 = μelim(σ0, μu, neutral, μside)
+    μu0, μd0, μe0 = μ0[...,0], μ0[...,1], μ0[...,2]
+    ω0 = ωf(σ0, μ0)
+    return σ0, μu0, μd0, μe0, ω0
+
+# grand potential
 σ = np.linspace(-200, +200, 50)
-σ0 = minσ(μu)
-ω0 = np.array([ω(σ0[i], μu[i]) for i in range(0, len(μu))])
-fig, ax = plt.subplots()
-rows = np.zeros((4, len(μu)*len(σ)))
-for i in range(0, len(μu)):
-    ωs = ω(σ, μu[i])
-    dωs = np.gradient(ωs, σ) # dω / dσ
-    ax.plot(σ, ωs / fπ**4, "-k")
-    rows[0][i*len(σ):(i+1)*len(σ)] = σ
-    rows[1][i*len(σ):(i+1)*len(σ)] = μu[i]
-    rows[2][i*len(σ):(i+1)*len(σ)] = ωs / fπ**4
-    rows[3][i*len(σ):(i+1)*len(σ)] = dωs / fπ**4
-utils.writecols(rows, ["sigma", "mu", "omega", "domega"], "data/lsmpot_neutral.dat", skipevery=len(σ))
-print(σ0[1:]-σ0[:-1])
-pti = np.argmax(np.abs(σ0[1:]-σ0[:-1])) + 1
-ptμ = μu[pti]
-σ0break = np.insert(σ0, pti, np.nan)
-μubreak = np.insert(μu, pti, np.nan)
-ω0break = np.insert(ω0, pti, np.nan)
-print(f"phase transition between (μu,σ)[{pti-1}] = ({μu[pti-1]},{σ0[pti-1]}) and (μu,σ)[{pti}] = ({μu[pti]},{σ0[pti]})")
-utils.writecols([σ0break, μubreak, ω0break/fπ**4], ["sigma", "mu", "omega"], "data/lsmpot_neutral_min.dat")
-ax.plot(σ0, ω0 / fπ**4, "-ro")
+μu = np.linspace(0, 600, 60)
+μuμu, σσ = np.meshgrid(μu, σ)
+if True:
+    σ, μu, μd, μe, ω = σμω(σσ, μuμu, neutral, μside)
+    ωc = ω.reshape(-1)
+    μuc = μu.reshape(-1)
+    σc = σ.reshape(-1)
+    utils.writecols([σc, μuc, ωc / fπ**4], ["sigma", "muu", "omega"], "data/lsmpot_neutral_left.dat", skipevery=np.shape(ω)[1])
+    σ, μu, μd, μe = σ[:,0], μu[0,:], μd[0,:], μe[0,:]
+    plt.plot(σ, ω / fπ**4, "-k")
+ret = σμω0(μu, neutral, μside)
+σ0, μu0, μd0, μe0, ω0 = ret[:,0], ret[:,1], ret[:,2], ret[:,3], ret[:,4]
+pti = np.argmax(np.abs(σ0[1:]-σ0[:-1])) + 1 # pti is now first point after phase transition
+if np.abs(σ0[pti]-σ0[pti-1]) < 50:
+    print("no pt")
+    pti = 0 # no phase transition
+print(f"phase transition between μu = {μu[pti-1]}, {μu[pti]}")
+cols = np.array([σ0, μu0, μd0, μe0, ω0 / fπ**4])
+print(cols.shape)
+cols = np.concatenate([cols[:,:pti], np.full((len(cols),1), np.nan), cols[:,pti:]], axis=1) # add nan at phase transition
+print(cols.shape)
+utils.writecols(cols, ["sigma", "muu", "mud", "mue", "omega"], "data/lsmpot_neutral_left_min.dat")
+plt.plot(σ0, ω0 / fπ**4, "-ro")
 plt.show()
 
-# equation of state with charge neutrality and chemical equilibrium
-μu = np.linspace(0, 500, 100) # TODO: phase transition 255-256
-σ0 = minσ(μu)
-μ = np.array([μelim(σ0[j], μu[j]) for j in range(0, len(μu))])
-μu, μd, μe = μ[:,0], μ[:,1], μ[:,2]
-nu, nd, ne = n(μu,mq(σ0)), n(μd,mq(σ0)), n(μe,mq(σ0))
-ω0 = np.array([ω(σ0[i], μu[i]) for i in range(0, len(μu))])
+# plot minimum line
+plt.plot(σ0, μu0)
+plt.show()
+
+# verify charge neutrality
+"""
+if neutral:
+    plt.plot(μu, 2/3*n(μu0,mq(σ0))-1/3*n(μd0,mq(σ0))-1*n(μe0,me))
+    plt.show()
+"""
+
+# show densities
+# TODO: is it correct that the electron density so extremely low?
+nu0, nd0, ne0 = n(μu0, mq(σ0)), n(μd0, mq(σ0)), n(μe0, me)
+plt.plot(μu0, nu0, "-r.")
+plt.plot(μd0, nd0, "-g.")
+plt.plot(μe0, ne0, "-b.")
+plt.show()
+
+# equation of state
 P0 = -ω0
-ϵ0 = μe*ne + μu*nu + μd*nd - P0
-# TODO: how to subtract zero-pressure?
-plt.plot(P0 / fπ**4, ϵ0 / fπ**4)
-plt.xlabel(r"$P$")
-plt.ylabel(r"$\epsilon$")
-plt.show()
-
-# which value of μ does σ=fπ correspond to?
-plt.plot(μu, σ0)
-plt.axhline(fπ, color="black", linestyle="dashed", label=f"$f_\\pi = {fπ}$")
-plt.xlabel(r"$\mu_u$")
-plt.ylabel(r"$\sigma$")
-plt.legend()
-plt.show()
-
-# before subtraction
-plt.plot(σ0, P0)
-plt.axhline(0, color="black", linestyle="dashed")
-plt.xlabel(r"$\sigma$")
-plt.ylabel(r"$P$")
-plt.show()
-
-print(σ0[0])
-P0 = P0 - P0[0] # subtract vacuum pressure (at σ=fπ=93, see previous plot?)
-ϵ0 = μe*ne + μu*nu + μd*nd - P0 # TODO: also subtract from energy density??
-
-plt.plot(σ0, P0)
-plt.axhline(0, color="black", linestyle="dashed")
-plt.xlabel(r"$\sigma$")
-plt.ylabel(r"$P$")
-plt.show()
-
-plt.plot(P0, ϵ0)
-plt.xlabel(r"$P$")
-plt.ylabel(r"$\epsilon$")
+P0 = P0 - P0[0] # subtract vacuum contribution P(fπ) TODO: correct?
+#print(P0)
+#plt.plot(μu0[pti:], P0[pti:])
+ϵ0 = μe0*ne0 + μu0*nu0 + μd0*nd0 - P0
+plt.plot(P0[pti:], ϵ0[pti:])
 plt.show()
