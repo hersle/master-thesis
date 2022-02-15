@@ -10,22 +10,22 @@ from stability import eigenmode
 from constants import *
 
 def soltov(ϵ, P0, maxdr=1e-3, Psurf=0, progress=True, newtonian=False):
-    def printprogress(r, m, P, message="", end=""):
+    def printprogress(r, m, P, E, message="", end=""):
         print(f"\r", end="") # reset line
         print(f"Solving TOV: ", end="")
         print(f"ϵ = {ϵ.__name__}, ", end="")
         print(f"Newtonian={newtonian}, ", end="")
         print(f"P0 = {P0:9.2e}, maxdr = {maxdr:9.2e}, ", end="")
-        print(f"r = {r:8.5f}, m = {m:8.5f}, P/P0 = {P/P0:8.5f}", end="")
+        print(f"r = {r:8.5f}, m = {m:8.5f}, P = {P:e}, ϵ = {E:e}", end="")
         if message != "":
             print(f", {message}", end="")
         print("", end=end, flush=True) # flush without newline
 
     def rhs(r, y):
         m, P, α = y[0], y[1], y[2]
-        if progress:
-            printprogress(r, m, P)
         E = ϵ(P) # computation can be expensive, only do it once
+        if progress:
+            printprogress(r, m, P, E)
         dmdr = b*r**2*E
         if r == 0:
             dPdr = 0 # avoid division by r = 0 (m = 0 implies dPdr = 0)
@@ -57,10 +57,10 @@ def soltov(ϵ, P0, maxdr=1e-3, Psurf=0, progress=True, newtonian=False):
     # match α to the Schwarzschild metric at the surface Glendenning (2.226)
     αs = αs - αs[-1] + 1/2 * np.log(1-2*G*ms[-1]/rs[-1]) 
 
-    if progress: # finish progress printer with newline
-        printprogress(rs[-1], ms[-1], Ps[-1], res.message, end="\n")
-
     ϵs = np.array([ϵ(P) for P in Ps]) # (can compute more efficiently than this)
+
+    if progress: # finish progress printer with newline
+        printprogress(rs[-1], ms[-1], Ps[-1], ϵs[-1], res.message, end="\n")
 
     return rs, ms, Ps, αs, ϵs
 
