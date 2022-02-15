@@ -9,7 +9,7 @@ from stability import eigenmode
 
 from constants import *
 
-def soltov(ϵ, P0, maxdr=1e-3, progress=True, newtonian=False):
+def soltov(ϵ, P0, maxdr=1e-3, Psurf=0, progress=True, newtonian=False):
     def printprogress(r, m, P, message="", end=""):
         print(f"\r", end="") # reset line
         print(f"Solving TOV: ", end="")
@@ -44,7 +44,7 @@ def soltov(ϵ, P0, maxdr=1e-3, progress=True, newtonian=False):
 
     def terminator(r, y):
         m, P, α = y[0], y[1], y[2]
-        return P - 0
+        return P - Psurf
     terminator.terminal = True # stop integration when P == 0, use as last point
 
     r1, r2 = 0, np.inf
@@ -66,11 +66,11 @@ def soltov(ϵ, P0, maxdr=1e-3, progress=True, newtonian=False):
 
 # Bisect [P1, P2] to make points evenly
 def massradiusplot(
-    ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, nmodes=0, newtonian=False,
+    ϵ, P1P2, tolD=1e-5, tolP=1e-6, maxdr=1e-3, Psurf=0, nmodes=0, newtonian=False,
     outfile="", visual=False
 ):
     def solvestar(P0):
-        rs, ms, Ps, αs, ϵs = soltov(ϵ, P0, maxdr=maxdr, newtonian=newtonian)
+        rs, ms, Ps, αs, ϵs = soltov(ϵ, P0, maxdr=maxdr, Psurf=Psurf, newtonian=newtonian)
         R, M = rs[-1], ms[-1]
 
         nunstable, ω2s = 0, []
