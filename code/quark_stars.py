@@ -146,12 +146,12 @@ def eos(neutral, μside, neglecte, B=0, name="ϵ", plotfirst=False):
     P0 /= constants.ϵ0 # to TOV-dimensionless units
 
     # cut away 0, linearly interpolate
-    i = np.argmax(ϵ0 > 3e-4)
-    ϵ0 = ϵ0[i:]
-    P0 = P0[i:]
-    ϵx = ϵ0[1]-(ϵ0[2]-ϵ0[1])/(P0[2]-P0[1])*P0[1] # linear interpolate ϵ at P=0
-    P0 = np.concatenate([[0], P0])
-    ϵ0 = np.concatenate([[ϵx], ϵ0])
+    #i = np.argmax(ϵ0 > 3e-4)
+    #ϵ0 = ϵ0[i:]
+    #P0 = P0[i:]
+    #ϵx = ϵ0[1]-(ϵ0[2]-ϵ0[1])/(P0[2]-P0[1])*P0[1] # linear interpolate ϵ at P=0
+    #P0 = np.concatenate([[0], P0])
+    #ϵ0 = np.concatenate([[ϵx], ϵ0])
 
     ϵ = scipy.interpolate.interp1d(P0, ϵ0)
     ϵ.__name__ = name
@@ -161,8 +161,8 @@ def eos(neutral, μside, neglecte, B=0, name="ϵ", plotfirst=False):
     if plotfirst:
         plt.plot(P0, ϵ(P0), "-k")
         plt.plot(P0, ϵ0, " r.")
-        #plt.xlim(0, 100)
-        #plt.ylim(0, 100)
+        plt.xlim(0, 0.001)
+        plt.ylim(0, 0.001)
         #plt.xticks(np.linspace(0, 1, 11))
         #plt.yticks(np.linspace(0, 1, 11))
         plt.show()
