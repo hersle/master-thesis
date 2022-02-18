@@ -204,19 +204,19 @@ Moreover, the smaller the value of $h$, the smaller the value of $m_\pi$, so the
 We determine the four parameters $g$, $h$, $m$ and $\lambda$ in the original Lagrangian \eqref{eq:lsm:lagrangian} by comparing the four \emph{effective} quantities $\avg{\sigma}$, $m_\pi$, $m_\sigma$ and $m_q$ to the measurements
 \begin{subequations}
 \begin{alignat}{2}
-	\avg{\sigma} &= \SI{93}{\mega\electronvolt}  &\qquad& \text{(\TODO{source})}, \\
+	\avg{\sigma} &= \SI{93}{\mega\electronvolt}  &\qquad& \text{(\TODO{source}), \TODO{distinguish $\avg{\sigma}$ and $f_\pi$}}, \\
 	m_\pi        &= \SI{138}{\mega\electronvolt} &\qquad& \text{(\TODO{source})}, \\
-	m_\sigma     &= \SI{550}{\mega\electronvolt} &\qquad& \text{(in range $\SI{400}{\mega\electronvolt} < m_\sigma < \SI{700}{\mega\electronvolt}$, by \cite{ref:pdg_review_2021})}, \\
-	m_q          &= \SI{300}{\mega\electronvolt} &\qquad& \text{(by)}.
+	m_\sigma     &= \SI{900}{\mega\electronvolt} &\qquad& \text{(in range $\SI{400}{\mega\electronvolt} < m_\sigma < \SI{700}{\mega\electronvolt}$, by \cite{ref:pdg_review_2021}) \TODO{rev}}, \\
+	m_q          &= \SI{300}{\mega\electronvolt} &\qquad& \text{(by) \TODO{}}.
 \end{alignat}
 \end{subequations}
 Thus, the parameters are
 \begin{subequations}
 \begin{alignat}{3}
-	g       &= \frac{m_q}{\avg{\sigma}}                                           &&= \SI{3.23}{}                            &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
-	h       &= m_\pi^2 \avg{\sigma}                                               &&= \SI{1771092}{\mega\electronvolt\cubed} &\qquad& \text{(by \eqref{eq:lsm:mass_pi})} , \\
-	m       &= \sqrt{\frac12 \left( m_\sigma^2 - \frac{3h}{\avg{\sigma}} \right)} &&= \SI{350}{\mega\electronvolt}           &\qquad& \text{(by \eqref{eq:lsm:mass_sigma})} , \\
-	\lambda &= \frac{6}{\avg{\sigma}^3} \left( h + m^2 \avg{\sigma} \right)       &&= \SI{98}{}                              &\qquad& \text{(by \eqref{eq:lsm:ground_state_implicit})} .
+	g       &= \frac{m_q}{\avg{\sigma}}                 &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
+	h       &= m_\pi^2 \avg{\sigma}                     &\qquad& \text{(by \eqref{eq:lsm:mass_pi})} , \\
+	m^2     &= \frac{m_\sigma^2 - 3m_\pi^2}{2}          &\qquad& \text{(by \eqref{eq:lsm:mass_sigma})} , \\
+	\lambda &= \frac{3 m_\sigma^2 - 3 m_\pi^2}{f_\pi^2} &\qquad& \text{(by \eqref{eq:lsm:ground_state_implicit})} .
 \end{alignat}
 \end{subequations}
 
@@ -232,7 +232,8 @@ but calculate only to zeroth order (or tree-level) in the meson fields and hence
 The partition function then reads
 \begin{equation}
 \begin{split}
-	Z &\taylor \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{c=1}^{N_c} \bar{q}_c \left( i \slashed\partial -m_q + \mu \gamma^0 \right) q_c + \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 + h \avg{\sigma} \right] \right\} \\
+	Z &\taylor \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \\
+	  &\times  \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{c=1}^{N_c} \bar{q}_c \left( i \slashed\partial -m_q + \mu \gamma^0 \right) q_c + \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 + h \avg{\sigma} \right] \right\} \\
 	  &=       \prod_{f=1}^{\smash{N_f}} \prod_{c=1}^{\smash{N_c}} \oint_- \pathintdif \bar{q}_f^c \oint_- \pathintdif q_f^c \\
 	  &\times  \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{f=1}^{\smash{N_f}} \sum_{c=1}^{N_c} \bar{q}_f^c \left( i \slashed\partial - m_q + \mu_f \gamma^0 \right) q_f^c + \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 + h \avg{\sigma} \right] \right\}.
 \end{split}
@@ -357,6 +358,7 @@ Then the second line of the grand potential is absent, and the first three terms
 \label{eq:lsm:potential_vacuum_minimum}
 \end{equation}
 
+\TODO{write down electron mass}
 To ensure the star is charge neutral, we take our linear sigma model coupled to quarks and place it on top of a background of electrons by modifying.
 This amounts to adding one more fermion term to the Lagrangian density \eqref{eq:lsm:lagrangian} and, ultimately, the grand potential \eqref{eq:lsm:grand_potential}.
 Let us also revert the definition $x = p / m = \sqrt{\mu^2-m^2} / m$, in order to make the dependency on $\mu$ and $\avg{\sigma}$ explicit.
@@ -379,10 +381,10 @@ In the opposite case $\mu < m$, the step function in the integrand would be deac
 \tikzsetnextfilename{grand-potential-nonneutral}
 \begin{tikzpicture}
 \begin{groupplot}[
-	group style={group size={1 by 2}, vertical sep=2cm},
+	group style={group size={1 by 2}, vertical sep=2.0cm},
 	view={160}{30},
 	width=0.9\textwidth, height=10cm,
-	xlabel = {$\avg{\sigma} \, / \, \si{\mega\electronvolt}$}, ylabel = {$\mu \, / \, \si{\mega\electronvolt}$}, zlabel = {$\omega(\avg{\sigma}, \mu) \, / \, (\SI{100}{\mega\electronvolt})^4$},
+	xlabel = {$\avg{\sigma} \, / \, \si{\mega\electronvolt}$}, ylabel = {$\mu \, / \, \si{\mega\electronvolt}$}, zlabel = {$\omega(\avg{\sigma}, \mu) \, / \, (\SI{100}{\mega\electronvolt})**4$},
 	colormap/OrRd, point meta min=0, point meta max=450,
 	3d box=complete,
 	unbounded coords=jump, % skip at nan (i.e. the phase transition)
@@ -474,7 +476,7 @@ This sounds really nice, because we could then use a simple minimization algorit
 In effect, we would completely circumvent the need of ever solving a \emph{system} of equations!
 Even better, the two-dimensional potential $\omega'$ would be possible to visualize as in \cref{fig:lsm:grand-potential-nonneutral}, allowing us to verify our solution visually.
 Unfortunately, $\pdv{\omega'}/{\avg{\sigma}} \neq \pdv{\omega}/{\avg{\sigma}}$, because the two differs by terms arising from the chain rule, so this approach is different and -- like many nice-sounding things -- \emph{wrong}!
-\emph{The cause of this source of confusion is that the charge neutrality condition \eqref{eq:lsm:minsys_charge} depends on the same variable that the potential should be minimized with respect to.}
+The cause of this source of confusion is that \emph{the charge neutrality condition \eqref{eq:lsm:minsys_charge} depends on the same variable that the potential should be minimized with respect to.}
 Hopefully, this remark will save someone from enduring this painful realization again.
 
 \begin{figure}
@@ -515,7 +517,7 @@ Hopefully, this remark will save someone from enduring this painful realization 
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2flavoreos}%
-\subref{fig:lsm:2flavoreos_min} potential-minimizing mean field parametrization,
+\subref{fig:lsm:2flavoreos_min} Potential-minimizing mean field parametrization,
 \subref{fig:lsm:2flavoreos_density} particle number densities and
 \subref{fig:lsm:2flavoreos_eos} equation of state
 corresponding to the solution of the system of equations \eqref{eq:lsm:minsys}.

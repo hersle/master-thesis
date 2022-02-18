@@ -20,9 +20,9 @@ me = 0.5
 
 g = mq0 / fπ
 h = fπ * mπ**2
-m = np.sqrt(1/2*(mσ**2-3*h/fπ))
-λ = 6/fπ**3 * (h+m**2*fπ)
-Λ = g*fπ / np.sqrt(np.e)
+m = np.sqrt(1/2*(mσ**2-3*mπ**2))
+λ = 3/fπ**2 * (mσ**2-mπ**2)
+Λ = mq0 / np.sqrt(np.e)
 
 def qf(σ, μu, μd, μe):
     mq = g*σ
