@@ -435,116 +435,46 @@ do I determine $\lambda P$ from
 ???
 }
 
-\iffalse
 \begin{figure}
-\tikzsetnextfilename{grand-potential}
-\begin{tikzpicture}
-\begin{axis}[
-	xmin = 0, xmax = 200, ymin=-100, ymax=+500,
-	declare function={
-		Nc = 3;
-		Nf = 2;
-		msigma = 800;
-		mpi = 0;
-		mq0 = 300;
-		m = sqrt(2)*msigma;
-		fpi = 93;
-		h = fpi * mpi^2;
-		g = mq0 / fpi;
-		mq(\sigma) = g * \sigma;
-		lambda = 6*m^2 / fpi^2;
-		Lambda = mq0 / sqrt(e);
-		x(\sigma,\mu) = sqrt((\mu)^2/(mq(\sigma))^2 - 1);
-		asinh(\y) = ln(\y + sqrt((\y)^2+1));
-		v0(\sigma) = -1/2*m^2*(\sigma)^2 + lambda/24*(\sigma)^4 - h*\sigma; % bosonic contribution
-		vr(\sigma) = Nc*Nf*(mq(\sigma))^4/(16*pi^2)*(3/2+ln(Lambda^2 / (mq(\sigma))^2)); % renormalized vacuum contribution
-		vf(\sigma,\mu) = -Nc*(mq(\sigma))^4/(24*pi^2) * ( (2*(x(\sigma,\mu))^3-3*x(\sigma,\mu))*sqrt((x(\sigma,\mu))^2+1) + 3*asinh(x(\sigma,\mu)) ); % quark/flavor contribution
-		v(\sigma,\mu) = v0(\sigma) + vr(\sigma); % + vf(\sigma,\mu);
-	},
-]
-\addplot [domain=0:200] {v(x,0) / fpi^4};
-\end{axis}
-\end{tikzpicture}
-\end{figure}
-\fi
-
-\begin{figure}
+\centering
 \tikzsetnextfilename{grand-potential-nonneutral}
 \begin{tikzpicture}
-\begin{axis}[
-	view={147}{18},
-	width=14cm, height=13cm,
-	zmin=-160,
-	xlabel = {$\avg{\sigma} \, / \, \si{\mega\electronvolt}$}, ylabel = {$\mu_u \, / \, \si{\mega\electronvolt}$}, zlabel = {$\omega(\avg{\sigma}, \mu) \, / \, f_\pi^4$},
-	%colormap/blackwhite, mesh/interior colormap name=plasmarev,
+\begin{groupplot}[
+	group style={group size={1 by 2}, vertical sep=2cm},
+	view={160}{30},
+	width=0.9\textwidth, height=10cm,
+	xlabel = {$\avg{\sigma} \, / \, \si{\mega\electronvolt}$}, ylabel = {$\mu \, / \, \si{\mega\electronvolt}$}, zlabel = {$\omega(\avg{\sigma}, \mu) \, / \, (\SI{100}{\mega\electronvolt})^4$},
+	colormap/OrRd, point meta min=0, point meta max=450,
 	3d box=complete,
 	unbounded coords=jump, % skip at nan (i.e. the phase transition)
-	xtick distance=150, %minor x tick num=5,
-	ytick distance=200, %minor y tick num=3,
-	extra x ticks={0, 93},
-	extra y ticks={300},
 	extra tick style={grid=major, grid style={dashed}},
+	title style={text width={10cm}},
 ]
-\addplot3 [surf, very thin, mesh/ordering=x varies] table [x=sigma, y=muu, z=omega] {../code/data/lsmpot_nonneutral.dat};
-\addplot3 [red]  table [x=sigma, y=muu, z=omega] {../code/data/lsmpot_nonneutral_min.dat}; % plot line of minima
-\addplot  [gray] table [x=sigma, y=muu, z expr={-160}] {../code/data/lsmpot_nonneutral_min.dat}; % plot its "shadow" in bottom plane
-\end{axis}
+\nextgroupplot[
+	zmin=-50, zmax=+200,
+	xmin=-450, xmax=+450,
+	xtick distance=100, %minor x tick num=5,
+	ytick distance=100, %minor y tick num=3,
+	title = {\subcaption{\label{fig:lsm:grand-potential-nonneutral-big}Large-scale form}},
+];
+\addplot3 [surf, very thin, mesh/ordering=x varies, point meta={abs(\thisrow{sigma})}] table [x=sigma, y=mu, z=omega] {../code/data/2flavpot_big.dat};
+%\addplot3 [red]  table [x=sigma0, y=mu0, z=omega0] {../code/data/2flavpot.dat}; % plot line of minima
+%\addplot  [gray] table [x=sigma0, y=mu0, z expr={-40}] {../code/data/2flavpot.dat}; % plot its "shadow" in bottom plane
+\nextgroupplot[
+	zmin=-40, zmax=+0,
+	xmin=-149, xmax=+149,
+	xtick distance=50, %minor x tick num=5,
+	ytick distance=100, %minor y tick num=3,
+	title = {\subcaption{\label{fig:lsm:grand-potential-nonneutral-small}Small-scale form}},
+];
+\addplot3 [surf, very thin, mesh/ordering=x varies, point meta={abs(\thisrow{sigma})}] table [x=sigma, y=mu, z=omega] {../code/data/2flavpot.dat};
+\addplot3 [blue]  table [x=sigma0, y=mu0, z=omega0] {../code/data/2flavpot.dat}; % plot line of minima
+\addplot  [gray] table [x=sigma0, y=mu0, z expr={-40}] {../code/data/2flavpot.dat}; % plot its "shadow" in bottom plane
+\end{groupplot}
 \end{tikzpicture}
-\caption{\label{fig:lsm:grand_potential}%
-Grand potential without charge neutrality ($\mu_u = \mu_d$, $\mu_e$ = 0).
-}
-\end{figure}
-
-\begin{figure}
-\tikzsetnextfilename{grand-potential-neutral-left}
-\begin{tikzpicture}
-\begin{axis}[
-	view={147}{18},
-	width=14cm, height=13cm,
-	zmin=-160,
-	xlabel = {$\avg{\sigma} \, / \, \si{\mega\electronvolt}$}, ylabel = {$\mu_u \, / \, \si{\mega\electronvolt}$}, zlabel = {$\omega(\avg{\sigma}, \mu) \, / \, f_\pi^4$},
-	%colormap/blackwhite, mesh/interior colormap name=plasmarev,
-	3d box=complete,
-	unbounded coords=jump, % skip at nan (i.e. the phase transition)
-	xtick distance=150, %minor x tick num=5,
-	ytick distance=200, %minor y tick num=3,
-	extra x ticks={0, 93},
-	extra y ticks={300},
-	extra tick style={grid=major, grid style={dashed}},
-]
-\addplot3 [surf, very thin, mesh/ordering=x varies] table [x=sigma, y=muu, z=omega] {../code/data/lsmpot_neutral_left.dat};
-\addplot3 [red]  table [x=sigma, y=muu, z=omega] {../code/data/lsmpot_neutral_left_min.dat}; % plot line of minima
-\addplot  [gray] table [x=sigma, y=muu, z expr={-160}] {../code/data/lsmpot_neutral_left_min.dat}; % plot its "shadow" in bottom plane
-\end{axis}
-\end{tikzpicture}
-\caption{\label{fig:lsm:grand_potential}%
-Grand potential with ``left'' charge neutrality solution.
-}
-\end{figure}
-
-\begin{figure}
-\tikzsetnextfilename{grand-potential-neutral-right}
-\begin{tikzpicture}
-\begin{axis}[
-	view={147}{18},
-	width=14cm, height=13cm,
-	zmin=-160,
-	xlabel = {$\avg{\sigma} \, / \, \si{\mega\electronvolt}$}, ylabel = {$\mu_u \, / \, \si{\mega\electronvolt}$}, zlabel = {$\omega(\avg{\sigma}, \mu) \, / \, f_\pi^4$},
-	%colormap/blackwhite, mesh/interior colormap name=plasmarev,
-	3d box=complete,
-	unbounded coords=jump, % skip at nan (i.e. the phase transition)
-	xtick distance=150, %minor x tick num=5,
-	ytick distance=200, %minor y tick num=3,
-	extra x ticks={0, 93},
-	extra y ticks={290},
-	extra tick style={grid=major, grid style={dashed}},
-]
-\addplot3 [surf, very thin, mesh/ordering=x varies] table [x=sigma, y=muu, z=omega] {../code/data/lsmpot_neutral_right.dat};
-\addplot3 [red]  table [x=sigma, y=muu, z=omega] {../code/data/lsmpot_neutral_right_min.dat}; % plot line of minima
-\addplot  [gray] table [x=sigma, y=muu, z expr={-160}] {../code/data/lsmpot_neutral_right_min.dat}; % plot its "shadow" in bottom plane
-\end{axis}
-\end{tikzpicture}
-\caption{\label{fig:lsm:grand_potential}%
-Grand potential with ``right'' charge neutrality solution.
+\caption{\label{fig:lsm:grand-potential-nonneutral}%
+	The grand potential \eqref{eq:lsm:grand_potential} with $\mu_e = 0$ and $\mu_u = \mu_d = \mu$.
+	Subfigure \subref{fig:lsm:grand-potential-nonneutral-big} shows its asymptotic form as $\avg{\sigma} \rightarrow \pm \infty$, while subfigure \subref{fig:lsm:grand-potential-nonneutral-small} highlights the interesting region around $\SI{0}{\mega\electronvolt} \lesssim \avg{\sigma} \lesssim \SI{100}{\mega\electronvolt}$.
+	The \textcolor{blue}{blue line} and its \textcolor{gray}{gray projection} corresponds to the fields $\avg{\sigma}(\mu)$ for which the potential has a minimum $\pdv{\omega}/{\avg{\sigma}} = 0$.
 }
 \end{figure}
