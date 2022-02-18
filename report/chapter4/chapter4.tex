@@ -343,32 +343,108 @@ From $\log Z$, we can finally build a bridge to thermodynamics with the grand po
 \TODO{I remove $\gamma$ and $\log 4 \pi$, use modified minimal subtraction?}
 \begin{equation}
 \begin{split}
-	\omega = \frac{\Omega}{V} = -\frac{\log Z}{\beta V} &= -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda_P}{4!} \avg{\sigma}^4 - h \avg{\sigma} + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
+	\omega( = \frac{\Omega}{V} = -\frac{\log Z}{\beta V} &= -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda_P}{4!} \avg{\sigma}^4 - h \avg{\sigma} + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
 	                                                    &- N_c \frac{m_q^4}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right] .
 \end{split}
 \label{eq:lsm:grand_potential}
 \end{equation}
-The renormalization procedure has introduced the an unknown parameter $\Lambda$.
+The renormalization procedure has introduced an unknown parameter $\Lambda$.
 To determine it, we require that the minimum of the grand potential \eqref{eq:lsm:grand_potential} \emph{as a function of $\avg{\sigma}$} remains at the minimum $f_\pi = \SI{93}{\mega\electronvolt}$ of the potential \eqref{eq:lsm:potential}, defined by \eqref{eq:lsm:ground_state_implicit}, when we are in vacuum.
 Then the second line of the grand potential is absent, and the first three terms already satisfies, so this is satisfied if
 \begin{equation}
 	\pdv*{\left[ N_c N_f \frac{m_q^4}{16 \pi^2} \left( \frac32 + \log \frac{\Lambda^2}{m_q^2} \right) \right] }{\avg{\sigma}} = 0,
 	\quad \text{yielding} \quad
 	\Lambda = \frac{g f_\pi}{\sqrt{e}} = \SI{182}{\mega\electronvolt}.
+\label{eq:lsm:potential_vacuum_minimum}
 \end{equation}
 
 To ensure the star is charge neutral, we take our linear sigma model coupled to quarks and place it on top of a background of electrons by modifying.
 This amounts to adding one more fermion term to the Lagrangian density \eqref{eq:lsm:lagrangian} and, ultimately, the grand potential \eqref{eq:lsm:grand_potential}.
-Since the electrons are so light compared to the quarks, we approximate them as massless \TODO{do properly}.
-\TODO{what about their renormalized vacuum term?}
-Thus,
+Let us also revert the definition $x = p / m = \sqrt{\mu^2-m^2} / m$, in order to make the dependency on $\mu$ and $\avg{\sigma}$ explicit.
+Thus, the grand potential is
 \begin{equation}
 \begin{split}
-	\omega(\avg{\sigma},\mu) = \frac{\Omega}{V} = -\frac{\log Z}{\beta V} &= -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda_P}{4!} \avg{\sigma}^4 - h \avg{\sigma} + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
-	                                            &- \frac{\mu_e^4}{12 \pi^4} - N_c \frac{m_q^4}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right] .
+	\omega(\avg{\sigma},\mu_u,\mu_d,\mu_e) &= -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda_P}{4!} \avg{\sigma}^4 - h \avg{\sigma} + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
+	                                       &- \frac{N_c}{24 \pi^2} \sum_{f=\{u,d\}} \left[ \left( 2 \mu_f^2 - 5 m_q^2 \right) \mu_f \sqrt{\mu_f^2 - m_q^2} + 3 m_q^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right] \\
+	                                       &- \frac{  1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} + 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_e^2}{m_e^2}-1} \right) \right] .
 \end{split}
 \label{eq:lsm:grand_potential}
 \end{equation}
+Remember that the effective quark mass $m_q = g \avg{\sigma}$ also contains dependence on the field!
+In addition, we implicitly take the real part of every square root $\sqrt{\mu^2 - m^2}$, or equivalently consider them as step functions $\Theta(\mu-m) \sqrt{\mu^2 - m^2}$.
+The rigorous understanding of this can be traced back to the zero-temperature calculation of the pressure \eqref{eq:nstars:pressure_zeroT}, related to the grand potential density by $\omega = -P$, in which the integrand contained a step function $\Theta(\mu-E(p)) = \Theta(\mu-\sqrt{m^2+p^2})$ and we took for granted that $\mu > m$.
+In the opposite case $\mu < m$, the step function in the integrand would be deactivated for all $p$, and the integral would be $0$.
+
+We require that the mean field $\avg{\sigma}$ always takes on a value that minimizes grand potential according to 
+\begin{equation}
+	\pdv{\omega}{\avg{\sigma}} = 0.
+\end{equation}
+To get a feeling for the general shape of the potential, we visualize the special case with $\mu_e = 0$ and $\mu_u = \mu_d = 0$ in \cref{fig:lsm:grand-potential-nonneutral}.
+In this case, the potential is effectively a two-dimensional function $\omega(\avg{\sigma},\mu)$, and minimizing the potential yields a curve $[\avg{\sigma}(\mu), \mu, \omega(\avg{\sigma},\mu))]$ through three-dimensional $\avg{\sigma}-\mu-\omega$-space.
+From the figure, we see that:
+\begin{itemize}
+\item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$, all square roots are ``deactivated'', so we are in vacuum with minima at $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$, as we required in equation \eqref{eq:lsm:potential_vacuum_minimum}.
+\item For $\SI{300}{\mega\electronvolt} < \mu \lesssim \SI{400}{\mega\electronvolt}$, the square roots are ``activated'' and the minimum quickly and continuously transitions closer to $0$, corresponding to a second-order phase transition.
+\item For $\mu \gtrsim \SI{400}{\mega\electronvolt}$, the minimum asymptotically approaches $\avg{\sigma} \rightarrow 0$. 
+\end{itemize}
+Our objective, however, is to determine the equation of state $\epsilon(P)$ in the general case where we also take the conditions of charge neutrality \TODO{ref} and $\beta$-equilibrium \TODO{ref} into account.
+Then $\omega(\avg{\sigma},\mu_u,\mu_d,\mu_e)$ is a four-dimensional function, and the three interdependent chemical potentials are reduced to one independent one by charge neutrality and chemical equilibrium.
+Using that up and down quarks have respective charges $+2/3$ and $-1/3$ and remembering their color degeneracy, we must now solve the \emph{system} of equations
+\begin{subequations}
+\begin{align}
+	0 &= \pdv{\omega}{\avg{\sigma}} , \label{eq:lsm:minsys_min} \\
+	0 &= +N_c \frac23 \left( \mu_u^2 - m_q^2 \right)^{3/2} - N_c \frac13 \left( \mu_d^2 - m_q^2 \right)^{3/2} - 1 \left( \mu_e^2 - m_e^2 \right)^{3/2} , \label{eq:lsm:minsys_charge} \\
+	\mu_d &= \mu_u + \mu_e . \label{eq:lsm:minsys_equilibrium}
+\end{align}%
+\label{eq:lsm:minsys}%
+\end{subequations}%
+These three equations constrains the four variables down to one independent one -- say $\mu_u$ -- that parametrizes the other ones $\mu_d(\mu_u)$, $\mu_e(\mu_u)$ and $\avg{\sigma}(\mu_u)$, and thus also the potential $\omega'(\mu_u) = \omega(\avg{\sigma}(\mu_u), \mu_u, \mu_d(\mu_u), \mu_e(\mu_u))$.
+We now shift the grand potential
+\begin{equation}
+	\omega'(\mu_u) \rightarrow \omega'(\mu_u) - \omega'(\mu_u<\SI{300}{\mega\electronvolt})
+\end{equation}
+so that it is measured relative to vacuum.
+Glancing back at equation \eqref{eq:tft:partition_function} and \eqref{eq:tft:average_quantities}, we now compute the pressure
+\begin{equation}
+	P(\mu_u) = -\omega'(\mu_u)
+\end{equation}
+relative to vacuum, and the corresponding energy density
+\begin{equation}
+	\epsilon(\mu_u) = -P(\mu_u) + \mu_u n_u(\mu_u) + \mu_d(\mu_u) n_d(\mu_u) + \mu_e(\mu_u) n_e(\mu_u)
+\end{equation}
+with the zero-temperature densities \eqref{eq:nstars:density_zeroT} that we calculated in equation \eqref{eq:nstars:density_zeroT},
+\begin{subequations}
+\begin{align}
+	n_u(\mu_u) &= \frac{1}{3\pi^2} \Big[ \mu_u^2-m_q^2\big(\avg{\sigma}(\mu_u)\big) \Big]^{3/2}, \\
+	n_d(\mu_u) &= \frac{1}{3\pi^2} \Big[ \mu_d^2(\mu_u)-m_q^2\big(\avg{\sigma}(\mu_u)\big) \Big]^{3/2}, \\
+	n_e(\mu_u) &= \frac{1}{3\pi^2} \Big[ \mu_e^2(\mu_u)-m_e^2 \Big]^{3/2}.
+\end{align}
+\end{subequations}
+Then we finally eliminate $\mu_u$ to produce the equation of state $\epsilon(P)$.
+The numerical implementation of this whole procedure is described in \TODO{add and ref to appendix}.
+
+Having described we \emph{do} and \emph{should do}, let us also remark on what we \emph{did} and \emph{shouldn't do}.
+A tempting and similar approach to minimizing $\omega$ with respect to $\avg{\sigma}$ is to rather construct the potential $\omega'(\avg{\sigma}, \mu_u) = \omega(\avg{\sigma}, \mu_u, \mu_d(\mu_u,\avg{\sigma}), \mu_e(\mu_u,\avg{\sigma}))$, then minimize $\omega'$ with respect to $\avg{\sigma}$.
+In this approach, we could create two functions $\mu_{d/e}(\avg{\sigma},\mu_u)$ that calculate the two remaining chemical potentials by solving the charge neutrality condition \eqref{eq:lsm:minsys_charge} with a simple scalar root finder, both of which would be invoked upon evaluating the new potential $\omega'(\avg{\sigma},\mu_u)$.
+This sounds really nice, because we could then use a simple minimization algorithm on $\omega'$, sparing us from calculating $\pdv{\omega}/{\avg{\sigma}}$ and ensuring that we always find \emph{minima}, instead of maxima that we can obtain when solving $\pdv{\omega}/{\avg{\sigma}}=0$.
+In effect, we would completely circumvent the need of ever solving a \emph{system} of equations!
+Even better, the two-dimensional potential $\omega'$ would be possible to visualize as in \cref{fig:lsm:grand-potential-nonneutral}, allowing us to verify our solution visually.
+Unfortunately, $\pdv{\omega'}/{\avg{\sigma}} \neq \pdv{\omega}/{\avg{\sigma}}$, because the two differs by terms arising from the chain rule, so this approach is different and -- like many nice-sounding things -- \emph{wrong}!
+\emph{The cause of this source of confusion is that the charge neutrality condition \eqref{eq:lsm:minsys_charge} depends on the same variable that the potential should be minimized with respect to.}
+Hopefully, this remark will save someone from enduring this painful realization again.
+
+Doing things the right way, we end up with the equation of state shown in \TODO{fig}.
+
+Let us summarize what we already have done, and what we will do, in order to obtain the pressure.
+\begin{enumerate}
+\item $\Omega(\avg{\sigma}, \mu_u, \mu_d, \mu_e, V, T)$
+\item $\Omega(\avg{\sigma}, \mu_u, \mu_d, \mu_e, V)$
+\item $\omega(\avg{\sigma}, \mu_u, \mu_d, \mu_e)$
+\item Find $\avg{\sigma}(\mu_u)$ and $\mu_d(\mu_u)$ and $\mu_e(\mu_u)$, so we obtain $\omega(\mu_u) = \omega(\avg{\sigma}(\mu_u), \mu_u, \mu_d(\mu_u), \mu_e(\mu_u))$.
+\item Find pressure with respect to vacuum $P(\mu_u) = -(\omega(\mu_u)-\omega(\mu_u<m_q(f_\pi))$.
+\item Find the corresponding energy density $\epsilon(\mu_u) = -P(\mu_u) + \mu n$.
+\item Eliminate the free chemical potential $\mu_u$ in order to obtain the equation of state $\epsilon(P)$.
+\end{enumerate}
 
 \TODO{my idea for what to do next:}
 \begin{enumerate}
@@ -396,14 +472,6 @@ Rewrite grand potential only in terms of $\mu$:
 \end{split}
 \label{eq:lsm:grand_potential}
 \end{equation}
-Solve
-\begin{subequations}
-\begin{align}
-	\pdv{\omega(\avg{\sigma}, \mu)}{\avg{\sigma}} = 0 , \\
-	\mu_d = \mu_u + \mu_e , \\
-	+\frac23 \left( \mu_u^2 - m_q^2 \right)^{3/2} - \frac13 \left( \mu_d^2 - m_q^2 \right)^{3/2} - 1 \left( \mu_e^2 - 0^2 \right)^{3/2} = 0 .
-\end{align}
-\end{subequations}
 
 
 
