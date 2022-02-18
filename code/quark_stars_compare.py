@@ -90,58 +90,77 @@ def eos(μu, method=""):
     nd = np.real(np.power(μd**2-mq**2+0j, 3/2)) / (3*π**2)
     ne = np.real(np.power(μe**2-me**2+0j, 3/2)) / (3*π**2)
     ϵ = -P + μu*nu + μd*nd + μe*ne
+
+    P *= constants.MeV**4 / (constants.ħ*constants.c)**3 # to SI units
+    ϵ *= constants.MeV**4 / (constants.ħ*constants.c)**3 # to SI units
+    P /= constants.ϵ0 # to TOV-dimensionless units
+    ϵ /= constants.ϵ0 # to TOV-dimensionless units
     
     return σ, μu, μd, μe, nu, nd, ne, P, ϵ
 
-# plot ω(σ, μu=μd=μ, 0)
-σ = np.linspace(-150, +150, 100)
-μ = np.linspace(0, 500, 50)
-ω = np.array([ωf(σ, μ, μ, 0) for μ in μ])
-σ0 = np.empty(len(μ))
-ω0 = np.empty(len(μ))
-for i in range(0, len(μ)):
-    μ0 = μ[i]
-    sol = scipy.optimize.root_scalar(dωf, bracket=(1, 100), args=(μ0, μ0, 0), method="brentq")
-    assert sol.converged
-    σ0[i] = sol.root
-    ω0[i] = ωf(σ0[i], μ0, μ0, 0)
-plt.plot(σ, ω.T)
-plt.plot(σ0, ω0, "-r.")
-plt.show()
-σc, μc, ωc = [], [], []
-for i in range(0, len(σ)):
-    for j in range(0, len(μ)):
-        μc.append(μ[j])
-        σc.append(σ[i])
-        ωc.append(ω[j,i])
-utils.writecols([μc, σc, list(np.array(ωc)/100**4), μc, list(σ0), list(ω0/100**4)], ["mu", "sigma", "omega", "mu0", "sigma0", "omega0"], "data/2flavpot.dat", skipevery=len(μ))
+if __name__ == "__main__":
 
-# find equation of state
-μu = np.linspace(250, 400, 500)
-σ1, μu1, μd1, μe1, nu1, nd1, ne1, P1, ϵ1 = eos(μu, method="partial")
-σ2, μu2, μd2, μe2, nu2, nd2, ne2, P2, ϵ2 = eos(μu, method="total")
+    # plot ω(σ, μu=μd=μ, 0)
+    σ = np.linspace(-150, +150, 100)
+    μ = np.linspace(0, 500, 50)
+    ω = np.array([ωf(σ, μ, μ, 0) for μ in μ])
+    σ0 = np.empty(len(μ))
+    ω0 = np.empty(len(μ))
+    for i in range(0, len(μ)):
+        μ0 = μ[i]
+        sol = scipy.optimize.root_scalar(dωf, bracket=(1, 100), args=(μ0, μ0, 0), method="brentq")
+        assert sol.converged
+        σ0[i] = sol.root
+        ω0[i] = ωf(σ0[i], μ0, μ0, 0)
+    plt.plot(σ, ω.T)
+    plt.plot(σ0, ω0, "-r.")
+    plt.show()
+    σc, μc, ωc = [], [], []
+    for i in range(0, len(σ)):
+        for j in range(0, len(μ)):
+            μc.append(μ[j])
+            σc.append(σ[i])
+            ωc.append(ω[j,i])
+    utils.writecols([μc, σc, list(np.array(ωc)/100**4), μc, list(σ0), list(ω0/100**4)], ["mu", "sigma", "omega", "mu0", "sigma0", "omega0"], "data/2flavpot.dat", skipevery=len(μ))
 
-fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 5))
-ax1.set_xlabel(r"$\mu_u$")
-ax1.set_ylabel(r"$\sigma$")
-ax1.plot(μu1, σ1, "-k")
-ax1.plot(μu2, σ2, "--k")
-ax2.set_xlabel(r"$\mu_u$")
-ax2.set_ylabel(r"$n$")
-ax2.plot(μu1, nu1, "-r")
-ax2.plot(μu1, nd1, "-g")
-ax2.plot(μu1, ne1, "-b")
-ax2.plot(μu2, nu2, "--r")
-ax2.plot(μu2, nd2, "--g")
-ax2.plot(μu2, ne2, "--b")
-ax3.set_xlabel(r"$P$")
-ax3.set_ylabel(r"$\epsilon$")
-ax3.plot(P1, ϵ1, "-k")
-ax3.plot(P2, ϵ2, "--k")
-plt.show()
+    # find equation of state
+    μu = np.linspace(200, 1000, 500)
+    σ1, μu1, μd1, μe1, nu1, nd1, ne1, P1, ϵ1 = eos(μu, method="partial")
+    σ2, μu2, μd2, μe2, nu2, nd2, ne2, P2, ϵ2 = eos(μu, method="total")
 
-q1 = qf(σ1, μu1, μd1, μe1)
-q2 = qf(σ2, μu2, μd2, μe2)
-plt.plot(μu1, np.sign(q1)*np.log(1+np.abs(q1)), "-k")
-plt.plot(μu2, np.sign(q2)*np.log(2+np.abs(q2)), "--k")
-plt.show()
+    # write equation of state (and related stuff)
+    σ, μu, μd, μe, nu, nd, ne, P, ϵ = σ1, μu1, μd1, μe1, nu1, nd1, ne1, P1, ϵ1
+    nu *= (constants.MeV / (constants.ħ * constants.c))**3 * (1e-15)**3
+    nd *= (constants.MeV / (constants.ħ * constants.c))**3 * (1e-15)**3
+    ne *= (constants.MeV / (constants.ħ * constants.c))**3 * (1e-15)**3
+    P *= constants.ϵ0 # to SI units (J/m^3)
+    ϵ *= constants.ϵ0 # to SI units (J/m^3)
+    P *= (1e-15)**3 / constants.GeV # to GeV/fm^3
+    ϵ *= (1e-15)**3 / constants.GeV # to GeV/fm^3
+    utils.writecols([σ, μu, μd, μe, nu, nd, ne, P, ϵ], ["sigma", "muu", "mud", "mue", "nu", "nd", "ne", "P", "epsilon"], "data/2flaveos.dat")
+
+    # plot equation of state (and related stuff)
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 5))
+    ax1.set_xlabel(r"$\mu_u$")
+    ax1.set_ylabel(r"$\sigma$")
+    ax1.plot(μu1, σ1, "-k")
+    ax1.plot(μu2, σ2, "--k")
+    ax2.set_xlabel(r"$\mu_u$")
+    ax2.set_ylabel(r"$n$")
+    ax2.plot(μu1, nu1, "-r")
+    ax2.plot(μu1, nd1, "-g")
+    ax2.plot(μu1, ne1, "-b")
+    ax2.plot(μu2, nu2, "--r")
+    ax2.plot(μu2, nd2, "--g")
+    ax2.plot(μu2, ne2, "--b")
+    ax3.set_xlabel(r"$P$")
+    ax3.set_ylabel(r"$\epsilon$")
+    ax3.plot(P1, ϵ1, "-k")
+    ax3.plot(P2, ϵ2, "--k")
+    plt.show()
+
+    q1 = qf(σ1, μu1, μd1, μe1)
+    q2 = qf(σ2, μu2, μd2, μe2)
+    plt.plot(μu1, np.sign(q1)*np.log(1+np.abs(q1)), "-k")
+    plt.plot(μu2, np.sign(q2)*np.log(2+np.abs(q2)), "--k")
+    plt.show()
