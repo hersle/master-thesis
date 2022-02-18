@@ -93,6 +93,30 @@ def eos(μu, method=""):
     
     return σ, μu, μd, μe, nu, nd, ne, P, ϵ
 
+# plot ω(σ, μu=μd=μ, 0)
+σ = np.linspace(-150, +150, 100)
+μ = np.linspace(0, 500, 50)
+ω = np.array([ωf(σ, μ, μ, 0) for μ in μ])
+σ0 = np.empty(len(μ))
+ω0 = np.empty(len(μ))
+for i in range(0, len(μ)):
+    μ0 = μ[i]
+    sol = scipy.optimize.root_scalar(dωf, bracket=(1, 100), args=(μ0, μ0, 0), method="brentq")
+    assert sol.converged
+    σ0[i] = sol.root
+    ω0[i] = ωf(σ0[i], μ0, μ0, 0)
+plt.plot(σ, ω.T)
+plt.plot(σ0, ω0, "-r.")
+plt.show()
+σc, μc, ωc = [], [], []
+for i in range(0, len(σ)):
+    for j in range(0, len(μ)):
+        μc.append(μ[j])
+        σc.append(σ[i])
+        ωc.append(ω[j,i])
+utils.writecols([μc, σc, list(np.array(ωc)/100**4), μc, list(σ0), list(ω0/100**4)], ["mu", "sigma", "omega", "mu0", "sigma0", "omega0"], "data/2flavpot.dat", skipevery=len(μ))
+
+# find equation of state
 μu = np.linspace(250, 400, 500)
 σ1, μu1, μd1, μe1, nu1, nd1, ne1, P1, ϵ1 = eos(μu, method="partial")
 σ2, μu2, μd2, μe2, nu2, nd2, ne2, P2, ϵ2 = eos(μu, method="total")
