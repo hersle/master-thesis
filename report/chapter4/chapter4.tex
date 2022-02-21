@@ -204,7 +204,7 @@ Moreover, the smaller the value of $h$, the smaller the value of $m_\pi$, so the
 We determine the four parameters $g$, $h$, $m$ and $\lambda$ in the original Lagrangian \eqref{eq:lsm:lagrangian} by comparing the four \emph{effective} quantities $\avg{\sigma}$, $m_\pi$, $m_\sigma$ and $m_q$ to the measurements
 \begin{subequations}
 \begin{alignat}{2}
-	\avg{\sigma} &= \SI{93}{\mega\electronvolt}  &\qquad& \text{(\TODO{source}), \TODO{distinguish $\avg{\sigma}$ and $f_\pi$}}, \\
+	\avg{\sigma} &= \SI{93}{\mega\electronvolt}  &\qquad& \text{(\TODO{source}), \TODO{distinguish $\avg{\sigma}$ and $f_\pi$}}, \label{eq:lsm:fpi} \\
 	m_\pi        &= \SI{138}{\mega\electronvolt} &\qquad& \text{(\TODO{source})}, \\
 	m_\sigma     &= \SI{900}{\mega\electronvolt} &\qquad& \text{(in range $\SI{400}{\mega\electronvolt} < m_\sigma < \SI{700}{\mega\electronvolt}$, by \cite{ref:pdg_review_2021}) \TODO{rev}}, \\
 	m_q          &= \SI{300}{\mega\electronvolt} &\qquad& \text{(by) \TODO{}}.
@@ -326,7 +326,7 @@ With the vacuum contribution \eqref{eq:lsm:vacuum_contribution_final} in this re
 	       &+ N_c \frac{m_q^4 \beta V}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right] .
 \end{split}
 \end{equation}
-This investigation has revealed that the term $-N_c N_f m_q^4 \beta V / 16 \pi^2$ is guilty of the offense of vacuum divergence.
+This investigation has revealed that the term $-N_c N_f m_q^4 \beta V / 16 \pi^2 \epsilon$ is guilty of the offense of vacuum divergence.
 We also see that the preceding term can shield society from this criminal if we split the coupling 
 \begin{equation}
 	\lambda = \lambda_P + \delta\lambda
@@ -348,8 +348,10 @@ From $\log Z$, we can finally build a bridge to thermodynamics with the grand po
 \end{split}
 \end{equation}
 The renormalization procedure has introduced an unknown parameter $\Lambda$.
-To determine it, we require that the minimum of the grand potential \eqref{eq:lsm:grand_potential} \emph{as a function of $\avg{\sigma}$} remains at the minimum $f_\pi = \SI{93}{\mega\electronvolt}$ of the potential \eqref{eq:lsm:potential}, defined by \eqref{eq:lsm:ground_state_implicit}, when we are in vacuum.
-Then the second line of the grand potential is absent, and the first three terms already satisfies, so this is satisfied if
+To determine it, we require that the minimum of the grand potential \eqref{eq:lsm:grand_potential} remains at $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$ of the potential \eqref{eq:lsm:potential} when we are in vacuum.
+The first three terms of the grand potential are precisely the potential \eqref{eq:lsm:potential}, and hence already minimal at $\avg{\sigma} = f_\pi$ by assumption.
+In vacuum, all densities \eqref{eq:nstars:density_zeroT} and hence normalized Fermi momenta $x_f$ vanish, so the second line of the grand potential is also absent.
+Then all it takes to meet our renormalization condition is that the only remaining term satisfies
 \begin{equation}
 	\pdv*{\left[ N_c N_f \frac{m_q^4}{16 \pi^2} \left( \frac32 + \log \frac{\Lambda^2}{m_q^2} \right) \right] }{\avg{\sigma}} = 0,
 	\quad \text{yielding} \quad
@@ -357,11 +359,15 @@ Then the second line of the grand potential is absent, and the first three terms
 \label{eq:lsm:potential_vacuum_minimum}
 \end{equation}
 
-\TODO{write down electron mass}
-To ensure the star is charge neutral, we take our linear sigma model coupled to quarks and place it on top of a background of electrons by modifying.
-This amounts to adding one more fermion term to the Lagrangian density \eqref{eq:lsm:lagrangian} and, ultimately, the grand potential \eqref{eq:lsm:grand_potential}.
+To ensure the star is charge neutral, we spice our mixture of quarks and mesons with free electrons.
+This amounts to adding one more fermion term to the Lagrangian
+\begin{equation}
+	\lagr \rightarrow \lagr + \bar{\psi}_e \big( i \slashed\partial + \mu_e \gamma^0 - m_e \big) \psi_e
+	\qquad \text{with mass} \qquad
+	m_e = \SI{0.5}{\mega\electronvolt}.
+\end{equation}
 Let us also revert the definition $x = p / m = \sqrt{\mu^2-m^2} / m$, in order to make the dependency on $\mu$ and $\avg{\sigma}$ explicit.
-Thus, the grand potential is
+With electrons, the grand potential \eqref{eq:lsm:grand_potential} becomes
 \begin{equation}
 \begin{split}
 	\omega(\avg{\sigma},\mu_u,\mu_d,\mu_e) &= -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda_P}{4!} \avg{\sigma}^4 - h \avg{\sigma} + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
