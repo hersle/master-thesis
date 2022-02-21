@@ -365,7 +365,7 @@ This amounts to adding one more fermion term to the Lagrangian
 	\qquad \text{with mass} \qquad
 	m_e = \SI{0.5}{\mega\electronvolt}.
 \end{equation}
-Let us also revert the definition $x = p / m = \sqrt{\mu^2-m^2} / m$, in order to make the dependency on $\mu$ and $\avg{\sigma}$ explicit.
+Let us also reinstate the definition $x = p / m = \sqrt{\mu^2-m^2} / m$, in order to make the dependence on $\mu$ and $\avg{\sigma}$ explicit.
 With electrons, the grand potential \eqref{eq:lsm:grand_potential} becomes
 \begin{equation}
 \begin{split}
@@ -375,10 +375,10 @@ With electrons, the grand potential \eqref{eq:lsm:grand_potential} becomes
 \end{split}
 \label{eq:lsm:grand_potential}
 \end{equation}
-Remember that the effective quark mass $m_q = g \avg{\sigma}$ also contains dependence on the field!
+Remember that the effective quark mass $m_q = g \avg{\sigma}$ also dependens on the field!
 In addition, we implicitly take the real part of every square root $\sqrt{\mu^2 - m^2}$, or equivalently consider them as step functions $\Theta(\mu-m) \sqrt{\mu^2 - m^2}$.
 The rigorous understanding of this can be traced back to the zero-temperature calculation of the pressure \eqref{eq:nstars:pressure_zeroT}, related to the grand potential density by $\omega = -P$, in which the integrand contained a step function $\Theta(\mu-E(p)) = \Theta(\mu-\sqrt{m^2+p^2})$ and we took for granted that $\mu > m$.
-In the opposite case $\mu < m$, the step function in the integrand would be deactivated for all $p$, and the integral would be $0$.
+In the opposite case $\mu < m$, the step function would cause the whole integral to vanish.
 
 \begin{figure}
 \centering
@@ -419,8 +419,8 @@ In the opposite case $\mu < m$, the step function in the integrand would be deac
 \end{tikzpicture}
 \caption{\label{fig:lsm:grand-potential-nonneutral}%
 	The grand potential \eqref{eq:lsm:grand_potential} with $\mu_e = 0$ and $\mu_u = \mu_d = \mu$.
-	Subfigure \subref{fig:lsm:grand-potential-nonneutral-big} shows its asymptotic form as $\avg{\sigma} \rightarrow \pm \infty$, while subfigure \subref{fig:lsm:grand-potential-nonneutral-small} highlights the interesting region around $\SI{0}{\mega\electronvolt} \lesssim \avg{\sigma} \lesssim \SI{100}{\mega\electronvolt}$.
-	The \textcolor{blue}{blue line} and its \textcolor{gray}{gray projection} corresponds to the fields $\avg{\sigma}(\mu)$ for which the potential has a minimum $\pdv{\omega}/{\avg{\sigma}} = 0$.
+	Upper panel \subref{fig:lsm:grand-potential-nonneutral-big} shows its asymptotic form as $\avg{\sigma} \rightarrow \pm \infty$, while lower panel \subref{fig:lsm:grand-potential-nonneutral-small} highlights the interesting region around $\SI{0}{\mega\electronvolt} \lesssim \avg{\sigma} \lesssim \SI{100}{\mega\electronvolt}$.
+	The \textcolor{blue}{blue line} and its \textcolor{gray}{gray projection} corresponds to the fields $\avg{\sigma}(\mu)$ for which the potential has a minimum determined by $\pdv{\omega}/{\avg{\sigma}} = 0$.
 }
 \end{figure}
 
@@ -428,17 +428,19 @@ We require that the mean field $\avg{\sigma}$ always takes on a value that minim
 \begin{equation}
 	\pdv{\omega}{\avg{\sigma}} = 0.
 \end{equation}
+\TODO{$\Omega$ vs $\omega$}
 To get a feeling for the general shape of the potential, we visualize the special case with $\mu_e = 0$ and $\mu_u = \mu_d = 0$ in \cref{fig:lsm:grand-potential-nonneutral}.
-In this case, the potential is effectively a two-dimensional function $\omega(\avg{\sigma},\mu)$, and minimizing the potential yields a curve $[\avg{\sigma}(\mu), \mu, \omega(\avg{\sigma},\mu))]$ through three-dimensional $\avg{\sigma}-\mu-\omega$-space.
+In this case, the potential $\omega(\avg{\sigma},\mu)$ has only two arguments, and minimizing the potential yields a curve $[\avg{\sigma}(\mu), \mu, \omega(\avg{\sigma},\mu))]$ through three-dimensional $\avg{\sigma}-\mu-\omega$-space.
 From the figure, we see that:
 \begin{itemize}
-\item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$, all square roots are ``deactivated'', so we are in vacuum with minima at $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$, as we required in equation \eqref{eq:lsm:potential_vacuum_minimum}.
-\item For $\SI{300}{\mega\electronvolt} < \mu \lesssim \SI{400}{\mega\electronvolt}$, the square roots are ``activated'' and the minimum quickly and continuously transitions closer to $0$, corresponding to a second-order phase transition.
+\item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$, no square roots have real parts, so we are in vacuum with minimum at $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$, as we required in equation \eqref{eq:lsm:potential_vacuum_minimum}.
+\TODO{Silver Blaze property: vacuum is characterized by ALL $\mu < 300$}
+\item For $\SI{300}{\mega\electronvolt} < \mu \lesssim \SI{400}{\mega\electronvolt}$, the square roots have nonzero real parts and the minimum transitions quickly and continuously closer to zero, corresponding to a crossover \TODO{not second-order phase transition!}.
 \item For $\mu \gtrsim \SI{400}{\mega\electronvolt}$, the minimum asymptotically approaches $\avg{\sigma} \rightarrow 0$. 
 \end{itemize}
 Our objective, however, is to determine the equation of state $\epsilon(P)$ in the general case where we also take the conditions of charge neutrality \TODO{ref} and $\beta$-equilibrium \TODO{ref} into account.
-Then $\omega(\avg{\sigma},\mu_u,\mu_d,\mu_e)$ is a four-dimensional function, and the three interdependent chemical potentials are reduced to one independent one by charge neutrality and chemical equilibrium.
-Using that up and down quarks have respective charges $+2/3$ and $-1/3$ and remembering their color degeneracy, we must now solve the \emph{system} of equations
+Then $\omega(\avg{\sigma},\mu_u,\mu_d,\mu_e)$ is a function of four arguments, and the three interdependent chemical potentials are reduced to one independent one by charge neutrality and chemical equilibrium.
+Using that up and down quarks have respective charges $+2/3 e$ and $-1/3 e$ and remembering their color degeneracy, we must now solve the \emph{system} of equations
 \begin{subequations}
 \begin{align}
 	0 &= \pdv{\omega}{\avg{\sigma}} , \label{eq:lsm:minsys_min} \\
@@ -459,7 +461,7 @@ Glancing back at equation \eqref{eq:tft:partition_function} and \eqref{eq:tft:av
 \end{equation}
 relative to vacuum, and the corresponding energy density
 \begin{equation}
-	\epsilon(\mu_u) = -P(\mu_u) + \mu_u n_u(\mu_u) + \mu_d(\mu_u) n_d(\mu_u) + \mu_e(\mu_u) n_e(\mu_u)
+	\epsilon(\mu_u) = -P(\mu_u) + \sum_{i=\{u,d,e\}} \mu_i n_i(\mu_u)
 \end{equation}
 with the zero-temperature densities \eqref{eq:nstars:density_zeroT} that we calculated in equation \eqref{eq:nstars:density_zeroT},
 \begin{subequations}
@@ -530,7 +532,11 @@ corresponding to the solution of the system of equations \eqref{eq:lsm:minsys}.
 
 Doing things the right way, we end up with the results shown in \cref{fig:lsm:2flavoreos}, and in particular the equation of state in \cref{fig:lsm:2flavoreos_eos}.
 
-\TODO{fix parameter choices. so far I have only gotten $m_\sigma = \SI{900}{\mega\electronvolt}$ to work.}
+\TODO{crossover $\neq$ second-order phase transition. no $n$-th order phase transition, since $\pdv[n]{\omega}/{\avg{\sigma}}$ is not discontinuous for any $n$!. can determine critical $\mu$ by looking at inflection point of order-parameter $\avg{\sigma}$}
+
+\TODO{add bag constant, because $3$-flavor quark matter should be absolutely stable (i.e. more stable than vacuum? hypothesis) when we have the $s$-quark. this criterion determines the bag constant window! See (digital) meeting 6 references JO sent me.}
+
+\TODO{should get $m_\sigma = 800$ to work! fix parameter choices. so far I have only gotten $m_\sigma = \SI{900}{\mega\electronvolt}$ to work.}
 
 \TODO{we have $\odv{\epsilon}/{P} < 1$, contradicting stability, for larger $P$. is this where the bag constant comes in?}
 
