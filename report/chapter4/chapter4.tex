@@ -123,7 +123,7 @@ Then chemical equilibrium implies
 \end{tikzpicture}
 \caption{\label{fig:lsm:potential}%
 	A two-dimensional realization of the potential \eqref{eq:lsm:potential} looks like a Mexican hat, tilted along the $\sigma$-axis by the explicit symmetry breaking parameter $h$.
-	If $h = 0$, the hat is upright with an infinite number of minima around $\sigma^2 + \vec\pi^2 = 6m^2 / \lambda$.
+	If $h = 0$, the hat is upright with an infinite number of minima around $\sigma^2 + \vec\pi^2 = -6m^2 / \lambda$.
 	If $h \neq 0$, the hat is tilted and has a global minimum at $\vec\pi = 0$ and $\sigma = \avg{\sigma}$ determined by \eqref{eq:lsm:ground_state_implicit}.
 }
 \end{figure}
@@ -388,7 +388,7 @@ In the opposite case $\mu < m$, the step function in the integrand would be deac
 	group style={group size={1 by 2}, vertical sep=2.0cm},
 	view={160}{30},
 	width=0.9\textwidth, height=10cm,
-	xlabel = {$\avg{\sigma} \, / \, \si{\mega\electronvolt}$}, ylabel = {$\mu \, / \, \si{\mega\electronvolt}$}, zlabel = {$\omega(\avg{\sigma}, \mu) \, / \, (\SI{100}{\mega\electronvolt})**4$},
+	xlabel = {$\avg{\sigma} \, / \, \si{\mega\electronvolt}$}, ylabel = {$\mu \, / \, \si{\mega\electronvolt}$}, zlabel = {$\omega(\avg{\sigma}, \mu) \, / \, (\SI{100}{\mega\electronvolt})^4$},
 	colormap/OrRd, point meta min=0, point meta max=450,
 	3d box=complete,
 	unbounded coords=jump, % skip at nan (i.e. the phase transition)
