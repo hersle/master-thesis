@@ -122,13 +122,13 @@ Then chemical equilibrium implies
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:potential}%
-	With $h \neq 0$, the potential \eqref{eq:lsm:potential} looks like a tilted Mexican hat with a global minimum at $\sigma = \sqrt{6 m^2 / \lambda}, \, \vec\pi = 0$ \TODO{NO!}.
-	If $h = 0$, it would rather look like an upright hat with a continuous range of minima around the brim $\sigma^2 + \vec\pi^2 = 6 m^2 / \lambda$.
-	\TODO{mention this only visualizes $O(2)$}
+	A two-dimensional realization of the potential \eqref{eq:lsm:potential} looks like a Mexican hat, tilted along the $\sigma$-axis by the explicit symmetry breaking parameter $h$.
+	If $h = 0$, the hat is upright with an infinite number of minima around $\sigma^2 + \vec\pi^2 = 6m^2 / \lambda$.
+	If $h \neq 0$, the hat is tilted and has a global minimum at $\vec\pi = 0$ and $\sigma = \avg{\sigma}$ determined by \eqref{eq:lsm:ground_state_implicit}.
 }
 \end{figure}
 
-\TODO{justify this effective MODEL from QCD}
+\TODO{justify this effective MODEL from QCD. Expand QCD $\lagr$ at low energy?}
 
 The Lagrangian density for the linear sigma model coupled to quarks is
 \begin{equation}
@@ -136,14 +136,13 @@ The Lagrangian density for the linear sigma model coupled to quarks is
 	      + \frac12 \left[ \left( \partial_\mu \sigma \right)^2 + \left( \partial_\mu \vec\pi \right)^2 \right] - \pot(\sigma,\vec\pi) ,
 \label{eq:lsm:lagrangian}
 \end{equation}
-\TODO{should I have $h \sigma$, too? YES!}
 with the potential
 \begin{equation}
 	\pot(\sigma,\vec\pi) = -\frac12 m^2 \left( \sigma^2 + \vec\pi^2 \right) + \frac{\lambda}{4!} \left( \sigma^2 + \vec\pi^2 \right)^2 - h \sigma .
 	                     % = \frac{\lambda}{4!} \left( \sigma^2 + \vec\pi^2 - \frac{6m^2}{\lambda} \right)^2 -\frac{3 m^4}{2 \lambda} .
 \label{eq:lsm:potential}
 \end{equation}
-Here $q_c = (u_c, d_c)^T$ represents quarks of the $N_c = 3$ colors red, green and blue and the $N_f = 2$ flavors up and down, so $(q_c)_f$ make up a total of $N_c \times N_f = 6$ Dirac spinors.
+Here $q_c = [u_c, d_c]^T$ represents quarks of the $N_c = 3$ colors red, green and blue and the $N_f = 2$ flavors up and down, so $(q_c)_f$ make up a total of $N_c \times N_f = 6$ Dirac spinors.
 In addition, $\sigma$ and $\vec\pi = [\pi^+, \pi^0, \pi^-]^T$ are four bosonic scalar fields representing sigma and pion mesons.
 At this point, the quarks are massless Dirac fermions whose conserved charge densities $j^0 = \bar\psi \gamma^0 \psi$ are coupled to chemical potentials $\mu = \diag(\mu_u, \mu_d)$, interacting with a Yukawa coupling of strength $g$ that models the strong force \TODO{non-mentioned comment in Møte 4}, where $\vec\tau$ are the Pauli matrices \eqref{eq:tft:pauli_matrices}.
 The mesons have ``imaginary mass'' $\sqrt{-m^2} = i m$ and feature a $\lambda \phi^4$-coupling.
@@ -188,6 +187,7 @@ where the $\sigma$ and $\vec\pi$ fields have acquired the effective masses
 	m_\sigma^2 &= \pdv[2]{\pot}{\sigma}_{(\sigma,\vec\pi)=(\avg{\sigma},\vec{0})} = -m^2 + \frac{\lambda}{2} \avg{\sigma}^2 \equalexplabove{\text{by \eqref{eq:lsm:ground_state_implicit}}} \frac{3h}{\avg{\sigma}} + 2 m^2 , \label{eq:lsm:mass_sigma} \\
 	m_\pi^2    &= \pdv[2]{\pot}{\pi   }_{(\sigma,\vec\pi)=(\avg{\sigma},\vec{0})} = -m^2 + \frac{\lambda}{6} \avg{\sigma}^2 \equalexplbelow{\text{by \eqref{eq:lsm:ground_state_implicit}}} \frac{h}{\avg{\sigma}} , \label{eq:lsm:mass_pi}
 \end{align}
+\label{eq:lsm:mass_sigmapi}
 \end{subequations}
 The linear sigma model is an effective low-energy model of quantum chromodynamics, so accordingly we should take it seriously only in terms of the shifted fields around the stable ground states, and not in terms of the unshifted fields around the unstable equilibrium at the top of the Mexican hat.
 
@@ -210,14 +210,14 @@ We determine the four parameters $g$, $h$, $m$ and $\lambda$ in the original Lag
 	m_q          &= \SI{300}{\mega\electronvolt} &\qquad& \text{(by) \TODO{}}.
 \end{alignat}
 \end{subequations}
-Thus, the parameters are
+By inverting equations \eqref{eq:lsm:ground_state_implicit}, \eqref{eq:lsm:mass_sigmapi} and \eqref{eq:lsm:mass_quark}, we find the parameters
 \begin{subequations}
-\begin{alignat}{3}
-	g       &= \frac{m_q}{\avg{\sigma}}                 &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
-	h       &= m_\pi^2 \avg{\sigma}                     &\qquad& \text{(by \eqref{eq:lsm:mass_pi})} , \\
-	m^2     &= \frac{m_\sigma^2 - 3m_\pi^2}{2}          &\qquad& \text{(by \eqref{eq:lsm:mass_sigma})} , \\
-	\lambda &= \frac{3 m_\sigma^2 - 3 m_\pi^2}{f_\pi^2} &\qquad& \text{(by \eqref{eq:lsm:ground_state_implicit})} .
-\end{alignat}
+\begin{align}
+	g       &= \frac{m_q}{\avg{\sigma}}                 , \\ % &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
+	h       &= m_\pi^2 \avg{\sigma}                     , \\ % &\qquad& \text{(by \eqref{eq:lsm:mass_pi})} , \\
+	m^2     &= \frac{m_\sigma^2 - 3m_\pi^2}{2}          , \\ % &\qquad& \text{(by \eqref{eq:lsm:mass_sigma})} , \\
+	\lambda &= \frac{3 m_\sigma^2 - 3 m_\pi^2}{f_\pi^2} .    % &\qquad& \text{(by \eqref{eq:lsm:ground_state_implicit})} .
+\end{align}
 \end{subequations}
 
 According to what we learned in \cref{chap:tft} in \cref{eq:tft:boson_partition_function_momentum_out} and \eqref{eq:tft:dirac_partition_function_first},
