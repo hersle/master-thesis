@@ -86,8 +86,8 @@ def eos(μu, method=""):
     P = -ω
     P -= P[0]
     mq = g*σ
-    nu = np.real(np.power(μu**2-mq**2+0j, 3/2)) / (3*π**2)
-    nd = np.real(np.power(μd**2-mq**2+0j, 3/2)) / (3*π**2)
+    nu = Nc * np.real(np.power(μu**2-mq**2+0j, 3/2)) / (3*π**2)
+    nd = Nc * np.real(np.power(μd**2-mq**2+0j, 3/2)) / (3*π**2)
     ne = np.real(np.power(μe**2-me**2+0j, 3/2)) / (3*π**2)
     ϵ = -P + μu*nu + μd*nd + μe*ne
 
