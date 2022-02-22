@@ -99,8 +99,8 @@ def eos(μb, name="ϵ", outfile="", plot=False, verbose=False):
     ϵ  *= constants.fm**3 / constants.GeV # now in units GeV/fm^3
 
     if outfile != "":
-        cols  = (μb, σ, μu, μd, μe, ω, nu, nd, ne, ϵ, P)
-        heads = ("mub", "sigma", "muu", "mud", "mue", "omega", "nu", "nd", "ne", "epsilon", "P")
+        cols  = (μb, σ, μu, μd, μe, nu, nd, ne, ϵ, P)
+        heads = ("mub", "sigma", "muu", "mud", "mue", "nu", "nd", "ne", "epsilon", "P")
         utils.writecols(cols, heads, outfile)
 
     if plot:
