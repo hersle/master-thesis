@@ -6,92 +6,139 @@ from tov import massradiusplot
 import utils
 
 import numpy as np
-import matplotlib.pyplot as plt
+import sympy as sp
 import scipy.optimize
 import scipy.interpolate
+import matplotlib.pyplot as plt
 
-Nc = 3
-Nf = 2
-mσ = 900 # TODO: increase to make nicer EOS
-mπ = 138
-mq0 = 300 # TODO: decrease to make nicer EOS
-fπ = 93
-me = 0.5
+Nc  = 3
+Nf  = 2
+fπ  = 93
+mσ  = 800
+mπ  = 138
+mq0 = 300
+me  = 0.5
 
-g = mq0 / fπ
-h = fπ * mπ**2
-m = np.sqrt(1/2*(mσ**2-3*mπ**2))
-λ = 3/fπ**2 * (mσ**2-mπ**2)
-Λ = mq0 / np.sqrt(np.e)
+m2 = 1/2*(3*mπ**2-mσ**2)
+λ  = 3/fπ**2 * (mσ**2-mπ**2)
+h  = fπ * mπ**2
+g  = mq0 / fπ
+Λ2 = mq0**2 / np.e
+
+# symbolic complex expression for ω and dω/dσ
+σ, μu, μd, μe = sp.symbols("σ μ_u μ_d μ_e", complex=True)
+mq  = g*σ
+ω0  =  1/2*m2*σ**2 + λ/24*σ**4 - h*σ + Nc*Nf*mq**4/(16*π**2)*(3/2+sp.log(Λ2/mq**2))
+ωu  = -Nc/(24*π**2) * ((2*μu**2-5*mq**2)*μu*sp.sqrt(μu**2-mq**2) + 3*mq**4*sp.asinh(sp.sqrt(μu**2/mq**2-1)))
+ωd  = -Nc/(24*π**2) * ((2*μd**2-5*mq**2)*μd*sp.sqrt(μd**2-mq**2) + 3*mq**4*sp.asinh(sp.sqrt(μd**2/mq**2-1)))
+ωe  =  -1/(24*π**2) * ((2*μe**2-5*me**2)*μe*sp.sqrt(μe**2-me**2) + 3*me**4*sp.asinh(sp.sqrt(μe**2/me**2-1)))
+ωc  = ω0 + ωu + ωd + ωe
+dωc = sp.diff(ωc, σ)
+
+# numeric real expressions for ω and dω/dσ
+ωcf  = sp.lambdify((σ, μu, μd, μe),  ωc, "numpy") # complex function  ωcf(σ, μu, μd, μe)
+dωcf = sp.lambdify((σ, μu, μd, μe), dωc, "numpy") # complex function dωcf(σ, μu, μd, μe)
+def  ωf(σ, μu, μd, μe): return np.real( ωcf(σ+0j, μu+0j, μd+0j, μe+0j)) # real function ωf(σ, μu, μd, μe)
+def dωf(σ, μu, μd, μe): return np.real(dωcf(σ+0j, μu+0j, μd+0j, μe+0j)) # real function ωf(σ, μu, μd, μe)
 
 def qf(σ, μu, μd, μe):
     mq = g*σ
-    return 2*np.real(np.power(μu**2-mq**2+0j, 3/2)) - np.real(np.power(μd**2-mq**2+0j, 3/2)) - np.real(np.power(μe**2-me**2+0j, 3/2))
+    nu = Nc/(3*π**2) * np.real(np.power(μu**2-mq**2+0j, 3/2))
+    nd = Nc/(3*π**2) * np.real(np.power(μd**2-mq**2+0j, 3/2))
+    ne =  1/(3*π**2) * np.real(np.power(μe**2-me**2+0j, 3/2))
+    return +2/3*nu - 1/3*nd - 1*ne
 
-def ωf(σ, μu, μd, μe):
+def eos(μb, name="ϵ", outfile="", plot=False, verbose=False):
+    σ, μu, μd, μe, ω = np.empty_like(μb), np.empty_like(μb), np.empty_like(μb), np.empty_like(μb), np.empty_like(μb)
+
+    for i in range(0, len(μb)):
+        μb0 = μb[i]
+        def system(σ_μe): # solve system {dω == 0, q == 0}
+            σ, μe = σ_μe # unpack 2 variables
+            μu = μb0/3 - 2*μe/3
+            μd = μb0/3 + 1*μe/3
+            dω = dωf(σ, μu, μd, μe)
+            q  =  qf(σ, μu, μd, μe)
+            return (dω, q)
+        guess = (σ[i-1], μe[i-1]) if i > 0 else (fπ, 0) # guess root with previous solution (if any)
+        sol = scipy.optimize.root(system, guess, method="hybr")
+        assert sol.success, f"{sol.message} (μb = {μb0})"
+        σ0, μe0 = sol.x
+        μu0 = μb0/3 - 2*μe0/3
+        μd0 = μb0/3 + 1*μe0/3
+        ω0 = ωf(σ0, μu0, μd0, μe0)
+        σ[i], μu[i], μd[i], μe[i], ω[i] = σ0, μu0, μd0, μe0, ω0
+        if verbose: print(f"μb = {μb0} -> σ = {σ0}, μu = {μu0}, μd = {μd0}, μe = {μe0} -> ω = {ω0}")
+
+    P = -(ω - ω[0]) # TODO: bag constant
     mq = g*σ
-    ω0 = -1/2*m**2*σ**2 + λ/24*σ**4 - h*σ + Nc*Nf*mq**4/(16*π**2)*(3/2+np.log(Λ**2/mq**2))
-    ωu = -Nc/(24*π**2) * ((2*μu**2-5*mq**2)*μu*np.real(np.sqrt(μu**2-mq**2+0j)) + 3*mq**4*np.arcsinh(np.real(np.sqrt(μu**2/mq**2-1+0j))))
-    ωd = -Nc/(24*π**2) * ((2*μd**2-5*mq**2)*μd*np.real(np.sqrt(μd**2-mq**2+0j)) + 3*mq**4*np.arcsinh(np.real(np.sqrt(μd**2/mq**2-1+0j))))
-    ωe =  -1/(24*π**2) * ((2*μe**2-5*me**2)*μe*np.real(np.sqrt(μe**2-me**2+0j)) + 3*me**4*np.arcsinh(np.real(np.sqrt(μe**2/me**2-1+0j))))
-    return ω0 + ωu + ωd + ωe
+    nu = Nc/(3*π**2) * np.real(np.power(μu**2-mq**2+0j, 3/2))
+    nd = Nc/(3*π**2) * np.real(np.power(μd**2-mq**2+0j, 3/2))
+    ne =  1/(3*π**2) * np.real(np.power(μe**2-me**2+0j, 3/2))
+    ϵ  = -P + μu*nu + μd*nd + μe*ne
 
-def dωf(σ, μu, μd, μe): # partial derivative with respect to σ
-    dω0 = -m**2*σ + λ/6*σ**3 - h + Nc*Nf/(16*π**2) * 4*g**4*σ**3*(1+np.log(Λ**2/(g**2*σ**2)))
-    dωu = np.real(-Nc/24*(12*g**4*σ**3*np.arcsinh(np.sqrt(μu**2/(g**2*σ**2) - 1 + 0j)) + (5*g**2*σ**2 - 2*μu**2)*g**2*μu*σ/np.sqrt(-g**2*σ**2 + μu**2 + 0j) - 10*np.sqrt(-g**2*σ**2 + μu**2 + 0j)*g**2*μu*σ - 3*g**2*μu**2*σ/(np.sqrt(μu**2/(g**2*σ**2) - 1 + 0j)*np.sqrt(μu**2/(g**2*σ**2))))/π**2)
-    dωd = np.real(-Nc/24*(12*g**4*σ**3*np.arcsinh(np.sqrt(μd**2/(g**2*σ**2) - 1 + 0j)) + (5*g**2*σ**2 - 2*μd**2)*g**2*μd*σ/np.sqrt(-g**2*σ**2 + μd**2 + 0j) - 10*np.sqrt(-g**2*σ**2 + μd**2 + 0j)*g**2*μd*σ - 3*g**2*μd**2*σ/(np.sqrt(μd**2/(g**2*σ**2) - 1 + 0j)*np.sqrt(μd**2/(g**2*σ**2))))/π**2)
-    dωe = 0 # independent of σ
-    return dω0 + dωu + dωd + dωe
+    # convert interesting quantities to SI units
+    nu *= constants.MeV**3 / (constants.ħ * constants.c)**3 # now in units 1/m^3
+    nd *= constants.MeV**3 / (constants.ħ * constants.c)**3 # now in units 1/m^3
+    ne *= constants.MeV**3 / (constants.ħ * constants.c)**3 # now in units 1/m^3
+    P  *= constants.MeV**4 / (constants.ħ * constants.c)**3 # now in units kg*m^2/s^2/m^3
+    ϵ  *= constants.MeV**4 / (constants.ħ * constants.c)**3 # now in units kg*m^2/s^2/m^3
 
-def eos(μu, method=""):
-    σ = np.empty(len(μu))
-    μd = np.empty(len(μu))
-    μe = np.empty(len(μu))
-    ω = np.empty(len(μu))
-    for i in range(0, len(μu)):
-        μu0 = μu[i]
+    # interpolate dimensionless EOS
+    P0 = P / constants.ϵ0 # now in TOV-dimensionless units
+    ϵ0 = ϵ / constants.ϵ0 # now in TOV-dimensionless units
+    print(f"interpolation range: {P0[0]} < P0 < {P0[-1]}")
+    ϵint = scipy.interpolate.interp1d(P0, ϵ0)
+    ϵint.__name__ = name
 
-        if method == "partial":
-            def system(σμe): σ, μe = σμe; μd = μu0 + μe; dω = dωf(σ, μu0, μd, μe); q = qf(σ, μu0, μd, μe); return (dω, q)
-            guess = (σ[i-1], μe[i-1]) if i > 0 else (fπ, 0) # guess root with previous solution
-            sol = scipy.optimize.root(system, guess, method="hybr")
-            assert sol.success, f"{sol.message} (μu = {μu0})"
-            σ0, μe0 = sol.x
-            μd0 = μu0 + μe0
-        else:
-            assert False, f"unknown method: \"{method}\""
+    # convert interesting quantities to appropriate units
+    nu *= constants.fm**3                 # now in units 1/fm^3
+    nd *= constants.fm**3                 # now in units 1/fm^3
+    ne *= constants.fm**3                 # now in units 1/fm^3
+    P  *= constants.fm**3 / constants.GeV # now in units GeV/fm^3
+    ϵ  *= constants.fm**3 / constants.GeV # now in units GeV/fm^3
 
-        σ[i], μd[i], μe[i], ω[i] = σ0, μd0, μe0, ωf(σ0, μu0, μd0, μe0)
-    P = -ω
-    P -= P[0]
-    mq = g*σ
-    nu = Nc * np.real(np.power(μu**2-mq**2+0j, 3/2)) / (3*π**2)
-    nd = Nc * np.real(np.power(μd**2-mq**2+0j, 3/2)) / (3*π**2)
-    ne = np.real(np.power(μe**2-me**2+0j, 3/2)) / (3*π**2)
-    ϵ = -P + μu*nu + μd*nd + μe*ne
+    if outfile != "":
+        cols  = (μb, σ, μu, μd, μe, ω, nu, nd, ne, ϵ, P)
+        heads = ("mub", "sigma", "muu", "mud", "mue", "omega", "nu", "nd", "ne", "epsilon", "P")
+        utils.writecols(cols, heads, outfile)
 
-    P *= constants.MeV**4 / (constants.ħ*constants.c)**3 # to SI units
-    ϵ *= constants.MeV**4 / (constants.ħ*constants.c)**3 # to SI units
-    P /= constants.ϵ0 # to TOV-dimensionless units
-    ϵ /= constants.ϵ0 # to TOV-dimensionless units
+    if plot:
+        fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 5))
+        ax1.set_xlabel(r"$\mu_b$")
+        ax1.set_ylabel(r"$\sigma$")
+        ax1.plot(μb, σ, "-k.")
+        ax1.plot(μb, μu, "-r.")
+        ax1.plot(μb, μd, "-g.")
+        ax1.plot(μb, μe, "-b.")
+        ax2.set_xlabel(r"$\mu_b$")
+        ax2.set_ylabel(r"$n$")
+        ax2.plot(μb, nu, "-r.")
+        ax2.plot(μb, nd, "-g.")
+        ax2.plot(μb, ne, "-b.")
+        ax3.set_xlabel(r"$P$")
+        ax3.set_ylabel(r"$\epsilon$")
+        ax3.plot(P, ϵ, "-k.")
+        plt.show()
     
-    return σ, μu, μd, μe, nu, nd, ne, P, ϵ
+    return ϵint
 
 if __name__ == "__main__":
-
     # plot ω(σ, μu=μd=μ, 0)
     σ = np.linspace(-150, +150, 100)
     μ = np.linspace(0, 500, 50)
     ω = np.array([ωf(σ, μ, μ, 0) for μ in μ])
-    σ0 = np.empty(len(μ))
-    ω0 = np.empty(len(μ))
+    σ0 = np.empty_like(μ)
+    ω0 = np.empty_like(μ)
     for i in range(0, len(μ)):
         μ0 = μ[i]
-        sol = scipy.optimize.root_scalar(dωf, bracket=(1, 100), args=(μ0, μ0, 0), method="brentq")
-        assert sol.converged
-        σ0[i] = sol.root
+        sol = scipy.optimize.minimize_scalar(ωf, bounds=(0, 100), args=(μ0, μ0, 0), method="bounded")
+        assert sol.success, f"{sol.message} (μ = {μ0})"
+        σ0[i] = sol.x
         ω0[i] = ωf(σ0[i], μ0, μ0, 0)
-    plt.plot(σ, ω.T)
+    plt.xlabel(r"$\sigma$")
+    plt.ylabel(r"$\omega$")
+    plt.plot(σ, ω.T, "-k")
     plt.plot(σ0, ω0, "-r.")
     plt.show()
     σc, μc, ωc = [], [], []
@@ -103,38 +150,11 @@ if __name__ == "__main__":
     utils.writecols([μc, σc, list(np.array(ωc)/100**4), μc, list(σ0), list(ω0/100**4)], ["mu", "sigma", "omega", "mu0", "sigma0", "omega0"], "data/2flavpot.dat", skipevery=len(μ))
 
     # find equation of state
-    μu = np.linspace(200, 1000, 500)
-    σ1, μu1, μd1, μe1, nu1, nd1, ne1, P1, ϵ1 = eos(μu, method="partial")
-    #σ2, μu2, μd2, μe2, nu2, nd2, ne2, P2, ϵ2 = eos(μu, method="total")
+    μb = np.linspace(0, 2000, 250)[1:]
+    ϵ = eos(μb, plot=True, outfile="data/2flaveos.dat", verbose=True)
 
-    # write equation of state (and related stuff)
-    σ, μu, μd, μe, nu, nd, ne, P, ϵ = σ1, μu1, μd1, μe1, nu1, nd1, ne1, P1, ϵ1
-    nu *= (constants.MeV / (constants.ħ * constants.c))**3 * (1e-15)**3
-    nd *= (constants.MeV / (constants.ħ * constants.c))**3 * (1e-15)**3
-    ne *= (constants.MeV / (constants.ħ * constants.c))**3 * (1e-15)**3
-    P *= constants.ϵ0 # to SI units (J/m^3)
-    ϵ *= constants.ϵ0 # to SI units (J/m^3)
-    P *= (1e-15)**3 / constants.GeV # to GeV/fm^3
-    ϵ *= (1e-15)**3 / constants.GeV # to GeV/fm^3
-    utils.writecols([σ, μu, μd, μe, nu, nd, ne, P, ϵ], ["sigma", "muu", "mud", "mue", "nu", "nd", "ne", "P", "epsilon"], "data/2flaveos.dat")
-
-    # plot equation of state (and related stuff)
-    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 5))
-    ax1.set_xlabel(r"$\mu_u$")
-    ax1.set_ylabel(r"$\sigma$")
-    ax1.plot(μu1, σ1, "-k")
-    ax2.set_xlabel(r"$\mu_u$")
-    ax2.set_ylabel(r"$n$")
-    ax2.plot(μu1, nu1, "-r")
-    ax2.plot(μu1, nd1, "-g")
-    ax2.plot(μu1, ne1, "-b")
-    ax3.set_xlabel(r"$P$")
-    ax3.set_ylabel(r"$\epsilon$")
-    ax3.plot(P1, ϵ1, "-k")
-    ax3.set_xlim(0, 1)
-    ax3.set_ylim(0, 3)
-    plt.show()
-
-    q1 = qf(σ1, μu1, μd1, μe1)
-    plt.plot(μu1, np.sign(q1)*np.log(1+np.abs(q1)), "-k")
+    P = np.linspace(0, 0.001, 100)
+    plt.xlabel(r"$P$")
+    plt.ylabel(r"$\epsilon$")
+    plt.plot(P, ϵ(P), "-k")
     plt.show()
