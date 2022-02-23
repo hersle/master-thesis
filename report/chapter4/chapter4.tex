@@ -528,10 +528,20 @@ Hopefully, this remark will save someone from enduring this painful realization 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
-	xmin=0, xmax=0.5, ymin=0, ymax=2, xtick distance=0.1,
+	%xmin=0, xmax=0.5, ymin=0, ymax=2, xtick distance=0.1,
+	xmin=0, xmax=1, ymin=0, ymax=5, xtick distance=0.1,
 	title={\subcaption{\label{fig:lsm:2flavoreos_eos}Equation of state}},
+	legend cell align=left, legend pos=north west,
+	declare function={
+		e0 = 4.266500881855305e+34; % for converting neutron star EOS
+		fm = 1e-15;
+		gev = 1e9 * 1.6e-19;
+	},
 ];
-\addplot+ [black] table [x=P,y=epsilon] {../code/data/2flaveos.dat};
+\addplot+ [black, gray, dashed] table [x expr={\thisrow{P}*e0/(gev/fm^3)}, y expr={\thisrow{epsGR}*e0/(gev/fm^3)}] {../code/data/eos.dat}; % neutron star EOS
+\addlegendentry{ideal neutron star};
+\addplot+ [black] table [x=P,y=epsilon] {../code/data/2flaveos.dat}; % quark star EOS
+\addlegendentry{$2$-flavor quark star};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2flavoreos}%
