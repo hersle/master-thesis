@@ -16,7 +16,7 @@ def soltov(ϵ, P0, maxdr=1e-3, Psurf=0, progress=True, newtonian=False):
         print(f"ϵ = {ϵ.__name__}, ", end="")
         print(f"Newtonian={newtonian}, ", end="")
         print(f"P0 = {P0:9.2e}, maxdr = {maxdr:9.2e}, ", end="")
-        print(f"r = {r:8.5f}, m = {m:8.5f}, P = {P:e}, ϵ = {E:e}", end="")
+        print(f"r = {r:8.5f}, m = {m:8.5f}, P/P0 = {P/P0:.4f}", end="")
         if message != "":
             print(f", {message}", end="")
         print("", end=end, flush=True) # flush without newline

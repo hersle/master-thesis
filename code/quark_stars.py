@@ -48,7 +48,7 @@ def qf(σ, μu, μd, μe):
     ne =  1/(3*π**2) * np.real(np.power(μe**2-me**2+0j, 3/2))
     return +2/3*nu - 1/3*nd - 1*ne
 
-def eos(μB, name="ϵ", outfile="", plot=False, verbose=False):
+def eos(μB, B=0, name="ϵ", outfile="", plot=False, verbose=False):
     σ, μu, μd, μe, ω = np.empty_like(μB), np.empty_like(μB), np.empty_like(μB), np.empty_like(μB), np.empty_like(μB)
 
     for i in range(0, len(μB)):
@@ -80,8 +80,12 @@ def eos(μB, name="ϵ", outfile="", plot=False, verbose=False):
     # TODO: bag constant
     nB = 1/3 * (nu + nd)
     ϵm = 0 + μu*nu + μd*nd + μe*ne # TODO: is this what "P = 0" means?
-    B = scipy.optimize.root_scalar(scipy.interpolate.interp1d(P, (ϵ+P)/nB - 930), bracket=(0, 1e9), method="brentq").root
-    print(f"B^(1/4) > {B**(1/4)}")
+    Bmin = scipy.optimize.root_scalar(scipy.interpolate.interp1d(P, (ϵ+P)/nB - 930), bracket=(0, 1e9), method="brentq").root
+    print(f"B^(1/4) > {Bmin**(1/4)}")
+    if B < Bmin:
+        print(f"WARNING: requested bag constant B = {B} is less than the minimum stable value B = {Bmin}")
+    ϵ += B
+    P -= B
 
     # convert interesting quantities to SI units
     nu *= constants.MeV**3 / (constants.ħ * constants.c)**3 # now in units 1/m^3
@@ -155,12 +159,15 @@ if __name__ == "__main__":
             ωc.append(ω[j,i])
     utils.writecols([μc, σc, list(np.array(ωc)/100**4), μc, list(σ0), list(ω0/100**4)], ["mu", "sigma", "omega", "mu0", "sigma0", "omega0"], "data/2flavpot.dat", skipevery=len(μ))
 
-    # find equation of state
+    # plot equation of state
     μB = np.linspace(0, 2000, 250)[1:]
-    ϵ = eos(μB, plot=True, outfile="data/2flaveos.dat", verbose=True)
+    ϵ = eos(μB, B=0, plot=True, outfile="data/2flaveos.dat", verbose=True)
 
-    P = np.linspace(0, 0.001, 100)
-    plt.xlabel(r"$P$")
-    plt.ylabel(r"$\epsilon$")
-    plt.plot(P, ϵ(P), "-k")
-    plt.show()
+    # solve TOV equation for different bag pressures
+    μB = np.concatenate([np.linspace(850, 1500, 200), np.linspace(1500, 20000, 100)])
+    opts = { "tolD": 0.25, "maxdr": 1e-2, "visual": False }
+    for B14 in [27, 34, 41, 48, 55, 62, 69]:
+        outfile = f"data/quarkstar2f_B14_{B14}.dat"
+        print(f"B = {B14}^4, outfile = {outfile}")
+        ϵ = eos(μB, B=B14**4, name=f"ϵ2f", plot=False, verbose=False)
+        massradiusplot(ϵ, (1e-5, 1e1), **opts, nmodes=3, outfile=outfile)

@@ -501,7 +501,7 @@ Hopefully, this remark will save someone from enduring this painful realization 
 	%ymin=-10, ymax=100, 
 	%xtick={20,40,60,80,100}, ytick distance=20,
 	%extra x ticks={325}, extra y ticks={0,93},
-	title={\subcaption{\label{fig:lsm:2flavoreos_min}Parametrization of solutions}},
+	title={\subcaption{\label{fig:lsm:2-flavor-eos-min}Parametrization of solutions}},
 	legend cell align=right, legend pos=north west,
 ];
 \addplot+ [black, dashed] table [x=mub,y=sigma] {../code/data/2flaveos.dat};
@@ -518,7 +518,7 @@ Hopefully, this remark will save someone from enduring this painful realization 
 	xmin=600, xmax=1400,
 	%xmin=200, xmax=500, xtick distance=50,
 	%extra x ticks={325}, 
-	title={\subcaption{\label{fig:lsm:2flavoreos_density}Particle number densities}},
+	title={\subcaption{\label{fig:lsm:2-flavor-eos-density}Particle number densities}},
 	legend cell align=left, legend pos=north west,
 ];
 \addplot+ [red] table [x=mub,y=nu] {../code/data/2flaveos.dat}; \addlegendentry{up quarks};
@@ -530,7 +530,7 @@ Hopefully, this remark will save someone from enduring this painful realization 
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	%xmin=0, xmax=0.5, ymin=0, ymax=2, xtick distance=0.1,
 	xmin=0, xmax=1, ymin=0, ymax=5, xtick distance=0.1,
-	title={\subcaption{\label{fig:lsm:2flavoreos_eos}Equation of state}},
+	title={\subcaption{\label{fig:lsm:2-flavor-eos-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
 	declare function={
 		e0 = 4.266500881855305e+34; % for converting neutron star EOS
@@ -544,16 +544,16 @@ Hopefully, this remark will save someone from enduring this painful realization 
 \addlegendentry{$2$-flavor quark star};
 \end{groupplot}
 \end{tikzpicture}
-\caption{\label{fig:lsm:2flavoreos}%
-\subref{fig:lsm:2flavoreos_min} Potential-minimizing mean field parametrization,
-\subref{fig:lsm:2flavoreos_density} particle number densities and
-\subref{fig:lsm:2flavoreos_eos} equation of state
+\caption{\label{fig:lsm:2-flavor-eos}%
+\subref{fig:lsm:2-flavor-eos-min} Potential-minimizing mean field parametrization,
+\subref{fig:lsm:2-flavor-eos-density} particle number densities and
+\subref{fig:lsm:2-flavor-eos-eos} equation of state
 corresponding to the solution of the system of equations \eqref{eq:lsm:minsys}.
 \TODO{rewrite caption, compare with neutron star EOS!}
 }
 \end{figure}
 
-Doing things the right way, we end up with the results shown in \cref{fig:lsm:2flavoreos}, and in particular the equation of state in \cref{fig:lsm:2flavoreos_eos}.
+Doing things the right way, we end up with the results shown in \cref{fig:lsm:2-flavor-eos}, and in particular the equation of state in \cref{fig:lsm:2-flavor-eos-eos}.
 
 \TODO{crossover $\neq$ second-order phase transition. no $n$-th order phase transition, since $\pdv[n]{\omega}/{\avg{\sigma}}$ is not discontinuous for any $n$!. can determine critical $\mu$ by looking at inflection point of order-parameter $\avg{\sigma}$}
 
@@ -578,3 +578,44 @@ do I determine $\lambda P$ from
 	\frac{\epsilon_3(0)}{n_B} < \SI{930}{\mega\electronvolt} < \frac{\epsilon_2(0)}{n_B} .
 \end{equation}
 }
+
+\begin{figure}
+\centering
+\tikzsetnextfilename{2-flavor-mass-radius}
+\begin{tikzpicture}
+\begin{axis}[
+	width=15cm, height=12cm,
+	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for 2--flavor quark stars}, title style={yshift=2.0cm},
+	xmin=7, xmax=18, ymin=0.5, ymax=2, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
+	point meta=explicit, point meta min=32, point meta max=39,
+	colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+	declare function={
+		e0 = 4.266500881855304e+37;
+	},
+	legend pos=north east, legend cell align=right,
+]
+\tikzset{
+	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
+}
+\addplot+ [black, solid] {0};
+\addlegendentry{stable stars};
+\addplot+ [black, densely dashed] {0};
+\addlegendentry{unstable stars};
+
+\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat} node [Bpin, pos=0.82] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
+
+\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat} node [Bpin, pos=0.77] {$B = (\SI{34}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+
+\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat} node [Bpin, pos=0.70] {$B = (\SI{41}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+
+\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat} node [Bpin, pos=0.47] {$B = (\SI{48}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+
+% TODO: 27, 34, 41, 48
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:lsm:2-flavor-mass-radius}Mass-radius diagram for $2$--flavor quark stars.}
+\end{figure}
