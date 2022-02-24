@@ -48,27 +48,27 @@ def qf(σ, μu, μd, μe):
     ne =  1/(3*π**2) * np.real(np.power(μe**2-me**2+0j, 3/2))
     return +2/3*nu - 1/3*nd - 1*ne
 
-def eos(μB, B=0, name="ϵ", outfile="", plot=False, verbose=False):
-    σ, μu, μd, μe, ω = np.empty_like(μB), np.empty_like(μB), np.empty_like(μB), np.empty_like(μB), np.empty_like(μB)
+def eos(μ, B=0, name="ϵ", outfile="", plot=False, verbose=False):
+    σ, μu, μd, μe, ω = np.empty_like(μ), np.empty_like(μ), np.empty_like(μ), np.empty_like(μ), np.empty_like(μ)
 
-    for i in range(0, len(μB)):
-        μB0 = μB[i]
+    for i in range(0, len(μ)):
+        μ0 = μ[i]
         def system(σ_μe): # solve system {dω == 0, q == 0}
             σ, μe = σ_μe # unpack 2 variables
-            μu = μB0/3 - 2*μe/3
-            μd = μB0/3 + 1*μe/3
+            μu = μ0 - 1/2*μe
+            μd = 2*μ0 - μu
             dω = dωf(σ, μu, μd, μe)
             q  =  qf(σ, μu, μd, μe)
             return (dω, q)
         guess = (σ[i-1], μe[i-1]) if i > 0 else (fπ, 0) # guess root with previous solution (if any)
         sol = scipy.optimize.root(system, guess, method="hybr")
-        assert sol.success, f"{sol.message} (μB = {μB0})"
+        assert sol.success, f"{sol.message} (μ = {μ0})"
         σ0, μe0 = sol.x
-        μu0 = μB0/3 - 2*μe0/3
-        μd0 = μB0/3 + 1*μe0/3
+        μu0 = μ0 - 1/2*μe0
+        μd0 = 2*μ0 - μu0
         ω0 = ωf(σ0, μu0, μd0, μe0)
         σ[i], μu[i], μd[i], μe[i], ω[i] = σ0, μu0, μd0, μe0, ω0
-        if verbose: print(f"μB = {μB0} -> σ = {σ0}, μu = {μu0}, μd = {μd0}, μe = {μe0} -> ω = {ω0}")
+        if verbose: print(f"μ = {μ0} -> σ = {σ0}, μu = {μu0}, μd = {μd0}, μe = {μe0} -> ω = {ω0}")
 
     P = -(ω - ω[0])
     mq = g*σ
@@ -80,6 +80,8 @@ def eos(μB, B=0, name="ϵ", outfile="", plot=False, verbose=False):
     # TODO: bag constant
     nB = 1/3 * (nu + nd)
     ϵm = 0 + μu*nu + μd*nd + μe*ne # TODO: is this what "P = 0" means?
+    #plt.plot(P, (ϵ+P)/nB-930)
+    #plt.show()
     Bmin = scipy.optimize.root_scalar(scipy.interpolate.interp1d(P, (ϵ+P)/nB - 930), bracket=(0, 1e9), method="brentq").root
     print(f"B^(1/4) > {Bmin**(1/4)}")
     if B < Bmin:
@@ -109,23 +111,23 @@ def eos(μB, B=0, name="ϵ", outfile="", plot=False, verbose=False):
     ϵ  *= constants.fm**3 / constants.GeV # now in units GeV/fm^3
 
     if outfile != "":
-        cols  = (μB, σ, μu, μd, μe, nu, nd, ne, ϵ, P)
-        heads = ("mub", "sigma", "muu", "mud", "mue", "nu", "nd", "ne", "epsilon", "P")
+        cols  = (μ, σ, μu, μd, μe, nu, nd, ne, ϵ, P)
+        heads = ("mu", "sigma", "muu", "mud", "mue", "nu", "nd", "ne", "epsilon", "P")
         utils.writecols(cols, heads, outfile)
 
     if plot:
         fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 5))
         ax1.set_xlabel(r"$\mu_b$")
         ax1.set_ylabel(r"$\sigma$")
-        ax1.plot(μB, σ, "-k.")
-        ax1.plot(μB, μu, "-r.")
-        ax1.plot(μB, μd, "-g.")
-        ax1.plot(μB, μe, "-b.")
+        ax1.plot(μ, σ, "-k.")
+        ax1.plot(μ, μu, "-r.")
+        ax1.plot(μ, μd, "-g.")
+        ax1.plot(μ, μe, "-b.")
         ax2.set_xlabel(r"$\mu_b$")
         ax2.set_ylabel(r"$n$")
-        ax2.plot(μB, nu, "-r.")
-        ax2.plot(μB, nd, "-g.")
-        ax2.plot(μB, ne, "-b.")
+        ax2.plot(μ, nu, "-r.")
+        ax2.plot(μ, nd, "-g.")
+        ax2.plot(μ, ne, "-b.")
         ax3.set_xlabel(r"$P$")
         ax3.set_ylabel(r"$\epsilon$")
         ax3.plot(P, ϵ, "-k.")
@@ -160,14 +162,14 @@ if __name__ == "__main__":
     utils.writecols([μc, σc, list(np.array(ωc)/100**4), μc, list(σ0), list(ω0/100**4)], ["mu", "sigma", "omega", "mu0", "sigma0", "omega0"], "data/2flavpot.dat", skipevery=len(μ))
 
     # plot equation of state
-    μB = np.linspace(0, 2000, 250)[1:]
-    ϵ = eos(μB, B=0, plot=True, outfile="data/2flaveos.dat", verbose=True)
+    μ = np.linspace(0, 1000, 250)[1:]
+    ϵ = eos(μ, B=0, plot=True, outfile="data/2flaveos.dat", verbose=True)
 
     # solve TOV equation for different bag pressures
-    μB = np.concatenate([np.linspace(850, 1500, 200), np.linspace(1500, 20000, 100)])
+    μ = np.concatenate([np.linspace(0, 600, 200)[1:], np.linspace(600, 5000, 100)])
     opts = { "tolD": 0.25, "maxdr": 1e-2, "visual": False }
     for B14 in [27, 34, 41, 48, 55, 62, 69]:
         outfile = f"data/quarkstar2f_B14_{B14}.dat"
         print(f"B = {B14}^4, outfile = {outfile}")
-        ϵ = eos(μB, B=B14**4, name=f"ϵ2f", plot=False, verbose=False)
+        ϵ = eos(μ, B=B14**4, name=f"ϵ2f", plot=False, verbose=False)
         massradiusplot(ϵ, (1e-5, 1e1), **opts, nmodes=3, outfile=outfile)

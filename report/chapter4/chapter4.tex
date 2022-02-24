@@ -495,35 +495,37 @@ Hopefully, this remark will save someone from enduring this painful realization 
 	minor tick num=9,
 ]
 \nextgroupplot[
-	xlabel={$\mu_B \, / \, \si{\mega\electronvolt}$},
+	xlabel={$\mu \, / \, \si{\mega\electronvolt}$},
 	%ylabel={$\avg{\sigma} \, / \, \si{\mega\electronvolt}$},
-	xmin=600, xmax=1400, 
+	xmin=0, xmax=700, ytick distance=100,
+	%xmin=600, xmax=1400, 
 	%ymin=-10, ymax=100, 
 	%xtick={20,40,60,80,100}, ytick distance=20,
 	%extra x ticks={325}, extra y ticks={0,93},
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-min}Parametrization of solutions}},
 	legend cell align=right, legend pos=north west,
 ];
-\addplot+ [black, dashed] table [x=mub,y=sigma] {../code/data/2flaveos.dat};
+\addplot+ [black, dashed] table [x=mu,y=sigma] {../code/data/2flaveos.dat};
 \addlegendentry{$\avg{\sigma} \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red   ] table [x=mub,y=muu  ] {../code/data/2flaveos.dat};
+\addplot+ [red   ] table [x=mu,y=muu  ] {../code/data/2flaveos.dat};
 \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [green ] table [x=mub,y=mud  ] {../code/data/2flaveos.dat};
+\addplot+ [green ] table [x=mu,y=mud  ] {../code/data/2flaveos.dat};
 \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [black ] table [x=mub,y=mue  ] {../code/data/2flaveos.dat};
+\addplot+ [black ] table [x=mu,y=mue  ] {../code/data/2flaveos.dat};
 \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
 
 \nextgroupplot[
-	xlabel={$\mu_B \, / \, \si{\mega\electronvolt}$}, ylabel={$n \, / \, (1/\si{\femto\meter\cubed})$},
-	xmin=600, xmax=1400,
+	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n \, / \, (1/\si{\femto\meter\cubed})$},
+	xmin=0, xmax=700, ytick distance=1,
+	%xmin=600, xmax=1400,
 	%xmin=200, xmax=500, xtick distance=50,
 	%extra x ticks={325}, 
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-density}Particle number densities}},
 	legend cell align=left, legend pos=north west,
 ];
-\addplot+ [red] table [x=mub,y=nu] {../code/data/2flaveos.dat}; \addlegendentry{up quarks};
-\addplot+ [green] table [x=mub,y=nd] {../code/data/2flaveos.dat}; \addlegendentry{down quarks};
-\addplot+ [black] table [x=mub,y=ne] {../code/data/2flaveos.dat}; \addlegendentry{electrons};
+\addplot+ [red] table [x=mu,y=nu] {../code/data/2flaveos.dat}; \addlegendentry{up quarks};
+\addplot+ [green] table [x=mu,y=nd] {../code/data/2flaveos.dat}; \addlegendentry{down quarks};
+\addplot+ [black] table [x=mu,y=ne] {../code/data/2flaveos.dat}; \addlegendentry{electrons};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -558,10 +560,6 @@ Doing things the right way, we end up with the results shown in \cref{fig:lsm:2-
 \TODO{crossover $\neq$ second-order phase transition. no $n$-th order phase transition, since $\pdv[n]{\omega}/{\avg{\sigma}}$ is not discontinuous for any $n$!. can determine critical $\mu$ by looking at inflection point of order-parameter $\avg{\sigma}$}
 
 \TODO{add bag constant, because $3$-flavor quark matter should be absolutely stable (i.e. more stable than vacuum? hypothesis) when we have the $s$-quark. this criterion determines the bag constant window! See (digital) meeting 6 references JO sent me.}
-
-\TODO{should get $m_\sigma = 800$ to work! fix parameter choices. so far I have only gotten $m_\sigma = \SI{900}{\mega\electronvolt}$ to work.}
-
-\TODO{we have $\odv{\epsilon}/{P} < 1$, contradicting stability, for larger $P$. is this where the bag constant comes in?}
 
 \TODO{why renormalize vacuum? seems like it only adds minor corrections to grand potential?}
 
@@ -614,7 +612,6 @@ do I determine $\lambda P$ from
 \addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat} node [Bpin, pos=0.47] {$B = (\SI{48}{\mega\electronvolt})^4$};
 \addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
 
-% TODO: 27, 34, 41, 48
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-mass-radius}Mass-radius diagram for $2$--flavor quark stars.}
