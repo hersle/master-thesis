@@ -28,18 +28,23 @@ g  = mq0 / fπ
 # symbolic complex expression for ω and dω/dσ
 σ, μu, μd, μe = sp.symbols("σ μ_u μ_d μ_e", complex=True)
 mq  = g*σ
-ω0  =  1/2*m2*σ**2 + λ/24*σ**4 - h*σ + Nc*Nf*mq**4/(16*π**2)*(3/2+sp.log(Λ2/mq**2))
-ωu  = -Nc/(24*π**2) * ((2*μu**2-5*mq**2)*μu*sp.sqrt(μu**2-mq**2) + 3*mq**4*sp.asinh(sp.sqrt(μu**2/mq**2-1)))
-ωd  = -Nc/(24*π**2) * ((2*μd**2-5*mq**2)*μd*sp.sqrt(μd**2-mq**2) + 3*mq**4*sp.asinh(sp.sqrt(μd**2/mq**2-1)))
-ωe  =  -1/(24*π**2) * ((2*μe**2-5*me**2)*μe*sp.sqrt(μe**2-me**2) + 3*me**4*sp.asinh(sp.sqrt(μe**2/me**2-1)))
+ω0  = 1/2*m2*σ**2 + λ/24*σ**4 - h*σ + Nc*Nf*mq**4/(16*π**2)*(3/2+sp.log(Λ2/mq**2))
+ωu  = -Nc/(24*π**2)*((2*μu**2-5*mq**2)*μu*sp.sqrt(μu**2-mq**2)
+                     +3*mq**4*sp.asinh(sp.sqrt(μu**2/mq**2-1)))
+ωd  = -Nc/(24*π**2)*((2*μd**2-5*mq**2)*μd*sp.sqrt(μd**2-mq**2)
+                     +3*mq**4*sp.asinh(sp.sqrt(μd**2/mq**2-1)))
+ωe  =  -1/(24*π**2)*((2*μe**2-5*me**2)*μe*sp.sqrt(μe**2-me**2)
+                     +3*me**4*sp.asinh(sp.sqrt(μe**2/me**2-1)))
 ωc  = ω0 + ωu + ωd + ωe
 dωc = sp.diff(ωc, σ)
 
-# numeric real expressions for ω and dω/dσ
-ωcf  = sp.lambdify((σ, μu, μd, μe),  ωc, "numpy") # complex function  ωcf(σ, μu, μd, μe)
-dωcf = sp.lambdify((σ, μu, μd, μe), dωc, "numpy") # complex function dωcf(σ, μu, μd, μe)
-def  ωf(σ, μu, μd, μe): return np.real( ωcf(σ+0j, μu+0j, μd+0j, μe+0j)) # real function ωf(σ, μu, μd, μe)
-def dωf(σ, μu, μd, μe): return np.real(dωcf(σ+0j, μu+0j, μd+0j, μe+0j)) # real function ωf(σ, μu, μd, μe)
+# numeric complex functions ωcf(σ, μu, μd, μe) and dωcf(σ, μu, μd, μe)
+ωcf  = sp.lambdify((σ, μu, μd, μe),  ωc, "numpy")
+dωcf = sp.lambdify((σ, μu, μd, μe), dωc, "numpy")
+
+# numeric real functions ωf(σ, μu, μd, μe) and dωf(σ, μu, μd, μe)
+def  ωf(σ, μu, μd, μe): return np.real( ωcf(σ+0j, μu+0j, μd+0j, μe+0j))
+def dωf(σ, μu, μd, μe): return np.real(dωcf(σ+0j, μu+0j, μd+0j, μe+0j))
 
 def qf(σ, μu, μd, μe):
     mq = g*σ
@@ -49,7 +54,11 @@ def qf(σ, μu, μd, μe):
     return +2/3*nu - 1/3*nd - 1*ne
 
 def eos(μ, B=0, name="ϵ", outfile="", plot=False, verbose=False):
-    σ, μu, μd, μe, ω = np.empty_like(μ), np.empty_like(μ), np.empty_like(μ), np.empty_like(μ), np.empty_like(μ)
+    σ  = np.empty_like(μ)
+    μu = np.empty_like(μ)
+    μd = np.empty_like(μ)
+    μe = np.empty_like(μ)
+    ω  = np.empty_like(μ) 
 
     for i in range(0, len(μ)):
         μ0 = μ[i]
@@ -60,7 +69,7 @@ def eos(μ, B=0, name="ϵ", outfile="", plot=False, verbose=False):
             dω = dωf(σ, μu, μd, μe)
             q  =  qf(σ, μu, μd, μe)
             return (dω, q)
-        guess = (σ[i-1], μe[i-1]) if i > 0 else (fπ, 0) # guess root with previous solution (if any)
+        guess = (σ[i-1], μe[i-1]) if i > 0 else (fπ, 0) # use previous solution
         sol = scipy.optimize.root(system, guess, method="hybr")
         assert sol.success, f"{sol.message} (μ = {μ0})"
         σ0, μe0 = sol.x
@@ -68,7 +77,8 @@ def eos(μ, B=0, name="ϵ", outfile="", plot=False, verbose=False):
         μd0 = 2*μ0 - μu0
         ω0 = ωf(σ0, μu0, μd0, μe0)
         σ[i], μu[i], μd[i], μe[i], ω[i] = σ0, μu0, μd0, μe0, ω0
-        if verbose: print(f"μ = {μ0} -> σ = {σ0}, μu = {μu0}, μd = {μd0}, μe = {μe0} -> ω = {ω0}")
+        if verbose:
+            print(f"μ = {μ0}, σ = {σ0}, μu = {μu0}, μd = {μd0}, μe = {μe0} -> ω = {ω0}")
 
     P = -(ω - ω[0])
     mq = g*σ
@@ -80,12 +90,9 @@ def eos(μ, B=0, name="ϵ", outfile="", plot=False, verbose=False):
     # TODO: bag constant
     nB = 1/3 * (nu + nd)
     ϵm = 0 + μu*nu + μd*nd + μe*ne # TODO: is this what "P = 0" means?
-    #plt.plot(P, (ϵ+P)/nB-930)
-    #plt.show()
-    Bmin = scipy.optimize.root_scalar(scipy.interpolate.interp1d(P, (ϵ+P)/nB - 930), bracket=(0, 1e9), method="brentq").root
-    print(f"B^(1/4) > {Bmin**(1/4)}")
-    if B < Bmin:
-        print(f"WARNING: requested bag constant B = {B} is less than the minimum stable value B = {Bmin}")
+    f = scipy.interpolate.interp1d(P, (ϵ+P)/nB - 930)
+    Bmin = scipy.optimize.root_scalar(f, bracket=(0, 1e9), method="brentq").root
+    print(f"bag constant lower bound: B^(1/4) > {Bmin**(1/4)} MeV")
     ϵ += B
     P -= B
 
@@ -144,7 +151,8 @@ if __name__ == "__main__":
     ω0 = np.empty_like(μ)
     for i in range(0, len(μ)):
         μ0 = μ[i]
-        sol = scipy.optimize.minimize_scalar(ωf, bounds=(0, 100), args=(μ0, μ0, 0), method="bounded")
+        def ωf2(σ): return ωf(σ, μ0, μ0, 0)
+        sol = scipy.optimize.minimize_scalar(ωf2, bounds=(0, 100), method="bounded")
         assert sol.success, f"{sol.message} (μ = {μ0})"
         σ0[i] = sol.x
         ω0[i] = ωf(σ0[i], μ0, μ0, 0)
@@ -159,7 +167,9 @@ if __name__ == "__main__":
             μc.append(μ[j])
             σc.append(σ[i])
             ωc.append(ω[j,i])
-    utils.writecols([μc, σc, list(np.array(ωc)/100**4), μc, list(σ0), list(ω0/100**4)], ["mu", "sigma", "omega", "mu0", "sigma0", "omega0"], "data/2flavpot.dat", skipevery=len(μ))
+    cols = [μc, σc, list(np.array(ωc)/100**4), μc, list(σ0), list(ω0/100**4)]
+    heads = ["mu", "sigma", "omega", "mu0", "sigma0", "omega0"]
+    utils.writecols(cols, heads, "data/2flavpot.dat", skipevery=len(μ))
 
     # plot equation of state
     μ = np.linspace(0, 1000, 250)[1:]
