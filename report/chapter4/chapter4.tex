@@ -4,6 +4,36 @@
 
 \TODO{Recapitulate main points of project thesis:}
 
+In this chapter, we will study a hypothetical class of compact stars known as quark stars.
+Let us summarize the main ingredients in this work.
+
+\subsubsection{The Tolman-Oppenheimer-Volkoff equation}
+
+We will find mass-radius solutions to the Tolman-Oppenheimer-Volkoff equation
+\begin{subequations}
+\begin{align}
+	\odv{P}{r} &= -\frac{G m \epsilon(P)}{r^2 c^2} \left( 1 + \frac{P}{\epsilon(P)} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \\
+	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon(P)}{c^2} ,
+\end{align}
+\end{subequations}
+that we derived in \cref{chap:tov}.
+To do so, we integrate it from the center with $m(0) = 0$ and different central pressures $P(0) = P_c$ to the surface defined by $P(R) = 0$ and with corresponding mass $m(R) = M$.
+
+\subsubsection{Equation of state from the grand canonical ensemble}
+
+We will derive equations of state for quark matter by studying effective models of quantum chromodynamics in the zero-temperature approximation.
+As we showed in \cref{chap:tft}, the partition function can be calculated as
+\begin{equation}
+	Z = \trace e^{-\beta (\hat{H} - \mu \hat{N})} = \oint \dif \phi e^{\int_0^\beta \dif \tau \int_V \dif^3 x \, \lagr_E } = e^{-\beta V \Omega} .
+\end{equation}
+Having found the partition function, we can calculate the
+\begin{align}
+	\Omega = -\frac{\log Z}{\beta V}, \\
+	n = -\pdv{\Omega}{\mu}, \\
+	P = -\Omega, \\
+	\epsilon = -P + \mu n
+\end{align}
+
 \begin{itemize}
 \item Tolman-Oppenheimer-Volkoff equation
 \item Grand canonical ensemble / partition function: $Z = e^{-\beta V \Omega}$, $n = -\pdv{\Omega}/{\Omega}$, $P = -\Omega$, $\epsilon = -P + \mu n$
@@ -11,19 +41,14 @@
 \item Stability/unstability of 2-flavor/3-flavor quark matter (new, for finding bag constant $B$, Bodmer-Witten conjecture)
 \end{itemize}
 
-\begin{subequations}
-\begin{align}
-	\odv{P}{r} &= -\frac{G m \epsilon(P)}{r^2 c^2} \left( 1 + \frac{P}{\epsilon(P)} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \\
-	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon(P)}{c^2} ,
-	%\odv{\alpha}{r} &= -\frac{1}{\epsilon+P} \odv{P}{r} , \label{eq:tov:tovsys_alpha} \\
-	%\epsilon &= \epsilon(P) . \label{eq:tov:tovsys_eos}
-\end{align}
-\end{subequations}
 
-
-Bodmer-Witten conjecture
+Determine bag constant by:
+$2$--flavor quark matter should be unstable,
+$3$--flavor quark matter should be stable (Bodmer-Witten conjecture),
+compared to iron--$56$ with $E/N_B = \epsilon/n_B = \SI{930}{\mega\electronvolt}$.
 \begin{equation}
 	\frac{\epsilon_3(0)}{n_B} < \SI{930}{\mega\electronvolt} < \frac{\epsilon_2(0)}{n_B} .
+\label{eq:lsm:bag_stability}
 \end{equation}
 
 \TODO{titles}
@@ -597,11 +622,10 @@ More generally, we can allow the pressure to be modified by a \emph{bag constant
 If vacuum has zero pressure, then subtracting some pressure from the quarks is equivalent to confining them in a ``bag''.
 Which values of $B$ should we use?
 We have that $P(\mu,B) = P(\mu)-B = 0$ parametrizes bag constants $B = P(\mu)$ by the chemical potential $\mu$.
-Since two-flavor quark matter is not observed in nature, we will require that quark matter is unstable with respect to $^56\text{Fe}$ with $E/N_B = \SI{930}{\mega\electronvolt}$.
+Since two-flavor quark matter is not observed in nature, we will require that quark matter is unstable with respect to $^{56}\text{Fe}$ with $E/N_B = \SI{930}{\mega\electronvolt}$.
+Solving the $2$--flavor part of the stability criterion \eqref{eq:lsm:bag_stability} numerically yields the lower bag pressure bound
 \begin{equation}
-	\frac{E_2(P=0)}{N_B} = \frac{\epsilon_2(P=0)}{n_B} = \frac{\sum_i \mu_i \, n_i}{n_B} > \SI{930}{\mega\electronvolt}
-	\quad \text{yields} \quad
-	B > (\SI{27.2}{\mega\electronvolt})^4
+	B^{1/4} > \SI{27.2}{\mega\electronvolt}.
 \end{equation}
 
 \begin{figure}
