@@ -8,7 +8,7 @@
 \item Tolman-Oppenheimer-Volkoff equation
 \item Grand canonical ensemble / partition function: $Z = e^{-\beta V \Omega}$, $n = -\pdv{\Omega}/{\Omega}$, $P = -\Omega$, $\epsilon = -P + \mu n$
 \item Charge neutrality and chemical equilibrium (new)
-\item Stability/unstability of 2-flavor/3-flavor quark matter (new, for finding bag constant $B$)
+\item Stability/unstability of 2-flavor/3-flavor quark matter (new, for finding bag constant $B$, Bodmer-Witten conjecture)
 \end{itemize}
 
 \begin{subequations}
@@ -19,6 +19,12 @@
 	%\epsilon &= \epsilon(P) . \label{eq:tov:tovsys_eos}
 \end{align}
 \end{subequations}
+
+
+Bodmer-Witten conjecture
+\begin{equation}
+	\frac{\epsilon_3(0)}{n_B} < \SI{930}{\mega\electronvolt} < \frac{\epsilon_2(0)}{n_B} .
+\end{equation}
 
 \TODO{titles}
 
@@ -397,7 +403,16 @@ With electrons, the grand potential \eqref{eq:lsm:grand_potential} becomes
 \end{split}
 \label{eq:lsm:grand_potential}
 \end{equation}
-Remember that the effective quark mass $m_q = g \avg{\sigma}$ also dependens on the field!
+The particle densities corresponding to the grand potential \eqref{eq:lsm:grand_potential} are
+\begin{subequations}
+\begin{align}
+	n_u &= -\pdv{\Omega}{\mu_u} = \frac{N_c}{3 \pi^2} \Big( \mu_u^2 - m_q^2 \Big)^{\frac32}, \\
+	n_d &= -\pdv{\Omega}{\mu_d} = \frac{N_c}{3 \pi^2} \Big( \mu_d^2 - m_q^2 \Big)^{\frac32}, \\
+	n_e &= -\pdv{\Omega}{\mu_e} = \frac{  1}{3 \pi^2} \Big( \mu_e^2 - m_e^2 \Big)^{\frac32}.
+\end{align}%
+\label{eq:lsm:particle_densities}%
+\end{subequations}%
+Remember that the effective quark mass $m_q = g \avg{\sigma}$ also depends on the field!
 In addition, we implicitly take the real part of every square root $\sqrt{\mu^2 - m^2}$, or equivalently consider them as step functions $\Theta(\mu-m) \sqrt{\mu^2 - m^2}$.
 The rigorous understanding of this can be traced back to the zero-temperature calculation of the pressure \eqref{eq:nstars:pressure_zeroT}, related to the grand potential density by $\Omega = -P$, in which the integrand contained a step function $\Theta(\mu-E(p)) = \Theta(\mu-\sqrt{m^2+p^2})$ and we took for granted that $\mu > m$.
 In the opposite case $\mu < m$, the step function would cause the whole integral to vanish.
@@ -446,13 +461,15 @@ In the opposite case $\mu < m$, the step function would cause the whole integral
 }
 \end{figure}
 
-We determine the mean field $\avg{\sigma}$ by requiring that it minimizes the grand potential according to
+We require that the mean field $\avg{\sigma}$ is a stable minimum of the grand potential,
+so we determine it by solving
 \begin{equation}
 	\pdv{\Omega}{\avg{\sigma}} = 0.
 \label{eq:lsm:potential_minimize}
 \end{equation}
-To get a feeling for the general shape of the potential, we visualize the special case with $\mu_e = 0$ and $\mu_u = \mu_d = \mu$ in \cref{fig:lsm:grand-potential-nonneutral}.
-In this case, the potential $\Omega(\avg{\sigma},\mu)$ has only two arguments, and minimizing the potential yields a curve $[\avg{\sigma}(\mu), \mu, \Omega(\avg{\sigma},\mu))]$ through three-dimensional $\avg{\sigma}-\mu-\Omega$--space.
+
+To get a feeling for the general shape of the grand potential \eqref{eq:lsm:grand_potential}, we visualize the special case with $\mu_e = 0$ and $\mu_u = \mu_d = \mu$ in \cref{fig:lsm:grand-potential-nonneutral}.
+In this case, $\Omega(\avg{\sigma},\mu)$ has only two arguments, and the minimization condition \eqref{eq:lsm:potential_minimize} then leaves one free argument $\mu$ that parametrizes the other variable $\avg{\sigma}(\mu)$ and the grand potential $\Omega(\avg{\sigma}(\mu),\mu)$, as shown by the blue line in the figure.
 From the figure, we see that:
 \begin{itemize}
 \item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$, no square roots have real parts, so we are in vacuum with minimum at $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$, as we required in equation \eqref{eq:lsm:potential_vacuum_minimum}.
@@ -462,17 +479,17 @@ From the figure, we see that:
 \item For $\mu \gtrsim \SI{400}{\mega\electronvolt}$, the minimum approaches $\avg{\sigma} \rightarrow 0$ asymptotically, but never reaches it.
 \end{itemize}
 Our objective, however, is to determine the equation of state $\epsilon(P)$ in the general case where we take the conditions of charge neutrality \eqref{eq:lsm:charge_neutrality} and $\beta$-equilibrium \eqref{eq:lsm:chemical_equilibrium} into account, in addition to the condition of potential minimization \eqref{eq:lsm:potential_minimize}.
-Using that up and down quarks have respective charges $+(2/3)e$ and $-(1/3)e$ and counting color degeneracy, we should now solve the \emph{system} of equations
+Using the densities \eqref{eq:lsm:particle_densities} and that up quarks, down quarks and electrons have respective charges $+(2/3)e$, $-(1/3)e$ and $-e$, we should now solve the \emph{system} of equations
 \begin{subequations}
 \begin{align}
 	0 &= \pdv{\Omega}{\avg{\sigma}} , \label{eq:lsm:minsys_min} \\
-	0 &= \frac23 N_c \left( \mu_u^2 - m_q^2 \right)^{3/2} - \frac13 N_c \left( \mu_d^2 - m_q^2 \right)^{3/2} - \left( \mu_e^2 - m_e^2 \right)^{3/2} , \label{eq:lsm:minsys_charge} \\
+	0 &= +\frac23 n_u - \frac13 n_d - n_e , \label{eq:lsm:minsys_charge} \\
 	\mu_d &= \mu_u + \mu_e . \label{eq:lsm:minsys_equilibrium}
 \end{align}%
 \label{eq:lsm:minsys}%
 \end{subequations}%
 In this case $\Omega(\avg{\sigma},\mu_u,\mu_d,\mu_e)$ is a function of \emph{four} arguments,
-constrained by a system of \emph{three} equations,
+constrained by \emph{three} equations,
 leaving \emph{one} free argument that parametrizes the others and thus the grand potential, pressure and energy density,
 from which it can be eliminated to yield the equation of state.
 
@@ -484,58 +501,6 @@ Through trial and error, we have found that we get a well-defined parametrizatio
 \begin{equation}
 	\mu = \frac12 (\mu_u + \mu_d) .
 \end{equation}
-
-The numerical solution of the system \eqref{eq:lsm:minsys} is described in \TODO{ref appendix}.
-This yields the parametrizations $\avg{\sigma}(\mu)$, $\mu_u(\mu)$, $\mu_d(\mu)$ and $\mu_e(\mu)$ shown in \cref{fig:lsm:2-flavor-eos-parametrization}.
-From these parametrizations, we compute the particle number densities \TODO{ref some general formula instead, from intro?}
-\begin{equation}
-	n_u = \frac{N_c}{3\pi^2} ( \mu_u^2-m_q   )^{3/2}, \quad
-	n_d = \frac{N_c}{3\pi^2} ( \mu_d^2-m_q^2 )^{3/2}  \quad \text{and} \quad
-	n_e = \frac{1}{3\pi^2}   ( \mu_e^2-m_e^2 )^{3/2}
-\end{equation}
-shown in \cref{fig:lsm:2-flavor-eos-density}.
-Finally, we compute the pressure $P(\mu) = -[\Omega(\mu) - \Omega(\mu<\SI{300}{\mega\electronvolt})]$ relative to vacuum and the energy density $\epsilon(\mu) = -P(\mu) + \sum_i \mu_i(\mu) \, n_i(\mu)$,
-then at last eliminate the free parameter $\mu$ to obtain the equation of state $\epsilon(P)$ in \cref{fig:lsm:2-flavor-eos-eos}.
-
-\TODO{bag constant}
-
-With the equation of state, we now solve the Tolman-Oppenheimer-Volkoff equations \TODO{new ref?} with multiple bag pressures above the lower bound \TODO{ref}.
-This yields the mass-radius curve parametrized by central pressure in \cref{fig:lsm:2-flavor-mass-radius}.
-The $2$--flavor quark stars have maximum masses in the range $1.7 M_\odot < M_\text{max} < 1.8 M_\odot$, depending on the precise bag constant.
-
-We now shift the grand potential
-\begin{equation}
-	\Omega'(\mu_u) \rightarrow \Omega'(\mu_u) - \Omega'(\mu_u<\SI{300}{\mega\electronvolt})
-\end{equation}
-so that it is measured relative to vacuum.
-Glancing back at equation \eqref{eq:tft:partition_function} and \eqref{eq:tft:average_quantities}, we now compute the pressure
-\begin{equation}
-	P(\mu_u) = -\Omega'(\mu_u)
-\end{equation}
-relative to vacuum, and the corresponding energy density
-\begin{equation}
-	\epsilon(\mu_u) = -P(\mu_u) + \sum_{i=\{u,d,e\}} \mu_i n_i(\mu_u)
-\end{equation}
-with the zero-temperature densities \eqref{eq:nstars:density_zeroT} that we calculated in equation \eqref{eq:nstars:density_zeroT},
-\begin{subequations}
-\begin{align}
-	n_u(\mu_u) &= \frac{N_c}{3\pi^2} \Big[ \mu_u^2-m_q^2\big(\avg{\sigma}(\mu_u)\big) \Big]^{3/2}, \\
-	n_d(\mu_u) &= \frac{N_c}{3\pi^2} \Big[ \mu_d^2(\mu_u)-m_q^2\big(\avg{\sigma}(\mu_u)\big) \Big]^{3/2}, \\
-	n_e(\mu_u) &= \frac{1}{3\pi^2} \Big[ \mu_e^2(\mu_u)-m_e^2 \Big]^{3/2}.
-\end{align}
-\end{subequations}
-Then we finally eliminate $\mu_u$ to produce the equation of state $\epsilon(P)$.
-The numerical implementation of this whole procedure is described in \TODO{add and ref to appendix}.
-
-Having described we \emph{do} and \emph{should do}, let us also remark on what we \emph{did} and \emph{shouldn't do}.
-A tempting and similar approach to minimizing $\Omega$ with respect to $\avg{\sigma}$ is to rather construct the potential $\Omega'(\avg{\sigma}, \mu_u) = \Omega(\avg{\sigma}, \mu_u, \mu_d(\mu_u,\avg{\sigma}), \mu_e(\mu_u,\avg{\sigma}))$, then minimize $\Omega'$ with respect to $\avg{\sigma}$.
-In this approach, we could create two functions $\mu_{d/e}(\avg{\sigma},\mu_u)$ that calculate the two remaining chemical potentials by solving the charge neutrality condition \eqref{eq:lsm:minsys_charge} with a simple scalar root finder, both of which would be invoked upon evaluating the new potential $\Omega'(\avg{\sigma},\mu_u)$.
-This sounds really nice, because we could then use a simple minimization algorithm on $\Omega'$, sparing us from calculating $\pdv{\Omega}/{\avg{\sigma}}$ and ensuring that we always find \emph{minima}, instead of maxima that we can obtain when solving $\pdv{\Omega}/{\avg{\sigma}}=0$.
-In effect, we would completely circumvent the need of ever solving a \emph{system} of equations!
-Even better, the two-dimensional potential $\Omega'$ would be possible to visualize as in \cref{fig:lsm:grand-potential-nonneutral}, allowing us to verify our solution visually.
-Unfortunately, $\pdv{\Omega'}/{\avg{\sigma}} \neq \pdv{\Omega}/{\avg{\sigma}}$, because the two differs by terms arising from the chain rule, so this approach is different and -- like many nice-sounding things -- \emph{wrong}!
-The cause of this source of confusion is that \emph{the charge neutrality condition \eqref{eq:lsm:minsys_charge} depends on the same variable that the potential should be minimized with respect to.}
-Hopefully, this remark will save someone from enduring this painful realization again.
 
 \begin{figure}
 \centering
@@ -609,27 +574,35 @@ corresponding to the solution of the system of equations \eqref{eq:lsm:minsys}.
 }
 \end{figure}
 
-Doing things the right way, we end up with the results shown in \cref{fig:lsm:2-flavor-eos}, and in particular the equation of state in \cref{fig:lsm:2-flavor-eos-eos}.
-
-\TODO{crossover $\neq$ second-order phase transition. no $n$-th order phase transition, since $\pdv[n]{\Omega}/{\avg{\sigma}}$ is not discontinuous for any $n$!. can determine critical $\mu$ by looking at inflection point of order-parameter $\avg{\sigma}$}
-
-\TODO{add bag constant, because $3$-flavor quark matter should be absolutely stable (i.e. more stable than vacuum? hypothesis) when we have the $s$-quark. this criterion determines the bag constant window! See (digital) meeting 6 references JO sent me.}
-
-\TODO{why renormalize vacuum? seems like it only adds minor corrections to grand potential?}
-
-\TODO{
-do I determine $\lambda P$ from
+The numerical solution of the system \eqref{eq:lsm:minsys} is described in \TODO{ref appendix}, and the results are shown in \cref{fig:lsm:2-flavor-eos}.
+\Cref{fig:lsm:2-flavor-eos-parametrization} shows the parametrization of the four arguments $\avg{\sigma}(\mu)$, $\mu_u(\mu)$, $\mu_d(\mu)$ and $\mu_e(\mu)$.
+From these parametrizations, we compute the particle number densities \eqref{eq:lsm:particle_densities} in \cref{fig:lsm:2-flavor-eos-density}.
+Finally, from the parametrizations and densities, we compute the pressure
 \begin{equation}
-	\avg{\sigma}_\text{min} = f_\pi = \frac{\sqrt{6} m}{\sqrt{\lambda}} = \frac{\sqrt{6} m}{\sqrt{\lambda_P \left( 1 + \frac{\delta \lambda}{\lambda_p} \right)}} \taylor \frac{\sqrt{6} m}{\lambda_P}
+	P(\mu) = -\Big[\Omega(\mu) - \Omega(\mu<\SI{300}{\mega\electronvolt})\Big]
 \end{equation}
-???
-}
-
-\TODO{two-flvaor quark matter is unstable. Bodmer-Witten conjecture: three-flavor quark matter stable. this gives the bag window for $B$:
+relative to vacuum and with a bag constant $B$, and the energy density
 \begin{equation}
-	\frac{\epsilon_3(0)}{n_B} < \SI{930}{\mega\electronvolt} < \frac{\epsilon_2(0)}{n_B} .
+	\epsilon(\mu) = -P(\mu) + \sum_i \mu_i(\mu) \, n_i(\mu) ,
 \end{equation}
-}
+then at last eliminate the free parameter $\mu$ to find the equation of state $\epsilon(P)$ in \cref{fig:lsm:2-flavor-eos-eos}.
+
+\TODO{bag constant}
+
+More generally, we can allow the pressure to be modified by a \emph{bag constant} $B$:
+\begin{equation}
+	P(\mu,B) = P(\mu) - B, \quad
+	\epsilon(\mu,B) = \epsilon(\mu) + B .
+\end{equation}
+If vacuum has zero pressure, then subtracting some pressure from the quarks is equivalent to confining them in a ``bag''.
+Which values of $B$ should we use?
+We have that $P(\mu,B) = P(\mu)-B = 0$ parametrizes bag constants $B = P(\mu)$ by the chemical potential $\mu$.
+Since two-flavor quark matter is not observed in nature, we will require that quark matter is unstable with respect to $^56\text{Fe}$ with $E/N_B = \SI{930}{\mega\electronvolt}$.
+\begin{equation}
+	\frac{E_2(P=0)}{N_B} = \frac{\epsilon_2(P=0)}{n_B} = \frac{\sum_i \mu_i \, n_i}{n_B} > \SI{930}{\mega\electronvolt}
+	\quad \text{yields} \quad
+	B > (\SI{27.2}{\mega\electronvolt})^4
+\end{equation}
 
 \begin{figure}
 \centering
@@ -670,3 +643,25 @@ do I determine $\lambda P$ from
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-mass-radius}Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \TODO{ref} with the equation of state \TODO{ref} for $2$--flavor quark star with multiple bag constants $B$.}
 \end{figure}
+
+With the equation of state, we now solve the Tolman-Oppenheimer-Volkoff equations \TODO{new ref?} with multiple bag pressures above the lower bound \TODO{ref}.
+This yields the mass-radius curve parametrized by central pressure in \cref{fig:lsm:2-flavor-mass-radius}.
+The $2$--flavor quark stars have maximum masses in the range $1.7 M_\odot < M_\text{max} < 1.8 M_\odot$, depending on the precise bag constant.
+
+Having described we \emph{do} and \emph{should do}, let us also remark on what we \emph{did} and \emph{shouldn't do}.
+A tempting and similar approach to minimizing $\Omega$ with respect to $\avg{\sigma}$ is to rather construct the potential $\Omega'(\avg{\sigma}, \mu_u) = \Omega(\avg{\sigma}, \mu_u, \mu_d(\mu_u,\avg{\sigma}), \mu_e(\mu_u,\avg{\sigma}))$, then minimize $\Omega'$ with respect to $\avg{\sigma}$.
+In this approach, we could create two functions $\mu_{d/e}(\avg{\sigma},\mu_u)$ that calculate the two remaining chemical potentials by solving the charge neutrality condition \eqref{eq:lsm:minsys_charge} with a simple scalar root finder, both of which would be invoked upon evaluating the new potential $\Omega'(\avg{\sigma},\mu_u)$.
+This sounds really nice, because we could then use a simple minimization algorithm on $\Omega'$, sparing us from calculating $\pdv{\Omega}/{\avg{\sigma}}$ and ensuring that we always find \emph{minima}, instead of maxima that we can obtain when solving $\pdv{\Omega}/{\avg{\sigma}}=0$.
+In effect, we would completely circumvent the need of ever solving a \emph{system} of equations!
+Even better, the two-dimensional potential $\Omega'$ would be possible to visualize as in \cref{fig:lsm:grand-potential-nonneutral}, allowing us to verify our solution visually.
+Unfortunately, $\pdv{\Omega'}/{\avg{\sigma}} \neq \pdv{\Omega}/{\avg{\sigma}}$, because the two differs by terms arising from the chain rule, so this approach is different and -- like many nice-sounding things -- \emph{wrong}!
+The cause of this source of confusion is that \emph{the charge neutrality condition \eqref{eq:lsm:minsys_charge} depends on the same variable that the potential should be minimized with respect to.}
+Hopefully, this remark will save someone from enduring this painful realization again.
+
+\TODO{
+do I determine $\lambda P$ from
+\begin{equation}
+	\avg{\sigma}_\text{min} = f_\pi = \frac{\sqrt{6} m}{\sqrt{\lambda}} = \frac{\sqrt{6} m}{\sqrt{\lambda_P \left( 1 + \frac{\delta \lambda}{\lambda_p} \right)}} \taylor \frac{\sqrt{6} m}{\lambda_P}
+\end{equation}
+???
+}
