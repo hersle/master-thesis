@@ -499,7 +499,7 @@ In this case, $\Omega(\avg{\sigma},\mu)$ has only two arguments, and the minimiz
 From the figure, we see that:
 \begin{itemize}
 \item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$, no square roots have real parts, so we are in vacuum with minimum at $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$, as we required in equation \eqref{eq:lsm:potential_vacuum_minimum}.
-      The property that a \emph{range} of chemical potentials characterizes the vacuum is called the \emph{Silver Blaze property}. \TODO{some etymology?}
+      The feature that a \emph{range} of chemical potentials characterizes the vacuum is called the \emph{Silver Blaze property}.
 \item For $\SI{300}{\mega\electronvolt} < \mu \lesssim \SI{400}{\mega\electronvolt}$, the square roots have nonzero real parts and the minimum transitions quickly and continuously closer to zero, corresponding to a crossover.
       Despite its rapid change, the grand potential remains a smooth function, so this does \emph{not} correspond to a phase transition of any order.
 \item For $\mu \gtrsim \SI{400}{\mega\electronvolt}$, the minimum approaches $\avg{\sigma} \rightarrow 0$ asymptotically, but never reaches it.
@@ -600,36 +600,44 @@ corresponding to the solution of the system of equations \eqref{eq:lsm:minsys}.
 }
 \end{figure}
 
-The numerical solution of the system \eqref{eq:lsm:minsys} is described in \TODO{ref appendix}, and the results are shown in \cref{fig:lsm:2-flavor-eos}.
+The numerical solution of the system \eqref{eq:lsm:minsys} is described in \cref{sec:num:qstars2f}, and the results are shown in \cref{fig:lsm:2-flavor-eos}.
 \Cref{fig:lsm:2-flavor-eos-parametrization} shows the parametrization of the four arguments $\avg{\sigma}(\mu)$, $\mu_u(\mu)$, $\mu_d(\mu)$ and $\mu_e(\mu)$.
 From these parametrizations, we compute the particle number densities \eqref{eq:lsm:particle_densities} in \cref{fig:lsm:2-flavor-eos-density}.
 Finally, from the parametrizations and densities, we compute the pressure
 \begin{equation}
 	P(\mu) = -\Big[\Omega(\mu) - \Omega(\mu<\SI{300}{\mega\electronvolt})\Big]
 \end{equation}
-relative to vacuum and with a bag constant $B$, and the energy density
+relative to vacuum and the energy density
 \begin{equation}
 	\epsilon(\mu) = -P(\mu) + \sum_i \mu_i(\mu) \, n_i(\mu) ,
 \end{equation}
 then at last eliminate the free parameter $\mu$ to find the equation of state $\epsilon(P)$ in \cref{fig:lsm:2-flavor-eos-eos}.
 
-\TODO{bag constant}
-
-More generally, we can allow the pressure to be modified by a \emph{bag constant} $B$:
+In addition, we will allow for a bag constant $B$ to be added to the pressure and energy density
+\TODO{justify and make less ad-hoc, move some of this to intro?}
+\TODO{understand difference between $P(\mu)$ and $P(\mu,B)$}
 \begin{equation}
-	P(\mu,B) = P(\mu) - B, \quad
-	\epsilon(\mu,B) = \epsilon(\mu) + B .
+	P(\mu,B) = P(\mu) - B
+	\qquad \text{and} \qquad
+	\epsilon(\mu,B) = \epsilon(\mu) + B.
 \end{equation}
-If vacuum has zero pressure, then subtracting some pressure from the quarks is equivalent to confining them in a ``bag''.
-Which values of $B$ should we use?
-We have that $P(\mu,B) = P(\mu)-B = 0$ parametrizes bag constants $B = P(\mu)$ by the chemical potential $\mu$.
-Since two-flavor quark matter is not observed in nature, we will require that quark matter is unstable with respect to $^{56}\text{Fe}$ with $E/N_B = \SI{930}{\mega\electronvolt}$.
-Solving the $2$--flavor part of the stability criterion \eqref{eq:lsm:bag_stability} numerically yields the lower bag pressure bound
+The equation of state then depends on the value we choose for the bag constant.
+To determine acceptable values for it, we use that two-flavor quark matter is not observed in nature, and so should be unstable with respect to the most stable form of baryonic matter, $^{56}\text{Fe}$, with an energy of $E/N_B = \SI{930}{\mega\electronvolt}$ per baryon.
+We therefore choose $B$ so that the energy per baryon of 2-flavor quark matter satisfies
+\begin{subequations}
 \begin{equation}
-	B^{1/4} > \SI{27.2}{\mega\electronvolt}.
+	\frac{E_2}{N_B} = \frac{\epsilon_2}{n_B} > \SI{930}{\mega\electronvolt} \quad \text{at} \quad P(\mu,B)=0,
+\label{eq:lsm:bag_stability_2f}
 \end{equation}
+where $\epsilon_2 = \sum_i \mu_i n_i$ is the energy density of baryons at zero pressure, and the baryon number density is $n_B = N_B/V = (n_u + n_d)/3$.
+Solving equation \eqref{eq:lsm:bag_stability_2f} numerically in \cref{sec:num:qstars2f} then yields the lower bag constant bound
+\begin{equation}
+	B > (\SI{27.2}{\mega\electronvolt})^4.
+\label{eq:lsm:bag_lower_bound}
+\end{equation}
+\end{subequations}
 
-\begin{figure}
+\begin{figure}[t]
 \centering
 \tikzsetnextfilename{2-flavor-mass-radius}
 \begin{tikzpicture}
@@ -669,10 +677,10 @@ Solving the $2$--flavor part of the stability criterion \eqref{eq:lsm:bag_stabil
 \caption{\label{fig:lsm:2-flavor-mass-radius}Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \TODO{ref} with the equation of state \TODO{ref} for $2$--flavor quark star with multiple bag constants $B$.}
 \end{figure}
 
-With the equation of state, we now solve the Tolman-Oppenheimer-Volkoff equations \TODO{new ref?} with multiple bag pressures above the lower bound \TODO{ref}.
-This yields the mass-radius curve parametrized by central pressure in \cref{fig:lsm:2-flavor-mass-radius}.
-The $2$--flavor quark stars have maximum masses in the range $1.7 M_\odot < M_\text{max} < 1.8 M_\odot$, depending on the precise bag constant.
+With the equation of state, we now solve the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} with multiple bag pressures above the lower bound \eqref{eq:lsm:bag_lower_bound}.
+This yields the central pressure-parametrized mass-radius curves in \cref{fig:lsm:2-flavor-mass-radius}, producing maximum masses up to $M < 1.77 M_\odot$.
 
+\TODO{just drop this part?
 Having described we \emph{do} and \emph{should do}, let us also remark on what we \emph{did} and \emph{shouldn't do}.
 A tempting and similar approach to minimizing $\Omega$ with respect to $\avg{\sigma}$ is to rather construct the potential $\Omega'(\avg{\sigma}, \mu_u) = \Omega(\avg{\sigma}, \mu_u, \mu_d(\mu_u,\avg{\sigma}), \mu_e(\mu_u,\avg{\sigma}))$, then minimize $\Omega'$ with respect to $\avg{\sigma}$.
 In this approach, we could create two functions $\mu_{d/e}(\avg{\sigma},\mu_u)$ that calculate the two remaining chemical potentials by solving the charge neutrality condition \eqref{eq:lsm:minsys_charge} with a simple scalar root finder, both of which would be invoked upon evaluating the new potential $\Omega'(\avg{\sigma},\mu_u)$.
@@ -682,6 +690,7 @@ Even better, the two-dimensional potential $\Omega'$ would be possible to visual
 Unfortunately, $\pdv{\Omega'}/{\avg{\sigma}} \neq \pdv{\Omega}/{\avg{\sigma}}$, because the two differs by terms arising from the chain rule, so this approach is different and -- like many nice-sounding things -- \emph{wrong}!
 The cause of this source of confusion is that \emph{the charge neutrality condition \eqref{eq:lsm:minsys_charge} depends on the same variable that the potential should be minimized with respect to.}
 Hopefully, this remark will save someone from enduring this painful realization again.
+}
 
 \TODO{
 do I determine $\lambda P$ from

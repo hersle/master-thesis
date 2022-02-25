@@ -89,8 +89,8 @@ def eos(μ, B=0, name="ϵ", outfile="", plot=False, verbose=False):
 
     # TODO: bag constant
     nB = 1/3 * (nu + nd)
-    ϵm = 0 + μu*nu + μd*nd + μe*ne # TODO: is this what "P = 0" means?
-    f = scipy.interpolate.interp1d(P, (ϵ+P)/nB - 930)
+    ϵB = 0 + μu*nu + μd*nd # TODO: is this what "P = 0" means?
+    f = scipy.interpolate.interp1d(P, ϵB/nB - 930)
     Bmin = scipy.optimize.root_scalar(f, bracket=(0, 1e9), method="brentq").root
     print(f"bag constant lower bound: B^(1/4) > {Bmin**(1/4)} MeV")
     ϵ += B
