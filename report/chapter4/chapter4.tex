@@ -220,7 +220,7 @@ In terms of the new fields $\tilde\sigma$ and $\tilde{\vec\pi}$, the Lagrangian 
 \end{equation}
 where the quark fields $q$ have acquired effective masses
 \begin{equation}
-	m_q = g \avg{\sigma} .
+	m_q(\avg{\sigma}) = g \avg{\sigma} .
 \label{eq:lsm:mass_quark}
 \end{equation}
 The potential up to second order in the shifted fields is
@@ -253,24 +253,21 @@ This is essentially Goldstone's theorem -- if $h = 0$, then $m_\pi = 0$ to ensur
 Moreover, the smaller the value of $h$, the smaller the value of $m_\pi$, so the if $h$ is \emph{small}, the spontaneous symmetry breaking is \emph{approximate}, and the $\vec\pi$ fields are \emph{light}, but not massless.
 \TODO{refine this messy paragraph}
 
-We determine the four parameters $g$, $h$, $m$ and $\lambda$ in the original Lagrangian \eqref{eq:lsm:lagrangian} by comparing the four \emph{effective} quantities $\avg{\sigma}$, $m_\pi$, $m_\sigma$ and $m_q$ to the measurements
-\begin{subequations}
-\begin{alignat}{2}
-	\avg{\sigma} &= \SI{93}{\mega\electronvolt}  &\qquad& \text{(\TODO{source}), \TODO{distinguish $\avg{\sigma}$ and $f_\pi$}}, \label{eq:lsm:fpi} \\
-	m_\pi        &= \SI{138}{\mega\electronvolt} &\qquad& \text{(\TODO{source})}, \\
-	m_\sigma     &= \SI{900}{\mega\electronvolt} &\qquad& \text{(in range $\SI{400}{\mega\electronvolt} < m_\sigma < \SI{700}{\mega\electronvolt}$, by \cite{ref:pdg_review_2021}) \TODO{rev}}, \\
-	m_q          &= \SI{300}{\mega\electronvolt} &\qquad& \text{(by) \TODO{}}.
-\end{alignat}
-\end{subequations}
-By inverting equations \eqref{eq:lsm:ground_state_implicit}, \eqref{eq:lsm:mass_sigmapi} and \eqref{eq:lsm:mass_quark}, we find the parameters
-\begin{subequations}
-\begin{align}
-	g       &= \frac{m_q}{\avg{\sigma}}                 , \\ % &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
-	h       &= m_\pi^2 \avg{\sigma}                     , \\ % &\qquad& \text{(by \eqref{eq:lsm:mass_pi})} , \\
-	m^2     &= \frac{3m_\pi^2 - m_\sigma^2}{2}          , \\ % &\qquad& \text{(by \eqref{eq:lsm:mass_sigma})} , \\
-	\lambda &= \frac{3 m_\sigma^2 - 3 m_\pi^2}{f_\pi^2} .    % &\qquad& \text{(by \eqref{eq:lsm:ground_state_implicit})} .
-\end{align}
-\end{subequations}
+We determine the four parameters $g$, $h$, $m$ and $\lambda$ in the original Lagrangian \eqref{eq:lsm:lagrangian} so that it yields the physical masses
+\TODO{source?}
+\begin{equation}
+	m_q = \SI{300}{\mega\electronvolt}, \quad
+	m_\pi = \SI{138}{\mega\electronvolt} \quad \text{and} \quad
+	m_\sigma = \SI{800}{\mega\electronvolt} \quad \text{at} \quad
+	\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}.
+\end{equation}
+Inverting equations \eqref{eq:lsm:ground_state_implicit}, \eqref{eq:lsm:mass_sigmapi} and \eqref{eq:lsm:mass_quark}, we then find the parameters
+\begin{equation}
+	g       = \frac{m_q}{f_\pi}, \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
+	h       = m_\pi^2 f_\pi, \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_pi})} , \\
+	m^2     = \frac{3m_\pi^2 - m_\sigma^2}{2} \quad \text{and} \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_sigma})} , \\
+	\lambda = \frac{3 m_\sigma^2 - 3 m_\pi^2}{f_\pi^2} .    % &\qquad& \text{(by \eqref{eq:lsm:ground_state_implicit})} .
+\end{equation}
 
 According to what we learned in \cref{chap:tft} in \cref{eq:tft:boson_partition_function_momentum_out} and \eqref{eq:tft:dirac_partition_function_first},
 the exact partition function corresponding to this theory is obtained by a path integral over periodic bosonic fields and anti-periodic fermionic fields, weighted by a Euclidean action in imaginary time:
