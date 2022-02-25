@@ -254,6 +254,7 @@ Moreover, the smaller the value of $h$, the smaller the value of $m_\pi$, so the
 \TODO{refine this messy paragraph}
 
 We determine the four parameters $g$, $h$, $m$ and $\lambda$ in the original Lagrangian \eqref{eq:lsm:lagrangian} so that it yields the physical masses
+\cite{ref:jo_lsm_renormalization}
 \TODO{source?}
 \begin{equation}
 	m_q = \SI{300}{\mega\electronvolt}, \quad
@@ -277,7 +278,6 @@ the exact partition function corresponding to this theory is obtained by a path 
 As before, we are interested in $\log Z$ so we can calculate the thermodynamic quantities \eqref{eq:tft:average_quantities} and ultimately an equation of state $\epsilon(P)$, so we can solve the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov:tovsys}.
 Here we will account for quantum effects of the quarks by treating them up to quadratic order (or one-loop),
 but calculate only to zeroth order (or tree-level) in the meson fields and hence consider them only at the classical level.
-\TODO{this is an \emph{exact} approximation as $N_c \rightarrow \infty$, because in the $\log Z$ we find below, the boson terms are $\propto N_c^0$, while the quark terms are $\propto N_c^1$}
 The partition function then reads
 \begin{equation}
 \begin{split}
@@ -309,6 +309,14 @@ where the dispersion \TODO{comment Møte 4?} relation is now
 \begin{equation}
 	E(\vec{p}) = \sqrt{p^2 + m_q^2} .
 \end{equation}
+We can assess our approximation of treating bosons to tree-level, but fermions to loop-level from expression \eqref{eq:lsm:potential_divergent_logz0}.
+The fermionic contribution in the second line is of order $\bigo(N_c^1)$, while the bosonic contribution in the first line is only of order $\bigo(N_c^0)$.
+Thus, this approximation is exact in the so-called large-$N_c$ limit $N_c \gg 1$.
+The million-dollar question that decides the accuracy of the approximation is then whether $N_c = 3 \gg 1$.
+Although we may not be making a great case for ourselves, this is the most common treatment in the literature, and thus the strategy that we will adopt initially.
+However, we will later return to this issue and consistently treat both bosons and fermions to the one-loop level, building upon the results of \cite{ref:jo_lsm_renormalization}.
+\TODO{will I return to this later?}
+
 Like in \cref{chap:nstars}, we assume that the chemical potentials are chosen so that anti-particles are more or less absent, so we drop their contribution in the last term in the second line.
 From the middle term in the second line, we obtained the contribution $\log Z = \beta V P$ with the pressure \eqref{eq:nstars:pressure_zeroT} after taking the zero-temperature approximation.
 \TODO{justify validity of zero-temperature approximation with the new masses? no, can really only do this in a retrospective way, since I don't know a priori what the temperature is inside an unknown quark star}
