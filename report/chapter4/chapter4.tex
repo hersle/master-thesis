@@ -43,9 +43,9 @@ Having found the partition function, we can calculate the
 
 
 Determine bag constant by:
-$2$--flavor quark matter should be unstable,
-$3$--flavor quark matter should be stable (Bodmer-Witten conjecture),
-compared to iron--$56$ with $E/N_B = \epsilon/n_B = \SI{930}{\mega\electronvolt}$.
+two-flavor quark matter should be unstable,
+three-flavor quark matter should be stable (Bodmer-Witten conjecture),
+compared to iron-$56$ with $E/N_B = \epsilon/n_B = \SI{930}{\mega\electronvolt}$.
 \begin{equation}
 	\frac{\epsilon_3(0)}{n_B} < \SI{930}{\mega\electronvolt} < \frac{\epsilon_2(0)}{n_B} .
 \label{eq:lsm:bag_stability}
@@ -526,6 +526,7 @@ For example, using $\mu_u$ as the free parameter produces a well-defined paramet
 Through trial and error, we have found that we get a well-defined parametrization by using the free parameter
 \begin{equation}
 	\mu = \frac12 (\mu_u + \mu_d) .
+\label{eq:lsm:quark_chemical_potential}
 \end{equation}
 
 \begin{figure}
@@ -588,15 +589,13 @@ Through trial and error, we have found that we get a well-defined parametrizatio
 \addplot+ [black, gray, dashed] table [x expr={\thisrow{P}*e0/(gev/fm^3)}, y expr={\thisrow{epsGR}*e0/(gev/fm^3)}] {../code/data/eos.dat}; % neutron star EOS
 \addlegendentry{ideal neutron star};
 \addplot+ [black] table [x=P,y=epsilon] {../code/data/2flaveos.dat}; % quark star EOS
-\addlegendentry{$2$-flavor quark star};
+\addlegendentry{two-flavor quark star};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos}%
-\subref{fig:lsm:2-flavor-eos-parametrization} Potential-minimizing mean field parametrization,
-\subref{fig:lsm:2-flavor-eos-density} particle number densities and
-\subref{fig:lsm:2-flavor-eos-eos} equation of state
-corresponding to the solution of the system of equations \eqref{eq:lsm:minsys}.
-\TODO{rewrite caption, compare with neutron star EOS!}
+\subref{fig:lsm:2-flavor-eos-parametrization} Solutions to the system of equations \eqref{eq:lsm:minsys} describing charge neutral two-flavor quark matter in $\beta$-equilibrium, parametrized by the chemical potential \eqref{eq:lsm:quark_chemical_potential}.
+\subref{fig:lsm:2-flavor-eos-density} Corresponding particle number densities \eqref{eq:lsm:particle_densities}.
+\subref{fig:lsm:2-flavor-eos-eos} Corresponding equation of state with no bag constant, found by eliminating the chemical potential from the pressure \eqref{eq:lsm:pressure_bagless} and energy density \eqref{eq:lsm:energy_density_bagless}, compared to the general equation of state for ideal neutron stars in \cref{fig:nstars:eos}.
 }
 \end{figure}
 
@@ -606,10 +605,12 @@ From these parametrizations, we compute the particle number densities \eqref{eq:
 Finally, from the parametrizations and densities, we compute the pressure
 \begin{equation}
 	P(\mu) = -\Big[\Omega(\mu) - \Omega(\mu<\SI{300}{\mega\electronvolt})\Big]
+\label{eq:lsm:pressure_bagless}
 \end{equation}
 relative to vacuum and the energy density
 \begin{equation}
 	\epsilon(\mu) = -P(\mu) + \sum_i \mu_i(\mu) \, n_i(\mu) ,
+\label{eq:lsm:energy_density_bagless}
 \end{equation}
 then at last eliminate the free parameter $\mu$ to find the equation of state $\epsilon(P)$ in \cref{fig:lsm:2-flavor-eos-eos}.
 
@@ -643,7 +644,7 @@ Solving equation \eqref{eq:lsm:bag_stability_2f} numerically in \cref{sec:num:qs
 \begin{tikzpicture}
 \begin{axis}[
 	width=15cm, height=12cm,
-	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for 2--flavor quark stars}, title style={yshift=2.0cm},
+	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for 2-flavor quark stars}, title style={yshift=2.0cm},
 	xmin=7, xmax=18, ymin=0.5, ymax=2, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
 	point meta=explicit, point meta min=32, point meta max=39,
 	colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
@@ -674,7 +675,7 @@ Solving equation \eqref{eq:lsm:bag_stability_2f} numerically in \cref{sec:num:qs
 
 \end{axis}
 \end{tikzpicture}
-\caption{\label{fig:lsm:2-flavor-mass-radius}Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \TODO{ref} with the equation of state \TODO{ref} for $2$--flavor quark star with multiple bag constants $B$.}
+\caption{\label{fig:lsm:2-flavor-mass-radius}Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by central pressure $P_c$, obtained with the equation of state for two-flavor quark matter in \cref{fig:lsm:2-flavor-eos-eos} modified by a range of bag constants above the bound \eqref{eq:lsm:bag_lower_bound}.}
 \end{figure}
 
 With the equation of state, we now solve the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} with multiple bag pressures above the lower bound \eqref{eq:lsm:bag_lower_bound}.
