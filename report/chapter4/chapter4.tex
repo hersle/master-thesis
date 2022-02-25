@@ -153,7 +153,11 @@ Then chemical equilibrium implies
 \end{subequations}
 (the third follows automatically from the two first)
 
-\section{Linear sigma model}
+\section{Two-flavor quark-meson model}
+
+\TODO{move this to the start?
+The linear sigma model is an effective low-energy model of quantum chromodynamics, so accordingly we should take it seriously only in terms of the shifted fields around the stable ground states, and not in terms of the unshifted fields around the unstable equilibrium at the top of the Mexican hat.
+}
 
 \begin{figure}
 \centering
@@ -176,8 +180,8 @@ Then chemical equilibrium implies
 \end{tikzpicture}
 \caption{\label{fig:lsm:potential}%
 	A two-dimensional realization of the potential \eqref{eq:lsm:potential} looks like a Mexican hat, tilted along the $\sigma$-axis by the explicit symmetry breaking parameter $h$.
-	If $h = 0$, the hat is upright with an infinite number of minima around $\sigma^2 + \vec\pi^2 = -6m^2 / \lambda$.
-	If $h \neq 0$, the hat is tilted and has a global minimum at $\vec\pi = 0$ and $\sigma = \avg{\sigma}$ determined by \eqref{eq:lsm:ground_state_implicit}.
+	If $h = 0$, the hat is upright with a continuous range of minima around $\sigma^2 + \vec\pi^2 = -6m^2 / \lambda$;
+	while if $h \neq 0$, the hat is tilted and has the discrete minimum \eqref{eq:lsm:ground_state_implicit}.
 }
 \end{figure}
 
@@ -195,35 +199,48 @@ with the potential
 	                     % = \frac{\lambda}{4!} \left( \sigma^2 + \vec\pi^2 - \frac{6m^2}{\lambda} \right)^2 -\frac{3 m^4}{2 \lambda} .
 \label{eq:lsm:potential}
 \end{equation}
+This model is also called a quark-meson model.
 Here $q_c = [u_c, d_c]^T$ represents quarks of the $N_c = 3$ colors red, green and blue and the $N_f = 2$ flavors up and down, so $(q_c)_f$ make up a total of $N_c \times N_f = 6$ Dirac spinors.
-In addition, $\sigma$ and $\vec\pi = [\pi^+, \pi^0, \pi^-]^T$ are four bosonic scalar fields representing sigma and pion mesons.
+In addition, $\sigma$ and $\vec\pi = [\pi^+, \pi^-, \pi^0]^T$ are four bosonic scalar fields representing sigma and pion mesons.
 At this point, the quarks are massless Dirac fermions whose conserved charge densities $j^0 = \bar\psi \gamma^0 \psi$ are coupled to chemical potentials $\mu = \diag(\mu_u, \mu_d)$, interacting with a Yukawa coupling of strength $g$ that models the strong force \TODO{non-mentioned comment in Møte 4}, where $\vec\tau$ are the Pauli matrices \eqref{eq:tft:pauli_matrices}.
-\TODO{write $(\sigma, \vec\pi)^T$ as 4-vector and mention $O(4)$ symmetry, explain from $SU(2)_L$, $SU(2)_R$, etc.?}
+\TODO{$SU(2)_L$, $SU(2)_R$, etc.?}
 
 To make sense of this theory, we must investigate how it behaves around the classical ground state of the potential \eqref{eq:lsm:potential}.
-As shown in \cref{fig:lsm:potential}, the potential is shaped like a tilted Mexican hat with a classical ground state at $\sigma = \avg{\sigma} \neq 0$ and $\pi = \vec\pi = 0$.
-Hence, the value of $\avg{\sigma}$ is determined implicitly by
+If we imagine collapsing the three-dimensional $\vec{\pi}$ down to one dimension, the potential looks like the Mexican hat drawn in \cref{fig:lsm:potential}, tilted by the symmetry breaking parameter $h$.
+Provided that $h \neq 0$, it has a discrete minimum located at
+%Let us warm up with the special case $h = 0$, where the potential is symmetric under rotation of $[\sigma, \vec{\pi}]^T$ in $O(4)$ and looks like an upright Mexican hat with a continuous curve of minima along $\sigma^2 + \vec{\pi}^2 = -6m^2/\lambda$.
+%Committing to one of these classical ground states, such as $\sigma=\avg{\sigma}=\sqrt{-6m^2/\lambda}$ and $\vec{\pi}=\avg{\vec{\pi}}=\vec{0}$,
+%and shifting the fields to $\sigma \rightarrow \avg{\sigma} + \tilde{\sigma}$ and $\vec{\pi} \rightarrow \avg{\vec{\pi}} + \tilde{\vec{\pi}}$ then spontaneously breaks the symmetry to rotations of the pion quantum fluctuations $\tilde{\vec{\pi}}$ in $O(3)$ only,
+%giving rise to three massless Goldstone bosons that we interpret as pions.
+%We will work in the general case, however, where $h \neq 0$ tilts the hat so that it has a global minimum at $\sigma=\avg{\sigma}$ and $\vec{\pi}=\avg{\vec{\pi}}$ determined by
 \begin{equation}
-	\pdv{\pot}{\sigma}_{(\sigma,\vec\pi)=(\avg{\sigma},\vec{0})} = m^2 \avg{\sigma} + \frac{\lambda}{6} \avg{\sigma}^3 - h = 0 .
+	\vec{\pi} = \avg{\vec{\pi}} = 0
+	\quad \text{and} \quad
+	\sigma = \avg{\sigma}
+	\quad \text{where} \quad
+	%\pdv{\pot}{\sigma}_{(\sigma,\vec\pi)=(\avg{\sigma},\vec{0})} = m^2 \avg{\sigma} + \frac{\lambda}{6} \avg{\sigma}^3 - h = 0.
+	\pdv{\pot}{\sigma} = m^2 \avg{\sigma} + \frac{\lambda}{6} \avg{\sigma}^3 - h = 0.
 \label{eq:lsm:ground_state_implicit}
 \end{equation}
-We account for quantum fluctuations around the classical ground state by shifting
+%We assume that $h \neq 0$, but will briefly discuss the qualitatively different behavior in the special case $h = 0$ in a moment.
+To account for quantum fluctuations $\tilde{\sigma}$ and $\tilde{\vec{\pi}}$ around the classical ground state \eqref{eq:lsm:ground_state_implicit}, we shift
 \begin{equation}
 	\sigma \rightarrow \Avg{\sigma} + \tilde{\sigma}
 	\qquad \text{and} \qquad
 	\vec\pi \rightarrow \Avg{\vec\pi} + \tilde{\vec\pi}.
+\label{eq:lsm:field_shift}
 \end{equation}
 In terms of the new fields $\tilde\sigma$ and $\tilde{\vec\pi}$, the Lagrangian \eqref{eq:lsm:lagrangian} is now
 \begin{equation}
 	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \Big[ i \slashed\partial - m_q + \mu \gamma^0 - g \left( \tilde{\sigma} + i \gamma^5 \vec\tau \cdot \vec\pi \right) \Big] q_c
 	      + \frac12 \left[ \left( \partial_\mu \tilde{\sigma} \right)^2 + \left( \partial_\mu \tilde{\vec\pi} \right)^2 \right] - \tilde{\pot}(\tilde{\sigma},\tilde{\vec\pi}) , %\pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) ,
 \end{equation}
-where the quark fields $q$ have acquired effective masses
+where the quark fields $q$ have acquired field-dependent effective masses
 \begin{equation}
 	m_q(\avg{\sigma}) = g \avg{\sigma} .
 \label{eq:lsm:mass_quark}
 \end{equation}
-The potential up to second order in the shifted fields is
+The potential \eqref{eq:lsm:potential} up to second order in the shifted fields is
 \begin{equation}
 \begin{split}
 	\tilde{\pot}(\tilde{\sigma},\tilde{\vec\pi}) &= \pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) \\
@@ -236,22 +253,20 @@ The potential up to second order in the shifted fields is
 where the $\sigma$ and $\vec\pi$ fields have acquired the effective masses
 \begin{subequations}
 \begin{align}
-	m_\sigma^2 &= \pdv[2]{\pot}{\sigma}_{(\sigma,\vec\pi)=(\avg{\sigma},\vec{0})} = m^2 + \frac{\lambda}{2} \avg{\sigma}^2 \equalexplabove{\text{by \eqref{eq:lsm:ground_state_implicit}}} \frac{3h}{\avg{\sigma}} - 2 m^2 , \label{eq:lsm:mass_sigma} \\
-	m_\pi^2    &= \pdv[2]{\pot}{\pi   }_{(\sigma,\vec\pi)=(\avg{\sigma},\vec{0})} = m^2 + \frac{\lambda}{6} \avg{\sigma}^2 \equalexplbelow{\text{by \eqref{eq:lsm:ground_state_implicit}}} \frac{h}{\avg{\sigma}} , \label{eq:lsm:mass_pi}
+	m_\sigma^2 &= \pdv[2]{\pot}{\sigma}_{(\sigma,\vec\pi)=(\avg{\sigma},\vec{0})}    = m^2 + \frac{\lambda}{2} \avg{\sigma}^2 \equalexplabove{\text{by \eqref{eq:lsm:ground_state_implicit}}} \frac{3h}{\avg{\sigma}} - 2 m^2 , \label{eq:lsm:mass_sigma} \\
+	m_\pi^2    &= \pdv[2]{\pot}{\vec{\pi}}_{(\sigma,\vec\pi)=(\avg{\sigma},\vec{0})} = m^2 + \frac{\lambda}{6} \avg{\sigma}^2 \equalexplbelow{\text{by \eqref{eq:lsm:ground_state_implicit}}} \frac{h}{\avg{\sigma}} , \label{eq:lsm:mass_pi}
 \end{align}%
 \label{eq:lsm:mass_sigmapi}%
 \end{subequations}%
-The linear sigma model is an effective low-energy model of quantum chromodynamics, so accordingly we should take it seriously only in terms of the shifted fields around the stable ground states, and not in terms of the unshifted fields around the unstable equilibrium at the top of the Mexican hat.
+The fate of the pion mass \eqref{eq:lsm:mass_pi} is determined by the presence of the symmetry breaking parameter $h$.
+In the special case $h = 0$, the potential \eqref{eq:lsm:potential} shown in \cref{fig:lsm:potential} is rather shaped like an upright Mexican hat and is symmetric under rotations of $[\sigma,\vec{\pi}]^T$ in $O(4)$.
+It then no longer has the \emph{discrete} minimum \eqref{eq:lsm:ground_state_implicit}, but a \emph{continuous} range of minima along the ``brim'' $\sigma^2 + \vec{\pi}^2 = -6m^2/\lambda$ of the hat.
+Upon committing to one of these classical ground states, such as $\sigma=\avg{\sigma}=\sqrt{-6m^2/\lambda}$ and $\vec{\pi}=\avg{\vec{\pi}}=\vec{0}$ and performing the field shift \eqref{eq:lsm:field_shift},
+the symmetry is \emph{spontaneously} broken down to rotations of only the pion quantum fluctuations $\tilde{\vec{\pi}}$ in $O(3)$.
+This gives rise to three Goldstone bosons that we interpret as \emph{massless} pions, as confirmed by equation \eqref{eq:lsm:mass_pi} with $h = 0$.
+We work in the general case, however, where $h \neq 0$ instead breaks the symmetry \emph{explicitly} by tilting the hat so it has the discrete minimum \eqref{eq:lsm:ground_state_implicit}, ultimately producing \emph{massive} pions, like those observed in nature.
 
-Although we have and will continue to assume $h \neq 0$ in general, this is an excellent time to reflect upon the special case $h = 0$.
-In this case, the potential \eqref{eq:lsm:potential} is symmetric under rotations in $O(4)$ of the field vector $(\sigma, \vec\pi)^T$.
-This corresponds to movement along the ``brim'' of \emph{continuous} minima satisfying $\sigma^2 + \vec\pi^2 = -6 m^2 / \lambda$ in a flattened Mexican hat in \cref{fig:lsm:potential}.
-\TODO{number of generators $=$ number of massless Goldstone bosons, $O(4)$ or $SO(4)$}
-Upon choosing \emph{one} minima where $\sigma = \avg{\sigma} \neq 0$ and $\vec\pi = \avg{\vec\pi} = 0$, the symmetry would be broken to rotations of only the three $\vec\pi$ fields, and three massless Goldstone bosons would appear.
-With $h \neq 0$, however, the $O(4)$ symmetry is explicitly broken, and \cref{eq:lsm:mass_pi} says $h = m_\pi^2 \avg{\sigma}$.
-This is essentially Goldstone's theorem -- if $h = 0$, then $m_\pi = 0$ to ensure $\avg{\sigma} \neq 0$; but if $h \neq 0$, then $m_\pi \neq 0$.
-Moreover, the smaller the value of $h$, the smaller the value of $m_\pi$, so the if $h$ is \emph{small}, the spontaneous symmetry breaking is \emph{approximate}, and the $\vec\pi$ fields are \emph{light}, but not massless.
-\TODO{refine this messy paragraph}
+\TODO{non-zero vs nonzero}
 
 We determine the four parameters $g$, $h$, $m$ and $\lambda$ in the original Lagrangian \eqref{eq:lsm:lagrangian} so that it yields the physical masses
 \cite{ref:jo_lsm_renormalization}
@@ -341,7 +356,7 @@ In $d = 3 - 2 \epsilon$ spatial dimensions, the vacuum contribution is
 \end{split}
 \label{eq:lsm:vacuum_contribution_ddim}
 \end{equation}
-\TODO{what happens to the dimensions of the potential $V$ (as consequence of requiring $\log Z$ to be dimensionless)? $V \rightarrow V \lambda^{-2\epsilon}$?}
+%\TODO{what happens to the dimensions of the potential $V$ (as consequence of requiring $\log Z$ to be dimensionless)? $V \rightarrow V \lambda^{-2\epsilon}$?}
 We have also multiplied the integral by $\Lambda^{3-d}$,
 where $\Lambda$ is some number with $\unit{\Lambda} = \unit{p}$,
 so that $\unit{\lambda^{3-d} \dif^d p} = \unit{\dif^3 p}$ and $\log Z$ remains dimensionless in all dimensions.
@@ -379,8 +394,8 @@ With the vacuum contribution \eqref{eq:lsm:vacuum_contribution_final} in this re
 	       &+ N_c \frac{m_q^4 \beta V}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right] .
 \end{split}
 \end{equation}
-This investigation has revealed that the term $-N_c N_f m_q^4 \beta V / 16 \pi^2 \epsilon$ is guilty of the offense of vacuum divergence.
-We also see that the preceding term can shield society from this criminal if we split the coupling 
+This investigation has revealed that the term $-N_c N_f m_q^4 \beta V / 16 \pi^2 \epsilon$ is responsible for the divergence of the vacuum term.
+We also see that the preceding term can shield us from the guilty criminal if we split the coupling 
 \begin{equation}
 	\lambda = \lambda_P + \delta\lambda
 	\qquad \text{with the counterterm} \qquad
@@ -419,7 +434,7 @@ This amounts to adding one more fermion term to the Lagrangian
 	\qquad \text{with mass} \qquad
 	m_e = \SI{0.5}{\mega\electronvolt}.
 \end{equation}
-Let us also reinstate the definition $x = p / m = \sqrt{\mu^2-m^2} / m$, in order to make the dependence on $\mu$ and $\avg{\sigma}$ explicit.
+Let us also reinstate the definition $x = p / m = \sqrt{\mu^2-m^2} / m$ that we made in equation \eqref{eq:nstars:everything_zeroT}, in order to make the dependence on $\mu$ and $\avg{\sigma}$ explicit.
 With electrons, the grand potential \eqref{eq:lsm:grand_potential} becomes
 \begin{equation}
 \begin{split}
