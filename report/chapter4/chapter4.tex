@@ -305,7 +305,7 @@ Thus, we obtain
 \end{split}
 \label{eq:lsm:potential_divergent_logz0}
 \end{equation}
-where the dispersion \TODO{comment Møte 4?} relation is now
+where the dispersion relation is
 \begin{equation}
 	E(\vec{p}) = \sqrt{p^2 + m_q^2} .
 \end{equation}
@@ -318,8 +318,7 @@ However, we will later return to this issue and consistently treat both bosons a
 \TODO{will I return to this later?}
 
 Like in \cref{chap:nstars}, we assume that the chemical potentials are chosen so that anti-particles are more or less absent, so we drop their contribution in the last term in the second line.
-From the middle term in the second line, we obtained the contribution $\log Z = \beta V P$ with the pressure \eqref{eq:nstars:pressure_zeroT} after taking the zero-temperature approximation.
-\TODO{justify validity of zero-temperature approximation with the new masses? no, can really only do this in a retrospective way, since I don't know a priori what the temperature is inside an unknown quark star}
+From the middle term in the second line, we obtained the contribution $\log Z = \beta V P$ with the pressure \eqref{eq:nstars:pressure_zeroT} in the zero-temperature approximation, which we will continue to use.
 This time, however, we will renormalize the infinite vacuum contribution from the first term in the second line, instead of simply dropping it, like we did back in \cref{chap:nstars}.
 Thus, we obtain
 \begin{equation}
@@ -333,9 +332,8 @@ where $x_f = p_f / m_q$ are normalized Fermi momenta, $\mu_f = \smash{\sqrt{p_f^
 	\log Z_0 = 2 \beta V \int \frac{\dif^3 p}{(2 \pi)^3} \sqrt{p^2 + m_q^2 } .
 \label{eq:lsm:vacuum_contribution_3dim}
 \end{equation}
-To renormalize the vacuum contribution, let us use dimensional regularization in the minimal subtraction scheme \TODO{?}.
+To renormalize the vacuum contribution, let us use dimensional regularization in the minimal subtraction scheme.
 In $d = 3 - 2 \epsilon$ spatial dimensions, the vacuum contribution is
-\TODO{can I do this in a more ``well-defined way'' by rescaling the momentum instead, like $p' = p / \Lambda^{(1-3/d)}$ where $\unit{p} = \unit{\Lambda}$, so $\unit{\dif^d p'} = \unit{\dif^3 p}$, so $\log Z$ remains dimensionless.?}
 \begin{equation}
 \begin{split}
 	\log Z_0 &= 2 \beta V \Lambda^{3-d} \int \frac{\dif^d p}{(2 \pi)^d} \sqrt{p^2 + m_q^2} \\
@@ -350,9 +348,7 @@ so that $\unit{\lambda^{3-d} \dif^d p} = \unit{\dif^3 p}$ and $\log Z$ remains d
 There is nothing that forbids us from doing so, 
 as the regulator still does its only job of reducing the new integral \eqref{eq:lsm:vacuum_contribution_ddim} to the old integral \eqref{eq:lsm:vacuum_contribution_3dim} when we send $\epsilon \rightarrow 0$,
 only now in a way that is well-defined in all dimensions.
-The momentum integral can be written in terms of the \emph{Beta function}
-\TODO{general reference}
-\TODO{state that this is analytic continuation}
+The momentum integral can be written as an analytical continuation of the \emph{Beta function} \cite{ref:beta_function}
 \begin{equation}
 	B(x,y) = \int_0^\infty \dif t \, \frac{t^{x-1}}{(1+t)^{x+y}} = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)}
 \end{equation}
