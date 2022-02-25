@@ -526,7 +526,7 @@ More generally, we can apply any sequence of $n = \sum_i n_i$ different creation
 	\ket{n_1, n_2, \ldots, n_N} = \left( \creat_1 \right)^{n_1} \cdots \left( \creat_N \right)^{n_N} \ket{0} .
 \label{eq:tft:fermionic_many_particle_state}
 \end{equation}
-This results in a non-zero state only if all $n_i \in \{0, 1\}$, because $(\creat_i)^2 \ket{0} = -(\creat_i)^2 \ket{0} = 0$ by the anti-commutator \eqref{eq:tft:fermionic_anticommutator_sameops}.
+This results in a nonzero state only if all $n_i \in \{0, 1\}$, because $(\creat_i)^2 \ket{0} = -(\creat_i)^2 \ket{0} = 0$ by the anti-commutator \eqref{eq:tft:fermionic_anticommutator_sameops}.
 Note that shuffling the sequence of operators in \cref{eq:tft:fermionic_many_particle_state} can change the sign of the state.
 To avoid ambiguity in our definition, we simply adopt any ordering convention, such as defining the $n$-particle state to have operators whose indices increase from left to right, as in the equation above.
 
@@ -608,7 +608,7 @@ Next, we can work out that the unit operator $\1$ can be represented by the inte
 \label{eq:tft:completeness_grassmann_discrete}
 \end{equation}
 To make the big leap across the second equality sign, stare intensely at the middle line while following the next argument.
-To get a non-zero contribution from the integral, the parentheses must be multiplied out in a way such that one gets terms with the particular combination
+To get a nonzero contribution from the integral, the parentheses must be multiplied out in a way such that one gets terms with the particular combination
 \begin{equation}
 	\int \dif \conj\psi \int \dif \psi \, \psi_1 \conj\psi_1 \cdots \psi_N \conj\psi_N = 1 .
 \label{eq:tft:integral_saturated}
@@ -661,7 +661,7 @@ With the same reasoning, we can work out that the trace of an operator $\hat{A}$
 \label{eq:tft:trace_grassmann_discrete}
 \end{equation}
 The rules for multiplying out the parentheses are virtually identical to those in \cref{eq:tft:completeness_grassmann_discrete}.
-Schematically, the two last parentheses give contributions in the form $\smash[b]{\braket{0 | ( \destr_j \conj\psi_j ) \hat{A} ( -\psi_k \creat_k ) | 0}} = + \smash[b]{\psi_k \conj\psi_j \braket{0 | \destr_j \hat{A} \creat_k | 0}}$ and all its multi-particle generalizations, where we must set $j=k$ to get a non-zero contribution.
+Schematically, the two last parentheses give contributions in the form $\smash[b]{\braket{0 | ( \destr_j \conj\psi_j ) \hat{A} ( -\psi_k \creat_k ) | 0}} = + \smash[b]{\psi_k \conj\psi_j \braket{0 | \destr_j \hat{A} \creat_k | 0}}$ and all its multi-particle generalizations, where we must set $j=k$ to get a nonzero contribution.
 In addition, we have \emph{assumed} that $\smash{\hat{A}}$ is a ``bosonic'' operator that \emph{commutes} with the Grassmann numbers, allowing us to move the Grassmann numbers out of the inner product in this way.
 For example, the Dirac Hamiltonian \eqref{eq:tft:dirac_hamiltonian} that we will work with later is such an $\hat{A}$, as it contains \emph{two} field operators.
 \emph{Pay special attention to the minus sign in $\bra{-\psi} = \bra{0} \prod_j [1 - \destr_j (-\conj\psi_j)] = \bra{0} \prod_j [1 + \destr_j \conj\psi_j]$ in the first line!}
