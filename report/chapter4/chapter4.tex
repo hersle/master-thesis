@@ -601,7 +601,7 @@ Through trial and error, we have found that we get a well-defined parametrizatio
 	legend cell align=left, legend pos=north west,
 ];
 \addplot+ [red,    solid] table [x=mu, y=nu] {../code/data/2flaveos.dat}; \addlegendentry{up quarks};
-\addplot+ [red,   dashed] table [x=mu, y=nu] {../code/data/2flavfreeeos.dat}; \addlegendentry{free up quarks};
+\addplot+ [red,   dashed] table [x=mu, y=nu] {../code/data/2flavfreeeos.dat}; \addlegendentry{freee up quarks};
 \addplot+ [green,  solid] table [x=mu, y=nd] {../code/data/2flaveos.dat}; \addlegendentry{down quarks};
 \addplot+ [green, dashed] table [x=mu, y=nd] {../code/data/2flavfreeeos.dat}; \addlegendentry{free down quarks};
 \addplot+ [black,  solid] table [x=mu, y=ne] {../code/data/2flaveos.dat}; \addlegendentry{electrons};
@@ -622,8 +622,8 @@ Through trial and error, we have found that we get a well-defined parametrizatio
 ];
 %\addplot+ [black, gray, dashed] table [x expr={\thisrow{P}*e0/(gev/fm^3)}, y expr={\thisrow{epsGR}*e0/(gev/fm^3)}] {../code/data/eos.dat}; % neutron star EOS
 %\addlegendentry{ideal neutron star};
-\addplot+ [black,  solid] table [x=P,y=epsilon] {../code/data/2flaveos.dat}; \addlegendentry{two-flavor interacting quark matter};
-\addplot+ [black, dashed] table [x=P,y=epsilon] {../code/data/2flavfreeeos.dat}; \addlegendentry{two-flavor free quark matter};
+\addplot+ [black,  solid] table [x=P,y=epsilon] {../code/data/2flaveos.dat}; \addlegendentry{with interaction};
+\addplot+ [black, dashed] table [x=P,y=epsilon] {../code/data/2flavfreeeos.dat}; \addlegendentry{without interactions};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos}%

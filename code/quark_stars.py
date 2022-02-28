@@ -53,32 +53,46 @@ def qf(σ, μu, μd, μe):
     ne =  1/(3*π**2) * np.real(np.power(μe**2-me**2+0j, 3/2))
     return +2/3*nu - 1/3*nd - 1*ne
 
-def eos(μ, B=0, name="ϵ", outfile="", plot=False, verbose=False):
-    σ  = np.empty_like(μ)
-    μu = np.empty_like(μ)
-    μd = np.empty_like(μ)
-    μe = np.empty_like(μ)
-    ω  = np.empty_like(μ) 
+def eos(μ, B=0, interaction=True, name="ϵ", outfile="", plot=False, verbose=False):
+    if interaction:
+        σ  = np.empty_like(μ)
+        μu = np.empty_like(μ)
+        μd = np.empty_like(μ)
+        μe = np.empty_like(μ)
+        ω  = np.empty_like(μ)
 
-    for i in range(0, len(μ)):
-        μ0 = μ[i]
-        def system(σ_μe): # solve system {dω == 0, q == 0}
-            σ, μe = σ_μe # unpack 2 variables
-            μu = μ0 - 1/2*μe
-            μd = 2*μ0 - μu
-            dω = dωf(σ, μu, μd, μe)
-            q  =  qf(σ, μu, μd, μe)
-            return (dω, q)
-        guess = (σ[i-1], μe[i-1]) if i > 0 else (fπ, 0) # use previous solution
-        sol = scipy.optimize.root(system, guess, method="hybr")
-        assert sol.success, f"{sol.message} (μ = {μ0})"
-        σ0, μe0 = sol.x
-        μu0 = μ0 - 1/2*μe0
-        μd0 = 2*μ0 - μu0
-        ω0 = ωf(σ0, μu0, μd0, μe0)
-        σ[i], μu[i], μd[i], μe[i], ω[i] = σ0, μu0, μd0, μe0, ω0
-        if verbose:
-            print(f"μ = {μ0}, σ = {σ0}, μu = {μu0}, μd = {μd0}, μe = {μe0} -> ω = {ω0}")
+        for i in range(0, len(μ)):
+            μ0 = μ[i]
+            def system(σ_μe): # solve system {dω == 0, q == 0}
+                σ, μe = σ_μe # unpack 2 variables
+                μu = μ0 - 1/2*μe
+                μd = 2*μ0 - μu
+                dω = dωf(σ, μu, μd, μe)
+                q  =  qf(σ, μu, μd, μe)
+                return (dω, q)
+            guess = (σ[i-1], μe[i-1]) if i > 0 else (fπ, 0) # use previous solution
+            sol = scipy.optimize.root(system, guess, method="hybr")
+            assert sol.success, f"{sol.message} (μ = {μ0})"
+            σ0, μe0 = sol.x
+            μu0 = μ0 - 1/2*μe0
+            μd0 = 2*μ0 - μu0
+            ω0 = ωf(σ0, μu0, μd0, μe0)
+            σ[i], μu[i], μd[i], μe[i], ω[i] = σ0, μu0, μd0, μe0, ω0
+            if verbose:
+                print(f"μ = {μ0}, σ = {σ0}, μu = {μu0}, μd = {μd0}, μe = {μe0} -> ω = {ω0}")
+    else:
+        # analytical solution
+        #me = 0 # zero electron mass (override global variable)
+        μu = 2/(1+2**(1/3)) * μ
+        μd = 2*μ - μu
+        μe = μd - μu # (2**(1/3)-1) * μu # close to μu0/4
+        ωu = -1/(12*π**2) * (Nc*μu**4)
+        ωd = -1/(12*π**2) * (Nc*μd**4)
+        # me = 0 and ωe = -1/(12*π**2 * μe**4 gives practically the same result, so use this for simplicity?
+        ωe =  -1/(24*π**2)*((2*μe**2-5*me**2)*μe*np.sqrt(μe**2-me**2)
+                            +3*me**4*np.arcsinh(np.sqrt(μe**2/me**2-1)))
+        ω = ωu + ωd + ωe
+        σ = np.zeros_like(μ) # zero quark mass
 
     P = -(ω - ω[0])
     mq = g*σ
@@ -142,63 +156,6 @@ def eos(μ, B=0, name="ϵ", outfile="", plot=False, verbose=False):
     
     return ϵint
 
-def eosfree(μ, name="ϵ", outfile="", plot=False, verbose=False):
-    μu = 2/(1+2**(1/3)) * μ
-    μd = 2*μ - μu
-    μe = μd - μu # (2**(1/3)-1) * μu # close to μu0/4
-    ω = -1/(12*π**2) * (Nc*μu**4 + Nc*μd**4 + μe**4)
-    P = -ω
-    nu = Nc/(3*π**2) * μu**3
-    nd = Nc/(3*π**2) * μd**3
-    ne =  1/(3*π**2) * μe**3
-    ϵ  = -P + μu*nu + μd*nd + μe*ne
-
-    # convert interesting quantities to SI units
-    nu *= constants.MeV**3 / (constants.ħ * constants.c)**3 # now in units 1/m^3
-    nd *= constants.MeV**3 / (constants.ħ * constants.c)**3 # now in units 1/m^3
-    ne *= constants.MeV**3 / (constants.ħ * constants.c)**3 # now in units 1/m^3
-    P  *= constants.MeV**4 / (constants.ħ * constants.c)**3 # now in units kg*m^2/s^2/m^3
-    ϵ  *= constants.MeV**4 / (constants.ħ * constants.c)**3 # now in units kg*m^2/s^2/m^3
-
-    # interpolate dimensionless EOS
-    P0 = P / constants.ϵ0 # now in TOV-dimensionless units
-    ϵ0 = ϵ / constants.ϵ0 # now in TOV-dimensionless units
-    print(f"interpolation range: {P0[0]} < P0 < {P0[-1]}")
-    ϵint = scipy.interpolate.interp1d(P0, ϵ0)
-    ϵint.__name__ = name
-
-    # convert interesting quantities to appropriate units
-    nu *= constants.fm**3                 # now in units 1/fm^3
-    nd *= constants.fm**3                 # now in units 1/fm^3
-    ne *= constants.fm**3                 # now in units 1/fm^3
-    P  *= constants.fm**3 / constants.GeV # now in units GeV/fm^3
-    ϵ  *= constants.fm**3 / constants.GeV # now in units GeV/fm^3
-
-
-    if outfile != "":
-        cols  = [list(var) for var in (μ, σ, μu, μd, μe, nu, nd, ne, ϵ, P)]
-        heads = ("mu", "sigma", "muu", "mud", "mue", "nu", "nd", "ne", "epsilon", "P")
-        utils.writecols(cols, heads, outfile)
-
-    if plot:
-        fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 5))
-        ax1.set_xlabel(r"$\mu$")
-        ax1.set_ylabel(r"$\mu_i$")
-        ax1.plot(μ, μu, "-r.")
-        ax1.plot(μ, μd, "-g.")
-        ax1.plot(μ, μe, "-b.")
-        ax2.set_xlabel(r"$\mu$")
-        ax2.set_ylabel(r"$n$")
-        ax2.plot(μ, nu, "-r.")
-        ax2.plot(μ, nd, "-g.")
-        ax2.plot(μ, ne, "-b.")
-        ax3.set_xlabel(r"$P$")
-        ax3.set_ylabel(r"$\epsilon$")
-        ax3.plot(P, ϵ, "-k.")
-        plt.show()
-
-    return ϵint
-
 if __name__ == "__main__":
     # plot ω(σ, μu=μd=μ, 0)
     σ = np.linspace(-150, +150, 100)
@@ -230,7 +187,7 @@ if __name__ == "__main__":
 
     # plot massless, free equation of state
     μ = np.linspace(0, 1000, 250)[1:]
-    eosfree(μ, plot=True, outfile="data/2flavfreeeos.dat")
+    eos(μ, interaction=False, plot=True, outfile="data/2flavfreeeos.dat")
     exit()
 
     # plot equation of state
