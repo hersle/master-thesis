@@ -539,15 +539,26 @@ from which it can be eliminated to yield the equation of state.
 
 \TODO{``variable'' or ``parameter''?. independent vs dependent variables.}
 
+\TODO{rewrite}
 Which variable should we use as the free variable?
 In fact, some choices yield ill-defined parametrizations for which one value of the parameter corresponds to multiple values of another variable.
 A well-defined parametrization should produce invertible functions.
 For example, using $\mu_u$ as the free variable produces a well-defined parametrization of $\avg{\sigma}(\mu_u)$ when $m_\sigma \gtrsim \SI{900}{\mega\electronvolt}$, but an ill-defined one when $m_\sigma \lesssim \SI{900}{\mega\electronvolt}$.
-Through trial and error, we have found that we get a well-defined parametrization by using the free variable
+Define quark chemical potential $\mu$ and isospin chemical potential $\mu_I$ by
+\begin{equation}
+	\mu_u = \mu + \mu_I
+	\qquad \text{and} \qquad
+	\mu_d = \mu - \mu_I .
+\label{eq:lsm:quark_chemical_potential}
+\end{equation}
+By the chain rule, the quark chemical potential $\mu$ corresponds to the total quark density
+\begin{equation}
+	-\pdv{\Omega}{\mu} = -\pdv{\Omega}{\mu_u} \pdv{\mu_u}{\mu} - \pdv{\Omega}{\mu_d} \pdv{\mu_d}{\mu} = -\pdv{\Omega}{\mu_u} - \pdv{\Omega}{\mu_d} = n_u + n_d = n_q .
+\end{equation}
+Through trial and error, we have found that we get a well-defined parametrization by setting the free variable to the quark chemical potential
 \TODO{$\mu_B$ and $n_B$}
 \begin{equation}
 	\mu = \frac12 (\mu_u + \mu_d) .
-\label{eq:lsm:quark_chemical_potential}
 \end{equation}
 
 \begin{figure}
@@ -583,16 +594,17 @@ Through trial and error, we have found that we get a well-defined parametrizatio
 
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n \, / \, (1/\si{\femto\meter\cubed})$},
-	xmin=0, xmax=600, ymax=3, ytick distance=1,
+	xmin=0, xmax=600,
+	ymax=2.0, ytick distance=0.5,
 	%xmin=600, xmax=1400,
 	%xmin=200, xmax=500, xtick distance=50,
 	%extra x ticks={325}, 
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-density}Particle number densities}},
 	legend cell align=left, legend pos=north west,
 ];
-\addplot+ [red] table [x=mu,y=nu] {../code/data/2flaveos.dat}; \addlegendentry{up quarks};
-\addplot+ [green] table [x=mu,y=nd] {../code/data/2flaveos.dat}; \addlegendentry{down quarks};
-\addplot+ [black] table [x=mu,y=ne] {../code/data/2flaveos.dat}; \addlegendentry{electrons};
+\addplot+ [red]   table [x=mu, y expr={\thisrow{nu}}] {../code/data/2flaveos.dat}; \addlegendentry{up quarks};
+\addplot+ [green] table [x=mu, y expr={\thisrow{nd}}] {../code/data/2flaveos.dat}; \addlegendentry{down quarks};
+\addplot+ [black] table [x=mu, y expr={\thisrow{ne}}] {../code/data/2flaveos.dat}; \addlegendentry{electrons};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -614,9 +626,10 @@ Through trial and error, we have found that we get a well-defined parametrizatio
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos}%
-\subref{fig:lsm:2-flavor-eos-parametrization} Solutions to the system of equations \eqref{eq:lsm:minsys} describing charge neutral two-flavor quark matter in $\beta$-equilibrium, parametrized by the chemical potential \eqref{eq:lsm:quark_chemical_potential}.
+\subref{fig:lsm:2-flavor-eos-parametrization} Solutions to the system of equations \eqref{eq:lsm:minsys} describing charge neutral two-flavor quark matter in $\beta$-equilibrium, parametrized by the quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
 \subref{fig:lsm:2-flavor-eos-density} Corresponding particle number densities \eqref{eq:lsm:particle_densities}.
-\subref{fig:lsm:2-flavor-eos-eos} Corresponding equation of state with no bag constant, found by eliminating the chemical potential from the pressure \eqref{eq:lsm:pressure_bagless} and energy density \eqref{eq:lsm:energy_density_bagless}, compared to the general equation of state for ideal neutron stars in \cref{fig:nstars:eos}.
+\subref{fig:lsm:2-flavor-eos-eos} Corresponding equation of state with no bag constant, found by eliminating the chemical potential from the pressure \eqref{eq:lsm:pressure_bagless} and energy density \eqref{eq:lsm:energy_density_bagless}.
+\TODO{compare with free quark gas}
 }
 \end{figure}
 
