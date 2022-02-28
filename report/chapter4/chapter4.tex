@@ -573,23 +573,21 @@ Through trial and error, we have found that we get a well-defined parametrizatio
 ]
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$},
-	%ylabel={$\avg{\sigma} \, / \, \si{\mega\electronvolt}$},
 	xmin=0, xmax=600, ytick distance=100,
-	ymax=600, 
-	%xmin=600, xmax=1400, 
-	%ymin=-10, ymax=100, 
-	%xtick={20,40,60,80,100}, ytick distance=20,
-	%extra x ticks={325}, extra y ticks={0,93},
+	%ymax=600, 
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-parametrization}Parametrization of solutions}},
 	legend cell align=right, legend pos=north west,
 ];
-\addplot+ [black, dashed] table [x=mu,y=sigma] {../code/data/2flaveos.dat};
+\addplot+ [orange, solid] table [x=mu,y=sigma] {../code/data/2flaveos.dat};
 \addlegendentry{$\avg{\sigma} \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red   ] table [x=mu,y=muu  ] {../code/data/2flaveos.dat};
+\addplot+ [red,   dashed] table [x=mu,y=muu  ] {../code/data/2flavfreeeos.dat};
+\addplot+ [red,    solid] table [x=mu,y=muu  ] {../code/data/2flaveos.dat};
 \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [green ] table [x=mu,y=mud  ] {../code/data/2flaveos.dat};
+\addplot+ [green, dashed] table [x=mu,y=mud  ] {../code/data/2flavfreeeos.dat};
+\addplot+ [green,  solid] table [x=mu,y=mud  ] {../code/data/2flaveos.dat};
 \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [black ] table [x=mu,y=mue  ] {../code/data/2flaveos.dat};
+\addplot+ [black, dashed] table [x=mu,y=mue  ] {../code/data/2flavfreeeos.dat};
+\addplot+ [black,  solid] table [x=mu,y=mue  ] {../code/data/2flaveos.dat};
 \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
 
 \nextgroupplot[
@@ -602,9 +600,12 @@ Through trial and error, we have found that we get a well-defined parametrizatio
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-density}Particle number densities}},
 	legend cell align=left, legend pos=north west,
 ];
-\addplot+ [red]   table [x=mu, y expr={\thisrow{nu}}] {../code/data/2flaveos.dat}; \addlegendentry{up quarks};
-\addplot+ [green] table [x=mu, y expr={\thisrow{nd}}] {../code/data/2flaveos.dat}; \addlegendentry{down quarks};
-\addplot+ [black] table [x=mu, y expr={\thisrow{ne}}] {../code/data/2flaveos.dat}; \addlegendentry{electrons};
+\addplot+ [red,    solid] table [x=mu, y=nu] {../code/data/2flaveos.dat}; \addlegendentry{up quarks};
+\addplot+ [red,   dashed] table [x=mu, y=nu] {../code/data/2flavfreeeos.dat}; \addlegendentry{free up quarks};
+\addplot+ [green,  solid] table [x=mu, y=nd] {../code/data/2flaveos.dat}; \addlegendentry{down quarks};
+\addplot+ [green, dashed] table [x=mu, y=nd] {../code/data/2flavfreeeos.dat}; \addlegendentry{free down quarks};
+\addplot+ [black,  solid] table [x=mu, y=ne] {../code/data/2flaveos.dat}; \addlegendentry{electrons};
+\addplot+ [black, dashed] table [x=mu, y=ne] {../code/data/2flavfreeeos.dat}; \addlegendentry{free electrons};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -619,10 +620,10 @@ Through trial and error, we have found that we get a well-defined parametrizatio
 		gev = 1e9 * 1.6e-19;
 	},
 ];
-\addplot+ [black, gray, dashed] table [x expr={\thisrow{P}*e0/(gev/fm^3)}, y expr={\thisrow{epsGR}*e0/(gev/fm^3)}] {../code/data/eos.dat}; % neutron star EOS
-\addlegendentry{ideal neutron star};
-\addplot+ [black] table [x=P,y=epsilon] {../code/data/2flaveos.dat}; % quark star EOS
-\addlegendentry{two-flavor quark star};
+%\addplot+ [black, gray, dashed] table [x expr={\thisrow{P}*e0/(gev/fm^3)}, y expr={\thisrow{epsGR}*e0/(gev/fm^3)}] {../code/data/eos.dat}; % neutron star EOS
+%\addlegendentry{ideal neutron star};
+\addplot+ [black,  solid] table [x=P,y=epsilon] {../code/data/2flaveos.dat}; \addlegendentry{two-flavor interacting quark matter};
+\addplot+ [black, dashed] table [x=P,y=epsilon] {../code/data/2flavfreeeos.dat}; \addlegendentry{two-flavor free quark matter};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos}%
