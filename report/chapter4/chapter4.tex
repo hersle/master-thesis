@@ -286,6 +286,7 @@ Inverting equations \eqref{eq:lsm:ground_state_implicit}, \eqref{eq:lsm:mass_sig
 
 According to what we learned in \cref{chap:tft} in \cref{eq:tft:boson_partition_function_momentum_out} and \eqref{eq:tft:dirac_partition_function_first},
 the exact partition function corresponding to this theory is obtained by a path integral over periodic bosonic fields and anti-periodic fermionic fields, weighted by a Euclidean action in imaginary time:
+\TODO{sign in exponent?}
 \begin{equation}
 	Z = \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \oint_+ \pathintdif \sigma \oint_+ \pathintdif \vec\pi \exp \left\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \lagr_E[\bar{q}, q, \sigma, \vec\pi]  \right\} .
 \end{equation}
@@ -330,7 +331,7 @@ Thus, this approximation is exact in the so-called large-$N_c$ limit $N_c \gg 1$
 The million-dollar question that decides the accuracy of the approximation is then whether $N_c = 3 \gg 1$.
 Although it may sound like we are not making a great case for ourselves, this is the most common treatment in the literature, and thus the strategy that we will adopt for now.
 However, we will later return to this issue and consistently treat both bosons and fermions to the one-loop level, building upon the results of \cite{ref:jo_lsm_renormalization}.
-\TODO{will I return to this later?}
+\TODO{will I return to this later? RPA -- one-loop bosons too!}
 
 Like in \cref{chap:nstars}, we assume that the chemical potentials are chosen so that anti-particles are more or less absent, so we drop their contribution in the last term in the second line.
 From the middle term in the second line, we obtained the contribution $\log Z = \beta V P$ with the pressure \eqref{eq:nstars:pressure_zeroT} in the zero-temperature approximation, which we will continue to use.
@@ -512,7 +513,7 @@ so we determine it by solving
 \end{equation}
 
 To get a feeling for the general shape of the grand potential \eqref{eq:lsm:grand_potential}, we visualize the special case with $\mu_e = 0$ and $\mu_u = \mu_d = \mu$ in \cref{fig:lsm:grand-potential-nonneutral}.
-In this case, $\Omega(\avg{\sigma},\mu)$ has only two arguments, and the minimization condition \eqref{eq:lsm:potential_minimize} then leaves one free argument $\mu$ that parametrizes the other variable $\avg{\sigma}(\mu)$ and the grand potential $\Omega(\avg{\sigma}(\mu),\mu)$, as shown by the blue line in the figure.
+In this case, $\Omega(\avg{\sigma},\mu)$ is a function of only two variables, and the minimization condition \eqref{eq:lsm:potential_minimize} then leaves one free variable $\mu$ that parametrizes the other variable $\avg{\sigma}(\mu)$ and the grand potential $\Omega(\avg{\sigma}(\mu),\mu)$, as shown by the blue line in the figure.
 From the figure, we see that:
 \begin{itemize}
 \item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$, no square roots have real parts, so we are in vacuum with minimum at $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$, as we required in equation \eqref{eq:lsm:potential_vacuum_minimum}.
@@ -531,16 +532,19 @@ Using the densities \eqref{eq:lsm:particle_densities} and that up quarks, down q
 \end{align}%
 \label{eq:lsm:minsys}%
 \end{subequations}%
-In this case $\Omega(\avg{\sigma},\mu_u,\mu_d,\mu_e)$ is a function of \emph{four} arguments,
+In this case $\Omega(\avg{\sigma},\mu_u,\mu_d,\mu_e)$ is a function of \emph{four} variables,
 constrained by \emph{three} equations,
-leaving \emph{one} free argument that parametrizes the others and thus the grand potential, pressure and energy density,
+leaving \emph{one} free variable that parametrizes the others and thus the grand potential, pressure and energy density,
 from which it can be eliminated to yield the equation of state.
 
-Which argument should we use as the free parameter?
+\TODO{``variable'' or ``parameter''?. independent vs dependent variables.}
+
+Which variable should we use as the free variable?
 In fact, some choices yield ill-defined parametrizations for which one value of the parameter corresponds to multiple values of another variable.
 A well-defined parametrization should produce invertible functions.
-For example, using $\mu_u$ as the free parameter produces a well-defined parametrization of $\avg{\sigma}(\mu_u)$ when $m_\sigma \gtrsim \SI{900}{\mega\electronvolt}$, but an ill-defined one when $m_\sigma \lesssim \SI{900}{\mega\electronvolt}$.
-Through trial and error, we have found that we get a well-defined parametrization by using the free parameter
+For example, using $\mu_u$ as the free variable produces a well-defined parametrization of $\avg{\sigma}(\mu_u)$ when $m_\sigma \gtrsim \SI{900}{\mega\electronvolt}$, but an ill-defined one when $m_\sigma \lesssim \SI{900}{\mega\electronvolt}$.
+Through trial and error, we have found that we get a well-defined parametrization by using the free variable
+\TODO{$\mu_B$ and $n_B$}
 \begin{equation}
 	\mu = \frac12 (\mu_u + \mu_d) .
 \label{eq:lsm:quark_chemical_potential}
@@ -634,6 +638,8 @@ then at last eliminate the free parameter $\mu$ to find the equation of state $\
 In addition, we will allow for a bag constant $B$ to be added to the pressure and energy density
 \TODO{justify and make less ad-hoc, move some of this to intro?}
 \TODO{understand difference between $P(\mu)$ and $P(\mu,B)$}
+\TODO{find source on bag stuff. JO?}
+\TODO{difference between ``perturbative vacuum'' and ``confined vacuum''}
 \begin{equation}
 	P(\mu,B) = P(\mu) - B
 	\qquad \text{and} \qquad
@@ -641,7 +647,7 @@ In addition, we will allow for a bag constant $B$ to be added to the pressure an
 \end{equation}
 The equation of state then depends on the value we choose for the bag constant.
 To determine acceptable values for it, we use that two-flavor quark matter is not observed in nature, and so should be unstable with respect to the most stable form of baryonic matter, $^{56}\text{Fe}$, with an energy of $E/N_B = \SI{930}{\mega\electronvolt}$ per baryon.
-We therefore choose $B$ so that the energy per baryon of 2-flavor quark matter satisfies
+We therefore choose $B$ so that the energy per baryon of two-flavor quark matter satisfies
 \begin{subequations}
 \begin{equation}
 	\frac{E_2}{N_B} = \frac{\epsilon_2}{n_B} > \SI{930}{\mega\electronvolt} \quad \text{at} \quad P(\mu,B)=0,
@@ -697,6 +703,17 @@ Solving equation \eqref{eq:lsm:bag_stability_2f} numerically in \cref{sec:num:qs
 
 With the equation of state, we now solve the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} with multiple bag pressures above the lower bound \eqref{eq:lsm:bag_lower_bound}.
 This yields the central pressure-parametrized mass-radius curves in \cref{fig:lsm:2-flavor-mass-radius}, producing maximum masses up to $M < 1.77 M_\odot$.
+
+\TODO{explain the solutions in the plots, and plot densities logarithmically?}
+
+\TODO{discussion/remark list}
+\begin{itemize}
+\item $m_\sigma$ value
+\item Two solutions to charge neutrality?
+\item Compare results with \emph{free} ($g = \lambda = 0$) quark gas ($u$, $d$, $e$) with massless quarks ($m_q=0$, also use massless electrons for consistency $m_e=0$?) and charge neutrality
+      EOS should be similar for large $P$, i.e. when masses are low!
+\item Do not compare with neutron star.
+\end{itemize}
 
 \TODO{just drop this part?
 Having described we \emph{do} and \emph{should do}, let us also remark on what we \emph{did} and \emph{shouldn't do}.
