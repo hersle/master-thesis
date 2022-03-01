@@ -185,14 +185,10 @@ if __name__ == "__main__":
     heads = ["mu", "sigma", "omega", "mu0", "sigma0", "omega0"]
     utils.writecols(cols, heads, "data/2flavpot.dat", skipevery=len(μ))
 
-    # plot massless, free equation of state
-    μ = np.linspace(0, 1000, 250)[1:]
+    # plot massive, interacting and massless, free equation of state
+    μ = np.linspace(0, 1000, 1000)[1:]
     eos(μ, interaction=False, plot=True, outfile="data/2flavfreeeos.dat")
-    exit()
-
-    # plot equation of state
-    μ = np.linspace(0, 1000, 250)[1:]
-    ϵ = eos(μ, B=0, plot=True, outfile="data/2flaveos.dat", verbose=True)
+    ϵ = eos(μ, plot=True, outfile="data/2flaveos.dat", verbose=True)
 
     # solve TOV equation for different bag pressures
     μ = np.concatenate([np.linspace(0, 600, 200)[1:], np.linspace(600, 5000, 100)])
