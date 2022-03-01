@@ -507,6 +507,7 @@ In the opposite case $\mu < m$, the step function would cause the whole integral
 
 We require that the mean field $\avg{\sigma}$ is a stable minimum of the grand potential,
 so we determine it by solving
+\TODO{mean field is an ``order parameter''}
 \begin{equation}
 	\pdv{\Omega}{\avg{\sigma}} = 0.
 \label{eq:lsm:potential_minimize}
@@ -705,10 +706,24 @@ Doing so, we end up with the equation of state
 	\epsilon = 3 P + 3 \Omega(\mu<\SI{300}{\mega\electronvolt}).
 \label{eq:lsm:eos_massless}
 \end{equation}
+The analytical results \eqref{eq:lsm:chemical_potentials_massless}, \eqref{eq:lsm:densities_massless} and \eqref{eq:lsm:eos_massless} are also shown for comparison in \cref{fig:lsm:2-flavor-eos}, and agree with our numerical results for large $\mu$, as we expected.
 
-\TODO{now discussion?}
+A discussion of the results in \cref{fig:lsm:2-flavor-eos} is now in order:
+\begin{itemize}
+\item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$, no square roots in the grand potential \eqref{eq:lsm:grand_potential} nor the densities \eqref{eq:lsm:particle_densities} have real parts, so we are in vacuum with the trivial solutions $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$, $\mu_e = 0$ and $\mu_u = \mu_d = \mu$ of equation \eqref{eq:lsm:minsys}, showing the Silver Blaze property again.
+\item For $\SI{300}{\mega\electronvolt} < \mu \lesssim \SI{400}{\mega\electronvolt}$, the square roots acquire real parts and the system exhibits a crossover where particle densities increase rapidly from their vanishing vacuum values, while $\avg{\sigma}$ and hence the effective quark mass $m_q = g \avg{\sigma}$ plummets towards zero.
+\item For $\mu \gtrsim \SI{400}{\mega\electronvolt}$, the potential minimum approaches $\avg{\sigma} \rightarrow 0$ asymptotically.
+      Due to the small quark masses $m_q = g \avg{\sigma} \rightarrow 0$, the results in this region agree with the free quark gas results \eqref{eq:lsm:densities_massless}, \eqref{eq:lsm:chemical_potentials_massless} and \eqref{eq:lsm:eos_massless} in the massless limit.
+\item Although the electrons have an appreciable chemical potential $\mu_e$, the electron \emph{density} $n_e$ is hardly noticeable compared to the quark densities $n_u$ and $n_d$.
+      The magnified plot in \cref{fig:lsm:2-flavor-eos-density} shows that the electron density is \emph{nonzero}, only several orders of magnitude below the quark densities.
+      This is consistent with the densities corresponding to the chemical potentials \eqref{eq:lsm:chemical_potentials_massless} that we found in the massless limit by neglecting the electron contribution to the charge neutrality condition \eqref{eq:lsm:minsys_charge}.
+\item When normalized to the exact same vacuum pressure, the massive and massless equations of state in \cref{fig:lsm:2-flavor-eos-eos} agree for $P \rightarrow \infty$, which corresponds to $\mu \rightarrow \infty$ and in turn $\avg{\sigma} \rightarrow 0$ and $m_q = g \avg{\sigma} \rightarrow 0$, and hence massless quarks.
+      For small pressures, however, the assumption of massless quarks breaks down and the two disagree.
+\item \TODO{$m_\sigma$ value, two solutions to charge neutrality?}
+\end{itemize}
+We see that the crossover behavior is very similar to that in \cref{fig:lsm:grand-potential-nonneutral}.
 
-
+\TODO{needs a small intro and rewriting...}
 In addition, we will allow for a bag constant $B$ to be added to the pressure and energy density
 \TODO{justify and make less ad-hoc, move some of this to intro?}
 \TODO{understand difference between $P(\mu)$ and $P(\mu,B)$}
@@ -779,15 +794,6 @@ With the equation of state, we now solve the Tolman-Oppenheimer-Volkoff equation
 This yields the central pressure-parametrized mass-radius curves in \cref{fig:lsm:2-flavor-mass-radius}, producing maximum masses up to $M < 1.77 M_\odot$.
 
 \TODO{explain the solutions in the plots, and plot densities logarithmically?}
-
-\TODO{discussion/remark list}
-\begin{itemize}
-\item $m_\sigma$ value
-\item Two solutions to charge neutrality?
-\item Compare results with \emph{free} ($g = \lambda = 0$) quark gas ($u$, $d$, $e$) with massless quarks ($m_q=0$, also use massless electrons for consistency $m_e=0$?) and charge neutrality
-      EOS should be similar for large $P$, i.e. when masses are low!
-\item Do not compare with neutron star.
-\end{itemize}
 
 \TODO{just drop this part?
 Having described we \emph{do} and \emph{should do}, let us also remark on what we \emph{did} and \emph{shouldn't do}.
