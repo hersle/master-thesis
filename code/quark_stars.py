@@ -53,7 +53,7 @@ def qf(σ, μu, μd, μe):
     ne =  1/(3*π**2) * np.real(np.power(μe**2-me**2+0j, 3/2))
     return +2/3*nu - 1/3*nd - 1*ne
 
-def eos(μ, B=0, interaction=True, name="ϵ", outfile="", plot=False, verbose=False):
+def eos(μ, B=None, interaction=True, name="ϵ", outfile="", plot=False, verbose=False):
     if interaction:
         σ  = np.empty_like(μ)
         μu = np.empty_like(μ)
@@ -94,7 +94,12 @@ def eos(μ, B=0, interaction=True, name="ϵ", outfile="", plot=False, verbose=Fa
         ω = ωu + ωd + ωe
         σ = np.zeros_like(μ) # zero quark mass
 
-    P = -(ω - ω[0])
+    print(f"ω[0] = {ω[0]}")
+
+    if interaction:
+        P = -(ω - ω[0])
+    else:
+        P = -ω - 599805285.843199
     mq = g*σ
     nu = Nc/(3*π**2) * np.real(np.power(μu**2-mq**2+0j, 3/2))
     nd = Nc/(3*π**2) * np.real(np.power(μd**2-mq**2+0j, 3/2))
@@ -102,13 +107,14 @@ def eos(μ, B=0, interaction=True, name="ϵ", outfile="", plot=False, verbose=Fa
     ϵ  = -P + μu*nu + μd*nd + μe*ne
 
     # TODO: bag constant
-    nB = 1/3 * (nu + nd)
-    ϵB = 0 + μu*nu + μd*nd # TODO: is this what "P = 0" means?
-    f = scipy.interpolate.interp1d(P, ϵB/nB - 930)
-    Bmin = scipy.optimize.root_scalar(f, bracket=(0, 1e9), method="brentq").root
-    print(f"bag constant lower bound: B^(1/4) > {Bmin**(1/4)} MeV")
-    ϵ += B
-    P -= B
+    if B is not None:
+        nB = 1/3 * (nu + nd)
+        ϵB = 0 + μu*nu + μd*nd # TODO: is this what "P = 0" means?
+        f = scipy.interpolate.interp1d(P, ϵB/nB - 930)
+        Bmin = scipy.optimize.root_scalar(f, bracket=(0, 1e9), method="brentq").root
+        print(f"bag constant lower bound: B^(1/4) > {Bmin**(1/4)} MeV")
+        ϵ += B
+        P -= B
 
     # convert interesting quantities to SI units
     nu *= constants.MeV**3 / (constants.ħ * constants.c)**3 # now in units 1/m^3

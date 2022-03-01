@@ -573,64 +573,53 @@ Through trial and error, we have found that we get a well-defined parametrizatio
 ]
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$},
-	xmin=0, xmax=600, ytick distance=100,
+	xmin=0, xmax=600, ymax=500, ytick distance=100,
 	%ymax=600, 
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-parametrization}Parametrization of solutions}},
 	legend cell align=right, legend pos=north west,
 ];
-\addplot+ [orange, solid] table [x=mu,y=sigma] {../code/data/2flaveos.dat};
-\addlegendentry{$\avg{\sigma} \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red,   dashed] table [x=mu,y=muu  ] {../code/data/2flavfreeeos.dat};
-\addplot+ [red,    solid] table [x=mu,y=muu  ] {../code/data/2flaveos.dat};
-\addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [green, dashed] table [x=mu,y=mud  ] {../code/data/2flavfreeeos.dat};
-\addplot+ [green,  solid] table [x=mu,y=mud  ] {../code/data/2flaveos.dat};
-\addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [black, dashed] table [x=mu,y=mue  ] {../code/data/2flavfreeeos.dat};
-\addplot+ [black,  solid] table [x=mu,y=mue  ] {../code/data/2flaveos.dat};
-\addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y expr=0] {../code/data/2flavfreeeos.dat}; %\addlegendentry{$\avg{\sigma} \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange, solid, opacity=0.7] table [x=mu, y=sigma] {../code/data/2flaveos.dat}; \addlegendentry{$\avg{\sigma} \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=muu   ] {../code/data/2flavfreeeos.dat}; %\addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red, solid, opacity=0.7] table [x=mu, y=muu] {../code/data/2flaveos.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=mud   ] {../code/data/2flavfreeeos.dat}; %\addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, solid, opacity=0.7] table [x=mu, y=mud] {../code/data/2flaveos.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=mue   ] {../code/data/2flavfreeeos.dat}; %\addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue, solid, opacity=0.7] table [x=mu, y=mue] {../code/data/2flaveos.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+
 
 \nextgroupplot[
-	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n \, / \, (1/\si{\femto\meter\cubed})$},
+	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
 	xmin=0, xmax=600,
 	ymax=2.0, ytick distance=0.5,
-	%xmin=600, xmax=1400,
-	%xmin=200, xmax=500, xtick distance=50,
-	%extra x ticks={325}, 
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-density}Particle number densities}},
 	legend cell align=left, legend pos=north west,
 ];
-\addplot+ [red,    solid] table [x=mu, y=nu] {../code/data/2flaveos.dat}; \addlegendentry{up quarks};
-\addplot+ [red,   dashed] table [x=mu, y=nu] {../code/data/2flavfreeeos.dat}; \addlegendentry{freee up quarks};
-\addplot+ [green,  solid] table [x=mu, y=nd] {../code/data/2flaveos.dat}; \addlegendentry{down quarks};
-\addplot+ [green, dashed] table [x=mu, y=nd] {../code/data/2flavfreeeos.dat}; \addlegendentry{free down quarks};
-\addplot+ [black,  solid] table [x=mu, y=ne] {../code/data/2flaveos.dat}; \addlegendentry{electrons};
-\addplot+ [black, dashed] table [x=mu, y=ne] {../code/data/2flavfreeeos.dat}; \addlegendentry{free electrons};
+\addplot+ [red, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=nu] {../code/data/2flavfreeeos.dat};
+\addplot+ [red, solid, opacity=0.7] table [x=mu, y=nu] {../code/data/2flaveos.dat}; \addlegendentry{$n_u$ (up quarks)};
+\addplot+ [darkgreen, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=nd] {../code/data/2flavfreeeos.dat};
+\addplot+ [darkgreen, solid, opacity=0.7] table [x=mu, y=nd] {../code/data/2flaveos.dat}; \addlegendentry{$n_d$ (up quarks)};
+\addplot+ [blue, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=ne] {../code/data/2flavfreeeos.dat};
+\addplot+ [blue, solid, opacity=0.7] table [x=mu, y=ne] {../code/data/2flaveos.dat}; \addlegendentry{$n_e$ (electrons)};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
-	%xmin=0, xmax=0.5, ymin=0, ymax=2, xtick distance=0.1,
-	xmin=0, xmax=1, ymin=0, ymax=5, xtick distance=0.1,
+	xmin=0, xmax=0.5, ymin=0, ymax=2, xtick distance=0.1, ytick distance=0.5, minor y tick num=4,
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
-	declare function={
-		e0 = 4.266500881855305e+34; % for converting neutron star EOS
-		fm = 1e-15;
-		gev = 1e9 * 1.6e-19;
-	},
 ];
-%\addplot+ [black, gray, dashed] table [x expr={\thisrow{P}*e0/(gev/fm^3)}, y expr={\thisrow{epsGR}*e0/(gev/fm^3)}] {../code/data/eos.dat}; % neutron star EOS
-%\addlegendentry{ideal neutron star};
-\addplot+ [black,  solid] table [x=P,y=epsilon] {../code/data/2flaveos.dat}; \addlegendentry{with interaction};
-\addplot+ [black, dashed] table [x=P,y=epsilon] {../code/data/2flavfreeeos.dat}; \addlegendentry{without interactions};
+\addplot+ [black, densely dashed, semithick, opacity=0.7, forget plot] table [x=P,y=epsilon] {../code/data/2flavfreeeos.dat}; %\addlegendentry{without interactions};
+\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/2flaveos.dat};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos}%
-\subref{fig:lsm:2-flavor-eos-parametrization} Solutions to the system of equations \eqref{eq:lsm:minsys} describing charge neutral two-flavor quark matter in $\beta$-equilibrium, parametrized by the quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
-\subref{fig:lsm:2-flavor-eos-density} Corresponding particle number densities \eqref{eq:lsm:particle_densities}.
-\subref{fig:lsm:2-flavor-eos-eos} Corresponding equation of state with no bag constant, found by eliminating the chemical potential from the pressure \eqref{eq:lsm:pressure_bagless} and energy density \eqref{eq:lsm:energy_density_bagless}.
-\TODO{compare with free quark gas}
+Properties of electrically charge neutral two-flavor quark matter in $\beta$-equilibrium parametrized by the quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
+Solid lines show
+\subref{fig:lsm:2-flavor-eos-parametrization} solutions to the system of equations \eqref{eq:lsm:minsys} and the corresponding
+\subref{fig:lsm:2-flavor-eos-density} particle number densities \eqref{eq:lsm:particle_densities} and
+\subref{fig:lsm:2-flavor-eos-eos} equation of state \eqref{eq:lsm:eos}.
+In comparison, dashed lines show the approximate analytical solutions \eqref{eq:lsm:chemical_potentials_massless}, \eqref{eq:lsm:densities_massless} and \eqref{eq:lsm:eos_massless} for a free quark gas in the massless limit $\avg{\sigma} = 0$ and $m_e = 0$.
 }
 \end{figure}
 
@@ -638,6 +627,7 @@ The numerical solution of the system \eqref{eq:lsm:minsys} is described in \cref
 \Cref{fig:lsm:2-flavor-eos-parametrization} shows the parametrization of the four arguments $\avg{\sigma}(\mu)$, $\mu_u(\mu)$, $\mu_d(\mu)$ and $\mu_e(\mu)$.
 From these parametrizations, we compute the particle number densities \eqref{eq:lsm:particle_densities} in \cref{fig:lsm:2-flavor-eos-density}.
 Finally, from the parametrizations and densities, we compute the pressure
+\begin{subequations}
 \begin{equation}
 	P(\mu) = -\Big[\Omega(\mu) - \Omega(\mu<\SI{300}{\mega\electronvolt})\Big]
 \label{eq:lsm:pressure_bagless}
@@ -646,7 +636,9 @@ relative to vacuum and the energy density
 \begin{equation}
 	\epsilon(\mu) = -P(\mu) + \sum_i \mu_i(\mu) \, n_i(\mu) ,
 \label{eq:lsm:energy_density_bagless}
-\end{equation}
+\end{equation}%
+\label{eq:lsm:eos}%
+\end{subequations}%
 then at last eliminate the free parameter $\mu$ to find the equation of state $\epsilon(P)$ in \cref{fig:lsm:2-flavor-eos-eos}.
 
 As $\mu$ increases, the numerical results in \cref{fig:lsm:2-flavor-eos-parametrization} indicate that $\avg{\sigma}$ decays towards zero.
@@ -678,6 +670,7 @@ Summarizing and expressing these chemical potentials in terms of the quark chemi
 	\mu_u = \frac{2}{1+2^{1/3}} \mu, \qquad
 	\mu_d = \frac{2}{1+2^{-1/3}} \mu \qquad \text{and} \qquad
 	\mu_e = (2^{1/3}-1) \mu.
+\label{eq:lsm:chemical_potentials_massless}
 \end{equation}
 Using the grand potential \eqref{eq:lsm:grand_potential_massless} and densities \eqref{eq:lsm:densities_massless} ignoring the normalization of the pressure $P = -\Omega$, the equation of state is now
 \begin{equation}
@@ -688,6 +681,7 @@ To compare it with our numerical equation of state, we should normalize the pres
 Doing so, we end up with the equation of state
 \begin{equation}
 	\epsilon = 3 P + 3 \Omega(\mu<\SI{300}{\mega\electronvolt}).
+\label{eq:lsm:eos_massless}
 \end{equation}
 
 \TODO{now discussion?}
