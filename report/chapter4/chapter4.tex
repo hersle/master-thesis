@@ -649,6 +649,50 @@ relative to vacuum and the energy density
 \end{equation}
 then at last eliminate the free parameter $\mu$ to find the equation of state $\epsilon(P)$ in \cref{fig:lsm:2-flavor-eos-eos}.
 
+As $\mu$ increases, the numerical results in \cref{fig:lsm:2-flavor-eos-parametrization} indicate that $\avg{\sigma}$ decays towards zero.
+Let us leverage this to validate our numerical results to the analytical solution of the massless and non-interacting problem with $\avg{\sigma} = 0$,
+where the quark mass $m_q = g \avg{\sigma} = 0$ and all other interaction terms vanish.
+For simplicity, we also neglect the electron mass $m_e = 0$, as it is very light.
+We expect correspondence with our numerical results for large values of $\mu$.
+In this limit, the grand potential \eqref{eq:lsm:grand_potential} reduces to
+\begin{equation}
+	\Omega(\mu_u, \mu_d, \mu_e) = -\frac{N_c \mu_u^4}{12 \pi^2} - \frac{N_c \mu_d^4}{12 \pi^2} - \frac{\mu_e^4}{12 \pi^2},
+\label{eq:lsm:grand_potential_massless}
+\end{equation}
+while the densities \eqref{eq:lsm:particle_densities} become
+\begin{equation}
+	n_u = \frac{N_c \abs{\mu_u}^3}{3 \pi^2}, \qquad
+	n_d = \frac{N_c \abs{\mu_d}^3}{3 \pi^2}  \qquad \text{and} \qquad
+	n_e = \frac{N_c \abs{\mu_e}^3}{3 \pi^2}.
+\label{eq:lsm:densities_massless}
+\end{equation}
+The charge neutrality condition \eqref{eq:lsm:minsys_charge} can be solved approximately under the assumption that we can neglect the electron density $n_e \ll n_u < n_d$,
+motivated by the faint electron density in the numerical solution.
+This simplifies the condition to $n_d = 2 n_u$, with the solution $\mu_d = 2^{1/3} \mu_u$.
+According to the $\beta$-equilibrium condition \eqref{eq:lsm:minsys_equilibrium},
+the chemical potential of the electrons is $\mu_e = \mu_d - \mu_u = (1-2^{1/3}) \mu_u$,
+corresponding to the density $n_e = (2^{1/3}-1)^3 n_u / N_c = 0.006 \, n_u \ll n_u$,
+which is indeed negligible in line with our original assumption.
+Summarizing and expressing these chemical potentials in terms of the quark chemical potential $\mu = (\mu_u+\mu_d)/2$ we have
+\begin{equation}
+	\mu_u = \frac{2}{1+2^{1/3}} \mu, \qquad
+	\mu_d = \frac{2}{1+2^{-1/3}} \mu \qquad \text{and} \qquad
+	\mu_e = (2^{1/3}-1) \mu.
+\end{equation}
+Using the grand potential \eqref{eq:lsm:grand_potential_massless} and densities \eqref{eq:lsm:densities_massless} ignoring the normalization of the pressure $P = -\Omega$, the equation of state is now
+\begin{equation}
+	\epsilon = -P + \sum_i \mu_i n_i = -P + \frac{1}{3 \pi^2} \Big(N_c \mu_u^4 + N_c \mu_d^4 + \mu_e^4\Big) = -P - 4 \Omega = -P + 4 P = 3 P .
+\end{equation}
+This is the same ultra-relativistic equation of state that we also found in equation \eqref{eq:nstars:ur_eos}.
+To compare it with our numerical equation of state, we should normalize the pressure $P \rightarrow P + \Omega(\mu<\SI{300}{\mega\electronvolt})$ using the vacuum value of the grand potential that we obtained in our general analysis.
+Doing so, we end up with the equation of state
+\begin{equation}
+	\epsilon = 3 P + 3 \Omega(\mu<\SI{300}{\mega\electronvolt}).
+\end{equation}
+
+\TODO{now discussion?}
+
+
 In addition, we will allow for a bag constant $B$ to be added to the pressure and energy density
 \TODO{justify and make less ad-hoc, move some of this to intro?}
 \TODO{understand difference between $P(\mu)$ and $P(\mu,B)$}
