@@ -54,6 +54,15 @@ print(f"V = {Vtree}")
 m2σσ = matrix(9, 9, lambda a, b: diff(V,σ[a],σ[b]).substitute(avgeqs).collect(λ1).collect(λ2))
 m2σπ = matrix(9, 9, lambda a, b: diff(V,σ[a],π[b]).substitute(avgeqs).collect(λ1).collect(λ2))
 m2ππ = matrix(9, 9, lambda a, b: diff(V,π[a],π[b]).substitute(avgeqs).collect(λ1).collect(λ2)) # TODO: one term in m2ππ[0,8] differs from Berge!
+for a in range(0, 9):
+    for b in range(0, 9):
+        print(f"m2σσ[{a},{b}] = {m2σσ[a,b]}")
+for a in range(0, 9):
+    for b in range(0, 9):
+        print(f"m2σπ[{a},{b}] = {m2σπ[a,b]}")
+for a in range(0, 9):
+    for b in range(0, 9):
+        print(f"m2ππ[{a},{b}] = {m2ππ[a,b]}")
 
 # find eigenvalues with given multiplicities eig[2] (3 for π, 4 for k)
 m2σ = [eig[0] for eig in m2σσ.eigenvectors_left() if eig[2]==1][0].collect(λ1).collect(λ2) # TODO: there are two! which one to choose?
@@ -90,8 +99,12 @@ numvals += [
 hxnum = hx.substitute(eqs08).substitute(numvals).n()
 hynum = hy.substitute(eqs08).substitute(numvals).n()
 
+mud0 = 300 # up/down quark mass in vacuum
+g = (2 * mud0 / fπ).n()
+
 print(f"m2 = -{sqrt(-m2num)}^2")
 print(f"λ1 = {λ1num}")
 print(f"λ2 = {λ2num}")
 print(f"hx = {hxnum**(1/3)}^3")
 print(f"hy = {hynum**(1/3)}^3")
+print(f"g  = {g}")
