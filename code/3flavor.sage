@@ -108,3 +108,8 @@ print(f"λ2 = {λ2num}")
 print(f"hx = {hxnum**(1/3)}^3")
 print(f"hy = {hynum**(1/3)}^3")
 print(f"g  = {g}")
+
+Λx = (g*σx/(sqrt(e)*2)).substitute(eqs08).substitute(numvals).n()
+Λy = (g*σy/(sqrt(e*2))).substitute(eqs08).substitute(numvals).n()
+Λ  = ((2*Λx + Λy) / 3).n()
+print(f"Λ = {Λ}")

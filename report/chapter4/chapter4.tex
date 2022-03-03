@@ -929,7 +929,7 @@ This gives (eliminate $\lambda_1$ and $\lambda_2$ using equations for $m^2_\pi$ 
 Finally, quarks have masses
 \begin{equation}
 	m_u = g (T_a)_{11} \avg{\sigma_a} = \frac{g \sigma_x}{2}, \quad
-	m_d = g (T_a)_{22} \avg{\sigma_a} = \frac{g \sigma_y}{2}  \quad \text{and} \quad
+	m_d = g (T_a)_{22} \avg{\sigma_a} = \frac{g \sigma_x}{2}  \quad \text{and} \quad
 	m_s = g (T_a)_{22} \avg{\sigma_a} = \frac{g \sigma_y}{\sqrt{2}}.
 \end{equation}
 Determine $g$ from
@@ -952,3 +952,33 @@ we obtain the parameters
 	g &= \SI{6.5}{}.
 \end{align}
 \end{subequations}
+
+\subsection{Grand potential}
+
+\begin{equation}
+\begin{split}
+	 & \Omega(\avg{\sigma_x},\avg{\sigma_y},\mu_u,\mu_d,\mu_s,\mu_e) \\
+	=& \frac{m^2}{2} \big[\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big] + \frac{\lambda_1}{4} \big[\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big]^2 + \frac{\lambda_2 }{8} \big[\avg{\sigma_x}^4 + 2 \avg{\sigma_y}^4\big] - h_x \avg{\sigma_x} - h_y \avg{\sigma_y} \\
+	-& \frac{N_c}{24 \pi^2} \sum_{f=\{u,d\}} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right] \\
+	-& \frac{  1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} + 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_e^2}{m_e^2}-1} \right) \right] \\
+	+& N_c \sum_f \frac{m_f^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right].
+\end{split}
+\end{equation}
+Has divergent term
+\begin{equation}
+	\frac{N_c g^4}{16 \pi^2} \frac18 (\sigma_x^4 + 2 \sigma_y^4)
+\end{equation}
+Remove by renormalizing
+\begin{equation}
+	\lambda_2 \rightarrow \lambda_2^P + \delta\lambda_2 \qquad \text{with} \qquad \delta\lambda_2 = -\frac{N_c g^4}{16 \pi^2} .
+\end{equation}
+How to determine $\Lambda$?
+Minimize potential in both directions in vacuum to find $\Lambda_x$ and $\Lambda_y$:
+\begin{equation}
+	\pdv{\Omega}{\avg{\sigma_x}} = \pdv{\Omega}{\avg{\sigma_y}} = 0.
+\end{equation}
+Gives $\Lambda_x = g \sigma_x / 2 \sqrt{e} = \SI{182.0}{\mega\electronvolt}$ and $\Lambda_y = g \sigma_y / \sqrt{2 e} = \SI{260.2}{\mega\electronvolt}$.
+But $\Lambda$ can only have one value, so choose the average ($u,d,s$ weigh equally)
+\begin{equation}
+	\Lambda = \frac{2 \Lambda_x + \Lambda_y}{3} = \SI{208.0}{\mega\electronvolt}.
+\end{equation}
