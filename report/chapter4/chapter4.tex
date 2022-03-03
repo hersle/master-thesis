@@ -806,3 +806,149 @@ Unfortunately, $\pdv{\Omega'}/{\avg{\sigma}} \neq \pdv{\Omega}/{\avg{\sigma}}$, 
 The cause of this source of confusion is that \emph{the charge neutrality condition \eqref{eq:lsm:minsys_charge} depends on the same variable that the potential should be minimized with respect to.}
 Hopefully, this remark will save someone from enduring this painful realization again.
 }
+
+\section{Three-flavor quark-meson model}
+
+\begin{equation}
+\begin{split}
+	\lagr &= \sum_{c=1}^{N_c} \bar{q}_c [ i \slashed\partial - g T_a (\sigma_a + i \gamma_5 \pi_a) ] q + \trace[(\partial_\mu \phi)^\dagger (\partial_\mu \phi)] \\
+	      &- m^2 \trace[\phi^\dagger \phi] - \lambda_1 [\trace(\phi^\dagger \phi)]^2 - \lambda_2 \trace[(\phi^\dagger \phi)^2] + c \tdet(\phi^\dagger \phi) + \trace[H(\phi+\phi^\dagger)]
+\end{split}
+\end{equation}
+Field
+\begin{equation}
+	\phi = T_a \phi_a = T_a (\sigma_a + i \pi_a)
+\end{equation}
+Generators
+\begin{equation}
+	T_a = \frac{\lambda_a}{2}
+\end{equation}
+Gell-Mann matrices
+\begin{equation}
+\begin{NiceMatrixBlock}[auto-columns-width]
+\setlength{\arraycolsep}{0pt}
+\NiceMatrixOptions{cell-space-limits = 5pt}
+\begin{aligned}
+	\lambda_0 &= \begin{bNiceMatrix} \smash{\sqrt{\frac{2}{3}}} &  0 &  0 \\ 0 &  \smash{\sqrt{\frac{2}{3}}} &  0 \\ 0 & 0 &  \smash{\sqrt{\frac{2}{3}}} \end{bNiceMatrix}, &\quad&
+	\lambda_1 &= \begin{bNiceMatrix}                          0 &  1 &  0 \\ 1 &                           0 &  0 \\ 0 & 0 &                           0 \end{bNiceMatrix}, &\quad&
+	\lambda_2 &= \begin{bNiceMatrix}                          0 & -i &  0 \\ i &                           0 &  0 \\ 0 & 0 &                           0 \end{bNiceMatrix}, \\
+	\lambda_3 &= \begin{bNiceMatrix}                          1 &  0 &  0 \\ 0 &                          -1 &  0 \\ 0 & 0 &                           0 \end{bNiceMatrix}, &\quad&
+	\lambda_4 &= \begin{bNiceMatrix}                          0 &  0 &  1 \\ 0 &                           0 &  0 \\ 1 & 0 &                           0 \end{bNiceMatrix}, &\quad&
+	\lambda_5 &= \begin{bNiceMatrix}                          0 &  0 & -i \\ 0 &                           0 &  0 \\ i & 0 &                           0 \end{bNiceMatrix}, \\
+	\lambda_6 &= \begin{bNiceMatrix}                          0 &  0 &  0 \\ 0 &                           0 &  1 \\ 0 & 1 &                           0 \end{bNiceMatrix}, &\quad&
+	\lambda_7 &= \begin{bNiceMatrix}                          0 &  0 &  0 \\ 0 &                           0 & -i \\ 0 & i &                           0 \end{bNiceMatrix}, &\quad&
+	\lambda_8 &= \begin{bNiceMatrix} \smash{\frac{1}{\sqrt{3}}} &  0 &  0 \\ 0 &  \smash{\frac{1}{\sqrt{3}}} &  0 \\ 0 & 0 & -\smash{\frac{2}{\sqrt{3}}} \end{bNiceMatrix}.
+\end{aligned}
+\end{NiceMatrixBlock}
+\end{equation}
+Set $c=h_1=h_2=h_3=h_4=h_5=h_6=h_7=0$,
+leaving 6 unknown parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_0$, $h_8$.
+Field transformation
+(arises from wanting $\trace \phi^4$ to be decoupled into separate terms. look for an orthogonal transformation that accomplishes this (i.e. diagonalizes $\lagr$?) (3 equations: 4 matrix elements except 1 due to symmetry). this gives three coefficients in front of terms $\sigma_0^1 \sigma_8^3$, $\sigma_0^2 \sigma_8^2$ and $\sigma_0^3 \sigma_8^1$ that we require to be zero).
+\TODO{use bNiceMatrix?}
+\begin{equation}
+	\begin{bmatrix} \avg{\sigma_x} \\ \avg{\sigma_y} \end{bmatrix} = \frac{1}{\sqrt{3}} \begin{bmatrix} \sqrt{2} & 1 \\ 1 & -\sqrt{2} \end{bmatrix} \begin{bmatrix} \avg{\sigma_0} \\ \avg{\sigma_8} \end{bmatrix}
+\end{equation}
+Calculate $d_{abc}$ explicitly from equation above to find
+\TODO{just do the traces on a machine}
+\begin{equation}
+	\trace[(\avg{\phi}^\dagger \avg{\phi})^2] = \frac18 \sigma_x^4 + \frac14 \sigma_y^4
+\end{equation}
+The expansion of the Lagrangian is therefore
+\TODO{$\lambda/4!$ for consistency}
+\begin{equation}
+	\lagr = \sum_{c=1}^{N_c} \bar{q}_c [ i \slashed\partial - g T_a (\avg{\sigma_a} ] q + \text{\TODO{no pdv term?}} - \pot 
+\end{equation}
+with the potential
+\begin{equation}
+	\pot = \frac12 m^2 [\avg{\sigma_x}^2 + \avg{\sigma_y}^2] + \frac{\lambda_1}{4} [\avg{\sigma_x}^2 + \avg{\sigma_y}^2]^2 + \lambda_2 [\frac18 \avg{\sigma_x}^4 + \frac14 \avg{\sigma_y}^4] - h_x \avg{\sigma_x} - h_y \avg{\sigma_y}
+\end{equation}
+The potential $\pot$ has a minimum located at
+\begin{equation}
+	\avg{\sigma_0} \neq 0, \quad
+	\avg{\sigma_8} \neq 0, \quad
+	\avg{\sigma_a} = 0 \text{ for $a \neq 0$ and $a \neq 8$}, \quad
+	\avg{\pi_a} = 0 \text{ for all $a=0, \ldots, 8$}.
+\end{equation}
+Thus, shifting
+\begin{equation}
+	\sigma \rightarrow \avg{\sigma} + \sigma \quad \text{and} \quad \pi \rightarrow \avg{\pi} + \pi,
+\end{equation}
+the potential can be expanded to
+\begin{equation}
+	\pot = \pot(\avg{\sigma}, \avg{\pi}) + \frac12 \big(m^2_{\sigma\sigma}\big)_{ab} \sigma_a \sigma_b + \frac12 \big(m^2_{\sigma\pi}\big)_{ab} \sigma_a \pi_b + \frac12 \big(m^2_{\pi\pi}\big)_{ab} \pi_a \pi_b
+\end{equation}
+with the tree-level potential
+\begin{equation}
+	\pot(\avg{\sigma}, \avg{\pi}) = \frac{1}{2} m^2 (\avg{\sigma_x}^2 + \avg{\sigma_y}^2) + \frac{\lambda_1}{4} (\avg{\sigma_x}^2 + \avg{\sigma_y}^2)^2 + \frac{\lambda_2 }{8} (\avg{\sigma_x}^4 + 2 \avg{\sigma_y}^4) - h_x \avg{\sigma_x} - h_y \avg{\sigma_y}
+\end{equation}
+and the three mass matrices
+\begin{subequations}
+\begin{align}
+	\big(m^2_{\sigma\sigma}\big)_{ab} &= \pdv[2]{\pot}{\sigma_a \sigma_b}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})}, \\
+	\big(m^2_{\sigma\pi}\big)_{ab}    &= \pdv[2]{\pot}{\sigma_a \pi_b}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})}, \\
+	\big(m^2_{\pi\pi}\big)_{ab}       &= \pdv[2]{\pot}{\pi_a \pi_b}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})}.
+\end{align}%
+\end{subequations}%
+The mixed mass matrix $m^2_{\sigma\pi} = 0$ vanishes because $\avg{\pi} = 0$.
+Diagonalize the remaining symmetric mass matrices with a unitary transformation $\sigma \rightarrow \bar{\sigma} = U \sigma$:
+\begin{equation}
+	\sigma^T m^2_{\sigma\sigma} \sigma = \sigma^T U^T U m^2_{\sigma\sigma} U^T U \sigma = (U \sigma)^T U^T m^2_{\sigma\sigma} U (U \sigma) = \bar{\sigma}^T m^2_\sigma \bar\sigma.
+\end{equation}
+Then the potential is
+\begin{equation}
+	\pot = \pot(\avg{\sigma}, \avg{\pi}) + \frac12 \big(m^2_{\sigma}\big)_{aa} \bar{\sigma}_a^2 + \frac12 \big(m^2_{\pi\pi}\big)_{ab} \bar{\pi}_a^2.
+\end{equation}
+Include mesons $\sigma (\times 1)$, $\pi (\times 3)$ and $K (\times 4)$ with eigenvalue masses \TODO{justify choice of eigenvalues}
+\begin{subequations}
+\begin{align}
+	m^2_\sigma &= m^2 + 2 \lambda_1 (\sigma_x^2 + \sigma_y^2) + \frac{3}{4} \lambda_2 (\sigma_x^2 + 2 \lambda_2 \sigma_y^2) \nonumber \\
+	           &- \frac{1}{4} \sqrt{16 \lambda_1^2 (\sigma_x^2 + \sigma_y^2)^2 + 9 \lambda_2^2 (\sigma_x^4 - 4 \sigma_x^2 \sigma_y^2 + 4 \sigma_y^4) + 24 \lambda_1 \lambda_2 (\sigma_x^4 - 3 \sigma_x^2 \sigma_y^2 + 2 \sigma_y^4)}, \\
+	%m^2_\pi    &= m^2 + \lambda_1 (\sigma_0^2 + \sigma_8^2) + \frac{\lambda_2}{6} (2 \sqrt{2} \sigma_0 \sigma_8 + 2 \sigma_0^2 + \sigma_8^2), \\
+	m^2_\pi    &= m^2 + \lambda_1 (\sigma_x^2 + \sigma_y^2) + \frac12 \lambda_2 \sigma_x^2, \\
+	%m^2_K      &= m^2 + \lambda_1 (\sigma_0^2 + \sigma_8^2) - \frac{\lambda_2}{6} (\sqrt{2} \sigma_0 \sigma_8 - 2 \sigma_0^2 - 7 \sigma_8^2). \\
+	m^2_K      &= m^2 + \lambda_1 (\sigma_x^2 + \sigma_y^2) + \frac12 \lambda_2 (\sigma_x^2 + 2 \sigma_y^2 - \sqrt{2} \sigma_x \sigma_y).
+\end{align}
+\end{subequations}
+Use these equations to determine $m^2$, $\lambda_1$ and $\lambda_2$ from measurements of $m_\sigma$, $m_\pi$ and $m_K$.
+
+Determine symmetry breaking parameters $h_x$ and $h_y$ from
+\begin{equation}
+	\pdv{\pot}{\sigma_x}_{0} = \pdv{\pot}{\sigma_y}_{0} = 0.
+\end{equation}
+This gives (eliminate $\lambda_1$ and $\lambda_2$ using equations for $m^2_\pi$ and $m^2_K$)
+\begin{subequations}
+\begin{align}
+	%h_x &= \frac12 (2 \lambda_1 + \lambda_2) \sigma_x^3 + \lambda_1 \sigma_x \sigma_y^2 + m^2 \sigma_x = \sigma_x m_\pi^2, \\
+	h_x &= \sigma_x [m^2 + \lambda_1 (\sigma_x^2 + \sigma_y^2) + \frac12 \lambda_2 \sigma_y^2] = \sigma_x m_\pi^2, \\
+	%h_y &= (\lambda_1 + \lambda_2) \sigma_y^3 + (\lambda_1 \sigma_x^2 + m^2) \sigma_y..
+	h_y &= \sigma_y [m^2 + \lambda_1 (\sigma_x^2 + \sigma_y^2) + \lambda_2 \sigma_y^2] = \sqrt{2} f_K m_K^2 - \frac{1}{\sqrt{2}} f_\pi m_\pi^2.
+\end{align}
+\end{subequations}
+
+Finally, quarks have masses
+\begin{equation}
+	m_u = g (T_a)_{11} \avg{\sigma_a} = \frac{g \sigma_x}{2}, \quad
+	m_d = g (T_a)_{22} \avg{\sigma_a} = \frac{g \sigma_y}{2}  \quad \text{and} \quad
+	m_s = g (T_a)_{22} \avg{\sigma_a} = \frac{g \sigma_y}{\sqrt{2}}.
+\end{equation}
+Determine $g$ from
+\begin{equation}
+	g = \frac{2 m_{u/d}^0}{\sigma_x} \quad \text{with} \quad m_{u/d}^0 = \SI{300}{\mega\electronvolt} \quad \text{and} \quad \sigma_x = f_\pi = \SI{93}{\mega\electronvolt}.
+\end{equation}
+
+Using the numerical vacuum values
+\begin{subequations}
+\begin{align}
+	f_\pi    &= \SI{93}{\mega\electronvolt},  & f_K   &= \SI{113}{\mega\electronvolt}, \\
+	m_\sigma &= \SI{800}{\mega\electronvolt}, & m_\pi &= \SI{138}{\mega\electronvolt}, & m_K &= \SI{496}{\mega\electronvolt}.
+\end{align}
+\end{subequations}
+we obtain the parameters
+\begin{subequations}
+\begin{align}
+	m^2 &= -(\SI{491.7}{\mega\electronvolt})^2, & \lambda_1 &= -\SI{6.19}{}, & \lambda_2 &= \SI{85.3}{}, \\
+	h_x &= (\SI{121.0}{\mega\electronvolt})^3, & h_y &= (\SI{336.4}{\mega\electronvolt})^3, \\
+	g &= \SI{6.5}{}.
+\end{align}
+\end{subequations}
