@@ -574,7 +574,7 @@ Through trial and error, we have found that we get a well-defined parametrizatio
 ]
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$},
-	xmin=0, xmax=600, ymax=500, ytick distance=100, minor x tick num=4,
+	xmin=0, xmax=600, ymax=500, xtick distance=100, ytick distance=100, minor x tick num=9,
 	%ymax=600, 
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-parametrization}Parametrization of solutions}},
 	legend cell align=right, legend pos=north west,
@@ -591,7 +591,7 @@ Through trial and error, we have found that we get a well-defined parametrizatio
 
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
-	xmin=0, xmax=600, minor x tick num=4,
+	xmin=0, xmax=600, xtick distance=100, minor x tick num=9,
 	ymax=2.0, ytick distance=0.5, minor y tick num=4,
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-density}Particle number densities}},
 	legend cell align=left, legend pos=north west,
@@ -1012,46 +1012,52 @@ Parametrize with quark chemical potential
 ]
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$},
-	%xmin=0, xmax=600, ymax=500, ytick distance=100, minor x tick num=4,
-	%title={\subcaption{\label{fig:lsm:2-flavor-eos-parametrization}Parametrization of solutions}},
+	xmin=0, xmax=900, ymax=800, xtick distance=100, ytick distance=100, minor x tick num=9,
+	title={\subcaption{\label{fig:lsm:3-flavor-eos-parametrization}Parametrization of solutions}},
 	legend cell align=right, legend pos=north west,
 ];
-%\addplot+ [orange!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y expr=0] {../code/data/2flavfreeeos.dat}; %\addlegendentry{$\avg{\sigma} \, / \, \si{\mega\electronvolt}$};
+% Two-flavor (for comparison)
+\addplot+ [orange, solid, opacity=0.2, forget plot] table [x=mu, y=sigma] {../code/data/2flaveos.dat};
+\addplot+ [red, solid, opacity=0.2, forget plot] table [x=mu, y=muu] {../code/data/2flaveos.dat};
+\addplot+ [darkgreen, solid, opacity=0.2, forget plot] table [x=mu, y=mud] {../code/data/2flaveos.dat};
+\addplot+ [blue, solid, opacity=0.2, forget plot] table [x=mu, y=mue] {../code/data/2flaveos.dat};
+
+% Three-flavor
 \addplot+ [orange, solid, opacity=0.7] table [x=mu, y=sigmax] {../code/data/3flaveos.dat}; \addlegendentry{$\avg{\sigma_x} \, / \, \si{\mega\electronvolt}$};
-%\addplot+ [red!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=muu   ] {../code/data/2flavfreeeos.dat}; %\addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
 \addplot+ [yellow, solid, opacity=0.7] table [x=mu, y=sigmay] {../code/data/3flaveos.dat}; \addlegendentry{$\avg{\sigma_y} \, / \, \si{\mega\electronvolt}$};
-%
 \addplot+ [red, solid, opacity=0.7] table [x=mu, y=muu] {../code/data/3flaveos.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-%\addplot+ [darkgreen!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=mud   ] {../code/data/2flavfreeeos.dat}; %\addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
 \addplot+ [darkgreen, solid, opacity=0.7] table [x=mu, y=mud] {../code/data/3flaveos.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-%\addplot+ [blue!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=mue   ] {../code/data/2flavfreeeos.dat}; %\addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
 \addplot+ [purple, solid, opacity=0.7] table [x=mu, y=mus] {../code/data/3flaveos.dat}; \addlegendentry{$\mu_s \, / \, \si{\mega\electronvolt}$};
-%
 \addplot+ [blue, solid, opacity=0.7] table [x=mu, y=mue] {../code/data/3flaveos.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
 
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
-	%xmin=0, xmax=600, minor x tick num=4,
-	%ymax=2.0, ytick distance=0.5, minor y tick num=4,
-	%title={\subcaption{\label{fig:lsm:2-flavor-eos-density}Particle number densities}},
+	xmin=0, xmax=900, xtick distance=100, minor x tick num=9,
+	ymax=6.0, ytick distance=1.0, minor y tick num=9,
+	title={\subcaption{\label{fig:lsm:3-flavor-eos-density}Particle number densities}},
 	legend cell align=left, legend pos=north west,
 ];
 %\coordinate (zoomplot) at (232, 1.32);
 %\draw [draw=none, fill=gray!50] (250, -0.005) rectangle (350, 0.02);
 %\draw [-Latex, gray] (300,0.03) to [out=90, in=0] (232, 0.75);
 %\addplot+ [red, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=nu] {../code/data/2flavfreeeos.dat};
+
+% Two-flavor (for comparison)
+\addplot+ [red, solid, opacity=0.2, forget plot] table [x=mu, y=nu] {../code/data/2flaveos.dat};
+\addplot+ [darkgreen, solid, opacity=0.2, forget plot] table [x=mu, y=nd] {../code/data/2flaveos.dat};
+\addplot+ [blue, solid, opacity=0.2, forget plot] table [x=mu, y=ne] {../code/data/2flaveos.dat};
+
+% Three-flavor
 \addplot+ [red, solid, opacity=0.7] table [x=mu, y=nu] {../code/data/3flaveos.dat}; \addlegendentry{$n_u$ (up quarks)};
-%\addplot+ [darkgreen, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=nd] {../code/data/2flavfreeeos.dat};
 \addplot+ [darkgreen, solid, opacity=0.7] table [x=mu, y=nd] {../code/data/3flaveos.dat}; \addlegendentry{$n_d$ (down quarks)};
 \addplot+ [purple, solid, opacity=0.7] table [x=mu, y=ns] {../code/data/3flaveos.dat}; \addlegendentry{$n_s$ (strange quarks)};
-%\addplot+ [blue, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=ne] {../code/data/2flavfreeeos.dat};
 \addplot+ [blue, solid, opacity=0.7] table [x=mu, y=ne] {../code/data/3flaveos.dat}; \addlegendentry{$n_e$ (electrons)};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
-	xmin=0, xmax=1.0, ymin=0, ymax=3, xtick distance=0.1, ytick distance=0.5, minor y tick num=4,
-	%title={\subcaption{\label{fig:lsm:2-flavor-eos-eos}Equation of state}},
+	xmin=0, xmax=1.0, ymin=0, ymax=4, xtick distance=0.1, ytick distance=1.0, minor y tick num=9,
+	title={\subcaption{\label{fig:lsm:3-flavor-eos-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
 ];
 %\addplot+ [black, densely dashed, semithick, opacity=0.7, forget plot] table [x=P,y=epsilon] {../code/data/2flavfreeeos.dat}; %\addlegendentry{without interactions};
@@ -1059,6 +1065,9 @@ Parametrize with quark chemical potential
 \addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/3flaveos.dat};
 \end{groupplot}
 \end{tikzpicture}
+\caption{\label{fig:lsm:3-flavor-eos}%
+\TODO{caption}
+}
 \end{figure}
 
 \pgfplotsset{
@@ -1156,4 +1165,7 @@ Parametrize with quark chemical potential
 
 \end{axis}
 \end{tikzpicture}
+\caption{\label{fig:lsm:3-flavor-mass-radius}%
+\TODO{caption}
+}
 \end{figure}
