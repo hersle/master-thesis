@@ -809,21 +809,20 @@ Hopefully, this remark will save someone from enduring this painful realization 
 
 \section{Three-flavor quark-meson model}
 
+The three-flavor generalization of the two-flavor quark-meson model Lagrangian \eqref{eq:lsm:lagrangian} is
 \begin{equation}
-\begin{split}
-	\lagr &= \sum_{c=1}^{N_c} \bar{q}_c [ i \slashed\partial - g T_a (\sigma_a + i \gamma_5 \pi_a) ] q + \trace[(\partial_\mu \phi)^\dagger (\partial_\mu \phi)] \\
-	      &- m^2 \trace[\phi^\dagger \phi] - \lambda_1 [\trace(\phi^\dagger \phi)]^2 - \lambda_2 \trace[(\phi^\dagger \phi)^2] + c \tdet(\phi^\dagger \phi) + \trace[H(\phi+\phi^\dagger)]
-\end{split}
+	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \big[ i \slashed\partial + \mu \gamma^0 - g \phi_5 \big] q + \trace\big[(\partial_\mu \phi)^\dagger (\partial_\mu \phi)\big] - \pot(\sigma, \pi)
+\label{eq:lsm:lagrangian3f}
 \end{equation}
-Field
+with the meson potential
 \begin{equation}
-	\phi = T_a \phi_a = T_a (\sigma_a + i \pi_a)
+	\pot(\sigma, \pi) = m^2 \trace\big[\phi^\dagger \phi\big] + \lambda_1 \big[\trace(\phi^\dagger \phi)\big]^2 + \lambda_2 \trace\big[(\phi^\dagger \phi)^2\big] - c \tdet(\phi^\dagger \phi) - \trace\big[H(\phi+\phi^\dagger)\big].
+\label{eq:lsm:potential3f}
 \end{equation}
-Generators
-\begin{equation}
-	T_a = \frac{\lambda_a}{2}
-\end{equation}
-Gell-Mann matrices
+Here $\sigma_a$ and $\pi_a$ are meson fields contained in the linear combinations $\phi = \phi_a T_a = (\sigma_a + i \pi_a) T_a$ and $\phi_5 = (\phi_5)_a T_a = (\sigma_a + i \gamma_5 \pi_a) T_a$,
+while $q_c = [u, d, s]^T$ are three quark fields with color-degeneracy $N_c=3$ whose conserved charge densities are coupled to three chemical potentials $\mu = \diag(\mu_u, \mu_d, \mu_s)$.
+The potential features a mass coupling $m^2$, two $\phi^4$ couplings $\lambda_1$ and $\lambda_2$, an anomaly coupling $c$ and explicit symmetry breakers $h_a$ in the matrix $H = h_a T_a$.
+The index $a$ runs from $0$ through $8$, corresponding to the nine generators $T_a = \lambda_a/2$ and the Gell-Mann matrices
 \begin{equation}
 \begin{NiceMatrixBlock}[auto-columns-width]
 \setlength{\arraycolsep}{0pt}
@@ -840,20 +839,158 @@ Gell-Mann matrices
 	\lambda_8 &= \begin{bNiceMatrix} \smash{\frac{1}{\sqrt{3}}} &  0 &  0 \\ 0 &  \smash{\frac{1}{\sqrt{3}}} &  0 \\ 0 & 0 & -\smash{\frac{2}{\sqrt{3}}} \end{bNiceMatrix}.
 \end{aligned}
 \end{NiceMatrixBlock}
+\label{eq:lsm:gell_mann_matrices}
 \end{equation}
-Set $c=h_1=h_2=h_3=h_4=h_5=h_6=h_7=0$,
-leaving 6 unknown parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_0$, $h_8$.
-Field transformation
-(arises from wanting $\trace \phi^4$ to be decoupled into separate terms. look for an orthogonal transformation that accomplishes this (i.e. diagonalizes $\lagr$?) (3 equations: 4 matrix elements except 1 due to symmetry). this gives three coefficients in front of terms $\sigma_0^1 \sigma_8^3$, $\sigma_0^2 \sigma_8^2$ and $\sigma_0^3 \sigma_8^1$ that we require to be zero).
-\TODO{use bNiceMatrix?}
+This general form of the model has fourteen undetermined parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $c$ and $h_a$
+We set $c=h_1=h_2=h_3=h_4=h_5=h_6=h_7=0$ \TODO{why?},
+leaving six unknown parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_0$, $h_8$ that must be fitted to as many experimental values.
+In this case, the classical ground state corresponds to a global minimum of the potential located at
 \begin{equation}
-	\begin{bmatrix} \avg{\sigma_x} \\ \avg{\sigma_y} \end{bmatrix} = \frac{1}{\sqrt{3}} \begin{bmatrix} \sqrt{2} & 1 \\ 1 & -\sqrt{2} \end{bmatrix} \begin{bmatrix} \avg{\sigma_0} \\ \avg{\sigma_8} \end{bmatrix}
+	\sigma_a = \avg{\sigma_a} \quad \text{and} \quad \pi_a = \avg{\pi_a} = 0, \qquad \text{where \emph{only} $\avg{\sigma_0} \neq 0$ and $\avg{\sigma_8} \neq 0$ are nonzero.}
+\label{eq:lsm:ground_state_3f}
 \end{equation}
-Calculate $d_{abc}$ explicitly from equation above to find
-\TODO{just do the traces on a machine}
+The Yukawa coupling in the ground state
 \begin{equation}
-	\trace[(\avg{\phi}^\dagger \avg{\phi})^2] = \frac18 \sigma_x^4 + \frac14 \sigma_y^4
+\begin{split}
+	-\bar{q} g \avg{\phi_5} \bar{q} &= -\bar{q} g (\avg{\sigma_0} T_0 + \avg{\sigma_8} T_8) q \\
+	                                &= -g \begin{bNiceMatrix} \vphantom{\sqrt{\frac13}} u^\dagger \gamma_0 \\ \vphantom{\sqrt{\frac13}} d^\dagger \gamma_0 \\ \vphantom{\sqrt{\frac13}} s^\dagger \gamma_0 \end{bNiceMatrix}^T \begin{bNiceMatrix} \sqrt{\frac23} \sigma_0 + \frac{1}{\sqrt{3}} \sigma_8 & 0 & 0 \\ 0 & \sqrt{\frac23} \sigma_0 + \frac{1}{\sqrt{3}} \sigma_8 & 0 \\ 0 & 0 & \sqrt{\frac23} \sigma_0 - \frac{2}{\sqrt{3}} \sigma_8 \end{bNiceMatrix} \begin{bNiceMatrix} \vphantom{\sqrt{\frac13}} u \\ \vphantom{\sqrt{\frac13}} d \\ \vphantom{\sqrt{\frac13}} s \end{bNiceMatrix} \\
+\end{split}
+\label{eq:lsm:yukawa3f}
 \end{equation}
+contains mixed $\sigma_0$ and $\sigma_8$ interactions with each quark.
+We therefore seek a unitary transformation from the ``coupled'' $\sigma_0-\sigma_8$-basis to a ``decoupled'' $\sigma_x-\sigma_y$-basis in which the up and down quarks coupled to $\sigma_x$ and the strange quark couples to $\sigma_y$.
+This is accomplished by
+\begin{equation}
+	%\begin{bmatrix} \avg{\sigma_x} \\ \avg{\sigma_y} \end{bmatrix} = \frac{1}{\sqrt{3}} \begin{bmatrix} \sqrt{2} & 1 \\ 1 & -\sqrt{2} \end{bmatrix} \begin{bmatrix} \avg{\sigma_0} \\ \avg{\sigma_8} \end{bmatrix}.
+	\begin{bmatrix} \sigma_x \\ \sigma_y \end{bmatrix} = M \begin{bmatrix} \sigma_0 \\ \sigma_8 \end{bmatrix},
+	\quad \text{or} \quad
+	\begin{bmatrix} \sigma_0 \\ \sigma_8 \end{bmatrix} = M \begin{bmatrix} \sigma_x \\ \sigma_y \end{bmatrix},
+	\quad \text{where} \quad
+	M = M^{-1} = \frac{1}{\sqrt{3}} \begin{bmatrix} \sqrt{2} & 1 \\ 1 & -\sqrt{2} \end{bmatrix}.
+\label{eq:lsm:strange_basis}
+\end{equation}
+In the decoupled basis \eqref{eq:lsm:strange_basis}, the Yukawa coupling \eqref{eq:lsm:yukawa3f} takes our sought-after form
+\begin{equation}
+	- \smashoperator{\sum_{f=\{u,d,s\}}} \bar{f} m_f f
+	\quad \text{with quark masses} \quad
+	m_u\big(\avg{\sigma_x}\big) = m_d\big(\avg{\sigma_x}\big) = \frac{g \avg{\sigma_x}}{2}
+	\quad \text{and} \quad
+	m_s\big(\avg{\sigma_x}\big)                       = \frac{g \avg{\sigma_y}}{\sqrt{2}}.
+\label{eq:lsm:quark_masses_3f}
+\end{equation}
+
+With explicit knowledge of the Gell-Mann matrices \eqref{eq:lsm:gell_mann_matrices},
+it is straightforward and feasible for a machine to calculate the traces
+\begin{subequations}
+\begin{align}
+	\trace\big[\phi^\dagger \phi\big]     &= (\sigma_a - i \pi_a) (\sigma_b + i \pi_b) \trace \big[ T_a T_b \big], \\
+	\trace\big[(\phi^\dagger \phi)^2\big] &= (\sigma_a - i \pi_a) (\sigma_b + i \pi_b) (\sigma_a - i \pi_c) (\sigma_b + i \pi_d) \trace \big[ T_a T_b T_c T_d \big], \\
+	\trace\big[H(\phi+\phi^\dagger)\big]  &= 2 h_a \pi_b \trace \big[ T_a T_b \big] ,
+\end{align}
+\end{subequations}
+in order to express the potential \eqref{eq:lsm:potential3f} explicitly in terms of the meson fields $\sigma_a$ and $\pi_a$.
+We then shift the meson fields around their minima \eqref{eq:lsm:ground_state_3f} to
+\begin{equation}
+	\sigma_a \rightarrow \avg{\sigma_a} + \tilde{\sigma}_a
+	\quad \text{and} \quad
+	\pi_a \rightarrow \avg{\pi_a} + \tilde{\pi}_a.
+\end{equation}
+Up to second order in the quantum fluctuations $\tilde{\sigma_a}$ and $\tilde{\pi_a}$, the potential is then
+\begin{equation}
+	\pot(\sigma,\pi) \taylor \pot(\avg{\sigma}, \avg{\pi}) + \frac12 \big(m^2_{\sigma\sigma}\big)_{ab} \tilde{\sigma}_a \tilde{\sigma}_b + \frac12 \big(m^2_{\sigma\pi}\big)_{ab} \tilde{\sigma}_a \tilde{\pi}_b + \frac12 \big(m^2_{\pi\pi}\big)_{ab} \tilde{\pi}_a \tilde{\pi}_b
+\end{equation}
+with the tree-level value
+\begin{equation}
+	\pot(\avg{\sigma},\avg{\pi}) = \frac{m^2}{2} \Big[ \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \Big] + \frac{\lambda_1}{4} \Big[ \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \Big]^2 + \frac{\lambda_2}{8} \Big[ \avg{\sigma_x}^4 + 2 \avg{\sigma_y}^4 \Big] - h_x \avg{\sigma_x} - h_y \avg{\sigma_y},
+\label{eq:lsm:potential_tree_3f}
+\end{equation}
+where we have also transformed $h_0$ and $h_8$ to $h_x$ and $h_y$ with the transformation \eqref{eq:lsm:strange_basis},
+and the three mass matrices
+\begin{subequations}
+\begin{align}
+	\big(m^2_{\sigma\sigma}\big)_{ab} &= \pdv{\pot}{\sigma_a, \sigma_b}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})}, \\
+	\big(m^2_{\sigma\pi}\big)_{ab}    &= \pdv{\pot}{\sigma_a, \pi_b}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})}, \\
+	\big(m^2_{\pi\pi}\big)_{ab}       &= \pdv{\pot}{\pi_a, \pi_b}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})}.
+\end{align}%
+\end{subequations}%
+The mixed mass matrix $m^2_{\sigma\pi} = 0$ vanishes completely because the partial derivative always leaves terms with factors $\sigma_a$ that vanishes when evaluated in the ground state \eqref{eq:lsm:ground_state_3f}.
+The two other matrices $m^2_{\sigma\sigma}$ and $m^2_{\pi\pi}$ both have nonzero entries only along the diagonals $\big(m^2\big)_{aa} \neq 0$ and in the corners $\big(m^2\big)_{08} = \big(m^2\big)_{80} \neq 0$.
+We diagonalize the symmetric matrices $m^2_{\sigma\sigma}$ and $m^2_{\pi\pi}$ with a unitary transformation $\tilde{\sigma} \rightarrow \tilde{\sigma}' = U \tilde{\sigma}$ \TODO{why?},
+so  $\big(m^2_{\sigma\sigma}\big) \tilde{\sigma}_a \tilde{\sigma}_b = \big(m^2_\sigma\big)_{aa} (\tilde{\sigma}'_a)^2$
+and$\big(m^2_{\pi\pi}\big) \tilde{\pi}_a \tilde{\pi}_b = \big(m^2_\pi\big)_{aa} (\tilde{\pi}'_a)^2$.
+We recognize \TODO{different word} three eigenvalues as the $\sigma$, $\pi$ and $K$ meson masses \TODO{why/how? $\pi$ from eigenvalue with multiplicity 3? $K$ from eigenvalue with multiplicity 4? $\sigma$ has multiple eigenvalues with multiplicity 1, and square root can have $\pm$ (I use $-$ now)}
+\begin{subequations}
+\begin{align}
+	m^2_\sigma(\avg{\sigma_x},\avg{\sigma_y}) &= m^2 + 2 \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \frac{3 \lambda_2}{4} \big( \avg{\sigma_x}^2 + 2 \lambda_2 \avg{\sigma_y}^2 \big) \mp \Delta(\avg{\sigma_x},\avg{\sigma_y}) \\
+	%m^2_\pi    &= m^2 + \lambda_1 \big( \sigma_0^2 + \sigma_8^2 \big) + \frac{\lambda_2}{6} \big( 2 \sqrt{2} \sigma_0 \sigma_8 + 2 \sigma_0^2 + \sigma_8^2 \big), \\
+	m^2_\pi(\avg{\sigma_x},\avg{\sigma_y})    &= m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \frac{\lambda_2}{2} \avg{\sigma_x}^2, \\
+	%m^2_K      &= m^2 + \lambda_1 \big( \sigma_0^2 + \sigma_8^2 \big) - \frac{\lambda_2}{6} \big( \sqrt{2} \sigma_0 \sigma_8 - 2 \sigma_0^2 - 7 \sigma_8^2 \big). \\
+	m^2_K(\avg{\sigma_x},\avg{\sigma_y})      &= m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \frac{\lambda_2}{2} \big( \avg{\sigma_x}^2 + 2 \avg{\sigma_y}^2 - \sqrt{2} \avg{\sigma_x} \avg{\sigma_y} \big).
+\end{align}%
+\label{eq:lsm:mass_system_3f}%
+\end{subequations}%
+where we define
+\begin{equation}
+\begin{split}
+	\Delta(\avg{\sigma_x},\avg{\sigma_y}) = \frac{1}{4} \Big[ & 16 \lambda_1^2 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big)^2 + 9 \lambda_2^2 \big( \avg{\sigma_x}^4 - 4 \avg{\sigma_x}^2 \avg{\sigma_y}^2 + 4 \avg{\sigma_y}^4 \big) \, + \\
+	                                                                 & 24 \lambda_1 \lambda_2 \big( \avg{\sigma_x}^4 - 3 \avg{\sigma_x}^2 \avg{\sigma_y}^2 + 2 \avg{\sigma_y}^4 \big) \Big]^{\frac12} .
+\end{split}
+\end{equation}
+
+We can express the symmetry breakers $h_x$ and $h_y$ from the two minimum conditions
+\begin{equation}
+	0 = \pdv{\pot}{\sigma_x}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})} 
+	  = \pdv{\pot}{\sigma_y}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})}.
+\end{equation}
+This gives 
+\begin{subequations}
+\begin{align}
+	h_x(\avg{\sigma_x},\avg{\sigma_y}) &= \avg{\sigma_x} \Big[ m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \frac12 \lambda_2 \avg{\sigma_y}^2 \Big], \\ % = \avg{\sigma_x} m_\pi^2, \\
+	h_y(\avg{\sigma_x},\avg{\sigma_y}) &= \avg{\sigma_y} \Big[ m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \lambda_2 \avg{\sigma_y}^2 \Big]. % = \sqrt{2} f_K m_K^2 - \frac{1}{\sqrt{2}} f_\pi m_\pi^2.
+\end{align}
+\end{subequations}
+
+\subsection{Parameter fitting}
+
+\TODO{write parameters explicitly in terms of $f_\pi$ and $f_K$?}
+
+To fit the six parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_x$ and $h_8$, we use that vacuum is characterized by
+\TODO{ref}
+\begin{subequations}
+\begin{equation}
+	\avg{\sigma_x} = f_\pi
+	\quad \text{and} \quad
+	\avg{\sigma_y} = \sqrt{2} f_K - \frac{1}{\sqrt{2}} f_\pi
+	\quad \text{with} \quad
+	f_\pi = \SI{93}{\mega\electronvolt}
+	\quad \text{and} \quad
+	f_K = \SI{113}{\mega\electronvolt}.
+\end{equation}
+We determine $m^2$, $\lambda_1$ and $\lambda_2$ by solving the system of equations \eqref{eq:lsm:mass_system_3f} with the meson masses \TODO{ref}
+\begin{equation}
+	m_\sigma = \SI{800}{\mega\electronvolt}, \quad
+	m_\pi = \SI{138}{\mega\electronvolt} \quad \text{and} \quad
+	m_K = \SI{496}{\mega\electronvolt}.
+\end{equation}
+Finally, we determine $g$ from equation \eqref{eq:lsm:quark_masses_3f} with the vacuum up and down quark mass
+\TODO{ref}
+\begin{equation}
+	m_u = m_d = \SI{300}{\mega\electronvolt}.
+\end{equation}
+\end{subequations}
+This gives
+\begin{equation}
+\begin{aligned}
+	m^2 &= -(\SI{491.7}{\mega\electronvolt})^2, &\qquad \lambda_1 &= -\SI{6.19}{}, &\qquad h_x &= (\SI{121.0}{\mega\electronvolt})^3, \\
+	g   &= \SI{6.45}{},                         &\qquad \lambda_2 &= +\SI{85.3}{},  &\qquad h_y &= (\SI{336.4}{\mega\electronvolt})^3. \\	
+\end{aligned}
+\label{eq:lsm:numvals3f}
+\end{equation}
+Note that the only particle mass we have \emph{not} made use of in the parameter fitting is the strange quark mass.
+With the numerical value of $g$, however, we \emph{predict} the vacuum mass $m_s = \SI{429}{\mega\electronvolt}$ from equation \eqref{eq:lsm:quark_masses_3f}.
+
+\subsection{Grand potential}
+
 The expansion of the Lagrangian is therefore
 \TODO{$\lambda/4!$ for consistency}
 \begin{equation}
@@ -926,64 +1063,59 @@ This gives (eliminate $\lambda_1$ and $\lambda_2$ using equations for $m^2_\pi$ 
 \end{align}
 \end{subequations}
 
-Finally, quarks have masses
-\begin{equation}
-	m_u = g (T_a)_{11} \avg{\sigma_a} = \frac{g \sigma_x}{2}, \quad
-	m_d = g (T_a)_{22} \avg{\sigma_a} = \frac{g \sigma_x}{2}  \quad \text{and} \quad
-	m_s = g (T_a)_{22} \avg{\sigma_a} = \frac{g \sigma_y}{\sqrt{2}}.
-\end{equation}
-Determine $g$ from
-\begin{equation}
-	g = \frac{2 m_{u/d}^0}{\sigma_x} \quad \text{with} \quad m_{u/d}^0 = \SI{300}{\mega\electronvolt} \quad \text{and} \quad \sigma_x = f_\pi = \SI{93}{\mega\electronvolt}.
-\end{equation}
-
-Using the numerical vacuum values
-\begin{subequations}
-\begin{align}
-	f_\pi    &= \SI{93}{\mega\electronvolt},  & f_K   &= \SI{113}{\mega\electronvolt}, \\
-	m_\sigma &= \SI{800}{\mega\electronvolt}, & m_\pi &= \SI{138}{\mega\electronvolt}, & m_K &= \SI{496}{\mega\electronvolt}.
-\end{align}
-\end{subequations}
-we obtain the parameters
-\begin{subequations}
-\begin{align}
-	m^2 &= -(\SI{491.7}{\mega\electronvolt})^2, & \lambda_1 &= -\SI{6.19}{}, & \lambda_2 &= \SI{85.3}{}, \\
-	h_x &= (\SI{121.0}{\mega\electronvolt})^3, & h_y &= (\SI{336.4}{\mega\electronvolt})^3, \\
-	g &= \SI{6.5}{}.
-\end{align}
-\end{subequations}
-
 \subsection{Grand potential}
 
+With the results from above and the tree-level potential \eqref{eq:lsm:potential_tree_3f}, it is now straightforward to generalize the two-flavor grand potential \eqref{eq:lsm:grand_potential} with an additional strange quark.
+Before renormalizing the vacuum divergence, the three-flavor grand potential is
+\TODO{explain better, repeat remark on bosons to tree-level, fermions to one-loop}
+\TODO{consistent () size here and in two-flavor}
 \begin{equation}
 \begin{split}
-	 & \Omega(\avg{\sigma_x},\avg{\sigma_y},\mu_u,\mu_d,\mu_s,\mu_e) \\
-	=& \frac{m^2}{2} \big[\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big] + \frac{\lambda_1}{4} \big[\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big]^2 + \frac{\lambda_2 }{8} \big[\avg{\sigma_x}^4 + 2 \avg{\sigma_y}^4\big] - h_x \avg{\sigma_x} - h_y \avg{\sigma_y} \\
-	-& \frac{N_c}{24 \pi^2} \sum_{f=\{u,d\}} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right] \\
-	-& \frac{  1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} + 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_e^2}{m_e^2}-1} \right) \right] \\
-	+& N_c \sum_f \frac{m_f^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right].
+	 & \, \Omega(\avg{\sigma_x},\avg{\sigma_y},\mu_u,\mu_d,\mu_s,\mu_e) \\
+	=& \, \frac{m^2}{2} \Big[\avg{\sigma_x}^2 + \avg{\sigma_y}^2\Big] + \frac{\lambda_1}{4} \Big[\avg{\sigma_x}^2 + \avg{\sigma_y}^2\Big]^2 + \frac{\lambda_2 }{8} \Big[\avg{\sigma_x}^4 + 2 \avg{\sigma_y}^4\Big] - h_x \avg{\sigma_x} - h_y \avg{\sigma_y} \\
+	-& \, \smashoperator{\sum_{\vphantom{\big|} f=\{3u,3d,3s,e\}}} \frac{1}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right] \\
+	%-& \, \smashoperator{\sum_{\vphantom{\big|}f=\{u,d,s\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right] \\
+	%-& \, \frac{  1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} + 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_e^2}{m_e^2}-1} \right) \right] \\
+	+& \, N_c \smashoperator{\sum_{\vphantom{\big|}f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right].
 \end{split}
 \end{equation}
-Has divergent term
+In order to save some space, the electron contribution has been annexed into the ``flavor'' sum.
+Accordingly, the coefficients of the sum indices means the sum repeats $N_c = 3$ times for every quark flavor, but only once for the electrons.
+Once again, we see that the divergent term
 \begin{equation}
-	\frac{N_c g^4}{16 \pi^2} \frac18 (\sigma_x^4 + 2 \sigma_y^4)
+	\frac{N_c g^4}{16 \pi^2} \frac{(\sigma_x^4 + 2 \sigma_y^4)}{8}
 \end{equation}
-Remove by renormalizing
+is compatible with the $\lambda_2$-interaction in the sense that it can be removed by renormalizing
 \begin{equation}
-	\lambda_2 \rightarrow \lambda_2^P + \delta\lambda_2 \qquad \text{with} \qquad \delta\lambda_2 = -\frac{N_c g^4}{16 \pi^2} .
+	\lambda_2 \rightarrow \lambda_2^P + \delta\lambda_2 \qquad \text{with} \qquad \delta\lambda_2 = -\frac{N_c g^4}{16 \pi^2 \epsilon} .
 \end{equation}
-How to determine $\Lambda$?
-Minimize potential in both directions in vacuum to find $\Lambda_x$ and $\Lambda_y$:
-\begin{equation}
-	\pdv{\Omega}{\avg{\sigma_x}} = \pdv{\Omega}{\avg{\sigma_y}} = 0.
-\end{equation}
-Gives $\Lambda_x = g \sigma_x / 2 \sqrt{e} = \SI{182.0}{\mega\electronvolt}$ and $\Lambda_y = g \sigma_y / \sqrt{2 e} = \SI{260.2}{\mega\electronvolt}$.
-But $\Lambda$ can only have one value, so choose the average ($u,d,s$ weigh equally)
+With two-flavors, we determined the parameter $\Lambda$ in equation \eqref{eq:lsm:potential_vacuum_minimum} by requiring the minimum of the grand potential to remain at $\avg{\sigma}=f_\pi$.
+The natural generalization of this procedure now would be to find two values of $\Lambda$,
+\begin{subequations}
+\begin{align}
+	\Lambda_x \quad \text{such that} \quad \pdv{\Omega}{\avg{\sigma_x}} = 0, & \quad \text{yielding} \quad \Lambda_x = g \sigma_x / 2 \sqrt{e} = \SI{182.0}{\mega\electronvolt}, \\
+	\Lambda_y \quad \text{such that} \quad \pdv{\Omega}{\avg{\sigma_y}} = 0, & \quad \text{yielding} \quad \Lambda_y = g \sigma_y / \sqrt{2 e} = \SI{260.2}{\mega\electronvolt}.
+\end{align}
+\end{subequations}
+However, we can only operate with one value of $\Lambda$ \TODO{why? why not two separate $\Lambda_x$ and $\Lambda_y$? surely cannot be a big difference?}, so we take the all-quarks-are-equal weighted average
 \begin{equation}
 	\Lambda = \frac{2 \Lambda_x + \Lambda_y}{3} = \SI{208.0}{\mega\electronvolt}.
 \end{equation}
+The ready-to-use grand potential is now
+\begin{equation}
+\begin{split}
+	 & \, \Omega(\avg{\sigma_x},\avg{\sigma_y},\mu_u,\mu_d,\mu_s,\mu_e) \\
+	=& \, \frac{m^2}{2} \big[\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big] + \frac{\lambda_1}{4} \big[\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big]^2 + \frac{\lambda_2^P}{8} \big[\avg{\sigma_x}^4 + 2 \avg{\sigma_y}^4\big] - h_x \avg{\sigma_x} - h_y \avg{\sigma_y} \\
+	-& \, \smashoperator{\sum_{\vphantom{\big|} f=\{3u,3d,3s,e\}}} \frac{1}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right] \\
+	%-& \, \frac{N_c}{24 \pi^2} \sum_{f=\{u,d\}} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right] \\
+	%-& \, \frac{  1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} + 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_e^2}{m_e^2}-1} \right) \right] \\
+	+& \, N_c \smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right].
+\end{split}
+\end{equation}
 
-\subsection{Equation of state etc}
+\subsection{Equation of state and mass-radius relation}
+
+\TODO{unfinished}
 
 Must now solve system of equations
 \begin{subequations}
@@ -999,6 +1131,7 @@ Parametrize with quark chemical potential
 \begin{equation}
 	\mu = \mu_u + \mu_d + \mu_e .
 \end{equation}
+Get results in \cref{fig:lsm:3-flavor-eos} and \cref{fig:lsm:3-flavor-mass-radius}
 
 \begin{figure}
 \centering
@@ -1066,7 +1199,7 @@ Parametrize with quark chemical potential
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-eos}%
-\TODO{caption}
+\TODO{caption} Two-flavor results are weak lines.
 }
 \end{figure}
 
