@@ -844,6 +844,11 @@ The index $a$ runs from $0$ through $8$, corresponding to the nine generators $T
 \end{NiceMatrixBlock}
 \label{eq:lsm:gell_mann_matrices}
 \end{equation}
+\TODO{rewrite/extend}
+Note that we now have \emph{two} quartic coupling terms in the forms $\lambda_1 \trace [ (\phi^\dagger \phi) ]^2$ and $\lambda_2 \trace (\phi^\dagger \phi)^2$,
+whereas we only had one of them in the two-flavor case.
+In fact, the \emph{Hamilton-Caley theorem} \cite[equation (1) and (2)]{ref:hamilton_caley} uniquely fixes $\trace (A^n)$ in terms of $\trace (A), \ldots, \trace (A^{n-1})$ for an $n \times n$ matrix $A$.
+This is the reason for including $n-1$ quartic couplings in the $SU(n)$-case.
 
 This general form of the model has fourteen undetermined parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $c$ and $h_a$
 We set $c=h_1=h_2=h_3=h_4=h_5=h_6=h_7=0$ \TODO{why? want $u$ and $d$ treated equally, and $s$ differently. look at Gell-Mann matrices, see that only $0$ and $8$ does such a thing.  want to break $SU(3)$, this is why i choose the non-zero $h$. but $c=0$ is a choice -- no anomaly},
