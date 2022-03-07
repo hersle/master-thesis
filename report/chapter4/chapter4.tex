@@ -202,7 +202,7 @@ with the potential
 This model is also called a quark-meson model.
 Here $q_c = [u_c, d_c]^T$ represents quarks of the $N_c = 3$ colors red, green and blue and the $N_f = 2$ flavors up and down, so $(q_c)_f$ make up a total of $N_c \times N_f = 6$ Dirac spinors.
 In addition, $\sigma$ and $\vec\pi = [\pi^+, \pi^-, \pi^0]^T$ are four bosonic scalar fields representing sigma and pion mesons.
-At this point, the quarks are massless Dirac fermions whose conserved charge densities $j^0 = \bar\psi \gamma^0 \psi$ are coupled to chemical potentials $\mu = \diag(\mu_u, \mu_d)$, interacting with a Yukawa coupling of strength $g$ that models the strong force \TODO{non-mentioned comment in Møte 4}, where $\vec\tau$ are the Pauli matrices \eqref{eq:tft:pauli_matrices}.
+At this point, the quarks are massless Dirac fermions whose conserved charge densities $j^0 = \bar\psi \gamma^0 \psi$ are coupled to quark chemical potentials $\mu = \diag(\mu_u, \mu_d)$, interacting with a Yukawa coupling of strength $g$ that models the strong force \TODO{non-mentioned comment in Møte 4}, where $\vec\tau$ are the Pauli matrices \eqref{eq:tft:pauli_matrices}.
 \TODO{$SU(2)_L$, $SU(2)_R$, etc.?}
 
 To make sense of this theory, we must investigate how it behaves around the classical ground state of the potential \eqref{eq:lsm:potential}.
@@ -545,14 +545,14 @@ Which variable should we use as the free variable?
 In fact, some choices yield ill-defined parametrizations for which one value of the parameter corresponds to multiple values of another variable.
 A well-defined parametrization should produce invertible functions.
 For example, using $\mu_u$ as the free variable produces a well-defined parametrization of $\avg{\sigma}(\mu_u)$ when $m_\sigma \gtrsim \SI{900}{\mega\electronvolt}$, but an ill-defined one when $m_\sigma \lesssim \SI{900}{\mega\electronvolt}$.
-Define quark chemical potential $\mu$ and isospin chemical potential $\mu_I$ by
+Define common quark chemical potential $\mu$ and isospin chemical potential $\mu_I$ by
 \begin{equation}
 	\mu_u = \mu + \mu_I
 	\qquad \text{and} \qquad
 	\mu_d = \mu - \mu_I .
 \label{eq:lsm:quark_chemical_potential}
 \end{equation}
-By the chain rule, the quark chemical potential $\mu$ corresponds to the total quark density
+By the chain rule, the common quark chemical potential $\mu$ corresponds to the total quark density
 \begin{equation}
 	-\pdv{\Omega}{\mu} = -\pdv{\Omega}{\mu_u} \pdv{\mu_u}{\mu} - \pdv{\Omega}{\mu_d} \pdv{\mu_d}{\mu} = -\pdv{\Omega}{\mu_u} - \pdv{\Omega}{\mu_d} = n_u + n_d = n_q .
 \end{equation}
@@ -637,9 +637,9 @@ Through trial and error, we have found that we get a well-defined parametrizatio
 };
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos}%
-Properties of electrically charge neutral two-flavor quark matter in $\beta$-equilibrium parametrized by the quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
+Properties of electrically charge neutral two-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
 Solid lines show
-\subref{fig:lsm:2-flavor-eos-parametrization} solutions to the system of equations \eqref{eq:lsm:minsys} and the corresponding
+\subref{fig:lsm:2-flavor-eos-parametrization} solutions to equation \eqref{eq:lsm:minsys} and the corresponding
 \subref{fig:lsm:2-flavor-eos-density} particle number densities \eqref{eq:lsm:particle_densities} and
 \subref{fig:lsm:2-flavor-eos-eos} equation of state \eqref{eq:lsm:eos}.
 In comparison, dashed lines show the approximate analytical solutions \eqref{eq:lsm:chemical_potentials_massless}, \eqref{eq:lsm:densities_massless} and \eqref{eq:lsm:eos_massless} for a free quark gas in the massless limit $\avg{\sigma} = 0$ and $m_e = 0$.
@@ -688,7 +688,7 @@ According to the $\beta$-equilibrium condition \eqref{eq:lsm:minsys_equilibrium}
 the chemical potential of the electrons is $\mu_e = \mu_d - \mu_u = (1-2^{1/3}) \mu_u$,
 corresponding to the density $n_e = (2^{1/3}-1)^3 n_u / N_c = 0.006 \, n_u \ll n_u$,
 which is indeed negligible in line with our original assumption.
-Summarizing and expressing these chemical potentials in terms of the quark chemical potential $\mu = (\mu_u+\mu_d)/2$ we have
+Summarizing and expressing these chemical potentials in terms of the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$, we have
 \begin{equation}
 	\mu_u = \frac{2}{1+2^{1/3}} \mu, \qquad
 	\mu_d = \frac{2}{1+2^{-1/3}} \mu \qquad \text{and} \qquad
@@ -822,8 +822,7 @@ with the meson potential
 \label{eq:lsm:potential3f}
 \end{equation}
 Here $\sigma_a$ and $\pi_a$ are meson fields contained in the linear combinations $\phi = \phi_a T_a = (\sigma_a + i \pi_a) T_a$ and $\phi_5 = (\phi_5)_a T_a = (\sigma_a + i \gamma_5 \pi_a) T_a$,
-while $q_c = [u, d, s]^T$ are three quark fields with color-degeneracy $N_c=3$ whose conserved charge densities are coupled to three chemical potentials $\mu = \diag(\mu_u, \mu_d, \mu_s)$.
-\TODO{call these quark chemical potentials, and the sums for common quark chemical potentials}
+while $q_c = [u, d, s]^T$ are three quark fields with color-degeneracy $N_c=3$ whose conserved charge densities are coupled to three quark chemical potentials $\mu = \diag(\mu_u, \mu_d, \mu_s)$.
 The potential features a mass coupling $m^2$, two quartic couplings $\lambda_1$ and $\lambda_2$, an anomaly coupling $c$ and explicit symmetry breakers $h_a$ in the matrix $H = h_a T_a$.
 The index $a$ runs from $0$ through $8$, corresponding to the nine generators $T_a = \lambda_a/2$ and the Gell-Mann matrices
 \begin{equation}
@@ -1081,8 +1080,8 @@ Must now solve system of equations
 	\mu_d &= \mu_s.
 \end{align}
 \end{subequations}
-Parametrize with \TODO{common} quark chemical potential
-\TODO{transf $\mu_u,\mu_d,\mu_s$ to $\mu_B=3/2(\mu_u+\mu_d),\mu_I=(\mu_u-\mu_d)/2,\mu_S=(\mu_u+\mu_d-2\mu_s)/2$ (verify these)}
+Parametrize with common quark chemical potential
+\TODO{transform $\mu_u,\mu_d,\mu_s$ to new chemical potentials $\mu_B=3/2(\mu_u+\mu_d),\mu_I=(\mu_u-\mu_d)/2,\mu_S=(\mu_u+\mu_d-2\mu_s)/2$ (verify these!)}
 \begin{equation}
 	\mu = \mu_u + \mu_d + \mu_e .
 \end{equation}
