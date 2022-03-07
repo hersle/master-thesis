@@ -845,6 +845,7 @@ The index $a$ runs from $0$ through $8$, corresponding to the nine generators $T
 \label{eq:lsm:gell_mann_matrices}
 \end{equation}
 \TODO{first one is special and doesn't ``generate'' anything. mention this?}
+\TODO{need to mention $\eta$ meson at some point. but have $m_\eta = 0$ here?}
 
 \TODO{rewrite/extend}
 Note that we now have \emph{two} quartic coupling terms in the forms $\lambda_1 \trace [ (\phi^\dagger \phi) ]^2$ and $\lambda_2 \trace (\phi^\dagger \phi)^2$,
@@ -968,8 +969,16 @@ This gives
 
 \TODO{write parameters explicitly in terms of $f_\pi$ and $f_K$?}
 
-To fit the six parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_x$ and $h_8$, we use that vacuum is characterized by
-\TODO{ref PDG. see calculation of $\avg{\sigma}=f_\pi$ in QFT by Itzykson, Zuber? what about $\avg{\sigma_y}$?}
+To fit the six parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_x$ and $h_8$, we use that the pion and kaon decay constants $f_\pi$ and $f_K$ are related to the ground states through
+\cite{ref:lsm3f_details}
+\begin{equation}
+	f_\pi = \sqrt{\frac23} \avg{\sigma_0} + \frac{1}{\sqrt{3}} \avg{\sigma_8}
+	      = \avg{\sigma_x}
+	\quad \text{and} \quad
+	f_K = \sqrt{\frac23} \avg{\sigma_0} - \frac{1}{\sqrt{12}} \sigma_8
+	    = \frac{\avg{\sigma_y}}{\sqrt{2}} + \frac{\avg{\sigma_x}}{2} .
+\end{equation}
+With experimental values from \cite[]{ref:pdg_review_2021} \TODO{force display as PDG?}, we can then express the vacuum states as
 \begin{subequations}
 \begin{equation}
 	\avg{\sigma_x} = f_\pi
@@ -980,18 +989,20 @@ To fit the six parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_x$ and $h_8$,
 	\quad \text{and} \quad
 	f_K = \SI{113}{\mega\electronvolt}.
 \end{equation}
-We determine $m^2$, $\lambda_1$ and $\lambda_2$ by solving the system of equations \eqref{eq:lsm:mass_system_3f} with the meson masses \TODO{ref}
+We determine $m^2$, $\lambda_1$ and $\lambda_2$ by solving the system of equations \eqref{eq:lsm:mass_system_3f} with the meson masses
+\cite[]{ref:pdg_review_2021}
 \begin{equation}
 	m_\sigma = \SI{800}{\mega\electronvolt}, \quad
 	m_\pi = \SI{138}{\mega\electronvolt} \quad \text{and} \quad
 	m_K = \SI{496}{\mega\electronvolt}.
 \end{equation}
 Finally, we determine $g$ from equation \eqref{eq:lsm:quark_masses_3f} with the vacuum up and down quark mass
-\TODO{ref}
+\cite[]{ref:pdg_review_2021}
 \begin{equation}
 	m_u = m_d = \SI{300}{\mega\electronvolt}.
 \end{equation}
 \end{subequations}
+\TODO{find exact locations in PDG, comment on exact numerical choices (e.g. $m_\sigma$)}
 This gives
 \begin{equation}
 \begin{aligned}

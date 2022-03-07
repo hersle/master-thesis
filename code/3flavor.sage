@@ -76,10 +76,13 @@ solhxhy = solve([eqhx, eqhy], [hx, hy])
 hx, hy = solhxhy[0][0].rhs(), solhxhy[0][1].rhs()
 print(f"hx = {hx}\nhy = {hy}")
 
-fπ, fK = 93, 113
+fπ = var("fπ", latex_name=r"f_\pi")
+fK = var("fK", latex_name=r"f_K")
+fπnum = 93
+fKnum = 113
 numvals = [
-    σ[0] == ((fπ + 2*fK) / sqrt(6)).n(),
-    σ[8] == 2 * ((fπ - fK) / sqrt(3)).n(),
+    σ[0] == ((fπnum + 2*fKnum) / sqrt(6)).n(),
+    σ[8] == 2 * ((fπnum - fKnum) / sqrt(3)).n(),
 ]
 
 import numpy as np
@@ -100,7 +103,7 @@ hxnum = hx.substitute(eqs08).substitute(numvals).n()
 hynum = hy.substitute(eqs08).substitute(numvals).n()
 
 mud0 = 300 # up/down quark mass in vacuum
-g = (2 * mud0 / fπ).n()
+g = (2 * mud0 / fπnum).n()
 
 print(f"m2 = -{sqrt(-m2num)}^2")
 print(f"λ1 = {λ1num}")
