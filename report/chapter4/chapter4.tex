@@ -725,6 +725,7 @@ We see that the crossover behavior is very similar to that in \cref{fig:lsm:gran
 
 \TODO{needs a small intro and rewriting...}
 In addition, we will allow for a bag constant $B$ to be added to the pressure and energy density
+\TODO{understand bag-constant as a measure of the trace anomaly? $m = 0$ -- conformal inveriance, classical symmetry broken in the quantum case?}
 \TODO{justify and make less ad-hoc, move some of this to intro?}
 \TODO{understand difference between $P(\mu)$ and $P(\mu,B)$}
 \TODO{find source on bag stuff. JO?}
@@ -815,13 +816,15 @@ The three-flavor generalization of the two-flavor quark-meson model Lagrangian \
 \label{eq:lsm:lagrangian3f}
 \end{equation}
 with the meson potential
+\TODO{why two $\lambda$? connected with Hamilton-Caley theorem -- lineraly dependent in 2 flavors, linearly independent in 3 flavors}
 \begin{equation}
 	\pot(\sigma, \pi) = m^2 \trace\big[\phi^\dagger \phi\big] + \lambda_1 \big[\trace(\phi^\dagger \phi)\big]^2 + \lambda_2 \trace\big[(\phi^\dagger \phi)^2\big] - c \tdet(\phi^\dagger \phi) - \trace\big[H(\phi+\phi^\dagger)\big].
 \label{eq:lsm:potential3f}
 \end{equation}
 Here $\sigma_a$ and $\pi_a$ are meson fields contained in the linear combinations $\phi = \phi_a T_a = (\sigma_a + i \pi_a) T_a$ and $\phi_5 = (\phi_5)_a T_a = (\sigma_a + i \gamma_5 \pi_a) T_a$,
 while $q_c = [u, d, s]^T$ are three quark fields with color-degeneracy $N_c=3$ whose conserved charge densities are coupled to three chemical potentials $\mu = \diag(\mu_u, \mu_d, \mu_s)$.
-The potential features a mass coupling $m^2$, two $\phi^4$ couplings $\lambda_1$ and $\lambda_2$, an anomaly coupling $c$ and explicit symmetry breakers $h_a$ in the matrix $H = h_a T_a$.
+\TODO{call these quark chemical potentials, and the sums for common quark chemical potentials}
+The potential features a mass coupling $m^2$, two quartic couplings $\lambda_1$ and $\lambda_2$, an anomaly coupling $c$ and explicit symmetry breakers $h_a$ in the matrix $H = h_a T_a$.
 The index $a$ runs from $0$ through $8$, corresponding to the nine generators $T_a = \lambda_a/2$ and the Gell-Mann matrices
 \begin{equation}
 \begin{NiceMatrixBlock}[auto-columns-width]
@@ -841,8 +844,9 @@ The index $a$ runs from $0$ through $8$, corresponding to the nine generators $T
 \end{NiceMatrixBlock}
 \label{eq:lsm:gell_mann_matrices}
 \end{equation}
+
 This general form of the model has fourteen undetermined parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $c$ and $h_a$
-We set $c=h_1=h_2=h_3=h_4=h_5=h_6=h_7=0$ \TODO{why?},
+We set $c=h_1=h_2=h_3=h_4=h_5=h_6=h_7=0$ \TODO{why? want $u$ and $d$ treated equally, and $s$ differently. look at Gell-Mann matrices, see that only $0$ and $8$ does such a thing.  want to break $SU(3)$, this is why i choose the non-zero $h$. but $c=0$ is a choice -- no anomaly},
 leaving six unknown parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_0$, $h_8$ that must be fitted to as many experimental values.
 In this case, the classical ground state corresponds to a global minimum of the potential located at
 \begin{equation}
@@ -871,7 +875,7 @@ This is accomplished by
 \end{equation}
 In the decoupled basis \eqref{eq:lsm:strange_basis}, the Yukawa coupling \eqref{eq:lsm:yukawa3f} takes our sought-after form
 \begin{equation}
-	- \smashoperator{\sum_{f=\{u,d,s\}}} \bar{f} m_f f
+	- \smashoperator{\sum_{f=\{u,d,s\}}} m_f \bar{f} f
 	\quad \text{with quark masses} \quad
 	m_u\big(\avg{\sigma_x}\big) = m_d\big(\avg{\sigma_x}\big) = \frac{g \avg{\sigma_x}}{2}
 	\quad \text{and} \quad
@@ -881,6 +885,7 @@ In the decoupled basis \eqref{eq:lsm:strange_basis}, the Yukawa coupling \eqref{
 
 With explicit knowledge of the Gell-Mann matrices \eqref{eq:lsm:gell_mann_matrices},
 it is straightforward and feasible for a machine to calculate the traces
+\TODO{ref appendix, remove machine phrasing}
 \begin{subequations}
 \begin{align}
 	\trace\big[\phi^\dagger \phi\big]     &= (\sigma_a - i \pi_a) (\sigma_b + i \pi_b) \trace \big[ T_a T_b \big], \\
@@ -896,6 +901,7 @@ We then shift the meson fields around their minima \eqref{eq:lsm:ground_state_3f
 	\pi_a \rightarrow \avg{\pi_a} + \tilde{\pi}_a.
 \end{equation}
 Up to second order in the quantum fluctuations $\tilde{\sigma_a}$ and $\tilde{\pi_a}$, the potential is then
+\TODO{what is ``potential''? check literature. i think of potential $V$ as in $L = T - V$ (including $m^2$). JO thinks of potential as interacting terms (not including $m^2$). but it is meaningful to include $m^2$, since it should be included when looking for the classical ground state.}
 \begin{equation}
 	\pot(\sigma,\pi) \taylor \pot(\avg{\sigma}, \avg{\pi}) + \frac12 \big(m^2_{\sigma\sigma}\big)_{ab} \tilde{\sigma}_a \tilde{\sigma}_b + \frac12 \big(m^2_{\sigma\pi}\big)_{ab} \tilde{\sigma}_a \tilde{\pi}_b + \frac12 \big(m^2_{\pi\pi}\big)_{ab} \tilde{\pi}_a \tilde{\pi}_b
 \end{equation}
@@ -918,7 +924,8 @@ The two other matrices $m^2_{\sigma\sigma}$ and $m^2_{\pi\pi}$ both have nonzero
 We diagonalize the symmetric matrices $m^2_{\sigma\sigma}$ and $m^2_{\pi\pi}$ with a unitary transformation $\tilde{\sigma} \rightarrow \tilde{\sigma}' = U \tilde{\sigma}$ \TODO{why?},
 so  $\big(m^2_{\sigma\sigma}\big) \tilde{\sigma}_a \tilde{\sigma}_b = \big(m^2_\sigma\big)_{aa} (\tilde{\sigma}'_a)^2$
 and$\big(m^2_{\pi\pi}\big) \tilde{\pi}_a \tilde{\pi}_b = \big(m^2_\pi\big)_{aa} (\tilde{\pi}'_a)^2$.
-We recognize \TODO{different word} three eigenvalues as the $\sigma$, $\pi$ and $K$ meson masses \TODO{why/how? $\pi$ from eigenvalue with multiplicity 3? $K$ from eigenvalue with multiplicity 4? $\sigma$ has multiple eigenvalues with multiplicity 1, and square root can have $\pm$ (I use $-$ now)}
+We identify \TODO{different word} three eigenvalues as the $\sigma$, $\pi$ and $K$ meson masses \TODO{why/how? $\pi$ from eigenvalue with multiplicity 3? $K$ from eigenvalue with multiplicity 4? $\sigma$ has multiple eigenvalues with multiplicity 1, and square root can have $\pm$ (I use $-$ now)}
+\TODO{mult. out. e.g. $\tau \cdot \pi$, identify $\pi_1 \pm \pi_2$ as $\pi^\pm$ with isospin etc. this will show me what eigenvalues belong where?}
 \begin{subequations}
 \begin{align}
 	m^2_\sigma(\avg{\sigma_x},\avg{\sigma_y}) &= m^2 + 2 \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \frac{3 \lambda_2}{4} \big( \avg{\sigma_x}^2 + 2 \lambda_2 \avg{\sigma_y}^2 \big) \mp \Delta(\avg{\sigma_x},\avg{\sigma_y}) \\
@@ -937,7 +944,7 @@ where we define
 \end{split}
 \end{equation}
 
-We can express the symmetry breakers $h_x$ and $h_y$ from the two minimum conditions
+We can express the symmetry breakers $h_x$ and $h_y$ \TODO{in terms of what?} from the two minimum conditions
 \begin{equation}
 	0 = \pdv{\pot}{\sigma_x}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})} 
 	  = \pdv{\pot}{\sigma_y}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})}.
@@ -955,7 +962,7 @@ This gives
 \TODO{write parameters explicitly in terms of $f_\pi$ and $f_K$?}
 
 To fit the six parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_x$ and $h_8$, we use that vacuum is characterized by
-\TODO{ref}
+\TODO{ref PDG. see calculation of $\avg{\sigma}=f_\pi$ in QFT by Itzykson, Zuber? what about $\avg{\sigma_y}$?}
 \begin{subequations}
 \begin{equation}
 	\avg{\sigma_x} = f_\pi
@@ -992,7 +999,7 @@ With the numerical value of $g$, however, we \emph{predict} the vacuum mass $m_s
 
 \subsection{Grand potential}
 
-With the results from above and the tree-level potential \eqref{eq:lsm:potential_tree_3f}, it is now straightforward to generalize the two-flavor grand potential \eqref{eq:lsm:grand_potential} with an additional strange quark.
+With the results from above and the tree-level potential \eqref{eq:lsm:potential_tree_3f}, it is now straightforward to generalize the two-flavor grand potential \eqref{eq:lsm:grand_potential} with the addition of a strange quark.
 Before renormalizing the vacuum divergence, the three-flavor grand potential is
 \TODO{explain better, repeat remark on bosons to tree-level, fermions to one-loop}
 \TODO{consistent () size here and in two-flavor}
@@ -1040,6 +1047,8 @@ The ready-to-use grand potential is now
 \end{split}
 \end{equation}
 
+\TODO{remark on fitting at tree-level only. inconsistent. would really receive radiative corrections from fermion loop diagram, even in $N_c \rightarrow \infty$ limit.}
+
 \subsection{Equation of state and mass-radius relation}
 
 \TODO{unfinished}
@@ -1054,7 +1063,8 @@ Must now solve system of equations
 	\mu_d &= \mu_s.
 \end{align}
 \end{subequations}
-Parametrize with quark chemical potential
+Parametrize with \TODO{common} quark chemical potential
+\TODO{transf $\mu_u,\mu_d,\mu_s$ to $\mu_B=3/2(\mu_u+\mu_d),\mu_I=(\mu_u-\mu_d)/2,\mu_S=(\mu_u+\mu_d-2\mu_s)/2$ (verify these)}
 \begin{equation}
 	\mu = \mu_u + \mu_d + \mu_e .
 \end{equation}
@@ -1229,3 +1239,11 @@ Get results in \cref{fig:lsm:3-flavor-eos} and \cref{fig:lsm:3-flavor-mass-radiu
 \TODO{caption}
 }
 \end{figure}
+
+\TODO{investigate resistance of $M_\text{max}$ to changes in $B$.}
+
+\TODO{plot radial densities $n_B(r)$. other stuff, too?}
+
+\TODO{til neste gang: les $2$-flavor ultra-rel derivation, too, with plots}
+
+\TODO{$\chi$PT is a \emph{theory}, LSM is a \emph{model} -- JO}
