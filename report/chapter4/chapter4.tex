@@ -153,6 +153,36 @@ Then chemical equilibrium implies
 \end{subequations}
 (the third follows automatically from the two first)
 
+\subsection{Symmetries}
+
+Always have $U(1)_V$ symmetry, giving rise to conservation of baryon number.
+
+Symmetry breaking
+\begin{equation}
+	SU(2)_L \times SU(2)_R \quad \rightarrow \quad SU(2)_V
+\end{equation}
+Quark-meson model can be written in terms of left/right fields:
+\begin{equation}
+\begin{split}
+	\bar{\psi} \phi_5 \psi &= \bar{\psi} ( (P_+ + P_-) \sigma + (P_+ - P_-) i \tau \cdot \pi) \psi \\
+	                       &= \bar{\psi} ( P_+ (\sigma + i \tau \cdot \pi) + P_- (\sigma - i \tau \cdot \pi) ) \psi \\
+	                       &= \bar{\psi} ( P_+ \phi + P_- \phi^\dagger) \psi \\
+	                       &= \bar{\psi} ( P_+ \phi P_+ + P_- \phi^\dagger P_-) \psi \\
+	                       &= \bar{\psi}_- \phi P_+ + \bar{\psi}_+ \phi^\dagger \psi_- \\
+\end{split}
+\end{equation}
+Used that $P_\pm^2 = P_\pm$ is in spinor-space, while $\phi$ is in flavor space.
+Denote $+ = R$, $- = L$.
+Now it is apparent that LSM is invariant under $SU(2)_L \times SU(2)_R$:
+\begin{equation}
+	\psi_+ \rightarrow U_+ \psi_+, \qquad
+	\psi_- \rightarrow U_- \psi_-, \qquad
+	\phi   \rightarrow U_- \phi U_+^\dagger.
+\end{equation}
+When $h \neq 0$, this symmetry is explicitly broken.
+
+
+
 \section{Two-flavor quark-meson model}
 
 \TODO{move this to the start?
