@@ -840,9 +840,19 @@ Hopefully, this remark will save someone from enduring this painful realization 
 
 \section{Three-flavor quark-meson model}
 
-The three-flavor generalization of the two-flavor quark-meson model Lagrangian \eqref{eq:lsm:lagrangian} is
+To generalize the two-flavor Lagrangian \eqref{eq:lsm:lagrangian} to three flavors, let us first rewrite it to the form
 \begin{equation}
-	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \big[ i \slashed\partial + \mu \gamma^0 - g \phi_5 \big] q + \trace\big[(\partial_\mu \phi)^\dagger (\partial_\mu \phi)\big] - \pot(\sigma, \pi)
+\begin{split}
+	\lagr_2 &= \sum_{c=1}^{N_c} \bar{q}_c \big[ i \slashed\partial + \mu \gamma^0 - g (\sigma_a + i \gamma_5 \pi_a ) T_a \big] q_c + \trace\big[(\partial_\mu \phi)^\dagger (\partial_\mu \phi)\big] \\
+	        &- m^2 \trace\big[\phi^\dagger \phi\big] - \frac{\lambda}{6} \big[\trace(\phi^\dagger \phi)\big]^2 + \trace\big[H(\phi+\phi^\dagger)\big],
+\end{split}
+\end{equation}
+where $T_a = \tau_a / 2$ are the generators of $SU(2)$ \emph{including} $T_0 = \diag (1/2, 1/2)$ and $\phi = \phi_a T_a$ and $H = h_a T_a$ and the traces are taken in flavor space.
+To generalize to $SU(3)$, simply replace the three (four) Pauli matrices by the eight (nine) Gell-Mann-matrices.
+Can add one more quartic intercation due to \TODO{Hamilton-Caley theorem}.
+The three-flavor generalization of the two-flavor quark-meson model Lagrangian \eqref{eq:lsm:lagrangian} is therefore
+\begin{equation}
+	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \big[ i \slashed\partial + \mu \gamma^0 - g \phi_5 \big] q_c + \trace\big[(\partial_\mu \phi)^\dagger (\partial_\mu \phi)\big] - \pot(\sigma, \pi)
 \label{eq:lsm:lagrangian3f}
 \end{equation}
 with the meson potential
