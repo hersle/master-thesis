@@ -959,7 +959,6 @@ with the tree-level value
 \end{equation}
 where we have also transformed $h_0$ and $h_8$ to $h_x$ and $h_y$ with the transformation \eqref{eq:lsm:strange_basis},
 and the three mass matrices
-\TODO{write down explicit entries}
 \begin{subequations}
 \begin{align}
 	\big(m^2_{\sigma\sigma}\big)_{ab} &= \pdv{\pot}{\sigma_a, \sigma_b}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})}, \\
@@ -969,7 +968,6 @@ and the three mass matrices
 \end{subequations}%
 The mixed mass matrix $m^2_{\sigma\pi} = 0$ vanishes completely because the partial derivative always leaves terms with factors $\sigma_a$ that vanishes when evaluated in the ground state \eqref{eq:lsm:ground_state_3f},
 while the two other matrices have the nonzero entries
-\TODO{needs $\avg{\sigma}$. but too long. switch notation to $\bar{\sigma}$ (classical) and $\tilde{\sigma}$ (quantum fluctuation)}
 \begin{equation}
 \begin{split}
 	\big(m^2_{\sigma\sigma}\big)_{00} &= m^2 + \frac{\lambda_1}{3} \big(4 \sqrt{2} \sigma_x \sigma_y + 7 \sigma_x^2 + 5 \sigma_y^2\big) + \lambda_2 \big(\sigma_x^2 + \sigma_y^2\big) \\
@@ -984,8 +982,10 @@ while the two other matrices have the nonzero entries
 	\big(m^2_{\sigma\sigma}\big)_{08} =
 	\big(m^2_{\sigma\sigma}\big)_{80} &= \frac23 \lambda_1 \big(\sqrt{2} \sigma_x^2 - \sqrt{2} \sigma_y^2 - \sigma_x \sigma_y\big) + \frac{\lambda_2}{\sqrt{2}} \big(\sigma_x^2 - 2 \sigma_y^2\big)
 \end{split}%
+\label{eq:lsm3f:mass_sigma_sigma}
 \end{equation}%
 and
+\TODO{fix expressions. add $\avg{\sigma}$, or switch to $\bar{\sigma}$ (classical) and $\tilde{\sigma}$ (quantum)}
 \begin{equation}
 \begin{split}
 	\big(m^2_{\pi\pi}\big)_{00} &= m^2 + \lambda_1 \big(\sigma_x^2 + \sigma_y^2\big) + \frac{\lambda_2}{3} \big(\sigma_x^2 + \sigma_y^2\big) \\
@@ -1000,41 +1000,87 @@ and
 	\big(m^2_{\pi\pi}\big)_{08} =
 	\big(m^2_{\pi\pi}\big)_{80} &= \frac{\lambda_2}{6} \big(\sqrt{2} \sigma_x^2 - 2 \sqrt{2} \sigma_y^2\big).
 \end{split}%
+\label{eq:lsm3f:mass_pi_pi}
 \end{equation}%
-We diagonalize the symmetric matrices $m^2_{\sigma\sigma}$ and $m^2_{\pi\pi}$ with a unitary transformation $\tilde{\sigma} \rightarrow \tilde{\sigma}' = U \tilde{\sigma}$ \TODO{why?},
-so  $\big(m^2_{\sigma\sigma}\big) \tilde{\sigma}_a \tilde{\sigma}_b = \big(m^2_\sigma\big)_{aa} (\tilde{\sigma}'_a)^2$
-and$\big(m^2_{\pi\pi}\big) \tilde{\pi}_a \tilde{\pi}_b = \big(m^2_\pi\big)_{aa} (\tilde{\pi}'_a)^2$.
-We identify \TODO{different word} three eigenvalues as the $\sigma$, $\pi$ and $K$ meson masses \TODO{why/how? $\pi$ from eigenvalue with multiplicity 3? $K$ from eigenvalue with multiplicity 4? $\sigma$ has multiple eigenvalues with multiplicity 1, and square root can have $\pm$ (I use $-$ now)}
+Notice that both matrices are non-diagonal with nonzero entries in all corners,
+but physically it is only fields corresponding to diagonal masses that are mass eigenstates. \cite{ref:lsm3f_details}
+Hence, a fields corresponding to a non-diagonal matrix sector should be rotated to a mass eigenstate basis that diagonalizes the sector.
+\begin{itemize}
+\item The three diagonal masses $\smash{\big(m^2_{\sigma\sigma}\big)_{11} = \big(m^2_{\sigma\sigma}\big)_{22} = \big(m^2_{\sigma\sigma}\big)_{33}}$ correspond to one degenerate mass $m^2_{a_0}$
+      of the three $\sigma_1$, $\sigma_2$ and $\sigma_3$ fields,
+      or alternatively of the two charged $a_0^\pm = (\sigma_1 \pm i \sigma_2) / \sqrt{2}$ mesons and the neutral $a_0^0 = \sigma^3$ meson.
+\item The four diagonal masses $\smash{\big(m^2_{\sigma\sigma}\big)_{44} = \big(m^2_{\sigma\sigma}\big)_{55} = \big(m^2_{\sigma\sigma}\big)_{66}} = \big(m^2_{\sigma\sigma}\big)_{77}$ correspond to one degenerate mass $m^2_\kappa$
+      of the four $\sigma_4$, $\sigma_5$, $\sigma_6$ and $\sigma_7$ fields,
+      or alternatively of the two charged $\kappa^\pm = (\sigma_4 \pm i \sigma_5) / \sqrt{2}$ mesons and the two neutral $\kappa^0 = (\sigma_6 + i \sigma_7) / \sqrt{2}$ and $\bar{\kappa}^0 = (\sigma_6 - i \sigma_7) / \sqrt{2}$ mesons.
+\item The \emph{diagonalization} of the non-diagonal matrix sector with elements $\smash{\big(m^2_{\sigma\sigma}\big)_{00}}$, $\smash{\big(m^2_{\sigma\sigma}\big)_{88}}$ and $\smash{\big(m^2_{\sigma\sigma}\big)_{08} = \big(m^2_{\sigma\sigma}\big)_{80}}$ correspond to two masses of the $\sigma$ and $f_0$ mesons,
+      achieved by a rotation
+      \begin{equation}
+          \begin{bmatrix} f_0 \\ \sigma \\ \end{bmatrix} = \begin{bmatrix} \phantom{-} \cos \theta_\sigma & -\sin \theta_\sigma \\ \phantom{-} \sin \theta_\sigma & \phantom{-} \cos \theta_\sigma \\ \end{bmatrix} \begin{bmatrix} \sigma_8 \\ \sigma_0 \\ \end{bmatrix}
+      \label{eq:lsm3f:diagonalization_transformation_sigma}
+      \end{equation}
+      of the $\sigma_0$ and $\sigma_8$ fields parametrized by a mixing angle $\theta_\sigma$.
+\end{itemize}
+The situation for the matrix $m^2_{\pi\pi}$ is analogous -- we repeat it verbosely for completeness.
+\TODO{need reference for ``alternative'' particles}
+\begin{itemize}
+\item The three diagonal masses $\smash{\big(m^2_{\pi\pi}\big)_{11} = \big(m^2_{\pi\pi}\big)_{22} = \big(m^2_{\pi\pi}\big)_{33}}$ correspond to one degenerate mass $m^2_\pi$
+      of the three $\pi_1$, $\pi_2$ and $\pi_3$ fields,
+      or alternatively of the two charged $\pi^\pm = (\pi_1 \pm i \pi_2) / \sqrt{2}$ mesons and the neutral $\pi^0 = \pi^3$ meson.
+\item The four diagonal masses $\smash{\big(m^2_{\pi\pi}\big)_{44} = \big(m^2_{\pi\pi}\big)_{55} = \big(m^2_{\pi\pi}\big)_{66}} = \big(m^2_{\pi\pi}\big)_{77}$ correspond to one degenerate mass $m^2_K$
+      of the four $\pi_4$, $\pi_5$, $\pi_6$ and $\pi_7$ fields,
+      or alternatively of the two charged $K^\pm = (\pi_4 \pm i \pi_5) / \sqrt{2}$ mesons and the two neutral $K^0 = (\pi_6 + i \pi_7) / \sqrt{2}$ and $\bar{K}^0 = (\pi_6 - i \pi_7) / \sqrt{2}$ mesons.
+\item The \emph{diagonalization} of the non-diagonal matrix sector with elements $\smash{\big(m^2_{\pi\pi}\big)_{00}}$, $\smash{\big(m^2_{\pi\pi}\big)_{88}}$ and $\smash{\big(m^2_{\pi\pi}\big)_{08} = \big(m^2_{\pi\pi}\big)_{80}}$ correspond to two masses of the $\eta$ and $\eta'$ mesons,
+      achieved by a rotation
+      \begin{equation}
+          \begin{bmatrix} \eta \\ \eta' \\ \end{bmatrix} = \begin{bmatrix} \phantom{-} \cos \theta_\pi & -\sin \theta_\pi \\ \phantom{-} \sin \theta_\pi & \phantom{-} \cos \theta_\pi \\ \end{bmatrix} \begin{bmatrix} \pi_8 \\ \pi_0 \\ \end{bmatrix}
+      \label{eq:lsm3f:diagonalization_transformation_pi}
+      \end{equation}
+      of the $\pi_0$ and $\pi_8$ fields parametrized by a mixing angle $\theta_\pi$.
+\end{itemize}
+To determine the diagonalizing mixing angle $\theta_\pi$,
+we use the transformation \eqref{eq:lsm3f:diagonalization_transformation_pi} and the trigonometric identities $\cos^2 \theta_\pi - \sin^2 \theta_\pi = \cos 2 \theta_\pi$ and $2 \sin\theta_\pi \cos\theta_\pi = \sin 2 \theta_\pi$ to expand
+\begin{equation}
+\begin{split}
+	\smash{\smashoperator{\sum_{a,b=\{0,8\}}}} \big(m^2_{\pi\pi}\big)_{ab} \pi_a \pi_b &= \Big\{ \big(m^2_{\pi\pi}\big)_{00} \sin^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{88} \cos^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{08} \sin 2 \theta_\pi \Big\} \, \eta^2 \\
+	                                                                                   &+ \Big\{ \big(m^2_{\pi\pi}\big)_{00} \cos^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{88} \sin^2 \theta_\pi - \big(m^2_{\pi\pi}\big)_{08} \sin 2 \theta_\pi \Big\} \, \eta'^2 \\
+	                                                                                   &+ \Big\{ 2 \Big[ \big(m^2_{\pi\pi}\big)_{00} - \big(m^2_{\pi\pi}\big)_{88} \Big] \sin 2 \theta_\pi + 2 \big(m^2_{\pi\pi}\big)_{08} \cos 2 \theta_\pi \Big\} \, \eta \eta' ,
+\end{split}
+\label{eq:lsm3f:diagonalization_sum}
+\end{equation}
+and then require the coefficient of $\eta \eta'$ to vanish.
+The other angle $\theta_\sigma$ is determined in the same way, only with $m^2_{\pi\pi} \rightarrow m^2_{\sigma\sigma}$, $\eta \rightarrow f_0$ and $\eta' \rightarrow \sigma$.
+We can then solve for the mixing angles
+\begin{equation}
+	\theta_\sigma = \frac12 \arctan \Bigg[ \frac{2\big(m^2_{\sigma\sigma}\big)_{08}}{\big(m^2_{\sigma\sigma}\big)_{88} - \big(m^2_{\sigma\sigma}\big)_{00}} \Bigg]
+	\quad \text{and} \quad
+	\theta_\sigma = \frac12 \arctan \Bigg[ \frac{2\big(m^2_{\sigma\sigma}\big)_{08}}{\big(m^2_{\sigma\sigma}\big)_{88} - \big(m^2_{\sigma\sigma}\big)_{00}} \Bigg],
+\label{eq:lsm3f:mixing_angles}
+\end{equation}
+which in turn fixes the masses of $\eta$ and $\eta'$ as the coefficients of their squares in the sum \eqref{eq:lsm3f:diagonalization_sum}, and analogously for the $f_0$ and $\sigma$ masses.
+
+Let us take a breath and summarize our important findings.
+Expressed in terms of the mass matrix elements \eqref{eq:lsm3f:mass_sigma_sigma} and \eqref{eq:lsm3f:mass_pi_pi} and the mixing angles \eqref{eq:lsm3f:mixing_angles},
+we have found that the three couplings $m^2$, $\lambda_1$ and $\lambda_2$ generate the eight particle masses
 \TODO{mult. out. e.g. $\tau \cdot \pi$, identify $\pi_1 \pm \pi_2$ as $\pi^\pm$ with isospin etc. this will show me what eigenvalues belong where?}
-\TODO{write down masses $\sigma$, $f_0$, $a$, $\pi$, $K$, $\kappa$, etc. in terms of $m^2_{ab}$ from TODO above (see written paper)}
 \TODO{need new avg notation}
 \begin{subequations}
 \begin{align}
-	m^2_\sigma &= m^2 + 2 \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \frac{3 \lambda_2}{4} \big( \avg{\sigma_x}^2 + 2 \avg{\sigma_y}^2 \big) - \Delta_\sigma \\
-	m^2_{f_0}  &= m^2 + 2 \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \frac{3 \lambda_2}{4} \big( \avg{\sigma_x}^2 + 2 \avg{\sigma_y}^2 \big) + \Delta_\sigma \\
-	m^2_a      &= m^2 + \lambda_1 \big(\sigma_x^2 + \sigma_y^2\big) + \frac{3}{2} \lambda_2 \sigma_x^2 \\
-	m^2_\kappa &= m^2 + \lambda_1 \big(\sigma_x^2 + \sigma_y^2\big) + \frac{\lambda_2}{2} \big(\sqrt{2} \sigma_x \sigma_y + \sigma_x^2 + 2 \sigma_y^2\big) \\
-	m^2_{\eta} &= m^2 + \lambda_1 \big(\sigma_x^2 + \sigma_y^2\big) + \frac{\lambda_2}{4} \big(\sigma_x^2 + 2 \sigma_y^2\big) - \Delta_\pi \\
-	m^2_{\eta'}&= m^2 + \lambda_1 \big(\sigma_x^2 + \sigma_y^2\big) + \frac{\lambda_2}{4} \big(\sigma_x^2 + 2 \sigma_y^2\big) + \Delta_\pi \\
-	m^2_\pi    &= m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \frac{\lambda_2}{2} \avg{\sigma_x}^2, \\
-	m^2_K      &= m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \frac{\lambda_2}{2} \big( \avg{\sigma_x}^2 + 2 \avg{\sigma_y}^2 - \sqrt{2} \avg{\sigma_x} \avg{\sigma_y} \big),
+	m^2_{f_0}  &= \big(m^2_{\sigma\sigma}\big)_{00} \sin^2 \theta_\sigma + \big(m^2_{\sigma\sigma}\big)_{88} \cos^2 \theta_\sigma + \big(m^2_{\sigma\sigma}\big)_{08} \sin 2 \theta_\sigma, \\ % \quad \text{(with $\theta_\sigma$ from \eqref{eq:lsm3f:mixing_angles})} \\
+	m^2_\sigma &= \big(m^2_{\sigma\sigma}\big)_{00} \cos^2 \theta_\sigma + \big(m^2_{\sigma\sigma}\big)_{88} \sin^2 \theta_\sigma - \big(m^2_{\sigma\sigma}\big)_{08} \sin 2 \theta_\sigma, \\ % \quad \text{(with $\theta_\sigma$ from \eqref{eq:lsm3f:mixing_angles})} \\
+	m^2_{a_0}  &= \big(m^2_{\sigma\sigma}\big)_{11} = \big(m^2_{\sigma\sigma}\big)_{22} = \big(m^2_{\sigma\sigma}\big)_{33}, \\
+	m^2_\kappa &= \big(m^2_{\sigma\sigma}\big)_{44} = \big(m^2_{\sigma\sigma}\big)_{55} = \big(m^2_{\sigma\sigma}\big)_{66} = \big(m^2_{\sigma\sigma}\big)_{77}, \\
+	m^2_{\eta} &= \big(m^2_{\pi\pi}\big)_{00} \sin^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{88} \cos^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{08} \sin 2 \theta_\pi, \\ % \quad \text{($\theta_\pi$ from \eqref{eq:lsm3f:mixing_angles})} \\
+	m^2_{\eta'}&= \big(m^2_{\pi\pi}\big)_{00} \cos^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{88} \sin^2 \theta_\pi - \big(m^2_{\pi\pi}\big)_{08} \sin 2 \theta_\pi, \\ % \quad \text{($\theta_\pi$ from \eqref{eq:lsm3f:mixing_angles})} \\
+	m^2_\pi    &= \big(m^2_{\pi\pi}\big)_{11} = \big(m^2_{\pi\pi}\big)_{22} = \big(m^2_{\pi\pi}\big)_{33}, \\
+	m^2_K      &= \big(m^2_{\pi\pi}\big)_{44} = \big(m^2_{\pi\pi}\big)_{55} = \big(m^2_{\pi\pi}\big)_{66} = \big(m^2_{\pi\pi}\big)_{77}.
 \end{align}%
 \label{eq:lsm:mass_system_3f}%
 \end{subequations}%
-where we define
-\begin{equation}
-\begin{split}
-	\Delta_\sigma = \frac{1}{4} \Big[ & 16 \lambda_1^2 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big)^2 + 9 \lambda_2^2 \big( \avg{\sigma_x}^4 - 4 \avg{\sigma_x}^2 \avg{\sigma_y}^2 + 4 \avg{\sigma_y}^4 \big) \, + \\
-	                                  & 24 \lambda_1 \lambda_2 \big( \avg{\sigma_x}^4 - 3 \avg{\sigma_x}^2 \avg{\sigma_y}^2 + 2 \avg{\sigma_y}^4 \big) \Big]^{\frac12},
-\end{split}
-\end{equation}
-and
-\begin{equation}
-	\Delta_\pi = \frac{\lambda_2}{12} \sqrt{6 \sqrt{2} \sigma_x \sigma_y + 3 \sigma_x^2 + 6 \sigma_y^2} \big( \sqrt{6} \sigma_y - \sqrt{3} \sigma_x \big).
-\end{equation}
 \TODO{remark on which masses come from which matrix elements, and particle types}
-From any three experimental values of these masses, we can fit the parameters $m^2$, $\lambda_1$ and $\lambda_2$, and predict the five others.
+From any three experimental values of these masses, we can fit the parameters $m^2$, $\lambda_1$ and $\lambda_2$, and then predict values for the five other masses.
+\TODO{show table with all used and predicted masses, also for quarks}
 
+\TODO{rewrite, structure everything with subheaders}
 We can express the symmetry breakers $h_x$ and $h_y$ \TODO{in terms of what?} from the two minimum conditions
 \begin{equation}
 	0 = \pdv{\pot}{\sigma_x}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})} 
