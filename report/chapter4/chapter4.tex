@@ -963,6 +963,7 @@ Up to second order in the quantum fluctuations $\tilde{\sigma}_a$ and $\tilde{\p
 \TODO{what is ``potential''? check literature. i think of potential $V$ as in $L = T - V$ (including $m^2$). JO thinks of potential as interacting terms (not including $m^2$). but it is meaningful to include $m^2$, since it should be included when looking for the classical ground state.}
 \begin{equation}
 	\pot(\sigma,\pi) \taylor \pot(\avg{\sigma}, \avg{\pi}) + \frac12 \big(m^2_{\sigma\sigma}\big)_{ab} \tilde{\sigma}_a \tilde{\sigma}_b + \frac12 \big(m^2_{\sigma\pi}\big)_{ab} \tilde{\sigma}_a \tilde{\pi}_b + \frac12 \big(m^2_{\pi\pi}\big)_{ab} \tilde{\pi}_a \tilde{\pi}_b
+\label{eq:lsm3f:potential_before_diagonalization}
 \end{equation}
 with the tree-level value
 \TODO{weird notation above}
@@ -1063,10 +1064,16 @@ We can then solve for the mixing angles
 \label{eq:lsm3f:mixing_angles}
 \end{equation}
 which in turn fixes the masses of $\eta$ and $\eta'$ as the coefficients of their squares in the sum \eqref{eq:lsm3f:diagonalization_sum}, and analogously for the $f_0$ and $\sigma$ masses.
-
-Let us take a breath and summarize our important findings.
-Expressed in terms of the mass matrix elements \eqref{eq:lsm3f:mass_sigma_sigma} and \eqref{eq:lsm3f:mass_pi_pi} and the mixing angles \eqref{eq:lsm3f:mixing_angles},
-we have found that the three couplings $m^2$, $\lambda_1$ and $\lambda_2$ generate the eight particle masses
+After diagonalization, the potential \eqref{eq:lsm3f:potential_before_diagonalization} is
+\begin{equation}
+\begin{split}
+	\pot = \bar{\pot} \, &+ \, \frac12 m^2_{f_0} \tilde{f_0}^2  \, + \, \frac12 m^2_{\sigma} \tilde{\sigma}^2 \, + \, \frac12 m^2_{a_0} \sum_{\mathrlap{\!\!a_0 = \{a_0^+,a_0^-,a_0^0\}}} \tilde{a_0}^2               \, + \, \frac12 m^2_{\kappa} \sum_{\mathrlap{\!\!\kappa = \{\kappa^+,\kappa^-,\kappa^0,\bar{\kappa}^0\}}} \tilde{\kappa}^2 \\
+	                  \, &+ \, \frac12 m^2_{\eta} \tilde{\eta}^2 \, + \, \frac12 m^2_{\eta'} \tilde{\eta}'^2   \, + \, \frac12 m^2_{\pi_{\phantom{0}}} \sum_{\mathrlap{\!\!\pi = \{\pi^+,\pi^-,\pi^0\}}} \tilde{\pi}^2 \, + \, \frac12 m^2_{K} \sum_{\mathrlap{\!\!K = \{K^+,K^-,K^0,\bar{K}^0\}}} \tilde{K}^2. \\
+\end{split}
+\label{eq:lsm3f:potential_after_diagonalization}
+\end{equation}
+Through the mass matrix elements \eqref{eq:lsm3f:mass_sigma_sigma} and \eqref{eq:lsm3f:mass_pi_pi} and the mixing angles \eqref{eq:lsm3f:mixing_angles},
+the three couplings $m^2$, $\lambda_1$ and $\lambda_2$ generate the eight particle masses
 \TODO{mult. out. e.g. $\tau \cdot \pi$, identify $\pi_1 \pm \pi_2$ as $\pi^\pm$ with isospin etc. this will show me what eigenvalues belong where?}
 \TODO{need new avg notation}
 \begin{subequations}
