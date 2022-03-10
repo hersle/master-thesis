@@ -842,6 +842,8 @@ Hopefully, this remark will save someone from enduring this painful realization 
 
 \section{Three-flavor quark-meson model}
 
+\TODO{rewrite, structure everything with subheaders}
+
 To generalize the two-flavor Lagrangian \eqref{eq:lsm:lagrangian} to three flavors, let us first rewrite it to the form
 \begin{equation}
 \begin{split}
@@ -943,18 +945,27 @@ it is straightforward and feasible for a machine to calculate the traces
 \end{align}
 \end{subequations}
 in order to express the potential \eqref{eq:lsm:potential3f} explicitly in terms of the meson fields $\sigma_a$ and $\pi_a$.
+The location of the nonzero minima \eqref{eq:lsm:ground_state_3f} can then be expressed in terms of the symmetry breakers $h_x$ and $h_y$ \TODO{not defined?} through
+\begin{subequations}
+\begin{align}
+	0 &= \pdv{\pot}{\sigma_x}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})} = \avg{\sigma_x} \Big[ m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \frac12 \lambda_2 \avg{\sigma_y}^2 \Big] - h_x, \\
+	0 &= \pdv{\pot}{\sigma_y}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})} = \avg{\sigma_y} \Big[ m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \lambda_2 \avg{\sigma_y}^2 \Big] - h_y.
+\end{align}
+\label{eq:lsm3f:symmetry_breakers}%
+\end{subequations}
 We then shift the meson fields around their minima \eqref{eq:lsm:ground_state_3f} to
 \begin{equation}
 	\sigma_a \rightarrow \avg{\sigma_a} + \tilde{\sigma}_a
 	\quad \text{and} \quad
 	\pi_a \rightarrow \avg{\pi_a} + \tilde{\pi}_a.
 \end{equation}
-Up to second order in the quantum fluctuations $\tilde{\sigma_a}$ and $\tilde{\pi_a}$, the potential is then
+Up to second order in the quantum fluctuations $\tilde{\sigma}_a$ and $\tilde{\pi}_a$, the potential is then
 \TODO{what is ``potential''? check literature. i think of potential $V$ as in $L = T - V$ (including $m^2$). JO thinks of potential as interacting terms (not including $m^2$). but it is meaningful to include $m^2$, since it should be included when looking for the classical ground state.}
 \begin{equation}
 	\pot(\sigma,\pi) \taylor \pot(\avg{\sigma}, \avg{\pi}) + \frac12 \big(m^2_{\sigma\sigma}\big)_{ab} \tilde{\sigma}_a \tilde{\sigma}_b + \frac12 \big(m^2_{\sigma\pi}\big)_{ab} \tilde{\sigma}_a \tilde{\pi}_b + \frac12 \big(m^2_{\pi\pi}\big)_{ab} \tilde{\pi}_a \tilde{\pi}_b
 \end{equation}
 with the tree-level value
+\TODO{weird notation above}
 \begin{equation}
 	\pot(\avg{\sigma},\avg{\pi}) = \frac{m^2}{2} \Big[ \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \Big] + \frac{\lambda_1}{4} \Big[ \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \Big]^2 + \frac{\lambda_2}{8} \Big[ \avg{\sigma_x}^4 + 2 \avg{\sigma_y}^4 \Big] - h_x \avg{\sigma_x} - h_y \avg{\sigma_y},
 \label{eq:lsm:potential_tree_3f}
@@ -1074,21 +1085,6 @@ we have found that the three couplings $m^2$, $\lambda_1$ and $\lambda_2$ genera
 \TODO{remark on which masses come from which matrix elements, and particle types}
 From any three experimental values of these masses, we can fit the parameters $m^2$, $\lambda_1$ and $\lambda_2$, and then predict values for the five other masses.
 \TODO{show table with all used and predicted masses, also for quarks}
-
-\TODO{rewrite, structure everything with subheaders}
-We can express the symmetry breakers $h_x$ and $h_y$ \TODO{in terms of what?} from the two minimum conditions
-\begin{equation}
-	0 = \pdv{\pot}{\sigma_x}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})} 
-	  = \pdv{\pot}{\sigma_y}_{(\sigma,\pi)=(\avg{\sigma},\avg{\pi})}.
-\end{equation}
-This gives 
-\begin{subequations}
-\begin{align}
-	h_x(\avg{\sigma_x},\avg{\sigma_y}) &= \avg{\sigma_x} \Big[ m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \frac12 \lambda_2 \avg{\sigma_y}^2 \Big], \\ % = \avg{\sigma_x} m_\pi^2, \\
-	h_y(\avg{\sigma_x},\avg{\sigma_y}) &= \avg{\sigma_y} \Big[ m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \lambda_2 \avg{\sigma_y}^2 \Big]. % = \sqrt{2} f_K m_K^2 - \frac{1}{\sqrt{2}} f_\pi m_\pi^2.
-\end{align}%
-\label{eq:lsm3f:symmetry_breakers}%
-\end{subequations}%
 
 \subsection{Parameter fitting}
 
