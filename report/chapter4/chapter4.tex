@@ -1006,41 +1006,34 @@ and
 \end{equation}%
 Notice that both matrices are non-diagonal with nonzero entries in all corners,
 but physically it is only fields corresponding to diagonal masses that are mass eigenstates. \cite{ref:lsm3f_details}
-Hence, a fields corresponding to a non-diagonal matrix sector should be rotated to a mass eigenstate basis that diagonalizes the sector.
+Hence, the fields corresponding to a non-diagonal matrix sector should be rotated to a mass eigenstate basis that diagonalizes the sector.
 \begin{itemize}
 \item The three diagonal masses $\smash{\big(m^2_{\sigma\sigma}\big)_{11} = \big(m^2_{\sigma\sigma}\big)_{22} = \big(m^2_{\sigma\sigma}\big)_{33}}$ correspond to one degenerate mass $m^2_{a_0}$
       of the three $\sigma_1$, $\sigma_2$ and $\sigma_3$ fields,
-      or alternatively of the two charged $a_0^\pm = (\sigma_1 \pm i \sigma_2) / \sqrt{2}$ mesons and the neutral $a_0^0 = \sigma^3$ meson.
-\item The four diagonal masses $\smash{\big(m^2_{\sigma\sigma}\big)_{44} = \big(m^2_{\sigma\sigma}\big)_{55} = \big(m^2_{\sigma\sigma}\big)_{66}} = \big(m^2_{\sigma\sigma}\big)_{77}$ correspond to one degenerate mass $m^2_\kappa$
+      or alternatively of the two charged $a_0^\pm = (\sigma_1 \pm i \sigma_2) / \sqrt{2}$ mesons and the neutral $a_0^0 = \sigma_3$ meson.
+      Likewise, $\smash{\big(m^2_{\pi\pi}\big)_{11}} = \smash{\big(m^2_{\pi\pi}\big)_{22}} = \smash{\big(m^2_{\pi\pi}\big)_{33}}$ correspond to one mass $m^2_\pi$
+      of the $\pi_1$, $\pi_2$ and $\pi_3$ fields,
+      or of the charged $\pi^\pm = (\pi_1 \pm i \pi_2) / \sqrt{2}$ mesons and the neutral $\pi^0 = \pi_3$ meson.
+\item The four diagonal masses $\smash{\big(m^2_{\sigma\sigma}\big)_{44} = \big(m^2_{\sigma\sigma}\big)_{55} = \big(m^2_{\sigma\sigma}\big)_{66} = \big(m^2_{\sigma\sigma}\big)_{77}}$ correspond to one degenerate mass $m^2_\kappa$
       of the four $\sigma_4$, $\sigma_5$, $\sigma_6$ and $\sigma_7$ fields,
       or alternatively of the two charged $\kappa^\pm = (\sigma_4 \pm i \sigma_5) / \sqrt{2}$ mesons and the two neutral $\kappa^0 = (\sigma_6 + i \sigma_7) / \sqrt{2}$ and $\bar{\kappa}^0 = (\sigma_6 - i \sigma_7) / \sqrt{2}$ mesons.
-\item The \emph{diagonalization} of the non-diagonal matrix sector with elements $\smash{\big(m^2_{\sigma\sigma}\big)_{00}}$, $\smash{\big(m^2_{\sigma\sigma}\big)_{88}}$ and $\smash{\big(m^2_{\sigma\sigma}\big)_{08} = \big(m^2_{\sigma\sigma}\big)_{80}}$ correspond to two masses of the $\sigma$ and $f_0$ mesons,
-      achieved by a rotation
+      Likewise, $\smash{\big(m^2_{\pi\pi}\big)_{44}} = \smash{\big(m^2_{\pi\pi}\big)_{55}} = \smash{\big(m^2_{\pi\pi}\big)_{66}} = \smash{\big(m^2_{\pi\pi}\big)_{77}}$ correspond to one mass $m^2_K$
+      of the $\pi_4$, $\pi_5$, $\pi_6$ and $\pi_7$ fields,
+      or of the charged $K^\pm = (\pi_4 \pm i \pi_5) / \sqrt{2}$ mesons and the neutral $K^0 = (\pi_6 + i \pi_7) / \sqrt{2}$ and $\bar{K}^0 = (\pi_6 - i \pi_7) / \sqrt{2}$ mesons.
+\item The \emph{diagonalization} of the non-diagonal matrix sector with elements $\smash{\big(m^2_{\sigma\sigma}\big)_{00}}$, $\smash{\big(m^2_{\sigma\sigma}\big)_{88}}$ and $\smash{\big(m^2_{\sigma\sigma}\big)_{08} = \big(m^2_{\sigma\sigma}\big)_{80}}$ correspond to two different masses of the $\sigma$ and $f_0$ mesons.
+      Likewise, the diagonalization of $\smash{\big(m^2_{\pi\pi}\big)_{00}}$, $\smash{\big(m^2_{\pi\pi}\big)_{88}}$ and $\smash{\big(m^2_{\pi\pi}\big)_{08} = \big(m^2_{\pi\pi}\big)_{80}}$ correspond to masses of the $\eta$ and $\eta'$ mesons.
+      The diagonalizations are achieved by two rotations
       \begin{equation}
           \begin{bmatrix} f_0 \\ \sigma \\ \end{bmatrix} = \begin{bmatrix} \phantom{-} \cos \theta_\sigma & -\sin \theta_\sigma \\ \phantom{-} \sin \theta_\sigma & \phantom{-} \cos \theta_\sigma \\ \end{bmatrix} \begin{bmatrix} \sigma_8 \\ \sigma_0 \\ \end{bmatrix}
-      \label{eq:lsm3f:diagonalization_transformation_sigma}
-      \end{equation}
-      of the $\sigma_0$ and $\sigma_8$ fields parametrized by a mixing angle $\theta_\sigma$.
-\end{itemize}
-The situation for the matrix $m^2_{\pi\pi}$ is analogous -- we repeat it verbosely for completeness.
-\TODO{need reference for ``alternative'' particles}
-\begin{itemize}
-\item The three diagonal masses $\smash{\big(m^2_{\pi\pi}\big)_{11} = \big(m^2_{\pi\pi}\big)_{22} = \big(m^2_{\pi\pi}\big)_{33}}$ correspond to one degenerate mass $m^2_\pi$
-      of the three $\pi_1$, $\pi_2$ and $\pi_3$ fields,
-      or alternatively of the two charged $\pi^\pm = (\pi_1 \pm i \pi_2) / \sqrt{2}$ mesons and the neutral $\pi^0 = \pi^3$ meson.
-\item The four diagonal masses $\smash{\big(m^2_{\pi\pi}\big)_{44} = \big(m^2_{\pi\pi}\big)_{55} = \big(m^2_{\pi\pi}\big)_{66}} = \big(m^2_{\pi\pi}\big)_{77}$ correspond to one degenerate mass $m^2_K$
-      of the four $\pi_4$, $\pi_5$, $\pi_6$ and $\pi_7$ fields,
-      or alternatively of the two charged $K^\pm = (\pi_4 \pm i \pi_5) / \sqrt{2}$ mesons and the two neutral $K^0 = (\pi_6 + i \pi_7) / \sqrt{2}$ and $\bar{K}^0 = (\pi_6 - i \pi_7) / \sqrt{2}$ mesons.
-\item The \emph{diagonalization} of the non-diagonal matrix sector with elements $\smash{\big(m^2_{\pi\pi}\big)_{00}}$, $\smash{\big(m^2_{\pi\pi}\big)_{88}}$ and $\smash{\big(m^2_{\pi\pi}\big)_{08} = \big(m^2_{\pi\pi}\big)_{80}}$ correspond to two masses of the $\eta$ and $\eta'$ mesons,
-      achieved by a rotation
-      \begin{equation}
+          \qquad \text{and} \qquad
           \begin{bmatrix} \eta \\ \eta' \\ \end{bmatrix} = \begin{bmatrix} \phantom{-} \cos \theta_\pi & -\sin \theta_\pi \\ \phantom{-} \sin \theta_\pi & \phantom{-} \cos \theta_\pi \\ \end{bmatrix} \begin{bmatrix} \pi_8 \\ \pi_0 \\ \end{bmatrix}
-      \label{eq:lsm3f:diagonalization_transformation_pi}
+      \label{eq:lsm3f:diagonalization_transformation}
       \end{equation}
-      of the $\pi_0$ and $\pi_8$ fields parametrized by a mixing angle $\theta_\pi$.
+      of the $\sigma_0$, $\sigma_8$, $\pi_0$ and $\pi_8$ fields, parametrized by two mixing angles $\theta_\sigma$ and $\theta_\pi$.
 \end{itemize}
+\TODO{need reference for ``alternative'' particles}
 To determine the diagonalizing mixing angle $\theta_\pi$,
-we use the transformation \eqref{eq:lsm3f:diagonalization_transformation_pi} and the trigonometric identities $\cos^2 \theta_\pi - \sin^2 \theta_\pi = \cos 2 \theta_\pi$ and $2 \sin\theta_\pi \cos\theta_\pi = \sin 2 \theta_\pi$ to expand
+we use the transformation \eqref{eq:lsm3f:diagonalization_transformation} and the trigonometric identities $\cos^2 \theta_\pi - \sin^2 \theta_\pi = \cos 2 \theta_\pi$ and $2 \sin\theta_\pi \cos\theta_\pi = \sin 2 \theta_\pi$ to expand
 \begin{equation}
 \begin{split}
 	\smash{\smashoperator{\sum_{a,b=\{0,8\}}}} \big(m^2_{\pi\pi}\big)_{ab} \pi_a \pi_b &= \Big\{ \big(m^2_{\pi\pi}\big)_{00} \sin^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{88} \cos^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{08} \sin 2 \theta_\pi \Big\} \, \eta^2 \\
