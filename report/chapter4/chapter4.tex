@@ -1093,57 +1093,36 @@ This gives
 \begin{align}
 	h_x(\avg{\sigma_x},\avg{\sigma_y}) &= \avg{\sigma_x} \Big[ m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \frac12 \lambda_2 \avg{\sigma_y}^2 \Big], \\ % = \avg{\sigma_x} m_\pi^2, \\
 	h_y(\avg{\sigma_x},\avg{\sigma_y}) &= \avg{\sigma_y} \Big[ m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \lambda_2 \avg{\sigma_y}^2 \Big]. % = \sqrt{2} f_K m_K^2 - \frac{1}{\sqrt{2}} f_\pi m_\pi^2.
-\end{align}
-\end{subequations}
+\end{align}%
+\label{eq:lsm3f:symmetry_breakers}%
+\end{subequations}%
 
 \subsection{Parameter fitting}
 
 \TODO{write parameters explicitly in terms of $f_\pi$ and $f_K$?}
 
-To fit the six parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_x$ and $h_8$, we use that the pion and kaon decay constants $f_\pi$ and $f_K$ are related to the ground states through
+We fit the six model parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_x$ and $h_8$ in vacuum,
+where the pion and kaon decay constants $f_\pi$ and $f_K$ are related to the ground states through
 \cite{ref:lsm3f_details}
 \begin{equation}
-	f_\pi = \sqrt{\frac23} \avg{\sigma_0} + \frac{1}{\sqrt{3}} \avg{\sigma_8}
-	      = \avg{\sigma_x}
+	f_\pi = \sqrt{\frac23} \avg{\sigma_0} + \frac{\avg{\sigma_8}}{\sqrt{3}}
+	      %= \avg{\sigma_x}
 	\quad \text{and} \quad
-	f_K = \sqrt{\frac23} \avg{\sigma_0} - \frac{1}{\sqrt{12}} \sigma_8
-	    = \frac{\avg{\sigma_y}}{\sqrt{2}} + \frac{\avg{\sigma_x}}{2} .
-\end{equation}
-With experimental values from \cite[]{ref:pdg_review_2021} \TODO{force display as PDG?}, we can then express the vacuum states as
-\begin{subequations}
-\begin{equation}
+	f_K = \sqrt{\frac23} \avg{\sigma_0} - \frac{\avg{\sigma_8}}{\sqrt{12}},
+	    %= \frac{\avg{\sigma_y}}{\sqrt{2}} + \frac{\avg{\sigma_x}}{2} .
+	\quad \text{or} \quad
 	\avg{\sigma_x} = f_\pi
 	\quad \text{and} \quad
-	\avg{\sigma_y} = \sqrt{2} f_K - \frac{1}{\sqrt{2}} f_\pi
-	\quad \text{with} \quad
-	f_\pi = \SI{93}{\mega\electronvolt}
-	\quad \text{and} \quad
-	f_K = \SI{113}{\mega\electronvolt}.
+	\avg{\sigma_y} = \sqrt{2} f_K - \frac{f_\pi}{\sqrt{2}}.
+\label{eq:lsm3f:decay_constants}
 \end{equation}
-We determine $m^2$, $\lambda_1$ and $\lambda_2$ by solving the system of equations \eqref{eq:lsm:mass_system_3f} with the meson masses
-\cite[]{ref:pdg_review_2021}
-\begin{equation}
-	m_\sigma = \SI{800}{\mega\electronvolt}, \quad
-	m_\pi = \SI{138}{\mega\electronvolt} \quad \text{and} \quad
-	m_K = \SI{496}{\mega\electronvolt}.
-\end{equation}
-Finally, we determine $g$ from equation \eqref{eq:lsm:quark_masses_3f} with the vacuum up and down quark mass
-\cite[]{ref:pdg_review_2021}
-\begin{equation}
-	m_u = m_d = \SI{300}{\mega\electronvolt}.
-\end{equation}
-\end{subequations}
-\TODO{find exact locations in PDG, comment on exact numerical choices (e.g. $m_\sigma$)}
-This gives
-\begin{equation}
-\begin{aligned}
-	m^2 &= -(\SI{491.7}{\mega\electronvolt})^2, &\qquad \lambda_1 &= -\SI{6.19}{}, &\qquad h_x &= (\SI{121.0}{\mega\electronvolt})^3, \\
-	g   &= \SI{6.45}{},                         &\qquad \lambda_2 &= +\SI{85.3}{},  &\qquad h_y &= (\SI{336.4}{\mega\electronvolt})^3. \\	
-\end{aligned}
-\label{eq:lsm:numvals3f}
-\end{equation}
-Note that the only particle mass we have \emph{not} made use of in the parameter fitting is the strange quark mass.
-With the numerical value of $g$, however, we \emph{predict} the vacuum mass $m_s = \SI{429}{\mega\electronvolt}$ from equation \eqref{eq:lsm:quark_masses_3f}.
+With numerical values for the two decay constants \eqref{eq:lsm3f:decay_constants} and three of the meson masses \eqref{eq:lsm:mass_system_3f},
+we determine the three parameters $m^2$, $\lambda_1$ and $\lambda_2$ and predict the remaining meson masses.
+Then it is straightforward to calculate the symmetry breaking parameters \eqref{eq:lsm3f:symmetry_breakers}.
+Likewise, we use one of the quark masses \eqref{eq:lsm:quark_masses_3f} to determine the parameter $g$ and predict the other quark mass.
+\Cref{tab:lsm3f:parameters} shows the numerical values used in the fit and the predicted particle masses.
+
+\TODO{comment on mismatches, this is improved by including anomaly ($c \neq 0$), as done in \cite{ref:lsm3f}}
 
 \begin{table}
 \centering
