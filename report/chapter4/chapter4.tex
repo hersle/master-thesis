@@ -766,6 +766,7 @@ In addition, we will allow for a bag constant $B$ to be added to the pressure an
 	P(\mu,B) = P(\mu) - B
 	\qquad \text{and} \qquad
 	\epsilon(\mu,B) = \epsilon(\mu) + B.
+\label{eq:lsm:eos_bag}
 \end{equation}
 The equation of state then depends on the value we choose for the bag constant.
 To determine acceptable values for it, we use that two-flavor quark matter is not observed in nature, and so should be unstable with respect to the most stable form of baryonic matter, $^{56}\text{Fe}$, with an energy of $E/N_B = \SI{930}{\mega\electronvolt}$ per baryon.
@@ -1199,6 +1200,7 @@ The natural generalization of this procedure now would be to find two values of 
 However, we can only operate with one value of $\Lambda$ \TODO{why? why not two separate $\Lambda_x$ and $\Lambda_y$? surely cannot be a big difference?}, so we take the all-quarks-are-equal weighted average
 \begin{equation}
 	\Lambda = \frac{2 \Lambda_x + \Lambda_y}{3} = \SI{208.0}{\mega\electronvolt}.
+\label{eq:lsm3f:renormalization_average}
 \end{equation}
 The ready-to-use grand potential is now
 \begin{equation}
@@ -1230,9 +1232,17 @@ The generalization of the system of equations \eqref{eq:lsm:minsys} with strange
 	0 &= \pdv{\Omega}{\avg{\sigma_y}}, \\
 	0 &= \frac23 n_u - \frac13 n_d - \frac13 n_s - n_e, \\
 	\mu_d &= \mu_u + \mu_e, \\
-	\mu_d &= \mu_s.
-\end{align}
-\end{subequations}
+	\mu_d &= \mu_s,
+\end{align}%
+\label{eq:lsm3f:minsys}%
+\end{subequations}%
+with the particle number densities
+\begin{equation}
+	n_f = \frac{N_c}{3\pi^2} \Big(\mu_f^2 - m_f^2\Big)^{\frac32} \quad \text{for $f = u,d,s$}
+	\qquad \text{and} \qquad
+	n_e = \frac{  1}{3\pi^2} \Big(\mu_e^2 - m_e^2\Big)^{\frac32}.
+\label{eq:lsm3f:particle_densities}
+\end{equation}
 These five equations constrain the six variables that the grand potential \eqref{eq:lsm3f:grand_potential} depend on,
 producing a one-dimensional parametrization of values of the grand potential.
 Similarly to the chemical potentials \eqref{eq:lsm:quark_chemical_potential} we defined in the two-flavor case,
@@ -1244,9 +1254,24 @@ we now define the common quark, isospin and strangeness chemical potentials
 	\mu_I = \mu_u - \mu_d, \qquad
 	\mu_S = \frac12 (\mu_u + \mu_d) - \mu_s.
 \end{equation}
-Get results in \cref{fig:lsm:3-flavor-eos} and \cref{fig:lsm:3-flavor-mass-radius}
+Using the common quark chemical potential $\mu$ as the free variable,
+we now parametrize values of the grand potential and compute the equation of state \eqref{eq:lsm:eos}.
+Then we add a bag constant using equation \eqref{eq:lsm:eos_bag}.
+We can now complement the lower bag constant bound \eqref{eq:lsm:bag_stability_2f} with an upper bound,
+asserting the Bodmer-Witten conjecture that three-flavor quark matter should be absolutely stable compared to $^{56}\text{Fe}$.
+We require
+\begin{equation}
+	\frac{E_3}{N_B} = \frac{\epsilon_3}{n_B} < \SI{930}{\mega\electronvolt}
+	\quad \text{at} \quad
+	P(\mu,B) = 0
+\end{equation}
+with the three-flavor energy density $\epsilon_3 = \sum_i \mu_i n_i$ and the baryon density $n_B = N_B / V = (n_u+n_d+n_s)/3$.
+This yields the upper bound
+\begin{equation}
+	B < (\SI{48.3}{\mega\electronvolt})^4 .
+\end{equation}
 
-\TODO{minima are not at $93$, $113$ because we have averaged $\Lambda_x$, $\Lambda_y$}
+\TODO{present and discuss mass-radius}
 
 \begin{figure}
 \centering
@@ -1314,9 +1339,32 @@ Get results in \cref{fig:lsm:3-flavor-eos} and \cref{fig:lsm:3-flavor-mass-radiu
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-eos}%
-\TODO{caption} Two-flavor results are weak lines.
+Properties of electrically charge neutral three-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
+Solid lines show
+\subref{fig:lsm:3-flavor-eos-parametrization} solutions to equation \eqref{eq:lsm3f:minsys} and the corresponding
+\subref{fig:lsm:3-flavor-eos-density} particle number densities \eqref{eq:lsm3f:particle_densities} and
+\subref{fig:lsm:3-flavor-eos-eos} equation of state \TODO{ref}.
+The weak lines show the two-flavor results from \cref{fig:lsm:2-flavor-eos}.
 }
 \end{figure}
+
+\Cref{fig:lsm:3-flavor-eos} presents solutions to the system of equations \eqref{eq:lsm3f:minsys} and the corresponding particle densities and equation of state.
+Let us understand what is going on:
+\begin{itemize}
+\item In the vacuum $\mu < \SI{300}{\mega\electronvolt}$, the minima $\avg{\sigma_x}$ and $\avg{\sigma_y}$ do \emph{not} correspond exactly to the decay constants \eqref{eq:lsm3f:decay_constants}.
+      This is because the renormalization parameters $\Lambda_x$ and $\Lambda_y$ that preserved the minima were averaged into one common parameter \eqref{eq:lsm3f:renormalization_average} that slightly shifts the minima.
+      \TODO{I could say this already when I took the average.}
+\item The up and down quarks transition from vacuum slightly before $\mu = \SI{300}{\mega\electronvolt}$ due to the slight decrease of the minima.
+      The crossover then proceeds somewhat less rapidly than in the two-flavor case, which manifests itself in a less steep equation of state at low pressures.
+      At the same time, the electron density attains a marginal nonzero value to ensure charge neutrality. \TODO{add ``zoom-in'' plot as in 2-flavor case}
+      Although strange quarks have not yet transitioned from vacuum, the strange minima $\avg{\sigma_y}$ drops a bit simultaneously with the non-strange transition due to the cross term $\lambda_1 \avg{\sigma_x}^2 \avg{\sigma_y}^2 / 2$ in the grand potential \eqref{eq:lsm3f:grand_potential}.
+\item After the strange quark transitions from vacuum slightly before $\mu = \SI{429}{\mega\electronvolt}$, the three-flavor system behaves qualitatively differently from the two-flavor system.
+      The already low electron density is then completely wiped out, while the negatively charged strange quarks provides charge neutrality.
+      Compared to the non-strange one, the strange crossover takes place very slowly and produces a gentle ramp onto a second plateau of the equation of state.
+\item As $\mu \rightarrow \infty$, we see that $\avg{\sigma_x} \rightarrow \avg{\sigma_y} \rightarrow 0$ eliminates the quark masses.
+      In this ultra-relativistic and massless limit, $\mu_e = 0$ and $\mu_u = \mu_d = \mu_s = \mu$ is a trivial solution to the system \eqref{eq:lsm3f:minsys},
+      towards which we see that the numerical solution indeed converges.
+\end{itemize}
 
 \pgfplotsset{
 	mesh line legend/.style={legend image code/.code=\meshlinelegend#1},
