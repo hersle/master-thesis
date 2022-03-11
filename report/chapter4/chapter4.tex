@@ -1437,20 +1437,26 @@ Let us understand what is going on:
 \centering
 \tikzsetnextfilename{3-flavor-mass-radius}
 \begin{tikzpicture}
-\begin{axis}[
-	width=15cm, height=12cm,
-	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for 3-flavor quark stars}, title style={yshift=2.0cm},
-	xmin=7, xmax=18, ymin=0.8, ymax=2, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
-	point meta=explicit, point meta min=32, point meta max=39,
-	colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
-	declare function={
-		e0 = 4.266500881855304e+37;
-	},
-	legend pos=north east, legend cell align=right,
+\begin{groupplot}[
+	group style={group size={1 by 3}, vertical sep=1.5cm},
+	width=15cm,
+	grid=major,
+	point meta=explicit, %point meta min=32, point meta max=39,
+	colormap name=plasmarev, 
+	legend pos=north west, legend cell align=right, legend columns=1,
+	/tikz/declare function={e0 = 4.266500881855304e+37;},
 ]
 \tikzset{
 	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
 }
+
+\nextgroupplot[
+	height=11cm,
+	xmin=7, xmax=18, ymin=0.9, ymax=1.8, xtick distance=1, ytick distance=0.1, minor tick num=9,
+	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$},
+	title={Mass-radius diagram for 3-flavor quark stars}, %title style={yshift=2.0cm},
+	%colorbar horizontal, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+];
 \addplot+ [black, solid] {0}; \addlegendentry{stable stars};
 \addplot+ [black, densely dashed] {0}; \addlegendentry{unstable stars};
 
@@ -1479,31 +1485,12 @@ Let us understand what is going on:
 \addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat} node [Bpin, pos=0.60] {$B = (\SI{48}{\mega\electronvolt})^4$};
 \addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
 
-\end{axis}
-\end{tikzpicture}
-\caption{\label{fig:lsm:3-flavor-mass-radius}%
-Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by central pressure $P_c$, obtained with the equation of state for three-flavor quark matter in \cref{fig:lsm:3-flavor-eos-eos} modified by a range of bag constants between the bounds \eqref{eq:lsm:bag_lower_bound} and \eqref{eq:lsm3f:bag_upper_bound}.
-The thick lines show the three-flavor results, while the thin lines show the two-flavor solutions from \cref{fig:lsm:2-flavor-mass-radius} corresponding to the same bag constants in matching order.
-}
-\end{figure}
-
-\begin{figure}
-\centering
-\tikzsetnextfilename{3-flavor-mass-radius-pressure}
-\begin{tikzpicture}
-\begin{groupplot}[
-	group style={group size={1 by 2}, vertical sep=0.5cm},
-	width=15cm, height=7cm,
-	xtick distance=1.0, minor x tick num=9, 
-	grid=major,
-	point meta=explicit, point meta min=32, point meta max=39,
-	colormap name=plasmarev,
-	/tikz/declare function={e0 = 4.266500881855304e+37;},
-]
 \nextgroupplot[
+	height=6cm, yshift=+0.3cm,
 	%xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$,
 	ylabel=$R \, / \, \si{\kilo\meter}$,
 	enlarge x limits=false, xticklabels={,,},
+	xtick distance=1, minor x tick num=9,
 	ymin=7, ymax=18, ytick distance=1.0, minor y tick num=9,
 ];
 % two-flavor
@@ -1526,10 +1513,13 @@ The thick lines show the three-flavor results, while the thin lines show the two
 \addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
 \addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
 \nextgroupplot[
-	xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$,
-	ylabel=$M \, / \, M_\odot$,
+	height=6cm, yshift=+1.2cm,
+	%xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$,
+	ylabel=$M \, / \, M_\odot$, xticklabels={,,},
 	enlarge x limits=false,
-	ymin=0.8, ymax=2.0, ytick distance=0.1, minor y tick num=9,
+	xtick distance=1, minor x tick num=9,
+	ymin=0.9, ymax=1.8, ytick distance=0.1, minor y tick num=9,
+	colorbar horizontal, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,-0.05)}, anchor=north, xticklabel pos=lower},
 ];
 % two-flavor
 \addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
@@ -1552,6 +1542,10 @@ The thick lines show the three-flavor results, while the thin lines show the two
 \addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
 \end{groupplot}
 \end{tikzpicture}
+\caption{\label{fig:lsm:3-flavor-mass-radius}%
+Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by central pressure $P_c$, obtained with the equation of state for three-flavor quark matter in \cref{fig:lsm:3-flavor-eos-eos} modified by a range of bag constants between the bounds \eqref{eq:lsm:bag_lower_bound} and \eqref{eq:lsm3f:bag_upper_bound}.
+The thick lines show the three-flavor results, while the thin lines show the two-flavor solutions from \cref{fig:lsm:2-flavor-mass-radius} corresponding to the same bag constants in matching order.
+}
 \end{figure}
 
 \TODO{present and discuss mass-radius}
