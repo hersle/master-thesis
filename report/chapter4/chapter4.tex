@@ -1210,7 +1210,10 @@ The ready-to-use grand potential is now
 	%-& \, \frac{  1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} + 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_e^2}{m_e^2}-1} \right) \right] \\
 	+& \, N_c \smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right].
 \end{split}
+\label{eq:lsm3f:grand_potential}
 \end{equation}
+
+\TODO{concluding remarks?}
 
 \TODO{remark on fitting at tree-level only. inconsistent. would really receive radiative corrections from fermion loop diagram, even in $N_c \rightarrow \infty$ limit.}
 
@@ -1218,7 +1221,9 @@ The ready-to-use grand potential is now
 
 \TODO{unfinished}
 
-Must now solve system of equations
+To find the equation of state,
+we will follow the same procedure as in \TODO{ref}.
+The generalization of the system of equations \eqref{eq:lsm:minsys} with strange quarks with electric charge $-(1/3)e$ in the chemical equilibrium \eqref{eq:lsm:chemical_equilibrium} is
 \begin{subequations}
 \begin{align}
 	0 &= \pdv{\Omega}{\avg{\sigma_x}}, \\
@@ -1228,12 +1233,17 @@ Must now solve system of equations
 	\mu_d &= \mu_s.
 \end{align}
 \end{subequations}
+These five equations constrain the six variables that the grand potential \eqref{eq:lsm3f:grand_potential} depend on,
+producing a one-dimensional parametrization of values of the grand potential.
+yielding a one-dimensional parametrization of the 
 Parametrize with common quark chemical potential
 \TODO{transform $\mu_u,\mu_d,\mu_s$ to new chemical potentials $\mu_B=3/2(\mu_u+\mu_d),\mu_I=(\mu_u-\mu_d)/2,\mu_S=(\mu_u+\mu_d-2\mu_s)/2$ (verify these!)}
 \begin{equation}
 	\mu = \mu_u + \mu_d + \mu_e .
 \end{equation}
 Get results in \cref{fig:lsm:3-flavor-eos} and \cref{fig:lsm:3-flavor-mass-radius}
+
+\TODO{minima are not at $93$, $113$ because we have averaged $\Lambda_x$, $\Lambda_y$}
 
 \begin{figure}
 \centering
