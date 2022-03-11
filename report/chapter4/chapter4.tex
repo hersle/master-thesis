@@ -1454,7 +1454,7 @@ Let us understand what is going on:
 	height=11cm,
 	xmin=7, xmax=18, ymin=0.9, ymax=1.8, xtick distance=1, ytick distance=0.1, minor tick num=9,
 	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$},
-	title={Mass-radius diagram for 3-flavor quark stars}, %title style={yshift=2.0cm},
+	title={Mass-radius-pressure diagrams for 3-flavor quark stars}, %title style={yshift=2.0cm},
 	%colorbar horizontal, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
 ];
 \addplot+ [black, solid] {0}; \addlegendentry{stable stars};
@@ -1466,14 +1466,14 @@ Let us understand what is going on:
 %\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
 
 % two-flavor comparison
-\addplot+ [solid, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat}; \addlegendentry{two flavors};
-\addplot+ [densely dashed, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
-\addplot+ [solid, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-\addplot+ [densely dashed, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-\addplot+ [solid, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-\addplot+ [densely dashed, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-\addplot+ [solid, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
-\addplot+ [densely dashed, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat}; \addlegendentry{two flavors};
+\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
+\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
 
 % three-flavor
 \addplot+ [solid, mesh, mesh line legend, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat} node [Bpin, pos=0.83] {$B = (\SI{27}{\mega\electronvolt})^4$}; \addlegendentry{three flavors};
@@ -1554,14 +1554,24 @@ Next, we solve the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} wi
 modified by a range of bag constants below the three-flavor upper bound \eqref{eq:lsm3f:bag_upper_bound} and above the two-flavor lower bound \eqref{eq:lsm:bag_lower_bound} that we found earlier.
 There are many interesting features to note:
 \begin{itemize}
-\item For any given central pressure and bag constant, 
+\item For any given central pressure and bag constant corresponding to a stable star, and particularly for low central pressures,
+      the star composed of three-flavor quark matter is both larger and heavier than the corresponding star composed of two-flavor quark matter.
+      For low central pressures before the strange quark crossover,
+      the three-flavor energy density $\epsilon(P)$ in \cref{fig:lsm:3-flavor-eos} is lower than the one for two flavors,
+      \emph{decreasing} the mass gradient $\odv{m}/{r} = 4 \pi r^2 \epsilon(r)$ in the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov:tovsys} and hence the mass $m(r)$,
+      in turn \emph{increasing} the \emph{negative} pressure gradient $\odv{P}/{r} = -(1/r^2) (\epsilon+P) (m + 4 \pi r^3 P) / (1 - 2m/r)$.
+      A less negative pressure gradient means that the surface $P(R)=0$ is reached \emph{more slowly} for some given central pressure $P(0)=P_c$, so this explains the increase in size.
+      The combination of a smaller mass gradient and greater radius could have any effect on the total integrated mass, however, so its increase is a matter of balance.
+      For greater central pressures after the strange quark crossover, neither of these effects are obvious, as the three-flavor energy density then becomes greater than the two-flavor one,
+      and the situation is even reversed for unstable stars beyond the maximum mass.
+\item \TODO{add to this list!}
+\item \TODO{Plot radial dependence of quantities, particularly strange quark density! it seems strange quarks are activated only very close to the maximum mass!}
+\item \TODO{plot pressure in units of $10^{34} Pa$}
+\item The maximum mass is resistant to changes in the bag constant $B$. \TODO{explain how/why}
+\item \TODO{Some bag constants yield stars on downward $M$-curve, and my program even tells me they are stable???}
 \end{itemize}
 
 \TODO{investigate resistance of $M_\text{max}$ to changes in $B$. can I understand it with bag constant scaling solutions to TOV equations (see Glendenning)?}
-
-\TODO{plot more stuff? plot radial densities $n_B(r)$. other stuff, too?}
-
-\TODO{til neste gang: les $2$-flavor ultra-rel derivation, too, with plots}
 
 \TODO{$\chi$PT is a \emph{theory}, LSM is a \emph{model} -- JO}
 
