@@ -1260,6 +1260,7 @@ Then we add a bag constant using equation \eqref{eq:lsm:eos_bag}.
 We can now complement the lower bag constant bound \eqref{eq:lsm:bag_stability_2f} with an upper bound,
 asserting the Bodmer-Witten conjecture that three-flavor quark matter should be absolutely stable compared to $^{56}\text{Fe}$.
 We require
+\begin{subequations}
 \begin{equation}
 	\frac{E_3}{N_B} = \frac{\epsilon_3}{n_B} < \SI{930}{\mega\electronvolt}
 	\quad \text{at} \quad
@@ -1269,9 +1270,9 @@ with the three-flavor energy density $\epsilon_3 = \sum_i \mu_i n_i$ and the bar
 This yields the upper bound
 \begin{equation}
 	B < (\SI{48.3}{\mega\electronvolt})^4 .
+\label{eq:lsm3f:bag_upper_bound}
 \end{equation}
-
-\TODO{present and discuss mass-radius}
+\end{subequations}
 
 \begin{figure}
 \centering
@@ -1481,9 +1482,86 @@ Let us understand what is going on:
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-mass-radius}%
-\TODO{caption}
+Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by central pressure $P_c$, obtained with the equation of state for three-flavor quark matter in \cref{fig:lsm:3-flavor-eos-eos} modified by a range of bag constants between the bounds \eqref{eq:lsm:bag_lower_bound} and \eqref{eq:lsm3f:bag_upper_bound}.
+The thick lines show the three-flavor results, while the thin lines show the two-flavor solutions from \cref{fig:lsm:2-flavor-mass-radius} corresponding to the same bag constants in matching order.
 }
 \end{figure}
+
+\begin{figure}
+\centering
+\tikzsetnextfilename{3-flavor-mass-radius-pressure}
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size={1 by 2}, vertical sep=0.5cm},
+	width=15cm, height=7cm,
+	xtick distance=1.0, minor x tick num=9, 
+	grid=major,
+	point meta=explicit, point meta min=32, point meta max=39,
+	colormap name=plasmarev,
+	/tikz/declare function={e0 = 4.266500881855304e+37;},
+]
+\nextgroupplot[
+	%xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$,
+	ylabel=$R \, / \, \si{\kilo\meter}$,
+	enlarge x limits=false, xticklabels={,,},
+	ymin=7, ymax=18, ytick distance=1.0, minor y tick num=9,
+];
+% two-flavor
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+
+% three-flavor
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
+\nextgroupplot[
+	xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$,
+	ylabel=$M \, / \, M_\odot$,
+	enlarge x limits=false,
+	ymin=0.8, ymax=2.0, ytick distance=0.1, minor y tick num=9,
+];
+% two-flavor
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+
+% three-flavor
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\TODO{present and discuss mass-radius}
+
+Next, we solve the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} with this equation of state,
+modified by a range of bag constants below the three-flavor upper bound \eqref{eq:lsm3f:bag_upper_bound} and above the two-flavor lower bound \eqref{eq:lsm:bag_lower_bound} that we found earlier.
+There are many interesting features to note:
+\begin{itemize}
+\item For any given central pressure and bag constant, 
+\end{itemize}
 
 \TODO{investigate resistance of $M_\text{max}$ to changes in $B$. can I understand it with bag constant scaling solutions to TOV equations (see Glendenning)?}
 
