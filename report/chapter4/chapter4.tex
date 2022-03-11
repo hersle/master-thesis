@@ -1459,14 +1459,14 @@ Let us understand what is going on:
 %\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
 
 % two-flavor comparison
-\addplot+ [solid, gray, opacity=0.5, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat}; \addlegendentry{two flavors};
-\addplot+ [densely dashed, gray, opacity=0.5, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
-\addplot+ [solid, gray, opacity=0.5, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-\addplot+ [densely dashed, gray, opacity=0.5, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-\addplot+ [solid, gray, opacity=0.5, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-\addplot+ [densely dashed, gray, opacity=0.5, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-\addplot+ [solid, gray, opacity=0.5, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
-\addplot+ [densely dashed, gray, opacity=0.5, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+\addplot+ [solid, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat}; \addlegendentry{two flavors};
+\addplot+ [densely dashed, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
+\addplot+ [solid, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+\addplot+ [densely dashed, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+\addplot+ [solid, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+\addplot+ [densely dashed, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+\addplot+ [solid, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+\addplot+ [densely dashed, mesh, mesh line legend, thin, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
 
 % three-flavor
 \addplot+ [solid, mesh, mesh line legend, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat} node [Bpin, pos=0.83] {$B = (\SI{27}{\mega\electronvolt})^4$}; \addlegendentry{three flavors};
