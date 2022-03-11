@@ -76,21 +76,20 @@ def eos(μ, B=None, interaction=True, name="ϵ", outfile="", plot=False, verbose
             μ0 = μ[i]
             def system(σx_σy_μe):
                 σx0, σy0, μe0 = σx_σy_μe # unpack variables
-                μu0 = μ0 - 2/3*μe0
-                μd0 = μ0 + 1/3*μe0
-                μs0 = μ0 + 1/3*μe0
+                μu0 = μ0 - μe0/2
+                μd0 = μu0 + μe0
+                μs0 = μd0
                 dωx = dωxf(σx0, σy0, μu0, μd0, μs0, μe0)
                 dωy = dωyf(σx0, σy0, μu0, μd0, μs0, μe0)
                 q  =    qf(σx0, σy0, μu0, μd0, μs0, μe0)
                 return (dωx, dωy, q)
             guess = (σx[i-1], σy[i-1], μe[i-1]) if i > 0 else (fπ, np.sqrt(2)*fK-fπ/np.sqrt(2), 0) # use previous solution
-            #guess = (50, 50, 50)
-            sol = scipy.optimize.root(system, guess, method="lm") # lm and krylov methods works, give similar results
+            sol = scipy.optimize.root(system, guess, method="lm") # lm works, hybr works but unstable for small μ
             assert sol.success, f"{sol.message} (μ = {μ0})"
             σx0, σy0, μe0 = sol.x
-            μu0 = μ0 - 2/3*μe0
-            μd0 = μ0 + 1/3*μe0
-            μs0 = μ0 + 1/3*μe0
+            μu0 = μ0 - μe0/2
+            μd0 = μu0 + μe0
+            μs0 = μd0
             ω0 = ωf(σx0, σy0, μu0, μd0, μs0, μe0)
             σx[i], σy[i], μu[i], μd[i], μs[i], μe[i], ω[i] = σx0, σy0, μu0, μd0, μs0, μe0, ω0
             if verbose:

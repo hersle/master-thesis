@@ -1235,11 +1235,14 @@ The generalization of the system of equations \eqref{eq:lsm:minsys} with strange
 \end{subequations}
 These five equations constrain the six variables that the grand potential \eqref{eq:lsm3f:grand_potential} depend on,
 producing a one-dimensional parametrization of values of the grand potential.
-yielding a one-dimensional parametrization of the 
-Parametrize with common quark chemical potential
-\TODO{transform $\mu_u,\mu_d,\mu_s$ to new chemical potentials $\mu_B=3/2(\mu_u+\mu_d),\mu_I=(\mu_u-\mu_d)/2,\mu_S=(\mu_u+\mu_d-2\mu_s)/2$ (verify these!)}
+Similarly to the chemical potentials \eqref{eq:lsm:quark_chemical_potential} we defined in the two-flavor case,
+we now define the common quark, isospin and strangeness chemical potentials
+\TODO{why these? why not $\mu = (\mu_u+\mu_d+\mu_s)/3$ or something that corresponds to total quark density?}
+\TODO{add reference}
 \begin{equation}
-	\mu = \mu_u + \mu_d + \mu_e .
+	\mu = \frac12 (\mu_u + \mu_d), \qquad
+	\mu_I = \mu_u - \mu_d, \qquad
+	\mu_S = \frac12 (\mu_u + \mu_d) - \mu_s.
 \end{equation}
 Get results in \cref{fig:lsm:3-flavor-eos} and \cref{fig:lsm:3-flavor-mass-radius}
 
