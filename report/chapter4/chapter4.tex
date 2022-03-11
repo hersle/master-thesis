@@ -1306,14 +1306,13 @@ This yields the upper bound
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
 	xmin=0, xmax=900, xtick distance=100, minor x tick num=9,
-	ymax=6.0, ytick distance=1.0, minor y tick num=9,
+	ymax=6.0, ymin=-0.2, ytick distance=1.0, minor y tick num=9,
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-density}Particle number densities}},
 	legend cell align=left, legend pos=north west,
 ];
-%\coordinate (zoomplot) at (232, 1.32);
-%\draw [draw=none, fill=gray!50] (250, -0.005) rectangle (350, 0.02);
-%\draw [-Latex, gray] (300,0.03) to [out=90, in=0] (232, 0.75);
-%\addplot+ [red, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=nu] {../code/data/2flavfreeeos.dat};
+\coordinate (zoomplot) at (373, 3.55);
+\draw [draw=none, fill=gray!50] (250, -0.002) rectangle (500, 0.02);
+\draw [-Latex, gray] (375,0.03) to [out=90, in=0] (373, 2.35);
 
 % Two-flavor (for comparison)
 \addplot+ [red, solid, opacity=0.2, forget plot] table [x=mu, y=nu] {../code/data/2flaveos.dat};
@@ -1337,6 +1336,26 @@ This yields the upper bound
 \addplot+ [gray, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/2flaveos.dat};
 \addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/3flaveos.dat};
 \end{groupplot}
+% Embed zoom-plot in a node
+\node [anchor=north east] at (zoomplot) {
+	\begin{tikzpicture}[baseline, trim axis left, trim axis right]
+	\begin{axis}[
+		width=5.2cm, height=3.0cm,
+		scaled ticks=false,
+		xmin=250, xmax=500, xtick distance=50, minor x tick num=4, yticklabel style={/pgf/number format/fixed, /pgf/number format/precision=3},
+		ymin=-0.0020, ymax=0.01, ytick distance=0.01, minor y tick num=9, restrict y to domain=-0.5:0.5,
+		axis background/.style={fill=gray!50},
+	]
+	\addplot+ [red, solid, opacity=0.7] table [x=mu, y=nu] {../code/data/3flaveos.dat};
+	\addplot+ [darkgreen, solid, opacity=0.7] table [x=mu, y=nd] {../code/data/3flaveos.dat};
+	\addplot+ [purple, solid, opacity=0.7] table [x=mu, y=ns] {../code/data/3flaveos.dat};
+	\addplot+ [blue, solid, opacity=0.7] table [x=mu, y=ne] {../code/data/3flaveos.dat};
+	\addplot+ [red, solid, opacity=0.2] table [x=mu, y=nu] {../code/data/2flaveos.dat};
+	\addplot+ [darkgreen, solid, opacity=0.2] table [x=mu, y=nd] {../code/data/2flaveos.dat};
+	\addplot+ [blue, solid, opacity=0.2] table [x=mu, y=ne] {../code/data/2flaveos.dat};
+	\end{axis}
+	\end{tikzpicture}
+};
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-eos}%
 Properties of electrically charge neutral three-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
