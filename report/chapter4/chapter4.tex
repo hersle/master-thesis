@@ -1580,3 +1580,52 @@ The solutions displayed in \cref{fig:lsm:3-flavor-mass-radius} display many inte
 \TODO{do 3-flavor UR limit?}
 
 \TODO{comment on physical behavior: 3-flavor crossover is slower. for $\mu > 450$, $\mu_e$ decays instead of decreasing. massless $\avg{\sigma} \rightarrow 0$ as $\mu \rightarrow \infty$. EOS has two ``levels''. B merely ``shifts'' MR-diagram (at least for higher pressures), but produce significant changes in low-pressure stars.}
+
+\TODO{radial density plots}
+
+\begin{figure}[t]
+\centering
+\tikzsetnextfilename{3-flavor-radial-densities}
+\begin{tikzpicture}
+\begin{axis}[
+	width=15cm, height=10cm,
+	title = {Radial density profile for 3-flavor quark stars},
+	xlabel = {$r \, / \, \si{\kilo\meter}$}, ylabel = {$n_i \, / \, (1/\si{\femto\meter\cubed})$},
+	enlarge x limits = false,
+	xtick distance=1.0, minor x tick num=9,
+	ymin=-0.1, ymax=2, ytick distance=0.5, minor y tick num=4,
+	cycle multi list = {
+		blue,red,darkgreen,purple\nextlist
+		opacity=0.5,opacity=0.75,opacity=1.0
+	},
+	legend pos=north east, legend cell align=left, legend columns=4, transpose legend,
+]
+
+% fake plots for legend
+\addplot [red] {-1}; \addlegendentry{$n_u$ (up quarks)};
+\addplot [darkgreen] {-1}; \addlegendentry{$n_d$ (down quarks)};
+\addplot [purple] {-1}; \addlegendentry{$n_s$ (strange quarks)};
+\addplot [blue] {-1}; \addlegendentry{$n_e$ (electrons)};
+\addplot [black, opacity=0.5] {-1}; \addlegendentry{$P_c = 10^{34.41} \, \si{\pascal}$};
+\addplot [black, opacity=0.75] {-1}; \addlegendentry{$P_c = 10^{34.53} \, \si{\pascal}$};
+\addplot [black, opacity=1.0] {-1}; \addlegendentry{$P_c = 10^{34.63} \, \si{\pascal}$};
+\pgfplotsset{cycle list shift=-7};
+
+\pgfplotsinvokeforeach{0,1,2}{
+	\addplot table [x=r#1, y=ne#1] {../code/data/quarkstar3f_B14_38_densities.dat};
+}
+\pgfplotsinvokeforeach{0,1,2}{
+	\addplot table [x=r#1, y=nu#1] {../code/data/quarkstar3f_B14_38_densities.dat};
+}
+\pgfplotsinvokeforeach{0,1,2}{
+	\addplot table [x=r#1, y=nd#1] {../code/data/quarkstar3f_B14_38_densities.dat};
+}
+\pgfplotsinvokeforeach{0,1,2}{
+	\addplot table [x=r#1, y=ns#1] {../code/data/quarkstar3f_B14_38_densities.dat};
+}
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:lsm3f:3-flavor-radial-density}%
+	\TODO{caption}
+}
+\end{figure}

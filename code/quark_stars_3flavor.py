@@ -2,7 +2,7 @@
 
 import constants
 π = constants.π
-from tov import massradiusplot
+from tov import massradiusplot, soltov
 import utils
 
 import numpy as np
@@ -62,7 +62,7 @@ def qf(σx, σy, μu, μd, μs, μe):
     ne =  1/(3*π**2) * np.real(np.power(μe**2-me**2+0j, 3/2))
     return +2/3*nu - 1/3*nd - 1/3*ns - 1*ne
 
-def eos(μ, B=None, interaction=True, name="ϵ", outfile="", plot=False, verbose=False):
+def eos(μ, B=None, interaction=True, name="ϵ", outfile="", plot=False, nint=False, verbose=False):
     if interaction:
         σx = np.empty_like(μ)
         σy = np.empty_like(μ)
@@ -181,17 +181,49 @@ def eos(μ, B=None, interaction=True, name="ϵ", outfile="", plot=False, verbose
         ax3.set_ylabel(r"$\epsilon$")
         ax3.plot(P, ϵ, "-k.")
         plt.show()
-    
-    return ϵint
+
+    if nint:
+        nuint = scipy.interpolate.interp1d(P0, nu)
+        ndint = scipy.interpolate.interp1d(P0, nd)
+        nsint = scipy.interpolate.interp1d(P0, ns)
+        neint = scipy.interpolate.interp1d(P0, ne)
+        return ϵint, nuint, ndint, nsint, neint
+    else:
+        return ϵint
 
 if __name__ == "__main__":
     # plot massive, interacting and massless, free equation of state
-    μ = np.linspace(0, 1000, 1000)[1:]
-    ϵ = eos(μ, plot=True, verbose=True, outfile="data/3flaveos.dat")
+    #μ = np.linspace(0, 1000, 1000)[1:]
+    #ϵ = eos(μ, plot=True, verbose=True, outfile="data/3flaveos.dat")
 
-    # : solve TOV equation for different bag pressures
+    # solve TOV equation for different bag pressures
     μ = np.concatenate([np.linspace(0, 700, 200)[1:], np.linspace(700, 5000, 100)])
     opts = { "tolD": 0.25, "maxdr": 1e-2, "visual": False }
+
+    # with radial density plots
+    B14 = 38
+    Pcs = [0.0006, 0.0008, 0.001]
+    cols = [Pcs]
+    heads = ["Pcs"]
+    for i, Pc in enumerate(Pcs):
+        ϵ, nu, nd, ns, ne = eos(μ, B=B14**4, nint=True)
+        rs, ms, Ps, αs, ϵs = soltov(ϵ, Pc, maxdr=opts["maxdr"])
+        nus, nds, nss, nes = nu(Ps), nd(Ps), ns(Ps), ne(Ps)
+
+        heads += [f"r{i}", f"P{i}", f"nu{i}", f"nd{i}", f"ns{i}", f"ne{i}"]
+        cols += [list(rs), list(Ps), list(nus), list(nds), list(nss), list(nes)]
+
+        """
+        plt.plot(rs, Ps, "-k.")
+        plt.show()
+        plt.plot(rs, nu(Ps), "-r.")
+        plt.plot(rs, nd(Ps), "-g.")
+        plt.plot(rs, ns(Ps), "-b.")
+        plt.show()
+        """
+    utils.writecols(cols, heads, f"data/quarkstar3f_B14_{B14}_densities.dat")
+    exit()
+
     for B14 in [27, 34, 41, 48, 55, 62, 69]:
         outfile = f"data/quarkstar3f_B14_{B14}.dat"
         print(f"B = {B14}^4, outfile = {outfile}")
