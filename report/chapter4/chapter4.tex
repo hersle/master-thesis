@@ -678,7 +678,8 @@ Solid lines show
 \subref{fig:lsm:2-flavor-eos-parametrization} solutions to equation \eqref{eq:lsm:minsys} and the corresponding
 \subref{fig:lsm:2-flavor-eos-density} particle number densities \eqref{eq:lsm:particle_densities} and
 \subref{fig:lsm:2-flavor-eos-eos} equation of state \eqref{eq:lsm:eos}.
-In comparison, dashed lines show the approximate analytical solutions \eqref{eq:lsm:chemical_potentials_massless}, \eqref{eq:lsm:densities_massless} and \eqref{eq:lsm:eos_massless} for a free quark gas in the massless limit $\avg{\sigma} = 0$ and $m_e = 0$.
+In comparison, dashed lines show the approximate analytical solutions \eqref{eq:lsm:densities_massless}, \eqref{eq:lsm:chemical_potentials_massless} and \eqref{eq:lsm:eos_massless} for a free quark gas in the massless limit $\avg{\sigma} = 0$ and $m_e = 0$.
+\TODO{all figures: say ``upper panel a ..., middle panel b ..., lower panel c ..., etc.''}
 }
 \end{figure}
 
@@ -700,9 +701,9 @@ relative to vacuum and the energy density
 \end{subequations}%
 then at last eliminate the free parameter $\mu$ to find the equation of state $\epsilon(P)$ in \cref{fig:lsm:2-flavor-eos-eos}.
 
-As $\mu$ increases, the numerical results in \cref{fig:lsm:2-flavor-eos-parametrization} indicate that $\avg{\sigma}$ decays towards zero.
+As $\mu$ increases, the numerical results in \cref{fig:lsm:2-flavor-eos-parametrization} indicate that $\avg{\sigma}$ decreases towards zero.
 Let us leverage this to validate our numerical results to the analytical solution of the massless and non-interacting problem with $\avg{\sigma} = 0$,
-where the quark mass $m_q = g \avg{\sigma} = 0$ and all other interaction terms vanish.
+where the quark mass $m_q = g \avg{\sigma} = 0$ and all interaction terms vanish.
 For simplicity, we also neglect the electron mass $m_e = 0$, as it is very light.
 We expect correspondence with our numerical results for large values of $\mu$.
 In this limit, the grand potential \eqref{eq:lsm:grand_potential} reduces to
@@ -710,15 +711,15 @@ In this limit, the grand potential \eqref{eq:lsm:grand_potential} reduces to
 	\Omega(\mu_u, \mu_d, \mu_e) = -\frac{N_c \mu_u^4}{12 \pi^2} - \frac{N_c \mu_d^4}{12 \pi^2} - \frac{\mu_e^4}{12 \pi^2},
 \label{eq:lsm:grand_potential_massless}
 \end{equation}
-while the densities \eqref{eq:lsm:particle_densities} become
+while the densities \eqref{eq:lsm:particle_densities} become \TODO{ref fig here?}
 \begin{equation}
-	n_u = \frac{N_c \abs{\mu_u}^3}{3 \pi^2}, \qquad
-	n_d = \frac{N_c \abs{\mu_d}^3}{3 \pi^2}  \qquad \text{and} \qquad
-	n_e = \frac{N_c \abs{\mu_e}^3}{3 \pi^2}.
+	n_u = \frac{N_c \mu_u^3}{3 \pi^2}, \qquad
+	n_d = \frac{N_c \mu_d^3}{3 \pi^2}  \qquad \text{and} \qquad
+	n_e = \frac{\mu_e^3}{3 \pi^2}.
 \label{eq:lsm:densities_massless}
 \end{equation}
 The charge neutrality condition \eqref{eq:lsm:minsys_charge} can be solved approximately under the assumption that we can neglect the electron density $n_e \ll n_u < n_d$,
-motivated by the faint electron density in the numerical solution.
+motivated by the faint \TODO{very low?} electron density in the numerical solution.
 This simplifies the condition to $n_d = 2 n_u$, with the solution $\mu_d = 2^{1/3} \mu_u$.
 According to the $\beta$-equilibrium condition \eqref{eq:lsm:minsys_equilibrium},
 the chemical potential of the electrons is $\mu_e = \mu_d - \mu_u = (1-2^{1/3}) \mu_u$,
@@ -731,22 +732,22 @@ Summarizing and expressing these chemical potentials in terms of the common quar
 	\mu_e = (2^{1/3}-1) \mu.
 \label{eq:lsm:chemical_potentials_massless}
 \end{equation}
-Using the grand potential \eqref{eq:lsm:grand_potential_massless} and densities \eqref{eq:lsm:densities_massless} ignoring the normalization of the pressure $P = -\Omega$, the equation of state is now
+Using the grand potential \eqref{eq:lsm:grand_potential_massless} and densities \eqref{eq:lsm:densities_massless} and ignoring the normalization of the pressure $P = -\Omega$, the equation of state is now
 \begin{equation}
 	\epsilon = -P + \sum_i \mu_i n_i = -P + \frac{1}{3 \pi^2} \Big(N_c \mu_u^4 + N_c \mu_d^4 + \mu_e^4\Big) = -P - 4 \Omega = -P + 4 P = 3 P .
 \end{equation}
-This is the same ultra-relativistic equation of state that we also found in equation \eqref{eq:nstars:ur_eos}.
+As expected \TODO{anticipate at start}, this is the ultra-relativistic equation of state that we also found in equation \eqref{eq:nstars:ur_eos}.
 To compare it with our numerical equation of state, we should normalize the pressure $P \rightarrow P + \Omega(\mu<\SI{300}{\mega\electronvolt})$ using the vacuum value of the grand potential that we obtained in our general analysis.
 Doing so, we end up with the equation of state
 \begin{equation}
 	\epsilon = 3 P + 3 \Omega(\mu<\SI{300}{\mega\electronvolt}).
 \label{eq:lsm:eos_massless}
 \end{equation}
-The analytical results \eqref{eq:lsm:chemical_potentials_massless}, \eqref{eq:lsm:densities_massless} and \eqref{eq:lsm:eos_massless} are also shown for comparison in \cref{fig:lsm:2-flavor-eos}, and agree with our numerical results for large $\mu$, as we expected.
+The analytical results \eqref{eq:lsm:chemical_potentials_massless}, \eqref{eq:lsm:densities_massless} and \eqref{eq:lsm:eos_massless} are also shown for comparison in \cref{fig:lsm:2-flavor-eos}, and agree with our numerical results for large $\mu$, as expected.
 
 A discussion of the results in \cref{fig:lsm:2-flavor-eos} is now in order:
 \begin{itemize}
-\item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$, no square roots in the grand potential \eqref{eq:lsm:grand_potential} nor the densities \eqref{eq:lsm:particle_densities} have real parts, so we are in vacuum with the trivial solutions $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$, $\mu_e = 0$ and $\mu_u = \mu_d = \mu$ of equation \eqref{eq:lsm:minsys}, showing the Silver Blaze property again.
+\item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$, square roots in the grand potential \eqref{eq:lsm:grand_potential} and the densities \eqref{eq:lsm:particle_densities} have no real parts, so we are in vacuum with the trivial solutions $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$, $\mu_e = 0$ and $\mu_u = \mu_d = \mu$ of equation \eqref{eq:lsm:minsys}, showing the Silver Blaze property again.
 \item For $\SI{300}{\mega\electronvolt} < \mu \lesssim \SI{400}{\mega\electronvolt}$, the square roots acquire real parts and the system exhibits a crossover where particle densities increase rapidly from their vanishing vacuum values, while $\avg{\sigma}$ and hence the effective quark mass $m_q = g \avg{\sigma}$ plummets towards zero.
 \item For $\mu \gtrsim \SI{400}{\mega\electronvolt}$, the potential minimum approaches $\avg{\sigma} \rightarrow 0$ asymptotically.
       Due to the small quark masses $m_q = g \avg{\sigma} \rightarrow 0$, the results in this region agree with the free quark gas results \eqref{eq:lsm:densities_massless}, \eqref{eq:lsm:chemical_potentials_massless} and \eqref{eq:lsm:eos_massless} in the massless limit.
@@ -1044,7 +1045,7 @@ Hence, the fields corresponding to a non-diagonal matrix sector should be rotate
       \end{equation}
       of the $\sigma_0$, $\sigma_8$, $\pi_0$ and $\pi_8$ fields, parametrized by two mixing angles $\theta_\sigma$ and $\theta_\pi$.
 \end{itemize}
-\TODO{need reference for ``alternative'' particles}
+\TODO{need reference for ``alternative'' particles. check all $\pm$ signs!!}
 To determine the diagonalizing mixing angle $\theta_\pi$,
 we use the transformation \eqref{eq:lsm3f:diagonalization_transformation} and the trigonometric identities $\cos^2 \theta_\pi - \sin^2 \theta_\pi = \cos 2 \theta_\pi$ and $2 \sin\theta_\pi \cos\theta_\pi = \sin 2 \theta_\pi$ to expand
 \begin{equation}
@@ -1065,7 +1066,7 @@ We can then solve for the mixing angles
 \label{eq:lsm3f:mixing_angles}
 \end{equation}
 which in turn fixes the masses of $\eta$ and $\eta'$ as the coefficients of their squares in the sum \eqref{eq:lsm3f:diagonalization_sum}, and analogously for the $f_0$ and $\sigma$ masses.
-After diagonalization, the potential \eqref{eq:lsm3f:potential_before_diagonalization} is
+After diagonalization, the potential \eqref{eq:lsm3f:potential_before_diagonalization} \TODO{not potential (only applies for constant fields), but boson part of lagrangian or something} is
 \begin{equation}
 \begin{split}
 	\pot = \bar{\pot} \, &+ \, \frac12 m^2_{f_0} \tilde{f_0}^2  \, + \, \frac12 m^2_{\sigma} \tilde{\sigma}^2 \, + \, \frac12 m^2_{a_0} \sum_{\mathrlap{\!\!a_0 = \{a_0^+,a_0^-,a_0^0\}}} \tilde{a}_0^2               \, + \, \frac12 m^2_{\kappa} \sum_{\mathrlap{\!\!\kappa = \{\kappa^+,\kappa^-,\kappa^0,\bar{\kappa}^0\}}} \tilde{\kappa}^2 \\
@@ -1113,6 +1114,8 @@ Likewise, we use one of the quark masses \eqref{eq:lsm:quark_masses_3f} to deter
 \Cref{tab:lsm3f:parameters} shows the numerical values used in the fit and the predicted particle masses.
 
 \TODO{comment on mismatches between model and experiment. this is improved by including anomaly ($c \neq 0$), as done in \cite{ref:lsm3f}}
+
+\TODO{comment on different choices of three masses yielding different predictions of other masses and different coupling constants!}
 
 \begin{table}
 \centering
@@ -1246,11 +1249,13 @@ with the particle number densities
 	n_e = \frac{  1}{3\pi^2} \Big(\mu_e^2 - m_e^2\Big)^{\frac32}.
 \label{eq:lsm3f:particle_densities}
 \end{equation}
-These five equations constrain the six variables that the grand potential \eqref{eq:lsm3f:grand_potential} depend on,
+These five equations constrain the six variables that the grand potential \eqref{eq:lsm3f:grand_potential} depends on,
 producing a one-dimensional parametrization of values of the grand potential.
 Similarly to the chemical potentials \eqref{eq:lsm:quark_chemical_potential} we defined in the two-flavor case,
 we now define the common quark, isospin and strangeness chemical potentials
+\TODO{factor $1/2$ for isospin? just convention.}
 \TODO{why these? why not $\mu = (\mu_u+\mu_d+\mu_s)/3$ or something that corresponds to total quark density?}
+\TODO{use a chemical potential corresponding to total quark density?}
 \TODO{add reference}
 \begin{equation}
 	\mu = \frac12 (\mu_u + \mu_d), \qquad
@@ -1363,7 +1368,7 @@ This yields the upper bound
 };
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-eos}%
-Properties of electrically charge neutral three-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
+Properties of electrically charge neutral three-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential \TODO{chemical potentialS?} $\mu = (\mu_u+\mu_d)/2$.
 Solid lines show
 \subref{fig:lsm:3-flavor-eos-parametrization} solutions to equation \eqref{eq:lsm3f:minsys} and the corresponding
 \subref{fig:lsm:3-flavor-eos-density} particle number densities \eqref{eq:lsm3f:particle_densities} and
@@ -1378,10 +1383,11 @@ Let us understand what is going on:
 \item In the vacuum $\mu < \SI{300}{\mega\electronvolt}$, the minima $\avg{\sigma_x}$ and $\avg{\sigma_y}$ do \emph{not} correspond exactly to the decay constants \eqref{eq:lsm3f:decay_constants}.
       This is because the renormalization parameters $\Lambda_x$ and $\Lambda_y$ that preserved the minima were averaged into one common parameter \eqref{eq:lsm3f:renormalization_average} that slightly shifts the minima.
       \TODO{I could say this already when I took the average.}
-\item The up and down quarks transition from vacuum slightly before $\mu = \SI{300}{\mega\electronvolt}$ due to the slight decrease of the minima.
-      The crossover then proceeds somewhat less rapidly than in the two-flavor case, which manifests itself in a less steep equation of state at low pressures.
-      At the same time, the electron density attains a marginal nonzero value to ensure charge neutrality.
+\item The up and down quarks transition from \TODO{the?} vacuum slightly before $\mu = \SI{300}{\mega\electronvolt}$ due to the slight decrease of the minimum.
+      The crossover then proceeds somewhat less rapidly than in the two-flavor case, which manifests itself in a less steep \TODO{stiffer/softer?} equation of state at low pressures.
+      At the same time, the electron density attains a negligible nonzero value to ensure charge neutrality.
       Although strange quarks have not yet transitioned from vacuum, the strange minima $\avg{\sigma_y}$ drops a bit simultaneously with the non-strange transition due to the cross term $\lambda_1 \avg{\sigma_x}^2 \avg{\sigma_y}^2 / 2$ in the grand potential \eqref{eq:lsm3f:grand_potential}.
+      \TODO{quarks do not transition from vacuum. write clearly ``what'' transitions from vacuum.}
 \item After the strange quark transitions from vacuum slightly before $\mu = \SI{429}{\mega\electronvolt}$, the three-flavor system behaves qualitatively differently from the two-flavor system.
       The already low electron density is then completely wiped out, while the negatively charged strange quarks provides charge neutrality.
       Compared to the non-strange one, the strange crossover takes place very slowly and produces a gentle ramp onto a second plateau of the equation of state.
@@ -1547,6 +1553,7 @@ Let us understand what is going on:
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-mass-radius}%
+\TODO{explain panels}
 Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by central pressure $P_c$, obtained with the equation of state for three-flavor quark matter in \cref{fig:lsm:3-flavor-eos-eos} modified by a range of bag constants between the bounds \eqref{eq:lsm:bag_lower_bound} and \eqref{eq:lsm3f:bag_upper_bound}.
 The thick lines show the three-flavor results, while the thin lines show the two-flavor solutions from \cref{fig:lsm:2-flavor-mass-radius} corresponding to the same bag constants in matching order.
 }
@@ -1579,7 +1586,7 @@ The solutions displayed in \cref{fig:lsm:3-flavor-mass-radius} display many inte
 
 \TODO{do 3-flavor UR limit?}
 
-\TODO{comment on physical behavior: 3-flavor crossover is slower. for $\mu > 450$, $\mu_e$ decays instead of decreasing. massless $\avg{\sigma} \rightarrow 0$ as $\mu \rightarrow \infty$. EOS has two ``levels''. B merely ``shifts'' MR-diagram (at least for higher pressures), but produce significant changes in low-pressure stars.}
+\TODO{comment on physical behavior: 3-flavor crossover is slower. for $\mu > 450$, $\mu_e$ decreases instead of increasing. massless $\avg{\sigma} \rightarrow 0$ as $\mu \rightarrow \infty$. EOS has two ``levels''. B merely ``shifts'' MR-diagram (at least for higher pressures), but produce significant changes in low-pressure stars.}
 
 \TODO{radial density plots}
 
@@ -1629,3 +1636,5 @@ The solutions displayed in \cref{fig:lsm:3-flavor-mass-radius} display many inte
 	\TODO{caption}
 }
 \end{figure}
+
+\TODO{plot radial stuff. compare densities to saturation density -- will show when I should expect strange matter to be present? i.e. produce fig 6.13 in Berge}
