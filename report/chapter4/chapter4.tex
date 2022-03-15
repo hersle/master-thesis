@@ -41,7 +41,7 @@ Having found the partition function, we can calculate the
 \item Stability/unstability of 2-flavor/3-flavor quark matter (new, for finding bag constant $B$, Bodmer-Witten conjecture)
 \end{itemize}
 
-\section{Color confinement, asymptotic freedom, bag models}
+\section{Color confinement, asymptotic freedom and bag models}
 
 (Inspired by \cite{ref:quark_bag_model})
 
@@ -68,40 +68,55 @@ Having found the partition function, we can calculate the
 \end{figure}
 
 \textbf{Color confinement} is a fundamental feature of quantum chromodynamics.
-Experiments and lattice simulations have shown that color-charged particles like quarks cannot be isolated from each other.
-Quarks can be color-charged \textcolor{red}{red}, \textcolor{green}{green} and \textcolor{blue}{blue},
-while antiquarks can have be colored with the complementary colors -- or anticolors -- \textcolor{cyan}{antired}, \textcolor{magenta}{antigreen} and \textcolor{yellow}{antiblue} \TODO{}.
-Mesons consist of two quarks -- one quark of any color, and one antiquark with the complementary color -- so that the overall meson is color-neutral, or \emph{colorless}, or \emph{white}.
-Baryons consist of three quarks -- one red, one green and one blue -- so the baryon is colorless,
-while antibaryons consist of three antiquarks -- one of each anticolor -- so the antibaryon is colorless.
-The colored quarks are always confined in the interior of hadrons -- i.e. mesons and nucleons.
-The color charges are 
+Experiments and lattice simulations have shown that color-charged particles like quarks cannot be isolated from each other, but are rather confined in hadrons.
+Quarks can be color-charged \textcolor{red}{\textbf{red}}, \textcolor{green}{\textbf{green}} and \textcolor{blue}{\textbf{blue}},
+while antiquarks can have the complementary colors -- or anticolors -- \textcolor{cyan}{\textbf{antired}}, \textcolor{magenta}{\textbf{antigreen}} and \textcolor{yellow}{\textbf{antiblue}}.
+For example, a meson consists of one quark of any color and one antiquark with the complementary color of the first quark, making the meson itself \emph{colorless}.
+Similarly, a baryon consists of one red, one green and one blue quark,
+while an antibaryon consists of one antired, one antigreen and one antiblue quark,
+and are thus also colorless.
 
-\textbf{Asymptotic freedom} is another important property of quantum chromodynamics.
-As the energy scale, of interactions between quarks increase, the strength of the interactions \emph{decreases}.
-\TODO{ref Gross, Wilczek, Politzer and Nobel Prize}
+Another important property of quantum chromodynamics is \textbf{asymptotic freedom}.
+As the energy scale of quark interactions increases -- or its length scale decreases -- the \emph{strength} of the interactions \emph{decreases}!
+Consequently, 
+This property was first discovered by \cite{ref:asymptotic_freedom_gross_wilczek,ref:asymptotic_freedom_politzer} and recognized with the Nobel Prize in 2004.
 
-These two features explain that at high temperature or high density,
-quarks are \emph{deconfined} in the sense that they are free of interactions between each other,
-but spatially \emph{confined} inside a hadron.
+Together, these two features explain that at high temperature or high density,
+quarks become \emph{deconfined} in the sense that they are free of interactions between each other,
+but their positions are spatially \emph{confined} to a hadron.
+In an extremely dense pure neutron star, for example,
+the neutrons' three constituent quarks would break free from each other and hence the bound neutron state due to asymptotic freedom,
+but would still be spatially confined to the extent of the original neutron because of color confinement.
 
-Various \textbf{bag models} have been constructed to describe these properties.
-These models picture space to be some medium that is divided into two phases.
-The \emph{normal phase} is a void background in which quarks are forbidden to exist.
-On top this void, bubbles of \emph{hadron phase} may form, inside which quarks are confined.
-Creating one such hadron bubble of volume $V$ out of the normal vacuum phase costs the energy $BV$.
+To model quark matter and the effect of these two properties,
+physicists have come up with various \textbf{bag models}.
+As illustrated in \cref{fig:lsm:confinement}, these models split the medium of the physical vacuum state into two phases.
+The \emph{normal phase} is the background phase in which quarks are forbidden to exist -- remains of the non-confining medium that existed before the separation into two phases.
+On top of the background, bubbles of \emph{hadron phase} are created inside which colorless combinations of quarks are confined.
+Mathematically, the confinement is implemented by adding a bag constant $B$ to the grand potential density $\Omega$ of the quarks assumed to live inside the hadronic bubbles.
+The bag constant is therefore defined as the energy difference between the hadronic phase and the normal phase,
+and creating a hadronic bubble of volume $V$ costs the energy $B V$.
+A positive bag constant gives a negative contribution to the pressure $P = -\Omega$,
+hence confining the contents of the bag with an external pressure from the surrounding medium in the normal phase.
 
-The bag constant $B$ is therefore the difference in energy density between the hadron vacuum phase and the normal vacuum phase.
-Accordingly, it creates a negative pressure inside the bag which serves to confine the quarks in the bag.
+In the early days of high density and temperature, the universe likely passed through a deconfined quark matter phase.
+Today, matter is accreting by nuclear fusion in stars towards iron-56, seemingly representing the ground state of nuclear matter.
+However, \cite{ref:strange_hypothesis_bodmer} and \cite{ref:strange_hypothesis_witten} has hypothesized that this state of matter is only \emph{metastable}.
+Their \textbf{strange matter hypothesis} claims that the true ground state of nuclear matter is that of three-flavor matter consisting of up, down and strange quarks
 
-To determine acceptable values for the bag constant,
-we postulate that two-flavor quark matter should be unstable,
-and that three-flavor quark matter should be stable (Bodmer-Witten conjecture),
-compared to iron-$56$ with $E/N_B = \epsilon/n_B = \SI{930}{\mega\electronvolt}$.
+\TODO{rewrite?}
+We can use the presumed stability of two-flavor and three-flavor quark matter to determine a range of acceptable windows for the bag constant $B$.
+Per baryon, iron-56 has an energy of $E/N_B = \epsilon/n_B = \SI{930}{\mega\electronvolt}$,
+so if $\epsilon_2$ and $\epsilon_3$ are the energy densities of two-flavor and three-flavor quark matter,
+we determine the bag constant $B$ such that
+\TODO{at zero pressure?}
 \begin{equation}
 	\frac{\epsilon_3(0)}{n_B} < \SI{930}{\mega\electronvolt} < \frac{\epsilon_2(0)}{n_B} .
 \label{eq:lsm:bag_stability}
 \end{equation}
+Only the two-flavor bound has been observed,
+while the three-flavor bound is a quite reckless assumption that should certainly be taken with a grain of salt.
+It will, however, be very useful to have \emph{some} bound for the bag constant in order to constrain the parameter space of equations of state later on.
 
 \TODO{titles}
 
