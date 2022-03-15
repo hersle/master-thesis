@@ -1598,6 +1598,36 @@ The solutions displayed in \cref{fig:lsm:3-flavor-mass-radius} display many inte
 
 \TODO{comment on physical behavior: 3-flavor crossover is slower. for $\mu > 450$, $\mu_e$ decreases instead of increasing. massless $\avg{\sigma} \rightarrow 0$ as $\mu \rightarrow \infty$. EOS has two ``levels''. B merely ``shifts'' MR-diagram (at least for higher pressures), but produce significant changes in low-pressure stars.}
 
+\begin{figure}
+\centering
+\tikzsetnextfilename{3-flavor-density-ratios}
+\begin{tikzpicture}
+\begin{axis}[
+	width=15cm, height=10cm,
+	xlabel={$n_B \, / \, n_\text{sat}$}, ylabel={$n_i \, / \, n_\text{tot}$},
+	xmin=0, xmax=50, xtick distance=5, minor x tick num=4, restrict x to domain=0.01:100,
+	ymin=0, ymax=1, ytick distance=0.1, minor y tick num=9,
+	declare function={sat=0.165;},
+	legend cell align=left,
+]
+\addplot [blue] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{ne}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
+\addlegendentry{$n_e$ (electrons)};
+\addplot [red] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{nu}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
+\addlegendentry{$n_u$ (up quarks)};
+\addplot [darkgreen] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{nd}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
+\addlegendentry{$n_d$ (down quarks)};
+\addplot [purple] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{ns}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
+\addlegendentry{$n_s$ (strange quarks)};
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:lsm3f:3-flavor-density-ratios}%
+\TODO{caption}
+Baryon density $n_B = (n_u+n_d+n_s)/3$.
+Total density $n_\text{tot} = n_u+n_d+n_e+n_s$.
+Saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$.
+}
+\end{figure}
+
 \begin{figure}[t]
 \centering
 \tikzsetnextfilename{3-flavor-radial-densities}
@@ -1653,3 +1683,5 @@ The solutions displayed in \cref{fig:lsm:3-flavor-mass-radius} display many inte
 \end{figure}
 
 \TODO{plot radial stuff. compare densities to saturation density -- will show when I should expect strange matter to be present? i.e. produce fig 6.13 in Berge}
+
+\TODO{plot things outside bag window. the upper bound is very uncertain.}
