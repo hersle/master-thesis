@@ -1605,43 +1605,50 @@ The solutions displayed in \cref{fig:lsm:3-flavor-mass-radius} display many inte
 \begin{axis}[
 	width=15cm, height=10cm,
 	title = {Radial density profile for 3-flavor quark stars},
-	xlabel = {$r \, / \, \si{\kilo\meter}$}, ylabel = {$n_i \, / \, (1/\si{\femto\meter\cubed})$},
+	xlabel = {$r \, / \, \si{\kilo\meter}$}, ylabel = {$n_i \, / \, n_\text{sat}$},
 	enlarge x limits = false,
 	xtick distance=1.0, minor x tick num=9,
-	ymin=-0.1, ymax=2, ytick distance=0.5, minor y tick num=4,
+	ymin=-0.3, ymax=11, ytick distance=1.0, minor y tick num=9,
 	cycle multi list = {
-		blue,red,darkgreen,purple\nextlist
-		opacity=0.5,opacity=0.75,opacity=1.0
+		black,blue,red,darkgreen,purple\nextlist
+		dotted,dashed,solid
 	},
 	legend pos=north east, legend cell align=left, legend columns=4, transpose legend,
 ]
 
 % fake plots for legend
+\addplot [black] {-1}; \addlegendentry{$n_B$ (baryons)};
 \addplot [red] {-1}; \addlegendentry{$n_u$ (up quarks)};
 \addplot [darkgreen] {-1}; \addlegendentry{$n_d$ (down quarks)};
 \addplot [purple] {-1}; \addlegendentry{$n_s$ (strange quarks)};
 \addplot [blue] {-1}; \addlegendentry{$n_e$ (electrons)};
-\addplot [black, opacity=0.5] {-1}; \addlegendentry{$P_c = 10^{34.41} \, \si{\pascal}$};
-\addplot [black, opacity=0.75] {-1}; \addlegendentry{$P_c = 10^{34.53} \, \si{\pascal}$};
-\addplot [black, opacity=1.0] {-1}; \addlegendentry{$P_c = 10^{34.63} \, \si{\pascal}$};
-\pgfplotsset{cycle list shift=-7};
+\addplot [black, solid] {-1}; \addlegendentry{$P_c = 10^{34.41} \, \si{\pascal}$};
+\addplot [black, dashed] {-1}; \addlegendentry{$P_c = 10^{34.53} \, \si{\pascal}$};
+\addplot [black, dotted] {-1}; \addlegendentry{$P_c = 10^{34.63} \, \si{\pascal}$};
+\pgfplotsset{cycle list shift=-8};
 
 \pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y=ne#1] {../code/data/quarkstar3f_B14_38_densities.dat};
+	\addplot table [x=r#1, y expr={(\thisrow{nu#1}+\thisrow{nd#1}+\thisrow{ns#1})/3/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
 }
 \pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y=nu#1] {../code/data/quarkstar3f_B14_38_densities.dat};
+	\addplot table [x=r#1, y expr={\thisrow{ne#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
 }
 \pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y=nd#1] {../code/data/quarkstar3f_B14_38_densities.dat};
+	\addplot table [x=r#1, y expr={\thisrow{nu#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
 }
 \pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y=ns#1] {../code/data/quarkstar3f_B14_38_densities.dat};
+	\addplot table [x=r#1, y expr={\thisrow{nd#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
+}
+\pgfplotsinvokeforeach{0,1,2}{
+	\addplot table [x=r#1, y expr={\thisrow{ns#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
 }
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm3f:3-flavor-radial-density}%
 	\TODO{caption}
+	Nuclear saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$ \cite{ref:saturation_density}.
+	Bag constant $B = (\SI{38}{\mega\electronvolt})^4$.
+	Central pressures at, just before and just after maximum mass.
 }
 \end{figure}
 
