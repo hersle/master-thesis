@@ -329,6 +329,7 @@ the exact partition function corresponding to this theory is obtained by a path 
 As before, we are interested in $\log Z$ so we can calculate the thermodynamic quantities \eqref{eq:tft:average_quantities} and ultimately an equation of state $\epsilon(P)$, so we can solve the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov:tovsys}.
 Here we will account for quantum effects of the quarks by treating them up to quadratic order (or one-loop),
 but calculate only to zeroth order (or tree-level) in the meson fields and hence consider them only at the classical level.
+\TODO{a priori include bosonic fluctuations, but then they vanish in the $T=0$ limit due to \eqref{eq:tft:real_scalar_field_partition_function}}
 The partition function then reads
 \begin{equation}
 \begin{split}
@@ -1685,3 +1686,38 @@ Saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$.
 \TODO{plot radial stuff. compare densities to saturation density -- will show when I should expect strange matter to be present? i.e. produce fig 6.13 in Berge}
 
 \TODO{plot things outside bag window. the upper bound is very uncertain.}
+
+\begin{figure}[t]
+\centering
+\tikzsetnextfilename{3-flavor-mass-radius-outside}
+\begin{tikzpicture}
+\begin{axis}[
+	width=15cm, height=12cm,
+	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for 3-flavor quark stars outside bag window}, title style={yshift=2.0cm},
+	xmin=5, xmax=18, ymin=0.7, ymax=2, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
+	point meta=explicit, point meta min=32, point meta max=39,
+	colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+	declare function={
+		e0 = 4.266500881855304e+37;
+	},
+	legend pos=north west, legend cell align=right,
+]
+\tikzset{
+	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
+}
+\addplot+ [black, solid] {0};
+\addlegendentry{stable stars};
+\addplot+ [black, densely dashed] {0};
+\addlegendentry{unstable stars};
+
+%\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat} node [Bpin, pos=0.82] {$B = (\SI{27}{\mega\electronvolt})^4$};
+%\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
+
+\pgfplotsinvokeforeach{27,34,...,132}{
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_#1.dat};
+}
+
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:lsm:3-flavor-mass-radius-outside}Solutions outside bag window.}
+\end{figure}

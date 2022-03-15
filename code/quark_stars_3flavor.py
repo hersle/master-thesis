@@ -222,9 +222,9 @@ if __name__ == "__main__":
         plt.show()
         """
     utils.writecols(cols, heads, f"data/quarkstar3f_B14_{B14}_densities.dat")
-    exit()
 
-    for B14 in [27, 34, 41, 48, 55, 62, 69]:
+    # shooting method crashes for B14 >= 139
+    for B14 in [6, 13, 20, 27, 34, 41, 48, 55, 62, 69, 76, 83, 90, 97, 104, 111, 118, 125, 132]:
         outfile = f"data/quarkstar3f_B14_{B14}.dat"
         print(f"B = {B14}^4, outfile = {outfile}")
         ϵ = eos(μ, B=B14**4, name=f"ϵ3f", plot=False, verbose=False)
