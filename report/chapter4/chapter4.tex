@@ -41,10 +41,62 @@ Having found the partition function, we can calculate the
 \item Stability/unstability of 2-flavor/3-flavor quark matter (new, for finding bag constant $B$, Bodmer-Witten conjecture)
 \end{itemize}
 
+\section{Color confinement, asymptotic freedom, bag models}
 
-Determine bag constant by:
-two-flavor quark matter should be unstable,
-three-flavor quark matter should be stable (Bodmer-Witten conjecture),
+(Inspired by \cite{ref:quark_bag_model})
+
+\TODO{discuss $\epsilon$, $P$ before this}
+
+\begin{figure}
+\centering
+\tikzsetnextfilename{bag-model}
+\begin{tikzpicture}
+\fill [gray] (-5, -3) rectangle (+5, +3);
+
+\draw [draw=black, fill=white] (0, 0) circle (2);
+\begin{scope}[blend group=screen]
+	\fill [fill=red]   (30:0.5)  circle (0.75) node {$u$};
+	\fill [fill=green] (150:0.5) circle (0.75) node {$d$};
+	\fill [fill=blue]  (270:0.5) circle (0.75) node {$s$};
+\end{scope}
+\node at (90:1.3) {hadron phase};
+\node at (-3.5,1.3) {normal phase};
+\end{tikzpicture}
+\caption{\label{fig:lsm:confinement}%
+	\TODO{caption}
+}
+\end{figure}
+
+\textbf{Color confinement} is a fundamental feature of quantum chromodynamics.
+Experiments and lattice simulations have shown that color-charged particles like quarks cannot be isolated from each other.
+Quarks can be color-charged \textcolor{red}{red}, \textcolor{green}{green} and \textcolor{blue}{blue},
+while antiquarks can have be colored with the complementary colors -- or anticolors -- \textcolor{cyan}{antired}, \textcolor{magenta}{antigreen} and \textcolor{yellow}{antiblue} \TODO{}.
+Mesons consist of two quarks -- one quark of any color, and one antiquark with the complementary color -- so that the overall meson is color-neutral, or \emph{colorless}, or \emph{white}.
+Baryons consist of three quarks -- one red, one green and one blue -- so the baryon is colorless,
+while antibaryons consist of three antiquarks -- one of each anticolor -- so the antibaryon is colorless.
+The colored quarks are always confined in the interior of hadrons -- i.e. mesons and nucleons.
+The color charges are 
+
+\textbf{Asymptotic freedom} is another important property of quantum chromodynamics.
+As the energy scale, of interactions between quarks increase, the strength of the interactions \emph{decreases}.
+\TODO{ref Gross, Wilczek, Politzer and Nobel Prize}
+
+These two features explain that at high temperature or high density,
+quarks are \emph{deconfined} in the sense that they are free of interactions between each other,
+but spatially \emph{confined} inside a hadron.
+
+Various \textbf{bag models} have been constructed to describe these properties.
+These models picture space to be some medium that is divided into two phases.
+The \emph{normal phase} is a void background in which quarks are forbidden to exist.
+On top this void, bubbles of \emph{hadron phase} may form, inside which quarks are confined.
+Creating one such hadron bubble of volume $V$ out of the normal vacuum phase costs the energy $BV$.
+
+The bag constant $B$ is therefore the difference in energy density between the hadron vacuum phase and the normal vacuum phase.
+Accordingly, it creates a negative pressure inside the bag which serves to confine the quarks in the bag.
+
+To determine acceptable values for the bag constant,
+we postulate that two-flavor quark matter should be unstable,
+and that three-flavor quark matter should be stable (Bodmer-Witten conjecture),
 compared to iron-$56$ with $E/N_B = \epsilon/n_B = \SI{930}{\mega\electronvolt}$.
 \begin{equation}
 	\frac{\epsilon_3(0)}{n_B} < \SI{930}{\mega\electronvolt} < \frac{\epsilon_2(0)}{n_B} .
