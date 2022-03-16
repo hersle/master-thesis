@@ -1500,6 +1500,40 @@ Let us understand what is going on:
       towards which we see that the numerical solution indeed converges.
 \end{itemize}
 
+\begin{figure}
+\centering
+\tikzsetnextfilename{3-flavor-density-ratios}
+\begin{tikzpicture}
+\begin{axis}[
+	width=12cm, height=5cm,
+	xlabel={$n_B \, / \, n_\text{sat}$}, ylabel={$n_i \, / \, n_\text{tot}$},
+	xmin=0, xmax=50, xtick distance=5, minor x tick num=4, restrict x to domain=0.01:100,
+	ymin=-0.05, ymax=0.7, ytick distance=0.1, minor y tick num=9,
+	declare function={sat=0.165;},
+	legend cell align=left, legend columns=2,
+]
+\addplot [blue] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{ne}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
+\addlegendentry{$n_e$ (electrons)};
+\addplot [red] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{nu}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
+\addlegendentry{$n_u$ (up quarks)};
+\addplot [darkgreen] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{nd}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
+\addlegendentry{$n_d$ (down quarks)};
+\addplot [purple] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{ns}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
+\addlegendentry{$n_s$ (strange quarks)};
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:lsm3f:3-flavor-density-ratios}%
+Proportions of each particle density $n_i$ from \cref{fig:lsm:3-flavor-eos-density} \TODO{this and other refs are incorrect!} to the total density $n_\text{tot} = n_u + n_d + n_s + n_e$
+as a function of the baryon density $n_B = (n_u+n_d+n_s)/3$
+in units of the nuclear saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$
+for charge-neutral three-flavor quark matter.
+}
+\end{figure}
+
+In \cref{fig:lsm3f:3-flavor-density-ratios}, we also plot the proportions of each particle density with respect to the total baryon density.
+The baryon density is shown in units of the nuclear saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$ at which nuclei begin to overlap.
+It shows that the strange quarks arise for baryon densities that exceed $n_B \gtrsim 4 n_\text{sat}$, which can indeed be the case inside normal neutron stars. \cite{ref:strange_stars_saturation_density}
+
 \pgfplotsset{
 	mesh line legend/.style={legend image code/.code=\meshlinelegend#1},
 }
@@ -1547,7 +1581,7 @@ Let us understand what is going on:
 \makeatother
 %% End code for the coloured line legend
 
-\begin{figure}[t]
+\begin{figure}[h!]
 \centering
 \tikzsetnextfilename{3-flavor-mass-radius}
 \begin{tikzpicture}
@@ -1685,7 +1719,7 @@ For lower pressure stars, however, greater bag constants significantly increase 
 \tikzsetnextfilename{3-flavor-radial-densities}
 \begin{tikzpicture}
 \begin{axis}[
-	width=15cm, height=10cm,
+	width=15cm, height=8cm,
 	title = {Radial density profile for 3-flavor quark stars},
 	xlabel = {$r \, / \, \si{\kilo\meter}$}, ylabel = {$n_i \, / \, n_\text{sat}$},
 	enlarge x limits = false,
@@ -1747,65 +1781,7 @@ Despite this, the masses and radii of these stars differ greatly from those mode
 This is caused by difference in the equations of state for low pressures in \cref{fig:lsm:3-flavor-eos-eos}, that we traced back to the less rapid crossover in the three-flavor model.
 Although we do not expect the charm, bottom and top quarks to be physically present in stable stars, it would be interesting to whether merely including them in the model would cause similar effects.
 
-In a sense, our computation of the lower bag constant bound \eqref{eq:lsm:bag_lower_bound} using the unstability of two-flavor quark matter at $P=0$ is inconsistent.
-Due to nonzero bag constants above this bound, the stars in \cref{fig:lsm3f:3-flavor-radial-density} have nonzero densities of up and down quarks \emph{at} the surface defined by $P(R)=0$, contradicting the assumption for the bound.
-This means that it is not really possible to use the two-flavor and three-flavor models to describe a pure quark star.
-However, we could make a hybrid star with a quark core described by one of these models and a nuclear envelope described by a different model, so that the quark matter no longer touches the zero-pressure space outside the star.
-\TODO{will try this?}
-
-
-\begin{itemize}
-\item \TODO{is inconsistent to get two-flavor matter at the surface?}
-\item \TODO{add to this list!}
-\item \TODO{interpret non-quark terms in pressure as effective mass-dependent bag pressure? then $B$ normalizes its scale?}
-\item \TODO{plot pressure in units of $10^{34} Pa$}
-\item The maximum mass is resistant to changes in the bag constant $B$. \TODO{explain how/why}
-\item \TODO{Some bag constants yield stars on downward $M$-curve, and my program even tells me they are stable???}
-\end{itemize}
-
-\TODO{investigate resistance of $M_\text{max}$ to changes in $B$. can I understand it with bag constant scaling solutions to TOV equations (see Glendenning)?}
-
-\TODO{$\chi$PT is a \emph{theory}, LSM is a \emph{model} -- JO}
-
-\TODO{do 3-flavor UR limit?}
-
-\TODO{comment on physical behavior: 3-flavor crossover is slower. for $\mu > 450$, $\mu_e$ decreases instead of increasing. massless $\avg{\sigma} \rightarrow 0$ as $\mu \rightarrow \infty$. EOS has two ``levels''. B merely ``shifts'' MR-diagram (at least for higher pressures), but produce significant changes in low-pressure stars.}
-
-\begin{figure}
-\centering
-\tikzsetnextfilename{3-flavor-density-ratios}
-\begin{tikzpicture}
-\begin{axis}[
-	width=15cm, height=10cm,
-	xlabel={$n_B \, / \, n_\text{sat}$}, ylabel={$n_i \, / \, n_\text{tot}$},
-	xmin=0, xmax=50, xtick distance=5, minor x tick num=4, restrict x to domain=0.01:100,
-	ymin=0, ymax=1, ytick distance=0.1, minor y tick num=9,
-	declare function={sat=0.165;},
-	legend cell align=left,
-]
-\addplot [blue] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{ne}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
-\addlegendentry{$n_e$ (electrons)};
-\addplot [red] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{nu}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
-\addlegendentry{$n_u$ (up quarks)};
-\addplot [darkgreen] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{nd}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
-\addlegendentry{$n_d$ (down quarks)};
-\addplot [purple] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{ns}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
-\addlegendentry{$n_s$ (strange quarks)};
-\end{axis}
-\end{tikzpicture}
-\caption{\label{fig:lsm3f:3-flavor-density-ratios}%
-\TODO{caption}
-Baryon density $n_B = (n_u+n_d+n_s)/3$.
-Total density $n_\text{tot} = n_u+n_d+n_e+n_s$.
-Saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$.
-}
-\end{figure}
-
-\TODO{plot radial stuff. compare densities to saturation density -- will show when I should expect strange matter to be present? i.e. produce fig 6.13 in Berge}
-
-\TODO{plot things outside bag window. the upper bound is very uncertain.}
-
-\begin{figure}[t]
+\begin{figure}[b]
 \centering
 \tikzsetnextfilename{3-flavor-mass-radius-outside}
 \begin{tikzpicture}
@@ -1823,16 +1799,40 @@ Saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$.
 \tikzset{
 	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
 }
-\addplot+ [black, solid] {0};
-\addlegendentry{stable stars};
-\addplot+ [black, densely dashed] {0};
-\addlegendentry{unstable stars};
-
 \pgfplotsinvokeforeach{6,13,...,132}{
 \addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < ((0.001) + (0.0015-0.001)/(132-6)*(#1-6)) ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_#1.dat};
 }
 
 \end{axis}
 \end{tikzpicture}
-\caption{\label{fig:lsm:3-flavor-mass-radius-outside}Mass-radius solutions with the three-flavor equation of state as in \cref{fig:lsm:3-flavor-mass-radius}, but using bag constants $B$ outside the bag window, ranging from $B^{1/4}=\SI{6}{\mega\electronvolt}$ to $B^{1/4}=\SI{132}{\mega\electronvolt}$ in increments of $\SI{7}{\mega\electronvolt}$.}
+\caption{\label{fig:lsm:3-flavor-mass-radius-outside}Mass-radius solutions up to the maximum mass with the three-flavor equation of state as in \cref{fig:lsm:3-flavor-mass-radius}, but using bag constants $B$ outside the bag window, ranging from $B^{1/4}=\SI{6}{\mega\electronvolt}$ to $B^{1/4}=\SI{132}{\mega\electronvolt}$ in increments of $\SI{7}{\mega\electronvolt}$.}
 \end{figure}
+
+In a sense, our computation of the lower bag constant bound \eqref{eq:lsm:bag_lower_bound} using the unstability of two-flavor quark matter at $P=0$ is inconsistent.
+Due to nonzero bag constants above this bound, the stars in \cref{fig:lsm3f:3-flavor-radial-density} have nonzero densities of up and down quarks \emph{at} the surface defined by $P(R)=0$, contradicting the assumption for the bound.
+This means that it is not really possible to use the two-flavor and three-flavor models to describe a pure quark star.
+However, we could make a hybrid star with a quark core described by one of these models and a nuclear envelope described by a different model, so that the quark matter no longer touches the zero-pressure space outside the star.
+\TODO{will try this?}
+
+Moreover, the upper bag constant bound \eqref{eq:lsm3f:bag_upper_bound} is based on the strange matter hypothesis and is by no means certain.
+In \cref{fig:lsm:3-flavor-mass-radius-outside} we therefore examine the mass-radius curves obtained as in \cref{fig:lsm:3-flavor-mass-radius}, only outside the bag window considered there.
+This shows that it is possible to obtain maximum masses well below $1.8 M_\odot$ with this model by using larger bag constants.
+
+\begin{itemize}
+\item \TODO{add to this list!}
+\item \TODO{interpret non-quark terms in pressure as effective mass-dependent bag pressure? then $B$ normalizes its scale?}
+\item \TODO{plot pressure in units of $10^{34} Pa$?}
+\item \TODO{Some bag constants yield stars on downward $M$-curve, and my program even tells me they are stable???}
+\end{itemize}
+
+\TODO{investigate resistance of $M_\text{max}$ to changes in $B$. can I understand it with bag constant scaling solutions to TOV equations (see Glendenning)?}
+
+\TODO{$\chi$PT is a \emph{theory}, LSM is a \emph{model} -- JO}
+
+\TODO{comment on physical behavior: 3-flavor crossover is slower. for $\mu > 450$, $\mu_e$ decreases instead of increasing. massless $\avg{\sigma} \rightarrow 0$ as $\mu \rightarrow \infty$. EOS has two ``levels''. B merely ``shifts'' MR-diagram (at least for higher pressures), but produce significant changes in low-pressure stars.}
+
+\TODO{plot radial stuff. compare densities to saturation density -- will show when I should expect strange matter to be present? i.e. produce fig 6.13 in Berge}
+
+\TODO{plot things outside bag window. the upper bound is very uncertain.}
+
+\TODO{subfigure references are shaky! control this before handing in! fix by regenerating figure to which the reference is wrong.}
