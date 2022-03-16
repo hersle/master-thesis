@@ -1641,9 +1641,65 @@ The thick lines show the three-flavor results, while the thin lines show the two
 }
 \end{figure}
 
+\begin{figure}[t]
+\centering
+\tikzsetnextfilename{3-flavor-radial-densities}
+\begin{tikzpicture}
+\begin{axis}[
+	width=15cm, height=10cm,
+	title = {Radial density profile for 3-flavor quark stars},
+	xlabel = {$r \, / \, \si{\kilo\meter}$}, ylabel = {$n_i \, / \, n_\text{sat}$},
+	enlarge x limits = false,
+	xtick distance=1.0, minor x tick num=9,
+	ymin=-0.3, ymax=11, ytick distance=1.0, minor y tick num=9,
+	cycle multi list = {
+		black,blue,red,darkgreen,purple\nextlist
+		dotted,dashed,solid
+	},
+	legend pos=north east, legend cell align=left, legend columns=4, transpose legend,
+]
+
+% fake plots for legend
+\addplot [black] {-1}; \addlegendentry{$n_B$ (baryons)};
+\addplot [red] {-1}; \addlegendentry{$n_u$ (up quarks)};
+\addplot [darkgreen] {-1}; \addlegendentry{$n_d$ (down quarks)};
+\addplot [purple] {-1}; \addlegendentry{$n_s$ (strange quarks)};
+\addplot [blue] {-1}; \addlegendentry{$n_e$ (electrons)};
+\addplot [black, dotted] {-1}; \addlegendentry{$P_c = 10^{34.41} \, \si{\pascal}$};
+\addplot [black, dashed] {-1}; \addlegendentry{$P_c = 10^{34.53} \, \si{\pascal}$};
+\addplot [black, solid] {-1}; \addlegendentry{$P_c = 10^{34.63} \, \si{\pascal}$};
+\pgfplotsset{cycle list shift=-8};
+
+\pgfplotsinvokeforeach{0,1,2}{
+	\addplot table [x=r#1, y expr={(\thisrow{nu#1}+\thisrow{nd#1}+\thisrow{ns#1})/3/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
+}
+\pgfplotsinvokeforeach{0,1,2}{
+	\addplot table [x=r#1, y expr={\thisrow{ne#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
+}
+\pgfplotsinvokeforeach{0,1,2}{
+	\addplot table [x=r#1, y expr={\thisrow{nu#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
+}
+\pgfplotsinvokeforeach{0,1,2}{
+	\addplot table [x=r#1, y expr={\thisrow{nd#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
+}
+\pgfplotsinvokeforeach{0,1,2}{
+	\addplot table [x=r#1, y expr={\thisrow{ns#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
+}
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:lsm3f:3-flavor-radial-density}%
+	\TODO{caption}
+	Nuclear saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$ \cite{ref:saturation_density}.
+	Bag constant $B = (\SI{38}{\mega\electronvolt})^4$.
+	Central pressures at, just before and just after maximum mass.
+}
+\end{figure}
+
 Next, we solve the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} with this equation of state,
 modified by a range of bag constants below the three-flavor upper bound \eqref{eq:lsm3f:bag_upper_bound} and above the two-flavor lower bound \eqref{eq:lsm:bag_lower_bound} that we found earlier.
-The solutions displayed in \cref{fig:lsm:3-flavor-mass-radius} display many interesting features:
+The solutions are displayed in \cref{fig:lsm:3-flavor-mass-radius}.
+To investigate the composition of the stars, we plot the radial density profile of the present particles in \cref{fig:lsm3f:3-flavor-radial-density}.
+The two figures show many interesting features:
 \begin{itemize}
 \item For any given central pressure and bag constant corresponding to a stable star, and particularly for low central pressures,
       the star composed of three-flavor quark matter is both larger and heavier than the corresponding star composed of two-flavor quark matter.
@@ -1655,8 +1711,21 @@ The solutions displayed in \cref{fig:lsm:3-flavor-mass-radius} display many inte
       The combination of a smaller mass gradient and greater radius could have any effect on the total integrated mass, however, so its increase is a matter of balance.
       For greater central pressures after the strange quark crossover, neither of these effects are obvious, as the three-flavor energy density then becomes greater than the two-flavor one,
       and the situation is even reversed for unstable stars beyond the maximum mass.
+\item Only stars with central pressure near or beyond that corresponding to the maximum mass have a nonzero strange quark population.
+      \Cref{fig:lsm3f:3-flavor-radial-density} shows that stars with central pressure exceeding $P_c \gtrsim 10^{34.41} \si{\pascal} = \SI{0.16}{\giga\electronvolt\per\femto\meter\cubed}$ have a core partly composed of strange quarks.
+      Indeed, this corresponds to the beginning of the ``ramp'' up to the strange quark level of the equation of state in \cref{fig:lsm:3-flavor-eos-eos}.
+\item Masses and radii of stars composed of only up and down quarks differ greatly depending on whether they are modeled with the three-flavor or two-flavor model.
+      These stars correspond to those below $P_c \gtrsim 10^{34.41} \si{\pascal} = \SI{0.16}{\giga\electronvolt\per\femto\meter\cubed}$.
+      This is caused by difference in the equations of state for low pressures in \cref{fig:lsm:3-flavor-eos-eos} that we traced back to the less rapid crossover in the three-flavor model.
+      Apart from simplicity, the reason we study models including up, down and strange quarks, but not charm, bottom and top quarks is that the three latter quarks would only be present at stars with even greater density,
+      located beyond the maximum mass and thus being unstable and unphysical stars.
+      Nevertheless, given the difference in results from the strange quark's inclusion in the model, but physical absence, it would be interesting to see how this effect would play out with the inclusion of charm, bottom and top quarks.
+\item Unlike the corresponding radii, the maximum masses are resistant against changes in the bag constant within the bag window we have considered.
+      With the picture that the bag constant controls the size of the hadronic bags that confine the quarks,
+      it is as if increasing the bag size only ``inflates'' the bag and make them occupy more space without affecting the total mass.
+      For stars with lower pressure, however, the bag constant significantly modifies the equation of state and thus both masses and radii.
 \item \TODO{add to this list!}
-\item \TODO{Plot radial dependence of quantities, particularly strange quark density! it seems strange quarks are activated only very close to the maximum mass!}
+\item \TODO{interpret non-quark terms in pressure as effective mass-dependent bag pressure? then $B$ normalizes its scale?}
 \item \TODO{plot pressure in units of $10^{34} Pa$}
 \item The maximum mass is resistant to changes in the bag constant $B$. \TODO{explain how/why}
 \item \TODO{Some bag constants yield stars on downward $M$-curve, and my program even tells me they are stable???}
@@ -1697,60 +1766,6 @@ The solutions displayed in \cref{fig:lsm:3-flavor-mass-radius} display many inte
 Baryon density $n_B = (n_u+n_d+n_s)/3$.
 Total density $n_\text{tot} = n_u+n_d+n_e+n_s$.
 Saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$.
-}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\tikzsetnextfilename{3-flavor-radial-densities}
-\begin{tikzpicture}
-\begin{axis}[
-	width=15cm, height=10cm,
-	title = {Radial density profile for 3-flavor quark stars},
-	xlabel = {$r \, / \, \si{\kilo\meter}$}, ylabel = {$n_i \, / \, n_\text{sat}$},
-	enlarge x limits = false,
-	xtick distance=1.0, minor x tick num=9,
-	ymin=-0.3, ymax=11, ytick distance=1.0, minor y tick num=9,
-	cycle multi list = {
-		black,blue,red,darkgreen,purple\nextlist
-		dotted,dashed,solid
-	},
-	legend pos=north east, legend cell align=left, legend columns=4, transpose legend,
-]
-
-% fake plots for legend
-\addplot [black] {-1}; \addlegendentry{$n_B$ (baryons)};
-\addplot [red] {-1}; \addlegendentry{$n_u$ (up quarks)};
-\addplot [darkgreen] {-1}; \addlegendentry{$n_d$ (down quarks)};
-\addplot [purple] {-1}; \addlegendentry{$n_s$ (strange quarks)};
-\addplot [blue] {-1}; \addlegendentry{$n_e$ (electrons)};
-\addplot [black, solid] {-1}; \addlegendentry{$P_c = 10^{34.41} \, \si{\pascal}$};
-\addplot [black, dashed] {-1}; \addlegendentry{$P_c = 10^{34.53} \, \si{\pascal}$};
-\addplot [black, dotted] {-1}; \addlegendentry{$P_c = 10^{34.63} \, \si{\pascal}$};
-\pgfplotsset{cycle list shift=-8};
-
-\pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y expr={(\thisrow{nu#1}+\thisrow{nd#1}+\thisrow{ns#1})/3/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
-}
-\pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y expr={\thisrow{ne#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
-}
-\pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y expr={\thisrow{nu#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
-}
-\pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y expr={\thisrow{nd#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
-}
-\pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y expr={\thisrow{ns#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
-}
-\end{axis}
-\end{tikzpicture}
-\caption{\label{fig:lsm3f:3-flavor-radial-density}%
-	\TODO{caption}
-	Nuclear saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$ \cite{ref:saturation_density}.
-	Bag constant $B = (\SI{38}{\mega\electronvolt})^4$.
-	Central pressures at, just before and just after maximum mass.
 }
 \end{figure}
 
