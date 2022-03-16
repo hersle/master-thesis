@@ -198,7 +198,7 @@ if __name__ == "__main__":
 
     # solve TOV equation for different bag pressures
     μ = np.concatenate([np.linspace(0, 700, 200)[1:], np.linspace(700, 5000, 100)])
-    opts = { "tolD": 0.25, "maxdr": 1e-2, "visual": False }
+    opts = { "tolD": 0.125, "maxdr": 1e-2, "visual": False }
 
     # with radial density plots
     B14 = 38
