@@ -1678,7 +1678,7 @@ causing the surface defined by $P(R)=0$ to be reached quicker and therefore redu
 
 However, the combination of a smaller size and greater mass gradient have opposite effects on the total integrated mass, so its change is a matter of balance.
 In fact, we see that the maximum masses are resilient towards changes in the bag constant within the bag window we have considered, meaning the two effects balance each other out.
-For lower pressure stars, however, the bag constant also modifies the mass of stars significantly.
+For lower pressure stars, however, greater bag constants significantly increase the mass of stars.
 
 \begin{figure}[t]
 \centering
@@ -1812,13 +1812,13 @@ Saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$.
 \begin{axis}[
 	width=15cm, height=12cm,
 	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for 3-flavor quark stars outside bag window}, title style={yshift=2.0cm},
-	xmin=5, xmax=18, ymin=0.0, ymax=1.9, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
+	xmin=7, xmax=24, ymin=0.1, ymax=1.9, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
 	point meta=explicit, point meta min=32, point meta max=39,
 	colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
 	declare function={
 		e0 = 4.266500881855304e+37;
 	},
-	legend pos=north west, legend cell align=right,
+	legend pos=north east, legend cell align=right,
 ]
 \tikzset{
 	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
@@ -1834,5 +1834,5 @@ Saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$.
 
 \end{axis}
 \end{tikzpicture}
-\caption{\label{fig:lsm:3-flavor-mass-radius-outside}Solutions outside bag window.}
+\caption{\label{fig:lsm:3-flavor-mass-radius-outside}Mass-radius solutions with the three-flavor equation of state as in \cref{fig:lsm:3-flavor-mass-radius}, but using bag constants $B$ outside the bag window, ranging from $B^{1/4}=\SI{6}{\mega\electronvolt}$ to $B^{1/4}=\SI{132}{\mega\electronvolt}$ in increments of $\SI{7}{\mega\electronvolt}$.}
 \end{figure}

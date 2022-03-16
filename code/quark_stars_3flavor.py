@@ -228,4 +228,4 @@ if __name__ == "__main__":
         outfile = f"data/quarkstar3f_B14_{B14}.dat"
         print(f"B = {B14}^4, outfile = {outfile}")
         ϵ = eos(μ, B=B14**4, name=f"ϵ3f", plot=False, verbose=False)
-        massradiusplot(ϵ, (1e-5, 1e1), **opts, nmodes=3, outfile=outfile)
+        massradiusplot(ϵ, (1e-7, 1e-1), **opts, nmodes=0, outfile=outfile)
