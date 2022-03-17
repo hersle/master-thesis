@@ -312,34 +312,35 @@ The linear sigma model is an effective low-energy model of quantum chromodynamic
 
 \TODO{justify this effective MODEL from QCD. Expand QCD $\lagr$ at low energy?}
 
+\TODO{rewrite presentation!}
+
 The Lagrangian density for the linear sigma model coupled to quarks is
 \begin{equation}
-	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \Big[ i \slashed\partial + \mu \gamma^0 - g \left( \sigma + i \gamma^5 \vec\tau \cdot \vec\pi \right) \Big] q_c
-	      + \frac12 \left[ \left( \partial_\mu \sigma \right)^2 + \left( \partial_\mu \vec\pi \right)^2 \right] - \pot(\sigma,\vec\pi) ,
+	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \Big[ i \slashed\partial + \mu \gamma^0 - g \big( \sigma + i \gamma^5 \vec\tau \cdot \vec\pi \big) \Big] q_c
+	      + \frac12 \Big[ \big( \partial_\mu \sigma \big)^2 + \big( \partial_\mu \vec\pi \big)^2 \Big] - \pot(\sigma,\vec\pi) ,
 \label{eq:lsm:lagrangian}
 \end{equation}
-with the potential
+with the meson potential
 \begin{equation}
-	\pot(\sigma,\vec\pi) = \frac12 m^2 \left( \sigma^2 + \vec\pi^2 \right) + \frac{\lambda}{4!} \left( \sigma^2 + \vec\pi^2 \right)^2 - h \sigma .
-	                     % = \frac{\lambda}{4!} \left( \sigma^2 + \vec\pi^2 - \frac{6m^2}{\lambda} \right)^2 -\frac{3 m^4}{2 \lambda} .
+	\pot(\sigma, \vec\pi) = \frac{m^2}{2} \big( \sigma^2 + \vec\pi^2 \big) + \frac{\lambda}{4!} \big( \sigma^2 + \vec\pi^2 \big)^2 - h \sigma .
 \label{eq:lsm:potential}
 \end{equation}
-This model is also called a quark-meson model.
 Here $q_c = [u_c, d_c]^T$ represents quarks of the $N_c = 3$ colors red, green and blue and the $N_f = 2$ flavors up and down, so $(q_c)_f$ make up a total of $N_c \times N_f = 6$ Dirac spinors.
 In addition, $\sigma$ and $\vec\pi = [\pi^+, \pi^-, \pi^0]^T$ are four bosonic scalar fields representing sigma and pion mesons.
 At this point, the quarks are massless Dirac fermions whose conserved charge densities $j^0 = \bar\psi \gamma^0 \psi$ are coupled to quark chemical potentials $\mu = \diag(\mu_u, \mu_d)$, interacting with a Yukawa coupling of strength $g$ that models the strong force \TODO{non-mentioned comment in Møte 4}, where $\vec\tau$ are the Pauli matrices \eqref{eq:tft:pauli_matrices}.
 \TODO{$SU(2)_L$, $SU(2)_R$, etc.?}
 
-To make sense of this theory, we must investigate how it behaves around the classical ground state of the potential \eqref{eq:lsm:potential}.
-If we imagine collapsing the three-dimensional $\vec{\pi}$ down to one dimension, the potential looks like the Mexican hat drawn in \cref{fig:lsm:potential}, tilted by the symmetry breaking parameter $h$.
-Provided that $h \neq 0$, it has a discrete minimum located at
+We will study quantum fluctuations to first nonzero order around the classical ground state.
+The classical ground state is given by a pair of constant meson fields $\sigma = \avg{\sigma}$ and $\pi = \avg{\pi}$ that minimizes the meson potential \TODO{IN VACCUUM, SEE (10) IN \cite{ref:lsm_2f}, this asserts that $\avg{\bar{q}q}=0$ in vacuum?}.
+The dependence on the three fields $\vec{\pi}$ is spherically symmetric, so if we imagine collapsing this three-dimensional field down to one dimension, the potential looks like the Mexican hat drawn in \cref{fig:lsm:potential}, tilted by the symmetry breaking parameter $h$.
+Provided that $h \neq 0$, the minimum of the classical ground state is discrete and located at 
 %Let us warm up with the special case $h = 0$, where the potential is symmetric under rotation of $[\sigma, \vec{\pi}]^T$ in $O(4)$ and looks like an upright Mexican hat with a continuous curve of minima along $\sigma^2 + \vec{\pi}^2 = -6m^2/\lambda$.
 %Committing to one of these classical ground states, such as $\sigma=\avg{\sigma}=\sqrt{-6m^2/\lambda}$ and $\vec{\pi}=\avg{\vec{\pi}}=\vec{0}$,
 %and shifting the fields to $\sigma \rightarrow \avg{\sigma} + \tilde{\sigma}$ and $\vec{\pi} \rightarrow \avg{\vec{\pi}} + \tilde{\vec{\pi}}$ then spontaneously breaks the symmetry to rotations of the pion quantum fluctuations $\tilde{\vec{\pi}}$ in $O(3)$ only,
 %giving rise to three massless Goldstone bosons that we interpret as pions.
 %We will work in the general case, however, where $h \neq 0$ tilts the hat so that it has a global minimum at $\sigma=\avg{\sigma}$ and $\vec{\pi}=\avg{\vec{\pi}}$ determined by
 \begin{equation}
-	\vec{\pi} = \avg{\vec{\pi}} = 0
+	\vec{\pi} = \avg{\vec{\pi}} = \vec{0}
 	\quad \text{and} \quad
 	\sigma = \avg{\sigma}
 	\quad \text{where} \quad
@@ -350,15 +351,15 @@ Provided that $h \neq 0$, it has a discrete minimum located at
 %We assume that $h \neq 0$, but will briefly discuss the qualitatively different behavior in the special case $h = 0$ in a moment.
 To account for quantum fluctuations $\tilde{\sigma}$ and $\tilde{\vec{\pi}}$ around the classical ground state \eqref{eq:lsm:ground_state_implicit}, we shift
 \begin{equation}
-	\sigma \rightarrow \Avg{\sigma} + \tilde{\sigma}
+	\sigma \rightarrow \avg{\sigma} + \tilde{\sigma}
 	\qquad \text{and} \qquad
-	\vec\pi \rightarrow \Avg{\vec\pi} + \tilde{\vec\pi}.
+	\vec\pi \rightarrow \avg{\vec\pi} + \tilde{\vec\pi}.
 \label{eq:lsm:field_shift}
 \end{equation}
-In terms of the new fields $\tilde\sigma$ and $\tilde{\vec\pi}$, the Lagrangian \eqref{eq:lsm:lagrangian} is now
+Up to first nonzero order in the quantum fluctuations $\tilde\sigma$ and $\tilde{\vec\pi}$, the Lagrangian \eqref{eq:lsm:lagrangian} is now
 \begin{equation}
-	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \Big[ i \slashed\partial - m_q + \mu \gamma^0 - g \left( \tilde{\sigma} + i \gamma^5 \vec\tau \cdot \vec\pi \right) \Big] q_c
-	      + \frac12 \left[ \left( \partial_\mu \tilde{\sigma} \right)^2 + \left( \partial_\mu \tilde{\vec\pi} \right)^2 \right] - \tilde{\pot}(\tilde{\sigma},\tilde{\vec\pi}) , %\pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) ,
+	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \Big[ i \slashed\partial + \mu \gamma^0 - m_q \Big] q_c
+	      + \frac12 \left[ \left( \partial_\mu \tilde{\sigma} \right)^2 + \left( \partial_\mu \tilde{\vec\pi} \right)^2 \right] - \pot , %\pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) ,
 \end{equation}
 where the quark fields $q$ have acquired field-dependent effective masses
 \begin{equation}
@@ -367,13 +368,10 @@ where the quark fields $q$ have acquired field-dependent effective masses
 \end{equation}
 The potential \eqref{eq:lsm:potential} up to second order in the shifted fields is
 \begin{equation}
-\begin{split}
-	\tilde{\pot}(\tilde{\sigma},\tilde{\vec\pi}) &= \pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) \\
-	                                             &\taylor \frac12 m^2 \avg{\sigma}^2 + \frac{\lambda}{4!} \avg{\sigma}^4 - h \avg{\sigma} + \frac12 m_\sigma^2 \sigma^2  + \frac12 m_\pi^2 \vec\pi^2 ,
+	\pot \taylor \frac12 m^2 \avg{\sigma}^2 + \frac{\lambda}{4!} \avg{\sigma}^4 - h \avg{\sigma} + \frac12 m_\sigma^2 \sigma^2  + \frac12 m_\pi^2 \vec\pi^2 ,
 	%V(\sigma, \vec\pi) \taylor -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda}{4!} \avg{\sigma}^4 + \frac12 (\sqrt{2} m)^2 \sigma^2 .
 	%V(\sigma, \vec\pi) \taylor -\frac{3 m^4}{2 \lambda} + \frac12 (\sqrt{2} m)^2 \sigma^2 .
 \label{eq:lsm:potential_shifted}
-\end{split}
 \end{equation}
 where the $\sigma$ and $\vec\pi$ fields have acquired the effective masses
 \begin{subequations}
