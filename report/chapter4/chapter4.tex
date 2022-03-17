@@ -394,6 +394,7 @@ We work in the general case, however, where $h \neq 0$ instead breaks the symmet
 We determine the four parameters $g$, $h$, $m$ and $\lambda$ in the original Lagrangian \eqref{eq:lsm:lagrangian} so that it yields the physical masses
 \cite{ref:jo_lsm_renormalization}
 \TODO{source?}
+\TODO{``traditional''/rounded values of constituent quark masses, e.g. $m_u \approx m_n / 3 \approx 300 MeV$}
 \begin{equation}
 	m_q = \SI{300}{\mega\electronvolt}, \quad
 	m_\pi = \SI{138}{\mega\electronvolt} \quad \text{and} \quad
@@ -1523,7 +1524,7 @@ Let us understand what is going on:
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm3f:3-flavor-density-ratios}%
-Proportions of each particle density $n_i$ from \cref{fig:lsm:3-flavor-eos-density} \TODO{this and other refs are incorrect!} to the total density $n_\text{tot} = n_u + n_d + n_s + n_e$
+Proportions of each particle density $n_i$ from \cref{fig:lsm:3-flavor-eos-density} to the total density $n_\text{tot} = n_u + n_d + n_s + n_e$
 as a function of the baryon density $n_B = (n_u+n_d+n_s)/3$
 in units of the nuclear saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$
 for charge-neutral three-flavor quark matter.
@@ -1531,7 +1532,7 @@ for charge-neutral three-flavor quark matter.
 \end{figure}
 
 In \cref{fig:lsm3f:3-flavor-density-ratios}, we also plot the proportions of each particle density with respect to the total baryon density.
-The baryon density is shown in units of the nuclear saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$ at which nuclei begin to overlap.
+The baryon density is shown in units of the nuclear saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$ at which nuclei begin to overlap. \cite{ref:saturation_density}
 It shows that the strange quarks arise for baryon densities that exceed $n_B \gtrsim 4 n_\text{sat}$, which can indeed be the case inside normal neutron stars. \cite{ref:strange_stars_saturation_density}
 
 \pgfplotsset{
@@ -1730,7 +1731,7 @@ For lower pressure stars, however, greater bag constants significantly increase 
 		black,blue,red,darkgreen,purple\nextlist
 		dotted,dashed,solid
 	},
-	legend pos=north east, legend cell align=left, legend columns=4, transpose legend,
+	legend pos=north east, legend cell align=left, %legend columns=1, transpose legend,
 ]
 
 % fake plots for legend
@@ -1762,10 +1763,8 @@ For lower pressure stars, however, greater bag constants significantly increase 
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm3f:3-flavor-radial-density}%
-	\TODO{caption}
-	Nuclear saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$ \cite{ref:saturation_density}.
-	Bag constant $B = (\SI{38}{\mega\electronvolt})^4$.
-	Central pressures at, just before and just after maximum mass.
+	Radial density profile of each particle for three three-flavor quark stars just before, at and just after the maximum mass in \cref{fig:lsm:3-flavor-mass-radius}, all with the bag constant $B = (\SI{38}{\mega\electronvolt})^4$.
+	In agreement with \cref{fig:lsm3f:3-flavor-density-ratios}, the stars gain a strange quark core as the baryon density $n_B = (n_u+n_d+n_s)/3$ exceeds $4$ nuclear saturation densities $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$.
 }
 \end{figure}
 
@@ -1820,21 +1819,14 @@ Moreover, the upper bag constant bound \eqref{eq:lsm3f:bag_upper_bound} is based
 In \cref{fig:lsm:3-flavor-mass-radius-outside} we therefore examine the mass-radius curves obtained as in \cref{fig:lsm:3-flavor-mass-radius}, only outside the bag window considered there.
 This shows that it is possible to obtain maximum masses well below $1.8 M_\odot$ with this model by using larger bag constants.
 
-\begin{itemize}
-\item \TODO{add to this list!}
-\item \TODO{interpret non-quark terms in pressure as effective mass-dependent bag pressure? then $B$ normalizes its scale?}
-\item \TODO{plot pressure in units of $10^{34} Pa$?}
-\item \TODO{Some bag constants yield stars on downward $M$-curve, and my program even tells me they are stable???}
-\end{itemize}
+\TODO{add to this list!}
 
-\TODO{investigate resistance of $M_\text{max}$ to changes in $B$. can I understand it with bag constant scaling solutions to TOV equations (see Glendenning)?}
+\TODO{interpret non-quark terms in pressure as effective mass-dependent bag pressure? then $B$ normalizes its scale?}
+
+\TODO{plot pressure in units of $10^{34} Pa$?}
+
+\TODO{Some bag constants yield stars on downward $M$-curve, and my program even tells me they are stable???}
 
 \TODO{$\chi$PT is a \emph{theory}, LSM is a \emph{model} -- JO}
-
-\TODO{comment on physical behavior: 3-flavor crossover is slower. for $\mu > 450$, $\mu_e$ decreases instead of increasing. massless $\avg{\sigma} \rightarrow 0$ as $\mu \rightarrow \infty$. EOS has two ``levels''. B merely ``shifts'' MR-diagram (at least for higher pressures), but produce significant changes in low-pressure stars.}
-
-\TODO{plot radial stuff. compare densities to saturation density -- will show when I should expect strange matter to be present? i.e. produce fig 6.13 in Berge}
-
-\TODO{plot things outside bag window. the upper bound is very uncertain.}
 
 \TODO{subfigure references are shaky! control this before handing in! fix by regenerating figure to which the reference is wrong.}
