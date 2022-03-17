@@ -1585,6 +1585,9 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 \begin{figure}[t]
 \centering
 \tikzsetnextfilename{3-flavor-mass-radius}
+\tikzset{
+	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
+}
 \begin{tikzpicture}
 \begin{groupplot}[
 	group style={group size={1 by 3}, vertical sep=1.5cm},
@@ -1595,9 +1598,6 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 	legend pos=north west, legend cell align=right, legend columns=1,
 	/tikz/declare function={e0 = 4.266500881855304e+37;},
 ]
-\tikzset{
-	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
-}
 \nextgroupplot[
 	height=6cm,
 	%xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$,
@@ -1803,6 +1803,11 @@ Although we do not expect the charm, bottom and top quarks to be physically pres
 \pgfplotsinvokeforeach{6,13,...,132}{
 \addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < ((0.001) + (0.0015-0.001)/(132-6)*(#1-6)) ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_#1.dat};
 }
+\addplot+ [draw=none, x filter/.expression={\thisrow{P} < ((0.001) + (0.0015-0.001)/(132-6)*(6-6)) ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_6.dat} node [Bpin, font=\scriptsize, yshift=-0.15cm, pos=0.945] {$B=(\SI{6}{\mega\electronvolt})^4$};
+\addplot+ [draw=none, x filter/.expression={\thisrow{P} < ((0.001) + (0.0015-0.001)/(132-13)*(13-6)) ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_13.dat} node [Bpin, font=\scriptsize, yshift=-0.15cm, pos=0.890] {$B=(\SI{13}{\mega\electronvolt})^4$};
+\addplot+ [draw=none, x filter/.expression={\thisrow{P} < ((0.001) + (0.0015-0.001)/(132-13)*(20-6)) ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_20.dat} node [Bpin, font=\scriptsize, yshift=-0.15cm, pos=0.870] {$B=(\SI{20}{\mega\electronvolt})^4$};
+\addplot+ [draw=none, x filter/.expression={\thisrow{P} < ((0.001) + (0.0015-0.001)/(132-13)*(27-6)) ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat} node [Bpin, font=\scriptsize, yshift=-0.15cm, pos=0.86] {$B=(\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [draw=none, x filter/.expression={\thisrow{P} < ((0.001) + (0.0015-0.001)/(132-13)*(34-6)) ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat} node [Bpin, font=\scriptsize, yshift=+0.1cm, pos=0.860] {$\vdots$};
 
 \end{axis}
 \end{tikzpicture}
