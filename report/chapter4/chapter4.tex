@@ -1581,7 +1581,7 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 \makeatother
 %% End code for the coloured line legend
 
-\begin{figure}[h!]
+\begin{figure}[t]
 \centering
 \tikzsetnextfilename{3-flavor-mass-radius}
 \begin{tikzpicture}
@@ -1589,7 +1589,7 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 	group style={group size={1 by 3}, vertical sep=1.5cm},
 	width=15cm,
 	grid=major,
-	point meta=explicit, %point meta min=32, point meta max=39,
+	point meta=explicit, point meta min=32.63, point meta max=38.63,
 	colormap name=plasmarev, 
 	legend pos=north west, legend cell align=right, legend columns=1,
 	/tikz/declare function={e0 = 4.266500881855304e+37;},
@@ -1597,47 +1597,12 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 \tikzset{
 	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
 }
-
 \nextgroupplot[
-	height=11cm,
-	xmin=7, xmax=18, ymin=0.9, ymax=1.8, xtick distance=1, ytick distance=0.1, minor tick num=9,
-	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$},
-	title={Mass-radius-pressure diagrams for 3-flavor quark stars}, %title style={yshift=2.0cm},
-	%colorbar horizontal, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
-];
-\addplot+ [black, solid] {0}; \addlegendentry{stable stars};
-\addplot+ [black, densely dashed] {0}; \addlegendentry{unstable stars};
-
-%\addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat}; \addlegendentry{two-flavor};
-%\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-%\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-%\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
-
-% two-flavor comparison
-\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat}; \addlegendentry{two flavors};
-\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
-\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
-\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
-
-% three-flavor
-\addplot+ [solid, mesh, mesh line legend, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat} node [Bpin, pos=0.83] {$B = (\SI{27}{\mega\electronvolt})^4$}; \addlegendentry{three flavors};
-\addplot+ [densely dashed, mesh, mesh line legend, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat};
-\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat} node [Bpin, pos=0.77] {$B = (\SI{34}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat};
-\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat} node [Bpin, pos=0.70] {$B = (\SI{41}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat};
-\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat} node [Bpin, pos=0.60] {$B = (\SI{48}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
-
-\nextgroupplot[
-	height=6cm, yshift=+0.3cm,
+	height=6cm,
 	%xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$,
 	ylabel=$R \, / \, \si{\kilo\meter}$,
-	enlarge x limits=false, xticklabels={,,},
+	title={Mass-radius solutions for 3-flavor quark stars}, %title style={yshift=2.0cm},
+	enlarge x limits=false, xmin=32.63, xmax=38.63, xticklabels={,,},
 	xtick distance=1, minor x tick num=9,
 	ymin=7, ymax=18, ytick distance=1.0, minor y tick num=9,
 ];
@@ -1660,13 +1625,14 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 \addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat};
 \addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
 \addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
+
 \nextgroupplot[
 	height=6cm, yshift=+1.2cm,
 	%xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$,
 	ylabel=$M \, / \, M_\odot$, xticklabels={,,},
-	enlarge x limits=false,
+	enlarge x limits=false, xmin=32.63, xmax=38.63,
 	xtick distance=1, minor x tick num=9,
-	ymin=0.9, ymax=1.8, ytick distance=0.1, minor y tick num=9,
+	ymin=1.0, ymax=1.8, ytick distance=0.1, minor y tick num=9,
 	colorbar horizontal, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,-0.05)}, anchor=north, xticklabel pos=lower},
 ];
 % two-flavor
@@ -1688,12 +1654,47 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 \addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat};
 \addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
 \addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
+
+\nextgroupplot[
+	height=10cm, yshift=-0.5cm,
+	xmin=7, xmax=18, ymin=1.0, ymax=1.8, xtick distance=1, ytick distance=0.1, minor tick num=9,
+	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$},
+	%colorbar horizontal, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+];
+\addplot+ [black, solid] {0}; \addlegendentry{stable stars};
+\addplot+ [black, densely dashed] {0}; \addlegendentry{unstable stars};
+
+%\addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat}; \addlegendentry{two-flavor};
+%\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+%\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+%\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+
+% two-flavor comparison
+\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat}; \addlegendentry{two flavors};
+\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
+\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+
+% three-flavor
+\addplot+ [solid, mesh, mesh line legend, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat} node [Bpin, pos=0.93] {$B = (\SI{27}{\mega\electronvolt})^4$}; \addlegendentry{three flavors};
+\addplot+ [densely dashed, mesh, mesh line legend, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat};
+\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat} node [Bpin, pos=0.92] {$B = (\SI{34}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat};
+\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat} node [Bpin, pos=0.91] {$B = (\SI{41}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat};
+\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat} node [Bpin, pos=0.905] {$B = (\SI{48}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
+
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-mass-radius}%
-\TODO{explain panels}
-Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by central pressure $P_c$, obtained with the equation of state for three-flavor quark matter in \cref{fig:lsm:3-flavor-eos-eos} modified by a range of bag constants between the bounds \eqref{eq:lsm:bag_lower_bound} and \eqref{eq:lsm3f:bag_upper_bound}.
-The thick lines show the three-flavor results, while the thin lines show the two-flavor solutions from \cref{fig:lsm:2-flavor-mass-radius} corresponding to the same bag constants in matching order.
+Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by central pressure $P_c$, obtained with the equation of state for three-flavor quark matter in \cref{fig:lsm:3-flavor-eos-eos} modified by four bag constants between the bounds \eqref{eq:lsm:bag_lower_bound} and \eqref{eq:lsm3f:bag_upper_bound}.
+Colorful lines show the three-flavor results, while gray lines show the two-flavor solutions from \cref{fig:lsm:2-flavor-mass-radius} corresponding to the same bag constants.
+The two upper panels show mass and radius as a function of central pressure with a horizontal axis common to the color bar, while the lower panel displays the solutions in the mass-radius plane.
 }
 \end{figure}
 
@@ -1786,9 +1787,10 @@ Although we do not expect the charm, bottom and top quarks to be physically pres
 \tikzsetnextfilename{3-flavor-mass-radius-outside}
 \begin{tikzpicture}
 \begin{axis}[
-	width=15cm, height=12cm,
+	%width=15cm, height=12cm,
+	width=15cm, height=10.5cm,
 	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for 3-flavor quark stars outside bag window}, title style={yshift=2.0cm},
-	xmin=7, xmax=24, ymin=0.1, ymax=1.9, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
+	xmin=7, xmax=24, ymin=0.4, ymax=1.9, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
 	point meta=explicit, point meta min=32, point meta max=39,
 	colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
 	declare function={
@@ -1805,7 +1807,7 @@ Although we do not expect the charm, bottom and top quarks to be physically pres
 
 \end{axis}
 \end{tikzpicture}
-\caption{\label{fig:lsm:3-flavor-mass-radius-outside}Mass-radius solutions up to the maximum mass with the three-flavor equation of state as in \cref{fig:lsm:3-flavor-mass-radius}, but using bag constants $B$ outside the bag window, ranging from $B^{1/4}=\SI{6}{\mega\electronvolt}$ to $B^{1/4}=\SI{132}{\mega\electronvolt}$ in increments of $\SI{7}{\mega\electronvolt}$.}
+\caption{\label{fig:lsm:3-flavor-mass-radius-outside}Mass-radius solutions up to the maximum mass with the three-flavor equation of state as in \cref{fig:lsm:3-flavor-mass-radius} using bag constants $B$ outside the bag window, ranging from $B^{1/4}=\SI{6}{\mega\electronvolt}$ (rightmost curve) to $B^{1/4}=\SI{132}{\mega\electronvolt}$ in increments of $\SI{7}{\mega\electronvolt}$ (leftmost curve).}
 \end{figure}
 
 In a sense, our computation of the lower bag constant bound \eqref{eq:lsm:bag_lower_bound} using the unstability of two-flavor quark matter at $P=0$ is inconsistent.
