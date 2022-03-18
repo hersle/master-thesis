@@ -2,42 +2,109 @@
 
 \TODO{Recapitulate main points of project thesis:}
 
+\TODO{some general intro about the possibility of quark stars}
+
 In this chapter, we will study a hypothetical class of compact stars known as quark stars.
 Let us summarize the main ingredients in this work.
 
-\subsubsection{The Tolman-Oppenheimer-Volkoff equation}
+\subsection{The Tolman-Oppenheimer-Volkoff equation}
 
-We will find mass-radius solutions to the Tolman-Oppenheimer-Volkoff equation
+In \cref{chap:tov} we derived the Tolman-Oppenheimer-Volkoff equation
 \begin{subequations}
 \begin{align}
 	\odv{P}{r} &= -\frac{G m \epsilon(P)}{r^2 c^2} \left( 1 + \frac{P}{\epsilon(P)} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \\
-	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon(P)}{c^2} ,
+	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon(P)}{c^2} .
 \end{align}
 \end{subequations}
-that we derived in \cref{chap:tov}.
-To do so, we integrate it from the center with $m(0) = 0$ and different central pressures $P(0) = P_c$ to the surface defined by $P(R) = 0$ and with corresponding mass $m(R) = M$.
+It determines the pressure and mass gradients with relativistic corrections inside a spherically symmetric star composed of a perfect fluid in hydrostatic equilibrium.
+Given the fluid's equation of state $\epsilon(P)$ that relates its pressure $P$ to its energy density $\epsilon$, it is a system of two equations for the two unknowns $P$ and $m$ and can be integrated.
+We will seek mass-radius solutions to the equation, obtained by integrating it from the center $r=0$ with zero initial mass $m(0) = 0$ and some central pressure $P(0) = P_c$ until reaching the surface $r=R$ defined by a vanishing pressure $P(R) = 0$ and where the mass $m(R) = M$ defines the star's total mass.
+By finding such solutions for a range of central pressures $P_c$, we parametrize a sequence of stars that we can plot in a mass-radius diagram.
 
-\subsubsection{Equation of state from the grand canonical ensemble}
+\subsection{Equation of state from thermal field theory}
 
-We will derive equations of state for quark matter by studying effective models of quantum chromodynamics in the zero-temperature approximation.
-As we showed in \cref{chap:tft}, the partition function can be calculated as
+To derive equations of state for quark matter, we will study quantum field theories whose dynamics is described by some Lagrangian density $\lagr$.
+In \cref{chap:tft} we showed that the partition function in the grand canonical ensemble corresponding to a Lagrangian including both a fermionic field $\psi$ and a bosonic field $\phi$ is given by the path integral
 \begin{equation}
-	Z = \trace e^{-\beta (\hat{H} - \mu \hat{N})} = \oint \dif \phi e^{\int_0^\beta \dif \tau \int_V \dif^3 x \, \lagr_E } = e^{-\beta V \Omega} .
+	Z = \oint_- \pathintdif \bar{\psi} \oint_- \pathintdif \psi \oint_+ \pathintdif \phi \exp \Big\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \lagr_E[\bar{\psi}, \psi, \phi] \Big\} = e^{-\beta V \Omega} .
 \end{equation}
-Having found the partition function, we can calculate the
-\begin{align}
-	\Omega = -\frac{\log Z}{\beta V}, \\
-	n = -\pdv{\Omega}{\mu}, \\
-	P = -\Omega, \\
-	\epsilon = -P + \mu n
-\end{align}
+Here $V$ is the spatial volume of the system, while its inverse temperature $\beta = 1/T$ define its ``temporal'' extent.
+The sign subscripts on the closed integral signs is supposed to remind us of a property we showed extensively in \cref{chap:tft}: the bosonic fields must be periodic in inverse temperature time, while the fermionic fields must be anti-periodic.
+If a symmetry of the Lagrangian admits a conserved Noether charge density $j^0$, we also saw that we could couple it to a chemical potential $\mu$ in the Lagrangian by including the term $\mu j^0$.
+By computing (the logarithm of) the partition function, we have the grand potential $\Omega = -\log Z / \beta V$ from which we can calculate all thermodynamic quantities such as the (mean)
+\TODO{this is already in $T=0$ form? write in general $T \geq 0$ form in this intro?}
+\begin{equation}
+	\text{density} \quad n = -\pdv{\Omega}{\mu}, \quad
+	\text{pressure} \quad P = -\Omega, \quad
+	\text{energy density} \quad \epsilon = -P + \sum_p \mu_p n_p .
+\end{equation}
+These expressions are valid in the approximation of zero temperature $T=0$ that we saw was valid for neutron stars in \cref{chap:nstars}.
+As quark stars are expected to be ``more intense neutron stars'', we assume that this approximation still holds.
 
-\begin{itemize}
-\item Tolman-Oppenheimer-Volkoff equation
-\item Grand canonical ensemble / partition function: $Z = e^{-\beta V \Omega}$, $n = -\pdv{\Omega}/{\Omega}$, $P = -\Omega$, $\epsilon = -P + \mu n$
-\item Charge neutrality and chemical equilibrium (new)
-\item Stability/unstability of 2-flavor/3-flavor quark matter (new, for finding bag constant $B$, Bodmer-Witten conjecture)
-\end{itemize}
+The equation of state $\epsilon(P)$ follows by eliminating the chemical potentials $\mu_p$ from the energy density $\epsilon(\mu_p)$ in favor of the pressure $P$.
+In \cref{chap:nstars} we did so for pure neutron stars, for which there was only one chemical potential to eliminate.
+Now we will study quark stars composed of up quarks, down quarks, strange quarks and electrons, each associated with their own chemical potential $\mu_p$.
+With these \emph{four} particles, we require \emph{three} additional relations that reduce the dependence of the pressure and energy density to \emph{one} independent chemical potential, which can finally be eliminated to yield the equation of state.
+
+\subsubsection{Chemical equilibrium of weak interaction processes}
+
+We can obtain two relations between the chemical potentials by studying the nuclear processes that take place inside the star.
+According to \cite{ref:quark_star_processes}, quarks stars may be formed as hadronic matter in a neutron star decays to strange quark matter through weak interactions processes like
+\begin{equation}
+	u + e^- \rightarrow d + \nu_e
+	\qquad \text{and} \qquad
+	u + e^- \rightarrow s + \nu_e .
+\end{equation}
+Over time, the star cools and neutrinos diffuse out. \cite[section 5.3]{ref:glendenning}
+We therefore set $\mu_{\nu_e}=0$, so that the chemical equilibrium of the two processes above implies
+\begin{equation}
+	\mu_d = \mu_s = \mu_u + \mu_e .
+\label{eq:lsm:chemical_equilibrium}
+\end{equation}
+These are the two announced relations between the four chemical potentials.
+
+\subsubsection{Electric charge neutrality of stars}
+
+The third and last additional relation relating the four chemical potentials is provided by electric charge neutrality.
+We can make a strong and simple classical argument for why there can be no \emph{global} net electric charge in stars by comparing Newton's law of gravity and Coulomb's law.
+Consider a test particle of mass $m$ and electric charge $q$ on the surface $R$ from the center of a star with total mass $M$ and electric charge $Q$.
+In an idealized situation, the test particle is affected by the gravitational and electrostatic force, so that the total outwards radial force on it is
+\begin{equation}
+	F_\text{out} = -G \frac{M m}{R^2} + k_e \frac{Q q}{R^2} .
+\end{equation}
+Furthermore, suppose the star consists of a great number $N$ of particles weighing, each with mass $m < m_B$ that is lower than some heavy baryon mass $m_B$ and about one elementary charge $q \approx \pm e$.
+We then have $M < N M_B$ and $m < m_B$.
+If the star had an opposite charge $Q = \mp Z e$, then $F_\text{out} < 0$ and the test particle would stay in the star, seeking to neutralize it.
+On the other hand, if the star has a like charge $Q = \pm Z e$, then
+\begin{equation}
+	F_\text{out} > -G \frac{N m_B^2}{R^2} + k_e \frac{Z e^2}{R^2} .
+\end{equation}
+Assuming a typical baryon mass $m_B = m_p = \SI{1.67e-27}{\kilogram}$,
+we then surely have $F_\text{out} > 0$ provided that the number of elementary charges per particle satisfies
+\begin{equation}
+	\frac{Z}{N} > \frac{G m_B^2}{k_e e^2} \approx 10^{-37} .
+\end{equation}
+This means that particle are expelled from the star while $Z > 10^{-37} N$ until $Z$ has fallen to \emph{at least} $Z < 10^{-37} N$.
+We conclude that for all practical purposes, stars are \emph{globally} electrically charge neutral.
+As explained by \cite{ref:master_halvor}, this argument is slightly modified by relativistic corrections, but the conclusion is not.
+
+In a star that consists of a set of particles $p$ each with charge $q_p$, we could implement \emph{global} charge neutrality by constraining the chemical potentials such that the charge density
+\begin{equation}
+	\sum_p q_p \, n_p(\mu_p) = \rho(r)
+\label{eq:intro:charge_neutrality_global}
+\end{equation}
+at radius $r$ is equal to some charge density function $\rho(r)$ that causes the total charge $Q = \int \rho(r) 4 \pi r^2 \dif r = 0$ \TODO{add relativistic correction $e^{\beta(r)}$ from metric?} to vanish.
+This approach would make the equation of state $\epsilon(P,r)$ dependent on radius in addition to pressure.
+It is not obvious how one should single out one of the infinitely many possible charge density profiles $\rho(r)$.
+We will avoid this problem altogether by rather assuming that charge neutrality holds \emph{locally} with $\rho(r) = 0$.
+Then the equation of state $\epsilon(P)$ is again a function of pressure only, obtained by eliminating chemical potentials according to
+\begin{equation}
+	\sum_p q_p \, n_p(\mu_p) = 0
+\label{eq:lsm:charge_neutrality}
+\end{equation}
+As shown in \cite{ref:global_neutrality}, for example, this simplification can modify the masses and radii of stars within an order of magnitude, but the differences are smaller closer to the maximum mass star.
+In fact, \cite{ref:local_neutrality_inconsistent} has shown that local charge neutrality in neutron stars composed of protons, neutrons and electrons is unphysical.
+Our choice $\rho(r)=0$ is therefore the simplest choice, but not the most physical one.
 
 \section{Color confinement, asymptotic freedom and bag models}
 
@@ -149,45 +216,6 @@ It will, however, be very useful to have \emph{some} bound for the bag constant 
 
 \TODO{philosophy of effective field theory: identifty DoF (particles) and symmetries, write down most general Lagrangian with all (relevant) interactions \cite{ref:weinberg_eft}. like small oscillations in classical mechanics?}
 
-\section{Electric charge neutrality and chemical equilibrium in stars}
-
-\TODO{generally, see Halvor's detailed discussion about this}
-
-When we solved the Tolman-Oppenheimer-Volkoff equations for ideal neutron stars in \cref{chap:nstars}, our lives were quite simple.
-The stars consisted of only one charge neutral particle, and we simply eliminated its chemical potential to find the equation of state.
-Now we will consider stellar models with a greater variety of particles and nonzero electric charge.
-
-How do we now find the equation of state, when there is one chemical potential for each kind of particle?
-The answer is to impose additional physical requirements of electric charge neutrality and chemical equilibrium.
-With these conditions, we will relate all but one of the chemical potentials to each other, leaving only one independent variable that we will eliminate to find the equation of state.
-
-\subsection{Global electric charge neutrality}
-
-\TODO{could implement this by making EOS $\epsilon(P,r)$ a radial function, and solving $q(r) = f(r)$ for some given $f(r)$? local charge neutrality would then be equal to $f(r) = 0$.}
-
-We can make a very simple classical argument for why there can be no \emph{global} net electric charge in stars by comparing Newton's law of gravity and Coulomb's law.
-Consider a test particle of mass $m$ and electric charge $q$ on the surface $R$ from the center of a star with total mass $M$ and electric charge $Q$.
-In an idealized situation, the test particle is affected by the gravitational and electrostatic force, so that the total outwards \TODO{radial?} force on it is
-\begin{equation}
-	F_\text{out} = -G \frac{M m}{R^2} + k_e \frac{Q q}{R^2} .
-\end{equation}
-Furthermore, suppose the star consists of $N$ particles weighing \TODO{weight $\rightarrow$ mass} no more than some heavy baryon with mass $m_B$, so $M < N M_B$ and $m < m_B$.
-Any electrically charged particle has about one elementary charge $q \approx \pm e$.
-If the star has an opposite charge $Q = \mp Z e$, then $F_\text{out} < 0$ and the test particle stays in the star.
-On the other hand, if the star has a like charge $Q = \pm Z e$, then
-\begin{equation}
-	F_\text{out} > -G \frac{N m_B^2}{R^2} + k_e \frac{Z e^2}{R^2} .
-\end{equation}
-We then surely have $F_\text{out} > 0$, provided that the number of elementary charges per particle satisfies
-\begin{equation}
-	\frac{Z}{N} > \frac{G m_B^2}{k_e e^2} \approx 10^{-37} ,
-\end{equation}
-where we have assumed a typical baryon mass $m_B = m_p = \SI{1.67e-27}{\kilogram}$.
-This corresponds to practically zero electric charge per particle in the star.
-
-This means that particle are expelled from the star while $Z > 10^{-37} N$ until $Z$ has fallen to \emph{at least} $Z < 10^{-37} N$.
-We conclude that for all practical purposes, stars are \emph{globally} electrically charge neutral.
-
 \TODO{what about radius $r < R$ instead of $r=R$?}
 
 \TODO{what about general relativity instead of Newtonian gravity?}
@@ -196,56 +224,6 @@ We conclude that for all practical purposes, stars are \emph{globally} electrica
 
 \TODO{can I recast inequality in charge per solar mass? see discussion at beginning of \url{www.if.ufrgs.br/hadrons/MMalheiro.pdf}}
 
-\subsection{Local electric charge neutrality}
-
-\TODO{non-understandable comment from Møte 4, Gibbs/Maxwell contstruction etc?}
-
-\TODO{Glendenning has papers regarding local charge neutrality (?)}
-
-The argument in the previous section shows that a star can have no \emph{total} electric charge, but it places absolutely no limitations on its \emph{distribution}.
-Moreover, our approach to calculating equations of state is inherently \emph{local} -- we obtain the equation of state $\epsilon(P)$ by eliminating the density $n$ at any \emph{single point} from the energy density $\epsilon(n)$ and pressure $P(n)$.
-To make use of electric charge neutrality in our approach, we will promote it from a \emph{global} constraint to a \emph{local} one.
-
-\TODO{now explain...}
-
-\TODO{TOV equation is derived by assuming ideal fluid in equilibrium -- would local charge destroy that?}
-
-\TODO{draw inspiration from standard argument that $\vec{E} = 0$ everywhere inside a conductor?}
-
-Satisfied by
-\begin{equation}
-	\sum_p q_p \, n(\mu_p) = 0 ,
-\label{eq:lsm:charge_neutrality}
-\end{equation}
-where the sum is over all particles present, each with electric charge $q_p$.
-In the zero-temperature approximation with the density \eqref{eq:nstars:density_zeroT}, this is satisfied if
-\begin{equation}
-	\sum_p q_p \left( \mu_p^2 - m_p^2 \right)^{3/2} = 0 .
-\end{equation}
-
-\subsection{Chemical equilibrium}
-
-\TODO{introduce}
-
-Important reactions
-\begin{subequations}
-\begin{align}
-	d     &\leftrightarrow u + e + \bar{\nu}_e, \\
-	s     &\leftrightarrow u + e + \bar{\nu}_e, \\
-	s + u &\leftrightarrow u + d .
-\end{align}
-\end{subequations}
-Assume neutrinos leave star \TODO{why?}.
-Then chemical equilibrium implies
-\begin{subequations}
-\begin{align}
-	\mu_d &= \mu_u + \mu_e, \\
-	\mu_s &= \mu_u + \mu_e, \\
-	\mu_s &= \mu_d .
-\end{align}
-\label{eq:lsm:chemical_equilibrium}
-\end{subequations}
-(the third follows automatically from the two first)
 
 \subsection{Symmetries}
 

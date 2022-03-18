@@ -783,7 +783,7 @@ For lower pressure stars, however, greater bag constants significantly increase 
 \begin{tikzpicture}
 \begin{axis}[
 	width=15cm, height=8cm,
-	title = {Radial density profile for 3-flavor quark stars},
+	title = {Radial density profile for 3-flavor quark stars },
 	xlabel = {$r \, / \, \si{\kilo\meter}$}, ylabel = {$n_i \, / \, n_\text{sat}$},
 	enlarge x limits = false,
 	xtick distance=1.0, minor x tick num=9,
@@ -830,7 +830,7 @@ For lower pressure stars, however, greater bag constants significantly increase 
 \end{figure}
 
 To investigate the composition of the stars and effects from the addition of strange quarks,
-we plot radial density profiles of the different particles in \cref{fig:lsm:3-flavor-mass-radius-outside}.
+we plot radial density profiles of the different particles in \cref{fig:lsm3f:3-flavor-radial-density}.
 
 It shows that the central pressure must exceed $P_c \gtrsim 10^{34.41} \si{\pascal} = \SI{0.16}{\giga\electronvolt\per\femto\meter\cubed}$ for the star to have a core with strange quarks.
 Indeed, this corresponds to the beginning of the ``ramp'' up to the strange quark level of the equation of state in \cref{fig:lsm:3-flavor-eos-eos}.
@@ -849,7 +849,7 @@ Although we do not expect the charm, bottom and top quarks to be physically pres
 \begin{axis}[
 	%width=15cm, height=12cm,
 	width=15cm, height=10.5cm,
-	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for 3-flavor quark stars outside bag window}, title style={yshift=2.0cm},
+	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for 3-flavor quark stars outside bag window }, title style={yshift=2.0cm},
 	xmin=7, xmax=24, ymin=0.4, ymax=1.9, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
 	point meta=explicit, point meta min=32, point meta max=39,
 	colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
@@ -884,6 +884,8 @@ However, we could make a hybrid star with a quark core described by one of these
 Moreover, the upper bag constant bound \eqref{eq:lsm3f:bag_upper_bound} is based on the strange matter hypothesis and is by no means certain.
 In \cref{fig:lsm:3-flavor-mass-radius-outside} we therefore examine the mass-radius curves obtained as in \cref{fig:lsm:3-flavor-mass-radius}, only outside the bag window considered there.
 This shows that it is possible to obtain maximum masses well below $1.8 M_\odot$ with this model by using larger bag constants.
+
+\TODO{mass-radius plot for small $B$ is shaped qualitatively differently than e.g. bag model (curves straight towards origin) and \cite{ref:quark_star_njl}}
 
 \TODO{add to this list!}
 
