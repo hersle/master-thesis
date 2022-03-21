@@ -327,20 +327,21 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 \includepdf[pages={1,{},2,{}}]{cover-optimized.pdf} % odd-even-odd-even
 \end{titlepage}
 
+\input{acknowledgements/acknowledgements.tex}
 \input{abstract/abstract.tex}
 \tableofcontents
 \input{prologue/prologue.tex}
 
 \mainmatter
-\part{Project thesis}
+\part{Project thesis} \label{part:project}
 \input{introduction/introduction.tex}
 \input{chapter1/chapter1.tex}
 \input{chapter2/chapter2.tex}
 \input{chapter3/chapter3.tex}
 \input{conclusion/conclusion.tex}
-\part{Master thesis}
+\part{Master thesis} \label{part:master}
 \input{chapter4/chapter4.tex}
-\part{Appendices}
+\part{Appendices} \label{part:appendices}
 \input{appendix/appendix.tex}
 
 \backmatter
