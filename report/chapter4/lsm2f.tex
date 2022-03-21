@@ -389,21 +389,20 @@ Which variable should we use as the free variable?
 In fact, some choices yield ill-defined parametrizations for which one value of the free variable corresponds to multiple values of a dependent variable.
 A well-defined parametrization should produce invertible functions.
 For example, using $\mu_u$ as the free variable produces a well-defined parametrization of $\avg{\sigma}(\mu_u)$ when $m_\sigma \gtrsim \SI{900}{\mega\electronvolt}$, but an ill-defined one when $m_\sigma \lesssim \SI{900}{\mega\electronvolt}$.
-Define common quark chemical potential $\mu$ and isospin chemical potential $\mu_I$ by
+We therefore define the common quark chemical potential $\mu$ and isospin chemical potential $\mu_I$ by
 \begin{equation}
 	\mu_u = \mu + \mu_I
 	\qquad \text{and} \qquad
 	\mu_d = \mu - \mu_I .
 \label{eq:lsm:quark_chemical_potential}
 \end{equation}
-By the chain rule, the common quark chemical potential $\mu$ corresponds to the total quark density
+By the chain rule, the common quark chemical potential $\mu$ corresponds to the \emph{total} quark density
 \begin{equation}
 	-\pdv{\Omega}{\mu} = -\pdv{\Omega}{\mu_u} \pdv{\mu_u}{\mu} - \pdv{\Omega}{\mu_d} \pdv{\mu_d}{\mu} = -\pdv{\Omega}{\mu_u} - \pdv{\Omega}{\mu_d} = n_u + n_d = n_q .
 \end{equation}
-Through trial and error, \TODO{I have better reasons now} we have found that we get a well-defined parametrization by setting the free variable to the quark chemical potential
-\TODO{$\mu_B$ and $n_B$}
+We therefore expect a well-defined parametrization with the free variable
 \begin{equation}
-	\mu = \frac12 (\mu_u + \mu_d) .
+	\mu = \frac12 (\mu_u + \mu_d).
 \end{equation}
 
 \begin{figure}
