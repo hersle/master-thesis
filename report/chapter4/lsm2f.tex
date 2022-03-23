@@ -4,6 +4,8 @@
 The linear sigma model is an effective low-energy model of quantum chromodynamics, so accordingly we should take it seriously only in terms of the shifted fields around the stable ground states, and not in terms of the unshifted fields around the unstable equilibrium at the top of the Mexican hat.
 }
 
+\TODO{two inconsistencies: (1) match couplings at tree level although using one-loop potential. (2) neglecting bosonic one-loop contribution to effective potential (this is consistent in $N_c\rightarrow \infty$ limit, but inconsistent in terms of number of loops)}
+
 \begin{figure}
 \centering
 \tikzsetnextfilename{potential}
@@ -652,3 +654,158 @@ The cause of this source of confusion is that \emph{the charge neutrality condit
 Hopefully, this remark will save someone from enduring this painful realization again.
 }
 
+\subsection{Refinements with consistent parameter fixing}
+
+What we have done is inconsistent because we have used a one-loop grand potential (in quarks), but matched its parameters using tree-level relations.
+This has been done consistently to one-loop by \TODO{ref JO}, finding the effective potential
+\TODO{disctinction between $\Delta$ and $g \avg{\sigma}$ and $g_R \avg{\sigma}$?}
+\begin{equation}
+\begin{split}
+	\Omega &= \frac12 m_R^2 \avg{\sigma}^2 + \frac{\lambda_R}{24} \avg{\sigma}^4 - h_R \avg{\sigma} + \frac{N_c N_f}{16 \pi^2} g_R^4 \avg{\sigma}^4 \bigg[ \frac32 + \log \frac{\Lambda^2}{g_R^2 \avg{\sigma}^2} \bigg] + \text{(matter)}
+\end{split}
+\end{equation}
+with running couplings
+\begin{align}
+	m_R^2 &= \frac{m_0^2}{1 - \frac{4 g_0^2 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2}}, \\
+	g_R &= \frac{g_0}{\sqrt{1 - \frac{4 g_0^2 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2}}}, \\
+	\lambda_R &= \frac{\lambda_0 - \frac{48 g_0^4 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2} }{\Big(1 - \frac{4 g_0^2 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2}\Big)^2}, \\
+	h_R &= \frac{h_0}{1 - \frac{2 g_0^2 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2}} .
+\end{align}
+Insert into potential above and find
+\begin{equation}
+\begin{split}
+	\Omega_{1L} &= \frac{3 m_\pi^2}{4} \Bigg\{ 1 - \frac{4 m_q^2 N_c}{(4\pi)^2 f_\pi^2} m_\pi^2 F'(m_\pi^2) \Bigg\} \avg{\sigma}^2 \\
+	                       &- \frac{m_\sigma^2}{4} \Bigg\{ 1 + \frac{4 m_q^2 N_c}{(4\pi)^2 f_\pi^2} \Bigg[ \bigg(1 - \frac{4 m_q^2}{m_\sigma^2}\bigg) F(m_\sigma^2) + \frac{4 m_q^2}{m_\sigma^2} - F(m_\pi^2) - m_\pi^2 F'(m_\pi^2) \Bigg] \Bigg\} \avg{\sigma}^2 \\
+	                       &+ \frac{m_\sigma^2}{8 f_\pi^2} \Bigg\{ 1 - \frac{4 m_q^2 N_c}{(4 \pi)^2 f_\pi^2} \Bigg[ \frac{4 m_q^2}{m_\sigma^2} \log \frac{g^2 \avg{\sigma}^2}{m_q^2} - \bigg(1 - \frac{4 m_q^2}{m_\sigma^2}\bigg) F(m_\sigma^2) + F(m_\pi^2) + m_\pi^2 F'(m_\pi^2) \Bigg] \Bigg\} \avg{\sigma}^4 \\
+	                       &- \frac{m_\pi^2}{8 f_\pi^2} \Bigg\{ 1 - \frac{4 m_q^2 N_c}{(4\pi)^2 f_\pi^2} m_\pi^2 F'(m_\pi^2) \Bigg\} \avg{\sigma}^4 - m_\pi^2 f_\pi \Bigg\{ 1 - \frac{4 m_q^2 N_c}{(4\pi)^2 f_\pi^2} m_\pi^2 F'(m_\pi^2) \Bigg\} \avg{\sigma} + \frac{3 N_c}{(4 \pi)^2} g^4 \avg{\sigma}^4 \\
+	                       &+ \text{(matter)} .
+\end{split}
+\end{equation}
+Independent of $\Lambda$, hallmark of consistent renormalization.
+
+\begin{figure}
+\centering
+\tikzsetnextfilename{2-flavor-eos-ref}
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size={1 by 3}, vertical sep=2.0cm},
+	width=13cm, height=7cm,
+	extra tick style={grid=major, grid style={dashed}},
+	minor tick num=9,
+	/tikz/declare function={g=300/93;},
+]
+\nextgroupplot[
+	xlabel={$\mu \, / \, \si{\mega\electronvolt}$},
+	xmin=0, xmax=600, ymax=500, xtick distance=100, ytick distance=100, minor x tick num=9,
+	%ymax=600, 
+	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-parametrization}Parametrization of solutions}},
+	legend cell align=right, legend pos=north west,
+];
+\addplot+ [orange, solid, opacity=0.5, forget plot] table [x=mu, y expr={g*\thisrow{sigma}}] {../code/data/2flaveos.dat};
+\addplot+ [red, solid, opacity=0.5, forget plot] table [x=mu, y=muu] {../code/data/2flaveos.dat};
+\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=mu, y=mud] {../code/data/2flaveos.dat};
+\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=mu, y=mue] {../code/data/2flaveos.dat};
+
+\addplot+ [orange, solid] table [x=mu, y=Delta] {../code/data/2flavrefeos.dat}; \addlegendentry{$\Delta \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red, solid] table [x=mu, y=muu] {../code/data/2flavrefeos.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, solid] table [x=mu, y=mud] {../code/data/2flavrefeos.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue, solid] table [x=mu, y=mue] {../code/data/2flavrefeos.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+
+
+\nextgroupplot[
+	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
+	xmin=0, xmax=600, xtick distance=100, minor x tick num=9,
+	ymax=2.0, ytick distance=0.5, minor y tick num=4,
+	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-density}Particle number densities}},
+	legend cell align=left, legend pos=north west,
+];
+\coordinate (zoomplot) at (232, 1.32);
+\draw [draw=none, fill=gray!50] (250, -0.005) rectangle (350, 0.02);
+\draw [-Latex, gray] (300,0.03) to [out=90, in=0] (232, 0.75);
+\addplot+ [red, solid, opacity=0.5, forget plot] table [x=mu, y=nu] {../code/data/2flaveos.dat};
+\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=mu, y=nd] {../code/data/2flaveos.dat};
+\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=mu, y=ne] {../code/data/2flaveos.dat};
+\addplot+ [red, solid] table [x=mu, y=nu] {../code/data/2flavrefeos.dat}; \addlegendentry{$n_u$ (up quarks)};
+\addplot+ [darkgreen, solid] table [x=mu, y=nd] {../code/data/2flavrefeos.dat}; \addlegendentry{$n_d$ (down quarks)};
+\addplot+ [blue, solid] table [x=mu, y=ne] {../code/data/2flavrefeos.dat}; \addlegendentry{$n_e$ (electrons)};
+
+\nextgroupplot[
+	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+	xmin=0, xmax=0.5, ymin=0, ymax=2, xtick distance=0.1, ytick distance=0.5, minor y tick num=4,
+	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-eos}Equation of state}},
+	legend cell align=left, legend pos=north west,
+];
+\addplot+ [black, solid, opacity=0.5, forget plot] table [x=P,y=epsilon] {../code/data/2flaveos.dat};
+\addplot+ [black, solid] table [x=P,y=epsilon] {../code/data/2flavrefeos.dat};
+\end{groupplot}
+% Embed zoom-plot in a node
+\node [anchor=north east] at (zoomplot) {
+	\begin{tikzpicture}[baseline, trim axis left, trim axis right]
+	\begin{axis}[
+		width=4cm, height=3.5cm,
+		scaled ticks=false,
+		xmin=250, xmax=350, xtick distance=50, minor x tick num=4, yticklabel style={/pgf/number format/fixed, /pgf/number format/precision=3},
+		ymin=-0.005, ymax=0.02, ytick distance=0.01, minor y tick num=9, restrict y to domain=-0.5:0.5,
+		axis background/.style={fill=gray!50},
+	]
+	\addplot+ [red, solid, opacity=0.5, forget plot] table [x=mu, y=nu] {../code/data/2flaveos.dat};
+	\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=mu, y=nd] {../code/data/2flaveos.dat};
+	\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=mu, y=ne] {../code/data/2flaveos.dat};
+	\addplot+ [red, solid] table [x=mu, y=nu] {../code/data/2flavrefeos.dat};
+	\addplot+ [darkgreen, solid] table [x=mu, y=nd] {../code/data/2flavrefeos.dat};
+	\addplot+ [blue, solid] table [x=mu, y=ne] {../code/data/2flavrefeos.dat};
+	\end{axis}
+	\end{tikzpicture}
+};
+\end{tikzpicture}
+\caption{\label{fig:lsm:2-flavor-eos-ref}%
+\TODO{caption}
+}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\tikzsetnextfilename{2-flavor-mass-radius-ref}
+\begin{tikzpicture}
+\begin{axis}[
+	width=15cm, height=12cm,
+	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for ``refined'' 2-flavor quark stars }, title style={yshift=2.0cm},
+	xmin=7, xmax=33, ymin=0.3, ymax=2.2, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
+	point meta=explicit, point meta min=32, point meta max=39,
+	colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+	declare function={
+		e0 = 4.266500881855304e+37;
+	},
+	legend pos=north west, legend cell align=right,
+]
+\tikzset{
+	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
+}
+%\addplot+ [black, solid] {0}; \addlegendentry{stable stars};
+%\addplot+ [black, densely dashed] {0}; \addlegendentry{unstable stars};
+
+%\addplot+ [smooth, solid,          gray, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat}; % node [Bpin, pos=0.82] {$B = (\SI{27}{\mega\electronvolt})^4$};
+%\addplot+ [smooth, densely dashed, gray, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
+\addplot+ [smooth, solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
+%\addplot+ [smooth, solid,          gray, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat}; % node [Bpin, pos=0.77] {$B = (\SI{34}{\mega\electronvolt})^4$};
+%\addplot+ [smooth, densely dashed, gray, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+\addplot+ [smooth, solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+%\addplot+ [smooth, solid,          gray, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat}; % node [Bpin, pos=0.70] {$B = (\SI{41}{\mega\electronvolt})^4$};
+%\addplot+ [smooth, densely dashed, gray, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+\addplot+ [smooth, solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+%\addplot+ [smooth, solid,          gray, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat}; % node [Bpin, pos=0.47] {$B = (\SI{48}{\mega\electronvolt})^4$};
+%\addplot+ [smooth, densely dashed, gray, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+\addplot+ [smooth, solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+
+\addplot+ [smooth, solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_ref_B14_27.dat} node [Bpin, pos=0.45] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [smooth, solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_ref_B14_34.dat} node [Bpin, pos=0.49] {$B = (\SI{34}{\mega\electronvolt})^4$};
+\addplot+ [smooth, solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_ref_B14_41.dat} node [Bpin, pos=0.525] {$B = (\SI{41}{\mega\electronvolt})^4$};
+\addplot+ [smooth, solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_ref_B14_48.dat} node [Bpin, pos=0.555] {$B = (\SI{48}{\mega\electronvolt})^4$};
+
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:lsm:2-flavor-mass-radius-ref}%
+\TODO{caption}
+}
+\end{figure}
