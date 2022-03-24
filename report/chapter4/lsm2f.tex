@@ -113,7 +113,7 @@ This gives rise to three Goldstone bosons that we interpret as \emph{massless} p
 We work in the general case, however, where $h \neq 0$ instead breaks the symmetry \emph{explicitly} by tilting the hat so it has the discrete minimum \eqref{eq:lsm:ground_state_implicit}, ultimately producing \emph{massive} pions, like those observed in nature.
 
 We determine the four parameters $g$, $h$, $m$ and $\lambda$ in the original Lagrangian \eqref{eq:lsm:lagrangian} so that it yields the physical masses
-\cite{ref:jo_lsm_renormalization}
+\cite{ref:jo_lsm_consistent_chiral}
 \TODO{source?}
 \TODO{``traditional''/rounded values of constituent quark masses, e.g. $m_u \approx m_n / 3 \approx 300 MeV$}
 \begin{equation}
@@ -656,32 +656,60 @@ Hopefully, this remark will save someone from enduring this painful realization 
 
 \subsection{Refinements with consistent parameter fixing}
 
-What we have done is inconsistent because we have used a one-loop grand potential (in quarks), but matched its parameters using tree-level relations.
-This has been done consistently to one-loop by \TODO{ref JO}, finding the effective potential
-\TODO{disctinction between $\Delta$ and $g \avg{\sigma}$ and $g_R \avg{\sigma}$?}
+When matching the parameters in the one-loop grand potential \eqref{eq:lsm:grand_potential}, we used the curvature masses of the meson fields defined by the second derivative of the potential evaluated in the minimum corresponding to the classical ground state.
+This is the conventional approach used in the literature \TODO{ref examples}.
+However, their physical masses correspond to the poles of their propagators, and would be shifted by loop corrections to their self energies.
+This means the parameter matching is done only at tree-level and is \emph{inconsistent} with the number of loops in the grand potential!
+The unphysical dependence on the cutoff scale $\Lambda$ in the grand potential is an early warning of this inconsistency.
+
+In fact, \cite{ref:jo_lsm_consistent_chiral} consistently matches the parameters at one-loop level by relating the physical masses to the pion decay constant and running couplings to one-loop level in the chiral limit $h=0$.
+The work is done in the minimal renormalization scheme and large-$N_c$ limit, and is generalized to the physical point $h \neq 0$ that we consider here in \cite{ref:jo_lsm_consistent_physical}.
+Let us therefore repeat our calculations with their findings and investigate how it modifies our results.
+In equation C13 they find the grand potential
 \begin{equation}
 \begin{split}
-	\Omega &= \frac12 m_R^2 \avg{\sigma}^2 + \frac{\lambda_R}{24} \avg{\sigma}^4 - h_R \avg{\sigma} + \frac{N_c N_f}{16 \pi^2} g_R^4 \avg{\sigma}^4 \bigg[ \frac32 + \log \frac{\Lambda^2}{g_R^2 \avg{\sigma}^2} \bigg] + \text{(matter)}
+	\Omega &= \frac12 \frac{m_R^2}{g_R^2} \Delta^2 + \frac{\lambda_R}{24 g_R^4} \Delta^4 - \frac{h_R}{g_R} \Delta + \frac{N_c N_f}{16 \pi^2} \Delta^4 \bigg[ \frac32 + \log \frac{\Lambda^2}{\Delta^2} \bigg] + \text{(matter)}.
 \end{split}
 \end{equation}
-with running couplings
-\begin{align}
-	m_R^2 &= \frac{m_0^2}{1 - \frac{4 g_0^2 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2}}, \\
-	g_R &= \frac{g_0}{\sqrt{1 - \frac{4 g_0^2 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2}}}, \\
-	\lambda_R &= \frac{\lambda_0 - \frac{48 g_0^4 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2} }{\Big(1 - \frac{4 g_0^2 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2}\Big)^2}, \\
-	h_R &= \frac{h_0}{1 - \frac{2 g_0^2 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2}} .
-\end{align}
-Insert into potential above and find
+We now treat $\Delta = g_R \avg{\sigma}$ as an independent variable instead of $\avg{\sigma}$.
+Now the coupling constants $m_R^2(\Lambda)$, $\lambda_R(\Lambda)$, $g_R(\Lambda)$ and $h_R(\Lambda)$ all run with the renormalization scale $\Lambda$ and are expressed in terms of the physical masses $m_q$, $m_\pi$ and $m_\sigma$ and the pion decay constant $f_\pi$ in equation B38--B39.
+\iffalse
+\begin{equation}
+\begin{aligned}
+	m_R^2(\Lambda) &= \frac{m_R^2(\Lambda_0)}{1 - \frac{4 g_0^2 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2}}, \qquad & 
+	\lambda_R(\Lambda) &= \frac{\lambda_R(0) - \frac{48 g_0^4 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2} }{\Big(1 - \frac{4 g_0^2 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2}\Big)^2}, \\
+	g_R^2(\Lambda) &= \frac{g_R^2(0)}{1 - \frac{4 g_0^2 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2}}, \qquad & 
+	h_R(\Lambda) &= \frac{h_R(0)}{1 - \frac{2 g_0^2 N_c}{(4\pi)^2} \log \frac{\Lambda^2}{\Lambda_0^2}} .
+\end{aligned}
+\end{equation}
+\fi
+After the running couplings have been inserted into the grand potential, it explicitly reads
+\TODO{replace with $\Delta$}
 \begin{equation}
 \begin{split}
-	\Omega_{1L} &= \frac{3 m_\pi^2}{4} \Bigg\{ 1 - \frac{4 m_q^2 N_c}{(4\pi)^2 f_\pi^2} m_\pi^2 F'(m_\pi^2) \Bigg\} \avg{\sigma}^2 \\
-	                       &- \frac{m_\sigma^2}{4} \Bigg\{ 1 + \frac{4 m_q^2 N_c}{(4\pi)^2 f_\pi^2} \Bigg[ \bigg(1 - \frac{4 m_q^2}{m_\sigma^2}\bigg) F(m_\sigma^2) + \frac{4 m_q^2}{m_\sigma^2} - F(m_\pi^2) - m_\pi^2 F'(m_\pi^2) \Bigg] \Bigg\} \avg{\sigma}^2 \\
-	                       &+ \frac{m_\sigma^2}{8 f_\pi^2} \Bigg\{ 1 - \frac{4 m_q^2 N_c}{(4 \pi)^2 f_\pi^2} \Bigg[ \frac{4 m_q^2}{m_\sigma^2} \log \frac{g^2 \avg{\sigma}^2}{m_q^2} - \bigg(1 - \frac{4 m_q^2}{m_\sigma^2}\bigg) F(m_\sigma^2) + F(m_\pi^2) + m_\pi^2 F'(m_\pi^2) \Bigg] \Bigg\} \avg{\sigma}^4 \\
-	                       &- \frac{m_\pi^2}{8 f_\pi^2} \Bigg\{ 1 - \frac{4 m_q^2 N_c}{(4\pi)^2 f_\pi^2} m_\pi^2 F'(m_\pi^2) \Bigg\} \avg{\sigma}^4 - m_\pi^2 f_\pi \Bigg\{ 1 - \frac{4 m_q^2 N_c}{(4\pi)^2 f_\pi^2} m_\pi^2 F'(m_\pi^2) \Bigg\} \avg{\sigma} + \frac{3 N_c}{(4 \pi)^2} g^4 \avg{\sigma}^4 \\
-	                       &+ \text{(matter)} .
+	\Omega &= \frac{3 m_\pi^2}{4} \Bigg\{ 1 - \frac{4 m_q^2 N_c}{(4\pi)^2 f_\pi^2} m_\pi^2 F'(m_\pi^2) \Bigg\} \avg{\sigma}^2 \\
+	       &- \frac{m_\sigma^2}{4} \Bigg\{ 1 + \frac{4 m_q^2 N_c}{(4\pi)^2 f_\pi^2} \Bigg[ \bigg(1 - \frac{4 m_q^2}{m_\sigma^2}\bigg) F(m_\sigma^2) + \frac{4 m_q^2}{m_\sigma^2} - F(m_\pi^2) - m_\pi^2 F'(m_\pi^2) \Bigg] \Bigg\} \avg{\sigma}^2 \\
+	       &+ \frac{m_\sigma^2}{8 f_\pi^2} \Bigg\{ 1 - \frac{4 m_q^2 N_c}{(4 \pi)^2 f_\pi^2} \Bigg[ \frac{4 m_q^2}{m_\sigma^2} \log \frac{g^2 \avg{\sigma}^2}{m_q^2} - \bigg(1 - \frac{4 m_q^2}{m_\sigma^2}\bigg) F(m_\sigma^2) + F(m_\pi^2) + m_\pi^2 F'(m_\pi^2) \Bigg] \Bigg\} \avg{\sigma}^4 \\
+	       &- \frac{m_\pi^2}{8 f_\pi^2} \Bigg\{ 1 - \frac{4 m_q^2 N_c}{(4\pi)^2 f_\pi^2} m_\pi^2 F'(m_\pi^2) \Bigg\} \avg{\sigma}^4 - m_\pi^2 f_\pi \Bigg\{ 1 - \frac{4 m_q^2 N_c}{(4\pi)^2 f_\pi^2} m_\pi^2 F'(m_\pi^2) \Bigg\} \avg{\sigma} + \frac{3 N_c}{(4 \pi)^2} g^4 \avg{\sigma}^4 \\
+	       &+ \text{(matter)} ,
 \end{split}
+\label{eq:lsm2f:grand_potential_consistent}
 \end{equation}
-Independent of $\Lambda$, hallmark of consistent renormalization.
+with the definitions
+\begin{equation}
+	F(p^2) = 2 - 2 r \atan \frac1r, \qquad
+	F'(p^2) = \frac{4 m_q^2 r}{p^2(4 m_q^2 - p^2)} \atan \frac1r - \frac{1}{p^2}, \qquad
+	r = \sqrt{\frac{4 m_q^2}{p^2}-1} .
+\end{equation}
+The dependence on the renormalization scale $\Lambda$ has disappeared!
+This is the hallmark of a physical and mathematically consistent approach to renormalization.
+
+The potential is straightforward to evaluate using the physical masses and pion decay constant.
+\Cref{fig:lsm:2-flavor-eos-ref,fig:lsm:2-flavor-mass-radius-ref} compares results obtained with this ``consistent'' approach to our old ``inconsistent'' results in \cref{fig:lsm:2-flavor-eos,fig:lsm:2-flavor-mass-radius}.
+The lower bag constant bound \eqref{eq:lsm:bag_lower_bound} is practically speaking unmodified, so we use the same bag constants as before.
+
+\TODO{compare and discuss, but first verify numerical results}
+The differences are staggering!
 
 \begin{figure}
 \centering
@@ -760,7 +788,8 @@ Independent of $\Lambda$, hallmark of consistent renormalization.
 };
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos-ref}%
-\TODO{caption}
+Results analogous to those in \cref{fig:lsm:2-flavor-eos}, but with the ``consistent'' grand potential \eqref{eq:lsm2f:grand_potential_consistent}.
+The ``inconsistent'' results from \cref{fig:lsm:2-flavor-eos} are shown with weak lines.
 }
 \end{figure}
 
@@ -806,6 +835,7 @@ Independent of $\Lambda$, hallmark of consistent renormalization.
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-mass-radius-ref}%
-\TODO{caption}
+Results analogous to those in \cref{fig:lsm:2-flavor-mass-radius}, but with the ``consistent'' equation of state from \cref{fig:lsm:2-flavor-eos-ref}.
+The ``inconsistent'' results from \cref{fig:lsm:2-flavor-mass-radius} are shown with weak lines.
 }
 \end{figure}
