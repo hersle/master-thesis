@@ -24,7 +24,7 @@ me = 0.5
 σx0 = fπ
 σy0 = np.sqrt(2)*fK-fπ/np.sqrt(2)
 
-tovopts = {"tolD": 0.125, "maxdr": 1e-2, "visual": False, "nmodes": 0}
+tovopts = {"tolD": 0.125, "maxdr": 1e-2, "nmodes": 0}
 tovμQ = np.concatenate([np.linspace(0, 700, 200)[1:], np.linspace(700, 5000, 100)])
 
 def charge(Δx, Δy, μu, μd, μs, μe):
@@ -143,15 +143,15 @@ class Model:
         outfile = f"data/{self.name}/star_B14_{B14}_Pc_{Pc:.7f}.dat"
         utils.writecols(cols, heads, outfile)
 
-    def stars(self, B14s, P1P2):
+    def stars(self, B14s, P1P2, plot=False, write=False):
         for B14 in B14s:
-            outfile = f"data/{self.name}/stars_B14_{B14}.dat"
+            outfile = f"data/{self.name}/stars_B14_{B14}.dat" if write else ""
             print(f"B = {B14}^4, outfile = {outfile}")
             ϵ, _, _, _, _ = self.eos(B=B14**4, plot=False)
-            massradiusplot(ϵ, P1P2, **tovopts, outfile=outfile)
+            massradiusplot(ϵ, P1P2, **tovopts, visual=plot, outfile=outfile)
 
 class LSM2Flavor(Model):
-    def __init__(self):
+    def __init__(self, renormalize=True):
         Model.__init__(self, "LSM2F")
 
         Nf = 2
@@ -166,11 +166,12 @@ class LSM2Flavor(Model):
 
         Δ, μu, μd, μe = sp.symbols("Δ μ_u μ_d μ_e", complex=True)
         σ = Δ / g
-        Ω0 = 1/2*m2*σ**2 + λ/24*σ**4 - h*σ + Nc*Nf*Δ**4/(16*π**2)*(3/2+sp.log(Λ2/Δ**2))
+        Ω0 = 1/2*m2*σ**2 + λ/24*σ**4 - h*σ
+        Ωr = Nc*Nf*Δ**4/(16*π**2)*(3/2+sp.log(Λ2/Δ**2)) if renormalize else 0
         Ωu = -Nc/(24*π**2)*((2*μu**2-5*Δ**2)*μu*sp.sqrt(μu**2-Δ**2)+3*Δ**4*sp.asinh(sp.sqrt(μu**2/Δ**2-1)))
         Ωd = -Nc/(24*π**2)*((2*μd**2-5*Δ**2)*μd*sp.sqrt(μd**2-Δ**2)+3*Δ**4*sp.asinh(sp.sqrt(μd**2/Δ**2-1)))
         Ωe =  -1/(24*π**2)*((2*μe**2-5*me**2)*μe*sp.sqrt(μe**2-me**2)+3*me**4*sp.asinh(sp.sqrt(μe**2/me**2-1)))
-        Ω  = Ω0 + Ωu + Ωd + Ωe
+        Ω  = Ω0 + Ωr + Ωu + Ωd + Ωe
         dΩ = sp.diff(Ω, Δ)
 
         Ω  = sp.lambdify((Δ, μu, μd, μe),  Ω, "numpy")
@@ -316,6 +317,11 @@ if __name__ == "__main__":
     heads = ["mu", "Delta", "Omega", "mu0", "Delta0", "Omega0"]
     utils.writecols(cols, heads, f"data/{model.name}/potential.dat", skipevery=len(μQ))
 
+    # TEST GROUND TODO: remove
+    model = LSM2Flavor(False)
+    model.eos(np.linspace(0, 800, 200)[1:], plot=True)
+    model.stars([27, 34, 41, 48], (1e-7, 1e1), plot=True)
+
     model = LSM3Flavor()
     for Pc in [0.0006, 0.0008, 0.001]:
         model.eos()
@@ -327,4 +333,4 @@ if __name__ == "__main__":
 
         # solve TOV equation for different bag pressures
         Bs = [6, 13, 20, 27, 34, 41, 48, 55, 62, 69, 76, 83, 90, 97, 104, 111, 118, 125, 132]
-        model.stars(Bs, (1e-7, 1e1))
+        model.stars(Bs, (1e-7, 1e1), write=True)
