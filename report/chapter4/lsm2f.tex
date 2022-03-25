@@ -734,25 +734,25 @@ The differences are staggering!
 	/tikz/declare function={g=300/93;},
 ]
 \nextgroupplot[
-	xlabel={$\mu \, / \, \si{\mega\electronvolt}$},
+	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$},
 	xmin=0, xmax=600, ymax=500, xtick distance=100, ytick distance=100, minor x tick num=9,
 	%ymax=600, 
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-parametrization}Parametrization of solutions}},
 	legend cell align=right, legend pos=north west,
 ];
-\addplot+ [orange, solid, opacity=0.5, forget plot] table [x=mu, y expr={g*\thisrow{sigma}}] {../code/data/2flaveos.dat};
-\addplot+ [red, solid, opacity=0.5, forget plot] table [x=mu, y=muu] {../code/data/2flaveos.dat};
-\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=mu, y=mud] {../code/data/2flaveos.dat};
-\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=mu, y=mue] {../code/data/2flaveos.dat};
+\addplot+ [orange, solid, opacity=0.5, forget plot] table [x=muQ, y=deltax] {../code/data/LSM2F/eos.dat};
+\addplot+ [red, solid, opacity=0.5, forget plot] table [x=muQ, y=muu] {../code/data/LSM2F/eos.dat};
+\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=muQ, y=mud] {../code/data/LSM2F/eos.dat};
+\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=muQ, y=mue] {../code/data/LSM2F/eos.dat};
 
-\addplot+ [orange, solid] table [x=mu, y=Delta] {../code/data/2flavrefeos.dat}; \addlegendentry{$\Delta \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red, solid] table [x=mu, y=muu] {../code/data/2flavrefeos.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, solid] table [x=mu, y=mud] {../code/data/2flavrefeos.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue, solid] table [x=mu, y=mue] {../code/data/2flavrefeos.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange, solid] table [x=muQ, y=deltax] {../code/data/LSM2FC/eos.dat}; \addlegendentry{$\Delta \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red, solid] table [x=muQ, y=muu] {../code/data/LSM2FC/eos.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, solid] table [x=muQ, y=mud] {../code/data/LSM2FC/eos.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue, solid] table [x=muQ, y=mue] {../code/data/LSM2FC/eos.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
 
 
 \nextgroupplot[
-	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
+	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
 	xmin=0, xmax=600, xtick distance=100, minor x tick num=9,
 	ymax=2.0, ytick distance=0.5, minor y tick num=4,
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-density}Particle number densities}},
@@ -761,12 +761,12 @@ The differences are staggering!
 \coordinate (zoomplot) at (232, 1.32);
 \draw [draw=none, fill=gray!50] (250, -0.005) rectangle (350, 0.02);
 \draw [-Latex, gray] (300,0.03) to [out=90, in=0] (232, 0.75);
-\addplot+ [red, solid, opacity=0.5, forget plot] table [x=mu, y=nu] {../code/data/2flaveos.dat};
-\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=mu, y=nd] {../code/data/2flaveos.dat};
-\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=mu, y=ne] {../code/data/2flaveos.dat};
-\addplot+ [red, solid] table [x=mu, y=nu] {../code/data/2flavrefeos.dat}; \addlegendentry{$n_u$ (up quarks)};
-\addplot+ [darkgreen, solid] table [x=mu, y=nd] {../code/data/2flavrefeos.dat}; \addlegendentry{$n_d$ (down quarks)};
-\addplot+ [blue, solid] table [x=mu, y=ne] {../code/data/2flavrefeos.dat}; \addlegendentry{$n_e$ (electrons)};
+\addplot+ [red, solid, opacity=0.5, forget plot] table [x=muQ, y=nu] {../code/data/LSM2F/eos.dat};
+\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=muQ, y=nd] {../code/data/LSM2F/eos.dat};
+\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=muQ, y=ne] {../code/data/LSM2F/eos.dat};
+\addplot+ [red, solid] table [x=muQ, y=nu] {../code/data/LSM2FC/eos.dat}; \addlegendentry{$n_u$ (up quarks)};
+\addplot+ [darkgreen, solid] table [x=muQ, y=nd] {../code/data/LSM2FC/eos.dat}; \addlegendentry{$n_d$ (down quarks)};
+\addplot+ [blue, solid] table [x=muQ, y=ne] {../code/data/LSM2FC/eos.dat}; \addlegendentry{$n_e$ (electrons)};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -775,8 +775,8 @@ The differences are staggering!
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
 ];
-\addplot+ [black, solid, opacity=0.5, forget plot] table [x=P,y=epsilon] {../code/data/2flaveos.dat};
-\addplot+ [black, solid] table [x=P,y=epsilon] {../code/data/2flavrefeos.dat};
+\addplot+ [black, solid, opacity=0.5, forget plot] table [x=P,y=epsilon] {../code/data/LSM2F/eos.dat};
+\addplot+ [black, solid] table [x=P,y=epsilon] {../code/data/LSM2FC/eos.dat};
 \end{groupplot}
 % Embed zoom-plot in a node
 \node [anchor=north east] at (zoomplot) {
@@ -788,12 +788,12 @@ The differences are staggering!
 		ymin=-0.005, ymax=0.02, ytick distance=0.01, minor y tick num=9, restrict y to domain=-0.5:0.5,
 		axis background/.style={fill=gray!50},
 	]
-	\addplot+ [red, solid, opacity=0.5, forget plot] table [x=mu, y=nu] {../code/data/2flaveos.dat};
-	\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=mu, y=nd] {../code/data/2flaveos.dat};
-	\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=mu, y=ne] {../code/data/2flaveos.dat};
-	\addplot+ [red, solid] table [x=mu, y=nu] {../code/data/2flavrefeos.dat};
-	\addplot+ [darkgreen, solid] table [x=mu, y=nd] {../code/data/2flavrefeos.dat};
-	\addplot+ [blue, solid] table [x=mu, y=ne] {../code/data/2flavrefeos.dat};
+	\addplot+ [red, solid, opacity=0.5, forget plot] table [x=muQ, y=nu] {../code/data/LSM2F/eos.dat};
+	\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=muQ, y=nd] {../code/data/LSM2F/eos.dat};
+	\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=muQ, y=ne] {../code/data/LSM2F/eos.dat};
+	\addplot+ [red, solid] table [x=muQ, y=nu] {../code/data/LSM2FC/eos.dat};
+	\addplot+ [darkgreen, solid] table [x=muQ, y=nd] {../code/data/LSM2FC/eos.dat};
+	\addplot+ [blue, solid] table [x=muQ, y=ne] {../code/data/LSM2FC/eos.dat};
 	\end{axis}
 	\end{tikzpicture}
 };

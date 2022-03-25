@@ -191,6 +191,30 @@ class LSM2Flavor(Model):
         Δy, μs = 0, 0
         return Δx, Δy, μu, μd, μs, μe
 
+class LSM2FlavorConsistent(LSM2Flavor):
+    def __init__(self):
+        Model.__init__(self, "LSM2FC")
+
+        Δ, μu, μd, μe = sp.symbols("Δ μ_u μ_d μ_e", complex=True)
+        def r(p2): return sp.sqrt(4*mu**2/p2-1)
+        def F(p2): return 2 - 2*r(p2)*sp.atan(1/r(p2))
+        def dF(p2): return 4*mu**2*r(p2)/(p2*(4*mu**2-r(p2)**2))*sp.atan(1/r(p2))-1/p2
+        Ω = (3/4*mπ**2*fπ**2*(1-4*mu**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ**2 / mu**2 -
+             mσ**2*fπ**2/4*(1+4*mu**2*Nc/(16*π**2*fπ**2)*((1-4*mu**2/mσ**2)*F(mσ**2)+4*mu**2/mσ**2-F(mπ**2)-mπ**2*dF(mπ**2))) * Δ**2/mu**2 +
+             mσ**2*fπ**2/8*(1-4*mu**2*Nc/(16*π**2*fπ**2)*(4*mu**2/mσ**2*sp.log(Δ**2/mu**2)-(1-4*mu**2/mσ**2)*F(mσ**2)+F(mπ**2)+mπ**2*dF(mπ**2)))* Δ**4 / mu**4 -
+             mπ**2*fπ**2/8*(1-4*mu**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ**4/mu**4 -
+             mπ**2*fπ**2*(1-4*mu**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ/mu +
+             3*Nc/(16*π**2) * Δ**4 -
+             Nc/(24*π**2)*((2*μu**2-5*Δ**2)*μu*sp.sqrt(μu**2-Δ**2)+3*Δ**4*sp.asinh(sp.sqrt(μu**2/Δ**2-1))) -
+             Nc/(24*π**2)*((2*μd**2-5*Δ**2)*μd*sp.sqrt(μd**2-Δ**2)+3*Δ**4*sp.asinh(sp.sqrt(μd**2/Δ**2-1))) -
+             1/(24*π**2)*((2*μe**2-5*me**2)*μe*sp.sqrt(μe**2-me**2)+3*me**4*sp.asinh(sp.sqrt(μe**2/me**2-1))))
+        dΩ = sp.diff(Ω, Δ)
+
+        Ω  = sp.lambdify((Δ, μu, μd, μe),  Ω, "numpy")
+        dΩ = sp.lambdify((Δ, μu, μd, μe), dΩ, "numpy")
+        self.Ω  = lambda Δ, Δy, μu, μd, μs, μe: np.real( Ω(Δ+0j, μu+0j, μd+0j, μe+0j))
+        self.dΩ = lambda Δ, Δy, μu, μd, μs, μe: np.real(dΩ(Δ+0j, μu+0j, μd+0j, μe+0j))
+
 class LSM3Flavor(Model):
     def __init__(self):
         Model.__init__(self, "LSM3F")
@@ -293,7 +317,7 @@ if __name__ == "__main__":
     heads = ["mu", "Delta", "Omega", "mu0", "Delta0", "Omega0"]
     utils.writecols(cols, heads, f"data/{model.name}/potential.dat", skipevery=len(μQ))
 
-    for model in (LSM2Flavor(), LSM3Flavor()):
+    for model in (LSM2Flavor(), LSM2FlavorConsistent(), LSM3Flavor()):
         μQ = np.linspace(0, 1000, 1000)[1:]
         model.eos(μQ, plot=True, write=True)
 
