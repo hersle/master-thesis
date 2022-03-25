@@ -461,24 +461,24 @@ This yields the upper bound
 	minor tick num=9,
 ]
 \nextgroupplot[
-	xlabel={$\mu \, / \, \si{\mega\electronvolt}$},
+	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$},
 	xmin=0, xmax=900, ymax=800, xtick distance=100, ytick distance=100, minor x tick num=9,
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-parametrization}Parametrization of solutions}},
 	legend cell align=right, legend pos=north west,
 ];
 % Two-flavor (for comparison)
-\addplot+ [orange, solid, opacity=0.2, forget plot] table [x=mu, y=sigma] {../code/data/2flaveos.dat};
-\addplot+ [red, solid, opacity=0.2, forget plot] table [x=mu, y=muu] {../code/data/2flaveos.dat};
-\addplot+ [darkgreen, solid, opacity=0.2, forget plot] table [x=mu, y=mud] {../code/data/2flaveos.dat};
-\addplot+ [blue, solid, opacity=0.2, forget plot] table [x=mu, y=mue] {../code/data/2flaveos.dat};
+\addplot+ [orange, solid, opacity=0.5, forget plot] table [x=muQ, y=deltax] {../code/data/LSM2F/eos.dat};
+\addplot+ [red, solid, opacity=0.5, forget plot] table [x=muQ, y=muu] {../code/data/LSM2F/eos.dat};
+\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=muQ, y=mud] {../code/data/LSM2F/eos.dat};
+\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=muQ, y=mue] {../code/data/LSM2F/eos.dat};
 
 % Three-flavor
-\addplot+ [orange, solid, opacity=0.7] table [x=mu, y=sigmax] {../code/data/3flaveos.dat}; \addlegendentry{$\avg{\sigma_x} \, / \, \si{\mega\electronvolt}$};
-\addplot+ [yellow, solid, opacity=0.7] table [x=mu, y=sigmay] {../code/data/3flaveos.dat}; \addlegendentry{$\avg{\sigma_y} \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red, solid, opacity=0.7] table [x=mu, y=muu] {../code/data/3flaveos.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, solid, very thick, opacity=0.7] table [x=mu, y=mud] {../code/data/3flaveos.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [purple, solid, opacity=0.7] table [x=mu, y=mus] {../code/data/3flaveos.dat}; \addlegendentry{$\mu_s \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue, solid, opacity=0.7] table [x=mu, y=mue] {../code/data/3flaveos.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange, solid, opacity=1.0] table [x=muQ, y=deltax] {../code/data/LSM3F/eos.dat}; \addlegendentry{$\Delta_x \, / \, \si{\mega\electronvolt}$};
+\addplot+ [yellow, solid, opacity=1.0] table [x=muQ, y=deltay] {../code/data/LSM3F/eos.dat}; \addlegendentry{$\Delta_y \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red, solid, opacity=1.0] table [x=muQ, y=muu] {../code/data/LSM3F/eos.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, solid, opacity=1.0] table [x=muQ, y=mud] {../code/data/LSM3F/eos.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [purple, dashed, opacity=1.0] table [x=muQ, y=mus] {../code/data/LSM3F/eos.dat}; \addlegendentry{$\mu_s \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue, solid, opacity=1.0] table [x=muQ, y=mue] {../code/data/LSM3F/eos.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
 
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
@@ -492,15 +492,15 @@ This yields the upper bound
 \draw [-Latex, gray] (375,0.03) to [out=90, in=0] (373, 2.35);
 
 % Two-flavor (for comparison)
-\addplot+ [red, solid, opacity=0.2, forget plot] table [x=mu, y=nu] {../code/data/2flaveos.dat};
-\addplot+ [darkgreen, solid, opacity=0.2, forget plot] table [x=mu, y=nd] {../code/data/2flaveos.dat};
-\addplot+ [blue, solid, opacity=0.2, forget plot] table [x=mu, y=ne] {../code/data/2flaveos.dat};
+\addplot+ [red, solid, opacity=0.5, forget plot] table [x=muQ, y=nu] {../code/data/LSM2F/eos.dat};
+\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=muQ, y=nd] {../code/data/LSM2F/eos.dat};
+\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=muQ, y=ne] {../code/data/LSM2F/eos.dat};
 
 % Three-flavor
-\addplot+ [red, solid, opacity=0.7] table [x=mu, y=nu] {../code/data/3flaveos.dat}; \addlegendentry{$n_u$ (up quarks)};
-\addplot+ [darkgreen, solid, opacity=0.7] table [x=mu, y=nd] {../code/data/3flaveos.dat}; \addlegendentry{$n_d$ (down quarks)};
-\addplot+ [purple, solid, opacity=0.7] table [x=mu, y=ns] {../code/data/3flaveos.dat}; \addlegendentry{$n_s$ (strange quarks)};
-\addplot+ [blue, solid, opacity=0.7] table [x=mu, y=ne] {../code/data/3flaveos.dat}; \addlegendentry{$n_e$ (electrons)};
+\addplot+ [red, solid, opacity=1.0] table [x=muQ, y=nu] {../code/data/LSM3F/eos.dat}; \addlegendentry{$n_u$ (up quarks)};
+\addplot+ [darkgreen, solid, opacity=1.0] table [x=muQ, y=nd] {../code/data/LSM3F/eos.dat}; \addlegendentry{$n_d$ (down quarks)};
+\addplot+ [purple, solid, opacity=1.0] table [x=muQ, y=ns] {../code/data/LSM3F/eos.dat}; \addlegendentry{$n_s$ (strange quarks)};
+\addplot+ [blue, solid, opacity=1.0] table [x=muQ, y=ne] {../code/data/LSM3F/eos.dat}; \addlegendentry{$n_e$ (electrons)};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -510,8 +510,8 @@ This yields the upper bound
 	legend cell align=left, legend pos=north west,
 ];
 %\addplot+ [black, densely dashed, semithick, opacity=0.7, forget plot] table [x=P,y=epsilon] {../code/data/2flavfreeeos.dat}; %\addlegendentry{without interactions};
-\addplot+ [gray, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/2flaveos.dat};
-\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/3flaveos.dat};
+\addplot+ [gray, solid, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM2F/eos.dat};
+\addplot+ [black, solid, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos.dat};
 \end{groupplot}
 % Embed zoom-plot in a node
 \node [anchor=north east] at (zoomplot) {
@@ -523,13 +523,13 @@ This yields the upper bound
 		ymin=-0.0020, ymax=0.01, ytick distance=0.01, minor y tick num=9, restrict y to domain=-0.5:0.5,
 		axis background/.style={fill=gray!50},
 	]
-	\addplot+ [red, solid, opacity=0.7] table [x=mu, y=nu] {../code/data/3flaveos.dat};
-	\addplot+ [darkgreen, solid, opacity=0.7] table [x=mu, y=nd] {../code/data/3flaveos.dat};
-	\addplot+ [purple, solid, opacity=0.7] table [x=mu, y=ns] {../code/data/3flaveos.dat};
-	\addplot+ [blue, solid, opacity=0.7] table [x=mu, y=ne] {../code/data/3flaveos.dat};
-	\addplot+ [red, solid, opacity=0.2] table [x=mu, y=nu] {../code/data/2flaveos.dat};
-	\addplot+ [darkgreen, solid, opacity=0.2] table [x=mu, y=nd] {../code/data/2flaveos.dat};
-	\addplot+ [blue, solid, opacity=0.2] table [x=mu, y=ne] {../code/data/2flaveos.dat};
+	\addplot+ [red, solid, opacity=0.5, forget plot] table [x=muQ, y=nu] {../code/data/LSM2F/eos.dat};
+	\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=muQ, y=nd] {../code/data/LSM2F/eos.dat};
+	\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=muQ, y=ne] {../code/data/LSM2F/eos.dat};
+	\addplot+ [red, solid, opacity=1.0] table [x=muQ, y=nu] {../code/data/LSM3F/eos.dat};
+	\addplot+ [darkgreen, solid, opacity=1.0] table [x=muQ, y=nd] {../code/data/LSM3F/eos.dat};
+	\addplot+ [purple, solid, opacity=1.0] table [x=muQ, y=ns] {../code/data/LSM3F/eos.dat};
+	\addplot+ [blue, solid, opacity=1.0] table [x=muQ, y=ne] {../code/data/LSM3F/eos.dat};
 	\end{axis}
 	\end{tikzpicture}
 };
@@ -575,13 +575,13 @@ Let us understand what is going on:
 	declare function={sat=0.165;},
 	legend cell align=left, legend columns=2,
 ]
-\addplot [blue] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{ne}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
+\addplot [blue] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{ne}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/LSM3F/eos.dat};
 \addlegendentry{$n_e$ (electrons)};
-\addplot [red] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{nu}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
+\addplot [red] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{nu}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/LSM3F/eos.dat};
 \addlegendentry{$n_u$ (up quarks)};
-\addplot [darkgreen] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{nd}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
+\addplot [darkgreen] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{nd}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/LSM3F/eos.dat};
 \addlegendentry{$n_d$ (down quarks)};
-\addplot [purple] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{ns}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/3flaveos.dat};
+\addplot [purple] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{ns}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/LSM3F/eos.dat};
 \addlegendentry{$n_s$ (strange quarks)};
 \end{axis}
 \end{tikzpicture}
