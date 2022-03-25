@@ -317,33 +317,35 @@ In the opposite case $\mu < m$, the step function would cause the whole integral
 	group style={group size={1 by 2}, vertical sep=2.0cm},
 	view={160}{30},
 	width=0.9\textwidth, height=10cm,
-	xlabel = {$\avg{\sigma} \, / \, \si{\mega\electronvolt}$}, ylabel = {$\mu \, / \, \si{\mega\electronvolt}$}, zlabel = {$\Omega(\avg{\sigma}, \mu) \, / \, (\SI{100}{\mega\electronvolt})^4$},
-	colormap/OrRd, point meta min=0, point meta max=450,
+	xlabel = {$\Delta \, / \, \si{\mega\electronvolt}$}, ylabel = {$\mu \, / \, \si{\mega\electronvolt}$}, zlabel = {$\Omega(\Delta, \mu) \, / \, (\SI{100}{\mega\electronvolt})^4$},
+	colormap/OrRd, point meta min=0, point meta max=1500,
 	3d box=complete,
 	unbounded coords=jump, % skip at nan (i.e. the phase transition)
 	extra tick style={grid=major, grid style={dashed}},
 	title style={text width={10cm}},
 ]
 \nextgroupplot[
-	zmin=-50, zmax=+200,
-	xmin=-450, xmax=+450,
-	xtick distance=100, %minor x tick num=5,
+	zmin=-40, zmax=+40,
+	xmin=-999, xmax=+999,
+	xtick distance=200, %minor x tick num=5,
 	ytick distance=100, %minor y tick num=3,
 	title = {\subcaption{\label{fig:lsm:grand-potential-nonneutral-big}Large-scale form}},
 ];
-\addplot3 [surf, very thin, mesh/ordering=x varies, point meta={abs(\thisrow{sigma})}] table [x=sigma, y=mu, z=omega] {../code/data/2flavpot_big.dat};
+\addplot3 [surf, very thin, mesh/ordering=x varies, point meta={abs(\thisrow{Delta})}] table [x=Delta, y=mu, z=Omega] {../code/data/LSM2F/potential.dat};
 %\addplot3 [red]  table [x=sigma0, y=mu0, z=omega0] {../code/data/2flavpot.dat}; % plot line of minima
 %\addplot  [gray] table [x=sigma0, y=mu0, z expr={-40}] {../code/data/2flavpot.dat}; % plot its "shadow" in bottom plane
 \nextgroupplot[
 	zmin=-40, zmax=+0,
-	xmin=-149, xmax=+149,
-	xtick distance=50, %minor x tick num=5,
+	xmin=-475, xmax=+475,
+	restrict x to domain=-550:+550,
+	restrict z to domain=-50:10,
+	xtick distance=100, %minor x tick num=5,
 	ytick distance=100, %minor y tick num=3,
 	title = {\subcaption{\label{fig:lsm:grand-potential-nonneutral-small}Small-scale form}},
 ];
-\addplot3 [surf, very thin, mesh/ordering=x varies, point meta={abs(\thisrow{sigma})}] table [x=sigma, y=mu, z=omega] {../code/data/2flavpot.dat};
-\addplot3 [blue]  table [x=sigma0, y=mu0, z=omega0] {../code/data/2flavpot.dat}; % plot line of minima
-\addplot  [gray] table [x=sigma0, y=mu0, z expr={-40}] {../code/data/2flavpot.dat}; % plot its "shadow" in bottom plane
+\addplot3 [surf, very thin, mesh/ordering=x varies, point meta={abs(\thisrow{Delta})}] table [x=Delta, y=mu, z=Omega] {../code/data/LSM2F/potential.dat};
+\addplot3 [blue] table [x=Delta0, y=mu0, z=Omega0]     {../code/data/LSM2F/potential.dat}; % plot line of minima
+\addplot3 [gray] table [x=Delta0, y=mu0, z expr={-40}] {../code/data/LSM2F/potential.dat}; % plot its "shadow" in bottom plane
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:grand-potential-nonneutral}%
