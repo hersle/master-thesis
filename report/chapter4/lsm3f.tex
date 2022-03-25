@@ -808,20 +808,20 @@ For lower pressure stars, however, greater bag constants significantly increase 
 \addplot [black, solid] {-1}; \addlegendentry{$P_c = 10^{34.63} \, \si{\pascal}$};
 \pgfplotsset{cycle list shift=-8};
 
-\pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y expr={(\thisrow{nu#1}+\thisrow{nd#1}+\thisrow{ns#1})/3/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
+\pgfplotsinvokeforeach{0.0006000,0.0008000,0.0010000}{
+	\addplot table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3/0.165}] {../code/data/LSM3F/star_B14_38_Pc_#1.dat};
 }
-\pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y expr={\thisrow{ne#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
+\pgfplotsinvokeforeach{0.0006000,0.0008000,0.0010000}{
+	\addplot table [x=r, y expr={\thisrow{ne}/0.165}] {../code/data/LSM3F/star_B14_38_Pc_#1.dat};
 }
-\pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y expr={\thisrow{nu#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
+\pgfplotsinvokeforeach{0.0006000,0.0008000,0.0010000}{
+	\addplot table [x=r, y expr={\thisrow{nu}/0.165}] {../code/data/LSM3F/star_B14_38_Pc_#1.dat};
 }
-\pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y expr={\thisrow{nd#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
+\pgfplotsinvokeforeach{0.0006000,0.0008000,0.0010000}{
+	\addplot table [x=r, y expr={\thisrow{nd}/0.165}] {../code/data/LSM3F/star_B14_38_Pc_#1.dat};
 }
-\pgfplotsinvokeforeach{0,1,2}{
-	\addplot table [x=r#1, y expr={\thisrow{ns#1}/0.165}] {../code/data/quarkstar3f_B14_38_densities.dat};
+\pgfplotsinvokeforeach{0.0006000,0.0008000,0.0010000}{
+	\addplot table [x=r, y expr={\thisrow{ns}/0.165}] {../code/data/LSM3F/star_B14_38_Pc_#1.dat};
 }
 \end{axis}
 \end{tikzpicture}
