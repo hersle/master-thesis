@@ -671,24 +671,24 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 	ymin=7, ymax=18, ytick distance=1.0, minor y tick num=9,
 ];
 % two-flavor
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
 
 % three-flavor
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat};
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat};
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat};
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_27.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_27.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_34.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_34.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_41.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_41.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_48.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_48.dat};
 
 \nextgroupplot[
 	height=6cm, yshift=+1.2cm,
@@ -700,24 +700,24 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 	colorbar horizontal, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,-0.05)}, anchor=north, xticklabel pos=lower},
 ];
 % two-flavor
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
+\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
+\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
 
 % three-flavor
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat};
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat};
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat};
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_27.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_27.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_34.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_34.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_41.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_41.dat};
+\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_48.dat};
+\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_48.dat};
 
 \nextgroupplot[
 	height=10cm, yshift=-0.5cm,
@@ -734,24 +734,24 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 %\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
 
 % two-flavor comparison
-\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat}; \addlegendentry{two flavors};
-\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
-\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
-\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat}; \addlegendentry{two flavors};
+\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat};
+\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
+\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
+\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
+\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
+\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
+\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
 
 % three-flavor
-\addplot+ [solid, mesh, mesh line legend, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat} node [Bpin, pos=0.93] {$B = (\SI{27}{\mega\electronvolt})^4$}; \addlegendentry{three flavors};
-\addplot+ [densely dashed, mesh, mesh line legend, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_27.dat};
-\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat} node [Bpin, pos=0.92] {$B = (\SI{34}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_34.dat};
-\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat} node [Bpin, pos=0.91] {$B = (\SI{41}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_41.dat};
-\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat} node [Bpin, pos=0.905] {$B = (\SI{48}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar3f_B14_48.dat};
+\addplot+ [solid, mesh, mesh line legend, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_27.dat} node [Bpin, pos=0.93] {$B = (\SI{27}{\mega\electronvolt})^4$}; \addlegendentry{three flavors};
+\addplot+ [densely dashed, mesh, mesh line legend, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_27.dat};
+\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_34.dat} node [Bpin, pos=0.92] {$B = (\SI{34}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_34.dat};
+\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_41.dat} node [Bpin, pos=0.91] {$B = (\SI{41}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_41.dat};
+\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_48.dat} node [Bpin, pos=0.905] {$B = (\SI{48}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_48.dat};
 
 \end{groupplot}
 \end{tikzpicture}
