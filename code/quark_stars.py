@@ -61,7 +61,8 @@ class Model:
             print(f"Δx = {Δx[i]:.2f}, Δy = {Δy[i]:.2f}, ", end="")
             print(f"μQ = {μQ[i]:.2f}, μu = {μu[i]:.2f}, μd = {μd[i]:.2f}, μs = {μs[i]:.2f}, μe = {μe[i]:.2f}")
 
-        P = -(Ω - Ω[0])
+        P, P0 = -Ω, -Ω[0]
+        P = P - P0
         nu = Nc/(3*π**2) * np.real((μu**2-Δx**2+0j)**(3/2))
         nd = Nc/(3*π**2) * np.real((μd**2-Δx**2+0j)**(3/2))
         ns = Nc/(3*π**2) * np.real((μs**2-Δy**2+0j)**(3/2))
@@ -79,6 +80,7 @@ class Model:
         nd *= MeV**3 / (ħ*c)**3 * fm**3 # now in units 1/fm^3
         ns *= MeV**3 / (ħ*c)**3 * fm**3 # now in units 1/fm^3
         ne *= MeV**3 / (ħ*c)**3 * fm**3 # now in units 1/fm^3
+        P0 *= MeV**4 / (ħ*c)**3 # now in units kg*m^2/s^2/m^3
         P  *= MeV**4 / (ħ*c)**3 # now in units kg*m^2/s^2/m^3
         ϵ  *= MeV**4 / (ħ*c)**3 # now in units kg*m^2/s^2/m^3
 
@@ -90,8 +92,11 @@ class Model:
         ϵint.__name__ = name
 
         # convert interesting quantities to appropriate units
-        P *= fm**3 / GeV # now in units GeV/fm^3
-        ϵ *= fm**3 / GeV # now in units GeV/fm^3
+        P0 *= fm**3 / GeV # now in units GeV/fm^3
+        P  *= fm**3 / GeV # now in units GeV/fm^3
+        ϵ  *= fm**3 / GeV # now in units GeV/fm^3
+
+        print(f"P0 = {P0}")
 
         if write:
             cols  = (μQ, Δx, Δy, μu, μd, μs, μe, nu, nd, ns, ne, ϵ, P)

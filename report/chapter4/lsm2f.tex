@@ -413,6 +413,14 @@ We therefore expect a well-defined parametrization with the free variable
 \centering
 \tikzsetnextfilename{2-flavor-eos}
 \begin{tikzpicture}
+\tikzset{declare function={
+	muu(\muQ)=2/(1+2^(1/3))*\muQ;
+	mud(\muQ)=2/(1+2^(-1/3))*\muQ;
+	mue(\muQ)=2*(2^(1/3)-1)/(2^(1/3)+1)*\muQ;
+	nq(\mu)=3/(3*pi^2)*(\mu)^3;
+	ne(\mu)=1/(3*pi^2)*(\mu)^3;
+	nconv=1.29619e-7;
+}};
 \begin{groupplot}[
 	group style={group size={1 by 3}, vertical sep=2.0cm},
 	width=13cm, height=7cm,
@@ -420,24 +428,24 @@ We therefore expect a well-defined parametrization with the free variable
 	minor tick num=9,
 ]
 \nextgroupplot[
-	xlabel={$\mu \, / \, \si{\mega\electronvolt}$},
+	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$},
 	xmin=0, xmax=600, ymax=500, xtick distance=100, ytick distance=100, minor x tick num=9,
 	%ymax=600, 
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-parametrization}Parametrization of solutions}},
 	legend cell align=right, legend pos=north west,
 ];
-\addplot+ [orange!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y expr=0] {../code/data/2flavfreeeos.dat}; %\addlegendentry{$\avg{\sigma} \, / \, \si{\mega\electronvolt}$};
-\addplot+ [orange, solid, opacity=0.7] table [x=mu, y=sigma] {../code/data/2flaveos.dat}; \addlegendentry{$\avg{\sigma} \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=muu   ] {../code/data/2flavfreeeos.dat}; %\addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red, solid, opacity=0.7] table [x=mu, y=muu] {../code/data/2flaveos.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=mud   ] {../code/data/2flavfreeeos.dat}; %\addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, solid, opacity=0.7] table [x=mu, y=mud] {../code/data/2flaveos.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=mue   ] {../code/data/2flavfreeeos.dat}; %\addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue, solid, opacity=0.7] table [x=mu, y=mue] {../code/data/2flaveos.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={0}] {../code/data/LSM2F/eos.dat}; %\addlegendentry{$\avg{\sigma} \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange, solid, opacity=0.7] table [x=muQ, y=deltax] {../code/data/LSM2F/eos.dat}; \addlegendentry{$\Delta \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={muu(\thisrow{muQ})}] {../code/data/LSM2F/eos.dat}; %\addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red, solid, opacity=0.7] table [x=muQ, y=muu] {../code/data/LSM2F/eos.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={mud(\thisrow{muQ})}] {../code/data/LSM2F/eos.dat}; %\addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, solid, opacity=0.7] table [x=muQ, y=mud] {../code/data/LSM2F/eos.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={mue(\thisrow{muQ})}] {../code/data/LSM2F/eos.dat}; %\addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue, solid, opacity=0.7] table [x=muQ, y=mue] {../code/data/LSM2F/eos.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
 
 
 \nextgroupplot[
-	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
+	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
 	xmin=0, xmax=600, xtick distance=100, minor x tick num=9,
 	ymax=2.0, ytick distance=0.5, minor y tick num=4,
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-density}Particle number densities}},
@@ -446,12 +454,12 @@ We therefore expect a well-defined parametrization with the free variable
 \coordinate (zoomplot) at (232, 1.32);
 \draw [draw=none, fill=gray!50] (250, -0.005) rectangle (350, 0.02);
 \draw [-Latex, gray] (300,0.03) to [out=90, in=0] (232, 0.75);
-\addplot+ [red, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=nu] {../code/data/2flavfreeeos.dat};
-\addplot+ [red, solid, opacity=0.7] table [x=mu, y=nu] {../code/data/2flaveos.dat}; \addlegendentry{$n_u$ (up quarks)};
-\addplot+ [darkgreen, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=nd] {../code/data/2flavfreeeos.dat};
-\addplot+ [darkgreen, solid, opacity=0.7] table [x=mu, y=nd] {../code/data/2flaveos.dat}; \addlegendentry{$n_d$ (down quarks)};
-\addplot+ [blue, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=ne] {../code/data/2flavfreeeos.dat};
-\addplot+ [blue, solid, opacity=0.7] table [x=mu, y=ne] {../code/data/2flaveos.dat}; \addlegendentry{$n_e$ (electrons)};
+\addplot+ [red!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={nq(muu(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
+\addplot+ [red, solid, opacity=0.7] table [x=muQ, y=nu] {../code/data/LSM2F/eos.dat}; \addlegendentry{$n_u$ (up quarks)};
+\addplot+ [darkgreen!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={nq(mud(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
+\addplot+ [darkgreen, solid, opacity=0.7] table [x=muQ, y=nd] {../code/data/LSM2F/eos.dat}; \addlegendentry{$n_d$ (down quarks)};
+\addplot+ [blue!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={ne(mue(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
+\addplot+ [blue, solid, opacity=0.7] table [x=muQ, y=ne] {../code/data/LSM2F/eos.dat}; \addlegendentry{$n_e$ (electrons)};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -460,8 +468,8 @@ We therefore expect a well-defined parametrization with the free variable
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
 ];
-\addplot+ [black, densely dashed, semithick, opacity=0.7, forget plot] table [x=P,y=epsilon] {../code/data/2flavfreeeos.dat}; %\addlegendentry{without interactions};
-\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/2flaveos.dat};
+\addplot+ [black!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=P, y expr={3*\thisrow{P}+4*0.07774628475613433}] {../code/data/LSM2F/eos.dat}; %\addlegendentry{without interactions};
+\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2F/eos.dat};
 \end{groupplot}
 % Embed zoom-plot in a node
 \node [anchor=north east] at (zoomplot) {
@@ -473,12 +481,12 @@ We therefore expect a well-defined parametrization with the free variable
 		ymin=-0.005, ymax=0.02, ytick distance=0.01, minor y tick num=9, restrict y to domain=-0.5:0.5,
 		axis background/.style={fill=gray!50},
 	]
-	\addplot+ [red, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=nu] {../code/data/2flavfreeeos.dat};
-	\addplot+ [red, solid, opacity=0.7] table [x=mu, y=nu] {../code/data/2flaveos.dat};
-	\addplot+ [darkgreen, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=nd] {../code/data/2flavfreeeos.dat};
-	\addplot+ [darkgreen, solid, opacity=0.7] table [x=mu, y=nd] {../code/data/2flaveos.dat};
-	\addplot+ [blue, densely dashed, semithick, opacity=0.7, forget plot] table [x=mu, y=ne] {../code/data/2flavfreeeos.dat};
-	\addplot+ [blue, solid, opacity=0.7] table [x=mu, y=ne] {../code/data/2flaveos.dat};
+	\addplot+ [red!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={nq(muu(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
+	\addplot+ [red, solid, opacity=0.7] table [x=muQ, y=nu] {../code/data/LSM2F/eos.dat};
+	\addplot+ [darkgreen!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={nq(mud(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
+	\addplot+ [darkgreen, solid, opacity=0.7] table [x=muQ, y=nd] {../code/data/LSM2F/eos.dat};
+	\addplot+ [blue!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={ne(mue(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
+	\addplot+ [blue, solid, opacity=0.7] table [x=muQ, y=ne] {../code/data/LSM2F/eos.dat};
 	\end{axis}
 	\end{tikzpicture}
 };
@@ -538,7 +546,7 @@ Summarizing and expressing these chemical potentials in terms of the common quar
 \begin{equation}
 	\mu_u = \frac{2}{1+2^{1/3}} \mu, \qquad
 	\mu_d = \frac{2}{1+2^{-1/3}} \mu \qquad \text{and} \qquad
-	\mu_e = (2^{1/3}-1) \mu.
+	\mu_e = 2 \frac{2^{1/3}-1}{2^{1/3}+1} \mu.
 \label{eq:lsm:chemical_potentials_massless}
 \end{equation}
 Using the grand potential \eqref{eq:lsm:grand_potential_massless} and densities \eqref{eq:lsm:densities_massless} and ignoring the normalization of the pressure $P = -\Omega$, the equation of state is now
