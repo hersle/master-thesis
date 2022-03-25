@@ -468,7 +468,7 @@ We therefore expect a well-defined parametrization with the free variable
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
 ];
-\addplot+ [black!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=P, y expr={3*\thisrow{P}+4*0.07774628475613433}] {../code/data/LSM2F/eos.dat}; %\addlegendentry{without interactions};
+\addplot+ [black!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=P, y expr={3*\thisrow{P}+4*0.07774628475613433}] {../code/data/LSM2F/eos.dat}; % +4*P0, since both ϵ and P modified by P0
 \addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2F/eos.dat};
 \end{groupplot}
 % Embed zoom-plot in a node
@@ -607,6 +607,7 @@ Solving equation \eqref{eq:lsm:bag_stability_2f} numerically in \cref{sec:num:qs
 \end{equation}
 \end{subequations}
 
+% TODO: start here
 \begin{figure}[t]
 \centering
 \tikzsetnextfilename{2-flavor-mass-radius}
@@ -630,17 +631,17 @@ Solving equation \eqref{eq:lsm:bag_stability_2f} numerically in \cref{sec:num:qs
 \addplot+ [black, densely dashed] {0};
 \addlegendentry{unstable stars};
 
-\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat} node [Bpin, pos=0.918] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
+\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat} node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat};
 
-\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat} node [Bpin, pos=0.915] {$B = (\SI{34}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
+\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat} node [Bpin, pos=0.913] {$B = (\SI{34}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
 
-\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat} node [Bpin, pos=0.915] {$B = (\SI{41}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
+\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat} node [Bpin, pos=0.910] {$B = (\SI{41}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
 
-\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat} node [Bpin, pos=0.88] {$B = (\SI{48}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
+\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat} node [Bpin, pos=0.88] {$B = (\SI{48}{\mega\electronvolt})^4$};
+\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
 
 \end{axis}
 \end{tikzpicture}
