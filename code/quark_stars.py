@@ -134,7 +134,7 @@ class Model:
         return ϵint, nuint, ndint, nsint, neint
 
     def star(self, Pc, B14):
-        ϵ, nu, nd, ns, ne = self.eos(μQ, B=B14**4)
+        ϵ, nu, nd, ns, ne = self.eos(B=B14**4)
         rs, ms, Ps, αs, ϵs = soltov(ϵ, Pc, maxdr=tovopts["maxdr"])
         nus, nds, nss, nes = nu(Ps), nd(Ps), ns(Ps), ne(Ps)
 
@@ -287,8 +287,7 @@ if __name__ == "__main__":
     # TODO: remove old data files
     # TODO: make report use new data files
 
-    # TODO: plot 3D potential
-    # plot ω(σ, μu=μd=μ, 0)
+    # plot 3D potential for 2-flavor model with μu=μd
     model = LSM2Flavor()
     Δ = np.linspace(-1000, +1000, 100)
     μQ = np.linspace(0, 500, 50)
@@ -317,12 +316,15 @@ if __name__ == "__main__":
     heads = ["mu", "Delta", "Omega", "mu0", "Delta0", "Omega0"]
     utils.writecols(cols, heads, f"data/{model.name}/potential.dat", skipevery=len(μQ))
 
+    model = LSM3Flavor()
+    for Pc in [0.0006, 0.0008, 0.001]:
+        model.eos()
+        model.star(B14=38, Pc=Pc)
+
     for model in (LSM2Flavor(), LSM2FlavorConsistent(), LSM3Flavor()):
         μQ = np.linspace(0, 1000, 1000)[1:]
         model.eos(μQ, plot=True, write=True)
 
         # solve TOV equation for different bag pressures
-        for Pc in [0.0006, 0.0008, 0.001]:
-            model.star(B14=38, Pc=Pc)
         Bs = [6, 13, 20, 27, 34, 41, 48, 55, 62, 69, 76, 83, 90, 97, 104, 111, 118, 125, 132]
         model.stars(Bs, (1e-7, 1e1))
