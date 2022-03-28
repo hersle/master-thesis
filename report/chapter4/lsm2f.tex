@@ -690,10 +690,10 @@ Hopefully, this remark will save someone from enduring this painful realization 
 When matching the parameters in the one-loop grand potential \eqref{eq:lsm:grand_potential}, we used the curvature masses of the meson fields defined by the second derivative of the potential evaluated in the minimum corresponding to the classical ground state.
 This is the conventional approach used in the literature -- see for example \cite{ref:jo_lsm_consistent_chiral,ref:lsm_2f,ref:lsm2f_nuclear}.
 However, their physical masses correspond to the poles of their propagators, which are really shifted by loop corrections to the particles' self energies.
+Only at tree-level does the curvature mass correspond exactly to the pole mass.
 This means the parameter matching is done only at tree-level and is \emph{inconsistent} with the number of loops in the grand potential!
-The unphysical dependence on the cutoff scale $\Lambda$ in the grand potential is an indication of this inconsistency.
 
-In fact, \cite{ref:jo_lsm_consistent_chiral} consistently matches the parameters at one-loop level by relating the physical masses to the pion decay constant and running couplings to one-loop level in the chiral limit $h=0$.
+In fact, \cite{ref:jo_lsm_consistent_chiral} consistently matches the parameters at one-loop level by relating the physical masses to the pion decay constant and running masses and couplings at one-loop level in the chiral limit $h=0$.
 The work is done in the minimal renormalization scheme and large-$N_c$ limit, and is generalized to the physical point $h \neq 0$ that we consider here in \cite{ref:jo_lsm_consistent_physical}.
 Let us therefore repeat our calculations with their findings and investigate how it modifies our results.
 In equation (C13) they find the grand potential
@@ -704,7 +704,7 @@ In equation (C13) they find the grand potential
 \end{equation}
 where the last term in our case is the matter contribution from quarks and electrons in the two last lines of the grand potential \eqref{eq:lsm:grand_potential}.
 We now treat $\Delta = g_R \avg{\sigma}$ as an independent variable instead of $\avg{\sigma}$.
-Now all the coupling constants $m_R^2(\Lambda)$, $\lambda_R(\Lambda)$, $g_R(\Lambda)$ and $h_R(\Lambda)$ run with the renormalization scale $\Lambda$ and are expressed in terms of the physical masses $m_q$, $m_\pi$ and $m_\sigma$ and the pion decay constant $f_\pi$ in \cite[equation (B38)--(B39)]{ref:jo_lsm_consistent_physical}.
+Now all the masses and coupling $m_R^2(\Lambda)$, $\lambda_R(\Lambda)$, $g_R(\Lambda)$ and $h_R(\Lambda)$ run with the renormalization scale $\Lambda$ and are expressed in terms of the physical masses $m_q$, $m_\pi$ and $m_\sigma$ and the pion decay constant $f_\pi$ in \cite[equation (B38)--(B39)]{ref:jo_lsm_consistent_physical}.
 \iffalse
 \begin{equation}
 \begin{aligned}
@@ -729,11 +729,12 @@ After the running couplings have been inserted into the grand potential, it expl
 with the definitions
 \begin{equation}
 	F(p^2) = 2 - 2 r \atan \frac1r, \qquad
-	F'(p^2) = \frac{4 m_q^2 r}{p^2(4 m_q^2 - p^2)} \atan \frac1r - \frac{1}{p^2}, \qquad
+	F'(p^2) = \frac{4 m_q^2}{p^4 r} \atan \frac1r - \frac{1}{p^2}, \qquad
 	r = \sqrt{\frac{4 m_q^2}{p^2}-1} .
 \end{equation}
 Upon substitution of all the running couplings, the dependence on the renormalization scale $\Lambda$ has disappeared!
-This is the hallmark of a physical and mathematically consistent approach to renormalization.
+\TODO{conincidence}
+\TODO{make plots of potential in vacuum with varying sigma mass, like Folkestad and Andersen figure 22}
 
 \begin{figure}[p]
 \centering
@@ -865,7 +866,7 @@ The dark lines show the ``inconsistent'' results from \cref{fig:lsm:2-flavor-mas
 \end{figure}
 
 The potential is straightforward to evaluate using the physical masses and pion decay constant.
-\Cref{fig:lsm:2-flavor-eos-ref,fig:lsm:2-flavor-mass-radius-ref} compares results obtained with this ``consistently fit'' grand potential to our ``inconsistent'' results from \cref{fig:lsm:2-flavor-eos,fig:lsm:2-flavor-mass-radius}.
+\Cref{fig:lsm:2-flavor-eos-ref,fig:lsm:2-flavor-mass-radius-ref} compare results obtained with this ``consistently fit'' grand potential to our ``inconsistent'' results from \cref{fig:lsm:2-flavor-eos,fig:lsm:2-flavor-mass-radius}.
 The lower bag constant bound \eqref{eq:lsm:bag_lower_bound} is practically speaking unmodified, so we use the same bag constants as before.
 
 The differences are staggering!
