@@ -69,7 +69,12 @@ class Model:
         ne =  1/(3*π**2) * np.real((μe**2-me**2+0j)**(3/2))
         ϵ  = -P + μu*nu + μd*nd + μs*ns + μe*ne
 
-        # TODO: bag constant bound
+        # print bag constant (upper or lower, depending on circumstances) bound
+        nB = 1/3*(nu+nd+ns)
+        ϵB = 0 + μu*nu + μd*nd + μs*ns + μe*ne
+        f = scipy.interpolate.interp1d(P, ϵB/nB - 930)
+        Bmin = scipy.optimize.root_scalar(f, bracket=(0, 1e9), method="brentq").root
+        print(f"bag constant bound: B^(1/4) = {Bmin**(1/4)} MeV")
 
         if B is not None:
             ϵ += B
@@ -150,6 +155,39 @@ class Model:
             print(f"B = {B14}^4, outfile = {outfile}")
             ϵ, _, _, _, _ = self.eos(B=B14**4, plot=False)
             massradiusplot(ϵ, P1P2, **tovopts, visual=plot, outfile=outfile)
+
+class Bag2Flavor(Model):
+    def __init__(self):
+        Model.__init__(self, "MIT2F")
+        self.Ω = lambda Δ, Δy, μu, μd, μs, μe: -Nc/(12*π**2)*μu**4 - Nc/(12*π**2)*μd**4
+
+    def solve(self, μQ, guess):
+        def system(μe):
+            μu, μd, _ = μelim(μQ, μe)
+            return charge(0, 0, μu, μd, 0, μe) # hack to give Δy = 0
+        sol = scipy.optimize.root_scalar(system, bracket=(0,1e5), method="bisect") # lm and krylov workb
+        assert sol.converged, f"{sol.message} (μQ = {μQ})"
+        μe = sol.root
+        μu, μd, _ = μelim(μQ, μe)
+        Δx, Δy, μs = 0, 0, 0
+        return Δx, Δy, μu, μd, μs, μe
+
+class Bag3Flavor(Model):
+    def __init__(self):
+        Model.__init__(self, "MIT3F")
+        self.Ω = lambda Δ, Δy, μu, μd, μs, μe: -Nc/(12*π**2)*μu**4 - Nc/(12*π**2)*μd**4 - Nc/(12*π**2)*μs**4 - 1/(12*π**2)*μe**4
+
+    def solve(self, μQ, guess):
+        def system(μe):
+            μu, μd, μs = μelim(μQ, μe)
+            return charge(0, 0, μu, μd, μs, μe) # hack to give Δy = 0
+        sol = scipy.optimize.root_scalar(system, bracket=(0,1e5), method="bisect") # lm and krylov workb
+        assert sol.converged, f"{sol.message} (μQ = {μQ})"
+        μe = sol.root
+        μu, μd, μs = μelim(μQ, μe)
+        Δx, Δy = 0, 0
+        return Δx, Δy, μu, μd, μs, μe
+    
 
 class LSM2Flavor(Model):
     def __init__(self, renormalize=True):
@@ -327,7 +365,7 @@ if __name__ == "__main__":
     utils.writecols(cols, heads, f"data/{model.name}/potential.dat", skipevery=len(μQ))
 
     # TEST GROUND TODO: remove
-    model = LSM2Flavor()
+    model = Bag3Flavor()
     model.eos(np.linspace(0, 800, 200)[1:], plot=True)
     model.stars([27, 34, 41, 48], (1e-7, 1e1), plot=True)
 
