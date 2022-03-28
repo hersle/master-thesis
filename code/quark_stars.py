@@ -16,7 +16,7 @@ fK = 113
 mu = 300
 md = mu
 ms = 429 # only for guess
-mσ = 800
+mσ = 600
 mπ = 138
 mK = 496
 me = 0.5
@@ -73,7 +73,12 @@ class Model:
         nB = 1/3*(nu+nd+ns)
         ϵB = 0 + μu*nu + μd*nd + μs*ns + μe*ne
         f = scipy.interpolate.interp1d(P, ϵB/nB - 930)
-        Bmin = scipy.optimize.root_scalar(f, bracket=(0, 1e9), method="brentq").root
+        #eps = 1e-1
+        #df = lambda B: (f(B+eps/2)-f(B-eps/2)) / eps
+        #Bmin = np.linspace(1e3, 1e5)
+        #plt.plot(Bmin, f(Bmin), "-k.")
+        #plt.show()
+        Bmin = scipy.optimize.root_scalar(f, x0=0, x1=1, method="secant").root
         print(f"bag constant bound: B^(1/4) = {Bmin**(1/4)} MeV")
 
         if B is not None:
@@ -234,7 +239,7 @@ class LSM2Flavor(Model):
 
 class LSM2FlavorConsistent(LSM2Flavor):
     def __init__(self):
-        Model.__init__(self, "LSM2FC")
+        Model.__init__(self, "LSM2FC_sigma600")
 
         Δ, μu, μd, μe = sp.symbols("Δ μ_u μ_d μ_e", complex=True)
         def r(p2): return sp.sqrt(4*mu**2/p2-1)
@@ -376,6 +381,7 @@ if __name__ == "__main__":
         model.star(B14=38, Pc=Pc)
     """
 
+    """
     for model in (Bag2Flavor(), Bag3Flavor()):
         μQ = np.linspace(0, 1000, 1000)[1:]
         model.eos(μQ, plot=True, write=True)
@@ -383,8 +389,10 @@ if __name__ == "__main__":
         # solve TOV equation for different bag pressures
         Bs = [144, 163]
         model.stars(Bs, (1e-7, 1e1), write=True)
+    """
 
-    for model in (LSM2Flavor(), LSM2FlavorConsistent(), LSM3Flavor()):
+    #for model in (LSM2Flavor(), LSM2FlavorConsistent(), LSM3Flavor()):
+    for model in (LSM2FlavorConsistent(),):
         μQ = np.linspace(0, 1000, 1000)[1:]
         model.eos(μQ, plot=True, write=True)
 
