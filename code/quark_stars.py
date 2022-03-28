@@ -15,7 +15,7 @@ fπ = 93
 fK = 113
 mu = 300
 md = mu
-ms = 429
+ms = 429 # only for guess
 mσ = 800
 mπ = 138
 mK = 496
@@ -106,6 +106,7 @@ class Model:
 
         if plot:
             fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 5))
+
             ax1.set_xlabel(r"$\mu_Q$")
             ax1.plot(μQ, Δx, color="orange")
             ax1.plot(μQ, Δy, color="yellow")
@@ -185,7 +186,7 @@ class LSM2Flavor(Model):
             μu, μd, _ = μelim(μQ, μe)
             μs = 0
             return (self.dΩ(Δx, 0, μu, μd, 0, μe), Δy, charge(Δx, 0, μu, μd, 0, μe)) # hack to give Δy = 0
-        sol = scipy.optimize.root(system, guess, method="lm") # lm works, hybr works but unstable for small μ
+        sol = scipy.optimize.root(system, guess, method="lm") # lm and krylov workb
         assert sol.success, f"{sol.message} (μQ = {μQ})"
         Δx, Δy, μe = sol.x
         μu, μd, _ = μelim(μQ, μe)
@@ -199,22 +200,29 @@ class LSM2FlavorConsistent(LSM2Flavor):
         Δ, μu, μd, μe = sp.symbols("Δ μ_u μ_d μ_e", complex=True)
         def r(p2): return sp.sqrt(4*mu**2/p2-1)
         def F(p2): return 2 - 2*r(p2)*sp.atan(1/r(p2))
-        def dF(p2): return 4*mu**2*r(p2)/(p2*(4*mu**2-r(p2)**2))*sp.atan(1/r(p2))-1/p2
-        Ω = (3/4*mπ**2*fπ**2*(1-4*mu**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ**2 / mu**2 -
-             mσ**2*fπ**2/4*(1+4*mu**2*Nc/(16*π**2*fπ**2)*((1-4*mu**2/mσ**2)*F(mσ**2)+4*mu**2/mσ**2-F(mπ**2)-mπ**2*dF(mπ**2))) * Δ**2/mu**2 +
-             mσ**2*fπ**2/8*(1-4*mu**2*Nc/(16*π**2*fπ**2)*(4*mu**2/mσ**2*sp.log(Δ**2/mu**2)-(1-4*mu**2/mσ**2)*F(mσ**2)+F(mπ**2)+mπ**2*dF(mπ**2)))* Δ**4 / mu**4 -
-             mπ**2*fπ**2/8*(1-4*mu**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ**4/mu**4 -
-             mπ**2*fπ**2*(1-4*mu**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ/mu +
-             3*Nc/(16*π**2) * Δ**4 -
-             Nc/(24*π**2)*((2*μu**2-5*Δ**2)*μu*sp.sqrt(μu**2-Δ**2)+3*Δ**4*sp.asinh(sp.sqrt(μu**2/Δ**2-1))) -
-             Nc/(24*π**2)*((2*μd**2-5*Δ**2)*μd*sp.sqrt(μd**2-Δ**2)+3*Δ**4*sp.asinh(sp.sqrt(μd**2/Δ**2-1))) -
-             1/(24*π**2)*((2*μe**2-5*me**2)*μe*sp.sqrt(μe**2-me**2)+3*me**4*sp.asinh(sp.sqrt(μe**2/me**2-1))))
+        def dF(p2): return 4*mu**2*r(p2)/(p2*(4*mu**2-p2))*sp.atan(1/r(p2))-1/p2
+        Ω  = 3/4*mπ**2*fπ**2*(1-4*mu**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ**2 / mu**2
+        Ω -= mσ**2*fπ**2/4*(1+4*mu**2*Nc/(16*π**2*fπ**2)*((1-4*mu**2/mσ**2)*F(mσ**2)+4*mu**2/mσ**2-F(mπ**2)-mπ**2*dF(mπ**2))) * Δ**2/mu**2
+        Ω += mσ**2*fπ**2/8*(1-4*mu**2*Nc/(16*π**2*fπ**2)*(4*mu**2/mσ**2*sp.log(Δ**2/mu**2)-(1-4*mu**2/mσ**2)*F(mσ**2)+F(mπ**2)+mπ**2*dF(mπ**2)))* Δ**4 / mu**4
+        Ω -= mπ**2*fπ**2/8*(1-4*mu**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ**4/mu**4
+        Ω -= mπ**2*fπ**2*(1-4*mu**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ/mu
+        Ω += 3*Nc/(16*π**2) * Δ**4
+        Ω -= Nc/(24*π**2)*((2*μu**2-5*Δ**2)*μu*sp.sqrt(μu**2-Δ**2)+3*Δ**4*sp.asinh(sp.sqrt(μu**2/Δ**2-1)))
+        Ω -= Nc/(24*π**2)*((2*μd**2-5*Δ**2)*μd*sp.sqrt(μd**2-Δ**2)+3*Δ**4*sp.asinh(sp.sqrt(μd**2/Δ**2-1)))
+        Ω -= 1/(24*π**2)*((2*μe**2-5*me**2)*μe*sp.sqrt(μe**2-me**2)+3*me**4*sp.asinh(sp.sqrt(μe**2/me**2-1)))
+
         dΩ = sp.diff(Ω, Δ)
+        dΩ = sp.lambdify((Δ, μu, μd, μe), dΩ, "numpy")
+        self.dΩ = lambda Δ, Δy, μu, μd, μs, μe: np.real(dΩ(Δ+0j, μu+0j, μd+0j, μe+0j))
 
         Ω  = sp.lambdify((Δ, μu, μd, μe),  Ω, "numpy")
-        dΩ = sp.lambdify((Δ, μu, μd, μe), dΩ, "numpy")
         self.Ω  = lambda Δ, Δy, μu, μd, μs, μe: np.real( Ω(Δ+0j, μu+0j, μd+0j, μe+0j))
-        self.dΩ = lambda Δ, Δy, μu, μd, μs, μe: np.real(dΩ(Δ+0j, μu+0j, μd+0j, μe+0j))
+
+        """
+        # TODO: numerical diff also works well
+        eps = 0.1
+        self.dΩ = lambda Δ, Δy, μu, μd, μs, μe: (self.Ω(Δ+eps/2,Δy,μu,μd,μs,μe)-self.Ω(Δ-eps/2,Δy,μu,μd,μs,μe))/eps
+        """
 
 class LSM3Flavor(Model):
     def __init__(self):
@@ -318,7 +326,7 @@ if __name__ == "__main__":
     utils.writecols(cols, heads, f"data/{model.name}/potential.dat", skipevery=len(μQ))
 
     # TEST GROUND TODO: remove
-    model = LSM2Flavor(False)
+    model = LSM2FlavorConsistent()
     model.eos(np.linspace(0, 800, 200)[1:], plot=True)
     model.stars([27, 34, 41, 48], (1e-7, 1e1), plot=True)
 
