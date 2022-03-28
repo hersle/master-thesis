@@ -16,7 +16,7 @@ fK = 113
 mu = 300
 md = mu
 ms = 429 # only for guess
-mσ = 600
+mσ = 800
 mπ = 138
 mK = 496
 me = 0.5
@@ -195,7 +195,7 @@ class Bag3Flavor(Model):
         return Δx, Δy, μu, μd, μs, μe
 
 class LSM2Flavor(Model):
-    def __init__(self, renormalize=True):
+    def __init__(self, mu=mu, md=md, mσ=mσ, mπ=mπ, renormalize=True):
         Model.__init__(self, "LSM2F")
 
         Nf = 2
@@ -225,6 +225,9 @@ class LSM2Flavor(Model):
         self.dΩ = lambda Δ, Δy, μu, μd, μs, μe: np.real(dΩ(Δ+0j, μu+0j, μd+0j, μe+0j))
 
     def solve(self, μQ, guess):
+        # TODO: handle phase transition
+        # if μQ > 313:
+            # guess = (150, guess[1], guess[2])
         def system(Δx_Δy_μe):
             Δx, Δy, μe = Δx_Δy_μe # unpack variables
             μu, μd, _ = μelim(μQ, μe)
@@ -238,7 +241,7 @@ class LSM2Flavor(Model):
         return Δx, Δy, μu, μd, μs, μe
 
 class LSM2FlavorConsistent(LSM2Flavor):
-    def __init__(self):
+    def __init__(self, mu=mu, md=md, mσ=mσ, mπ=mπ):
         Model.__init__(self, "LSM2FC_sigma600")
 
         Δ, μu, μd, μe = sp.symbols("Δ μ_u μ_d μ_e", complex=True)
@@ -269,7 +272,7 @@ class LSM2FlavorConsistent(LSM2Flavor):
         """
 
 class LSM3Flavor(Model):
-    def __init__(self):
+    def __init__(self, mu=mu, md=md, ms=ms, mσ=mσ, mπ=mπ, mK=mK):
         Model.__init__(self, "LSM3F")
         def system(m2_λ1_λ2):
             m2, λ1, λ2 = m2_λ1_λ2
@@ -334,6 +337,15 @@ class LSM3Flavor(Model):
         μu, μd, μs = μelim(μQ, μe)
         return Δx, Δy, μu, μd, μs, μe
 
+def plot_vacuum_potentials(models, mσs=[500, 600, 700, 800, 900]):
+    Δx = np.linspace(0, 600)
+    for model in models:
+        for mσ in mσs:
+            Δy = 0
+            Ω = model(mσ=mσ).Ω(Δx, Δy, 0, 0, 0, 0) # in vacuum
+            plt.plot(Δx, Ω)
+    plt.show()
+
 if __name__ == "__main__":
     # plot massive, interacting and massless, free equation of state
 
@@ -370,16 +382,16 @@ if __name__ == "__main__":
     utils.writecols(cols, heads, f"data/{model.name}/potential.dat", skipevery=len(μQ))
 
     # TEST GROUND TODO: remove
-    """
-    model = Bag3Flavor()
-    model.eos(np.linspace(0, 800, 200)[1:], plot=True)
+    #plot_vacuum_potentials((LSM2Flavor, LSM2FlavorConsistent), (800,))
+    model = LSM2Flavor(mσ=700)
+    #model.vacuum_potential(plot=True)
+    model.eos(np.linspace(0, 800, 200)[1:], B=0**4, plot=True)
     model.stars([27, 34, 41, 48], (1e-7, 1e1), plot=True)
 
-    model = LSM3Flavor()
+    model = LSM2Flavor()
     for Pc in [0.0006, 0.0008, 0.001]:
-        model.eos()
+        model.eos(B=40**4, plot=True)
         model.star(B14=38, Pc=Pc)
-    """
 
     """
     for model in (Bag2Flavor(), Bag3Flavor()):
