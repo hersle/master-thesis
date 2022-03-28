@@ -211,6 +211,32 @@ Only the two-flavor bound has been observed,
 while the three-flavor bound is a quite reckless assumption that should certainly be taken with a grain of salt.
 It will, however, be very useful to have \emph{some} bound for the bag constant in order to constrain the parameter space of equations of state later on.
 
+% TODO: start here
+\begin{figure}[bh!]
+\centering
+\tikzsetnextfilename{bag-mass-radius}
+\begin{tikzpicture}
+\begin{axis}[
+	width=15cm, height=12cm,
+	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for bag-model quark stars }, title style={yshift=2.0cm},
+	xmin=0, xmax=15, ymin=0.0, ymax=2.2, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
+	point meta=explicit, point meta min=32, point meta max=39,
+	colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+	declare function={
+		e0 = 4.266500881855304e+37;
+	},
+	legend pos=north east, legend cell align=right,
+]
+\tikzset{
+	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
+}
+\addplot+ [mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_B14_144.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_B14_163.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\end{axis}
+\end{tikzpicture}
+\caption{\TODO{MIT bag model 2 and 3 flavors}}
+\end{figure}
+
 \TODO{titles}
 
 \TODO{units, $\hbar = c = G = k_B = 1$ or not?}

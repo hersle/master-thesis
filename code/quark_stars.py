@@ -159,7 +159,7 @@ class Model:
 class Bag2Flavor(Model):
     def __init__(self):
         Model.__init__(self, "MIT2F")
-        self.Ω = lambda Δ, Δy, μu, μd, μs, μe: -Nc/(12*π**2)*μu**4 - Nc/(12*π**2)*μd**4
+        self.Ω = lambda Δ, Δy, μu, μd, μs, μe: -Nc/(12*π**2)*μu**4 - Nc/(12*π**2)*μd**4 - 1/(12*π**2)*μe**4
 
     def solve(self, μQ, guess):
         def system(μe):
@@ -172,6 +172,7 @@ class Bag2Flavor(Model):
         Δx, Δy, μs = 0, 0, 0
         return Δx, Δy, μu, μd, μs, μe
 
+# has same EOS (ϵ = 3P + 4B) as MIT2F
 class Bag3Flavor(Model):
     def __init__(self):
         Model.__init__(self, "MIT3F")
@@ -187,7 +188,6 @@ class Bag3Flavor(Model):
         μu, μd, μs = μelim(μQ, μe)
         Δx, Δy = 0, 0
         return Δx, Δy, μu, μd, μs, μe
-    
 
 class LSM2Flavor(Model):
     def __init__(self, renormalize=True):
@@ -365,6 +365,7 @@ if __name__ == "__main__":
     utils.writecols(cols, heads, f"data/{model.name}/potential.dat", skipevery=len(μQ))
 
     # TEST GROUND TODO: remove
+    """
     model = Bag3Flavor()
     model.eos(np.linspace(0, 800, 200)[1:], plot=True)
     model.stars([27, 34, 41, 48], (1e-7, 1e1), plot=True)
@@ -373,6 +374,15 @@ if __name__ == "__main__":
     for Pc in [0.0006, 0.0008, 0.001]:
         model.eos()
         model.star(B14=38, Pc=Pc)
+    """
+
+    for model in (Bag2Flavor(), Bag3Flavor()):
+        μQ = np.linspace(0, 1000, 1000)[1:]
+        model.eos(μQ, plot=True, write=True)
+
+        # solve TOV equation for different bag pressures
+        Bs = [144, 163]
+        model.stars(Bs, (1e-7, 1e1), write=True)
 
     for model in (LSM2Flavor(), LSM2FlavorConsistent(), LSM3Flavor()):
         μQ = np.linspace(0, 1000, 1000)[1:]
