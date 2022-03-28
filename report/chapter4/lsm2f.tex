@@ -112,16 +112,39 @@ the symmetry is \emph{spontaneously} broken down to rotations of only the pion q
 This gives rise to three Goldstone bosons that we interpret as \emph{massless} pions, as confirmed by equation \eqref{eq:lsm:mass_pi} with $h = 0$.
 We work in the general case, however, where $h \neq 0$ instead breaks the symmetry \emph{explicitly} by tilting the hat so it has the discrete minimum \eqref{eq:lsm:ground_state_implicit}, ultimately producing \emph{massive} pions, like those observed in nature.
 
-We determine the four parameters $g$, $h$, $m$ and $\lambda$ in the original Lagrangian \eqref{eq:lsm:lagrangian} so that it yields the physical masses
-\cite{ref:jo_lsm_consistent_chiral}
-\TODO{source?}
-\TODO{``traditional''/rounded values of constituent quark masses, e.g. $m_u \approx m_n / 3 \approx 300 MeV$}
-\begin{equation}
-	m_q = \SI{300}{\mega\electronvolt}, \quad
-	m_\pi = \SI{138}{\mega\electronvolt} \quad \text{and} \quad
-	m_\sigma = \SI{800}{\mega\electronvolt} \quad \text{at} \quad
-	\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}.
-\end{equation}
+\begin{table}
+\centering
+\begin{tabular}{ l r }
+	\toprule
+	Parameter   & Value                                 \\
+	\midrule
+	$g$         & $\SI{3.23}{}$                         \\
+	$\lambda$   & $-\SI{215.4}{}$                        \\
+	$m^2$       & $-(\SI{539.8}{\mega\electronvolt})^2$ \\
+	$h$         & $(\SI{121.0}{\mega\electronvolt})^3$  \\
+	\bottomrule
+\end{tabular}
+\hfill
+\begin{tabular}{ l r r }
+	\toprule
+	Physical variable & Model value                             & Experimental value                      \\
+	\midrule
+	$f_\pi$           & $\textbf{\SI{93}{\mega\electronvolt}}$  & \TODO{?}                                         \\
+	\midrule
+	$m_u=m_d$         & $\textbf{\SI{300}{\mega\electronvolt}}$ & \TODO{?}                                         \\
+	\midrule
+	$m_\sigma$        & $\textbf{\SI{800}{\mega\electronvolt}}$ & \SI{400}{}-\SI{700}{\mega\electronvolt}          \\
+	$m_\pi$           & $\textbf{\SI{138}{\mega\electronvolt}}$ & \SI{138}{\mega\electronvolt}                     \\
+	\bottomrule
+\end{tabular}
+\caption{\label{tab:lsm2f:parameters}%
+Parameter fit for the two-flavor linear sigma model in vacuum compared to experimental values from \cite{ref:pdg_review_2021}.
+The \textbf{bold values} in the right table are used as input to determine the four model parameters in the left table.
+\TODO{value of $m_\sigma$?}
+}
+\end{table}
+
+We determine the four parameters $g$, $h$, $m$ and $\lambda$ in the original Lagrangian \eqref{eq:lsm:lagrangian} from values of $m_q$, $m_\pi$, $m_\sigma$ and $\avg{\sigma}$ in vacuum.
 Inverting equations \eqref{eq:lsm:ground_state_implicit}, \eqref{eq:lsm:mass_sigmapi} and \eqref{eq:lsm:mass_quark}, we then find the parameters
 \begin{equation}
 	g       = \frac{m_q}{f_\pi}, \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
@@ -130,6 +153,7 @@ Inverting equations \eqref{eq:lsm:ground_state_implicit}, \eqref{eq:lsm:mass_sig
 	\lambda = \frac{3 m_\sigma^2 - 3 m_\pi^2}{f_\pi^2} .    % &\qquad& \text{(by \eqref{eq:lsm:ground_state_implicit})} .
 \label{eq:lsm:parameters}
 \end{equation}
+The input values and output parameters are shown in \cref{tab:lsm2f:parameters}.
 
 According to what we learned in \cref{chap:tft} in \cref{eq:tft:boson_partition_function_momentum_out} and \eqref{eq:tft:dirac_partition_function_first},
 the exact partition function corresponding to this theory is obtained by a path integral over periodic bosonic fields and anti-periodic fermionic fields, weighted by a Euclidean action in imaginary time:
