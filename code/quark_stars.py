@@ -45,18 +45,18 @@ class Model:
     def __init__(self, name):
         self.name = name
 
-    def eos(self, μQ=tovμQ, B=None, nint=False, name="ϵ", plot=False, write=False):
-        Δx = np.empty_like(μQ)
-        Δy = np.empty_like(μQ)
-        μu = np.empty_like(μQ)
-        μd = np.empty_like(μQ)
-        μs = np.empty_like(μQ)
-        μe = np.empty_like(μQ)
-        Ω  = np.empty_like(μQ)
+    def eos(self, Δx, B=None, nint=False, name="ϵ", plot=False, write=False):
+        Δy = np.empty_like(Δx)
+        μQ = np.empty_like(Δx)
+        μu = np.empty_like(Δx)
+        μd = np.empty_like(Δx)
+        μs = np.empty_like(Δx)
+        μe = np.empty_like(Δx)
+        Ω  = np.empty_like(Δx)
 
-        for i in range(0, len(μQ)):
-            guess = (Δx[i-1], Δy[i-1], μe[i-1]) if i > 0 else (mu, ms, 0) # use previous solution
-            Δx[i], Δy[i], μu[i], μd[i], μs[i], μe[i] = self.solve(μQ[i], guess)
+        for i in range(0, len(Δx)):
+            guess = (μQ[i-1], Δy[i-1], μe[i-1]) if i > 0 else (300, ms, 0) # use previous solution
+            μQ[i], Δy[i], μu[i], μd[i], μs[i], μe[i] = self.solve(Δx[i], guess)
             Ω[i] = self.Ω(Δx[i], Δy[i], μu[i], μd[i], μs[i], μe[i])
             print(f"Δx = {Δx[i]:.2f}, Δy = {Δy[i]:.2f}, ", end="")
             print(f"μQ = {μQ[i]:.2f}, μu = {μu[i]:.2f}, μd = {μd[i]:.2f}, μs = {μs[i]:.2f}, μe = {μe[i]:.2f}")
@@ -224,21 +224,21 @@ class LSM2Flavor(Model):
         self.Ω  = lambda Δ, Δy, μu, μd, μs, μe: np.real( Ω(Δ+0j, μu+0j, μd+0j, μe+0j))
         self.dΩ = lambda Δ, Δy, μu, μd, μs, μe: np.real(dΩ(Δ+0j, μu+0j, μd+0j, μe+0j))
 
-    def solve(self, μQ, guess):
+    def solve(self, Δx, guess):
         # TODO: handle phase transition
         # if μQ > 313:
             # guess = (150, guess[1], guess[2])
-        def system(Δx_Δy_μe):
-            Δx, Δy, μe = Δx_Δy_μe # unpack variables
+        def system(μQ_Δy_μe):
+            μQ, Δy, μe = μQ_Δy_μe # unpack variables
             μu, μd, _ = μelim(μQ, μe)
             μs = 0
             return (self.dΩ(Δx, 0, μu, μd, 0, μe), Δy, charge(Δx, 0, μu, μd, 0, μe)) # hack to give Δy = 0
         sol = scipy.optimize.root(system, guess, method="lm") # lm and krylov workb
         assert sol.success, f"{sol.message} (μQ = {μQ})"
-        Δx, Δy, μe = sol.x
+        μQ, Δy, μe = sol.x
         μu, μd, _ = μelim(μQ, μe)
         Δy, μs = 0, 0
-        return Δx, Δy, μu, μd, μs, μe
+        return μQ, Δy, μu, μd, μs, μe
 
 class LSM2FlavorConsistent(LSM2Flavor):
     def __init__(self, mu=mu, md=md, mσ=mσ, mπ=mπ):
@@ -383,9 +383,9 @@ if __name__ == "__main__":
 
     # TEST GROUND TODO: remove
     #plot_vacuum_potentials((LSM2Flavor, LSM2FlavorConsistent), (800,))
-    model = LSM2Flavor(mσ=800)
+    model = LSM2Flavor(mσ=600)
     #model.vacuum_potential(plot=True)
-    model.eos(np.linspace(0, 800, 200)[1:], B=0**4, plot=True)
+    model.eos(np.linspace(300, 0, 200)[:-1], B=0**4, plot=True)
     model.stars([27, 34, 41, 48], (1e-7, 1e1), plot=True)
 
     model = LSM2Flavor()
