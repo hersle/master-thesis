@@ -46,7 +46,7 @@ class Model:
     def __init__(self, name):
         self.name = name
 
-    def eos(self, Δx, B=None, nint=False, name="ϵ", plot=False, write=False):
+    def eos(self, Δx, maxwell=True, B=None, nint=False, name="ϵ", plot=False, write=False):
         Δy = np.empty_like(Δx)
         μQ = np.empty_like(Δx)
         μu = np.empty_like(Δx)
@@ -64,6 +64,38 @@ class Model:
 
         P, P0 = -Ω, -Ω[0]
         P = P - P0
+
+        if False and maxwell: # effectively connect stable branches by straight vertical line
+            Pnew = [P[0]]
+            Δxnew = [Δx[0]]
+            Δynew = [Δy[0]]
+            μQnew = [μQ[0]]
+            μunew = [μu[0]]
+            μdnew = [μd[0]]
+            μsnew = [μs[0]]
+            μenew = [μe[0]]
+            Ωnew  = [Ω[0]]
+            for i in range(1, len(P)):
+                if P[i] > Pnew[-1]:
+                    Pnew.append(P[i])
+                    Δxnew.append(Δx[i])
+                    Δynew.append(Δy[i])
+                    μQnew.append(μQ[i])
+                    μunew.append(μu[i])
+                    μdnew.append(μd[i])
+                    μsnew.append(μs[i])
+                    μenew.append(μe[i])
+                    Ωnew.append(Ω[i])
+            P = np.array(Pnew)
+            Δx = np.array(Δxnew)
+            Δy = np.array(Δynew)
+            μQ = np.array(μQnew)
+            μu = np.array(μunew)
+            μd = np.array(μdnew)
+            μs = np.array(μsnew)
+            μe = np.array(μenew)
+            Ω = np.array(Ωnew)
+
         nu = Nc/(3*π**2) * np.real((μu**2-Δx**2+0j)**(3/2))
         nd = Nc/(3*π**2) * np.real((μd**2-Δx**2+0j)**(3/2))
         ns = Nc/(3*π**2) * np.real((μs**2-Δy**2+0j)**(3/2))
@@ -128,10 +160,10 @@ class Model:
 
             ax2.set_xlabel(r"$\mu_Q$")
             ax2.set_ylabel(r"$n$")
-            ax2.plot(μQ, nu, color="red")
-            ax2.plot(μQ, nd, color="green")
-            ax2.plot(μQ, ns, color="purple")
-            ax2.plot(μQ, ne, color="blue")
+            ax2.plot(μQ, nu, ".-", color="red")
+            ax2.plot(μQ, nd, ".-", color="green")
+            ax2.plot(μQ, ns, ".-", color="purple")
+            ax2.plot(μQ, ne, ".-", color="blue")
 
             ax3.set_xlabel(r"$P$")
             ax3.set_ylabel(r"$\epsilon$")
@@ -156,10 +188,11 @@ class Model:
         utils.writecols(cols, heads, outfile)
 
     def stars(self, B14s, P1P2, plot=False, write=False):
+        Δ = np.linspace(300, 0, 700)[:-1]
         for B14 in B14s:
             outfile = f"data/{self.name}/stars_B14_{B14}.dat" if write else ""
             print(f"B = {B14}^4, outfile = {outfile}")
-            ϵ, _, _, _, _ = self.eos(B=B14**4, plot=False)
+            ϵ, _, _, _, _ = self.eos(Δ, B=B14**4, plot=False)
             massradiusplot(ϵ, P1P2, **tovopts, visual=plot, outfile=outfile)
 
 class Bag2Flavor(Model):
