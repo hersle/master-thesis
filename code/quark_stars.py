@@ -9,6 +9,7 @@ import sympy as sp
 import scipy.optimize
 import scipy.interpolate
 import matplotlib.pyplot as plt
+import mayavi.mlab as mlab
 
 Nc = 3
 fπ = 93
@@ -24,7 +25,7 @@ me = 0.5
 σx0 = fπ
 σy0 = np.sqrt(2)*fK-fπ/np.sqrt(2)
 
-tovopts = {"tolD": 0.125, "maxdr": 1e-2, "nmodes": 0}
+tovopts = {"tolD": 0.500, "maxdr": 1e-2, "nmodes": 0}
 tovμQ = np.concatenate([np.linspace(0, 700, 200)[1:], np.linspace(700, 5000, 100)])
 
 def charge(Δx, Δy, μu, μd, μs, μe):
@@ -233,8 +234,8 @@ class LSM2Flavor(Model):
             μu, μd, _ = μelim(μQ, μe)
             μs = 0
             return (self.dΩ(Δx, 0, μu, μd, 0, μe), Δy, charge(Δx, 0, μu, μd, 0, μe)) # hack to give Δy = 0
-        sol = scipy.optimize.root(system, guess, method="lm") # lm and krylov workb
-        assert sol.success, f"{sol.message} (μQ = {μQ})"
+        sol = scipy.optimize.root(system, guess, method="lm") # lm and krylov works
+        assert sol.success, f"{sol.message} (Δx = {Δx})"
         μQ, Δy, μe = sol.x
         μu, μd, _ = μelim(μQ, μe)
         Δy, μs = 0, 0
@@ -273,7 +274,7 @@ class LSM2FlavorConsistent(LSM2Flavor):
 
 class LSM3Flavor(Model):
     def __init__(self, mu=mu, md=md, ms=ms, mσ=mσ, mπ=mπ, mK=mK):
-        Model.__init__(self, "LSM3F")
+        Model.__init__(self, f"LSM3F_sigma{mσ}")
         def system(m2_λ1_λ2):
             m2, λ1, λ2 = m2_λ1_λ2
             m2σσ00 = m2 + λ1/3*(4*np.sqrt(2)*σx0*σy0+7*σx0**2+5*σy0**2) + λ2*(σx0**2+σy0**2)
@@ -324,27 +325,60 @@ class LSM3Flavor(Model):
         self.dΩx = lambda Δx, Δy, μu, μd, μs, μe: np.real(dΩx(Δx+0j, Δy+0j, μu+0j, μd+0j, μs+0j, μe+0j))
         self.dΩy = lambda Δx, Δy, μu, μd, μs, μe: np.real(dΩy(Δx+0j, Δy+0j, μu+0j, μd+0j, μs+0j, μe+0j))
 
-    def solve(self, μQ, guess):
-        def system(Δx_Δy_μe):
-            Δx, Δy, μe = Δx_Δy_μe # unpack variables
+    def solve(self, Δx, guess):
+        def system(μQ_Δy_μe):
+            μQ, Δy, μe = μQ_Δy_μe # unpack variables
             μu, μd, μs = μelim(μQ, μe)
             return (self.dΩx(Δx, Δy, μu, μd, μs, μe),
                     self.dΩy(Δx, Δy, μu, μd, μs, μe),
                     charge(Δx, Δy, μu, μd, μs, μe))
         sol = scipy.optimize.root(system, guess, method="lm") # lm works, hybr works but unstable for small μ
-        assert sol.success, f"{sol.message} (μQ = {μQ0})"
-        Δx, Δy, μe = sol.x
+        assert sol.success, f"{sol.message} (Δx = {Δx})"
+        μQ, Δy, μe = sol.x
         μu, μd, μs = μelim(μQ, μe)
-        return Δx, Δy, μu, μd, μs, μe
+        return μQ, Δy, μu, μd, μs, μe
 
-def plot_vacuum_potentials(models, mσs=[500, 600, 700, 800, 900]):
-    Δx = np.linspace(0, 600)
-    for model in models:
-        for mσ in mσs:
-            Δy = 0
-            Ω = model(mσ=mσ).Ω(Δx, Δy, 0, 0, 0, 0) # in vacuum
-            plt.plot(Δx, Ω)
-    plt.show()
+def plot_vacuum_potentials(model, Δx, Δy, write=False):
+    #fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+    fig, axl = plt.subplots()
+    axr = axl.twinx()
+    ΔxΔx, ΔyΔy = np.meshgrid(Δx, Δy)
+
+    Ωf = lambda Δx, Δy: model.Ω(Δx, Δy, 0, 0, 0, 0) / fπ**4 # in vacuum
+
+    Ω = Ωf(ΔxΔx, ΔyΔy)
+    Ω0 = np.max(np.abs(Ω))
+    mlab.mesh(ΔxΔx / Δx[-1], ΔyΔy / Δy[-1], Ω / Ω0)
+    mlab.axes()
+    mlab.mesh(ΔxΔx / Δx[-1], ΔyΔy / Δy[-1], Ω / Ω0, representation="wireframe")
+
+    min = scipy.optimize.minimize(lambda ΔxΔy: Ωf(ΔxΔy[0], ΔxΔy[1]), x0=(mu, ms), method="Nelder-Mead")
+    if min.success:
+        Δx0, Δy0 = min.x
+        print(f"mσ = {mσ} MeV: found minimum at Δx = {Δx0:.0f} MeV, Δy = {Δy0:.0f} MeV")
+        Ωx0 = Ωf(Δx, Δy0)
+        Ωy0 = Ωf(Δx0, Δy)
+        mlab.plot3d(np.full(Δy.shape, Δx0) / Δx[-1], Δy / Δy[-1], Ωy0 / Ω0)
+        mlab.plot3d(Δx / Δx[-1], np.full(Δx.shape, Δy0) / Δy[-1], Ωx0 / Ω0)
+    else:
+        print(f"mσ = {mσ} MeV: no minimum!")
+    # TODO: minimum moves in 3-flavor case due to one renormalization scale Λ?
+
+    """
+    Δx0, Δy0 = scipy.optimize.minimize(lambda ΔxΔy: Ωf(ΔxΔy[0], ΔxΔy[1]), x0=(mu, ms), method="Nelder-Mead").x
+    axl.plot(Δx, Ωf(Δx, Δy0), color="red")
+    axl.scatter(Δx0, Ωf(Δx0, Δy0), color="red")
+    axr.plot(Δy, Ωf(Δx0, Δy), color="blue")
+    axr.scatter(Δy0, Ωf(Δx0, Δy0), color="blue")
+    """
+
+    if write:
+        cols  = [ΔxΔx.flatten(), ΔyΔy.flatten(), Ω.flatten()] 
+        heads = ["Deltax", "Deltay", "Omega"]
+        utils.writecols(cols, heads, f"data/{model.name}/potential_vacuum.dat")
+
+    mlab.show()
+    # plt.show()
 
 if __name__ == "__main__":
     # plot massive, interacting and massless, free equation of state
@@ -353,6 +387,7 @@ if __name__ == "__main__":
     # TODO: make report use new data files
 
     # plot 3D potential for 2-flavor model with μu=μd
+    """
     model = LSM2Flavor()
     Δ = np.linspace(-1000, +1000, 100)
     μQ = np.linspace(0, 500, 50)
@@ -380,13 +415,18 @@ if __name__ == "__main__":
     cols = [μQc, Δc, list(np.array(Ωc)/100**4), μQc, list(Δ0), list(Ω0/100**4)]
     heads = ["mu", "Delta", "Omega", "mu0", "Delta0", "Omega0"]
     utils.writecols(cols, heads, f"data/{model.name}/potential.dat", skipevery=len(μQ))
+    """
 
     # TEST GROUND TODO: remove
-    #plot_vacuum_potentials((LSM2Flavor, LSM2FlavorConsistent), (800,))
-    model = LSM2Flavor(mσ=600)
-    #model.vacuum_potential(plot=True)
-    model.eos(np.linspace(300, 0, 200)[:-1], B=0**4, plot=True)
-    model.stars([27, 34, 41, 48], (1e-7, 1e1), plot=True)
+    Δ = np.linspace(-1000, +1000, 50)
+    plot_vacuum_potentials(LSM3Flavor(mσ=700), Δ, Δ, write=True)
+    exit()
+
+    model = LSM2Flavor(mσ=500) # TODO: need mσ > 600 to avoid starting backwards?
+    Δ = np.linspace(-500, +500, 50)
+    plot_vacuum_potentials([LSM2Flavor], Δ, Δ, [400, 450, 500, 550])
+    model.eos(np.linspace(300, 0, 500)[:-1], B=0**4, plot=True)
+    model.stars([27, 34, 41, 48], (1e-7, 1e-1), plot=True)
 
     model = LSM2Flavor()
     for Pc in [0.0006, 0.0008, 0.001]:
