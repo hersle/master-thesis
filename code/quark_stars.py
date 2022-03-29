@@ -307,7 +307,7 @@ class LSM2FlavorConsistent(LSM2Flavor):
 
 class LSM3Flavor(Model):
     def __init__(self, mu=mu, md=md, ms=ms, mσ=mσ, mπ=mπ, mK=mK):
-        Model.__init__(self, f"LSM3F_sigma{mσ}")
+        Model.__init__(self, f"LSM3F")
         def system(m2_λ1_λ2):
             m2, λ1, λ2 = m2_λ1_λ2
             m2σσ00 = m2 + λ1/3*(4*np.sqrt(2)*σx0*σy0+7*σx0**2+5*σy0**2) + λ2*(σx0**2+σy0**2)
@@ -382,8 +382,8 @@ def plot_vacuum_potentials(model, Δx, Δy, write=False):
     Ω = Ωf(ΔxΔx, ΔyΔy)
     Ω0 = np.max(np.abs(Ω))
     mlab.mesh(ΔxΔx / Δx[-1], ΔyΔy / Δy[-1], Ω / Ω0)
-    mlab.axes()
     mlab.mesh(ΔxΔx / Δx[-1], ΔyΔy / Δy[-1], Ω / Ω0, representation="wireframe")
+    mlab.axes()
 
     min = scipy.optimize.minimize(lambda ΔxΔy: Ωf(ΔxΔy[0], ΔxΔy[1]), x0=(mu, ms), method="Nelder-Mead")
     if min.success:
@@ -408,7 +408,7 @@ def plot_vacuum_potentials(model, Δx, Δy, write=False):
     if write:
         cols  = [ΔxΔx.flatten(), ΔyΔy.flatten(), Ω.flatten()] 
         heads = ["Deltax", "Deltay", "Omega"]
-        utils.writecols(cols, heads, f"data/{model.name}/potential_vacuum.dat")
+        utils.writecols(cols, heads, f"data/{model.name}/potential_vacuum_sigma{mσ}.dat")
 
     mlab.show()
     # plt.show()
@@ -451,6 +451,9 @@ if __name__ == "__main__":
     """
 
     # TEST GROUND TODO: remove
+    Δ = np.linspace(-600, +600, 300)
+    for mσ in [500, 550, 600, 650, 700, 750, 800, 850]:
+        plot_vacuum_potentials(LSM2Flavor(mσ=mσ), Δ, np.array([ms]), write=True)
     Δ = np.linspace(-1000, +1000, 50)
     plot_vacuum_potentials(LSM3Flavor(mσ=700), Δ, Δ, write=True)
     exit()
