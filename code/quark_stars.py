@@ -118,12 +118,12 @@ class Model:
             fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 5))
 
             ax1.set_xlabel(r"$\mu_Q$")
-            ax1.plot(μQ, Δx, color="orange")
-            ax1.plot(μQ, Δy, color="yellow")
-            ax1.plot(μQ, μu, color="red")
-            ax1.plot(μQ, μd, color="green")
-            ax1.plot(μQ, μs, color="purple")
-            ax1.plot(μQ, μe, color="blue")
+            ax1.plot(μQ, Δx, ".-", color="orange")
+            ax1.plot(μQ, Δy, ".-", color="yellow")
+            ax1.plot(μQ, μu, ".-", color="red")
+            ax1.plot(μQ, μd, ".-", color="green")
+            ax1.plot(μQ, μs, ".-", color="purple")
+            ax1.plot(μQ, μe, ".-", color="blue")
 
             ax2.set_xlabel(r"$\mu_Q$")
             ax2.set_ylabel(r"$n$")
@@ -383,7 +383,7 @@ if __name__ == "__main__":
 
     # TEST GROUND TODO: remove
     #plot_vacuum_potentials((LSM2Flavor, LSM2FlavorConsistent), (800,))
-    model = LSM2Flavor(mσ=700)
+    model = LSM2Flavor(mσ=800)
     #model.vacuum_potential(plot=True)
     model.eos(np.linspace(0, 800, 200)[1:], B=0**4, plot=True)
     model.stars([27, 34, 41, 48], (1e-7, 1e1), plot=True)
