@@ -376,6 +376,40 @@ The ready-to-use grand potential is now
 \label{eq:lsm3f:grand_potential}
 \end{equation}
 
+\begin{figure}
+\centering
+\tikzsetnextfilename{3-flavor-potential-vacuum}
+\begin{tikzpicture}
+\begin{axis}[
+	width = 15cm, height = 10cm,
+	restrict x to domain=-510:+510, xmin=-500, xmax=+500, xtick distance = 150, minor x tick num=14,
+	restrict y to domain=-610:+610, ymin=-600, ymax=+600, ytick distance = 150, minor y tick num=14,
+	%ymin=-11, ymax=+6, ytick distance=5, minor y tick num=4,
+	xlabel = {$\Delta_x \, / \, \si{\mega\electronvolt}$}, ylabel = {$\Delta_y \, / \, \si{\mega\electronvolt}$}, zlabel = {$\Omega \, / \, f_\pi^4$},
+	%legend style = {at={(0.5,1.03)}, anchor=south}, transpose legend, legend columns=2,
+	%cycle list/YlOrRd-9,
+	grid = major,
+	view = {127}{7},
+	colormap/Greys, colormap/YlOrRd, % load
+	colormap/Greys, mesh/interior colormap name=YlOrRd, % set with name (https://tex.stackexchange.com/a/359491)
+]
+%\pgfplotsset{cycle list shift=+1} % skip weakest line
+\addplot3 [surf, thin, point meta=explicit] table [x=Deltax, y=Deltay, z expr={\thisrow{Omega} +  0}, meta expr={\thisrow{Omega}}] {../code/data/LSM3F/potential_vacuum_sigma500.dat};% \addlegendentry{$m_\sigma = \SI{600}{\mega\electronvolt}$};
+\addplot3 [surf, thin, point meta=explicit] table [x=Deltax, y=Deltay, z expr={\thisrow{Omega} + 40}, meta expr={\thisrow{Omega}}] {../code/data/LSM3F/potential_vacuum_sigma600.dat};% \addlegendentry{$m_\sigma = \SI{600}{\mega\electronvolt}$};
+\addplot3 [surf, thin, point meta=explicit] table [x=Deltax, y=Deltay, z expr={\thisrow{Omega} + 80}, meta expr={\thisrow{Omega}}] {../code/data/LSM3F/potential_vacuum_sigma700.dat};% \addlegendentry{$m_\sigma = \SI{700}{\mega\electronvolt}$};
+\addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=0.5pt] coordinates {(317,522,37.21)} node [above, font=\footnotesize] {$(\Delta_x, \Delta_y) = (\SI{317}{\mega\electronvolt},\SI{522}{\mega\electronvolt})$};
+\addplot3 coordinates {(317,522,-3)} node [above, xshift=-0.5cm, yshift=+0.2cm, black, font=\footnotesize] {no minimum};
+\addplot3 coordinates {(317,522,-43)} node [above, xshift=-0.5cm, yshift=+0.2cm, black, font=\footnotesize] {no minimum};
+\addplot3 coordinates {(450,0,0)} node [black, rotate=-30, yshift=+1cm] {$m_\sigma = \SI{500}{\mega\electronvolt}$};
+\addplot3 coordinates {(450,0,40)} node [black, rotate=-30, yshift=+1cm] {$m_\sigma = \SI{600}{\mega\electronvolt}$};
+\addplot3 coordinates {(450,0,80)} node [black, rotate=-30, yshift=+1cm] {$m_\sigma = \SI{700}{\mega\electronvolt}$};
+\end{axis}
+\end{tikzpicture}
+\caption{\TODO{caption}
+Vacuum potential
+$\mu_u = \mu_d = \mu_s = \mu_e = 0$}
+\end{figure}
+
 \TODO{concluding remarks?}
 
 \TODO{remark on fitting at tree-level only. inconsistent. would really receive radiative corrections from fermion loop diagram, even in $N_c \rightarrow \infty$ limit.}

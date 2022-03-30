@@ -195,6 +195,48 @@ class Model:
             ϵ, _, _, _, _ = self.eos(Δ, B=B14**4, plot=False)
             massradiusplot(ϵ, P1P2, **tovopts, visual=plot, outfile=outfile)
 
+    def vacuum_potential(self, Δx, Δy, write=False):
+        #fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+        fig, axl = plt.subplots()
+        axr = axl.twinx()
+        ΔxΔx, ΔyΔy = np.meshgrid(Δx, Δy)
+
+        Ωf = lambda Δx, Δy: self.Ω(Δx, Δy, 0, 0, 0, 0) / fπ**4 # in vacuum
+
+        Ω = Ωf(ΔxΔx, ΔyΔy)
+        Ω0 = np.max(np.abs(Ω))
+        mlab.mesh(ΔxΔx / Δx[-1], ΔyΔy / Δy[-1], Ω / Ω0)
+        mlab.mesh(ΔxΔx / Δx[-1], ΔyΔy / Δy[-1], Ω / Ω0, representation="wireframe")
+        mlab.axes()
+
+        min = scipy.optimize.minimize(lambda ΔxΔy: Ωf(ΔxΔy[0], ΔxΔy[1]), x0=(mu, ms), method="Nelder-Mead")
+        if min.success:
+            Δx0, Δy0 = min.x
+            print(f"mσ = {mσ} MeV: found minimum (Δx, Δy, Ω/fπ^4) = ({Δx0:.0f} MeV, {Δy0:.0f} MeV, {Ωf(Δx0, Δy0)})")
+            Ωx0 = Ωf(Δx, Δy0)
+            Ωy0 = Ωf(Δx0, Δy)
+            mlab.plot3d(np.full(Δy.shape, Δx0) / Δx[-1], Δy / Δy[-1], Ωy0 / Ω0)
+            mlab.plot3d(Δx / Δx[-1], np.full(Δx.shape, Δy0) / Δy[-1], Ωx0 / Ω0)
+        else:
+            print(f"mσ = {mσ} MeV: no minimum!")
+        # TODO: minimum moves in 3-flavor case due to one renormalization scale Λ?
+
+        """
+        Δx0, Δy0 = scipy.optimize.minimize(lambda ΔxΔy: Ωf(ΔxΔy[0], ΔxΔy[1]), x0=(mu, ms), method="Nelder-Mead").x
+        axl.plot(Δx, Ωf(Δx, Δy0), color="red")
+        axl.scatter(Δx0, Ωf(Δx0, Δy0), color="red")
+        axr.plot(Δy, Ωf(Δx0, Δy), color="blue")
+        axr.scatter(Δy0, Ωf(Δx0, Δy0), color="blue")
+        """
+
+        if write:
+            cols  = [ΔxΔx.flatten(), ΔyΔy.flatten(), Ω.flatten()] 
+            heads = ["Deltax", "Deltay", "Omega"]
+            utils.writecols(cols, heads, f"data/{self.name}/potential_vacuum_sigma{mσ}.dat", skipevery=len(Δx))
+
+        mlab.show()
+        # plt.show()
+
 class Bag2Flavor(Model):
     def __init__(self):
         Model.__init__(self, "MIT2F")
@@ -371,48 +413,6 @@ class LSM3Flavor(Model):
         μu, μd, μs = μelim(μQ, μe)
         return μQ, Δy, μu, μd, μs, μe
 
-def plot_vacuum_potentials(model, Δx, Δy, write=False):
-    #fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
-    fig, axl = plt.subplots()
-    axr = axl.twinx()
-    ΔxΔx, ΔyΔy = np.meshgrid(Δx, Δy)
-
-    Ωf = lambda Δx, Δy: model.Ω(Δx, Δy, 0, 0, 0, 0) / fπ**4 # in vacuum
-
-    Ω = Ωf(ΔxΔx, ΔyΔy)
-    Ω0 = np.max(np.abs(Ω))
-    mlab.mesh(ΔxΔx / Δx[-1], ΔyΔy / Δy[-1], Ω / Ω0)
-    mlab.mesh(ΔxΔx / Δx[-1], ΔyΔy / Δy[-1], Ω / Ω0, representation="wireframe")
-    mlab.axes()
-
-    min = scipy.optimize.minimize(lambda ΔxΔy: Ωf(ΔxΔy[0], ΔxΔy[1]), x0=(mu, ms), method="Nelder-Mead")
-    if min.success:
-        Δx0, Δy0 = min.x
-        print(f"mσ = {mσ} MeV: found minimum at Δx = {Δx0:.0f} MeV, Δy = {Δy0:.0f} MeV")
-        Ωx0 = Ωf(Δx, Δy0)
-        Ωy0 = Ωf(Δx0, Δy)
-        mlab.plot3d(np.full(Δy.shape, Δx0) / Δx[-1], Δy / Δy[-1], Ωy0 / Ω0)
-        mlab.plot3d(Δx / Δx[-1], np.full(Δx.shape, Δy0) / Δy[-1], Ωx0 / Ω0)
-    else:
-        print(f"mσ = {mσ} MeV: no minimum!")
-    # TODO: minimum moves in 3-flavor case due to one renormalization scale Λ?
-
-    """
-    Δx0, Δy0 = scipy.optimize.minimize(lambda ΔxΔy: Ωf(ΔxΔy[0], ΔxΔy[1]), x0=(mu, ms), method="Nelder-Mead").x
-    axl.plot(Δx, Ωf(Δx, Δy0), color="red")
-    axl.scatter(Δx0, Ωf(Δx0, Δy0), color="red")
-    axr.plot(Δy, Ωf(Δx0, Δy), color="blue")
-    axr.scatter(Δy0, Ωf(Δx0, Δy0), color="blue")
-    """
-
-    if write:
-        cols  = [ΔxΔx.flatten(), ΔyΔy.flatten(), Ω.flatten()] 
-        heads = ["Deltax", "Deltay", "Omega"]
-        utils.writecols(cols, heads, f"data/{model.name}/potential_vacuum_sigma{mσ}.dat")
-
-    mlab.show()
-    # plt.show()
-
 if __name__ == "__main__":
     # plot massive, interacting and massless, free equation of state
 
@@ -451,11 +451,14 @@ if __name__ == "__main__":
     """
 
     # TEST GROUND TODO: remove
+    """
     Δ = np.linspace(-600, +600, 300)
     for mσ in [500, 550, 600, 650, 700, 750, 800, 850]:
-        plot_vacuum_potentials(LSM2Flavor(mσ=mσ), Δ, np.array([ms]), write=True)
+        LSM2Flavor(mσ=mσ).vacuum_potential(Δ, np.array([ms]), write=True)
+    """
     Δ = np.linspace(-1000, +1000, 50)
-    plot_vacuum_potentials(LSM3Flavor(mσ=700), Δ, Δ, write=True)
+    for mσ in [500, 550, 600, 650, 700, 750, 800, 850]:
+        LSM3Flavor(mσ=mσ).vacuum_potential(Δ, Δ, write=True)
     exit()
 
     model = LSM2Flavor(mσ=500) # TODO: need mσ > 600 to avoid starting backwards?
