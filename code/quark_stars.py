@@ -43,8 +43,14 @@ def μelim(μQ, μe):
     return μu, μd, μs
 
 class Model:
-    def __init__(self, name):
+    def __init__(self, name, mu=mu, md=md, ms=ms, mσ=mσ, mπ=mπ, mK=mK):
         self.name = name
+        self.mu = mu
+        self.md = md
+        self.ms = ms
+        self.mσ = mσ
+        self.mπ = mπ
+        self.mK = mK
 
     def eos(self, Δx, maxwell=True, B=None, nint=False, name="ϵ", plot=False, write=False):
         Δy = np.empty_like(Δx)
@@ -76,7 +82,7 @@ class Model:
             μenew = [μe[0]]
             Ωnew  = [Ω[0]]
             for i in range(1, len(P)):
-                if P[i] > Pnew[-1]:
+                if μQ[i] > μQnew[-1]:
                     Pnew.append(P[i])
                     Δxnew.append(Δx[i])
                     Δynew.append(Δy[i])
@@ -105,14 +111,19 @@ class Model:
         # print bag constant (upper or lower, depending on circumstances) bound
         nB = 1/3*(nu+nd+ns)
         ϵB = 0 + μu*nu + μd*nd + μs*ns + μe*ne
-        f = scipy.interpolate.interp1d(P, ϵB/nB - 930)
+        #plt.plot(P**(1/4), ϵB/nB-930)
+        #plt.xlim(0, 50)
+        #plt.ylim(-1, +1)
+        #plt.show()
+        Bmin = np.interp(930, ϵB/nB, P)
+        print(f"bag constant bound: B^(1/4) = {Bmin**(1/4)} MeV")
+        #f = scipy.interpolate.interp1d(P, ϵB/nB - 930)
         #eps = 1e-1
         #df = lambda B: (f(B+eps/2)-f(B-eps/2)) / eps
         #Bmin = np.linspace(1e3, 1e5)
         #plt.plot(Bmin, f(Bmin), "-k.")
         #plt.show()
-        Bmin = scipy.optimize.root_scalar(f, x0=0, x1=1, method="secant").root
-        print(f"bag constant bound: B^(1/4) = {Bmin**(1/4)} MeV")
+        #Bmin = scipy.optimize.root_scalar(f, bracket=(0, 1e8), method="brentq").root
 
         if B is not None:
             ϵ += B
@@ -151,19 +162,21 @@ class Model:
             fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 5))
 
             ax1.set_xlabel(r"$\mu_Q$")
-            ax1.plot(μQ, Δx, ".-", color="orange")
-            ax1.plot(μQ, Δy, ".-", color="yellow")
-            ax1.plot(μQ, μu, ".-", color="red")
-            ax1.plot(μQ, μd, ".-", color="green")
-            ax1.plot(μQ, μs, ".-", color="purple")
-            ax1.plot(μQ, μe, ".-", color="blue")
+            ax1.plot(μQ, Δx, ".-", color="orange", label=r"$\Delta_x$")
+            ax1.plot(μQ, Δy, ".-", color="yellow", label=r"$\Delta_y$")
+            ax1.plot(μQ, μu, ".-", color="red", label=r"$\mu_u$")
+            ax1.plot(μQ, μd, ".-", color="green", label=r"$\mu_d$")
+            ax1.plot(μQ, μs, ".-", color="purple", label=r"$\mu_s$")
+            ax1.plot(μQ, μe, ".-", color="blue", label=r"$\mu_e$")
+            ax1.legend()
 
             ax2.set_xlabel(r"$\mu_Q$")
             ax2.set_ylabel(r"$n$")
-            ax2.plot(μQ, nu, ".-", color="red")
-            ax2.plot(μQ, nd, ".-", color="green")
-            ax2.plot(μQ, ns, ".-", color="purple")
-            ax2.plot(μQ, ne, ".-", color="blue")
+            ax2.plot(μQ, nu, ".-", color="red", label=r"$n_u$")
+            ax2.plot(μQ, nd, ".-", color="green", label=r"$n_d$")
+            ax2.plot(μQ, ns, ".-", color="purple", label=r"$n_s$")
+            ax2.plot(μQ, ne, ".-", color="blue", label=r"$n_e$")
+            ax2.legend()
 
             ax3.set_xlabel(r"$P$")
             ax3.set_ylabel(r"$\epsilon$")
@@ -190,7 +203,7 @@ class Model:
     def stars(self, B14s, P1P2, plot=False, write=False):
         Δ = np.linspace(300, 0, 700)[:-1]
         for B14 in B14s:
-            outfile = f"data/{self.name}/stars_B14_{B14}.dat" if write else ""
+            outfile = f"data/{self.name}/stars_sigma_{self.mσ}_B14_{B14}.dat" if write else ""
             print(f"B = {B14}^4, outfile = {outfile}")
             ϵ, _, _, _, _ = self.eos(Δ, B=B14**4, plot=False)
             massradiusplot(ϵ, P1P2, **tovopts, visual=plot, outfile=outfile)
@@ -272,7 +285,7 @@ class Bag3Flavor(Model):
 
 class LSM2Flavor(Model):
     def __init__(self, mu=mu, md=md, mσ=mσ, mπ=mπ, renormalize=True):
-        Model.__init__(self, "LSM2F")
+        Model.__init__(self, "LSM2F", mu=mu, md=md, mσ=mσ, mπ=mπ)
 
         Nf = 2
         m2 = 1/2*(3*mπ**2-mσ**2)
@@ -318,7 +331,7 @@ class LSM2Flavor(Model):
 
 class LSM2FlavorConsistent(LSM2Flavor):
     def __init__(self, mu=mu, md=md, mσ=mσ, mπ=mπ):
-        Model.__init__(self, "LSM2FC_sigma600")
+        Model.__init__(self, "LSM2FC_sigma600", mu=mu, md=md, mσ=mσ, mπ=mπ)
 
         Δ, μu, μd, μe = sp.symbols("Δ μ_u μ_d μ_e", complex=True)
         def r(p2): return sp.sqrt(4*mu**2/p2-1)
@@ -349,7 +362,7 @@ class LSM2FlavorConsistent(LSM2Flavor):
 
 class LSM3Flavor(Model):
     def __init__(self, mu=mu, md=md, ms=ms, mσ=mσ, mπ=mπ, mK=mK):
-        Model.__init__(self, f"LSM3F")
+        Model.__init__(self, f"LSM3F", mu=mu, md=md, ms=ms, mσ=mσ, mπ=mπ, mK=mK)
         def system(m2_λ1_λ2):
             m2, λ1, λ2 = m2_λ1_λ2
             m2σσ00 = m2 + λ1/3*(4*np.sqrt(2)*σx0*σy0+7*σx0**2+5*σy0**2) + λ2*(σx0**2+σy0**2)
@@ -455,22 +468,22 @@ if __name__ == "__main__":
     Δ = np.linspace(-600, +600, 300)
     for mσ in [500, 550, 600, 650, 700, 750, 800, 850]:
         LSM2Flavor(mσ=mσ).vacuum_potential(Δ, np.array([ms]), write=True)
-    """
     Δ = np.linspace(-1000, +1000, 50)
     for mσ in [500, 550, 600, 650, 700, 750, 800, 850]:
         LSM3Flavor(mσ=mσ).vacuum_potential(Δ, Δ, write=True)
-    exit()
+    """
 
+    """
     model = LSM2Flavor(mσ=500) # TODO: need mσ > 600 to avoid starting backwards?
     Δ = np.linspace(-500, +500, 50)
-    plot_vacuum_potentials([LSM2Flavor], Δ, Δ, [400, 450, 500, 550])
     model.eos(np.linspace(300, 0, 500)[:-1], B=0**4, plot=True)
     model.stars([27, 34, 41, 48], (1e-7, 1e-1), plot=True)
 
-    model = LSM2Flavor()
+    model = LSM2Flavor() # TODO: 3flavor?
     for Pc in [0.0006, 0.0008, 0.001]:
         model.eos(B=40**4, plot=True)
         model.star(B14=38, Pc=Pc)
+    """
 
     """
     for model in (Bag2Flavor(), Bag3Flavor()):
@@ -483,9 +496,9 @@ if __name__ == "__main__":
     """
 
     #for model in (LSM2Flavor(), LSM2FlavorConsistent(), LSM3Flavor()):
-    for model in (LSM2FlavorConsistent(),):
-        μQ = np.linspace(0, 1000, 1000)[1:]
-        model.eos(μQ, plot=True, write=True)
+    for model in (LSM2Flavor(mσ=700),):
+        Δx = np.linspace(300, 0, 200)[:-1]
+        model.eos(Δx, plot=True, write=True)
 
         # solve TOV equation for different bag pressures
         Bs = [6, 13, 20, 27, 34, 41, 48, 55, 62, 69, 76, 83, 90, 97, 104, 111, 118, 125, 132]
