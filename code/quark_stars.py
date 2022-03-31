@@ -62,45 +62,14 @@ class Model:
         Ω  = np.empty_like(Δx)
 
         for i in range(0, len(Δx)):
-            guess = (μQ[i-1], Δy[i-1], μe[i-1]) if i > 0 else (300, ms, 0) # use previous solution
+            guess = (μQ[i-1], Δy[i-1], μe[i-1]) if i > 0 else (mu, ms, 0) # use previous solution
             μQ[i], Δy[i], μu[i], μd[i], μs[i], μe[i] = self.solve(Δx[i], guess)
             Ω[i] = self.Ω(Δx[i], Δy[i], μu[i], μd[i], μs[i], μe[i])
             print(f"Δx = {Δx[i]:.2f}, Δy = {Δy[i]:.2f}, ", end="")
             print(f"μQ = {μQ[i]:.2f}, μu = {μu[i]:.2f}, μd = {μd[i]:.2f}, μs = {μs[i]:.2f}, μe = {μe[i]:.2f}")
 
-        P, P0 = -Ω, -Ω[0]
+        P, P0 = -Ω, -Ω[0] + B
         P = P - P0
-
-        if False and maxwell: # effectively connect stable branches by straight vertical line
-            Pnew = [P[0]]
-            Δxnew = [Δx[0]]
-            Δynew = [Δy[0]]
-            μQnew = [μQ[0]]
-            μunew = [μu[0]]
-            μdnew = [μd[0]]
-            μsnew = [μs[0]]
-            μenew = [μe[0]]
-            Ωnew  = [Ω[0]]
-            for i in range(1, len(P)):
-                if μQ[i] > μQnew[-1]:
-                    Pnew.append(P[i])
-                    Δxnew.append(Δx[i])
-                    Δynew.append(Δy[i])
-                    μQnew.append(μQ[i])
-                    μunew.append(μu[i])
-                    μdnew.append(μd[i])
-                    μsnew.append(μs[i])
-                    μenew.append(μe[i])
-                    Ωnew.append(Ω[i])
-            P = np.array(Pnew)
-            Δx = np.array(Δxnew)
-            Δy = np.array(Δynew)
-            μQ = np.array(μQnew)
-            μu = np.array(μunew)
-            μd = np.array(μdnew)
-            μs = np.array(μsnew)
-            μe = np.array(μenew)
-            Ω = np.array(Ωnew)
 
         nu = Nc/(3*π**2) * np.real((μu**2-Δx**2+0j)**(3/2))
         nd = Nc/(3*π**2) * np.real((μd**2-Δx**2+0j)**(3/2))
@@ -108,26 +77,67 @@ class Model:
         ne =  1/(3*π**2) * np.real((μe**2-me**2+0j)**(3/2))
         ϵ  = -P + μu*nu + μd*nd + μs*ns + μe*ne
 
-        # print bag constant (upper or lower, depending on circumstances) bound
+        P1 = P[0]
+        i2 = np.argmax(np.gradient(P) < 0) - 1 # last index of increasing pressure
+        have_phase_transition = (i2 != -1)
+        print("Phase transition?", have_phase_transition)
+        if have_phase_transition:
+            P2 = P[i2]
+            i3 = i2 + np.argmax(np.gradient(P[i2:]) > 0) - 1
+            P3 = P[i3]
+
+            # debug Maxwell construction
+            #plt.plot(P[i2+1], ϵ[i2+1], marker=".", color="red")
+            #plt.plot(P[i2:i3+1], ϵ[i2:i3+1], marker=".", color="green")
+            #plt.plot(P[i3:], ϵ[i3:], marker=".", color="blue")
+            #plt.show()
+
+            def dG(P0):
+                j1 = np.argmax(P[:i2+1] >= P0) # first index on 1-curve with greater pressure
+                j2 = i3 + np.argmax(P[i3:] >= P0) # first index on 2-curve with greater pressure
+                ϵ1 = np.interp(P0, P[:i2+1], ϵ[:i2+1])
+                ϵ2 = np.interp(P0, P[i3:], ϵ[i3:])
+                P12 = np.concatenate([[P0], P[j1:j2], [P0]])
+                ϵ12 = np.concatenate([[ϵ1], ϵ[j1:j2], [ϵ2]])
+                return np.trapz(1/ϵ12, P12)
+
+            sol = scipy.optimize.root_scalar(dG, bracket=(P[1], P[i2]), method="brentq") # pray that P[1] works, since P[0] = 0 gives 0-div error
+            assert sol.converged
+            P0 = sol.root
+
+            #fig, (ax1, ax2) = plt.subplots(1, 2)
+            #ax1.plot(1/ϵ, P, color="gray")
+            #ax1.set_ylim(1.1*np.min(P), -1.1*np.min(P))
+            #ax2.plot(P, ϵ, color="gray")
+
+            j1 = np.argmax(P[:i2+1] >= P0) # first index on 1-curve with greater pressure
+            j2 = i3 + np.argmax(P[i3:] >= P0) # first index on 2-curve with greater pressure
+            ϵ1 = np.interp(P0, P[:i2+1], ϵ[:i2+1])
+            ϵ2 = np.interp(P0, P[i3:], ϵ[i3:])
+
+            def fixarray(a):
+                a1 = np.interp(P0, P[:i2+1], a[:i2+1])
+                a2 = np.interp(P0, P[i3:], a[i3:])
+                return np.concatenate((a[:j1], [a1, np.nan, a2], a[j2:]))
+
+            # also keep P, ϵ before Maxwell construction (for comparison)
+            Porg, ϵorg = P, ϵ
+
+            # fix array by only modifying EOS, but fill out with points in phase transition
+            ϵ1 = np.interp(P0, P[:i2+1], ϵ[:i2+1])
+            ϵ2 = np.interp(P0, P[i3:], ϵ[i3:])
+            Ntarget = len(Δx)
+            Nnow = len(ϵ[:j1]) + len(ϵ[j2:])
+            Nadd = Ntarget - Nnow
+            ϵ = np.concatenate((ϵ[:j1], np.linspace(ϵ1, ϵ2, Nadd), ϵ[j2:]))
+            P = np.concatenate((P[:j1], np.linspace(P0, P0, Nadd), P[j2:]))
+
+        # print bag constant bound (upper or lower, depending on circumstances)
+        # TODO: is this correct? particularly with phase transition, where B is added BEFORE this is done?
         nB = 1/3*(nu+nd+ns)
         ϵB = 0 + μu*nu + μd*nd + μs*ns + μe*ne
-        #plt.plot(P**(1/4), ϵB/nB-930)
-        #plt.xlim(0, 50)
-        #plt.ylim(-1, +1)
-        #plt.show()
-        Bmin = np.interp(930, ϵB/nB, P)
+        Bmin = np.interp(930, ϵB/nB, P+B)
         print(f"bag constant bound: B^(1/4) = {Bmin**(1/4)} MeV")
-        #f = scipy.interpolate.interp1d(P, ϵB/nB - 930)
-        #eps = 1e-1
-        #df = lambda B: (f(B+eps/2)-f(B-eps/2)) / eps
-        #Bmin = np.linspace(1e3, 1e5)
-        #plt.plot(Bmin, f(Bmin), "-k.")
-        #plt.show()
-        #Bmin = scipy.optimize.root_scalar(f, bracket=(0, 1e8), method="brentq").root
-
-        if B is not None:
-            ϵ += B
-            P -= B
 
         # convert interesting quantities to SI units
         nu *= MeV**3 / (ħ*c)**3 * fm**3 # now in units 1/fm^3
@@ -137,6 +147,8 @@ class Model:
         P0 *= MeV**4 / (ħ*c)**3 # now in units kg*m^2/s^2/m^3
         P  *= MeV**4 / (ħ*c)**3 # now in units kg*m^2/s^2/m^3
         ϵ  *= MeV**4 / (ħ*c)**3 # now in units kg*m^2/s^2/m^3
+        Porg *= MeV**4 / (ħ*c)**3 # now in units kg*m^2/s^2/m^3
+        ϵorg *= MeV**4 / (ħ*c)**3 # now in units kg*m^2/s^2/m^3
 
         # interpolate dimensionless EOS
         Pdimless = P / ϵ0 # now in TOV-dimensionless units
@@ -149,12 +161,17 @@ class Model:
         P0 *= fm**3 / GeV # now in units GeV/fm^3
         P  *= fm**3 / GeV # now in units GeV/fm^3
         ϵ  *= fm**3 / GeV # now in units GeV/fm^3
+        Porg *= fm**3 / GeV # now in units GeV/fm^3
+        ϵorg *= fm**3 / GeV # now in units GeV/fm^3
 
         print(f"P0 = {P0}")
 
         if write:
-            cols  = (μQ, Δx, Δy, μu, μd, μs, μe, nu, nd, ns, ne, ϵ, P)
-            heads = ("muQ", "deltax", "deltay", "muu", "mud", "mus", "mue", "nu", "nd", "ns", "ne", "epsilon", "P")
+            cols  = [μQ, Δx, Δy, μu, μd, μs, μe, nu, nd, ns, ne, ϵ, P]
+            heads = ["muQ", "deltax", "deltay", "muu", "mud", "mus", "mue", "nu", "nd", "ns", "ne", "epsilon", "P"]
+            if have_phase_transition:
+                cols += [ϵorg, Porg]
+                heads += ["epsilonorg", "Porg"]
             outfile = f"data/{self.name}/eos.dat"
             utils.writecols(cols, heads, outfile)
 
@@ -180,7 +197,9 @@ class Model:
 
             ax3.set_xlabel(r"$P$")
             ax3.set_ylabel(r"$\epsilon$")
-            ax3.plot(P, ϵ, "-k.")
+            if have_phase_transition:
+                ax3.plot(Porg, ϵorg, ".-", color="gray") # compare
+            ax3.plot(P, ϵ, ".-", color="black")
 
             plt.show()
 
@@ -495,10 +514,14 @@ if __name__ == "__main__":
         model.stars(Bs, (1e-7, 1e1), write=True)
     """
 
+    model = LSM2Flavor(mσ=700)
+    Δx = np.linspace(300, 0, 200)[:-1]
+    model.eos(Δx, B=30**4, plot=True, write=True)
+
     #for model in (LSM2Flavor(), LSM2FlavorConsistent(), LSM3Flavor()):
-    for model in (LSM2Flavor(mσ=700),):
+    for model in (LSM2Flavor(mσ=800),):
         Δx = np.linspace(300, 0, 200)[:-1]
-        model.eos(Δx, plot=True, write=True)
+        model.eos(Δx, plot=True, write=False)
 
         # solve TOV equation for different bag pressures
         Bs = [6, 13, 20, 27, 34, 41, 48, 55, 62, 69, 76, 83, 90, 97, 104, 111, 118, 125, 132]
