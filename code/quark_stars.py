@@ -16,7 +16,7 @@ fπ = 93
 fK = 113
 mu = 300
 md = mu
-ms = 429 # only for guess
+ms = 429 # only for guess TODO: never use?
 mσ = 800
 mπ = 138
 mK = 496
@@ -62,13 +62,13 @@ class Model:
         Ω  = np.empty_like(Δx)
 
         for i in range(0, len(Δx)):
-            guess = (μQ[i-1], Δy[i-1], μe[i-1]) if i > 0 else (mu, ms, 0) # use previous solution
+            guess = (μQ[i-1], Δy[i-1], μe[i-1]) if i > 0 else self.vacuum_masses() + (0,) # use previous solution
             μQ[i], Δy[i], μu[i], μd[i], μs[i], μe[i] = self.solve(Δx[i], guess)
             Ω[i] = self.Ω(Δx[i], Δy[i], μu[i], μd[i], μs[i], μe[i])
             print(f"Δx = {Δx[i]:.2f}, Δy = {Δy[i]:.2f}, ", end="")
             print(f"μQ = {μQ[i]:.2f}, μu = {μu[i]:.2f}, μd = {μd[i]:.2f}, μs = {μs[i]:.2f}, μe = {μe[i]:.2f}")
 
-        P, P0 = -Ω, -Ω[0] + B
+        P, P0 = -Ω, -Ω[0]
         P = P - P0
 
         nu = Nc/(3*π**2) * np.real((μu**2-Δx**2+0j)**(3/2))
@@ -77,17 +77,32 @@ class Model:
         ne =  1/(3*π**2) * np.real((μe**2-me**2+0j)**(3/2))
         ϵ  = -P + μu*nu + μd*nd + μs*ns + μe*ne
 
+        # print bag constant bound (upper or lower, depending on circumstances)
+        # TODO: is this correct? particularly with phase transition, where B is added BEFORE this is done?
+        nB = 1/3*(nu+nd+ns)
+        ϵB = 0 + μu*nu + μd*nd + μs*ns + μe*ne
+        Bmin = np.interp(930, ϵB/nB, P)
+        if Bmin == 0: Bmin = np.min(P)
+        #plt.plot(P, ϵB/nB, ".-k")
+        #plt.axhline(930)
+        #plt.show()
+        print(f"bag constant bound: B^(1/4) = {Bmin**(1/4)} MeV")
+
+        P -= B
+        ϵ += B
+
         P1 = P[0]
-        i2 = np.argmax(np.gradient(P) < 0) - 1 # last index of increasing pressure
-        have_phase_transition = (i2 != -1)
+        i2 = np.argmax(np.gradient(P) < 0) # last index of increasing pressure
+        have_phase_transition = (i2 != 0)
         print("Phase transition?", have_phase_transition)
+        Porg, ϵorg = P, ϵ # also keep P, ϵ before Maxwell construction (for comparison)
         if have_phase_transition:
             P2 = P[i2]
             i3 = i2 + np.argmax(np.gradient(P[i2:]) > 0) - 1
             P3 = P[i3]
 
             # debug Maxwell construction
-            #plt.plot(P[i2+1], ϵ[i2+1], marker=".", color="red")
+            #plt.plot(P[:i2+1], ϵ[:i2+1], marker=".", color="red")
             #plt.plot(P[i2:i3+1], ϵ[i2:i3+1], marker=".", color="green")
             #plt.plot(P[i3:], ϵ[i3:], marker=".", color="blue")
             #plt.show()
@@ -99,9 +114,11 @@ class Model:
                 ϵ2 = np.interp(P0, P[i3:], ϵ[i3:])
                 P12 = np.concatenate([[P0], P[j1:j2], [P0]])
                 ϵ12 = np.concatenate([[ϵ1], ϵ[j1:j2], [ϵ2]])
-                return np.trapz(1/ϵ12, P12)
+                ret = np.trapz(1/ϵ12, P12)
+                print(f"dG({P0}) = {ret}")
+                return ret
 
-            sol = scipy.optimize.root_scalar(dG, bracket=(P[1], P[i2]), method="brentq") # pray that P[1] works, since P[0] = 0 gives 0-div error
+            sol = scipy.optimize.root_scalar(dG, bracket=(1e-1, P[i2]), method="brentq") # pray that P[1] works, since P[0] = 0 gives 0-div error
             assert sol.converged
             P0 = sol.root
 
@@ -120,9 +137,6 @@ class Model:
                 a2 = np.interp(P0, P[i3:], a[i3:])
                 return np.concatenate((a[:j1], [a1, np.nan, a2], a[j2:]))
 
-            # also keep P, ϵ before Maxwell construction (for comparison)
-            Porg, ϵorg = P, ϵ
-
             # fix array by only modifying EOS, but fill out with points in phase transition
             ϵ1 = np.interp(P0, P[:i2+1], ϵ[:i2+1])
             ϵ2 = np.interp(P0, P[i3:], ϵ[i3:])
@@ -131,13 +145,6 @@ class Model:
             Nadd = Ntarget - Nnow
             ϵ = np.concatenate((ϵ[:j1], np.linspace(ϵ1, ϵ2, Nadd), ϵ[j2:]))
             P = np.concatenate((P[:j1], np.linspace(P0, P0, Nadd), P[j2:]))
-
-        # print bag constant bound (upper or lower, depending on circumstances)
-        # TODO: is this correct? particularly with phase transition, where B is added BEFORE this is done?
-        nB = 1/3*(nu+nd+ns)
-        ϵB = 0 + μu*nu + μd*nd + μs*ns + μe*ne
-        Bmin = np.interp(930, ϵB/nB, P+B)
-        print(f"bag constant bound: B^(1/4) = {Bmin**(1/4)} MeV")
 
         # convert interesting quantities to SI units
         nu *= MeV**3 / (ħ*c)**3 * fm**3 # now in units 1/fm^3
@@ -167,11 +174,8 @@ class Model:
         print(f"P0 = {P0}")
 
         if write:
-            cols  = [μQ, Δx, Δy, μu, μd, μs, μe, nu, nd, ns, ne, ϵ, P]
-            heads = ["muQ", "deltax", "deltay", "muu", "mud", "mus", "mue", "nu", "nd", "ns", "ne", "epsilon", "P"]
-            if have_phase_transition:
-                cols += [ϵorg, Porg]
-                heads += ["epsilonorg", "Porg"]
+            cols  = [μQ, Δx, Δy, μu, μd, μs, μe, nu, nd, ns, ne, ϵ, P, ϵorg, Porg]
+            heads = ["muQ", "deltax", "deltay", "muu", "mud", "mus", "mue", "nu", "nd", "ns", "ne", "epsilon", "P", "epsilonorg", "Porg"]
             outfile = f"data/{self.name}/eos.dat"
             utils.writecols(cols, heads, outfile)
 
@@ -197,8 +201,7 @@ class Model:
 
             ax3.set_xlabel(r"$P$")
             ax3.set_ylabel(r"$\epsilon$")
-            if have_phase_transition:
-                ax3.plot(Porg, ϵorg, ".-", color="gray") # compare
+            ax3.plot(Porg, ϵorg, ".-", color="gray") # compare
             ax3.plot(P, ϵ, ".-", color="black")
 
             plt.show()
@@ -227,6 +230,14 @@ class Model:
             ϵ, _, _, _, _ = self.eos(Δ, B=B14**4, plot=False)
             massradiusplot(ϵ, P1P2, **tovopts, visual=plot, outfile=outfile)
 
+    def vacuum_masses(self):
+        min = scipy.optimize.minimize(lambda ΔxΔy: self.Ω(ΔxΔy[0], ΔxΔy[1], 0, 0, 0, 0), x0=(mu, ms), method="Nelder-Mead")
+        if min.success:
+            Δx0, Δy0 = min.x
+        else:
+            Δx0, Δy0 = np.nan, np.nan
+        return Δx0, Δy0
+
     def vacuum_potential(self, Δx, Δy, write=False):
         #fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
         fig, axl = plt.subplots()
@@ -241,16 +252,15 @@ class Model:
         mlab.mesh(ΔxΔx / Δx[-1], ΔyΔy / Δy[-1], Ω / Ω0, representation="wireframe")
         mlab.axes()
 
-        min = scipy.optimize.minimize(lambda ΔxΔy: Ωf(ΔxΔy[0], ΔxΔy[1]), x0=(mu, ms), method="Nelder-Mead")
-        if min.success:
-            Δx0, Δy0 = min.x
-            print(f"mσ = {mσ} MeV: found minimum (Δx, Δy, Ω/fπ^4) = ({Δx0:.0f} MeV, {Δy0:.0f} MeV, {Ωf(Δx0, Δy0)})")
+        Δx0, Δy0 = self.vacuum_masses()
+        if not np.isnan(Δx0) and not np.isnan(Δy0):
+            print(f"mσ = {self.mσ} MeV: found minimum (Δx, Δy, Ω/fπ^4) = ({Δx0:.0f} MeV, {Δy0:.0f} MeV, {Ωf(Δx0, Δy0)})")
             Ωx0 = Ωf(Δx, Δy0)
             Ωy0 = Ωf(Δx0, Δy)
             mlab.plot3d(np.full(Δy.shape, Δx0) / Δx[-1], Δy / Δy[-1], Ωy0 / Ω0)
             mlab.plot3d(Δx / Δx[-1], np.full(Δx.shape, Δy0) / Δy[-1], Ωx0 / Ω0)
         else:
-            print(f"mσ = {mσ} MeV: no minimum!")
+            print(f"mσ = {self.mσ} MeV: no minimum!")
         # TODO: minimum moves in 3-flavor case due to one renormalization scale Λ?
 
         """
@@ -513,10 +523,12 @@ if __name__ == "__main__":
         Bs = [144, 163]
         model.stars(Bs, (1e-7, 1e1), write=True)
     """
-
-    model = LSM2Flavor(mσ=700)
-    Δx = np.linspace(300, 0, 200)[:-1]
-    model.eos(Δx, B=30**4, plot=True, write=True)
+    # 2F: mσ = 600,700,800 MeV (always B-bound)
+    # 3F: mσ = 700,800 MeV (not always B-bound)
+    # TODO: produce plots with varying mσ=600-800, B=5-145 or 0-150?
+    model = LSM3Flavor(mσ=700) 
+    Δ = np.linspace(model.vacuum_masses()[0], 0, 1000)[:-1]
+    model.eos(Δ, B=0**4, plot=True, write=True)
 
     #for model in (LSM2Flavor(), LSM2FlavorConsistent(), LSM3Flavor()):
     for model in (LSM2Flavor(mσ=800),):
