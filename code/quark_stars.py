@@ -43,16 +43,16 @@ def μelim(μQ, μe):
     return μu, μd, μs
 
 class Model:
-    def __init__(self, name, mu=mu, md=md, ms=ms, mσ=mσ, mπ=mπ, mK=mK):
+    def __init__(self, name, mσ=mσ, mπ=mπ, mK=mK):
         self.name = name
-        self.mu = mu
-        self.md = md
-        self.ms = ms
+        self.mu, self.ms = self.vacuum_masses()
+        self.md = self.mu
+        print(f"Vacuum masses: mu = md = {self.mu:.1f} MeV, ms = {self.ms:.1f} MeV")
         self.mσ = mσ
         self.mπ = mπ
         self.mK = mK
 
-    def eos(self, Δx, maxwell=True, B=None, nint=False, name="ϵ", plot=False, write=False):
+    def eos(self, Δx, B=0, nint=False, name="ϵ", plot=False, write=False):
         Δy = np.empty_like(Δx)
         μQ = np.empty_like(Δx)
         μu = np.empty_like(Δx)
@@ -121,6 +121,7 @@ class Model:
             sol = scipy.optimize.root_scalar(dG, bracket=(1e-1, P[i2]), method="brentq") # pray that P[1] works, since P[0] = 0 gives 0-div error
             assert sol.converged
             P0 = sol.root
+            print(f"Phase transition pressure: {P0} MeV^4")
 
             #fig, (ax1, ax2) = plt.subplots(1, 2)
             #ax1.plot(1/ϵ, P, color="gray")
@@ -222,13 +223,12 @@ class Model:
         outfile = f"data/{self.name}/star_B14_{B14}_Pc_{Pc:.7f}.dat"
         utils.writecols(cols, heads, outfile)
 
-    def stars(self, B14s, P1P2, plot=False, write=False):
-        Δ = np.linspace(300, 0, 700)[:-1]
-        for B14 in B14s:
-            outfile = f"data/{self.name}/stars_sigma_{self.mσ}_B14_{B14}.dat" if write else ""
-            print(f"B = {B14}^4, outfile = {outfile}")
-            ϵ, _, _, _, _ = self.eos(Δ, B=B14**4, plot=False)
-            massradiusplot(ϵ, P1P2, **tovopts, visual=plot, outfile=outfile)
+    def stars(self, B14, P1P2, plot=False, write=False):
+        Δx = np.linspace(self.vacuum_masses()[0], 0, 500)[:-1]
+        outfile = f"data/{self.name}/stars_sigma_{self.mσ}_B14_{B14}.dat" if write else ""
+        print(f"B = ({B14} MeV)^4, outfile = {outfile}")
+        ϵ, _, _, _, _ = self.eos(Δ, B=B14**4, plot=False)
+        massradiusplot(ϵ, P1P2, **tovopts, visual=plot, outfile=outfile)
 
     def vacuum_masses(self):
         min = scipy.optimize.minimize(lambda ΔxΔy: self.Ω(ΔxΔy[0], ΔxΔy[1], 0, 0, 0, 0), x0=(mu, ms), method="Nelder-Mead")
@@ -313,9 +313,7 @@ class Bag3Flavor(Model):
         return Δx, Δy, μu, μd, μs, μe
 
 class LSM2Flavor(Model):
-    def __init__(self, mu=mu, md=md, mσ=mσ, mπ=mπ, renormalize=True):
-        Model.__init__(self, "LSM2F", mu=mu, md=md, mσ=mσ, mπ=mπ)
-
+    def __init__(self, mσ=mσ, mπ=mπ, renormalize=True):
         Nf = 2
         m2 = 1/2*(3*mπ**2-mσ**2)
         λ  = 3/fπ**2 * (mσ**2-mπ**2)
@@ -342,6 +340,8 @@ class LSM2Flavor(Model):
         self.Ω  = lambda Δ, Δy, μu, μd, μs, μe: np.real( Ω(Δ+0j, μu+0j, μd+0j, μe+0j))
         self.dΩ = lambda Δ, Δy, μu, μd, μs, μe: np.real(dΩ(Δ+0j, μu+0j, μd+0j, μe+0j))
 
+        Model.__init__(self, "LSM2F", mσ=mσ, mπ=mπ)
+
     def solve(self, Δx, guess):
         # TODO: handle phase transition
         # if μQ > 313:
@@ -359,9 +359,7 @@ class LSM2Flavor(Model):
         return μQ, Δy, μu, μd, μs, μe
 
 class LSM2FlavorConsistent(LSM2Flavor):
-    def __init__(self, mu=mu, md=md, mσ=mσ, mπ=mπ):
-        Model.__init__(self, "LSM2FC_sigma600", mu=mu, md=md, mσ=mσ, mπ=mπ)
-
+    def __init__(self, mσ=mσ, mπ=mπ):
         Δ, μu, μd, μe = sp.symbols("Δ μ_u μ_d μ_e", complex=True)
         def r(p2): return sp.sqrt(4*mu**2/p2-1)
         def F(p2): return 2 - 2*r(p2)*sp.atan(1/r(p2))
@@ -389,9 +387,11 @@ class LSM2FlavorConsistent(LSM2Flavor):
         self.dΩ = lambda Δ, Δy, μu, μd, μs, μe: (self.Ω(Δ+eps/2,Δy,μu,μd,μs,μe)-self.Ω(Δ-eps/2,Δy,μu,μd,μs,μe))/eps
         """
 
+        Model.__init__(self, "LSM2FC_sigma600", mσ=mσ, mπ=mπ)
+
 class LSM3Flavor(Model):
-    def __init__(self, mu=mu, md=md, ms=ms, mσ=mσ, mπ=mπ, mK=mK):
-        Model.__init__(self, f"LSM3F", mu=mu, md=md, ms=ms, mσ=mσ, mπ=mπ, mK=mK)
+    def __init__(self, mσ=mσ, mπ=mπ, mK=mK):
+        Model.__init__(self, f"LSM3F", mσ=mσ, mπ=mπ, mK=mK)
         def system(m2_λ1_λ2):
             m2, λ1, λ2 = m2_λ1_λ2
             m2σσ00 = m2 + λ1/3*(4*np.sqrt(2)*σx0*σy0+7*σx0**2+5*σy0**2) + λ2*(σx0**2+σy0**2)
@@ -526,11 +526,27 @@ if __name__ == "__main__":
     # 2F: mσ = 600,700,800 MeV (always B-bound)
     # 3F: mσ = 700,800 MeV (not always B-bound)
     # TODO: produce plots with varying mσ=600-800, B=5-145 or 0-150?
-    model = LSM3Flavor(mσ=700) 
-    Δ = np.linspace(model.vacuum_masses()[0], 0, 1000)[:-1]
-    model.eos(Δ, B=0**4, plot=True, write=True)
+    #model = LSM3Flavor(mσ=700) 
+    #Δ = np.linspace(model.vacuum_masses()[0], 0, 1000)[:-1]
+    #model.eos(Δ, B=0**4, plot=True, write=True)
+
+    """
+    for mσ in [600, 700, 800]:
+        model = LSM2Flavor(mσ=mσ)
+        mu = model.vacuum_masses()[0]
+        Δx = np.linspace(mu, 0, 200)[:-1]
+        model.eos(Δx, plot=True, write=False)
+    """
+
+    for mσ in [400, 500, 600, 700, 800]:
+        model = LSM2FlavorConsistent(mσ=mσ)
+        mu = model.vacuum_masses()[0]
+        Δx = np.linspace(mu, 0, 200)[:-1]
+        model.eos(Δx, plot=True, write=False)
+        
 
     #for model in (LSM2Flavor(), LSM2FlavorConsistent(), LSM3Flavor()):
+    """
     for model in (LSM2Flavor(mσ=800),):
         Δx = np.linspace(300, 0, 200)[:-1]
         model.eos(Δx, plot=True, write=False)
@@ -538,3 +554,4 @@ if __name__ == "__main__":
         # solve TOV equation for different bag pressures
         Bs = [6, 13, 20, 27, 34, 41, 48, 55, 62, 69, 76, 83, 90, 97, 104, 111, 118, 125, 132]
         model.stars(Bs, (1e-7, 1e1), write=True)
+    """
