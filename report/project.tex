@@ -144,6 +144,7 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 	% Using title={\subcaption{...}} REQUIRES text width to be set, otherwise it throws hard-to-understand errors
 	% TODO: the contents of title={...} MUST change for the externalization library to recompile the figure
 	every axis title/.style={at={(0.5,1)}, align=center, above=1ex, text width=0.8*\pgfkeysvalueof{/pgfplots/width}]},
+	scaled ticks=false, /pgf/number format/fixed,
 }
 \pgfplotscreateplotcyclelist{Set1NoYellow}{
 	{Set1-A},

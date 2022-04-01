@@ -25,7 +25,7 @@ me = 0.5
 σx0 = fπ
 σy0 = np.sqrt(2)*fK-fπ/np.sqrt(2)
 
-tovopts = {"tolD": 0.500, "maxdr": 1e-2, "nmodes": 0}
+tovopts = {"tolD": 0.40, "maxdr": 1e-2, "nmodes": 0}
 tovμQ = np.concatenate([np.linspace(0, 700, 200)[1:], np.linspace(700, 5000, 100)])
 
 def charge(Δx, Δy, μu, μd, μs, μe):
@@ -47,12 +47,14 @@ class Model:
         self.name = name
         self.mu, self.ms = self.vacuum_masses()
         self.md = self.mu
-        print(f"Vacuum masses: mu = md = {self.mu:.1f} MeV, ms = {self.ms:.1f} MeV")
+        print(f"Meson masses: mσ = {mσ:.1f} MeV, mπ = {mπ:.1f}, mK = {mK:.1f}")
+        print(f"Quark masses: mu = md = {self.mu:.1f} MeV, ms = {self.ms:.1f} MeV")
         self.mσ = mσ
         self.mπ = mπ
         self.mK = mK
 
-    def eos(self, Δx, B=0, nint=False, name="ϵ", plot=False, write=False):
+    def eos(self, B=0, N=1000, plot=False, write=False, debugmaxwell=False):
+        Δx = np.linspace(self.mu, 0, N)[:-1] # shave off erronous 0
         Δy = np.empty_like(Δx)
         μQ = np.empty_like(Δx)
         μu = np.empty_like(Δx)
@@ -64,10 +66,19 @@ class Model:
         for i in range(0, len(Δx)):
             guess = (μQ[i-1], Δy[i-1], μe[i-1]) if i > 0 else self.vacuum_masses() + (0,) # use previous solution
             μQ[i], Δy[i], μu[i], μd[i], μs[i], μe[i] = self.solve(Δx[i], guess)
-            Ω[i] = self.Ω(Δx[i], Δy[i], μu[i], μd[i], μs[i], μe[i])
             print(f"Δx = {Δx[i]:.2f}, Δy = {Δy[i]:.2f}, ", end="")
             print(f"μQ = {μQ[i]:.2f}, μu = {μu[i]:.2f}, μd = {μd[i]:.2f}, μs = {μs[i]:.2f}, μe = {μe[i]:.2f}")
 
+        # extend solutions to μ = 0 to show Silver-Blaze property
+        μQ = np.insert(μQ, 0, 0)
+        μu = np.insert(μu, 0, 0)
+        μd = np.insert(μd, 0, 0)
+        μs = np.insert(μs, 0, 0)
+        μe = np.insert(μe, 0, 0)
+        Δx = np.insert(Δx, 0, Δx[0])
+        Δy = np.insert(Δy, 0, Δy[0])
+
+        Ω = self.Ω(Δx, Δy, μu, μd, μs, μe)
         P, P0 = -Ω, -Ω[0]
         P = P - P0
 
@@ -86,66 +97,71 @@ class Model:
         #plt.plot(P, ϵB/nB, ".-k")
         #plt.axhline(930)
         #plt.show()
-        print(f"bag constant bound: B^(1/4) = {Bmin**(1/4)} MeV")
+        print(f"Bag constant bound: B^(1/4) = {Bmin**(1/4)} MeV")
 
         P -= B
         ϵ += B
 
         P1 = P[0]
         i2 = np.argmax(np.gradient(P) < 0) # last index of increasing pressure
-        have_phase_transition = (i2 != 0)
+        P2 = P[i2]
+        have_phase_transition = (i2 != 0) and (P2 > 0)
         print("Phase transition?", have_phase_transition)
-        Porg, ϵorg = P, ϵ # also keep P, ϵ before Maxwell construction (for comparison)
+        # TODO: pressure interpolation range bug related to org vars
+        Porg, ϵorg = np.copy(P), np.copy(ϵ) # also copy P, ϵ before Maxwell construction (for comparison later)
         if have_phase_transition:
-            P2 = P[i2]
             i3 = i2 + np.argmax(np.gradient(P[i2:]) > 0) - 1
             P3 = P[i3]
 
             # debug Maxwell construction
-            #plt.plot(P[:i2+1], ϵ[:i2+1], marker=".", color="red")
-            #plt.plot(P[i2:i3+1], ϵ[i2:i3+1], marker=".", color="green")
-            #plt.plot(P[i3:], ϵ[i3:], marker=".", color="blue")
-            #plt.show()
+            if debugmaxwell:
+                plt.plot(P[:i2+1], ϵ[:i2+1], marker=".", color="red")
+                plt.plot(P[i2:i3+1], ϵ[i2:i3+1], marker=".", color="green")
+                plt.plot(P[i3:], ϵ[i3:], marker=".", color="blue")
+                plt.show()
 
-            def dG(P0):
-                j1 = np.argmax(P[:i2+1] >= P0) # first index on 1-curve with greater pressure
-                j2 = i3 + np.argmax(P[i3:] >= P0) # first index on 2-curve with greater pressure
-                ϵ1 = np.interp(P0, P[:i2+1], ϵ[:i2+1])
-                ϵ2 = np.interp(P0, P[i3:], ϵ[i3:])
-                P12 = np.concatenate([[P0], P[j1:j2], [P0]])
+            def gibbs_area(Pt):
+                j1 = np.argmax(P[:i2+1] >= Pt) # first index on 1-curve with greater pressure
+                j2 = i3 + np.argmax(P[i3:] >= Pt) # first index on 2-curve with greater pressure
+                ϵ1 = np.interp(Pt, P[:i2+1], ϵ[:i2+1])
+                ϵ2 = np.interp(Pt, P[i3:], ϵ[i3:])
+                P12 = np.concatenate([[Pt], P[j1:j2], [Pt]])
                 ϵ12 = np.concatenate([[ϵ1], ϵ[j1:j2], [ϵ2]])
                 ret = np.trapz(1/ϵ12, P12)
-                print(f"dG({P0}) = {ret}")
+                print(f"gibbs_area({Pt}) = {ret}")
                 return ret
 
-            sol = scipy.optimize.root_scalar(dG, bracket=(1e-1, P[i2]), method="brentq") # pray that P[1] works, since P[0] = 0 gives 0-div error
+            sol = scipy.optimize.root_scalar(gibbs_area, bracket=(P[0]+1e-3, P[i2]), method="brentq") # pray that P[1] works, since P[0] = 0 gives 0-div error
             assert sol.converged
-            P0 = sol.root
-            print(f"Phase transition pressure: {P0} MeV^4")
+            Pt = sol.root
+            print(f"Phase transition pressure: {Pt} MeV^4")
 
-            #fig, (ax1, ax2) = plt.subplots(1, 2)
-            #ax1.plot(1/ϵ, P, color="gray")
-            #ax1.set_ylim(1.1*np.min(P), -1.1*np.min(P))
-            #ax2.plot(P, ϵ, color="gray")
+            if debugmaxwell:
+                plt.plot(1/ϵ, P, color="gray")
+                plt.ylim(1.1*np.min(P), -1.1*np.min(P))
 
-            j1 = np.argmax(P[:i2+1] >= P0) # first index on 1-curve with greater pressure
-            j2 = i3 + np.argmax(P[i3:] >= P0) # first index on 2-curve with greater pressure
-            ϵ1 = np.interp(P0, P[:i2+1], ϵ[:i2+1])
-            ϵ2 = np.interp(P0, P[i3:], ϵ[i3:])
+            j1 = np.argmax(P[:i2+1] >= Pt) # first index on 1-curve with greater pressure
+            j2 = i3 + np.argmax(P[i3:] >= Pt) # first index on 2-curve with greater pressure
+            ϵ1 = np.interp(Pt, P[:i2+1], ϵ[:i2+1])
+            ϵ2 = np.interp(Pt, P[i3:], ϵ[i3:])
 
             def fixarray(a):
-                a1 = np.interp(P0, P[:i2+1], a[:i2+1])
-                a2 = np.interp(P0, P[i3:], a[i3:])
+                a1 = np.interp(Pt, P[:i2+1], a[:i2+1])
+                a2 = np.interp(Pt, P[i3:], a[i3:])
                 return np.concatenate((a[:j1], [a1, np.nan, a2], a[j2:]))
 
             # fix array by only modifying EOS, but fill out with points in phase transition
-            ϵ1 = np.interp(P0, P[:i2+1], ϵ[:i2+1])
-            ϵ2 = np.interp(P0, P[i3:], ϵ[i3:])
+            ϵ1 = np.interp(Pt, P[:i2+1], ϵ[:i2+1])
+            ϵ2 = np.interp(Pt, P[i3:], ϵ[i3:])
             Ntarget = len(Δx)
             Nnow = len(ϵ[:j1]) + len(ϵ[j2:])
             Nadd = Ntarget - Nnow
             ϵ = np.concatenate((ϵ[:j1], np.linspace(ϵ1, ϵ2, Nadd), ϵ[j2:]))
-            P = np.concatenate((P[:j1], np.linspace(P0, P0, Nadd), P[j2:]))
+            P = np.concatenate((P[:j1], np.linspace(Pt, Pt, Nadd), P[j2:]))
+
+            if debugmaxwell:
+                plt.plot(1/ϵ, P, color="black")
+                plt.show()
 
         # convert interesting quantities to SI units
         nu *= MeV**3 / (ħ*c)**3 * fm**3 # now in units 1/fm^3
@@ -158,13 +174,6 @@ class Model:
         Porg *= MeV**4 / (ħ*c)**3 # now in units kg*m^2/s^2/m^3
         ϵorg *= MeV**4 / (ħ*c)**3 # now in units kg*m^2/s^2/m^3
 
-        # interpolate dimensionless EOS
-        Pdimless = P / ϵ0 # now in TOV-dimensionless units
-        ϵdimless = ϵ / ϵ0 # now in TOV-dimensionless units
-        print(f"interpolation range: {Pdimless[0]} < P < {Pdimless[-1]}")
-        ϵint = scipy.interpolate.interp1d(Pdimless, ϵdimless)
-        ϵint.__name__ = name
-
         # convert interesting quantities to appropriate units
         P0 *= fm**3 / GeV # now in units GeV/fm^3
         P  *= fm**3 / GeV # now in units GeV/fm^3
@@ -176,8 +185,8 @@ class Model:
 
         if write:
             cols  = [μQ, Δx, Δy, μu, μd, μs, μe, nu, nd, ns, ne, ϵ, P, ϵorg, Porg]
-            heads = ["muQ", "deltax", "deltay", "muu", "mud", "mus", "mue", "nu", "nd", "ns", "ne", "epsilon", "P", "epsilonorg", "Porg"]
-            outfile = f"data/{self.name}/eos.dat"
+            heads = ["muQ", "Deltax", "Deltay", "muu", "mud", "mus", "mue", "nu", "nd", "ns", "ne", "epsilon", "P", "epsilonorg", "Porg"]
+            outfile = f"data/{self.name}/eos_sigma_{self.mσ}.dat"
             utils.writecols(cols, heads, outfile)
 
         if plot:
@@ -207,10 +216,21 @@ class Model:
 
             plt.show()
 
-        nuint = scipy.interpolate.interp1d(Pdimless, nu)
-        ndint = scipy.interpolate.interp1d(Pdimless, nd)
-        nsint = scipy.interpolate.interp1d(Pdimless, ns)
-        neint = scipy.interpolate.interp1d(Pdimless, ne)
+        # interpolate dimensionless EOS
+        P /= (fm**3/GeV) * ϵ0 # now in TOV-dimensionless units
+        ϵ /= (fm**3/GeV) * ϵ0 # now in TOV-dimensionless units
+        ϵ = np.concatenate(([0, np.interp(0, P, ϵ)], ϵ[P>0]))
+        nu = np.concatenate(([0, np.interp(0, P, nu)], nu[P>0]))
+        nd = np.concatenate(([0, np.interp(0, P, nd)], nd[P>0]))
+        ns = np.concatenate(([0, np.interp(0, P, ns)], ns[P>0]))
+        ne = np.concatenate(([0, np.interp(0, P, ne)], ne[P>0]))
+        P = np.concatenate(([P[0] - 10, 0], P[P>0])) # force ϵ(P<Pmin)=0 (avoid interpolation errors)
+        print(f"interpolation range: {P[0]} < P < {P[-1]}")
+        ϵint = scipy.interpolate.interp1d(P, ϵ); ϵint.__name__ = self.name
+        nuint = scipy.interpolate.interp1d(P, nu)
+        ndint = scipy.interpolate.interp1d(P, nd)
+        nsint = scipy.interpolate.interp1d(P, ns)
+        neint = scipy.interpolate.interp1d(P, ne)
         return ϵint, nuint, ndint, nsint, neint
 
     def star(self, Pc, B14):
@@ -223,11 +243,10 @@ class Model:
         outfile = f"data/{self.name}/star_B14_{B14}_Pc_{Pc:.7f}.dat"
         utils.writecols(cols, heads, outfile)
 
-    def stars(self, B14, P1P2, plot=False, write=False):
-        Δx = np.linspace(self.vacuum_masses()[0], 0, 500)[:-1]
+    def stars(self, B14, P1P2, N=1000, plot=False, write=False):
         outfile = f"data/{self.name}/stars_sigma_{self.mσ}_B14_{B14}.dat" if write else ""
         print(f"B = ({B14} MeV)^4, outfile = {outfile}")
-        ϵ, _, _, _, _ = self.eos(Δ, B=B14**4, plot=False)
+        ϵ, _, _, _, _ = self.eos(N=N, B=B14**4, plot=False)
         massradiusplot(ϵ, P1P2, **tovopts, visual=plot, outfile=outfile)
 
     def vacuum_masses(self):
@@ -360,6 +379,7 @@ class LSM2Flavor(Model):
 
 class LSM2FlavorConsistent(LSM2Flavor):
     def __init__(self, mσ=mσ, mπ=mπ):
+        print(mσ)
         Δ, μu, μd, μe = sp.symbols("Δ μ_u μ_d μ_e", complex=True)
         def r(p2): return sp.sqrt(4*mu**2/p2-1)
         def F(p2): return 2 - 2*r(p2)*sp.atan(1/r(p2))
@@ -387,11 +407,10 @@ class LSM2FlavorConsistent(LSM2Flavor):
         self.dΩ = lambda Δ, Δy, μu, μd, μs, μe: (self.Ω(Δ+eps/2,Δy,μu,μd,μs,μe)-self.Ω(Δ-eps/2,Δy,μu,μd,μs,μe))/eps
         """
 
-        Model.__init__(self, "LSM2FC_sigma600", mσ=mσ, mπ=mπ)
+        Model.__init__(self, "LSM2FC", mσ=mσ, mπ=mπ)
 
 class LSM3Flavor(Model):
     def __init__(self, mσ=mσ, mπ=mπ, mK=mK):
-        Model.__init__(self, f"LSM3F", mσ=mσ, mπ=mπ, mK=mK)
         def system(m2_λ1_λ2):
             m2, λ1, λ2 = m2_λ1_λ2
             m2σσ00 = m2 + λ1/3*(4*np.sqrt(2)*σx0*σy0+7*σx0**2+5*σy0**2) + λ2*(σx0**2+σy0**2)
@@ -441,6 +460,8 @@ class LSM3Flavor(Model):
         self.Ω   = lambda Δx, Δy, μu, μd, μs, μe: np.real(  Ω(Δx+0j, Δy+0j, μu+0j, μd+0j, μs+0j, μe+0j))
         self.dΩx = lambda Δx, Δy, μu, μd, μs, μe: np.real(dΩx(Δx+0j, Δy+0j, μu+0j, μd+0j, μs+0j, μe+0j))
         self.dΩy = lambda Δx, Δy, μu, μd, μs, μe: np.real(dΩy(Δx+0j, Δy+0j, μu+0j, μd+0j, μs+0j, μe+0j))
+
+        Model.__init__(self, f"LSM3F", mσ=mσ, mπ=mπ, mK=mK)
 
     def solve(self, Δx, guess):
         def system(μQ_Δy_μe):
@@ -530,28 +551,17 @@ if __name__ == "__main__":
     #Δ = np.linspace(model.vacuum_masses()[0], 0, 1000)[:-1]
     #model.eos(Δ, B=0**4, plot=True, write=True)
 
-    """
-    for mσ in [600, 700, 800]:
-        model = LSM2Flavor(mσ=mσ)
-        mu = model.vacuum_masses()[0]
-        Δx = np.linspace(mu, 0, 200)[:-1]
-        model.eos(Δx, plot=True, write=False)
-    """
+    #models = [LSM2Flavor, LSM2FlavorConsistent, LSM3Flavor]
+    models = [LSM3Flavor]
+    mσs = [500, 600, 700, 800]
+    B14s = [15, 30, 45, 60, 75, 90, 105, 120, 135, 150]
+    P1P2 = (1e-7, 1e-2)
 
-    for mσ in [400, 500, 600, 700, 800]:
-        model = LSM2FlavorConsistent(mσ=mσ)
-        mu = model.vacuum_masses()[0]
-        Δx = np.linspace(mu, 0, 200)[:-1]
-        model.eos(Δx, plot=True, write=False)
-        
-
-    #for model in (LSM2Flavor(), LSM2FlavorConsistent(), LSM3Flavor()):
-    """
-    for model in (LSM2Flavor(mσ=800),):
-        Δx = np.linspace(300, 0, 200)[:-1]
-        model.eos(Δx, plot=True, write=False)
-
-        # solve TOV equation for different bag pressures
-        Bs = [6, 13, 20, 27, 34, 41, 48, 55, 62, 69, 76, 83, 90, 97, 104, 111, 118, 125, 132]
-        model.stars(Bs, (1e-7, 1e1), write=True)
-    """
+    for modelclass in models:
+        for mσ in mσs:
+            model = modelclass(mσ=mσ)
+            if np.isnan(model.mu):
+                continue
+            model.eos()
+            #for B14 in B14s:
+                #model.stars(B14, P1P2, write=True)

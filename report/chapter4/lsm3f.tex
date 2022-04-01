@@ -496,58 +496,62 @@ This yields the upper bound
 ]
 \nextgroupplot[
 	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$},
-	xmin=0, xmax=900, ymax=800, xtick distance=100, ytick distance=100, minor x tick num=9,
+	%xmin=0, xmax=600, ymax=500, xtick distance=100, ytick distance=100, minor x tick num=9,
+	xmin=0, xmax=800, xtick distance=100, minor x tick num=9,
+	ymin=-20, ymax=700, ytick distance=100, 
+	%ymax=600, 
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-parametrization}Parametrization of solutions}},
-	legend cell align=right, legend pos=north west,
+	legend cell align=right, legend pos=north west, reverse legend,
 ];
-% Two-flavor (for comparison)
-\addplot+ [orange, solid, opacity=0.5, forget plot] table [x=muQ, y=deltax] {../code/data/LSM2F/eos.dat};
-\addplot+ [red, solid, opacity=0.5, forget plot] table [x=muQ, y=muu] {../code/data/LSM2F/eos.dat};
-\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=muQ, y=mud] {../code/data/LSM2F/eos.dat};
-\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=muQ, y=mue] {../code/data/LSM2F/eos.dat};
-
-% Three-flavor
-\addplot+ [orange, solid, opacity=1.0] table [x=muQ, y=deltax] {../code/data/LSM3F/eos.dat}; \addlegendentry{$\Delta_x \, / \, \si{\mega\electronvolt}$};
-\addplot+ [yellow, solid, opacity=1.0] table [x=muQ, y=deltay] {../code/data/LSM3F/eos.dat}; \addlegendentry{$\Delta_y \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red, solid, opacity=1.0] table [x=muQ, y=muu] {../code/data/LSM3F/eos.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, solid, opacity=1.0] table [x=muQ, y=mud] {../code/data/LSM3F/eos.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [purple, dashed, opacity=1.0] table [x=muQ, y=mus] {../code/data/LSM3F/eos.dat}; \addlegendentry{$\mu_s \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue, solid, opacity=1.0] table [x=muQ, y=mue] {../code/data/LSM3F/eos.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=mue]    {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=mud]    {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=muu]    {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [yellow,    solid, opacity=0.7             ] table [x=muQ, y=Deltay] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\Delta_y \, / \, \si{\mega\electronvolt}$};
+\addplot+ [yellow,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltay] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [orange,    solid, opacity=0.7             ] table [x=muQ, y=Deltax] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\Delta_x \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM3F/eos_sigma_800.dat};
 
 \nextgroupplot[
-	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
-	xmin=0, xmax=900, xtick distance=100, minor x tick num=9,
-	ymax=6.0, ymin=-0.2, ytick distance=1.0, minor y tick num=9,
+	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
+	xmin=0, xmax=800, xtick distance=100, minor x tick num=9,
+	ymax=3.0, ytick distance=0.5, minor y tick num=4, restrict y to domain=-10:10,
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-density}Particle number densities}},
-	legend cell align=left, legend pos=north west,
+	legend cell align=left, legend pos=north west, reverse legend,
 ];
-\coordinate (zoomplot) at (373, 3.55);
-\draw [draw=none, fill=gray!50] (250, -0.002) rectangle (500, 0.02);
-\draw [-Latex, gray] (375,0.03) to [out=90, in=0] (373, 2.35);
-
-% Two-flavor (for comparison)
-\addplot+ [red, solid, opacity=0.5, forget plot] table [x=muQ, y=nu] {../code/data/LSM2F/eos.dat};
-\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=muQ, y=nd] {../code/data/LSM2F/eos.dat};
-\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=muQ, y=ne] {../code/data/LSM2F/eos.dat};
-
-% Three-flavor
-\addplot+ [red, solid, opacity=1.0] table [x=muQ, y=nu] {../code/data/LSM3F/eos.dat}; \addlegendentry{$n_u$ (up quarks)};
-\addplot+ [darkgreen, solid, opacity=1.0] table [x=muQ, y=nd] {../code/data/LSM3F/eos.dat}; \addlegendentry{$n_d$ (down quarks)};
-\addplot+ [purple, solid, opacity=1.0] table [x=muQ, y=ns] {../code/data/LSM3F/eos.dat}; \addlegendentry{$n_s$ (strange quarks)};
-\addplot+ [blue, solid, opacity=1.0] table [x=muQ, y=ne] {../code/data/LSM3F/eos.dat}; \addlegendentry{$n_e$ (electrons)};
+%\coordinate (zoomplot) at (232, 1.32);
+%\draw [draw=none, fill=gray!50] (250, -0.005) rectangle (350, 0.02);
+%\draw [-Latex, gray] (300,0.03) to [out=90, in=0] (232, 0.75);
+%\addplot+ [red,       densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(muu(x))*nconv};
+%\addplot+ [darkgreen, densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(mud(x))*nconv};
+%\addplot+ [blue,      densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {ne(mue(x))*nconv};
+\addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=ne] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_e$ (electrons)};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [purple,    solid, opacity=0.7             ] table [x=muQ, y=ns] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_s$ (strange quarks)};
+\addplot+ [purple,    solid, opacity=0.7, forget plot] table [x=muQ, y=ns] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=nd] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_d$ (down quarks)};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=nu] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_u$ (up quarks)};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM3F/eos_sigma_800.dat};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
-	xmin=0, xmax=1.0, ymin=0, ymax=4, xtick distance=0.1, ytick distance=1.0, minor y tick num=9,
+	xmin=-0.005, xmax=0.05, ymin=0, ymax=0.5, xtick distance=0.01, ytick distance=0.1, minor y tick num=9, restrict y to domain=-1:+1,
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
 ];
-%\addplot+ [black, densely dashed, semithick, opacity=0.7, forget plot] table [x=P,y=epsilon] {../code/data/2flavfreeeos.dat}; %\addlegendentry{without interactions};
-\addplot+ [gray, solid, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM2F/eos.dat};
-\addplot+ [black, solid, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos.dat};
+%\addplot+ [black!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=P, y expr={3*\thisrow{P}+4*0.07774628475613433}] {../code/data/LSM2F/eos.dat}; % +4*P0, since both ϵ and P modified by P0
+%\addplot+ [black, densely dashed, opacity=0.4, domain=0:0.1, forget plot] {3*x}; % +4*P0, since both ϵ and P modified by P0
+\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{before Maxwell construction};
+\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{after Maxwell construction};
+\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat};
 \end{groupplot}
 % Embed zoom-plot in a node
+\iffalse
 \node [anchor=north east] at (zoomplot) {
 	\begin{tikzpicture}[baseline, trim axis left, trim axis right]
 	\begin{axis}[
@@ -567,6 +571,7 @@ This yields the upper bound
 	\end{axis}
 	\end{tikzpicture}
 };
+\fi
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-eos}%
 Properties of electrically charge neutral three-flavor quark matter \TODO{``quark matter'' sounds like QCD, write quark-meson model or something instead} in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
@@ -687,105 +692,36 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 }
 \begin{tikzpicture}
 \begin{groupplot}[
-	group style={group size={1 by 3}, vertical sep=1.5cm},
-	width=15cm,
-	grid=major,
-	point meta=explicit, point meta min=32.63, point meta max=38.63,
-	colormap name=plasmarev, 
-	legend pos=north west, legend cell align=right, legend columns=1,
-	/tikz/declare function={e0 = 4.266500881855304e+37;},
+	group style={group size={2 by 1}, vertical sep=0cm, horizontal sep=0.3cm},
+	width=8cm, height=8cm,
+	xmin=5, xmax=20, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
+	point meta=explicit, point meta min=33, point meta max=36,
+	%colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+	/tikz/declare function={
+		e0 = 4.266500881855304e+37;
+	},
 ]
+\tikzset{
+	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
+}
 \nextgroupplot[
-	height=6cm,
-	%xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$,
-	ylabel=$R \, / \, \si{\kilo\meter}$,
-	title={Mass-radius solutions for 3-flavor quark stars}, %title style={yshift=2.0cm},
-	enlarge x limits=false, xmin=32.63, xmax=38.63, xticklabels={,,},
-	xtick distance=1, minor x tick num=9,
-	ymin=7, ymax=18, ytick distance=1.0, minor y tick num=9,
+	xlabel={$R \, / \, \si{\kilo\meter}$},
+	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
+	title = {$m_\sigma = \SI{700}{\mega\electronvolt}$ \\ $B^\frac14 = \{60,75,90\} \, \si{\mega\electronvolt}$},
 ];
-% two-flavor
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat};
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [y=R, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
-
-% three-flavor
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_27.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_27.dat};
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_34.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_34.dat};
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_41.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_41.dat};
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_48.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=R, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_48.dat};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_60.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_75.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_90.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 
 \nextgroupplot[
-	height=6cm, yshift=+1.2cm,
-	%xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$,
-	ylabel=$M \, / \, M_\odot$, xticklabels={,,},
-	enlarge x limits=false, xmin=32.63, xmax=38.63,
-	xtick distance=1, minor x tick num=9,
-	ymin=1.0, ymax=1.8, ytick distance=0.1, minor y tick num=9,
-	colorbar horizontal, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,-0.05)}, anchor=north, xticklabel pos=lower},
+	xlabel={$R \, / \, \si{\kilo\meter}$},
+	yticklabels={,,},
+	title = {$m_\sigma = \SI{800}{\mega\electronvolt}$ \\ $B^\frac14 = \{30,45,60\} \, \si{\mega\electronvolt}$},
+	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.87,-0.25)}, anchor=north east, xticklabel pos=lower},
 ];
-% two-flavor
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat};
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
-\addplot+ [solid, thin, gray, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
-\addplot+ [densely dashed, thin, gray, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [y=M, x expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
-
-% three-flavor
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_27.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_27.dat};
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_34.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_34.dat};
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_41.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_41.dat};
-\addplot+ [solid, thin, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_48.dat};
-\addplot+ [densely dashed, thin, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [y=M, x expr={log10(\thisrow{P}*e0)}, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_48.dat};
-
-\nextgroupplot[
-	height=10cm, yshift=-0.5cm,
-	xmin=7, xmax=18, ymin=1.0, ymax=1.8, xtick distance=1, ytick distance=0.1, minor tick num=9,
-	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$},
-	%colorbar horizontal, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
-];
-\addplot+ [black, solid] {0}; \addlegendentry{stable stars};
-\addplot+ [black, densely dashed] {0}; \addlegendentry{unstable stars};
-
-%\addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat}; \addlegendentry{two-flavor};
-%\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-%\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-%\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
-
-% two-flavor comparison
-\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat}; \addlegendentry{two flavors};
-\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat};
-\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
-\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
-\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
-\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
-\addplot+ [solid, gray, opacity=1.0, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
-\addplot+ [densely dashed, gray, opacity=1.0, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
-
-% three-flavor
-\addplot+ [solid, mesh, mesh line legend, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_27.dat} node [Bpin, pos=0.93] {$B = (\SI{27}{\mega\electronvolt})^4$}; \addlegendentry{three flavors};
-\addplot+ [densely dashed, mesh, mesh line legend, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_27.dat};
-\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_34.dat} node [Bpin, pos=0.92] {$B = (\SI{34}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_34.dat};
-\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_41.dat} node [Bpin, pos=0.91] {$B = (\SI{41}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_41.dat};
-\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < 0.001 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_48.dat} node [Bpin, pos=0.905] {$B = (\SI{48}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0009 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_48.dat};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_60.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_75.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_90.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 
 \end{groupplot}
 \end{tikzpicture}

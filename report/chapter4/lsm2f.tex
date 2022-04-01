@@ -481,49 +481,72 @@ We therefore expect a well-defined parametrization with the free variable
 ]
 \nextgroupplot[
 	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$},
-	xmin=0, xmax=600, ymax=500, xtick distance=100, ytick distance=100, minor x tick num=9,
+	%xmin=0, xmax=600, ymax=500, xtick distance=100, ytick distance=100, minor x tick num=9,
+	xmin=0, xmax=600, xtick distance=100, minor x tick num=9,
+	ymin=-20, ymax=500, ytick distance=100, 
 	%ymax=600, 
-	title={\subcaption{\label{fig:lsm:2-flavor-eos-parametrization}Parametrization of solutions}},
-	legend cell align=right, legend pos=north west,
+	title={\subcaption{\label{fig:lsm:2-flavor-eos-parametrization}Parametrization of solutions }},
+	legend cell align=right, legend pos=north west, reverse legend,
 ];
-\addplot+ [orange!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={0}] {../code/data/LSM2F/eos.dat}; %\addlegendentry{$\avg{\sigma} \, / \, \si{\mega\electronvolt}$};
-\addplot+ [orange, solid, opacity=0.7] table [x=muQ, y=deltax] {../code/data/LSM2F/eos.dat}; \addlegendentry{$\Delta \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={muu(\thisrow{muQ})}] {../code/data/LSM2F/eos.dat}; %\addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red, solid, opacity=0.7] table [x=muQ, y=muu] {../code/data/LSM2F/eos.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={mud(\thisrow{muQ})}] {../code/data/LSM2F/eos.dat}; %\addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, solid, opacity=0.7] table [x=muQ, y=mud] {../code/data/LSM2F/eos.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={mue(\thisrow{muQ})}] {../code/data/LSM2F/eos.dat}; %\addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue, solid, opacity=0.7] table [x=muQ, y=mue] {../code/data/LSM2F/eos.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange,    densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {0};
+\addplot+ [red,       densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {muu(x)};
+\addplot+ [darkgreen, densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {mud(x)};
+\addplot+ [blue,      densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {mue(x)};
+\addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=mue]    {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=mud]    {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=muu]    {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [orange,    solid, opacity=0.7             ] table [x=muQ, y=Deltax] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$\Delta \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2F/eos_sigma_800.dat};
 
 
 \nextgroupplot[
 	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
 	xmin=0, xmax=600, xtick distance=100, minor x tick num=9,
-	ymax=2.0, ytick distance=0.5, minor y tick num=4,
+	ymax=2.0, ytick distance=0.5, minor y tick num=4, restrict y to domain=-10:10,
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-density}Particle number densities}},
-	legend cell align=left, legend pos=north west,
+	legend cell align=left, legend pos=north west, reverse legend,
 ];
-\coordinate (zoomplot) at (232, 1.32);
-\draw [draw=none, fill=gray!50] (250, -0.005) rectangle (350, 0.02);
-\draw [-Latex, gray] (300,0.03) to [out=90, in=0] (232, 0.75);
-\addplot+ [red!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={nq(muu(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
-\addplot+ [red, solid, opacity=0.7] table [x=muQ, y=nu] {../code/data/LSM2F/eos.dat}; \addlegendentry{$n_u$ (up quarks)};
-\addplot+ [darkgreen!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={nq(mud(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
-\addplot+ [darkgreen, solid, opacity=0.7] table [x=muQ, y=nd] {../code/data/LSM2F/eos.dat}; \addlegendentry{$n_d$ (down quarks)};
-\addplot+ [blue!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={ne(mue(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
-\addplot+ [blue, solid, opacity=0.7] table [x=muQ, y=ne] {../code/data/LSM2F/eos.dat}; \addlegendentry{$n_e$ (electrons)};
+%\coordinate (zoomplot) at (232, 1.32);
+%\draw [draw=none, fill=gray!50] (250, -0.005) rectangle (350, 0.02);
+%\draw [-Latex, gray] (300,0.03) to [out=90, in=0] (232, 0.75);
+\addplot+ [red,       densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(muu(x))*nconv};
+\addplot+ [darkgreen, densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(mud(x))*nconv};
+\addplot+ [blue,      densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {ne(mue(x))*nconv};
+\addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=ne] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$n_e$ (electrons)};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=nd] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$n_d$ (down quarks)};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=nu] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$n_u$ (up quarks)};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2F/eos_sigma_800.dat};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
-	xmin=0, xmax=0.5, ymin=0, ymax=2, xtick distance=0.1, ytick distance=0.5, minor y tick num=4,
+	xmin=-0.005, xmax=0.05, ymin=0, ymax=0.5, xtick distance=0.01, ytick distance=0.1, minor y tick num=9, restrict y to domain=-1:+1,
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
 ];
-\addplot+ [black!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=P, y expr={3*\thisrow{P}+4*0.07774628475613433}] {../code/data/LSM2F/eos.dat}; % +4*P0, since both ϵ and P modified by P0
-\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2F/eos.dat};
+%\addplot+ [black!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=P, y expr={3*\thisrow{P}+4*0.07774628475613433}] {../code/data/LSM2F/eos.dat}; % +4*P0, since both ϵ and P modified by P0
+\addplot+ [black, densely dashed, opacity=0.4, domain=0:0.1, forget plot] {3*x}; % +4*P0, since both ϵ and P modified by P0
+\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{before Maxwell construction};
+\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{after Maxwell construction};
+\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2F/eos_sigma_800.dat};
 \end{groupplot}
 % Embed zoom-plot in a node
+\iffalse
 \node [anchor=north east] at (zoomplot) {
 	\begin{tikzpicture}[baseline, trim axis left, trim axis right]
 	\begin{axis}[
@@ -533,15 +556,16 @@ We therefore expect a well-defined parametrization with the free variable
 		ymin=-0.005, ymax=0.02, ytick distance=0.01, minor y tick num=9, restrict y to domain=-0.5:0.5,
 		axis background/.style={fill=gray!50},
 	]
-	\addplot+ [red!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={nq(muu(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
-	\addplot+ [red, solid, opacity=0.7] table [x=muQ, y=nu] {../code/data/LSM2F/eos.dat};
-	\addplot+ [darkgreen!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={nq(mud(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
-	\addplot+ [darkgreen, solid, opacity=0.7] table [x=muQ, y=nd] {../code/data/LSM2F/eos.dat};
-	\addplot+ [blue!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={ne(mue(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
-	\addplot+ [blue, solid, opacity=0.7] table [x=muQ, y=ne] {../code/data/LSM2F/eos.dat};
+	%\addplot+ [red!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={nq(muu(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
+	%\addplot+ [red, solid, opacity=0.7] table [x=muQ, y=nu] {../code/data/LSM2F/eos.dat};
+	%\addplot+ [darkgreen!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={nq(mud(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
+	%\addplot+ [darkgreen, solid, opacity=0.7] table [x=muQ, y=nd] {../code/data/LSM2F/eos.dat};
+	%\addplot+ [blue!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=muQ, y expr={ne(mue(\thisrow{muQ}))*nconv}] {../code/data/LSM2F/eos.dat};
+	%\addplot+ [blue, solid, opacity=0.7] table [x=muQ, y=ne] {../code/data/LSM2F/eos.dat};
 	\end{axis}
 	\end{tikzpicture}
 };
+\fi
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos}%
 Properties of electrically charge neutral two-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
@@ -659,38 +683,48 @@ Solving equation \eqref{eq:lsm:bag_stability_2f} numerically in \cref{sec:num:qs
 \centering
 \tikzsetnextfilename{2-flavor-mass-radius}
 \begin{tikzpicture}
-\begin{axis}[
-	width=15cm, height=12cm,
-	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
-	xmin=7, xmax=18, ymin=0.5, ymax=2, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
-	point meta=explicit, point meta min=32, point meta max=39,
-	colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
-	declare function={
+\begin{groupplot}[
+	group style={group size={3 by 1}, vertical sep=0cm, horizontal sep=0.3cm},
+	width=6cm, height=6cm,
+	xmin=5, xmax=20, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
+	point meta=explicit, point meta min=33, point meta max=36,
+	%colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+	/tikz/declare function={
 		e0 = 4.266500881855304e+37;
 	},
-	legend pos=north east, legend cell align=right,
 ]
 \tikzset{
 	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
 }
-\addplot+ [black, solid] {0};
-\addlegendentry{stable stars};
-\addplot+ [black, densely dashed] {0};
-\addlegendentry{unstable stars};
+\nextgroupplot[
+	xlabel={$R \, / \, \si{\kilo\meter}$},
+	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
+	title = {$m_\sigma = \SI{600}{\mega\electronvolt}$ \\ $B^\frac14 = \{105,120,135\} \, \si{\mega\electronvolt}$},
+];
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_105.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_120.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_135.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 
-\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat} node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat};
+\nextgroupplot[
+	xlabel={$R \, / \, \si{\kilo\meter}$},
+	yticklabels={,,},
+	title = {$m_\sigma = \SI{700}{\mega\electronvolt}$ \\ $B^\frac14 = \{60,75,90\} \, \si{\mega\electronvolt}$},
+	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.5,-0.3)}, anchor=north, xticklabel pos=lower},
+];
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_60.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_75.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_90.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 
-\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat} node [Bpin, pos=0.913] {$B = (\SI{34}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
+\nextgroupplot[
+	xlabel={$R \, / \, \si{\kilo\meter}$},
+	yticklabels={,,},
+	title = {$m_\sigma = \SI{800}{\mega\electronvolt}$ \\ $B^\frac14 = \{30,45,60\} \, \si{\mega\electronvolt}$},
+];
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_30.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_45.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_60.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 
-\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat} node [Bpin, pos=0.910] {$B = (\SI{41}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
-
-\addplot+ [solid,          mesh, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat} node [Bpin, pos=0.88] {$B = (\SI{48}{\mega\electronvolt})^4$};
-\addplot+ [densely dashed, mesh, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
-
-\end{axis}
+\end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-mass-radius}Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$, obtained with the equation of state for two-flavor quark matter in \cref{fig:lsm:2-flavor-eos-eos} modified by a range of bag constants above the bound \eqref{eq:lsm:bag_lower_bound}.}
 \end{figure}
@@ -777,50 +811,80 @@ Upon substitution of all the running couplings, the dependence on the renormaliz
 ]
 \nextgroupplot[
 	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$},
-	xmin=0, xmax=600, ymax=500, xtick distance=100, ytick distance=100, minor x tick num=9,
+	%xmin=0, xmax=600, ymax=500, xtick distance=100, ytick distance=100, minor x tick num=9,
+	xmin=0, xmax=600, xtick distance=100, minor x tick num=9,
+	ymin=-20, ymax=500, ytick distance=100, 
 	%ymax=600, 
-	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-parametrization}Parametrization of solutions}},
-	legend cell align=right, legend pos=north west,
+	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-parametrization}Parametrization of solutions }},
+	legend cell align=right, legend pos=north west, reverse legend,
 ];
-\addplot+ [orange, dashed, opacity=0.5, forget plot] table [x=muQ, y=deltax] {../code/data/LSM2F/eos.dat};
-\addplot+ [red, dashed, opacity=0.5, forget plot] table [x=muQ, y=muu] {../code/data/LSM2F/eos.dat};
-\addplot+ [darkgreen, dashed, opacity=0.5, forget plot] table [x=muQ, y=mud] {../code/data/LSM2F/eos.dat};
-\addplot+ [blue, dashed, opacity=0.5, forget plot] table [x=muQ, y=mue] {../code/data/LSM2F/eos.dat};
-
-\addplot+ [orange, solid] table [x=muQ, y=deltax] {../code/data/LSM2FC_sigma600/eos.dat}; \addlegendentry{$\Delta \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red, solid] table [x=muQ, y=muu] {../code/data/LSM2FC_sigma600/eos.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, solid] table [x=muQ, y=mud] {../code/data/LSM2FC_sigma600/eos.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue, solid] table [x=muQ, y=mue] {../code/data/LSM2FC_sigma600/eos.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+%\addplot+ [orange,    densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {0};
+%\addplot+ [red,       densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {muu(x)};
+%\addplot+ [darkgreen, densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {mud(x)};
+%\addplot+ [blue,      densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {mue(x)};
+\addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=mue]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2FC/eos_sigma_700.dat};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2FC/eos_sigma_800.dat};
+\addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=mud]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2FC/eos_sigma_700.dat};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2FC/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=muu]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2FC/eos_sigma_700.dat};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2FC/eos_sigma_800.dat};
+\addplot+ [orange,    solid, opacity=0.7             ] table [x=muQ, y=Deltax] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\Delta \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2FC/eos_sigma_700.dat};
+\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2FC/eos_sigma_800.dat};
 
 
 \nextgroupplot[
 	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
 	xmin=0, xmax=600, xtick distance=100, minor x tick num=9,
-	ymax=2.0, ytick distance=0.5, minor y tick num=4,
+	ymax=2.0, ytick distance=0.5, minor y tick num=4, restrict y to domain=-10:10,
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-density}Particle number densities}},
-	legend cell align=left, legend pos=north west,
+	legend cell align=left, legend pos=north west, reverse legend,
 ];
 \coordinate (zoomplot) at (232, 1.32);
-\draw [draw=none, fill=gray!50] (250, -0.005) rectangle (350, 0.02);
-\draw [-Latex, gray] (300,0.03) to [out=90, in=0] (232, 0.75);
-\addplot+ [red, dashed, opacity=0.5, forget plot] table [x=muQ, y=nu] {../code/data/LSM2F/eos.dat};
-\addplot+ [darkgreen, dashed, opacity=0.5, forget plot] table [x=muQ, y=nd] {../code/data/LSM2F/eos.dat};
-\addplot+ [blue, dashed, opacity=0.5, forget plot] table [x=muQ, y=ne] {../code/data/LSM2F/eos.dat};
-\addplot+ [red, solid] table [x=muQ, y=nu] {../code/data/LSM2FC_sigma600/eos.dat}; \addlegendentry{$n_u$ (up quarks)};
-\addplot+ [darkgreen, solid] table [x=muQ, y=nd] {../code/data/LSM2FC_sigma600/eos.dat}; \addlegendentry{$n_d$ (down quarks)};
-\addplot+ [blue, solid] table [x=muQ, y=ne] {../code/data/LSM2FC_sigma600/eos.dat}; \addlegendentry{$n_e$ (electrons)};
+%\draw [draw=none, fill=gray!50] (250, -0.005) rectangle (350, 0.02);
+%\draw [-Latex, gray] (300,0.03) to [out=90, in=0] (232, 0.75);
+%\addplot+ [red,       densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(muu(x))*nconv};
+%\addplot+ [darkgreen, densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(mud(x))*nconv};
+%\addplot+ [blue,      densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {ne(mue(x))*nconv};
+\addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=ne] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_e$ (electrons)};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2FC/eos_sigma_700.dat};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2FC/eos_sigma_800.dat};
+\addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=nd] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_d$ (down quarks)};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2FC/eos_sigma_700.dat};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2FC/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=nu] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_u$ (up quarks)};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2FC/eos_sigma_700.dat};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2FC/eos_sigma_800.dat};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
-	xmin=0, xmax=0.5, ymin=0, ymax=2, xtick distance=0.1, ytick distance=0.5, minor y tick num=4,
+	xmin=-0.005, xmax=0.3, ymin=0, ymax=1.5, xtick distance=0.1, ytick distance=0.5, minor y tick num=4, restrict y to domain=-2:+2,
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
 ];
-\addplot+ [black, dashed, opacity=0.5, forget plot] table [x=P,y=epsilon] {../code/data/LSM2F/eos.dat};
-\addplot+ [black, solid] table [x=P,y=epsilon] {../code/data/LSM2FC_sigma600/eos.dat};
+%\addplot+ [black, densely dashed, opacity=0.4, domain=0:0.1, forget plot] {3*x}; % +4*P0, since both ϵ and P modified by P0
+\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{before Maxwell construction};
+\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{after Maxwell construction};
+%\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_600.dat};
+%\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_700.dat};
+\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_700.dat};
+%\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_800.dat};
+\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_800.dat};
 \end{groupplot}
 % Embed zoom-plot in a node
+\iffalse
 \node [anchor=north east] at (zoomplot) {
 	\begin{tikzpicture}[baseline, trim axis left, trim axis right]
 	\begin{axis}[
@@ -839,6 +903,7 @@ Upon substitution of all the running couplings, the dependence on the renormaliz
 	\end{axis}
 	\end{tikzpicture}
 };
+\fi
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos-ref}%
 Results analogous to those in \cref{fig:lsm:2-flavor-eos}, but with the ``consistently fit'' grand potential \eqref{eq:lsm2f:grand_potential_consistent}.
@@ -850,42 +915,48 @@ The ``inconsistent'' results from \cref{fig:lsm:2-flavor-eos} are drawn with das
 \centering
 \tikzsetnextfilename{2-flavor-mass-radius-ref}
 \begin{tikzpicture}
-\begin{axis}[
-	width=15cm, height=12cm,
-	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for ``consistently fit'' 2-flavor quark stars}, title style={yshift=2.0cm},
-	xmin=7, xmax=33, ymin=0.3, ymax=2.2, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
-	point meta=explicit, point meta min=32, point meta max=39,
-	colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
-	declare function={
+\begin{groupplot}[
+	group style={group size={3 by 1}, vertical sep=0cm, horizontal sep=0.3cm},
+	width=6cm, height=6cm,
+	xmin=5, xmax=20, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
+	point meta=explicit, point meta min=33, point meta max=36,
+	%colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+	/tikz/declare function={
 		e0 = 4.266500881855304e+37;
 	},
-	legend pos=north west, legend cell align=right,
 ]
 \tikzset{
 	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
 }
-%\addplot+ [black, solid] {0}; \addlegendentry{stable stars};
-%\addplot+ [black, densely dashed] {0}; \addlegendentry{unstable stars};
+\nextgroupplot[
+	xlabel={$R \, / \, \si{\kilo\meter}$},
+	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
+	title = {$m_\sigma = \SI{500}{\mega\electronvolt}$ \\ $B^\frac14 = \{90,105,120\} \, \si{\mega\electronvolt}$},
+];
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_500_B14_90.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_500_B14_105.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_500_B14_120.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 
-%\addplot+ [smooth, solid,          gray, x filter/.expression={\thisrow{P} < 0.00139 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat}; % node [Bpin, pos=0.82] {$B = (\SI{27}{\mega\electronvolt})^4$};
-%\addplot+ [smooth, densely dashed, gray, x filter/.expression={\thisrow{P} > 0.00138 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_27.dat};
-\addplot+ [smooth, solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_27.dat};
-%\addplot+ [smooth, solid,          gray, x filter/.expression={\thisrow{P} < 0.0015 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat}; % node [Bpin, pos=0.77] {$B = (\SI{34}{\mega\electronvolt})^4$};
-%\addplot+ [smooth, densely dashed, gray, x filter/.expression={\thisrow{P} > 0.0014 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_34.dat};
-\addplot+ [smooth, solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_34.dat};
-%\addplot+ [smooth, solid,          gray, x filter/.expression={\thisrow{P} < 0.0013 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat}; % node [Bpin, pos=0.70] {$B = (\SI{41}{\mega\electronvolt})^4$};
-%\addplot+ [smooth, densely dashed, gray, x filter/.expression={\thisrow{P} > 0.0012 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_41.dat};
-\addplot+ [smooth, solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_41.dat};
-%\addplot+ [smooth, solid,          gray, x filter/.expression={\thisrow{P} < 0.0016 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat}; % node [Bpin, pos=0.47] {$B = (\SI{48}{\mega\electronvolt})^4$};
-%\addplot+ [smooth, densely dashed, gray, x filter/.expression={\thisrow{P} > 0.0015 ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/quarkstar2f_B14_48.dat};
-\addplot+ [smooth, solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_B14_48.dat};
+\nextgroupplot[
+	xlabel={$R \, / \, \si{\kilo\meter}$},
+	yticklabels={,,},
+	title = {$m_\sigma = \SI{600}{\mega\electronvolt}$ \\ $B^\frac14 = \{30,45,60\} \, \si{\mega\electronvolt}$},
+	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.5,-0.3)}, anchor=north, xticklabel pos=lower},
+];
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_600_B14_30.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_600_B14_45.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_600_B14_60.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 
-\addplot+ [smooth, solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_sigma600/stars_B14_27.dat} node [Bpin, pos=0.45] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [smooth, solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_sigma600/stars_B14_34.dat} node [Bpin, pos=0.49] {$B = (\SI{34}{\mega\electronvolt})^4$};
-\addplot+ [smooth, solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_sigma600/stars_B14_41.dat} node [Bpin, pos=0.525] {$B = (\SI{41}{\mega\electronvolt})^4$};
-\addplot+ [smooth, solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_sigma600/stars_B14_48.dat} node [Bpin, pos=0.555] {$B = (\SI{48}{\mega\electronvolt})^4$};
+\nextgroupplot[
+	xlabel={$R \, / \, \si{\kilo\meter}$},
+	yticklabels={,,},
+	title = {$m_\sigma = \SI{700}{\mega\electronvolt}$ \\ $B^\frac14 = \{30,45,60\} \, \si{\mega\electronvolt}$},
+];
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_700_B14_30.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_700_B14_45.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_700_B14_60.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 
-\end{axis}
+\end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-mass-radius-ref}%
 Results analogous to those in \cref{fig:lsm:2-flavor-mass-radius}, but with the ``consistent'' equation of state from \cref{fig:lsm:2-flavor-eos-ref}.
