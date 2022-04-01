@@ -551,8 +551,7 @@ if __name__ == "__main__":
     #Δ = np.linspace(model.vacuum_masses()[0], 0, 1000)[:-1]
     #model.eos(Δ, B=0**4, plot=True, write=True)
 
-    #models = [LSM2Flavor, LSM2FlavorConsistent, LSM3Flavor]
-    models = [LSM3Flavor]
+    models = [LSM2Flavor, LSM2FlavorConsistent, LSM3Flavor]
     mσs = [500, 600, 700, 800]
     B14s = [15, 30, 45, 60, 75, 90, 105, 120, 135, 150]
     P1P2 = (1e-7, 1e-2)
@@ -563,5 +562,5 @@ if __name__ == "__main__":
             if np.isnan(model.mu):
                 continue
             model.eos()
-            #for B14 in B14s:
-                #model.stars(B14, P1P2, write=True)
+            for B14 in B14s:
+                model.stars(B14, P1P2, write=True)

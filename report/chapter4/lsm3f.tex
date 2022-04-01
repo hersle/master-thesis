@@ -406,7 +406,7 @@ The ready-to-use grand potential is now
 \end{axis}
 \end{tikzpicture}
 \caption{\TODO{caption}
-Vacuum potential
+Three-flavor vacuum potential with
 $\mu_u = \mu_d = \mu_s = \mu_e = 0$}
 \end{figure}
 
@@ -517,7 +517,7 @@ This yields the upper bound
 \nextgroupplot[
 	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
 	xmin=0, xmax=800, xtick distance=100, minor x tick num=9,
-	ymax=3.0, ytick distance=0.5, minor y tick num=4, restrict y to domain=-10:10,
+	ymax=5.0, ytick distance=1.0, minor y tick num=9, restrict y to domain=-10:10,
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-density}Particle number densities}},
 	legend cell align=left, legend pos=north west, reverse legend,
 ];
@@ -539,7 +539,7 @@ This yields the upper bound
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
-	xmin=-0.005, xmax=0.05, ymin=0, ymax=0.5, xtick distance=0.01, ytick distance=0.1, minor y tick num=9, restrict y to domain=-1:+1,
+	xmin=-0.005, xmax=0.4, ymin=0, ymax=2.0, xtick distance=0.1, ytick distance=1.0, minor y tick num=9, restrict y to domain=-3:+3,
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
 ];
@@ -574,7 +574,8 @@ This yields the upper bound
 \fi
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-eos}%
-Properties of electrically charge neutral three-flavor quark matter \TODO{``quark matter'' sounds like QCD, write quark-meson model or something instead} in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
+Properties of electrically charge neutral three-flavor quark matter \TODO{``quark matter'' sounds like QCD, write quark-meson model or something instead} in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu_Q = (\mu_u+\mu_d)/2$.
+The two lines of each color has $m_\sigma = \SI{700}{\mega\electronvolt}$ (most ``sway'') and $m_\sigma = \SI{800}{\mega\electronvolt}$ (least ``sway'') \TODO{mark better}.
 Upper panel \subref{fig:lsm:3-flavor-eos-parametrization} shows solutions to equation \eqref{eq:lsm3f:minsys},
 middle panel \subref{fig:lsm:3-flavor-eos-density} the corresponding particle number densities \eqref{eq:lsm3f:particle_densities} and
 lower panel \subref{fig:lsm:3-flavor-eos-eos} the corresponding equation of state \eqref{eq:lsm:eos}, all with strong lines.
@@ -726,9 +727,9 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-mass-radius}%
-Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$, obtained with the equation of state for three-flavor quark matter in \cref{fig:lsm:3-flavor-eos-eos} modified by four bag constants between the bounds \eqref{eq:lsm:bag_lower_bound} and \eqref{eq:lsm3f:bag_upper_bound}.
-Colorful lines show the three-flavor results, while gray lines show the two-flavor solutions from \cref{fig:lsm:2-flavor-mass-radius} with the same bag constants.
-The upper and middle panels show mass and radius as a function of central pressure with a horizontal axis common to the color bar, while the lower panel displays the solutions in the mass-radius plane.
+Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$, obtained with the equations of state for three-flavor quark matter in \cref{fig:lsm:3-flavor-eos-eos} modified by bag constants around the bounds \eqref{eq:lsm:bag_lower_bound} and \eqref{eq:lsm3f:bag_upper_bound}.
+%Colorful lines show the three-flavor results, while gray lines show the two-flavor solutions from \cref{fig:lsm:2-flavor-mass-radius} with the same bag constants.
+%The upper and middle panels show mass and radius as a function of central pressure with a horizontal axis common to the color bar, while the lower panel displays the solutions in the mass-radius plane.
 }
 \end{figure}
 

@@ -403,7 +403,7 @@ In the opposite case $\mu < m$, the step function would cause the whole integral
 \end{axis}
 \end{tikzpicture}
 \caption{\TODO{caption}
-Two-flavor vacuum potential
+Two-flavor vacuum potential with
 $\mu_u = \mu_d = \mu_e = 0$}
 \end{figure}
 
@@ -568,7 +568,8 @@ We therefore expect a well-defined parametrization with the free variable
 \fi
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos}%
-Properties of electrically charge neutral two-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
+Properties of electrically charge neutral two-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu_Q = (\mu_u+\mu_d)/2$.
+The three lines of each color has $m_\sigma = \{600,700,800\} \, \si{\mega\electronvolt}$, from most to least ``sway'' \TODO{mark better}.
 Upper panel \subref{fig:lsm:2-flavor-eos-parametrization} shows solutions to equation \eqref{eq:lsm:minsys},
 middle panel \subref{fig:lsm:2-flavor-eos-density} the corresponding particle number densities \eqref{eq:lsm:particle_densities} and
 lower panel \subref{fig:lsm:2-flavor-eos-eos} the corresponding equation of state \eqref{eq:lsm:eos}, all with solid lines.
@@ -726,7 +727,7 @@ Solving equation \eqref{eq:lsm:bag_stability_2f} numerically in \cref{sec:num:qs
 
 \end{groupplot}
 \end{tikzpicture}
-\caption{\label{fig:lsm:2-flavor-mass-radius}Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$, obtained with the equation of state for two-flavor quark matter in \cref{fig:lsm:2-flavor-eos-eos} modified by a range of bag constants above the bound \eqref{eq:lsm:bag_lower_bound}.}
+\caption{\label{fig:lsm:2-flavor-mass-radius}Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$, obtained with the equations of state for two-flavor quark matter in \cref{fig:lsm:2-flavor-eos-eos} modified by a range of bag constants around the bounds \eqref{eq:lsm:bag_lower_bound}.}
 \end{figure}
 
 With the equation of state, we now solve the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} with multiple bag pressures above the lower bound \eqref{eq:lsm:bag_lower_bound}.
@@ -825,19 +826,19 @@ Upon substitution of all the running couplings, the dependence on the renormaliz
 \addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=mue]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
 \addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2FC/eos_sigma_600.dat};
 \addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2FC/eos_sigma_700.dat};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2FC/eos_sigma_800.dat};
+%\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2FC/eos_sigma_800.dat};
 \addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=mud]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
 \addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2FC/eos_sigma_600.dat};
 \addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2FC/eos_sigma_700.dat};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2FC/eos_sigma_800.dat};
+%\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2FC/eos_sigma_800.dat};
 \addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=muu]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
 \addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2FC/eos_sigma_600.dat};
 \addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2FC/eos_sigma_700.dat};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2FC/eos_sigma_800.dat};
+%\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2FC/eos_sigma_800.dat};
 \addplot+ [orange,    solid, opacity=0.7             ] table [x=muQ, y=Deltax] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\Delta \, / \, \si{\mega\electronvolt}$};
 \addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2FC/eos_sigma_600.dat};
 \addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2FC/eos_sigma_700.dat};
-\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2FC/eos_sigma_800.dat};
+%\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2FC/eos_sigma_800.dat};
 
 
 \nextgroupplot[
@@ -856,15 +857,15 @@ Upon substitution of all the running couplings, the dependence on the renormaliz
 \addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=ne] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_e$ (electrons)};
 \addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2FC/eos_sigma_600.dat};
 \addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2FC/eos_sigma_700.dat};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2FC/eos_sigma_800.dat};
+%\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2FC/eos_sigma_800.dat};
 \addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=nd] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_d$ (down quarks)};
 \addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2FC/eos_sigma_600.dat};
 \addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2FC/eos_sigma_700.dat};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2FC/eos_sigma_800.dat};
+%\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2FC/eos_sigma_800.dat};
 \addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=nu] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_u$ (up quarks)};
 \addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2FC/eos_sigma_600.dat};
 \addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2FC/eos_sigma_700.dat};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2FC/eos_sigma_800.dat};
+%\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2FC/eos_sigma_800.dat};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -881,7 +882,7 @@ Upon substitution of all the running couplings, the dependence on the renormaliz
 %\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_700.dat};
 \addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_700.dat};
 %\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_800.dat};
-\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_800.dat};
+%\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_800.dat};
 \end{groupplot}
 % Embed zoom-plot in a node
 \iffalse
@@ -906,8 +907,9 @@ Upon substitution of all the running couplings, the dependence on the renormaliz
 \fi
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos-ref}%
-Results analogous to those in \cref{fig:lsm:2-flavor-eos}, but with the ``consistently fit'' grand potential \eqref{eq:lsm2f:grand_potential_consistent}.
-The ``inconsistent'' results from \cref{fig:lsm:2-flavor-eos} are drawn with dashed lines.
+Results analogous to those in \cref{fig:lsm:2-flavor-eos}, but with the ``consistently fit'' grand potential \eqref{eq:lsm2f:grand_potential_consistent}
+and $m_\sigma = \{500,600,700\} \, \si{\mega\electronvolt}$.
+%The ``inconsistent'' results from \cref{fig:lsm:2-flavor-eos} are drawn with dashed lines.
 }
 \end{figure}
 
@@ -959,8 +961,8 @@ The ``inconsistent'' results from \cref{fig:lsm:2-flavor-eos} are drawn with das
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-mass-radius-ref}%
-Results analogous to those in \cref{fig:lsm:2-flavor-mass-radius}, but with the ``consistent'' equation of state from \cref{fig:lsm:2-flavor-eos-ref}.
-The dark lines show the ``inconsistent'' results from \cref{fig:lsm:2-flavor-mass-radius}.
+Results analogous to those in \cref{fig:lsm:2-flavor-mass-radius}, but with the ``consistent'' equations of state from \cref{fig:lsm:2-flavor-eos-ref}.
+%The dark lines show the ``inconsistent'' results from \cref{fig:lsm:2-flavor-mass-radius}.
 }
 \end{figure}
 
