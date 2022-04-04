@@ -245,25 +245,51 @@ It will, however, be very useful to have \emph{some} bound for the bag constant 
 
 \section{Quantum chromodynamics and effective field theory}
 
-\TODO{philosophy of effective field theory: identifty DoF (particles) and symmetries, write down most general Lagrangian with all (relevant) interactions \cite{ref:weinberg_eft}. like small oscillations in classical mechanics?}
-
-\TODO{what about radius $r < R$ instead of $r=R$?}
-
-\TODO{what about general relativity instead of Newtonian gravity?}
-
-\TODO{what about contribution from pressure and other things to $F_\text{out}$?}
-
-\TODO{can I recast inequality in charge per solar mass? see discussion at beginning of \url{www.if.ufrgs.br/hadrons/MMalheiro.pdf}}
-
-
-\subsection{Symmetries}
-
-Always have $U(1)_V$ symmetry, giving rise to conservation of baryon number.
-
-Symmetry breaking
+The theory of the strong interaction force is called \textbf{quantum chromodynamics}.
+It describes the interaction between quarks mediated by gluons through the Lagrangian density
 \begin{equation}
-	SU(2)_L \times SU(2)_R \quad \rightarrow \quad SU(2)_V
+	\lagr = \bar{q} ( i \gamma^\mu D_\mu - m ) q - \frac14 G_{\mu\nu}^a G^{\mu\nu}_a
+	\qquad \text{with} \qquad
+	G_{\mu\nu}^a = \partial_\mu A_\nu^a - \partial_\nu A_\mu^a + g f^{abc} A_\mu^b A_\nu^c.
 \end{equation}
+The quark fields $q = q_{f,c,\alpha}(x)$ are indexed by
+the $N_f = 3$ flavors $f \in \{u,d,s\}$,
+the $N_c = 3$ colors $c \in \{r,g,b\}$ and
+$4$ spinor indices $\alpha \in \{0,1,2,3\}$,
+and we will take a flavor index $f$ with the shorthand $f = q_{f,c,\alpha(x)}$.
+The gamma matrices \eqref{eq:tft:gamma_dirac_basis} act in spinor space,
+the mass matrix $m = \diag(m_u, m_d, m_s)$ in flavor space,
+and there are suppressed identity matrices in spinor, flavor and color space wherever needed for the Lagrangian to be a scalar.
+The covariant derivative is $D_\mu = \partial_\mu - i g A_\mu^a T^a$ and couples the gluon gauge fields $A_\mu^a$ to the quarks with strength $g$.
+Finally, the Gell-Mann matrices $T^a$ are the $N_a = N_f^2 - 1$ generators of the symmetry group $SU(N_f)$,
+whose structure constants $f^{abc}$ can be determined from their commutators $\comm{T^a}{T^b} = i f^{abc} T^c$.
+
+The Lagrangian has several interesting global symmetries, each of which gives rise to a conserved classical current that can be found using Noether's theorem.
+The simplest symmetry is the $U(1)_V$ \textbf{vector symmetry} $q \rightarrow e^{i \theta} q$, giving rise to the conserved vector current $j^\mu = \bar\psi \gamma^\mu \psi$ representing the baryon number density.
+\TODO{mention coupling to chemical potential}
+In the massless case $m_u = m_d = m_s = 0$, the Lagrangian also has the $U(1)_A$ \textbf{axial symmetry} $q \rightarrow e^{i \theta \gamma^5} q$ with the conserved axial current $j^\mu = \bar{q} \gamma^\mu \gamma^5 q$.
+As its proof assumes the action to be extremized, Noether's theorem is inherently \emph{classical}.
+Unlike the vector current, the axial current is no longer conserved under the influence of quantum effects, and is therefore said to be \emph{anomalous}.
+
+With massless quarks, the Lagrangian can be written
+\begin{equation}
+	%\lagr = i \bar{u}_- \gamma^\mu D_\mu u_- + i \bar{u}_+ \gamma^\mu D_\mu u_+ + i \bar{d}_- \gamma^\mu D_\mu d_- + i \bar{d}_+ \slashed{D} d_+ - \frac14 G_{\mu\nu}^a G^{\mu\nu}_a.
+	\lagr = \bar{q}_- i \gamma^\mu D_\mu q_- + \bar{q}_+ i \gamma^\mu D_\mu q_+ - \frac14 G_{\mu\nu}^a G^{\mu\nu}_a,
+\end{equation}
+where the quark fields $q = q_- + q_+$ has been decoupled into left-handed ($-$) and right-handed ($+$) chiral fields $q_\pm = P_\pm q$ with the projection operator $P_\pm = \frac12 (1 \pm \gamma^5)$.
+This Lagrangian has the $SU(N_f)_L \times SU(N_f)_R$ \textbf{chiral symmetry} transformation $q_\pm \rightarrow U_\pm q_\pm$, where $U_\pm \in SU(N_f)$.
+Moreover, it is known that the ground state of QCD admits a quark condensate
+\begin{equation}
+	\avg{\bar{u} u} = \avg{\bar{d} d} = \avg{\bar{u}_- u_-} + \avg{\bar{u}_+ u_+} + \avg{\bar{u}_- u_+} + \avg{\bar{u}_+ u_-}.
+\end{equation}
+In contrast to the two first terms, the two last terms $\avg{\bar{u}_\pm u_\mp} \rightarrow U_\pm^\dagger U_\mp \avg{\bar{u}_\pm u_\mp}$ are generally not invariant under the chiral transformation.
+The fact that the ground state does not carry the same symmetry as its Lagrangian is the signature of \textbf{spontaneous symmetry breaking}.
+Only if $U_- = U_+$ are all terms invariant -- this is the $SU(N_f)_V$ \textbf{isospin symmetry} where both left-handed and right-handed fields are transformed in the same way.
+We therefore say that quantum chromodynamics exhibits the symmetry breaking pattern
+\begin{equation}
+	SU(N_f)_L \times SU(N_f)_R \quad \rightarrow \quad SU(N_f)_V .
+\end{equation}
+
 Quark-meson model can be written in terms of left/right fields:
 \begin{equation}
 \begin{split}
@@ -285,4 +311,12 @@ Now it is apparent that LSM is invariant under $SU(2)_L \times SU(2)_R$:
 When $h \neq 0$, this symmetry is explicitly broken.
 
 
+\TODO{philosophy of effective field theory: identifty DoF (particles) and symmetries, write down most general Lagrangian with all (relevant) interactions \cite{ref:weinberg_eft}. like small oscillations in classical mechanics?}
 
+\TODO{what about radius $r < R$ instead of $r=R$?}
+
+\TODO{what about general relativity instead of Newtonian gravity?}
+
+\TODO{what about contribution from pressure and other things to $F_\text{out}$?}
+
+\TODO{can I recast inequality in charge per solar mass? see discussion at beginning of \url{www.if.ufrgs.br/hadrons/MMalheiro.pdf}}
