@@ -128,7 +128,7 @@
 \tikzset{
 	external/optimize command away={\includepdf}, % pdfpages incompatible with tikz, see e.g https://www.overleaf.com/learn/latex/Questions/I_have_a_lot_of_tikz%2C_matlab2tikz_or_pgfplots_figures%2C_so_I%27m_getting_a_compilation_timeout._Can_I_externalise_my_figures%3F#The_tikz-external_solution
 }
-\tikzsetexternalprefix{project-figure-}
+\tikzsetexternalprefix{thesis-figure-}
 \tikzset{% Dirty fix for using -output-directory option. From https://tex.stackexchange.com/a/338560
 external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --interaction=batchmode --output-directory=./.cachelatex --jobname "\image" "\texsource"},
 	/pgf/images/include external/.code={%
@@ -258,7 +258,7 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 	%}
 }
 
-\addbibresource{project.bib}
+\addbibresource{thesis.bib}
 
 \usepackage{derivative}
 \derivset{\odv}[style-inf=\mathrm] % write normal derivatives with upright d
@@ -331,19 +331,22 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 \end{titlepage}
 
 \input{acknowledgements/acknowledgements.tex}
-\input{abstract/abstract.tex}
+\input{project-abstract/abstract.tex}
 \tableofcontents
 \input{prologue/prologue.tex}
 
 \mainmatter
 \part{Project thesis} \label{part:project}
-\input{introduction/introduction.tex}
-\input{chapter1/chapter1.tex}
-\input{chapter2/chapter2.tex}
-\input{chapter3/chapter3.tex}
-\input{conclusion/conclusion.tex}
+\input{project-introduction/introduction.tex}
+\input{project-chapter1/chapter1.tex}
+\input{project-chapter2/chapter2.tex}
+\input{project-chapter3/chapter3.tex}
+\input{project-conclusion/conclusion.tex}
 \part{Master thesis} \label{part:master}
-\input{chapter4/chapter4.tex}
+\input{master-introduction/introduction.tex}
+\input{master-chapter1/chapter1.tex}
+\input{master-chapter2/chapter2.tex}
+\input{master-chapter3/chapter3.tex}
 \part{Appendices} \label{part:appendices}
 \input{appendix/appendix.tex}
 
