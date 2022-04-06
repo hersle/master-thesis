@@ -7,7 +7,7 @@
 In this chapter, we will study a hypothetical class of compact stars known as quark stars.
 Let us summarize the main ingredients in this work.
 
-\subsection{The Tolman-Oppenheimer-Volkoff equation}
+\section{Tolman-Oppenheimer-Volkoff equation}
 
 In \cref{chap:tov} we derived the Tolman-Oppenheimer-Volkoff equation
 \begin{subequations}
@@ -21,7 +21,7 @@ Given the fluid's equation of state $\epsilon(P)$ that relates its pressure $P$ 
 We will seek mass-radius solutions to the equation, obtained by integrating it from the center $r=0$ with zero initial mass $m(0) = 0$ and some central pressure $P(0) = P_c$ until reaching the surface $r=R$ defined by a vanishing pressure $P(R) = 0$ and where the mass $m(R) = M$ defines the star's total mass.
 By finding such solutions for a range of central pressures $P_c$, we parametrize a sequence of stars that we can plot in a mass-radius diagram.
 
-\subsection{Equation of state from thermal field theory}
+\section{Thermal field theory}
 
 To derive equations of state for quark matter, we will study quantum field theories whose dynamics is described by some Lagrangian density $\lagr$.
 In \cref{chap:tft} we showed that the partition function in the grand canonical ensemble corresponding to a Lagrangian including both a fermionic field $\psi$ and a bosonic field $\phi$ is given by the path integral
@@ -108,7 +108,7 @@ Our choice $\rho(r)=0$ is therefore the simplest choice, but not the most physic
 
 \section{Quantum chromodynamics}
 
-The theory of the strong interaction force is called \textbf{quantum chromodynamics}.
+The theory of the strong interaction force is called \textbf{quantum chromodynamics} (\textbf{QCD}).
 It describes the interaction between quarks mediated by gluons through the Lagrangian density
 \begin{equation}
 	\lagr = \bar{q} ( i \gamma^\mu D_\mu - m ) q - \frac14 G_{\mu\nu}^a G^{\mu\nu}_a
@@ -119,61 +119,55 @@ It describes the interaction between quarks mediated by gluons through the Lagra
 The quark fields $q = q_{f,c,\alpha}(x)$ are indexed by
 the $N_f = 3$ flavors $f \in \{u,d,s\}$,
 the $N_c = 3$ colors $c \in \{r,g,b\}$ and
-$4$ spinor indices $\alpha \in \{0,1,2,3\}$,
+$4$ Dirac spinor indices $\alpha \in \{0,1,2,3\}$,
 and we will take a flavor index $f$ with the shorthand $f = q_{f,c,\alpha(x)}$.
 The gamma matrices \eqref{eq:tft:gamma_dirac_basis} act in spinor space,
 the mass matrix $m = \diag(m_u, m_d, m_s)$ in flavor space,
 and there are suppressed identity matrices in spinor, flavor and color space wherever needed for the Lagrangian to be a scalar.
 The covariant derivative is $D_\mu = \partial_\mu - i g A_\mu^a T^a$ and couples the gluon gauge fields $A_\mu^a$ to the quarks with strength $g$.
 Finally, the Gell-Mann matrices $T^a$ are the $N_a = N_f^2 - 1$ generators of the symmetry group $SU(N_f)$,
-whose structure constants $f^{abc}$ can be determined from their commutators $\comm{T^a}{T^b} = i f^{abc} T^c$.
+whose structure constants $f^{abc}$ can be determined from the commutators $\comm{T^a}{T^b} = i f^{abc} T^c$.
 
 \TODO{mention it is a Yang-Mills theory?}
+\TODO{derive (in a plausible way) by generalizing QED?}
 
-\subsubsection{Symmetries and symmetry breaking}
+\subsubsection{Phase diagram and calculational methods}
 
-It is, however, possible to study some interesting global symmetries of the Lagrangian \eqref{eq:qcd:lagrangian}, each of which gives rise to a conserved classical current that can be found using Noether's theorem.
-The simplest symmetry is the $U(1)_V$ \textbf{vector symmetry} $q \rightarrow e^{i \theta} q$, giving rise to the conserved vector current $j^\mu = \bar{q} \gamma^\mu q$ representing the baryon number density.
-\TODO{mention coupling to chemical potential}
-In the massless case $m_u = m_d = m_s = 0$, the Lagrangian also has the $U(1)_A$ \textbf{axial symmetry} $q \rightarrow e^{i \theta \gamma^5} q$ with the conserved axial current $j^\mu = \bar{q} \gamma^\mu \gamma^5 q$.
-As its proof assumes the action to be extremized, Noether's theorem is inherently \emph{classical}.
-Unlike the vector current, the axial current is no longer conserved under the influence of quantum effects, and is therefore said to be \emph{anomalous}.
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/qcd-phase-diagram.pdf}
+\caption{%
+	Slice of the phase diagram of quantum chromodynamics with zero isospin and strangeness.
+	\credit{CERN / Antonin Maire}{https://cds.cern.ch/record/2025215}
+}
+\label{fig:qcd:phase_diagram}
+\end{figure}
 
-With massless quarks, the Lagrangian \eqref{eq:qcd:lagrangian} can be written
-\begin{equation}
-	\lagr = \bar{q}_- i \gamma^\mu D_\mu q_- + \bar{q}_+ i \gamma^\mu D_\mu q_+ - \frac14 G_{\mu\nu}^a G^{\mu\nu}_a,
-\end{equation}
-where the quark fields $q = q_- + q_+$ has been decoupled into left-handed ($-$) and right-handed ($+$) chiral fields $q_\pm = P_\pm q$ using the projection operator $P_\pm = \frac12 (1 \pm \gamma^5)$.
-This Lagrangian has the $SU(N_f)_L \times SU(N_f)_R$ \textbf{chiral symmetry} transformation $q_\pm \rightarrow U_\pm q_\pm$, where $U_\pm \in SU(N_f)$.
-Moreover, it is known that the ground state of QCD admits a quark condensate \cite[chapter 28]{ref:schwartz}
-\begin{equation}
-	\avg{\bar{u} u} = \avg{\bar{d} d} = \avg{\bar{u}_- u_-} + \avg{\bar{u}_+ u_+} + \avg{\bar{u}_- u_+} + \avg{\bar{u}_+ u_-}.
-\end{equation}
-In contrast to the two first terms, the two last terms $\avg{\bar{u}_\pm u_\mp} \rightarrow U_\pm^\dagger U_\mp \avg{\bar{u}_\pm u_\mp}$ are generally not invariant under the chiral transformation.
-The fact that the ground state does not carry the same symmetry as its Lagrangian is the signature of \textbf{spontaneous symmetry breaking}.
-Only if $U_- = U_+$ are all terms invariant -- this is the $SU(N_f)_V$ \textbf{isospin symmetry} where both left-handed and right-handed fields are transformed in the same way.
-We therefore say that quantum chromodynamics exhibits the spontaneous symmetry breaking pattern
-\begin{equation}
-	SU(N_f)_L \times SU(N_f)_R \quad \rightarrow \quad SU(N_f)_V .
-\end{equation}
-Goldstone's theorem predicts that one massless Goldstone boson arises from every broken symmetry generator.
-Hence, chiral symmetry breaking gives rise to $2 \times (N_f^2 - 1) - (N_f^2 - 1) = N_f^2 - 1$ Goldstone bosons.
-With $N_f = 2$ and $N_f = 3$ flavors, these are the three pions and the eight light pseudoscalar mesons.
+The phase diagram of quantum chromodynamics describes the phase of quark matter as a function of temperature $T$, the quark chemical potential $\mu_Q$, the isospin chemical potential $\mu_I$ and the strangeness chemical potential $\mu_S$.
+Although mapping out the diagram is an active area of research, a rough qualitative picture is known, and the slice with $\mu_I = \mu_S = 0$ is shown in \cref{fig:qcd:phase_diagram}.
+Later we will see that the state of matter in compact stars is parametrized by a curve in the phase diagram that lies close to the $\mu_Q$-axis, corresponding to the density of baryons.
+We will shortly discuss the most important qualitative properties of quantum chromodynamics and relate them to this phase diagram.
 
-In the real world, however, quarks are massive and chiral symmetry is only \emph{approximately} broken.
-This means that there are \textbf{explicit symmetry breaking} terms in the Lagrangian that change by a small amount under the above-mentioned transformation.
-In turn, the corresponding Goldstone bosons are light, but not massless.
+Quantum chromodynamics is notorious for being very difficult to make analytical calculations with, and its elegance and practicality stops not longer after writing down its Lagrangian \eqref{eq:qcd:lagrangian}.
+To explore the phase diagram, one must therefore resort to alternative techniques:
+\begin{itemize}
+\item \textbf{Perturbation theory} can be used to study quantum chromodynamics at \emph{high} energy, perhaps contrary to what one might expect.
+      As we will soon discuss in more detail, this is due to a property called asymptotic freedom that causes the interaction strength to \emph{decrease} with increasing energy.
+\item \textbf{Lattice QCD} consists of making numerical calculations on a discrete lattice of spacetime points.
+      This method has proved very useful for studying quantum chromodynamics under quite general circumstances.
+      In the regime of high density and low temperature, however, is plagued by the so-called sign problem that refers to the difficulty of calculating integrals of highly oscillatory functions.
+      This is precisely the area in the phase diagram that is relevant for compact stars.
+\item The \textbf{$\bm{1/N_c}$-approximation} or \textbf{large $\bm{N_c}$-limit} consists of making expansions in the assumed small parameter $1/N_c$.
+      Although there are only $N_c = 3$ colors in nature, this scheme has indeed been used to make accurate predictions.
+      We will refer to this approximation to justify some of our later actions.
+\item \textbf{Effective theories and models} can be used to study quantum chromodynamics in some regimes of interest.
+      The most important requirements of such a theory or model is that it includes the correct degrees of freedom (or particles) and exhibit the same symmetries and symmetry breaking patterns as the theory it aims to describe in the regime of interest.
+      Due to \cite{ref:weinberg_eft}, the philosophy is then to ``write down the most general possible theory involving fields for these particles, including all possible interactions consistent with the symmetries''.
+      For example, chiral perturbation theory ($\chi$PT), the Nambu-Jona-Lasinio (NJL) model and the linear sigma model (LSM), also known as the quark-meson (QM) model, all give effective descriptions of quantum chromodynamics at low energies.
+      This approach is applicable to compact stars and is the one we will take.
+\end{itemize}
 
-\subsubsection{Color confinement and asymptotic freedom}
-
-(Inspired by \cite{ref:quark_bag_model})
-
-\TODO{discuss $\epsilon$, $P$ before this}
-\TODO{understand bag-constant as a measure of the trace anomaly? $m = 0$ -- conformal inveriance, classical symmetry broken in the quantum case?}
-\TODO{justify and make less ad-hoc, move some of this to intro?}
-\TODO{understand difference between $P(\mu)$ and $P(\mu,B)$}
-\TODO{find source on bag stuff. JO?}
-\TODO{difference between ``perturbative vacuum'' and ``confined vacuum''}
+\subsubsection{Color confinement and asymptotic freedom \cite{ref:quark_bag_model}}
 
 \begin{figure}
 \centering
@@ -195,61 +189,70 @@ In turn, the corresponding Goldstone bosons are light, but not massless.
 }
 \end{figure}
 
-\textbf{Color confinement} is a fundamental feature of quantum chromodynamics.
-Experiments and lattice simulations have shown that color-charged particles like quarks cannot be isolated from each other, but are rather confined in hadrons.
+One fundamental feature of quantum chromodynamics is \textbf{color confinement}.
 Quarks can be color-charged \textcolor{red}{\textbf{red}}, \textcolor{green}{\textbf{green}} and \textcolor{blue}{\textbf{blue}},
-while antiquarks can have the complementary colors -- or anticolors -- \textcolor{cyan}{\textbf{antired}}, \textcolor{magenta}{\textbf{antigreen}} and \textcolor{yellow}{\textbf{antiblue}}.
-For example, a meson consists of one quark of any color and one antiquark with the complementary color of the first quark, making the meson itself colorless or ``white''.
-Similarly, a baryon consists of one red, one green and one blue quark,
-while an antibaryon consists of one antired, one antigreen and one antiblue quark,
-and are thus also ``white''.
+while antiquarks can have the complementary anticolors \textcolor{cyan}{\textbf{antired}}, \textcolor{magenta}{\textbf{antigreen}} and \textcolor{yellow}{\textbf{antiblue}}.
+At low temperature and density, experiments and lattice simulations show that quarks never appear in isolation, but are always confined in hadrons that have no overall color.
+As the distance between color-charged quarks increases, the strong force between them remains \emph{constant} -- the quarks are  effectively ``glued'' together by the mediating gluon.
+For example, a meson consists of one quark of any color and one antiquark of its complementary color, making the meson itself colorless or ``white''.
+Similarly, a(n) (anti)baryon consists of one (anti)red, one (anti)green and one (anti)blue quark and is also ``white''.
 
-Another important property of quantum chromodynamics is \textbf{asymptotic freedom}.
-As the energy scale of quark interactions increases -- or its length scale decreases -- the \emph{strength} of the interactions \emph{decreases}!
-This property was first discovered by \cite{ref:asymptotic_freedom_gross_wilczek,ref:asymptotic_freedom_politzer}, who were recognized with the Nobel Prize in 2004.
+What if an even stronger force overcomes the strong force and tries to forcibly separate the quarks in a hadron into colorful groups of quarks?
+Then nature will simply create new quark--anti-quark pairs so that the new groups of quarks both become new colorless hadrons.
+\TODO{Figure} illustrates this process for a meson.
+At low temperatures and densities in the lower left of \cref{fig:qcd:phase_diagram}, quarks are therefore \emph{confined} in colorless hadronic matter that make up the present world around us.
 
-\subsubsection{Linear sigma model (quark-meson model)}
+In the opposite extreme, quantum chromodynamics displays the property of \textbf{asymptotic freedom}.
+As the energy scale of quark interactions increases, or equivalently its length scale decreases, the interaction strength \emph{decreases}.
+When the density reaches extreme levels, confined hadronic quark matter then turns into a \emph{deconfined} \textbf{quark-gluon plasma} in the upper right of \cref{fig:qcd:phase_diagram} where they are free of all interactions and move around at will.
+It is believed that the universe passed through this phase during the first $\SI{20}{\micro\second}$ after the Big Bang, after which it transitioned to the present phase of hadronic matter.
+As no human-made laboratory can possibly recreate the necessary densities in the near future, the best candidates for finding and studying this exotic state of matter today is precisely the cores of compact stars.
+Asymptotic freedom was first discovered by \cite{ref:asymptotic_freedom_gross_wilczek,ref:asymptotic_freedom_politzer}, who were recognized with the Nobel Prize in 2004.
 
-Quantum chromodynamics is notorious for being very difficult to work with for analytical calculations, and its elegance and practicality stops not longer after writing down its Lagrangian \eqref{eq:qcd:lagrangian}.
-For further analysis, one must therefore resort to alternative techniques:
-\begin{itemize}
-\item Contrary to what one might expect, \textbf{perturbation theory} can be used to study quantum chromodynamics at \emph{high} energy due to the property of asymptotic freedom that we will shortly discuss.
-\item \textbf{Lattice QCD} consists of making numerical calculations on a discrete lattice of spacetime points.
-      This method has proved very useful, but is plagued by the so-called sign problem in the regime of high density and low temperature, referring to the difficulty of calculating integrals of highly oscillatory functions.
-      This is precisely the area in the phase diagram that is relevant for compact stars.
-\item The \textbf{$1/N_c$-approximation} or \textbf{large $N_c$-limit} consists of making expansions in the assumed small parameter $1/N_c$.
-      Although there are only $N_c = 3$ colors in nature, this scheme has indeed been used to make accurate predictions.
-\item In some specific limits, one can use \textbf{effective theories} and \textbf{models} that capture the relevant features of quantum chromodynamics in the regime of interest.
-      Examples include chiral perturbation theory ($\chi$PT), the Nambu-Jona-Lasinio (NJL) model and the linear sigma model (LSM), also known as the quark-meson (QM) model - all of which give effective descriptions at \emph{low} energies.
-      An effective theory or model should include the correct degrees of freedom (or particles) and exhibit the same symmetries and symmetry breaking patterns as the original theory in the regime to be studied.
-      The philosophy due to Weinberg is then to ``write down the most general possible theory involving fields for these particles, including all possible interactions consistent with the symmetries'' \cite{ref:weinberg_eft}.
-\end{itemize}
+\subsubsection{Vector, axial and chiral symmetries and chiral symmetry breaking}
 
-\TODO{qcd phase diagram picture}
+The Lagrangian \eqref{eq:qcd:lagrangian} has some interesting global symmetries, each of which gives rise to a conserved classical current by Noether's theorem.
+The simplest symmetry is the $U(1)_V$ \textbf{vector symmetry} $q \rightarrow e^{i \theta} q$, giving rise to the conserved vector current $j^\mu = \bar{q} \gamma^\mu q$ representing the baryon number density.
+In the grand canonical ensemble, we will later couple one such conserved current to a chemical potential for each quark flavor.
+In the massless case $m = 0$, the Lagrangian also has the $U(1)_A$ \textbf{axial symmetry} $q \rightarrow e^{i \theta \gamma^5} q$ with the conserved axial current $j^\mu = \bar{q} \gamma^\mu \gamma^5 q$.
+As its proof assumes the action to be extremized, Noether's theorem is inherently \emph{classical}.
+Unlike the vector current, the axial current is no longer conserved under the influence of quantum effects, and is therefore said to be \emph{anomalous}.
 
-\TODO{rewrite}
-At low energies where asymptotic freedom has not come into play, quarks are bound together in baryons.
-This is the case in neutron stars, for example.
-In quark stars, the energy would have to be sufficiently high for asymptotic freedom to ``free'' the quarks from each other and become the degrees of freedom.
-Nevertheless, we will attempt to model quark stars with the quark-meson model that describes QCD at low energy.
+Using the projection operator $P_\pm = \frac12 (1 \pm \gamma^5)$, we can introduce the left-handed ($-$) and right-handed ($+$) chiral fields $q_\pm = P_\pm q$.
+One can then show that $q = q_- + q_+$, $\bar{q}_\pm q_\pm = 0$ and $\bar{q}_\pm \gamma^\mu D_\mu q_\mp = 0$, so that the Lagrangian \eqref{eq:qcd:lagrangian} can be written
+\begin{equation}
+	\lagr = \bar{q}_- i \gamma^\mu D_\mu q_- + \bar{q}_+ i \gamma^\mu D_\mu q_+ - \bar{q}_- m q_+ - \bar{q}_+ m q_- - \frac14 G_{\mu\nu}^a G^{\mu\nu}_a.
+\label{eq:qcd:lagrangian_chiral}
+\end{equation}
+In the massless case $m=0$,
+it is left invariant under the $SU(N_f)_L \times SU(N_f)_R$ \textbf{chiral symmetry} transformation $q_\pm \rightarrow U_\pm q_\pm$ where both $U_\pm \in SU(N_f)$.
+Moreover, it is known that the ground state of quantum chromodynamics admits a nonzero quark condensate \cite[chapter 28]{ref:schwartz}
+\begin{equation}
+	\avg{\bar{q} q} %= \avg{\bar{q}_- q_-} + \avg{\bar{q}_+ q_+} + \avg{\bar{q}_- q_+} + \avg{\bar{q}_+ q_-}
+	                                                            = \avg{\bar{q}_- q_+} + \avg{\bar{q}_+ q_-},
+\end{equation}
+which is generally \emph{not} invariant under the chiral transformation.
+The fact that the ground state does not carry the same symmetry as its Lagrangian is the signature of \textbf{spontaneous symmetry breaking}.
+Only if $U_- = U_+$ are all terms invariant -- this is the $SU(N_f)_V$ \textbf{isospin symmetry} where both left-handed and right-handed fields are transformed in the same way.
+The isospin symmetry is also a symmetry of the \emph{massive} Lagrangian \eqref{eq:qcd:lagrangian_chiral} \emph{if} all quark masses are set equal so that the mass matrix $m$ proportional to the identity matrix.
+We therefore say that quantum chromodynamics exhibits \textbf{chiral symmetry breaking}
+\begin{equation}
+	SU(N_f)_L \times SU(N_f)_R \quad (m = 0) \qquad \rightarrow \quad SU(N_f)_V \quad (m \neq 0).
+\end{equation}
+Goldstone's theorem then predicts that one massless Goldstone boson arises from every broken symmetry generator.
+Hence, chiral symmetry breaking gives rise to $2 \times (N_f^2 - 1) - (N_f^2 - 1) = N_f^2 - 1$ Goldstone bosons.
+With $N_f = 2$ and $N_f = 3$ flavors, these are the three pions and the eight light pseudoscalar mesons.
 
-Together, these two features explain that at high temperature or high density, quarks become free of  in the sense that they are free of interactions between each other,
-but spatially \emph{confined} to a hadron.
-In an extremely dense pure neutron star, for example,
-the neutrons' three constituent quarks would break free from each other and hence the bound neutron state due to asymptotic freedom,
-but would still be spatially confined to the extent of the original neutron because of color confinement.
+In the real world, however, the quarks have different masses and cause the chiral symmetry to be only \emph{approximately} broken.
+We say that the different quark masses cause \textbf{explicit symmetry breaking}, in the sense that the Lagrangian changes by a small amount under the chiral transformation.
+The physical consequence of this is that there are no massless Goldstone bosons, but rather very light pseudo-Goldstone bosons.
 
-To model quark matter and the effect of these two properties,
-physicists have come up with various \textbf{bag models}.
-As illustrated in \cref{fig:lsm:confinement}, these models split the medium of the physical vacuum state into two phases.
-The \emph{normal phase} is the background phase in which quarks are forbidden to exist -- remains of the non-confining medium that existed before the separation into two phases.
-On top of the background, bubbles of \emph{hadron phase} are created inside which colorless combinations of quarks are confined.
-Mathematically, the confinement is implemented by adding a bag constant $B$ to the grand potential density $\Omega$ of the quarks assumed to live inside the hadronic bubbles.
-The bag constant is therefore defined as the energy difference between the hadronic phase and the normal phase,
-and creating a hadronic bubble of volume $V$ costs the energy $B V$.
-A positive bag constant gives a negative contribution to the pressure $P = -\Omega$,
-hence confining the contents of the bag with an external pressure from the surrounding medium in the normal phase.
+The breaking of chiral symmetry leads to the \textbf{chiral phase transition} colored orange in \cref{fig:qcd:phase_diagram},
+connecting the phases of hadronic quark matter and quark-gluon plasma.
 
+
+\pagebreak
+\TODO{move below to LSM discussion?}
 
 Quark-meson model can be written in terms of left/right fields:
 \begin{equation}
@@ -272,8 +275,6 @@ Now it is apparent that LSM is invariant under $SU(2)_L \times SU(2)_R$:
 When $h \neq 0$, this symmetry is explicitly broken.
 
 
-\TODO{philosophy of effective field theory: identifty DoF (particles) and symmetries, write down most general Lagrangian with all (relevant) interactions \cite{ref:weinberg_eft}. like small oscillations in classical mechanics?}
-
 \TODO{what about radius $r < R$ instead of $r=R$?}
 
 \TODO{what about general relativity instead of Newtonian gravity?}
@@ -281,3 +282,10 @@ When $h \neq 0$, this symmetry is explicitly broken.
 \TODO{what about contribution from pressure and other things to $F_\text{out}$?}
 
 \TODO{can I recast inequality in charge per solar mass? see discussion at beginning of \url{www.if.ufrgs.br/hadrons/MMalheiro.pdf}}
+
+\TODO{discuss $\epsilon$, $P$ before this}
+\TODO{understand bag-constant as a measure of the trace anomaly? $m = 0$ -- conformal inveriance, classical symmetry broken in the quantum case?}
+\TODO{justify and make less ad-hoc, move some of this to intro?}
+\TODO{understand difference between $P(\mu)$ and $P(\mu,B)$}
+\TODO{find source on bag stuff. JO?}
+\TODO{difference between ``perturbative vacuum'' and ``confined vacuum''}
