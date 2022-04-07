@@ -1,110 +1,148 @@
 \chapter{Introduction}
 
+Refer to star birth etc. in neutron star intro?
+
+Neutron to hybrid to quark stars?
+
+Neutron star: density so big that gravity balances degeneracy pressure
+
+Hybrid/quark star: even greater density so baryons break up into quarks??
+
+
 \TODO{Recapitulate main points of project thesis:}
 
-\TODO{some general intro about the possibility of quark stars}
+\TODO{some general intro about the possibility of quark stars etc}
 
 In this chapter, we will study a hypothetical class of compact stars known as quark stars.
 Let us summarize the main ingredients in this work.
 
-\section{Tolman-Oppenheimer-Volkoff equation}
+\section{Tolman-Oppenheimer-Volkoff equation and stellar stability}
 
-In \cref{chap:tov} we derived the Tolman-Oppenheimer-Volkoff equation
+The structure of compact stars is governed by the Tolman-Oppenheimer-Volkoff equation
 \begin{subequations}
 \begin{align}
 	\odv{P}{r} &= -\frac{G m \epsilon(P)}{r^2 c^2} \left( 1 + \frac{P}{\epsilon(P)} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \\
 	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon(P)}{c^2} .
 \end{align}
 \end{subequations}
-It determines the pressure and mass gradients with relativistic corrections inside a spherically symmetric star composed of a perfect fluid in hydrostatic equilibrium.
-Given the fluid's equation of state $\epsilon(P)$ that relates its pressure $P$ to its energy density $\epsilon$, it is a system of two equations for the two unknowns $P$ and $m$ and can be integrated.
-We will seek mass-radius solutions to the equation, obtained by integrating it from the center $r=0$ with zero initial mass $m(0) = 0$ and some central pressure $P(0) = P_c$ until reaching the surface $r=R$ defined by a vanishing pressure $P(R) = 0$ and where the mass $m(R) = M$ defines the star's total mass.
-By finding such solutions for a range of central pressures $P_c$, we parametrize a sequence of stars that we can plot in a mass-radius diagram.
+It is a system of two differential equations for the energy density $\epsilon(r)$, pressure $P(r)$ and mass $m(r)$ as functions of the radius $r$ from the center of a spherically symmetric star composed of a perfect fluid in hydrostatic equilibrium with relativistic corrections.
+We derived it from the Einstein field equations \eqref{eq:einstein} and studied it in detail in \cref{chap:tov}.
 
-\section{Thermal field theory}
+To solve it, one must know the fluid's \textbf{equation of state} $\epsilon(P)$ that connects its pressure and energy density, thereby closing a system of three equations and three unknowns.
+Then the system can be integrated from the center $r=0$ with zero initial mass $m(0) = 0$ and some central pressure $P(0) = P_c$ until reaching the surface $r=R$ defined by a vanishing pressure $P(R) = 0$.
+This yields the radial profiles $\epsilon(r)$, $P(r)$ and $m(r)$, and the star's total mass $M = m(R)$ can then be calculated.
+As the central pressure is unknown, it is common to parametrize a sequence of stars with a range of central pressures, solve the Tolman-Oppenheimer-Volkoff equations for each of them and finally draw a curve of their masses and radii in a mass-radius diagram.
+
+In \cref{sec:nstars:numtov} we created a program that integrates the Tolman-Oppenheimer-Volkoff equation for an arbitrary equation of state and creates a smooth mass-radius curve between two given central pressures.
+This will be of great use as we encounter new equations of state.
+
+We drew a mass-radius curve for ideal neutron stars in \cref{fig:nstars:massradius}.
+Its mass increases with central pressure up to some maximum mass, before decreasing and entering a counterclockwise spiral.
+In \cref{sec:nstars:stability_general} we studied the stability of stars along this curve in great detail,
+and found that only the stars with lower central pressures than that of the maximum mass star are stable and realized in nature.
+This common property of mass-radius curves is the reason that we will focus our attention on the maximum mass and the part of the curve leading up to it.
+
+\section{Thermal field theory in compact stars}
 
 To derive equations of state for quark matter, we will study quantum field theories whose dynamics is described by some Lagrangian density $\lagr$.
 In \cref{chap:tft} we showed that the partition function in the grand canonical ensemble corresponding to a Lagrangian including both a fermionic field $\psi$ and a bosonic field $\phi$ is given by the path integral
 \begin{equation}
-	Z = \oint_- \pathintdif \bar{\psi} \oint_- \pathintdif \psi \oint_+ \pathintdif \phi \exp \Big\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \lagr_E[\bar{\psi}, \psi, \phi] \Big\} = e^{-\beta V \Omega} .
+	Z(V, T, \mu_i) = \oint_- \pathintdif \bar{\psi} \oint_- \pathintdif \psi \oint_+ \pathintdif \phi \exp \Big\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \Big( \lagr_E\big[\bar{\psi}, \psi, \phi\big] + \sum_i \mu_i j^0_i \Big) \Big\} = e^{-\beta V \Omega} .
+\label{eq:intro2:tov}
 \end{equation}
-Here $V$ is the spatial volume of the system, while its inverse temperature $\beta = 1/T$ define its ``temporal'' extent.
-The sign subscripts on the closed integral signs is supposed to remind us of a property we showed extensively in \cref{chap:tft}: the bosonic fields must be periodic in inverse temperature time, while the fermionic fields must be anti-periodic.
-If a symmetry of the Lagrangian admits a conserved Noether charge density $j^0$, we also saw that we could couple it to a chemical potential $\mu$ in the Lagrangian by including the term $\mu j^0$.
-By computing (the logarithm of) the partition function, we have the grand potential $\Omega = -\log Z / \beta V$ from which we can calculate all thermodynamic quantities such as the (mean)
-\TODO{this is already in $T=0$ form? write in general $T \geq 0$ form in this intro?}
+Here it is the Euclidean Lagrangian density $\lagr_E$ that enters, obtained from the original Lagrangian $\lagr$ in Minkowski space by setting inserting an imaginary time variable $t = -i \tau$ into all the fields and then treat $\tau$ as the new ``time'' variable.
+The volume of the system is $V$, while its ``temporal'' extent is the system's inverse temperature $\beta = 1/T$.
+Sign subscripts are placed on closed path integral signs to remind us of an important property that we showed: bosonic fields must be \emph{periodic} in inverse temperature time, while the fermionic fields must be \emph{anti-periodic}.
+We also saw that we could couple any conserved Noether charge densities $j^0_i$ arising from symmetries of the Lagrangian to chemical potentials $\mu_i$.
+
+After computing (the logarithm of) the partition function, it is straightforward to find the grand potential \emph{density}
 \begin{equation}
-	\text{density} \quad n = -\pdv{\Omega}{\mu}, \quad
-	\text{pressure} \quad P = -\Omega, \quad
-	\text{energy density} \quad \epsilon = -P + \sum_p \mu_p n_p .
+	\Omega(T, \mu_i) = -\frac{\log Z}{\beta V}.
 \end{equation}
-These expressions are valid in the approximation of zero temperature $T=0$ that we saw was valid for neutron stars in \cref{chap:nstars}.
-As quark stars are expected to be ``more intense neutron stars'', we assume that this approximation still holds.
+The volume dependence of the partition function is eliminated by division, turning the extensive quantity $\log Z$ into the intensive quantity $\Omega$.
+From the grand potential density, we can calculate the relevant thermodynamic quantities:
+\begin{subequations}
+\begin{align}
+	\text{pressure} \quad P(T, \mu_i) &= -\Omega, \\
+	\text{densities} \quad n_i(T, \mu_i) &= -\pdv{\Omega}{\mu_i}, \\
+	\text{entropy} \quad S(T, \mu_i) &= -\pdv{\Omega}{T} = \beta^2 \pdv{\Omega}{\beta}, \\
+	\text{energy density} \quad \epsilon(T, \mu_i) &= \sum_i \mu_i n_i + \pdv{(\beta \Omega)}{\beta} = \sum_i \mu_i n_i - P + T S.
+\end{align}
+\end{subequations}
+Our goal is to connect a given pressure $P$ to some energy density $\epsilon$ so that we can solve the Tolman-Oppenheimer-Volkoff equation \eqref{eq:intro2:tov}.
+This is greatly simplified in compact stars, where it is common to employ the \textbf{zero-temperature approximation} $T=0$.
+We justified this approximation for neutron stars in \cref{sec:nstars:eos} due to the temperature $T \ll T_f$ being far lower than the Fermi temperature $T_f$.
+With $T = 0$, only the dependence on chemical potentials remain in
+\begin{equation}
+	P(\mu_i) = -\Omega
+	\qquad \text{and} \qquad
+	\epsilon(\mu_i) = \sum_i \mu_i n_i - P.
+\end{equation}
+If there is only one chemical potential $\mu_i = \mu$,
+the equation of state $\epsilon(P)$ follows by simply eliminating $\mu$ from $P(\mu)$ and $\epsilon(\mu)$, either numerically or analytically.
+This was the case for the neutron star equation of state \eqref{eq:nstars:gr_eos}.
+In contrast, the stars we will study now will be composed of up quarks, down quarks, strange quarks and electrons, each associated to one chemical potential.
+We then need \emph{three} additional relations to reduce the \emph{four} chemical potentials to \emph{one} independent one, which can then be eliminated to give the equation of state.
 
-The equation of state $\epsilon(P)$ follows by eliminating the chemical potentials $\mu_p$ from the energy density $\epsilon(\mu_p)$ in favor of the pressure $P$.
-In \cref{chap:nstars} we did so for pure neutron stars, for which there was only one chemical potential to eliminate.
-Now we will study quark stars composed of up quarks, down quarks, strange quarks and electrons, each associated with their own chemical potential $\mu_p$.
-With these \emph{four} particles, we require \emph{three} additional relations that reduce the dependence of the pressure and energy density to \emph{one} independent chemical potential, which can finally be eliminated to yield the equation of state.
+\subsection{Chemical equilibrium of weak interaction processes}
 
-\subsubsection{Chemical equilibrium of weak interaction processes}
-
-We can obtain two relations between the chemical potentials by studying the nuclear processes that take place inside the star.
+We can obtain two relations between the chemical potentials assuming that the nuclear processes that take place inside the star are in chemical equilibrium.
 According to \cite{ref:quark_star_processes}, quarks stars may be formed as hadronic matter in a neutron star decays to strange quark matter through weak interactions processes like
 \begin{equation}
 	u + e^- \rightarrow d + \nu_e
 	\qquad \text{and} \qquad
 	u + e^- \rightarrow s + \nu_e .
 \end{equation}
-Over time, the star cools and neutrinos diffuse out. \cite[section 5.3]{ref:glendenning}
-We therefore set $\mu_{\nu_e}=0$, so that the chemical equilibrium of the two processes above implies
+As explained in \cite[section 5.3]{ref:glendenning}, neutrinos diffuse out of the star as it cools over time.
+We therefore set $\mu_{\nu_e}=0$, so chemical equilibrium of the two processes above implies the two relations
 \begin{equation}
 	\mu_d = \mu_s = \mu_u + \mu_e .
 \label{eq:lsm:chemical_equilibrium}
 \end{equation}
-These are the two announced relations between the four chemical potentials.
 
-\subsubsection{Electric charge neutrality of stars}
+\subsection{Electric charge neutrality}
 
 The third and last additional relation relating the four chemical potentials is provided by electric charge neutrality.
-We can make a strong and simple classical argument for why there can be no \emph{global} net electric charge in stars by comparing Newton's law of gravity and Coulomb's law.
-Consider a test particle of mass $m$ and electric charge $q$ on the surface $R$ from the center of a star with total mass $M$ and electric charge $Q$.
-In an idealized situation, the test particle is affected by the gravitational and electrostatic force, so that the total outwards radial force on it is
+We can make a strong and simple classical argument for why there can be no \emph{global} net electric charge in stars by comparing Newton's law of gravity and Coulomb's law of electrostatics.
+Suppose a test particle with mass $m$ and electric charge $q$
+is placed on the surface $R$ of a spherical star with total mass $M$ and electric charge $Q$.
+In an idealized situation where the test particle is affected only by the gravitational and electrostatic force, the total outwards radial force on it is
 \begin{equation}
 	F_\text{out} = -G \frac{M m}{R^2} + k_e \frac{Q q}{R^2} .
 \end{equation}
-Furthermore, suppose the star consists of a great number $N$ of particles weighing, each with mass $m < m_B$ that is lower than some heavy baryon mass $m_B$ and about one elementary charge $q \approx \pm e$.
-We then have $M < N M_B$ and $m < m_B$.
-If the star had an opposite charge $Q = \mp Z e$, then $F_\text{out} < 0$ and the test particle would stay in the star, seeking to neutralize it.
-On the other hand, if the star has a like charge $Q = \pm Z e$, then
+If the star and test particles have opposite charges, $F_\text{out} < 0$ and the particle remains in the star, in a sense seeking to neutralize it.
+On the other hand, if the star and particle have like charges, $F_\text{out} > 0$ provided that
 \begin{equation}
-	F_\text{out} > -G \frac{N m_B^2}{R^2} + k_e \frac{Z e^2}{R^2} .
+	\frac{Q}{M} > \frac{G}{k_e} \frac{m}{q}.
 \end{equation}
-Assuming a typical baryon mass $m_B = m_p = \SI{1.67e-27}{\kilogram}$,
-we then surely have $F_\text{out} > 0$ provided that the number of elementary charges per particle satisfies
+In other words, the particle leaves the star and hence seeks to neutralize as long as it is not too heavy.
+Even for a heavy baryon like a proton with mass $m = \SI{1.67e-27}{\kilogram}$ and charge $q = +e$ in a common compact star of about one solar mass $M \approx M_\odot$,
 \begin{equation}
-	\frac{Z}{N} > \frac{G m_B^2}{k_e e^2} \approx 10^{-37} .
+	\frac{Q}{M} \gtrsim 10^{-10} \frac{e}{M_\odot},
 \end{equation}
-This means that particle are expelled from the star while $Z > 10^{-37} N$ until $Z$ has fallen to \emph{at least} $Z < 10^{-37} N$.
-We conclude that for all practical purposes, stars are \emph{globally} electrically charge neutral.
-As explained by \cite{ref:master_halvor}, this argument is slightly modified by relativistic corrections, but the conclusion is not.
+so charged particles will continue to leave the star until it has practically zero electric charge.
 
-In a star that consists of a set of particles $p$ each with charge $q_p$, we could implement \emph{global} charge neutrality by constraining the chemical potentials such that the charge density
+In a star that consists of a set of particles with charge $q_i$, we could implement \emph{global} charge neutrality by constraining the chemical potentials $\mu_i(r)$ at every radius $r$ such that the charge density
 \begin{equation}
-	\sum_p q_p \, n_p(\mu_p) = \rho(r)
+	\sum_p q_p \, n_p(\mu_p(r)) = \rho(r)
 \label{eq:intro:charge_neutrality_global}
 \end{equation}
-at radius $r$ is equal to some charge density function $\rho(r)$ that causes the total charge $Q = \int \rho(r) 4 \pi r^2 \dif r = 0$ \TODO{add relativistic correction $e^{\beta(r)}$ from metric?} to vanish.
+is equal to some charge density function $\rho(r)$ that causes the total charge $Q = \int \rho(r) 4 \pi r^2 \dif r = 0$ \TODO{do I need relativistic correction $e^{\beta(r)}$ from metric?} to vanish.
 This approach would make the equation of state $\epsilon(P,r)$ dependent on radius in addition to pressure.
 It is not obvious how one should single out one of the infinitely many possible charge density profiles $\rho(r)$.
-We will avoid this problem altogether by rather assuming that charge neutrality holds \emph{locally} with $\rho(r) = 0$.
-Then the equation of state $\epsilon(P)$ is again a function of pressure only, obtained by eliminating chemical potentials according to
+
+We will avoid this problem altogether by rather assuming that charge neutrality holds \emph{locally} with $\rho(r) = 0$,
+eliminating the chemical potentials independently of radii according to
 \begin{equation}
 	\sum_p q_p \, n_p(\mu_p) = 0
 \label{eq:lsm:charge_neutrality}
 \end{equation}
-As shown in \cite{ref:global_neutrality}, for example, this simplification can modify the masses and radii of stars within an order of magnitude, but the differences are smaller closer to the maximum mass star.
-In fact, \cite{ref:local_neutrality_inconsistent} has shown that local charge neutrality in neutron stars composed of protons, neutrons and electrons is unphysical.
-Our choice $\rho(r)=0$ is therefore the simplest choice, but not the most physical one.
+The three relations \eqref{eq:lsm:chemical_equilibrium} and \eqref{eq:lsm:charge_neutrality}
+reduce the four chemical potentials $\mu_u$, $\mu_d$, $\mu_s$ and $\mu_e$ to one independent chemical potential that can be eliminated from $P(\mu_i)$ and $\epsilon(\mu_i)$ to yield the equation of state $\epsilon(P)$.
+
+As shown in \cite{ref:global_neutrality}, for example, the stronger assumption of local charge neutrality can in fact modify masses and radii of stars within an order of magnitude of solar masses,
+but the differences become smaller closer to the maximum mass star.
+Our choice $\rho(r)=0$ is therefore the simplest choice, but not necessarily the most accurate and physical one.
 
 \section{Quantum chromodynamics}
 
@@ -143,9 +181,32 @@ whose structure constants $f^{abc}$ can be determined from the commutators $\com
 \label{fig:qcd:phase_diagram}
 \end{figure}
 
-The phase diagram of quantum chromodynamics describes the phase of quark matter as a function of temperature $T$, the quark chemical potential $\mu_Q$, the isospin chemical potential $\mu_I$ and the strangeness chemical potential $\mu_S$.
-Although mapping out the diagram is an active area of research, a rough qualitative picture is known, and the slice with $\mu_I = \mu_S = 0$ is shown in \cref{fig:qcd:phase_diagram}.
-Later we will see that the state of matter in compact stars is parametrized by a curve in the phase diagram that lies close to the $\mu_Q$-axis, corresponding to the density of baryons.
+The phase diagram of quantum chromodynamics describes the phase of quark matter
+as a function of temperature $T$ and the common quark, isospin and strangeness chemical potentials
+\begin{equation}
+	\mu_Q = \frac{\mu_u + \mu_d}{2}, \qquad
+	\mu_I = \frac{\mu_u - \mu_d}{2}, \qquad
+	\mu_S = \frac{\mu_u - \mu_d}{2} - \mu_s.
+\end{equation}
+Inverting these relations for the individual quark chemical potentials give
+\begin{equation}
+	\mu_u = \mu + \mu_I, \qquad
+	\mu_d = \mu - \mu_I, \qquad
+	\mu_s = \mu - \mu_S .
+\end{equation}
+By the chain rule we can derive that the suitable named common quark chemical potential $\mu_Q$ corresponds to the total quark density
+\begin{equation}
+	n_Q = -\pdv{\Omega}{\mu} =
+	-\pdv{\Omega}{\mu_u} \pdv{\mu_u}{\mu}
+	-\pdv{\Omega}{\mu_d} \pdv{\mu_d}{\mu}
+	-\pdv{\Omega}{\mu_s} \pdv{\mu_s}{\mu} =
+	n_u + n_d + n_s.
+\end{equation}
+Some authors rather prefer to talk about the baryon chemical potential $\mu_B = 3 \mu_Q$ and baryon density $n_B = n_Q / 3$.
+Although mapping out the phase diagram is an active area of research, a rough qualitative picture is known, and the slice with $\mu_I = \mu_S = 0$ is shown in \cref{fig:qcd:phase_diagram}.
+We have already argued that one can set $T=0$ in compact stars,
+and we will later see that the additional constraints of chemical equilibrium \eqref{eq:lsm:chemical_equilibrium} and charge neutrality \eqref{eq:lsm:chemical_equilibrium} entail that
+the state of quark matter in compact stars is parametrized by a curve in the diagram that lies close to the $\mu_Q$-axis.
 We will shortly discuss the most important qualitative properties of quantum chromodynamics and relate them to this phase diagram.
 
 Quantum chromodynamics is notorious for being very difficult to make analytical calculations with, and its elegance and practicality stops not longer after writing down its Lagrangian \eqref{eq:qcd:lagrangian}.
@@ -250,9 +311,15 @@ The physical consequence of this is that there are no massless Goldstone bosons,
 The breaking of chiral symmetry leads to the \textbf{chiral phase transition} colored orange in \cref{fig:qcd:phase_diagram},
 connecting the phases of hadronic quark matter and quark-gluon plasma.
 
+\TODO{OLD SHIT BELOW}
 
-\pagebreak
-\TODO{move below to LSM discussion?}
+\TODO{OLD SHIT BELOW}
+
+\TODO{OLD SHIT BELOW}
+
+\TODO{OLD SHIT BELOW}
+
+\TODO{BELOW IS DRAFT THAT MAY BE MOVED TO LSM SECTION}
 
 Quark-meson model can be written in terms of left/right fields:
 \begin{equation}
