@@ -1,20 +1,95 @@
 \chapter{Introduction}
 
-Refer to star birth etc. in neutron star intro?
+\begin{figure}[b]
+\centering
+\tikzsetnextfilename{stellar-evolution-end}
+\begin{tikzpicture}[
+	edge from parent/.style={draw,very thick,-latex},
+	level distance=5cm,
+	level 1/.style={level distance=4.1cm},
+	level 2/.style={level distance=3.8cm, sibling distance=6.7cm},
+	level 3/.style={level distance=4.7cm},
+	level 4/.style={level distance=4.3cm, sibling distance=5.3cm},
+	sibling distance=6cm,
+	every label/.style={text width=4cm, text centered, inner sep=0pt, yshift=+2pt},
+	element/.style={font=\small},
+	blackhole/.pic={
+		\draw [fill=black, circular glow={fill=red!50!orange}] circle[radius=40pt];
+		\draw[draw=none] (-0pt, -55pt) rectangle (+0pt, +55pt);
+	},
+	neutronstar/.pic={
+		\draw[draw=black, fill=blue!  0!purple, circular glow={fill=blue!0!purple}] circle [radius=45pt]; \node [element, rotate=45] at (135:37.5pt) {H}; \node [element] at ( 90:37.5pt) {$\cdots$}; \node [element, rotate=-45] at (45:37.5pt) {Fe};
+		\draw[draw=black, fill=blue! 25!purple] circle [radius=30pt]; \node [element, rotate=+45] at (135:22.5pt) {$n$}; \node [element, rotate=0] at (90:22.5pt) {$p$}; \node [element, rotate=-45] at (45:22.5pt) {$e^-$};
+		\draw[draw=black, fill=blue! 50!purple] circle [radius=15pt]; \node [element] at (90:0pt) {???};
+		\draw[draw=none] (-0pt, -55pt) rectangle (+0pt, +55pt);
+	},
+	quarkstar/.pic={
+		\draw[draw=black, fill=green!50!black, circular glow={fill=green!30!black}] circle [radius=45pt]; \node [element, rotate=0] at (90:32.5pt) {$u$, $d$};
+		\draw[draw=black, fill=green!80!black] circle [radius=20pt]; \node [element] at (90:0pt) {$u$, $d$, $s$};
+		\draw[draw=none] (-0pt, -55pt) rectangle (+0pt, +55pt);
+	},
+	whitedwarf/.pic={
+		\draw[draw=black, fill=white!80!gray, circular glow={fill=cyan! 20!white}] circle [radius=30pt]; \node [element, rotate=+30] at (120:22.5pt) {H}; \node [element, rotate=-30] at (60:22.5pt) {He};
+		\draw[draw=black, fill=cyan!60!white] circle [radius=15pt]; \node [element] at (90:0pt) {C  O};
+		\draw[draw=none] (-0pt, -55pt) rectangle (+0pt, +55pt);
+	},
+]
+	\node (whitedwarf) at (0, 0) [label={above:\footnotesize$0.08 M_\odot \lesssim M \lesssim 8 M_\odot$}, label={below:\subcaption{\label{fig:master_intro:star_evolution_white_dwarf}white dwarf}}] {\tikz \pic {whitedwarf};};
+	\node (neutronstar) at (3.3, 0) [label={above:\footnotesize$8 M_\odot \lesssim M \lesssim 40 M_\odot$}, label={below:\subcaption{\label{fig:master_intro:star_evolution_neutron_star}neutron star}}] {\tikz \pic {neutronstar};};
+	\node (neutronstar) at (7.5, 0) [label={above:\footnotesize$M \approx 40 M_\odot$ (?)}, label={below:\subcaption{\label{fig:master_intro:star_evolution_quark_star}quark star (?)}}] {\tikz \pic {quarkstar};};
+	\node (blackhole) at (11.5, 0) [label={above:\footnotesize$M \gtrsim 40 M_\odot$}, label={below:\subcaption{\label{fig:master_intro:star_evolution_black_hole}black hole}}] {\tikz \pic {blackhole};};
+\end{tikzpicture}
+\caption{\label{fig:master_intro:star_evolution_end}%
+	The final stages of a star's life depending on its initial mass $M$.
+	Between neutron stars and black holes,
+	there could be a new class of stars called \textbf{quark stars}.
+}
+\end{figure}
 
-Neutron to hybrid to quark stars?
+In \cref{chap:intro} and \cref{fig:intro:star_evolution} we studied how the currently known life cycle of a star
+is more or less predetermined by the initial mass $M$ of the embryonic \textbf{protostar} born from its parent \textbf{giant molecular cloud}.
+Provided that $M \gtrsim 0.08 M_\odot$, the temperature in a protostar reaches the point necessary to ignite fusion of hydrogen, and the star becomes a \textbf{main-sequence star} -- otherwise it retires early as a \textbf{brown dwarf}.
+If $0.08 M_\odot \lesssim M \lesssim 8 M_\odot$, a main-sequence star eventually explodes in a \textbf{planetary nebula} and leaves behind a core that collapses under gravity until it stabilizes as a \textbf{white dwarf} (\cref{fig:master_intro:star_evolution_white_dwarf}) supported by electron degeneracy pressure.
+If $8 M_\odot \lesssim M \lesssim 40 M_\odot$, the main-sequence star rather explodes in a \textbf{supernova} and becomes a \textbf{neutron star} (\cref{fig:master_intro:star_evolution_neutron_star}) that is squeezed by gravity beyond the maximum supported pressure of a white dwarf, and reaches a new equilibrium mainly supported by degeneracy pressure of baryons and nuclei.
+If $M \gtrsim 40 M_\odot$, the supernova remnant cannot support itself and collapses to a \textbf{black hole} (\cref{fig:master_intro:star_evolution_black_hole}).
+\TODO{$M_0$ for init mass}
 
-Neutron star: density so big that gravity balances degeneracy pressure
+\begin{table}
+\centering
+\begin{tabular}{ l r r l }
+	\toprule
+	Star & Mass $M$ & Radius $R$ & Sources \\
+	\midrule
+	\st{RX J1856.5-3754} & \st{$0.9 M_\odot$} & \st{$\SI{17}{\kilo\meter}$} & \TODO{source} \\
+	3C 58 & ??? & $\SI{15}{\kilo\meter}$ & \TODO{source} \\
+	XTE U1739-285 & $1.51 \, M_\odot$ & $\SI{10.9}{\kilo\meter}$ & \TODO{source} \\
+	PSR B0943+10 & $1.5 M_\odot$ & $\SI{10}{\kilo\meter}$ & \TODO{source} \\
+	SN1987A remnant & unknown & unknown & \TODO{source} \\
+	ASASSN-15lh & unknown & unknown & \TODO{source} \\
+	\bottomrule
+\end{tabular}
+\caption{\label{tab:master_intro:quark_star_candidates}%
+The masses and radii of \st{past} and present quark star candidates.
+}
+\end{table}
 
-Hybrid/quark star: even greater density so baryons break up into quarks??
+As first proposed by Ivanenko and Kurdgelaidze \TODO{source}, however,
+there could be a narrow range between neutron stars and black holes where a yet unseen equilibrium configuration can be reached,
+where the baryons are forced to merge into an ultra-dense form of matter composed of their constituent quarks.
+It is speculated that such quark matter can be found in both pure \textbf{quark stars} and inside the cores of \textbf{hybrid neutron stars}.
+If the quark matter includes strange quarks in addition to up and down quarks, it is referred to as strange quark matter and the star is called a \textbf{strange quark star}.
+Although no decisive observation has been made of a quark star,
+a few candidates are listed in \cref{tab:master_intro:quark_star_candidates}.
+Both their masses and radii are very similar to common neutron stars.
 
+Quarks and gluons that mediate the strong force between them are described by the theory of \textbf{quantum chromodynamics}.
+Roughly speaking, it predicts that quarks are confined in hadrons at low densities due to a property called \textbf{color confinement},
+while at extreme densities another property called \textbf{asymptotic freedom} implies that quark matter becomes deconfined and free of all interactions, forming \textbf{quark-gluon plasma}.
+The hadron-confined and quark-gluon plasma phases are separated by the \textbf{chiral phase transition}.
+Unfortunately, quantum chromodynamics is very hard to make analytical calculations with, so one must resort to approximations and alternative models.
+We will model quark stars using the quark-extended linear sigma model, also known as the quark-meson model.
 
-\TODO{Recapitulate main points of project thesis:}
-
-\TODO{some general intro about the possibility of quark stars etc}
-
-In this chapter, we will study a hypothetical class of compact stars known as quark stars.
-Let us summarize the main ingredients in this work.
+\TODO{add general sources}
 
 \section{Tolman-Oppenheimer-Volkoff equation and stellar stability}
 
@@ -245,8 +320,8 @@ To explore the phase diagram, one must therefore resort to alternative technique
 \node at (90:1.3) {hadron phase};
 \node at (-3.5,1.3) {normal phase};
 \end{tikzpicture}
-\caption{\label{fig:lsm:confinement}%
-	\TODO{caption}
+\caption{\label{fig:master_intro:confinement}%
+	\TODO{create different confinement vs deconfinement figure}
 }
 \end{figure}
 
@@ -260,7 +335,7 @@ Similarly, a(n) (anti)baryon consists of one (anti)red, one (anti)green and one 
 
 What if an even stronger force overcomes the strong force and tries to forcibly separate the quarks in a hadron into colorful groups of quarks?
 Then nature will simply create new quark--anti-quark pairs so that the new groups of quarks both become new colorless hadrons.
-\TODO{Figure} illustrates this process for a meson.
+\Cref{fig:master_intro:confinement} illustrates this process for a meson.
 At low temperatures and densities in the lower left of \cref{fig:qcd:phase_diagram}, quarks are therefore \emph{confined} in colorless hadronic matter that make up the present world around us.
 
 In the opposite extreme, quantum chromodynamics displays the property of \textbf{asymptotic freedom}.
