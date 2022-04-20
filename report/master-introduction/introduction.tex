@@ -34,25 +34,24 @@
 		\draw[draw=none] (-0pt, -55pt) rectangle (+0pt, +55pt);
 	},
 ]
-	\node (whitedwarf) at (0, 0) [label={above:\footnotesize$0.08 M_\odot \lesssim M \lesssim 8 M_\odot$}, label={below:\subcaption{\label{fig:master_intro:star_evolution_white_dwarf}white dwarf}}] {\tikz \pic {whitedwarf};};
-	\node (neutronstar) at (3.3, 0) [label={above:\footnotesize$8 M_\odot \lesssim M \lesssim 40 M_\odot$}, label={below:\subcaption{\label{fig:master_intro:star_evolution_neutron_star}neutron star}}] {\tikz \pic {neutronstar};};
-	\node (neutronstar) at (7.5, 0) [label={above:\footnotesize$M \approx 40 M_\odot$ (?)}, label={below:\subcaption{\label{fig:master_intro:star_evolution_quark_star}quark star (?)}}] {\tikz \pic {quarkstar};};
-	\node (blackhole) at (11.5, 0) [label={above:\footnotesize$M \gtrsim 40 M_\odot$}, label={below:\subcaption{\label{fig:master_intro:star_evolution_black_hole}black hole}}] {\tikz \pic {blackhole};};
+	\node (whitedwarf) at (0, 0) [label={above:\footnotesize$0.08 M_\odot \lesssim M_0 \lesssim 8 M_\odot$}, label={below:\subcaption{\label{fig:master_intro:star_evolution_white_dwarf}White dwarf}}] {\tikz \pic {whitedwarf};};
+	\node (neutronstar) at (3.3, 0) [label={above:\footnotesize$8 M_\odot \lesssim M_0 \lesssim 40 M_\odot$}, label={below:\subcaption{\label{fig:master_intro:star_evolution_neutron_star}Neutron star}}] {\tikz \pic {neutronstar};};
+	\node (neutronstar) at (7.5, 0) [label={above:\footnotesize$M_0 \approx 40 M_\odot$ (?)}, label={below:\subcaption{\label{fig:master_intro:star_evolution_quark_star}Quark star (?)}}] {\tikz \pic {quarkstar};};
+	\node (blackhole) at (11.5, 0) [label={above:\footnotesize$M_0 \gtrsim 40 M_\odot$}, label={below:\subcaption{\label{fig:master_intro:star_evolution_black_hole}Black hole}}] {\tikz \pic {blackhole};};
 \end{tikzpicture}
 \caption{\label{fig:master_intro:star_evolution_end}%
-	The final stages of a star's life depending on its initial mass $M$.
+	The final stages of a star's life depending on its initial mass $M_0$.
 	Between neutron stars and black holes,
 	there could be a new class of stars called \textbf{quark stars}.
 }
 \end{figure}
 
 In \cref{chap:intro} and \cref{fig:intro:star_evolution} we studied how the currently known life cycle of a star
-is more or less predetermined by the initial mass $M$ of the embryonic \textbf{protostar} born from its parent \textbf{giant molecular cloud}.
-Provided that $M \gtrsim 0.08 M_\odot$, the temperature in a protostar reaches the point necessary to ignite fusion of hydrogen, and the star becomes a \textbf{main-sequence star} -- otherwise it retires early as a \textbf{brown dwarf}.
-If $0.08 M_\odot \lesssim M \lesssim 8 M_\odot$, a main-sequence star eventually explodes in a \textbf{planetary nebula} and leaves behind a core that collapses under gravity until it stabilizes as a \textbf{white dwarf} (\cref{fig:master_intro:star_evolution_white_dwarf}) supported by electron degeneracy pressure.
-If $8 M_\odot \lesssim M \lesssim 40 M_\odot$, the main-sequence star rather explodes in a \textbf{supernova} and becomes a \textbf{neutron star} (\cref{fig:master_intro:star_evolution_neutron_star}) that is squeezed by gravity beyond the maximum supported pressure of a white dwarf, and reaches a new equilibrium mainly supported by degeneracy pressure of baryons and nuclei.
-If $M \gtrsim 40 M_\odot$, the supernova remnant cannot support itself and collapses to a \textbf{black hole} (\cref{fig:master_intro:star_evolution_black_hole}).
-\TODO{$M_0$ for init mass}
+is more or less predetermined by the initial mass $M_0$ of the embryonic \textbf{protostar} born from its parent \textbf{giant molecular cloud}.
+Provided that $M_0 \gtrsim 0.08 M_\odot$, the temperature in a protostar reaches the point necessary to ignite fusion of hydrogen, and the star becomes a \textbf{main-sequence star} -- otherwise it retires early as a \textbf{brown dwarf}.
+If $0.08 M_\odot \lesssim M_0 \lesssim 8 M_\odot$, a main-sequence star eventually explodes in a \textbf{planetary nebula} and leaves behind a core that collapses under gravity until it stabilizes as a \textbf{white dwarf} (\cref{fig:master_intro:star_evolution_white_dwarf}) supported by the electron degeneracy pressure.
+If $8 M_\odot \lesssim M_0 \lesssim 40 M_\odot$, a main-sequence star rather explodes in a \textbf{supernova} and becomes a \textbf{neutron star} (\cref{fig:master_intro:star_evolution_neutron_star}) that is squeezed by gravity beyond the maximum supported pressure of white dwarfs, reaching a new equilibrium mainly supported by the degeneracy pressure of baryons and nuclei.
+If $M_0 \gtrsim 40 M_\odot$, the supernova remnant cannot support itself and collapses to a \textbf{black hole} (\cref{fig:master_intro:star_evolution_black_hole}).
 
 \begin{table}
 \centering
@@ -61,7 +60,7 @@ If $M \gtrsim 40 M_\odot$, the supernova remnant cannot support itself and colla
 	Star & Mass $M$ & Radius $R$ & Sources \\
 	\midrule
 	\st{RX J1856.5-3754} & \st{$0.9 M_\odot$} & \st{$\SI{17}{\kilo\meter}$} & \TODO{source} \\
-	3C 58 & ??? & $\SI{15}{\kilo\meter}$ & \TODO{source} \\
+	3C 58 & unknown & $\SI{15}{\kilo\meter}$ & \TODO{source} \\
 	XTE U1739-285 & $1.51 \, M_\odot$ & $\SI{10.9}{\kilo\meter}$ & \TODO{source} \\
 	PSR B0943+10 & $1.5 M_\odot$ & $\SI{10}{\kilo\meter}$ & \TODO{source} \\
 	SN1987A remnant & unknown & unknown & \TODO{source} \\
@@ -73,42 +72,47 @@ The masses and radii of \st{past} and present quark star candidates.
 }
 \end{table}
 
-As first proposed by Ivanenko and Kurdgelaidze \TODO{source}, however,
+As first proposed by \cite{ref:quark_star_proposition_1}, however,
 there could be a narrow range between neutron stars and black holes where a yet unseen equilibrium configuration can be reached,
 where the baryons are forced to merge into an ultra-dense form of matter composed of their constituent quarks.
 It is speculated that such quark matter can be found in both pure \textbf{quark stars} and inside the cores of \textbf{hybrid neutron stars}.
-If the quark matter includes strange quarks in addition to up and down quarks, it is referred to as strange quark matter and the star is called a \textbf{strange quark star}.
+If quark matter includes strange quarks in addition to up and down quarks, it is referred to as strange quark matter and the star is called a \textbf{strange quark star}.
 Although no decisive observation has been made of a quark star,
 a few candidates are listed in \cref{tab:master_intro:quark_star_candidates}.
 Both their masses and radii are very similar to common neutron stars.
 
-Quarks and gluons that mediate the strong force between them are described by the theory of \textbf{quantum chromodynamics}.
+Quarks and the mediators of the strong force between them -- gluons -- are described by the theory of \textbf{quantum chromodynamics}.
 Roughly speaking, it predicts that quarks are confined in hadrons at low densities due to a property called \textbf{color confinement},
 while at extreme densities another property called \textbf{asymptotic freedom} implies that quark matter becomes deconfined and free of all interactions, forming \textbf{quark-gluon plasma}.
 The hadron-confined and quark-gluon plasma phases are separated by the \textbf{chiral phase transition}.
-Unfortunately, quantum chromodynamics is very hard to make analytical calculations with, so one must resort to approximations and alternative models.
+Unfortunately, it is very hard to work analytically with the general theory of quantum chromodynamics,
+so one must turn to approximations and alternative models 
 We will model quark stars using the quark-extended linear sigma model, also known as the quark-meson model.
+
+\TODO{NO! believed to be superconducting phase along $\mu_Q$-axis}
 
 \TODO{add general sources}
 
 \section{Tolman-Oppenheimer-Volkoff equation and stellar stability}
 
-The structure of compact stars is governed by the Tolman-Oppenheimer-Volkoff equation
+The structure of a spherically symmetric compact star is governed by the Tolman-Oppenheimer-Volkoff equation
+\TODO{fix overfull hbox}
 \begin{subequations}
 \begin{align}
 	\odv{P}{r} &= -\frac{G m \epsilon(P)}{r^2 c^2} \left( 1 + \frac{P}{\epsilon(P)} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \\
 	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon(P)}{c^2} .
 \end{align}
 \end{subequations}
-It is a system of two differential equations for the energy density $\epsilon(r)$, pressure $P(r)$ and mass $m(r)$ as functions of the radius $r$ from the center of a spherically symmetric star composed of a perfect fluid in hydrostatic equilibrium with relativistic corrections.
+It is a system of two differential equations for the energy density $\epsilon(r)$, pressure $P(r)$ and mass $m(r)$ as functions of the radius $r$ from the center of the star assumed to be composed of a perfect fluid in hydrostatic equilibrium, and includes relativistic corrections.
 We derived it from the Einstein field equations \eqref{eq:einstein} and studied it in detail in \cref{chap:tov}.
 
-To solve it, one must know the fluid's \textbf{equation of state} $\epsilon(P)$ that connects its pressure and energy density, thereby closing a system of three equations and three unknowns.
+To solve it, one must know the fluid's \textbf{equation of state} $\epsilon(P)$ that connects its pressure and energy density, thereby closing the system of three equations and three unknowns.
 Then the system can be integrated from the center $r=0$ with zero initial mass $m(0) = 0$ and some central pressure $P(0) = P_c$ until reaching the surface $r=R$ defined by a vanishing pressure $P(R) = 0$.
 This yields the radial profiles $\epsilon(r)$, $P(r)$ and $m(r)$, and the star's total mass $M = m(R)$ can then be calculated.
 As the central pressure is unknown, it is common to parametrize a sequence of stars with a range of central pressures, solve the Tolman-Oppenheimer-Volkoff equations for each of them and finally draw a curve of their masses and radii in a mass-radius diagram.
+\TODO{emphasize that one central pressure corresponds to one mass and one radius?}
 
-In \cref{sec:nstars:numtov} we created a program that integrates the Tolman-Oppenheimer-Volkoff equation for an arbitrary equation of state and creates a smooth mass-radius curve between two given central pressures.
+In \cref{sec:nstars:numtov} we wrote a program that integrates the Tolman-Oppenheimer-Volkoff equation for an arbitrary equation of state and generates a smooth mass-radius curve between two given central pressures.
 This will be of great use as we encounter new equations of state.
 
 We drew a mass-radius curve for ideal neutron stars in \cref{fig:nstars:massradius}.
@@ -125,7 +129,8 @@ In \cref{chap:tft} we showed that the partition function in the grand canonical 
 	Z(V, T, \mu_i) = \oint_- \pathintdif \bar{\psi} \oint_- \pathintdif \psi \oint_+ \pathintdif \phi \exp \Big\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \Big( \lagr_E\big[\bar{\psi}, \psi, \phi\big] + \sum_i \mu_i j^0_i \Big) \Big\} = e^{-\beta V \Omega} .
 \label{eq:intro2:tov}
 \end{equation}
-Here it is the Euclidean Lagrangian density $\lagr_E$ that enters, obtained from the original Lagrangian $\lagr$ in Minkowski space by setting inserting an imaginary time variable $t = -i \tau$ into all the fields and then treat $\tau$ as the new ``time'' variable.
+Here it is the Euclidean Lagrangian density $\lagr_E$ that enters,
+obtained from the original Lagrangian $\lagr$ in Minkowski space by substituting an imaginary time variable $t = -i \tau$ into all the fields and then treating $\tau$ as the new ``time'' variable.
 The volume of the system is $V$, while its ``temporal'' extent is the system's inverse temperature $\beta = 1/T$.
 Sign subscripts are placed on closed path integral signs to remind us of an important property that we showed: bosonic fields must be \emph{periodic} in inverse temperature time, while the fermionic fields must be \emph{anti-periodic}.
 We also saw that we could couple any conserved Noether charge densities $j^0_i$ arising from symmetries of the Lagrangian to chemical potentials $\mu_i$.
@@ -146,7 +151,7 @@ From the grand potential density, we can calculate the relevant thermodynamic qu
 \end{subequations}
 Our goal is to connect a given pressure $P$ to some energy density $\epsilon$ so that we can solve the Tolman-Oppenheimer-Volkoff equation \eqref{eq:intro2:tov}.
 This is greatly simplified in compact stars, where it is common to employ the \textbf{zero-temperature approximation} $T=0$.
-We justified this approximation for neutron stars in \cref{sec:nstars:eos} due to the temperature $T \ll T_f$ being far lower than the Fermi temperature $T_f$.
+We justified this approximation for neutron stars in \cref{sec:nstars:eos} due to the temperature being far lower than the Fermi temperature $T_f$.
 With $T = 0$, only the dependence on chemical potentials remain in
 \begin{equation}
 	P(\mu_i) = -\Omega
@@ -156,7 +161,7 @@ With $T = 0$, only the dependence on chemical potentials remain in
 If there is only one chemical potential $\mu_i = \mu$,
 the equation of state $\epsilon(P)$ follows by simply eliminating $\mu$ from $P(\mu)$ and $\epsilon(\mu)$, either numerically or analytically.
 This was the case for the neutron star equation of state \eqref{eq:nstars:gr_eos}.
-In contrast, the stars we will study now will be composed of up quarks, down quarks, strange quarks and electrons, each associated to one chemical potential.
+In contrast, the stars we will study now will be composed of up quarks, down quarks, strange quarks and electrons, each associated with a chemical potential.
 We then need \emph{three} additional relations to reduce the \emph{four} chemical potentials to \emph{one} independent one, which can then be eliminated to give the equation of state.
 
 \subsection{Chemical equilibrium of weak interaction processes}
@@ -164,14 +169,14 @@ We then need \emph{three} additional relations to reduce the \emph{four} chemica
 We can obtain two relations between the chemical potentials assuming that the nuclear processes that take place inside the star are in chemical equilibrium.
 According to \cite{ref:quark_star_processes}, quarks stars may be formed as hadronic matter in a neutron star decays to strange quark matter through weak interactions processes like
 \begin{equation}
-	u + e^- \rightarrow d + \nu_e
-	\qquad \text{and} \qquad
-	u + e^- \rightarrow s + \nu_e .
+u + e^- \rightarrow d + \nu_e
+\qquad \text{and} \qquad
+u + e^- \rightarrow s + \nu_e .
 \end{equation}
 As explained in \cite[section 5.3]{ref:glendenning}, neutrinos diffuse out of the star as it cools over time.
 We therefore set $\mu_{\nu_e}=0$, so chemical equilibrium of the two processes above implies the two relations
 \begin{equation}
-	\mu_d = \mu_s = \mu_u + \mu_e .
+\mu_d = \mu_s = \mu_u + \mu_e .
 \label{eq:lsm:chemical_equilibrium}
 \end{equation}
 
@@ -183,31 +188,31 @@ Suppose a test particle with mass $m$ and electric charge $q$
 is placed on the surface $R$ of a spherical star with total mass $M$ and electric charge $Q$.
 In an idealized situation where the test particle is affected only by the gravitational and electrostatic force, the total outwards radial force on it is
 \begin{equation}
-	F_\text{out} = -G \frac{M m}{R^2} + k_e \frac{Q q}{R^2} .
+F_\text{out} = -G \frac{M m}{R^2} + k_e \frac{Q q}{R^2} .
 \end{equation}
 If the star and test particles have opposite charges, $F_\text{out} < 0$ and the particle remains in the star, in a sense seeking to neutralize it.
 On the other hand, if the star and particle have like charges, $F_\text{out} > 0$ provided that
 \begin{equation}
-	\frac{Q}{M} > \frac{G}{k_e} \frac{m}{q}.
+\frac{Q}{M} > \frac{G}{k_e} \frac{m}{q}.
 \end{equation}
 In other words, the particle leaves the star and hence seeks to neutralize as long as it is not too heavy.
 Even for a heavy baryon like a proton with mass $m = \SI{1.67e-27}{\kilogram}$ and charge $q = +e$ in a common compact star of about one solar mass $M \approx M_\odot$,
 \begin{equation}
-	\frac{Q}{M} \gtrsim 10^{-10} \frac{e}{M_\odot},
+\frac{Q}{M} \gtrsim 10^{-10} \frac{e}{M_\odot},
 \end{equation}
 so charged particles will continue to leave the star until it has practically zero electric charge.
 
-In a star that consists of a set of particles with charge $q_i$, we could implement \emph{global} charge neutrality by constraining the chemical potentials $\mu_i(r)$ at every radius $r$ such that the charge density
+In a star that consists of different particle species with charges $q_i$,
+we could implement \emph{global} charge neutrality by constraining the chemical potentials $\mu_i(r)$ at every radius $r$ such that the charge density
 \begin{equation}
 	\sum_p q_p \, n_p(\mu_p(r)) = \rho(r)
 \label{eq:intro:charge_neutrality_global}
 \end{equation}
-is equal to some charge density function $\rho(r)$ that causes the total charge $Q = \int \rho(r) 4 \pi r^2 \dif r = 0$ \TODO{do I need relativistic correction $e^{\beta(r)}$ from metric?} to vanish.
-This approach would make the equation of state $\epsilon(P,r)$ dependent on radius in addition to pressure.
-It is not obvious how one should single out one of the infinitely many possible charge density profiles $\rho(r)$.
-
+integrates to a vanishing total charge $Q = \int_0^R \rho(r) 4 \pi r^2 \dif r = 0$.
+This approach would make the equation of state $\epsilon(P)$ at one radius $r$ dependent on its value at \emph{all radii},
+and it is not obvious how one should single out one of the infinitely many possible charge density profiles $\rho(r)$.
 We will avoid this problem altogether by rather assuming that charge neutrality holds \emph{locally} with $\rho(r) = 0$,
-eliminating the chemical potentials independently of radii according to
+eliminating the chemical potentials at any radius according to
 \begin{equation}
 	\sum_p q_p \, n_p(\mu_p) = 0
 \label{eq:lsm:charge_neutrality}
@@ -216,7 +221,7 @@ The three relations \eqref{eq:lsm:chemical_equilibrium} and \eqref{eq:lsm:charge
 reduce the four chemical potentials $\mu_u$, $\mu_d$, $\mu_s$ and $\mu_e$ to one independent chemical potential that can be eliminated from $P(\mu_i)$ and $\epsilon(\mu_i)$ to yield the equation of state $\epsilon(P)$.
 
 As shown in \cite{ref:global_neutrality}, for example, the stronger assumption of local charge neutrality can in fact modify masses and radii of stars within an order of magnitude of solar masses,
-but the differences become smaller closer to the maximum mass star.
+but the differences become smaller as one approaches the maximum mass star.
 Our choice $\rho(r)=0$ is therefore the simplest choice, but not necessarily the most accurate and physical one.
 
 \section{Quantum chromodynamics}
@@ -233,13 +238,14 @@ The quark fields $q = q_{f,c,\alpha}(x)$ are indexed by
 the $N_f = 3$ flavors $f \in \{u,d,s\}$,
 the $N_c = 3$ colors $c \in \{r,g,b\}$ and
 $4$ Dirac spinor indices $\alpha \in \{0,1,2,3\}$,
-and we will take a flavor index $f$ with the shorthand $f = q_{f,c,\alpha(x)}$.
+and we will take a flavor index $f$ with the shorthand $f = q_{f,c,\alpha}(x)$.
 The gamma matrices \eqref{eq:tft:gamma_dirac_basis} act in spinor space,
 the mass matrix $m = \diag(m_u, m_d, m_s)$ in flavor space,
 and there are suppressed identity matrices in spinor, flavor and color space wherever needed for the Lagrangian to be a scalar.
 The covariant derivative is $D_\mu = \partial_\mu - i g A_\mu^a T^a$ and couples the gluon gauge fields $A_\mu^a$ to the quarks with strength $g$.
 Finally, the Gell-Mann matrices $T^a$ are the $N_a = N_f^2 - 1$ generators of the symmetry group $SU(N_f)$,
-whose structure constants $f^{abc}$ can be determined from the commutators $\comm{T^a}{T^b} = i f^{abc} T^c$.
+whose structure constants $f^{abc}$ can be determined from the commutators $\comm{T^a}{T^b} = i f^{abc} T^c$,
+and that are conventionally normalized to $\trace[T^a T^b] = \delta^{ab}/2$.
 
 \TODO{mention it is a Yang-Mills theory?}
 \TODO{derive (in a plausible way) by generalizing QED?}
@@ -251,6 +257,7 @@ whose structure constants $f^{abc}$ can be determined from the commutators $\com
 \includegraphics[width=0.9\textwidth]{figures/qcd-phase-diagram.pdf}
 \caption{%
 	Slice of the phase diagram of quantum chromodynamics with zero isospin and strangeness.
+	\TODO{more complicated phase diagram}
 	\credit{CERN / Antonin Maire}{https://cds.cern.ch/record/2025215}
 }
 \label{fig:qcd:phase_diagram}
@@ -258,6 +265,7 @@ whose structure constants $f^{abc}$ can be determined from the commutators $\com
 
 The phase diagram of quantum chromodynamics describes the phase of quark matter
 as a function of temperature $T$ and the common quark, isospin and strangeness chemical potentials
+\TODO{JO suggests $\mu$ since $\mu_Q$ can refer to charge chemical potential. some use $\mu_q$}
 \begin{equation}
 	\mu_Q = \frac{\mu_u + \mu_d}{2}, \qquad
 	\mu_I = \frac{\mu_u - \mu_d}{2}, \qquad
@@ -265,16 +273,16 @@ as a function of temperature $T$ and the common quark, isospin and strangeness c
 \end{equation}
 Inverting these relations for the individual quark chemical potentials give
 \begin{equation}
-	\mu_u = \mu + \mu_I, \qquad
-	\mu_d = \mu - \mu_I, \qquad
-	\mu_s = \mu - \mu_S .
+	\mu_u = \mu_Q + \mu_I, \qquad
+	\mu_d = \mu_Q - \mu_I, \qquad
+	\mu_s = \mu_Q - \mu_S .
 \end{equation}
 By the chain rule we can derive that the suitable named common quark chemical potential $\mu_Q$ corresponds to the total quark density
 \begin{equation}
-	n_Q = -\pdv{\Omega}{\mu} =
-	-\pdv{\Omega}{\mu_u} \pdv{\mu_u}{\mu}
-	-\pdv{\Omega}{\mu_d} \pdv{\mu_d}{\mu}
-	-\pdv{\Omega}{\mu_s} \pdv{\mu_s}{\mu} =
+	n_Q = -\pdv{\Omega}{\mu_Q} =
+	-\pdv{\Omega}{\mu_u} \pdv{\mu_u}{\mu_Q}
+	-\pdv{\Omega}{\mu_d} \pdv{\mu_d}{\mu_Q}
+	-\pdv{\Omega}{\mu_s} \pdv{\mu_s}{\mu_Q} =
 	n_u + n_d + n_s.
 \end{equation}
 Some authors rather prefer to talk about the baryon chemical potential $\mu_B = 3 \mu_Q$ and baryon density $n_B = n_Q / 3$.
@@ -284,23 +292,26 @@ and we will later see that the additional constraints of chemical equilibrium \e
 the state of quark matter in compact stars is parametrized by a curve in the diagram that lies close to the $\mu_Q$-axis.
 We will shortly discuss the most important qualitative properties of quantum chromodynamics and relate them to this phase diagram.
 
-Quantum chromodynamics is notorious for being very difficult to make analytical calculations with, and its elegance and practicality stops not longer after writing down its Lagrangian \eqref{eq:qcd:lagrangian}.
-To explore the phase diagram, one must therefore resort to alternative techniques:
+The general theory of quantum chromodynamics is notorious for being very difficult to work with,
+and its elegance and practicality stops not longer after writing down its Lagrangian \eqref{eq:qcd:lagrangian}.
+To explore the phase diagram, one must therefore turn to alternative techniques:
 \begin{itemize}
-\item \textbf{Perturbation theory} can be used to study quantum chromodynamics at \emph{high} energy, perhaps contrary to what one might expect.
+\item \textbf{Perturbation theory} can be used to study quantum chromodynamics analytically at \emph{high} energy, perhaps contrary to what one might expect.
       As we will soon discuss in more detail, this is due to a property called asymptotic freedom that causes the interaction strength to \emph{decrease} with increasing energy.
 \item \textbf{Lattice QCD} consists of making numerical calculations on a discrete lattice of spacetime points.
       This method has proved very useful for studying quantum chromodynamics under quite general circumstances.
-      In the regime of high density and low temperature, however, is plagued by the so-called sign problem that refers to the difficulty of calculating integrals of highly oscillatory functions.
-      This is precisely the area in the phase diagram that is relevant for compact stars.
+      In the regime of high baryon density and low temperature, however, is plagued by the so-called sign problem that refers to the difficulty of calculating integrals of highly oscillatory functions.
+      This is precisely the region of the phase diagram that is relevant for compact stars.
 \item The \textbf{$\bm{1/N_c}$-approximation} or \textbf{large $\bm{N_c}$-limit} consists of making expansions in the assumed small parameter $1/N_c$.
       Although there are only $N_c = 3$ colors in nature, this scheme has indeed been used to make accurate predictions.
       We will refer to this approximation to justify some of our later actions.
 \item \textbf{Effective theories and models} can be used to study quantum chromodynamics in some regimes of interest.
-      The most important requirements of such a theory or model is that it includes the correct degrees of freedom (or particles) and exhibit the same symmetries and symmetry breaking patterns as the theory it aims to describe in the regime of interest.
+      The most important requirements of such a theory or model is that it includes the correct degrees of freedom (or particles) and exhibits the same symmetries and symmetry breaking patterns as the theory it aims to describe in the regime of interest.
       Due to \cite{ref:weinberg_eft}, the philosophy is then to ``write down the most general possible theory involving fields for these particles, including all possible interactions consistent with the symmetries''.
-      For example, chiral perturbation theory ($\chi$PT), the Nambu-Jona-Lasinio (NJL) model and the linear sigma model (LSM), also known as the quark-meson (QM) model, all give effective descriptions of quantum chromodynamics at low energies.
+      Chiral perturbation theory ($\chi$PT) is an example of an effective low-energy theory obtained systematically in this way,
+      and the Nambu-Jona-Lasinio (NJL) model and the quark-extended linear sigma model (LSM), also known as the quark-meson (QM) model, are effective models in the same regime.
       This approach is applicable to compact stars and is the one we will take.
+      \TODO{separate $\chi$PT from NJL/LSM. good now?}
 \end{itemize}
 
 \subsubsection{Color confinement and asymptotic freedom \cite{ref:quark_bag_model}}
@@ -329,9 +340,10 @@ One fundamental feature of quantum chromodynamics is \textbf{color confinement}.
 Quarks can be color-charged \textcolor{red}{\textbf{red}}, \textcolor{green}{\textbf{green}} and \textcolor{blue}{\textbf{blue}},
 while antiquarks can have the complementary anticolors \textcolor{cyan}{\textbf{antired}}, \textcolor{magenta}{\textbf{antigreen}} and \textcolor{yellow}{\textbf{antiblue}}.
 At low temperature and density, experiments and lattice simulations show that quarks never appear in isolation, but are always confined in hadrons that have no overall color.
-As the distance between color-charged quarks increases, the strong force between them remains \emph{constant} -- the quarks are  effectively ``glued'' together by the mediating gluon.
+As the distance between color-charged quarks increases, the strong force between them remains \emph{constant} -- the quarks are  effectively ``glued'' together by mediating gluons.
 For example, a meson consists of one quark of any color and one antiquark of its complementary color, making the meson itself colorless or ``white''.
 Similarly, a(n) (anti)baryon consists of one (anti)red, one (anti)green and one (anti)blue quark and is also ``white''.
+\TODO{refer to colorless states as ``color singlet''?}
 
 What if an even stronger force overcomes the strong force and tries to forcibly separate the quarks in a hadron into colorful groups of quarks?
 Then nature will simply create new quark--anti-quark pairs so that the new groups of quarks both become new colorless hadrons.
@@ -344,6 +356,7 @@ When the density reaches extreme levels, confined hadronic quark matter then tur
 It is believed that the universe passed through this phase during the first $\SI{20}{\micro\second}$ after the Big Bang, after which it transitioned to the present phase of hadronic matter.
 As no human-made laboratory can possibly recreate the necessary densities in the near future, the best candidates for finding and studying this exotic state of matter today is precisely the cores of compact stars.
 Asymptotic freedom was first discovered by \cite{ref:asymptotic_freedom_gross_wilczek,ref:asymptotic_freedom_politzer}, who were recognized with the Nobel Prize in 2004.
+\TODO{third superconducting phase, situation is not so black--white}
 
 \subsubsection{Vector, axial and chiral symmetries and chiral symmetry breaking}
 
@@ -369,15 +382,15 @@ Moreover, it is known that the ground state of quantum chromodynamics admits a n
 \end{equation}
 which is generally \emph{not} invariant under the chiral transformation.
 The fact that the ground state does not carry the same symmetry as its Lagrangian is the signature of \textbf{spontaneous symmetry breaking}.
-Only if $U_- = U_+$ are all terms invariant -- this is the $SU(N_f)_V$ \textbf{isospin symmetry} where both left-handed and right-handed fields are transformed in the same way.
-The isospin symmetry is also a symmetry of the \emph{massive} Lagrangian \eqref{eq:qcd:lagrangian_chiral} \emph{if} all quark masses are set equal so that the mass matrix $m$ proportional to the identity matrix.
+Only if $U_- = U_+$ are all terms invariant -- this is the $SU(N_f)_V$ \textbf{vector symmetry} where both left-handed and right-handed fields are transformed in the same way.
+The isospin symmetry is also a symmetry of the \emph{massive} Lagrangian \eqref{eq:qcd:lagrangian_chiral} \emph{if} all quark masses are set equal so that the mass matrix $m$ is proportional to the identity matrix.
 We therefore say that quantum chromodynamics exhibits \textbf{chiral symmetry breaking}
 \begin{equation}
 	SU(N_f)_L \times SU(N_f)_R \quad (m = 0) \qquad \rightarrow \quad SU(N_f)_V \quad (m \neq 0).
 \end{equation}
 Goldstone's theorem then predicts that one massless Goldstone boson arises from every broken symmetry generator.
 Hence, chiral symmetry breaking gives rise to $2 \times (N_f^2 - 1) - (N_f^2 - 1) = N_f^2 - 1$ Goldstone bosons.
-With $N_f = 2$ and $N_f = 3$ flavors, these are the three pions and the eight light pseudoscalar mesons.
+With $N_f = 2$ and $N_f = 3$ flavors, these are the three pions and the eight scalar mesons.
 
 In the real world, however, the quarks have different masses and cause the chiral symmetry to be only \emph{approximately} broken.
 We say that the different quark masses cause \textbf{explicit symmetry breaking}, in the sense that the Lagrangian changes by a small amount under the chiral transformation.
@@ -385,6 +398,7 @@ The physical consequence of this is that there are no massless Goldstone bosons,
 
 The breaking of chiral symmetry leads to the \textbf{chiral phase transition} colored orange in \cref{fig:qcd:phase_diagram},
 connecting the phases of hadronic quark matter and quark-gluon plasma.
+\TODO{round off with magnet analogy: adding $B$ explicitly breaks symmetry and essentially generates massive ``quarks''}
 
 \TODO{OLD SHIT BELOW}
 

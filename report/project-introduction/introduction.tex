@@ -95,17 +95,17 @@ In this thesis, we will review the fundamental gravitational and quantum theory 
 	},
 ]
 
-	\node (protostar) {\tikz \node [label={[text width=6.0cm]below:\subcaption{\label{fig:intro:star_evolution_protostar}protostar in giant molecular cloud}}] {\tikz \pic {protostar};};}
-		child { node [label={[]below:\subcaption{\label{fig:intro:star_evolution_mainseq}main sequence star}}] {\tikz \node [] {\tikz \pic {mainsequencestar};};}
-			child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_red_giant}red giant}}] {\tikz \pic {redgiant};};}
-				child { node (planetarynebula) {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_planetary_nebula}planetary nebula}}] {\tikz \pic {planetarynebula};};}
-					child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_white_dwarf}white dwarf}}] {\tikz \pic {whitedwarf};};} }
+	\node (protostar) {\tikz \node [label={[text width=6.0cm]below:\subcaption{\label{fig:intro:star_evolution_protostar}Protostar in giant molecular cloud}}] {\tikz \pic {protostar};};}
+		child { node [label={[]below:\subcaption{\label{fig:intro:star_evolution_mainseq}Main sequence star}}] {\tikz \node [] {\tikz \pic {mainsequencestar};};}
+			child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_red_giant}Red giant}}] {\tikz \pic {redgiant};};}
+				child { node (planetarynebula) {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_planetary_nebula}Planetary nebula}}] {\tikz \pic {planetarynebula};};}
+					child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_white_dwarf}White dwarf}}] {\tikz \pic {whitedwarf};};} }
 				} edge from parent [dualpath] node [above, anchor=south west, xshift=-2pt] {$M \lesssim 8 \solarmass$}
 			}
-			child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_red_supergiant}red supergiant}}] {\tikz \pic {redsupergiant};};}
-				child { node (supernova) [label={below:\subcaption{\label{fig:intro:star_evolution_supernova}supernova}}] {\tikz \node [] {\tikz \pic {supernova};};}
-					child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_neutron_star}neutron star}}] {\tikz \pic {neutronstar};};} edge from parent [dualpath] node[above, anchor=south west, xshift=-8pt] {$M \lesssim 40 \solarmass$} }
-					child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_black_hole}black hole}}] {\tikz \pic {blackhole};};} edge from parent [dualpath] node[above, anchor=south east, xshift=+8pt] {$M \gtrsim 40 \solarmass$} }
+			child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_red_supergiant}Red supergiant}}] {\tikz \pic {redsupergiant};};}
+				child { node (supernova) [label={below:\subcaption{\label{fig:intro:star_evolution_supernova}Supernova}}] {\tikz \node [] {\tikz \pic {supernova};};}
+					child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_neutron_star}Neutron star}}] {\tikz \pic {neutronstar};};} edge from parent [dualpath] node[above, anchor=south west, xshift=-8pt] {$M \lesssim 40 \solarmass$} }
+					child { node {\tikz \node [label={below:\subcaption{\label{fig:intro:star_evolution_black_hole}Black hole}}] {\tikz \pic {blackhole};};} edge from parent [dualpath] node[above, anchor=south east, xshift=+8pt] {$M \gtrsim 40 \solarmass$} }
 				}
 				edge from parent [dualpath] node [above, anchor=south east, xshift=+2pt] {$M \gtrsim 8 \solarmass$}
 			}
