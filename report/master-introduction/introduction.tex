@@ -82,14 +82,12 @@ a few candidates are listed in \cref{tab:master_intro:quark_star_candidates}.
 Both their masses and radii are very similar to common neutron stars.
 
 Quarks and the mediators of the strong force between them -- gluons -- are described by the theory of \textbf{quantum chromodynamics}.
-Roughly speaking, it predicts that quarks are confined in hadrons at low densities due to a property called \textbf{color confinement},
-while at extreme densities another property called \textbf{asymptotic freedom} implies that quark matter becomes deconfined and free of all interactions, forming \textbf{quark-gluon plasma}.
-The hadron-confined and quark-gluon plasma phases are separated by the \textbf{chiral phase transition}.
+Very roughly speaking, it predicts that quarks are confined in hadrons at low temperatures and densities due to a property called \textbf{color confinement},
+but deconfined and free of all interactions at high temperatures or densities because of another property called \textbf{asymptotic freedom}.
+The confined and deconfined phases are separated by the \textbf{chiral phase transition}.
 Unfortunately, it is very hard to work analytically with the general theory of quantum chromodynamics,
-so one must turn to approximations and alternative models 
+so one must turn to approximations and alternative models.
 We will model quark stars using the quark-extended linear sigma model, also known as the quark-meson model.
-
-\TODO{NO! believed to be superconducting phase along $\mu_Q$-axis}
 
 \TODO{add general sources}
 
@@ -254,14 +252,22 @@ and that are conventionally normalized to $\trace[T^a T^b] = \delta^{ab}/2$.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.9\textwidth]{figures/qcd-phase-diagram.pdf}
+%\includegraphics[width=0.9\textwidth]{figures/qcd-phase-diagram.pdf}
+\includegraphics[width=0.6\textwidth]{figures/qcd-phase-diagram.png}
 \caption{%
 	Slice of the phase diagram of quantum chromodynamics with zero isospin and strangeness.
-	\TODO{more complicated phase diagram}
-	\credit{CERN / Antonin Maire}{https://cds.cern.ch/record/2025215}
+	%\credit{CERN / Antonin Maire}{https://cds.cern.ch/record/2025215}
+	\credit{R.S. Bhalerao}{https://commons.wikimedia.org/wiki/File:PhasDiagQGP.png}
 }
 \label{fig:qcd:phase_diagram}
 \end{figure}
+% other phase diagram versions:
+% https://en.wikipedia.org/wiki/QCD_matter#/media/File:QCD_phase_diagram.png
+% https://en.wikipedia.org/wiki/Quark%E2%80%93gluon_plasma#/media/File:PhasDiagQGP.png
+% https://www.researchgate.net/figure/A-sketch-of-the-QCD-Phase-Diagram-according-to-the-collaboration-CBM-at-FAIR-1-it-is_fig1_50218065
+% https://cds.cern.ch/record/2729160/plots
+% https://physics.aps.org/articles/v3/44
+% https://cerncourier.com/a/quark-matter-fireballs-hashed-out-in-protvino/
 
 The phase diagram of quantum chromodynamics describes the phase of quark matter
 as a function of temperature $T$ and the common quark, isospin and strangeness chemical potentials
@@ -277,7 +283,7 @@ Inverting these relations for the individual quark chemical potentials give
 	\mu_d = \mu_Q - \mu_I, \qquad
 	\mu_s = \mu_Q - \mu_S .
 \end{equation}
-By the chain rule we can derive that the suitable named common quark chemical potential $\mu_Q$ corresponds to the total quark density
+By the chain rule we can derive that the suitably named common quark chemical potential $\mu_Q$ corresponds to the total quark density
 \begin{equation}
 	n_Q = -\pdv{\Omega}{\mu_Q} =
 	-\pdv{\Omega}{\mu_u} \pdv{\mu_u}{\mu_Q}
@@ -288,7 +294,7 @@ By the chain rule we can derive that the suitable named common quark chemical po
 Some authors rather prefer to talk about the baryon chemical potential $\mu_B = 3 \mu_Q$ and baryon density $n_B = n_Q / 3$.
 Although mapping out the phase diagram is an active area of research, a rough qualitative picture is known, and the slice with $\mu_I = \mu_S = 0$ is shown in \cref{fig:qcd:phase_diagram}.
 We have already argued that one can set $T=0$ in compact stars,
-and we will later see that the additional constraints of chemical equilibrium \eqref{eq:lsm:chemical_equilibrium} and charge neutrality \eqref{eq:lsm:chemical_equilibrium} entail that
+and we will later see that the additional constraints of chemical equilibrium \eqref{eq:lsm:chemical_equilibrium} and charge neutrality \eqref{eq:lsm:charge_neutrality} entail that
 the state of quark matter in compact stars is parametrized by a curve in the diagram that lies close to the $\mu_Q$-axis.
 We will shortly discuss the most important qualitative properties of quantum chromodynamics and relate them to this phase diagram.
 
@@ -350,13 +356,23 @@ Then nature will simply create new quark--anti-quark pairs so that the new group
 \Cref{fig:master_intro:confinement} illustrates this process for a meson.
 At low temperatures and densities in the lower left of \cref{fig:qcd:phase_diagram}, quarks are therefore \emph{confined} in colorless hadronic matter that make up the present world around us.
 
-In the opposite extreme, quantum chromodynamics displays the property of \textbf{asymptotic freedom}.
-As the energy scale of quark interactions increases, or equivalently its length scale decreases, the interaction strength \emph{decreases}.
-When the density reaches extreme levels, confined hadronic quark matter then turns into a \emph{deconfined} \textbf{quark-gluon plasma} in the upper right of \cref{fig:qcd:phase_diagram} where they are free of all interactions and move around at will.
+In the opposite extreme of high temperature or density in \cref{fig:qcd:phase_diagram}, quantum chromodynamics displays the property of \textbf{asymptotic freedom}.
+As the energy scale of quark interactions increases, or equivalently its length scale decreases, the interaction strength \emph{decreases} and quarks become \emph{deconfined}.
+With increasing temperature, experiments and calculations have shown that the deconfined phase is a \textbf{quark-gluon plasma} of free color charges and gluons.
 It is believed that the universe passed through this phase during the first $\SI{20}{\micro\second}$ after the Big Bang, after which it transitioned to the present phase of hadronic matter.
-As no human-made laboratory can possibly recreate the necessary densities in the near future, the best candidates for finding and studying this exotic state of matter today is precisely the cores of compact stars.
+The situation with low temperature and increasing baryon density is more uncertain:
+no human-made laboratory can recreate the extreme densities required for quark matter,
+and calculations are difficult and suggest qualitative features that depend on the model used.
+Only in the extreme limit of infinite baryon density, where perturbation theory applies,
+it is known that the deconfined phase turns into a \textbf{color-flavor-locked phase} of superconducted \TODO{superconducting?} color charges.
 Asymptotic freedom was first discovered by \cite{ref:asymptotic_freedom_gross_wilczek,ref:asymptotic_freedom_politzer}, who were recognized with the Nobel Prize in 2004.
-\TODO{third superconducting phase, situation is not so black--white}
+\TODO{få Jens til å ``godkjenne''}
+
+%As the temperature increases, confined hadronic quark matter turns into a \emph{deconfined} \textbf{quark-gluon plasma} in the upper right of \cref{fig:qcd:phase_diagram} where they are free of all interactions and move around at will.
+%It is believed that the universe passed through this phase during the first $\SI{20}{\micro\second}$ after the Big Bang, after which it transitioned to the present phase of hadronic matter.
+%As no human-made laboratory can possibly recreate the necessary densities in the near future, the best candidates for finding and studying this exotic state of matter today is precisely the cores of compact stars.
+%Asymptotic freedom was first discovered by \cite{ref:asymptotic_freedom_gross_wilczek,ref:asymptotic_freedom_politzer}, who were recognized with the Nobel Prize in 2004.
+%\TODO{third superconducting phase, situation is not so black--white}
 
 \subsubsection{Vector, axial and chiral symmetries and chiral symmetry breaking}
 
@@ -396,8 +412,8 @@ In the real world, however, the quarks have different masses and cause the chira
 We say that the different quark masses cause \textbf{explicit symmetry breaking}, in the sense that the Lagrangian changes by a small amount under the chiral transformation.
 The physical consequence of this is that there are no massless Goldstone bosons, but rather very light pseudo-Goldstone bosons.
 
-The breaking of chiral symmetry leads to the \textbf{chiral phase transition} colored orange in \cref{fig:qcd:phase_diagram},
-connecting the phases of hadronic quark matter and quark-gluon plasma.
+The breaking of chiral symmetry leads to the \textbf{chiral phase transition} shown in \cref{fig:qcd:phase_diagram},
+connecting the confined and deconfined phases of quark matter.
 \TODO{round off with magnet analogy: adding $B$ explicitly breaks symmetry and essentially generates massive ``quarks''}
 
 \TODO{OLD SHIT BELOW}
