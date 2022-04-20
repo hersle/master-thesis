@@ -86,3 +86,22 @@ It will, however, be very useful to have \emph{some} bound for the bag constant 
 \TODO{organize project and master thesis together}
 
 \TODO{color confinement, asymptotic freedom, bag models, etc.}
+\begin{figure}
+\centering
+\tikzsetnextfilename{bag-model}
+\begin{tikzpicture}
+\fill [gray] (-5, -3) rectangle (+5, +3);
+
+\draw [draw=black, fill=white] (0, 0) circle (2);
+\begin{scope}[blend group=screen]
+	\fill [fill=red]   (30:0.5)  circle (0.75) node {$u$};
+	\fill [fill=green] (150:0.5) circle (0.75) node {$d$};
+	\fill [fill=blue]  (270:0.5) circle (0.75) node {$s$};
+\end{scope}
+\node at (90:1.3) {hadron phase};
+\node at (-3.5,1.3) {normal phase};
+\end{tikzpicture}
+\caption{\label{fig:master_intro:confinement}%
+	\TODO{create different confinement vs deconfinement figure}
+}
+\end{figure}

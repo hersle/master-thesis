@@ -322,23 +322,33 @@ To explore the phase diagram, one must therefore turn to alternative techniques:
 
 \subsubsection{Color confinement and asymptotic freedom \cite{ref:quark_bag_model}}
 
-\begin{figure}
+\begin{figure}[t]
 \centering
-\tikzsetnextfilename{bag-model}
+\tikzsetnextfilename{colorless-hadrons}
+\colorlet{rgbcyan}[rgb]{cyan}
+\colorlet{rgbmagenta}[rgb]{magenta}
+\colorlet{rgbyellow}[rgb]{yellow}
+%\definecolor{rgbcyan}{cmyk}{1,0,0,0}
+%\definecolor{rgbmagenta}{cmyk}{0,1,0,0}
+%\definecolor{rgbyellow}{cmyk}{0,0,1,0}
 \begin{tikzpicture}
-\fill [gray] (-5, -3) rectangle (+5, +3);
-
-\draw [draw=black, fill=white] (0, 0) circle (2);
-\begin{scope}[blend group=screen]
-	\fill [fill=red]   (30:0.5)  circle (0.75) node {$u$};
-	\fill [fill=green] (150:0.5) circle (0.75) node {$d$};
-	\fill [fill=blue]  (270:0.5) circle (0.75) node {$s$};
-\end{scope}
-\node at (90:1.3) {hadron phase};
-\node at (-3.5,1.3) {normal phase};
+\node (meson) { \tikz {
+	\begin{scope}[blend group=screen]
+		\draw [draw=black, fill=rgbcyan]  (30:1.0)  circle (1.50);
+		\draw [draw=black, fill=red] (150:1.0) circle (1.50);
+	\end{scope}
+} };
+\node (baryon) [right=of meson, xshift=+4.0cm] at (0, 0) { \tikz {
+	\begin{scope}[blend group=screen]
+		\draw [draw=black, fill=red]   (30:1.0)  circle (1.50);
+		\draw [draw=black, fill=green] (150:1.0) circle (1.50);
+		\draw [draw=black, fill=blue]  (270:1.0) circle (1.50);
+	\end{scope}
+} };
 \end{tikzpicture}
-\caption{\label{fig:master_intro:confinement}%
-	\TODO{create different confinement vs deconfinement figure}
+\caption{\label{fig:qcd:colorless_hadrons}%
+	A ``white'' meson composed of a \textcolor{red}{red} and \textcolor{cyan}{antired} quark and
+	a ``white'' baryon composed of a \textcolor{red}{red}, \textcolor{blue}{blue} and \textcolor{green}{green} quark.
 }
 \end{figure}
 
@@ -349,12 +359,11 @@ At low temperature and density, experiments and lattice simulations show that qu
 As the distance between color-charged quarks increases, the strong force between them remains \emph{constant} -- the quarks are  effectively ``glued'' together by mediating gluons.
 For example, a meson consists of one quark of any color and one antiquark of its complementary color, making the meson itself colorless or ``white''.
 Similarly, a(n) (anti)baryon consists of one (anti)red, one (anti)green and one (anti)blue quark and is also ``white''.
-Such ``white'' bound states are also referred to as \textbf{color singlets}.
+Such ``white'' bound states illustrated in \cref{fig:qcd:colorless_hadrons} are also referred to as \textbf{color singlets}.
 
 What if an even stronger force overcomes the strong force and tries to forcibly separate the quarks in a hadron into colorful groups of quarks?
 Then nature will simply create new quark--anti-quark pairs so that the new groups of quarks both become new colorless hadrons.
-\Cref{fig:master_intro:confinement} illustrates this process for a meson.
-At low temperatures and densities in the lower left of \cref{fig:qcd:phase_diagram}, quarks are therefore \emph{confined} in colorless hadronic matter that make up the present world around us.
+At low temperatures and densities in the lower left of \cref{fig:qcd:phase_diagram}, quarks are therefore always \emph{confined} in colorless hadronic matter that make up the present world around us.
 
 In the opposite extreme of high temperature or density in \cref{fig:qcd:phase_diagram}, quantum chromodynamics displays the property of \textbf{asymptotic freedom}.
 As the energy scale of quark interactions increases, or equivalently its length scale decreases, the interaction strength \emph{decreases} and quarks become \emph{deconfined}.
