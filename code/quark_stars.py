@@ -14,9 +14,12 @@ import mayavi.mlab as mlab
 Nc = 3
 fπ = 93
 fK = 113
-mu = 300
-md = mu
-ms = 429 # only for guess TODO: never use?
+muf = 5 # current/lone/free masses (i.e. without gluons)
+mdf = 7
+msf = 150
+mu0 = 300 # constituent masses (i.e. with gluons)
+md0 = mu0
+ms0 = 429 # only for guess TODO: never use?
 mσ = 800
 mπ = 138
 mK = 496
@@ -31,10 +34,10 @@ me = 0.5
 tovopts = {"tolD": 0.40, "maxdr": 1e-2, "nmodes": 0}
 tovμQ = np.concatenate([np.linspace(0, 700, 200)[1:], np.linspace(700, 5000, 100)])
 
-def charge(Δx, Δy, μu, μd, μs, μe):
-    nu = Nc/(3*π**2) * np.real((μu**2-Δx**2+0j)**(3/2))
-    nd = Nc/(3*π**2) * np.real((μd**2-Δx**2+0j)**(3/2))
-    ns = Nc/(3*π**2) * np.real((μs**2-Δy**2+0j)**(3/2))
+def charge(mu, md, ms, μu, μd, μs, μe):
+    nu = Nc/(3*π**2) * np.real((μu**2-mu**2+0j)**(3/2))
+    nd = Nc/(3*π**2) * np.real((μd**2-md**2+0j)**(3/2))
+    ns = Nc/(3*π**2) * np.real((μs**2-ms**2+0j)**(3/2))
     ne =  1/(3*π**2) * np.real((μe**2-me**2+0j)**(3/2))
     return +2/3*nu - 1/3*nd - 1/3*ns - 1*ne
 
@@ -58,37 +61,24 @@ class Model:
         self.ma0 = ma0
 
     def eos(self, B=0, N=1000, plot=False, write=False, debugmaxwell=False):
-        Δx = np.linspace(self.mu, 0, N)[:-1] # shave off erronous 0
-        Δy = np.empty_like(Δx)
-        μQ = np.empty_like(Δx)
-        μu = np.empty_like(Δx)
-        μd = np.empty_like(Δx)
-        μs = np.empty_like(Δx)
-        μe = np.empty_like(Δx)
-        Ω  = np.empty_like(Δx)
-
-        for i in range(0, len(Δx)):
-            guess = (μQ[i-1], Δy[i-1], μe[i-1]) if i > 0 else self.vacuum_masses() + (0,) # use previous solution
-            μQ[i], Δy[i], μu[i], μd[i], μs[i], μe[i] = self.solve(Δx[i], guess)
-            print(f"Δx = {Δx[i]:.2f}, Δy = {Δy[i]:.2f}, ", end="")
-            print(f"μQ = {μQ[i]:.2f}, μu = {μu[i]:.2f}, μd = {μd[i]:.2f}, μs = {μs[i]:.2f}, μe = {μe[i]:.2f}")
+        mu, md, ms, μu, μd, μs, μe = self.eossolve(N=N) # model-dependent function
 
         # extend solutions to μ = 0 to show Silver-Blaze property
-        μQ = np.insert(μQ, 0, 0)
         μu = np.insert(μu, 0, 0)
         μd = np.insert(μd, 0, 0)
         μs = np.insert(μs, 0, 0)
         μe = np.insert(μe, 0, 0)
-        Δx = np.insert(Δx, 0, Δx[0])
-        Δy = np.insert(Δy, 0, Δy[0])
+        mu = np.insert(mu, 0, mu[0])
+        md = np.insert(md, 0, md[0])
+        ms = np.insert(ms, 0, ms[0])
 
-        Ω = self.Ω(Δx, Δy, μu, μd, μs, μe)
+        Ω = self.Ω(mu, md, ms, μu+0j, μd+0j, μs+0j, μe+0j) # model-dependent
         P, P0 = -Ω, -Ω[0]
         P = P - P0
 
-        nu = Nc/(3*π**2) * np.real((μu**2-Δx**2+0j)**(3/2))
-        nd = Nc/(3*π**2) * np.real((μd**2-Δx**2+0j)**(3/2))
-        ns = Nc/(3*π**2) * np.real((μs**2-Δy**2+0j)**(3/2))
+        nu = Nc/(3*π**2) * np.real((μu**2-mu**2+0j)**(3/2))
+        nd = Nc/(3*π**2) * np.real((μd**2-md**2+0j)**(3/2))
+        ns = Nc/(3*π**2) * np.real((μs**2-ms**2+0j)**(3/2))
         ne =  1/(3*π**2) * np.real((μe**2-me**2+0j)**(3/2))
         ϵ  = -P + μu*nu + μd*nd + μs*ns + μe*ne
 
@@ -149,6 +139,7 @@ class Model:
             ϵ1 = np.interp(Pt, P[:i2+1], ϵ[:i2+1])
             ϵ2 = np.interp(Pt, P[i3:], ϵ[i3:])
 
+            # TODO: remove?
             def fixarray(a):
                 a1 = np.interp(Pt, P[:i2+1], a[:i2+1])
                 a2 = np.interp(Pt, P[i3:], a[i3:])
@@ -188,17 +179,20 @@ class Model:
         print(f"P0 = {P0}")
 
         if write:
-            cols  = [μQ, Δx, Δy, μu, μd, μs, μe, nu, nd, ns, ne, ϵ, P, ϵorg, Porg]
-            heads = ["muQ", "Deltax", "Deltay", "muu", "mud", "mus", "mue", "nu", "nd", "ns", "ne", "epsilon", "P", "epsilonorg", "Porg"]
+            cols  = [mu, md, ms, μu, μd, μs, μe, nu, nd, ns, ne, ϵ, P, ϵorg, Porg]
+            heads = ["mu", "md", "ms", "muu", "mud", "mus", "mue", "nu", "nd", "ns", "ne", "epsilon", "P", "epsilonorg", "Porg"]
             outfile = f"data/{self.name}/eos_sigma_{self.mσ}.dat"
             utils.writecols(cols, heads, outfile)
 
         if plot:
             fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 5))
 
+            μQ = (μu + μd) / 2
+
             ax1.set_xlabel(r"$\mu_Q$")
-            ax1.plot(μQ, Δx, ".-", color="orange", label=r"$\Delta_x$")
-            ax1.plot(μQ, Δy, ".-", color="yellow", label=r"$\Delta_y$")
+            ax1.plot(μQ, mu, ".-", color="orange", label=r"$m_u$")
+            ax1.plot(μQ, md, ".-", color="orange", label=r"$m_d$")
+            ax1.plot(μQ, ms, ".-", color="yellow", label=r"$m_s$")
             ax1.plot(μQ, μu, ".-", color="red", label=r"$\mu_u$")
             ax1.plot(μQ, μd, ".-", color="green", label=r"$\mu_d$")
             ax1.plot(μQ, μs, ".-", color="purple", label=r"$\mu_s$")
@@ -253,8 +247,97 @@ class Model:
         ϵ, _, _, _, _ = self.eos(N=N, B=B14**4, plot=False)
         massradiusplot(ϵ, P1P2, **tovopts, visual=plot, outfile=outfile)
 
+class MIT2FlavorModel(Model):
+    def __init__(self):
+        self.name = "MIT2F"
+        self.Ω = lambda mu, md, ms, μu, μd, μs, μe: np.real(
+            -Nc/(24*π**2)*((2*μu**2-5*muf**2)*μu*np.sqrt(μu**2-muf**2)+3*muf**4*np.arcsinh(np.sqrt(μu**2/muf**2-1))) + \
+            -Nc/(24*π**2)*((2*μd**2-5*mdf**2)*μd*np.sqrt(μd**2-mdf**2)+3*mdf**4*np.arcsinh(np.sqrt(μd**2/mdf**2-1))) + \
+            -1/(24*π**2)*((2*μe**2-5*me**2)*μe*np.sqrt(μe**2-me**2)+3*me**4*np.arcsinh(np.sqrt(μe**2/me**2-1)))
+        )
+
+    def solve(self, μQ):
+        def q(μe):
+            μu, μd, _ = μelim(μQ, μe)
+            return charge(muf, mdf, 0, μu, μd, 0, μe)
+        sol = scipy.optimize.root_scalar(q, method="bisect", bracket=(0, 1e5))
+        assert sol.converged, f"{sol.flag} (μQ = {μQ})"
+        μe = sol.root
+        μu, μd, _ = μelim(μQ, μe)
+        return μu, μd, μe
+
+    def eossolve(self, N):
+        μQ = np.linspace(muf, 2000, N)
+        μu = np.empty_like(μQ)
+        μd = np.empty_like(μQ)
+        μe = np.empty_like(μQ)
+
+        for i in range(0, len(μQ)):
+            μu[i], μd[i], μe[i] = self.solve(μQ[i])
+            print(f"μQ = {μQ[i]:.2f}, μu = {μu[i]:.2f}, μd = {μd[i]:.2f}, μe = {μe[i]:.2f}")
+
+        mu = np.full_like(μQ, muf)
+        md = np.full_like(μQ, mdf)
+        ms = np.full_like(μQ, 0)
+        μs = np.full_like(μQ, 0)
+        return mu, md, ms, μu, μd, μs, μe
+
+class MIT3FlavorModel(Model):
+    def __init__(self):
+        self.name = "MIT3F"
+        self.Ω = lambda mu, md, ms, μu, μd, μs, μe: np.real(
+            -Nc/(24*π**2)*((2*μu**2-5*muf**2)*μu*np.sqrt(μu**2-muf**2)+3*muf**4*np.arcsinh(np.sqrt(μu**2/muf**2-1))) + \
+            -Nc/(24*π**2)*((2*μd**2-5*mdf**2)*μd*np.sqrt(μd**2-mdf**2)+3*mdf**4*np.arcsinh(np.sqrt(μd**2/mdf**2-1))) + \
+            -Nc/(24*π**2)*((2*μs**2-5*msf**2)*μs*np.sqrt(μs**2-msf**2)+3*msf**4*np.arcsinh(np.sqrt(μs**2/msf**2-1))) + \
+            -1/(24*π**2)*((2*μe**2-5*me**2)*μe*np.sqrt(μe**2-me**2)+3*me**4*np.arcsinh(np.sqrt(μe**2/me**2-1)))
+        )
+
+    def solve(self, μQ):
+        def q(μe):
+            μu, μd, μs = μelim(μQ, μe)
+            return charge(muf, mdf, msf, μu, μd, μs, μe)
+        sol = scipy.optimize.root_scalar(q, method="bisect", bracket=(0, 1e5))
+        assert sol.converged, f"{sol.flag} (μQ = {μQ})"
+        μe = sol.root
+        μu, μd, μs = μelim(μQ, μe)
+        return μu, μd, μs, μe
+
+    def eossolve(self, N):
+        μQ = np.linspace(muf, 2000, N)
+        μu = np.empty_like(μQ)
+        μd = np.empty_like(μQ)
+        μs = np.empty_like(μQ)
+        μe = np.empty_like(μQ)
+
+        for i in range(0, len(μQ)):
+            μu[i], μd[i], μs[i], μe[i] = self.solve(μQ[i])
+            print(f"μQ = {μQ[i]:.2f}, μu = {μu[i]:.2f}, μd = {μd[i]:.2f}, μs = {μs[i]:.2f}, μe = {μe[i]:.2f}")
+
+        mu = np.full_like(μQ, muf)
+        md = np.full_like(μQ, mdf)
+        ms = np.full_like(μQ, msf)
+        return mu, md, ms, μu, μd, μs, μe
+
+class LSMModel(Model):
+    def eossolve(self, N):
+        Δx = np.linspace(self.mu, 0, N)[:-1] # shave off erronous 0
+        Δy = np.empty_like(Δx)
+        μQ = np.empty_like(Δx)
+        μu = np.empty_like(Δx)
+        μd = np.empty_like(Δx)
+        μs = np.empty_like(Δx)
+        μe = np.empty_like(Δx)
+
+        for i in range(0, len(Δx)):
+            guess = (μQ[i-1], Δy[i-1], μe[i-1]) if i > 0 else self.vacuum_masses() + (0,) # use previous solution
+            μQ[i], Δy[i], μu[i], μd[i], μs[i], μe[i] = self.solve(Δx[i], guess)
+            print(f"Δx = {Δx[i]:.2f}, Δy = {Δy[i]:.2f}, ", end="")
+            print(f"μu = {μu[i]:.2f}, μd = {μd[i]:.2f}, μs = {μs[i]:.2f}, μe = {μe[i]:.2f}")
+
+        return Δx, Δx, Δy, μu, μd, μs, μe
+
     def vacuum_masses(self):
-        min = scipy.optimize.minimize(lambda ΔxΔy: self.Ω(ΔxΔy[0], ΔxΔy[1], 0, 0, 0, 0), x0=(mu, ms), method="Nelder-Mead")
+        min = scipy.optimize.minimize(lambda ΔxΔy: self.Ω(ΔxΔy[0], ΔxΔy[0], ΔxΔy[1], 0, 0, 0, 0), x0=(mu0, ms0), method="Nelder-Mead")
         if min.success:
             Δx0, Δy0 = min.x
         else:
@@ -302,47 +385,14 @@ class Model:
         mlab.show()
         # plt.show()
 
-class Bag2Flavor(Model):
-    def __init__(self):
-        Model.__init__(self, "MIT2F")
-        self.Ω = lambda Δ, Δy, μu, μd, μs, μe: -Nc/(12*π**2)*μu**4 - Nc/(12*π**2)*μd**4 - 1/(12*π**2)*μe**4
-
-    def solve(self, μQ, guess):
-        def system(μe):
-            μu, μd, _ = μelim(μQ, μe)
-            return charge(0, 0, μu, μd, 0, μe) # hack to give Δy = 0
-        sol = scipy.optimize.root_scalar(system, bracket=(0,1e5), method="bisect") # lm and krylov workb
-        assert sol.converged, f"{sol.message} (μQ = {μQ})"
-        μe = sol.root
-        μu, μd, _ = μelim(μQ, μe)
-        Δx, Δy, μs = 0, 0, 0
-        return Δx, Δy, μu, μd, μs, μe
-
-# has same EOS (ϵ = 3P + 4B) as MIT2F
-class Bag3Flavor(Model):
-    def __init__(self):
-        Model.__init__(self, "MIT3F")
-        self.Ω = lambda Δ, Δy, μu, μd, μs, μe: -Nc/(12*π**2)*μu**4 - Nc/(12*π**2)*μd**4 - Nc/(12*π**2)*μs**4 - 1/(12*π**2)*μe**4
-
-    def solve(self, μQ, guess):
-        def system(μe):
-            μu, μd, μs = μelim(μQ, μe)
-            return charge(0, 0, μu, μd, μs, μe) # hack to give Δy = 0
-        sol = scipy.optimize.root_scalar(system, bracket=(0,1e5), method="bisect") # lm and krylov workb
-        assert sol.converged, f"{sol.message} (μQ = {μQ})"
-        μe = sol.root
-        μu, μd, μs = μelim(μQ, μe)
-        Δx, Δy = 0, 0
-        return Δx, Δy, μu, μd, μs, μe
-
-class LSM2Flavor(Model):
+class LSM2FlavorModel(LSMModel):
     def __init__(self, mσ=mσ, mπ=mπ, renormalize=True):
         Nf = 2
         m2 = 1/2*(3*mπ**2-mσ**2)
         λ  = 3/fπ**2 * (mσ**2-mπ**2)
         h  = fπ * mπ**2
-        g  = mu / fπ
-        Λ2 = mu**2 / np.e
+        g  = mu0 / fπ
+        Λ2 = mu0**2 / np.e
         print(f"m2 = {np.sign(m2)}*({np.sqrt(np.abs(m2))} MeV)^2 ")
         print(f"λ  = {λ}")
         print(f"g  = {g}")
@@ -360,8 +410,8 @@ class LSM2Flavor(Model):
 
         Ω  = sp.lambdify((Δ, μu, μd, μe),  Ω, "numpy")
         dΩ = sp.lambdify((Δ, μu, μd, μe), dΩ, "numpy")
-        self.Ω  = lambda Δ, Δy, μu, μd, μs, μe: np.real( Ω(Δ+0j, μu+0j, μd+0j, μe+0j))
-        self.dΩ = lambda Δ, Δy, μu, μd, μs, μe: np.real(dΩ(Δ+0j, μu+0j, μd+0j, μe+0j))
+        self.Ω  = lambda mu, md, ms, μu, μd, μs, μe: np.real( Ω(mu+0j, μu+0j, μd+0j, μe+0j))
+        self.dΩ = lambda mu, md, ms, μu, μd, μs, μe: np.real(dΩ(mu+0j, μu+0j, μd+0j, μe+0j))
 
         Model.__init__(self, "LSM2F", mσ=mσ, mπ=mπ)
 
@@ -373,7 +423,7 @@ class LSM2Flavor(Model):
             μQ, Δy, μe = μQ_Δy_μe # unpack variables
             μu, μd, _ = μelim(μQ, μe)
             μs = 0
-            return (self.dΩ(Δx, 0, μu, μd, 0, μe), Δy, charge(Δx, 0, μu, μd, 0, μe)) # hack to give Δy = 0
+            return (self.dΩ(Δx, Δx, 0, μu, μd, 0, μe), Δy, charge(Δx, Δx, 0, μu, μd, 0, μe)) # hack to give Δy = 0
         sol = scipy.optimize.root(system, guess, method="lm") # lm and krylov works
         assert sol.success, f"{sol.message} (Δx = {Δx})"
         μQ, Δy, μe = sol.x
@@ -381,18 +431,17 @@ class LSM2Flavor(Model):
         Δy, μs = 0, 0
         return μQ, Δy, μu, μd, μs, μe
 
-class LSM2FlavorConsistent(LSM2Flavor):
+class LSM2FlavorConsistentModel(LSM2FlavorModel):
     def __init__(self, mσ=mσ, mπ=mπ):
-        print(mσ)
         Δ, μu, μd, μe = sp.symbols("Δ μ_u μ_d μ_e", complex=True)
-        def r(p2): return sp.sqrt(4*mu**2/p2-1)
+        def r(p2): return sp.sqrt(4*mu0**2/p2-1)
         def F(p2): return 2 - 2*r(p2)*sp.atan(1/r(p2))
-        def dF(p2): return 4*mu**2*r(p2)/(p2*(4*mu**2-p2))*sp.atan(1/r(p2))-1/p2
-        Ω  = 3/4*mπ**2*fπ**2*(1-4*mu**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ**2 / mu**2
-        Ω -= mσ**2*fπ**2/4*(1+4*mu**2*Nc/(16*π**2*fπ**2)*((1-4*mu**2/mσ**2)*F(mσ**2)+4*mu**2/mσ**2-F(mπ**2)-mπ**2*dF(mπ**2))) * Δ**2/mu**2
-        Ω += mσ**2*fπ**2/8*(1-4*mu**2*Nc/(16*π**2*fπ**2)*(4*mu**2/mσ**2*sp.log(Δ**2/mu**2)-(1-4*mu**2/mσ**2)*F(mσ**2)+F(mπ**2)+mπ**2*dF(mπ**2)))* Δ**4 / mu**4
-        Ω -= mπ**2*fπ**2/8*(1-4*mu**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ**4/mu**4
-        Ω -= mπ**2*fπ**2*(1-4*mu**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ/mu
+        def dF(p2): return 4*mu0**2*r(p2)/(p2*(4*mu0**2-p2))*sp.atan(1/r(p2))-1/p2
+        Ω  = 3/4*mπ**2*fπ**2*(1-4*mu0**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ**2 / mu0**2
+        Ω -= mσ**2*fπ**2/4*(1+4*mu0**2*Nc/(16*π**2*fπ**2)*((1-4*mu0**2/mσ**2)*F(mσ**2)+4*mu0**2/mσ**2-F(mπ**2)-mπ**2*dF(mπ**2))) * Δ**2/mu0**2
+        Ω += mσ**2*fπ**2/8*(1-4*mu0**2*Nc/(16*π**2*fπ**2)*(4*mu0**2/mσ**2*sp.log(Δ**2/mu0**2)-(1-4*mu0**2/mσ**2)*F(mσ**2)+F(mπ**2)+mπ**2*dF(mπ**2)))* Δ**4 / mu0**4
+        Ω -= mπ**2*fπ**2/8*(1-4*mu0**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ**4/mu0**4
+        Ω -= mπ**2*fπ**2*(1-4*mu0**2*Nc/(16*π**2*fπ**2)*mπ**2*dF(mπ**2)) * Δ/mu0
         Ω += 3*Nc/(16*π**2) * Δ**4
         Ω -= Nc/(24*π**2)*((2*μu**2-5*Δ**2)*μu*sp.sqrt(μu**2-Δ**2)+3*Δ**4*sp.asinh(sp.sqrt(μu**2/Δ**2-1)))
         Ω -= Nc/(24*π**2)*((2*μd**2-5*Δ**2)*μd*sp.sqrt(μd**2-Δ**2)+3*Δ**4*sp.asinh(sp.sqrt(μd**2/Δ**2-1)))
@@ -400,10 +449,10 @@ class LSM2FlavorConsistent(LSM2Flavor):
 
         dΩ = sp.diff(Ω, Δ)
         dΩ = sp.lambdify((Δ, μu, μd, μe), dΩ, "numpy")
-        self.dΩ = lambda Δ, Δy, μu, μd, μs, μe: np.real(dΩ(Δ+0j, μu+0j, μd+0j, μe+0j))
+        self.dΩ = lambda mu, md, ms, μu, μd, μs, μe: np.real(dΩ(mu+0j, μu+0j, μd+0j, μe+0j))
 
         Ω  = sp.lambdify((Δ, μu, μd, μe),  Ω, "numpy")
-        self.Ω  = lambda Δ, Δy, μu, μd, μs, μe: np.real( Ω(Δ+0j, μu+0j, μd+0j, μe+0j))
+        self.Ω  = lambda mu, md, ms, μu, μd, μs, μe: np.real( Ω(mu+0j, μu+0j, μd+0j, μe+0j))
 
         """
         # TODO: numerical diff also works well
@@ -413,7 +462,7 @@ class LSM2FlavorConsistent(LSM2Flavor):
 
         Model.__init__(self, "LSM2FC", mσ=mσ, mπ=mπ)
 
-class LSM3Flavor(Model):
+class LSM3FlavorModel(LSMModel):
     def __init__(self, mσ=mσ, mπ=mπ, mK=mK):
         def system(m2_λ1_λ2):
             m2, λ1, λ2 = m2_λ1_λ2
@@ -430,7 +479,7 @@ class LSM3Flavor(Model):
 
         sol = scipy.optimize.root(system, (-100, -10, +100), method="hybr")
         m2, λ1, λ2 = sol.x
-        g = 2*mu/σx0
+        g = 2*mu0/σx0
         hx = σx0 * (m2 + λ1*(σx0**2+σy0**2) + λ2/2*σx0**2)
         hy = σy0 * (m2 + λ1*(σx0**2+σy0**2) + λ2*σy0**2)
         Λx = g*σx0/(2*np.sqrt(np.e))
@@ -461,9 +510,9 @@ class LSM3Flavor(Model):
         Ω   = sp.lambdify((Δx, Δy, μu, μd, μs, μe), Ω,   "numpy")
         dΩx = sp.lambdify((Δx, Δy, μu, μd, μs, μe), dΩx, "numpy")
         dΩy = sp.lambdify((Δx, Δy, μu, μd, μs, μe), dΩy, "numpy")
-        self.Ω   = lambda Δx, Δy, μu, μd, μs, μe: np.real(  Ω(Δx+0j, Δy+0j, μu+0j, μd+0j, μs+0j, μe+0j))
-        self.dΩx = lambda Δx, Δy, μu, μd, μs, μe: np.real(dΩx(Δx+0j, Δy+0j, μu+0j, μd+0j, μs+0j, μe+0j))
-        self.dΩy = lambda Δx, Δy, μu, μd, μs, μe: np.real(dΩy(Δx+0j, Δy+0j, μu+0j, μd+0j, μs+0j, μe+0j))
+        self.Ω   = lambda mu, md, ms, μu, μd, μs, μe: np.real(  Ω(mu+0j, ms+0j, μu+0j, μd+0j, μs+0j, μe+0j))
+        self.dΩx = lambda mu, md, ms, μu, μd, μs, μe: np.real(dΩx(mu+0j, ms+0j, μu+0j, μd+0j, μs+0j, μe+0j))
+        self.dΩy = lambda mu, md, ms, μu, μd, μs, μe: np.real(dΩy(mu+0j, ms+0j, μu+0j, μd+0j, μs+0j, μe+0j))
 
         Model.__init__(self, f"LSM3F", mσ=mσ, mπ=mπ, mK=mK)
 
@@ -471,16 +520,16 @@ class LSM3Flavor(Model):
         def system(μQ_Δy_μe):
             μQ, Δy, μe = μQ_Δy_μe # unpack variables
             μu, μd, μs = μelim(μQ, μe)
-            return (self.dΩx(Δx, Δy, μu, μd, μs, μe),
-                    self.dΩy(Δx, Δy, μu, μd, μs, μe),
-                    charge(Δx, Δy, μu, μd, μs, μe))
+            return (self.dΩx(Δx, Δx, Δy, μu, μd, μs, μe),
+                    self.dΩy(Δx, Δx, Δy, μu, μd, μs, μe),
+                    charge(Δx, Δx, Δy, μu, μd, μs, μe))
         sol = scipy.optimize.root(system, guess, method="lm") # lm works, hybr works but unstable for small μ
         assert sol.success, f"{sol.message} (Δx = {Δx})"
         μQ, Δy, μe = sol.x
         μu, μd, μs = μelim(μQ, μe)
         return μQ, Δy, μu, μd, μs, μe
 
-class LSM3FlavorAnomaly(LSM3Flavor):
+class LSM3FlavorAnomalyModel(LSM3FlavorModel):
     def __init__(self, mσ=mσ, mπ=mπ, mK=mK, ma0=ma0):
         def system(m2_λ1_λ2_c):
             m2, λ1, λ2, c = m2_λ1_λ2_c
@@ -499,7 +548,7 @@ class LSM3FlavorAnomaly(LSM3Flavor):
 
         sol = scipy.optimize.root(system, (-100, -10, +100, +100), method="lm")
         m2, λ1, λ2, c = sol.x
-        g = 2*mu/σx0
+        g = 2*mu0/σx0
         hx = σx0 * (m2 + λ1*(σx0**2+σy0**2) + λ2/2*σx0**2)
         hy = σy0 * (m2 + λ1*(σx0**2+σy0**2) + λ2*σy0**2)
         Λx = g*σx0/(2*np.sqrt(np.e))
@@ -531,9 +580,9 @@ class LSM3FlavorAnomaly(LSM3Flavor):
         Ω   = sp.lambdify((Δx, Δy, μu, μd, μs, μe), Ω,   "numpy")
         dΩx = sp.lambdify((Δx, Δy, μu, μd, μs, μe), dΩx, "numpy")
         dΩy = sp.lambdify((Δx, Δy, μu, μd, μs, μe), dΩy, "numpy")
-        self.Ω   = lambda Δx, Δy, μu, μd, μs, μe: np.real(  Ω(Δx+0j, Δy+0j, μu+0j, μd+0j, μs+0j, μe+0j))
-        self.dΩx = lambda Δx, Δy, μu, μd, μs, μe: np.real(dΩx(Δx+0j, Δy+0j, μu+0j, μd+0j, μs+0j, μe+0j))
-        self.dΩy = lambda Δx, Δy, μu, μd, μs, μe: np.real(dΩy(Δx+0j, Δy+0j, μu+0j, μd+0j, μs+0j, μe+0j))
+        self.Ω   = lambda mu, md, ms, μu, μd, μs, μe: np.real(  Ω(mu+0j, ms+0j, μu+0j, μd+0j, μs+0j, μe+0j))
+        self.dΩx = lambda mu, md, ms, μu, μd, μs, μe: np.real(dΩx(mu+0j, ms+0j, μu+0j, μd+0j, μs+0j, μe+0j))
+        self.dΩy = lambda mu, md, ms, μu, μd, μs, μe: np.real(dΩy(mu+0j, ms+0j, μu+0j, μd+0j, μs+0j, μe+0j))
 
         Model.__init__(self, f"LSM3FA", mσ=mσ, mπ=mπ, mK=mK, ma0=ma0)
 
@@ -619,6 +668,11 @@ if __name__ == "__main__":
     #model.eos(plot=True)
     exit()
     """
+
+    model = MIT3FlavorModel()
+    model.eos(plot=True)
+    model.stars(150, (1e-7, 1e-2), plot=True)
+    exit()
 
     models = [LSM2Flavor, LSM2FlavorConsistent, LSM3Flavor]
     mσs = [500, 600, 700, 800]
