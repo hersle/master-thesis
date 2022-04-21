@@ -51,8 +51,7 @@ def μelim(μQ, μe):
 class Model:
     def __init__(self, name, mσ=mσ, mπ=mπ, mK=mK, ma0=ma0):
         self.name = name
-        self.mu, self.ms = self.vacuum_masses()
-        self.md = self.mu
+        self.mu, self.md, self.ms = self.vacuum_masses()
         print(f"Meson masses: mσ = {mσ:.1f} MeV, mπ = {mπ:.1f}, mK = {mK:.1f}")
         print(f"Quark masses: mu = md = {self.mu:.1f} MeV, ms = {self.ms:.1f} MeV")
         self.mσ = mσ
@@ -238,7 +237,7 @@ class Model:
 
         heads = ["r", "P", "epsilon", "nu", "nd", "ns", "ne"]
         cols = [list(rs), list(Ps), list(ϵs), list(nus), list(nds), list(nss), list(nes)]
-        outfile = f"data/{self.name}/star_B14_{B14}_Pc_{Pc:.7f}.dat"
+        outfile = f"data/{self.name}/star_sigma_{self.mσ}_B14_{B14}_Pc_{Pc:.7f}.dat"
         utils.writecols(cols, heads, outfile)
 
     def stars(self, B14, P1P2, N=1000, plot=False, write=False):
@@ -249,12 +248,15 @@ class Model:
 
 class MIT2FlavorModel(Model):
     def __init__(self):
-        self.name = "MIT2F"
+        Model.__init__(self, "MIT2F")
         self.Ω = lambda mu, md, ms, μu, μd, μs, μe: np.real(
             -Nc/(24*π**2)*((2*μu**2-5*muf**2)*μu*np.sqrt(μu**2-muf**2)+3*muf**4*np.arcsinh(np.sqrt(μu**2/muf**2-1))) + \
             -Nc/(24*π**2)*((2*μd**2-5*mdf**2)*μd*np.sqrt(μd**2-mdf**2)+3*mdf**4*np.arcsinh(np.sqrt(μd**2/mdf**2-1))) + \
             -1/(24*π**2)*((2*μe**2-5*me**2)*μe*np.sqrt(μe**2-me**2)+3*me**4*np.arcsinh(np.sqrt(μe**2/me**2-1)))
         )
+
+    def vacuum_masses(self):
+        return muf, mdf, 0
 
     def solve(self, μQ):
         def q(μe):
@@ -284,13 +286,16 @@ class MIT2FlavorModel(Model):
 
 class MIT3FlavorModel(Model):
     def __init__(self):
-        self.name = "MIT3F"
+        Model.__init__(self, "MIT3F")
         self.Ω = lambda mu, md, ms, μu, μd, μs, μe: np.real(
             -Nc/(24*π**2)*((2*μu**2-5*muf**2)*μu*np.sqrt(μu**2-muf**2)+3*muf**4*np.arcsinh(np.sqrt(μu**2/muf**2-1))) + \
             -Nc/(24*π**2)*((2*μd**2-5*mdf**2)*μd*np.sqrt(μd**2-mdf**2)+3*mdf**4*np.arcsinh(np.sqrt(μd**2/mdf**2-1))) + \
             -Nc/(24*π**2)*((2*μs**2-5*msf**2)*μs*np.sqrt(μs**2-msf**2)+3*msf**4*np.arcsinh(np.sqrt(μs**2/msf**2-1))) + \
             -1/(24*π**2)*((2*μe**2-5*me**2)*μe*np.sqrt(μe**2-me**2)+3*me**4*np.arcsinh(np.sqrt(μe**2/me**2-1)))
         )
+
+    def vacuum_masses(self):
+        return muf, mdf, msf
 
     def solve(self, μQ):
         def q(μe):
@@ -329,7 +334,8 @@ class LSMModel(Model):
         μe = np.empty_like(Δx)
 
         for i in range(0, len(Δx)):
-            guess = (μQ[i-1], Δy[i-1], μe[i-1]) if i > 0 else self.vacuum_masses() + (0,) # use previous solution
+            mu, md ,ms = self.vacuum_masses()
+            guess = (μQ[i-1], Δy[i-1], μe[i-1]) if i > 0 else (mu, ms, 0) # use previous solution
             μQ[i], Δy[i], μu[i], μd[i], μs[i], μe[i] = self.solve(Δx[i], guess)
             print(f"Δx = {Δx[i]:.2f}, Δy = {Δy[i]:.2f}, ", end="")
             print(f"μu = {μu[i]:.2f}, μd = {μd[i]:.2f}, μs = {μs[i]:.2f}, μe = {μe[i]:.2f}")
@@ -342,7 +348,7 @@ class LSMModel(Model):
             Δx0, Δy0 = min.x
         else:
             Δx0, Δy0 = np.nan, np.nan
-        return Δx0, Δy0
+        return Δx0, Δx0, Δy0
 
     def vacuum_potential(self, Δx, Δy, write=False):
         #fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
@@ -358,7 +364,7 @@ class LSMModel(Model):
         mlab.mesh(ΔxΔx / Δx[-1], ΔyΔy / Δy[-1], Ω / Ω0, representation="wireframe")
         mlab.axes()
 
-        Δx0, Δy0 = self.vacuum_masses()
+        Δx0, _, Δy0 = self.vacuum_masses()
         if not np.isnan(Δx0) and not np.isnan(Δy0):
             print(f"mσ = {self.mσ} MeV: found minimum (Δx, Δy, Ω/fπ^4) = ({Δx0:.0f} MeV, {Δy0:.0f} MeV, {Ωf(Δx0, Δy0)})")
             Ωx0 = Ωf(Δx, Δy0)
@@ -669,15 +675,19 @@ if __name__ == "__main__":
     exit()
     """
 
-    model = MIT3FlavorModel()
-    model.eos(plot=True)
-    model.stars(150, (1e-7, 1e-2), plot=True)
+    P1P2 = (1e-7, 1e-2)
+
+    models = [MIT2FlavorModel, MIT3FlavorModel]
+    for model in models:
+        model = model()
+        model.eos(plot=False, write=True)
+        for B14 in (145, 150, 155):
+            model.stars(B14, P1P2, write=True)
     exit()
 
     models = [LSM2Flavor, LSM2FlavorConsistent, LSM3Flavor]
     mσs = [500, 600, 700, 800]
     B14s = [15, 30, 45, 60, 75, 90, 105, 120, 135, 150]
-    P1P2 = (1e-7, 1e-2)
 
     for modelclass in models:
         for mσ in mσs:
