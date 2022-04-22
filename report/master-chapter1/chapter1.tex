@@ -217,12 +217,93 @@ This verifies our numerical calculations.
 
 \section{Bag constant and strange matter hypothesis}
 
-Pressure above is normalized so that it vanishes for $\mu < m$.
-This is called the vacuum because $n = 0$ then.
-More generally, it is customary to shift it like $P \rightarrow P - B$ so that $P = -B$ for $\mu < m$,
-causing $\epsilon = +B$.
-$B$ is called the bag constant.
-\TODO{explain stuff about bag constant}
+For chemical potentials $\mu_i < m_i$ the densities \eqref{eq:mit:particle_densities} vanish,
+so we refer to this region of the phase diagram as the \textbf{vacuum phase}.
+So far, we have modeled the quarks as a free Fermi gas of \emph{deconfined} quarks, essentially resembling quark-gluon plasma.
+We know, however, that quarks are \emph{confined} hadrons at low energies.
+How can we incorporate confinement in our model?
+
+The pressure $P = -\Omega$ due to the grand potential density \eqref{eq:mit:grand_potential} is normalized to $P = 0$ in vacuum.
+Suppose that we shift $\Omega \rightarrow \Omega + B$ by a \textbf{bag constant} $B$.
+This in turn shifts the pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density} to
+\begin{equation}
+	P(\mu_Q) \rightarrow P(\mu_Q) - B
+	\qquad \text{and} \qquad
+	\epsilon(\mu_Q) \rightarrow \epsilon(\mu_Q) + B,
+\label{eq:mit:bag_shift}
+\end{equation}
+effectively moving the equation of state in \cref{fig:mit:eos-eos} up and to the left.
+
+\begin{figure}
+\centering
+\tikzsetnextfilename{bag-constant}
+\begin{tikzpicture}
+\fill [gray] (-5, -3) rectangle (+5, +3);
+
+\draw [draw=black, fill=white] (0, 0) circle (2);
+\begin{scope}[blend group=screen]
+	\fill [fill=red]   (30:0.5)  circle (0.75) node {$u$};
+	\fill [fill=green] (150:0.5) circle (0.75) node {$d$};
+	\fill [fill=blue]  (270:0.5) circle (0.75) node {$s$};
+\end{scope}
+\node at (90:1.3) {hadron phase};
+\node at (-3.5,1.3) {normal phase};
+\end{tikzpicture}
+\caption{\label{fig:mit:bag_constant}%
+	\TODO{finish and try to hammer some ``picture'' into the reader's mind}
+}
+\end{figure}
+
+A positive bag constant creates a negative vacuum pressure $P = -B$ relative to the \emph{deconfined} phase in the quantum chromodynamics phase diagram in \cref{fig:qcd:phase_diagram},
+and can therefore be interpreted as a mechanism that \emph{confines} the quarks to ``bags'' that represent hadrons.
+Despite its ad-hoc entry as a mere constant shift of the grand potential,
+the bag constant is given the physically vital interpretation as the pressure difference between the confined and deconfined phases
+and is an extremely simple way of incorporating confinement in our model.
+The bagging is illustrated in \cref{fig:mit:bag_constant}.
+
+What values can the bag constant take?
+To gain some more insight,
+let us perform a heuristic calculation where we picture quarks to be confined in a spherical bag of radius $R$.
+The vacuum energy associated with the mere existence of the bag is then $E_V = 4 \pi R^3 B / 3$.
+By Heisenberg's uncertainty principle $\Delta p \Delta x \geq \hbar/2$, a quark confined to a region extending $\Delta x = 2R$ in one dimension has momentum $p \gtrsim \hbar/4R$.
+In the ultra-relativistic regime where we can neglect mass, the kinetic energy inside the bag is therefore $E_K = pc = C / R$ for some constant $C$.
+As a function of $R$, the total energy $E = E_V + E_K$ has a minimum at $R = (C/4 \pi B)^\frac14$ for which the bag is stable.
+Solving for $C = 4 \pi B R^4$, the energy of this stable configuration is $E = 16 \pi R^3 B / 3$.
+Assuming a neutron with total energy $E = m c^2 = \SI{940}{\giga\electronvolt}$ and radius $R \approx \SI{1}{\femto\meter}$,
+the bag constant is
+\begin{equation}
+	B \approx (\SI{144.4}{\mega\electronvolt})^4 / (\hbar c)^3.
+\end{equation}
+
+We can use another approach to determine a range of values for the bag constant.
+In the early days of the universe with high density and temperature, the universe likely passed through a phase of deconfined quark-gluon plasma.
+Today, two-flavor quark matter are accreting in nuclei through fusion towards iron-56 in stars, which seemingly represent the ground state of nuclear matter.
+However, \cite{ref:strange_hypothesis_bodmer} and \cite{ref:strange_hypothesis_witten} has hypothesized that this state of matter is only \emph{metastable}
+and could decay further to three-flavor quark matter consisting of up, down and strange quarks.
+This is referred to as the \textbf{strange matter hypothesis}.
+If true, the universe could turn into a very \emph{strange} place some day.
+
+Iron-56 has an energy of $E/N_B = \epsilon/n_B = \SI{930}{\mega\electronvolt}$ per baryon.
+If we denote the energy densities of two-flavor and three-flavor quark matter by $\epsilon_2$ and $\epsilon_3$,
+then the unstability of two-flavor quark matter and hypothesized stability of three-flavor quark matter at zero pressure $P=0$ imply that
+\TODO{at zero pressure?}
+\begin{equation}
+	\frac{\epsilon_3(P=0)}{n_B} < \SI{930}{\mega\electronvolt} < \frac{\epsilon_2(P=0)}{n_B} .
+\label{eq:mit:bag_stability}
+\end{equation}
+The program in \TODO{ref appendix} solves these inequalities numerically:
+it calculates the baryon density $n_B = (n_u+n_d+n_s)/3$
+and performs the shift \eqref{eq:mit:bag_shift} of the pressure and energy density for different bag constants $B$
+until it finds the one for which the inequality is barely satisfied.
+For the two-flavor and three-flavor equations of state in \cref{fig:mit:eos},
+it reports the bounds
+\begin{equation}
+	\SI{144.3}{\mega\electronvolt} < B^\frac14 < \SI{154.9}{\mega\electronvolt} .
+\end{equation}
+The lower bound comes from the two-flavor case, and the upper bound from the three-flavor case.
+
+\TODO{get very different $B$ in LSM. but this is because meson potential contributes to effective bag pressure before the crossover?}
+
 
 \section{Mass-radius solutions}
 
@@ -314,22 +395,3 @@ It will, however, be very useful to have \emph{some} bound for the bag constant 
 \TODO{organize project and master thesis together}
 
 \TODO{color confinement, asymptotic freedom, bag models, etc.}
-\begin{figure}
-\centering
-\tikzsetnextfilename{bag-model}
-\begin{tikzpicture}
-\fill [gray] (-5, -3) rectangle (+5, +3);
-
-\draw [draw=black, fill=white] (0, 0) circle (2);
-\begin{scope}[blend group=screen]
-	\fill [fill=red]   (30:0.5)  circle (0.75) node {$u$};
-	\fill [fill=green] (150:0.5) circle (0.75) node {$d$};
-	\fill [fill=blue]  (270:0.5) circle (0.75) node {$s$};
-\end{scope}
-\node at (90:1.3) {hadron phase};
-\node at (-3.5,1.3) {normal phase};
-\end{tikzpicture}
-\caption{\label{fig:master_intro:confinement}%
-	\TODO{create different confinement vs deconfinement figure}
-}
-\end{figure}
