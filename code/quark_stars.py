@@ -84,16 +84,21 @@ class Model:
         # print bag constant bound (upper or lower, depending on circumstances)
         # TODO: is this correct? particularly with phase transition, where B is added BEFORE this is done?
         nB = 1/3*(nu+nd+ns)
-        ϵB = 0 + μu*nu + μd*nd + μs*ns + μe*ne
-        Bmin = np.interp(930, ϵB/nB, P)
-        if Bmin == 0: Bmin = np.min(P)
-        #plt.plot(P, ϵB/nB, ".-k")
-        #plt.axhline(930)
-        #plt.show()
-        print(f"Bag constant bound: B^(1/4) = {Bmin**(1/4)} MeV")
+        def EperB(B):
+            PB = P - B
+            ϵB = ϵ + B
+            return np.interp(0, PB, ϵB/nB)
+        sol = scipy.optimize.root_scalar(lambda B: EperB(B) - 930, method="brentq", bracket=(0, 300**4))
+        assert sol.converged
+        Bbound = sol.root
+        print(f"Bag constant bound: B^(1/4) = {Bbound**(1/4)} MeV")
 
         P -= B
         ϵ += B
+
+        # plt.plot(P, ϵ/nB, ".-k")
+        # plt.axhline(930, color="red")
+        # plt.show()
 
         P1 = P[0]
         i2 = np.argmax(np.gradient(P) < 0) # last index of increasing pressure
