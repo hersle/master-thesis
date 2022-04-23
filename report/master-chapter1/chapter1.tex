@@ -183,6 +183,7 @@ the equation of state is then
 	         = -P - 4 \Omega 
 	         = -P + 4 P 
 	         = 3 P .
+\label{eq:mit:eos_ur}
 \end{equation}
 We can also find approximate analytical relations between the chemical potentials in the ultra-relativistic limit
 if we also neglect the electron density in the charge neutrality condition \eqref{eq:mit:charge_neutrality_explicit},
@@ -262,8 +263,7 @@ and is an extremely simple way of incorporating confinement in our model.
 The bagging is illustrated in \cref{fig:mit:bag_constant}.
 
 What values can the bag constant take?
-To gain some more insight,
-let us perform a heuristic calculation where we picture quarks to be confined in a spherical bag of radius $R$.
+Let us perform a heuristic calculation where we picture quarks to be confined in a spherical bag of radius $R$.
 The vacuum energy associated with the mere existence of the bag is then $E_V = 4 \pi R^3 B / 3$.
 By Heisenberg's uncertainty principle $\Delta p \Delta x \geq \hbar/2$, a quark confined to a region extending $\Delta x = 2R$ in one dimension has momentum $p \gtrsim \hbar/4R$.
 In the ultra-relativistic regime where we can neglect mass, the kinetic energy inside the bag is therefore $E_K = pc = C / R$ for some constant $C$.
@@ -273,6 +273,7 @@ Assuming a neutron with total energy $E = m c^2 = \SI{940}{\giga\electronvolt}$ 
 the bag constant is
 \begin{equation}
 	B \approx (\SI{144.4}{\mega\electronvolt})^4 / (\hbar c)^3.
+\label{eq:mit:bag_constant_optimal}
 \end{equation}
 
 We can use another approach to determine a range of values for the bag constant.
@@ -286,90 +287,57 @@ If true, the universe could turn into a very \emph{strange} place some day.
 Iron-56 has an energy of $E/N_B = \epsilon/n_B = \SI{930}{\mega\electronvolt}$ per baryon.
 If we denote the energy densities of two-flavor and three-flavor quark matter by $\epsilon_2$ and $\epsilon_3$,
 then the unstability of two-flavor quark matter and hypothesized stability of three-flavor quark matter at zero pressure $P=0$ imply that
-\TODO{at zero pressure?}
+\TODO{at zero pressure}
 \begin{equation}
 	\frac{\epsilon_3(P=0)}{n_B} < \SI{930}{\mega\electronvolt} < \frac{\epsilon_2(P=0)}{n_B} .
 \label{eq:mit:bag_stability}
 \end{equation}
-The program in \TODO{ref appendix} solves these inequalities numerically:
-it calculates the baryon density $n_B = (n_u+n_d+n_s)/3$
+This inequality yields a range of acceptable bag constants that we refer to as the \textbf{bag window}.
+
+Let us ultra-relativistic equation of state is affected by the addition of a bag constant
+and how inequality \eqref{eq:mit:bag_stability} generates a corresponding bag window.
+The bag shift \eqref{eq:mit:bag_shift} changes the equation of state \eqref{eq:mit:eos_ur} to $\epsilon = 3 P + 4 B$.
+Neglecting electrons again, the baryon density is $n_B = n_u = \mu_u^3 / \pi^2$,
+since $n_d = 2 n_u$ and $n_s=0$ in the two-flavor case and $n_u=n_d=n_s$ in the three-flavor case.
+With two flavors we also had $\mu_d = 2^{1/3} \mu_u$,
+so the grand potential density \eqref{eq:mit:grand_potential_massless}
+yields the pressure $P = (1 + 2^{4/3}) \mu_u^4 / 4 \pi^2 - B$ after ``bagging''.
+With three flavors we had $\mu_s = \mu_d = \mu_u$ and instead find $P = 3 \mu_u^4 / 4 \pi^2 - B$.
+Setting $P=0$ and eliminating $\mu_u$ in favor of $B$, inequality \eqref{eq:mit:bag_stability} becomes exactly solvable and gives the bag window
+\begin{equation}
+	%\frac{4 B}{(4 \pi^2 B / 3)^\frac34 / \pi^2} < \SI{930}{\mega\electronvolt} < \frac{4 B}{(4 \pi^2 B / (1+2^\frac43))^\frac34 / \pi^2},
+	%\quad \text{or} \quad
+	\SI{144.4}{\mega\electronvolt} < B^\frac14 < \SI{162.8}{\mega\electronvolt}.
+\label{eq:mit:bag_window_ur}
+\end{equation}
+
+Moving back to the general case with nonzero masses,
+the program in \TODO{ref appendix} solves inequality \eqref{eq:mit:bag_stability} numerically.
+It calculates the baryon density $n_B = (n_u+n_d+n_s)/3$
 and performs the shift \eqref{eq:mit:bag_shift} of the pressure and energy density for different bag constants $B$
 until it finds the one for which the inequality is barely satisfied.
-For the two-flavor and three-flavor equations of state in \cref{fig:mit:eos},
-it reports the bounds
+For the two-flavor and three-flavor equations of state in \cref{fig:mit:eos}, it reports the bounds
 \begin{equation}
 	\SI{144.3}{\mega\electronvolt} < B^\frac14 < \SI{154.9}{\mega\electronvolt} .
+\label{eq:mit:bag_window}
 \end{equation}
-The lower bound comes from the two-flavor case, and the upper bound from the three-flavor case.
+In all cases, the lower bound comes from the two-flavor case, and the upper bound from the three-flavor case.
+Note that the lower bounds in the analytical and numerical bag windows \eqref{eq:mit:bag_window_ur} and \eqref{eq:mit:bag_window}
+agree not only with each other, but also with the ``optimal'' bag constant \eqref{eq:mit:bag_constant_optimal}.
+In contrast, the upper bounds disagree due to the massless approximation being worse with the addition of the heavy strange quark.
 
-\TODO{get very different $B$ in LSM. but this is because meson potential contributes to effective bag pressure before the crossover?}
+\TODO{for later: get very different $B$ in LSM. but this is because meson potential contributes to effective bag pressure before the crossover?}
 
 
 \section{Mass-radius solutions}
 
-\TODO{old stuff below}
-
-To model quark matter and the effect of these two properties,
-physicists have come up with various \textbf{bag models}.
-As illustrated in \cref{fig:lsm:confinement}, these models split the medium of the physical vacuum state into two phases.
-The \emph{normal phase} is the background phase in which quarks are forbidden to exist -- remains of the non-confining medium that existed before the separation into two phases.
-On top of the background, bubbles of \emph{hadron phase} are created inside which colorless combinations of quarks are confined.
-Mathematically, the confinement is implemented by adding a bag constant $B$ to the grand potential density $\Omega$ of the quarks assumed to live inside the hadronic bubbles.
-The bag constant is therefore defined as the energy difference between the hadronic phase and the normal phase,
-and creating a hadronic bubble of volume $V$ costs the energy $B V$.
-A positive bag constant gives a negative contribution to the pressure $P = -\Omega$,
-hence confining the contents of the bag with an external pressure from the surrounding medium in the normal phase.
-
-The \textbf{MIT bag model} is the simplest example.
-Consider a star composed of up, down and strange quarks in the zero-temperature and massless approximation.
-According to what we learned in \TODO{ref 4.12} and \eqref{eq:nstars:ur_eos}, the grand potential ``before bagging'' is
-Pressure
-\begin{equation}
-	P(\mu) = \smashoperator{\sum_{f=\{u,d,s\}}} \frac{N_c \mu_f^4}{12 \pi^2}
-	\qquad \text{and} \qquad
-	\epsilon(\mu) = -P(\mu) + \smashoperator{\sum_{f=\{u,d,s\}}} \frac{N_c \mu_f^4}{3 \pi^2}.
-\end{equation}
-After ``bagging'' the quarks with a bag constant $B$,
-\begin{equation}
-\begin{split}
-	P(\mu,B) = P(\mu) - B, \\
-	\epsilon(\mu,B) = -P(\mu,B) + \smashoperator{\sum_{f=\{u,d,s\}}} \frac{N_c \mu_f^4}{3 \pi^2}.
-	                = -P(\mu,B) + 4 (P(\mu,B) + B) = 4 P(\mu,B) + 4 B.
-\end{split}
-\end{equation}
-The energy density and equation of state is then
-\begin{equation}
-	\epsilon(P) = -P + \sum_f \mu_f n_f = -P + \sum_f \frac{N_c \mu_f^4}{3 \pi^2} = -P + 4P = 3P
-\end{equation}
-To ``bag'' the quarks, the idea is 
-
-In the early days of high density and temperature, the universe likely passed through a deconfined quark matter phase.
-Today, matter is accreting by nuclear fusion in stars towards iron-56, seemingly representing the ground state of nuclear matter.
-However, \cite{ref:strange_hypothesis_bodmer} and \cite{ref:strange_hypothesis_witten} has hypothesized that this state of matter is only \emph{metastable}.
-Their \textbf{strange matter hypothesis} claims that the true ground state of nuclear matter is that of three-flavor matter consisting of up, down and strange quarks
-
-\TODO{rewrite?}
-We can use the presumed stability of two-flavor and three-flavor quark matter to determine a range of acceptable windows for the bag constant $B$.
-Per baryon, iron-56 has an energy of $E/N_B = \epsilon/n_B = \SI{930}{\mega\electronvolt}$,
-so if $\epsilon_2$ and $\epsilon_3$ are the energy densities of two-flavor and three-flavor quark matter,
-we determine the bag constant $B$ such that
-\TODO{at zero pressure?}
-\begin{equation}
-	\frac{\epsilon_3(0)}{n_B} < \SI{930}{\mega\electronvolt} < \frac{\epsilon_2(0)}{n_B} .
-\label{eq:lsm:bag_stability}
-\end{equation}
-Only the two-flavor bound has been observed,
-while the three-flavor bound is a quite reckless assumption that should certainly be taken with a grain of salt.
-It will, however, be very useful to have \emph{some} bound for the bag constant in order to constrain the parameter space of equations of state later on.
-
-% TODO: start here
-\begin{figure}[bh!]
+\begin{figure}[t]%[bh!]
 \centering
-\tikzsetnextfilename{bag-mass-radius}
+\tikzsetnextfilename{mit-mass-radius}
 \begin{tikzpicture}
 \begin{axis}[
 	width=15cm, height=12cm,
-	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for bag-model quark stars }, title style={yshift=2.0cm},
+	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for MIT bag-model quark stars}, title style={yshift=2.0cm},
 	xmin=0, xmax=15, ymin=0.0, ymax=2.2, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
 	point meta=explicit, point meta min=32, point meta max=39,
 	colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
@@ -381,12 +349,57 @@ It will, however, be very useful to have \emph{some} bound for the bag constant 
 \tikzset{
 	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
 }
-\addplot+ [mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_B14_144.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_B14_163.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot [black, solid, opacity=0.60] {-1}; \addlegendentry{$N_f=2$};
+\addplot [black, solid, opacity=1.00] {-1}; \addlegendentry{$N_f=3$};
+
+% 2-flavor
+\addplot+ [solid, mesh, opacity=0.60] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_sigma_800_B14_145.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, opacity=0.60] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_sigma_800_B14_150.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, opacity=0.60] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_sigma_800_B14_155.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+
+% 3-flavor
+\addplot+ [solid, mesh, opacity=1.00] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_145.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, opacity=1.00] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_150.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, opacity=1.00] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_155.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \end{axis}
 \end{tikzpicture}
-\caption{\TODO{MIT bag model 2 and 3 flavors}}
+\caption{\label{fig:mit:mass_radius}%
+\TODO{add bag constant labels}
+Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov} parametrized by the central pressure $P_c$,
+obtained with the two-flavor and three-flavor MIT bag model equations of state from \cref{fig:mit:eos-eos}
+modified by the bag shift \eqref{eq:mit:bag_shift} by three bag constants in the bag window \eqref{eq:mit:bag_window}.
+}
 \end{figure}
+
+Having established the bag window \eqref{eq:mit:bag_window},
+different equations of state are finally available to us by ``bagging'' the equation of state in \cref{fig:mit:eos-eos}
+with different bag constants inside the window according to the shift \eqref{eq:mit:bag_shift}.
+We then solve the Tolman-Oppenheimer-Volkoff equation as described in \cref{sec:master_intro:tov}.
+The results are displayed in \cref{fig:mit:mass_radius}.
+
+As we mentioned in \cref{sec:master_intro:tov},
+stars with central pressure exceeding that of the maximum mass star are unstable,
+so we cut off the mass-radius curve not longer after the peak.
+According to the MIT bag model,
+quark stars with maximum masses $1.6 \, M_\odot < M < 2.0 \, M_\odot$ and corresponding radii $\SI{9}{\kilo\meter} < R < \SI{11}{\kilo\meter}$ are realizable
+
+Also notice the qualitatively very similar shapes of the mass-radius curves for different bag constants.
+In fact, it is possible to show that with the bagged ultra-relativistic equation of state $\epsilon = 3P + 4B$,
+the Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov} takes on scaling solutions
+where the masses $M(B)$ and $M(B')$ and radii $R(B)$ and $R(B')$ corresponding to two different bag constants $B$ and $B'$
+are related by $M(B') = \sqrt{B/B'} \, M(B)$ and $R(B') = \sqrt{B/B'} \, R(B)$. \cite[equation 8.29]{ref:glendenning}
+These relations hold only approximately in our case, as we have used the massive equation of state.
+
+To model quark matter and the effect of these two properties,
+physicists have come up with various \textbf{bag models}.
+As illustrated in \cref{fig:lsm:confinement}, these models split the medium of the physical vacuum state into two phases.
+The \emph{normal phase} is the background phase in which quarks are forbidden to exist -- remains of the non-confining medium that existed before the separation into two phases.
+On top of the background, bubbles of \emph{hadron phase} are created inside which colorless combinations of quarks are confined.
+Mathematically, the confinement is implemented by adding a bag constant $B$ to the grand potential density $\Omega$ of the quarks assumed to live inside the hadronic bubbles.
+The bag constant is therefore defined as the energy difference between the hadronic phase and the normal phase,
+and creating a hadronic bubble of volume $V$ costs the energy $B V$.
+A positive bag constant gives a negative contribution to the pressure $P = -\Omega$,
+hence confining the contents of the bag with an external pressure from the surrounding medium in the normal phase.
 
 \TODO{titles}
 
