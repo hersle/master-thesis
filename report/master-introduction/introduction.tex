@@ -1,6 +1,10 @@
-\chapter{Introduction}
+\section*{General TODOs}
 
 \TODO{units, $\hbar = c = G = k_B = 1$ or not?}
+
+\pagebreak
+
+\chapter{Introduction}
 
 \begin{figure}[b]
 \centering
@@ -231,6 +235,25 @@ Our choice $\rho(r)=0$ is therefore the simplest choice, but not necessarily the
 \section{Quantum chromodynamics}
 \label{sec:master_intro:qcd}
 
+\begin{figure}[t]
+\centering
+%\includegraphics[width=0.9\textwidth]{figures/qcd-phase-diagram.pdf}
+\includegraphics[width=0.6\textwidth]{figures/qcd-phase-diagram.png}
+\caption{%
+	Slice of the phase diagram of quantum chromodynamics with zero isospin and strangeness.
+	%\credit{CERN / Antonin Maire}{https://cds.cern.ch/record/2025215}
+	\credit{R.S. Bhalerao}{https://commons.wikimedia.org/wiki/File:PhasDiagQGP.png}
+}
+\label{fig:qcd:phase_diagram}
+\end{figure}
+% other phase diagram versions:
+% https://en.wikipedia.org/wiki/QCD_matter#/media/File:QCD_phase_diagram.png
+% https://en.wikipedia.org/wiki/Quark%E2%80%93gluon_plasma#/media/File:PhasDiagQGP.png
+% https://www.researchgate.net/figure/A-sketch-of-the-QCD-Phase-Diagram-according-to-the-collaboration-CBM-at-FAIR-1-it-is_fig1_50218065
+% https://cds.cern.ch/record/2729160/plots
+% https://physics.aps.org/articles/v3/44
+% https://cerncourier.com/a/quark-matter-fireballs-hashed-out-in-protvino/
+
 The theory of the strong interaction force is called \textbf{quantum chromodynamics} (\textbf{QCD}).
 It describes the interaction between quarks mediated by gluons through the Lagrangian density
 \begin{equation}
@@ -252,29 +275,35 @@ Finally, the Gell-Mann matrices $T^a$ are the $N_a = N_f^2 - 1$ generators of th
 whose structure constants $f^{abc}$ can be determined from the commutators $\comm{T^a}{T^b} = i f^{abc} T^c$,
 and that are conventionally normalized to $\trace[T^a T^b] = \delta^{ab}/2$.
 
-\TODO{mention it is a Yang-Mills theory?}
-\TODO{derive (in a plausible way) by generalizing QED?}
+QCD can be viewed as a generalization of quantum electrodynamics (QED),
+where there is a single electron in place of multiple quarks and photons play the role of gluons.
+QED is a simpler theory with symmetry group $U(1)$ and is referred to as an \emph{Abelian} gauge theory,
+whereas QCD is a \emph{non-Abelian} gauge theory with symmetry group $SU(N_f)$ and an example of a Yang-Mills theory.
+
+\begin{table}[b]
+\centering
+{ \renewcommand{\arraystretch}{1.2} % restrict scope to this table
+\begin{tabular}{ l r r r }
+	\toprule
+	Quark & Electrical charge & Lone mass & Constituent mass \\
+	\midrule
+	up ($u$) & $+\frac23 e$ & $\SI{5}{\mega\electronvolt}$ & $\SI{300}{\mega\electronvolt}$ \\
+	down ($d$) & $-\frac13 e$ & $\SI{7}{\mega\electronvolt}$ & $\SI{300}{\mega\electronvolt}$ \\
+	strange ($s$) & $-\frac13 e$ & $\SI{150}{\mega\electronvolt}$ & $\SI{429}{\mega\electronvolt}$ \\
+	\bottomrule
+\end{tabular} }
+\caption{\label{tab:qcd:quark_properties}%
+	Properties of the up, down and strange quarks.
+	Lone mass is the mass of a quark by itself \emph{excluding} any gluons,
+	while constituent mass refers to the effective mass of a quark in a hadron \emph{including} the surrounding gluon fields.
+	The latter can be approximated by the proton and neutron masses $m_p = 2 m_u + m_d \approx m_n = m_u + 2 m_d \approx \SI{900}{\mega\electronvolt}$.
+	\TODO{sources? used Glendenning for lone masses. what about $s$ quark?}
+}
+\end{table}
+
+The main properties of the up, down and strange quarks are gathered in \cref{tab:qcd:quark_properties}.
 
 \subsubsection{Phase diagram and calculational methods}
-
-\begin{figure}[t]
-\centering
-%\includegraphics[width=0.9\textwidth]{figures/qcd-phase-diagram.pdf}
-\includegraphics[width=0.6\textwidth]{figures/qcd-phase-diagram.png}
-\caption{%
-	Slice of the phase diagram of quantum chromodynamics with zero isospin and strangeness.
-	%\credit{CERN / Antonin Maire}{https://cds.cern.ch/record/2025215}
-	\credit{R.S. Bhalerao}{https://commons.wikimedia.org/wiki/File:PhasDiagQGP.png}
-}
-\label{fig:qcd:phase_diagram}
-\end{figure}
-% other phase diagram versions:
-% https://en.wikipedia.org/wiki/QCD_matter#/media/File:QCD_phase_diagram.png
-% https://en.wikipedia.org/wiki/Quark%E2%80%93gluon_plasma#/media/File:PhasDiagQGP.png
-% https://www.researchgate.net/figure/A-sketch-of-the-QCD-Phase-Diagram-according-to-the-collaboration-CBM-at-FAIR-1-it-is_fig1_50218065
-% https://cds.cern.ch/record/2729160/plots
-% https://physics.aps.org/articles/v3/44
-% https://cerncourier.com/a/quark-matter-fireballs-hashed-out-in-protvino/
 
 The phase diagram of quantum chromodynamics describes the phase of quark matter
 as a function of temperature $T$ and the common quark, isospin and strangeness chemical potentials
