@@ -1,20 +1,25 @@
 \chapter{MIT bag model}
 
-Smoothly introduce concepts in intro and some other concepts (like bag constant and strange matter hypothesis)
+To illustrate some of the concepts in \cref{chap:master_intro} and gently familiarize ourselves with additional ones,
+let us first model quark stars consisting of a free Fermi gas of \emph{confined} quarks with the \textbf{MIT bag model}.
+Originally introduced by \cite{ref:mit_bag_model_original} at MIT, this simple phenomenological model accounts for confinement of quarks in hadrons by adding a \textbf{bag constant} $B$ on top of a normal, deconfined ideal Fermi gas.
+Moreover, we will discuss the \textbf{strange matter hypothesis} and how it can be used to determine an interval of acceptable values of $B$.
 
-A classic
-
-Treat two and three flavor versions together: they are very similar.
-Therefore write $(s)$.
-
-Constant masses $m_u = \ldots$ etc.
-
-QCD Lagrangian when neglecting gluons completely:
+We will start by simply ignoring the gluon fields $A_\mu^a$ from the quantum chromodynamics Lagrangian \eqref{eq:qcd:lagrangian}.
+In addition, we couple the conserved vector current $j^\mu_f = \bar{q}_f \gamma^\mu q_f$ to a chemical potential $\mu_f$ for each quark flavor,
+allowing us to tune the densities \eqref{eq:master_intro:densities} of quarks.
+For an explanation of how the chemical potentials can be thought of as an analogy to constant gauge fields,
+the interested reader can consult the discussion surrounding equations \eqref{eq:tft:conserved_current}-\eqref{eq:tft:chemical_potential}.
+With these modifications, the Lagrangian becomes
 \begin{equation}
 	\lagr = \bar{q} (i \slashed\partial + \mu \gamma^0 - m) q
-	      = \sum_{c=1}^{N_c} \sum_{f=\{u,d,(s)\}} \bar{q}_{f,c} (i \slashed\partial + \mu_f \gamma^0 - m_f) q_{f,c}
+	      = \sum_{c=1}^{N_c} \sum_{f=\{u,d,(s)\}} \bar{q}_{f,c} (i \slashed\partial + \mu_f \gamma^0 - m_f) q_{f,c} .
 \label{eq:mit:lagrangian}
 \end{equation}
+In this model the two-flavor and three-flavor analysis is very similar, so we will consider them in parallel.
+Unless $N_f$ is specified explicitly, we therefore perform the general analysis with $N_f=3$,
+and simply drop terms or factors indexed by the strange quark $s$ to obtain corresponding results for $N_f = 2$.
+As we have simply forgot the gluons, we will continue to use the lone quark masses in \cref{tab:qcd:quark_properties}.
 
 \section{Partition function, grand potential and equation of state}
 
