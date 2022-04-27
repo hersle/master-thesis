@@ -9,7 +9,7 @@ We will start by simply ignoring the gluon fields $A_\mu^a$ from the quantum chr
 In addition, we couple the conserved vector current $j^\mu_f = \bar{q}_f \gamma^\mu q_f$ to a chemical potential $\mu_f$ for each quark flavor,
 allowing us to tune the densities \eqref{eq:master_intro:densities} of quarks.
 For an explanation of how the chemical potentials can be thought of as an analogy to constant gauge fields,
-the interested reader can consult the discussion surrounding equations \eqref{eq:tft:conserved_current}-\eqref{eq:tft:chemical_potential}.
+the interested reader can consult the discussion surrounding equations \eqref{eq:tft:conserved_current}--\eqref{eq:tft:chemical_potential}.
 With these modifications, the Lagrangian becomes
 \begin{equation}
 	\lagr = \bar{q} (i \slashed\partial + \mu \gamma^0 - m) q
@@ -19,7 +19,7 @@ With these modifications, the Lagrangian becomes
 In this model the two-flavor and three-flavor analysis is very similar, so we will consider them in parallel.
 Unless $N_f$ is specified explicitly, we therefore perform the general analysis with $N_f=3$,
 and simply drop terms or factors indexed by the strange quark $s$ to obtain corresponding results for $N_f = 2$.
-As we have simply forgot the gluons, we will continue to use the lone quark masses in \cref{tab:qcd:quark_properties}.
+As we have simply omitted the gluons, we will continue to use the lone quark masses in \cref{tab:qcd:quark_properties}.
 
 \section{Partition function, grand potential and equation of state}
 
@@ -32,23 +32,23 @@ It decouples into a product of path integrals \eqref{eq:tft:dirac_partition_func
 There we simplified these path integrals to the form \eqref{eq:tft:dirac_partition_function} for arbitrary temperature.
 Then we neglected the divergent vacuum contribution from the first term and calculated it explicitly in the zero-temperature approximation,
 arriving at the pressure \eqref{eq:nstars:pressure_zeroT} that is related to the grand potential density \eqref{eq:master_intro:grand_potential} by a simple sign flip.
-Adding a background of free electrons and reinstating the Fermi momenta $p_f = \sqrt{\smash[b]{\mu_f^2-m_f^2}}$ for each particle,
-we can then write the grand potential density as
+Adding a background of free electrons and reinstating the Fermi momenta $p_f = \sqrt{\smash[b]{\mu_f^2-m_f^2}}$ for each particle species,
+we can write the grand potential density as
 \begin{equation}
-	\Omega(\mu_u,\mu_d,\mu_s,\mu_e) = -\smashoperator{\sum_{\vphantom{\big|} f=\{3u,3d,3s,e\}}} \frac{1}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right] .
+\begin{split}
+	\Omega(\mu_u,\mu_d,\mu_s,\mu_e) = &-\smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right] \\
+	                                  &-\phantom{\sum} \, \frac{1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} \, \, + \, 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_{\smash{e}}^2}{m_e^2}-1} \right) \right].
 \label{eq:mit:grand_potential}
+\end{split}
 \end{equation}
-Note that this expression gains an imaginary part when $\mu_i < m_i$, but we always mean to take the real part of it, or equivalently consider it to be multiplied by step functions $\Theta(\mu_i-m_i)$.
-The rigorous understanding of this can be traced back to the zero-temperature calculation of the pressure \eqref{eq:nstars:pressure_zeroT}, in which the integrand contained a step function $\Theta(\mu-E(p)) = \Theta(\mu-\sqrt{\smash[b]{m^2+p^2}})$ and we took for granted that $\mu > m$.
-In the opposite case $\mu < m$, the step function would cause the whole integral to vanish.
-Our notation below the flavor sum means that the quark terms are multiplied by $N_c=3$,
-but the electron contribution is not.
-
-The corresponding quark and electron densities \eqref{eq:master_intro:densities} are
+This expression is only valid when $\mu_i \geq m_i$,
+as we assumed so during calculation of the zero-temperature pressure integral \eqref{eq:nstars:pressure_zeroT} containing the step function $\Theta(\mu_i-\sqrt{\smash[b]{m_i^2-p^2}})$.
+In the opposite case $\mu_i < m_i$, the step function would be turned off for all $p$ and make the integral vanish.
+Equivalently, the grand potential above is valid for \emph{all} $\mu_i$ if we implicitly take its \emph{real part}.
+Using this convention, the corresponding quark and electron densities \eqref{eq:master_intro:densities} are
 \begin{equation}
 	n_f = -\pdv{\Omega}{\mu_f} = \frac{N_c}{3 \pi^2} \Big( \mu_f^2 - m_f^2 \Big)^{\frac32}
-	\text{ for $f \in \{u,d,s\}$}
-	\quad \text{and} \quad
+	\qquad \text{and} \qquad
 	n_e = -\pdv{\Omega}{\mu_e} = \frac{  1}{3 \pi^2} \Big( \mu_e^2 - m_e^2 \Big)^{\frac32},
 \label{eq:mit:particle_densities}%
 \end{equation}
@@ -56,7 +56,7 @@ and the pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:m
 
 We now see explicitly that the grand potential and hence the pressure and energy density are functions of the four chemical potentials $\mu_u$, $\mu_d$, $\mu_s$ and $\mu_e$.
 As explained in \cref{sec:master_intro:tft},
-we reduce them to only one independent chemical potential with the three constraints \eqref{eq:lsm:chemical_equilibrium} and \eqref{eq:lsm:charge_neutrality},
+we reduce them to a single independent chemical potential with the three constraints \eqref{eq:lsm:chemical_equilibrium} and \eqref{eq:lsm:charge_neutrality},
 and take this to be the quark chemical potential $\mu_Q$ defined in equation \eqref{eq:master_intro:chemical_potentials_transformed}.
 With the quark charges in \cref{tab:qcd:quark_properties}, the densities \eqref{eq:mit:particle_densities} and for a given value of $\mu_Q$,
 we must then find the electron chemical potential $\mu_e$ that solves
@@ -64,17 +64,18 @@ we must then find the electron chemical potential $\mu_e$ that solves
 	2 \Big[\mu_u^2-m_u^2\Big]^\frac32
 	- \Big[(\mu_u+\mu_e)^2-m_d^2\Big]^\frac32 
 	- \Big[(\mu_u+\mu_e)^2-m_s^2\Big]^\frac32 
-	- \Big[\mu_e^2-m_e^2\Big]^\frac32 = 0,
+	- \Big[\mu_e^2-m_e^2\Big]^\frac32 = 0.
 \label{eq:mit:charge_neutrality_explicit}
 \end{equation}
-and $\mu_u$, $\mu_d$ and $\mu_s$ then follow from definition \eqref{eq:master_intro:chemical_potentials_transformed} and the chemical equilibrium constraint \eqref{eq:lsm:chemical_equilibrium}. 
+Having chosen a value of $\mu_Q$ and determined a value of $\mu_e$,
+the chemical potentials $\mu_u$, $\mu_d$ and $\mu_s$ follow from definition \eqref{eq:master_intro:chemical_potentials_transformed} and the chemical equilibrium constraint \eqref{eq:lsm:chemical_equilibrium}. 
 Elimination of three of four chemical potentials yields two functions $P(\mu_Q)$ and $\epsilon(\mu_Q)$,
 and the former can finally be inverted to yield the equation of state $\epsilon(P)$.
 
 \subsubsection{Ultra-relativistic limit}
 
 Before tackling the general solution numerically,
-it is instructive and in fact not far from accurate to solve this problem analytically in the ultra-relativistic limit $\mu_i \gg m_i$ where we neglect all masses.
+it is instructive and in fact not far from accurate to solve this problem analytically in the ultra-relativistic limit $m_i \rightarrow 0$.
 The grand potential \eqref{eq:mit:grand_potential} then reduces to
 \begin{equation}
 	\Omega(\mu_u, \mu_d, \mu_e) = -\frac{N_c \mu_u^4}{12 \pi^2} - \frac{N_c \mu_d^4}{12 \pi^2} - \frac{N_c \mu_s^4}{12 \pi^2} - \frac{\mu_e^4}{12 \pi^2},
@@ -98,6 +99,7 @@ the equation of state is then simply
 	         = 3 P \, !
 \label{eq:mit:eos_ur}
 \end{equation}
+\TODO{comment on $\trace T_{\mu\nu} = 0$?}
 We can also find approximate analytical relations between the chemical potentials in the ultra-relativistic limit
 if we also assume that the electron density in the charge neutrality condition \eqref{eq:mit:charge_neutrality_explicit} can be neglected.
 This assumption is subject to a self-consistency check down the line.
@@ -233,11 +235,12 @@ as $\mu_i \gg m_i$, thereby verifying our numerical calculations.
 
 For chemical potentials $\mu_i < m_i$ the (real part of the) densities \eqref{eq:mit:particle_densities} vanish,
 so we refer to this region of the phase diagram as the \textbf{vacuum phase}.
-So far, we have modeled the quarks as a free Fermi gas of \emph{deconfined} quarks, essentially resembling quark-gluon plasma.
-We know, however, that quarks are \emph{confined} hadrons at low energies.
+So far we have modeled the quarks as a free Fermi gas of \emph{deconfined} quarks.
+We know, however, that quarks are \emph{confined} in hadrons at low energies.
 How can we incorporate this in our model?
+\TODO{inspiration from Kyllingstad figure 1.5?}
 
-The pressure $P = -\Omega$ due to the grand potential density \eqref{eq:mit:grand_potential} is normalized to $P = 0$ in vacuum.
+The pressure $P = -\Omega$ due to the grand potential density \eqref{eq:mit:grand_potential} is normalized to $P = 0$ in the vacuum.
 Suppose that we shift $\Omega \rightarrow \Omega + B$ by a \textbf{bag constant} $B$.
 This in turn shifts the pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density} to
 \begin{equation}
@@ -363,15 +366,15 @@ the bag constant is
 We can use another approach to determine a range of values for the bag constant.
 In the early days of the universe with high density and temperature, the universe likely passed through a phase of deconfined quark-gluon plasma.
 Today, two-flavor quark matter are accreting in nuclei through fusion towards iron-56 in stars, which seemingly represent the ground state of nuclear matter.
-However, \cite{ref:strange_hypothesis_bodmer} and \cite{ref:strange_hypothesis_witten} has hypothesized that this state of matter is only \emph{metastable}
+However, \cite{ref:strange_hypothesis_bodmer} and \cite{ref:strange_hypothesis_witten} have hypothesized that this state of matter is only \emph{metastable}
 and could decay further to three-flavor quark matter consisting of up, down and strange quarks.
 This is referred to as the \textbf{strange matter hypothesis}.
 If true, the universe could turn into a very \emph{strange} place some day.
 
 Iron-56 has an energy of $E/N_B = (E/V) / (N_B/V) = \epsilon/n_B = \SI{930}{\mega\electronvolt}$ per baryon.
 If we denote the energy densities of two-flavor and three-flavor quark matter by $\epsilon_2$ and $\epsilon_3$,
-then the unstability of two-flavor quark matter and hypothesized stability of three-flavor quark matter at zero pressure $P=0$ imply that
-\TODO{emphasize/explain zero pressure?}
+then the instability of two-flavor quark matter and hypothesized stability of three-flavor quark matter at zero pressure $P=0$ imply that
+\TODO{why zero pressure??? JO nor I understand properly.}
 \begin{equation}
 	\frac{\epsilon_3(P=0)}{n_B} < \SI{930}{\mega\electronvolt} < \frac{\epsilon_2(P=0)}{n_B} .
 \label{eq:mit:bag_stability}
@@ -391,6 +394,7 @@ yields the pressure $P = -\Omega - B = (1 + 2^{4/3}) \mu_u^4 / 4 \pi^2 - B$ afte
 With three flavors we had $\mu_s = \mu_d = \mu_u$ and instead find $P = 3 \mu_u^4 / 4 \pi^2 - B$.
 Setting $P=0$, eliminating $\mu_u$ in favor of $B$ and inserting these relations into inequality \eqref{eq:mit:bag_stability},
 it becomes exactly solvable and gives the bag window
+\TODO{suddenly new units}
 \begin{equation}
 	%\frac{4 B}{(4 \pi^2 B / 3)^\frac34 / \pi^2} < \SI{930}{\mega\electronvolt} < \frac{4 B}{(4 \pi^2 B / (1+2^\frac43))^\frac34 / \pi^2},
 	%\quad \text{or} \quad
@@ -400,12 +404,12 @@ it becomes exactly solvable and gives the bag window
 
 \subsubsection{General bag window}
 
-Moving back to the general case with nonzero masses,
+Returning to the general case with nonzero masses,
 the program in \TODO{ref appendix} solves inequality \eqref{eq:mit:bag_stability} numerically.
 It calculates the baryon density $n_B = (n_u+n_d+n_s)/3$
 and performs the shift \eqref{eq:mit:bag_shift} of the pressure and energy density for different bag constants $B$
 until it finds the one for which the inequality is barely satisfied.
-For the two-flavor and three-flavor equations of state in \cref{fig:mit:eos}, it reports the bounds
+For the two-flavor and three-flavor equations of state in \cref{fig:mit:eos}, it reports the bag window
 \begin{equation}
 	\SI{144.3}{\mega\electronvolt} < B^\frac14 < \SI{154.9}{\mega\electronvolt} .
 \label{eq:mit:bag_window}
@@ -455,7 +459,7 @@ Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equation \eqref{eq:maste
 obtained with the two-flavor and three-flavor MIT bag model equations of state from \cref{fig:mit:eos-eos}
 modified by the bag shift \eqref{eq:mit:bag_shift} with three bag constants $B = \{145,150,155\} \si{\mega\electronvolt}$ in the bag window \eqref{eq:mit:bag_window}.
 Lower bag constants correspond to greater maximum masses.
-\TODO{add bag constant labels}
+\TODO{add bag constant labels. make lines more different (opacity diff is not very apparent on paper)}
 }
 \end{figure}
 
