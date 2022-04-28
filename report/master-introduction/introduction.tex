@@ -306,7 +306,8 @@ whereas QCD is a \emph{non-Abelian} gauge theory with symmetry group $SU(N_f)$ a
 
 The main properties of the up, down and strange quarks are gathered in \cref{tab:qcd:quark_properties}.
 
-\subsubsection{Phase diagram and calculational methods}
+\subsection{Phase diagram and calculational methods}
+\label{sec:qcd:phase_diagram_and_methods}
 
 The phase diagram of quantum chromodynamics describes the phase of quark matter
 as a function of temperature $T$ and the common quark, isospin and strangeness chemical potentials
@@ -361,7 +362,7 @@ To explore the phase diagram, one must therefore turn to alternative techniques:
       \TODO{separate $\chi$PT from NJL/LSM. good now?}
 \end{itemize}
 
-\subsubsection{Color confinement and asymptotic freedom \cite{ref:quark_bag_model}}
+\subsection{Color confinement and asymptotic freedom \cite{ref:quark_bag_model}}
 
 \begin{figure}[t]
 \centering
@@ -424,7 +425,8 @@ Asymptotic freedom was first discovered by \cite{ref:asymptotic_freedom_gross_wi
 %Asymptotic freedom was first discovered by \cite{ref:asymptotic_freedom_gross_wilczek,ref:asymptotic_freedom_politzer}, who were recognized with the Nobel Prize in 2004.
 %\TODO{third superconducting phase, situation is not so black--white}
 
-\subsubsection{Vector, axial and chiral symmetries and chiral symmetry breaking}
+\subsection{Vector, axial and chiral symmetries and chiral symmetry breaking}
+\label{sec:qcd:symmetry}
 
 The Lagrangian \eqref{eq:qcd:lagrangian} has some interesting global symmetries, each of which gives rise to a conserved classical current by Noether's theorem.
 The simplest symmetry is the $U(1)_V$ \textbf{vector symmetry} $q \rightarrow e^{i \theta} q$, giving rise to the conserved vector current $j^\mu = \bar{q} \gamma^\mu q$ representing the baryon number density.
@@ -453,6 +455,7 @@ The isospin symmetry is also a symmetry of the \emph{massive} Lagrangian \eqref{
 We therefore say that quantum chromodynamics exhibits \textbf{chiral symmetry breaking}
 \begin{equation}
 	SU(N_f)_L \times SU(N_f)_R \quad (m = 0) \qquad \rightarrow \quad SU(N_f)_V \quad (m \neq 0).
+\label{eq:qcd:symmetry_breaking_pattern}
 \end{equation}
 Goldstone's theorem then predicts that one massless Goldstone boson arises from every broken symmetry generator.
 Hence, chiral symmetry breaking gives rise to $2 \times (N_f^2 - 1) - (N_f^2 - 1) = N_f^2 - 1$ Goldstone bosons.
@@ -465,37 +468,6 @@ The physical consequence of this is that there are no massless Goldstone bosons,
 The breaking of chiral symmetry leads to the \textbf{chiral phase transition} shown in \cref{fig:qcd:phase_diagram},
 connecting the confined and deconfined phases of quark matter.
 \TODO{round off with magnet analogy: adding $B$ explicitly breaks symmetry and essentially generates massive ``quarks''}
-
-\TODO{OLD SHIT BELOW}
-
-\TODO{OLD SHIT BELOW}
-
-\TODO{OLD SHIT BELOW}
-
-\TODO{OLD SHIT BELOW}
-
-\TODO{BELOW IS DRAFT THAT MAY BE MOVED TO LSM SECTION}
-
-Quark-meson model can be written in terms of left/right fields:
-\begin{equation}
-\begin{split}
-	\bar{\psi} \phi_5 \psi &= \bar{\psi} ( (P_+ + P_-) \sigma + (P_+ - P_-) i \tau \cdot \pi) \psi \\
-	                       &= \bar{\psi} ( P_+ (\sigma + i \tau \cdot \pi) + P_- (\sigma - i \tau \cdot \pi) ) \psi \\
-	                       &= \bar{\psi} ( P_+ \phi + P_- \phi^\dagger) \psi \\
-	                       &= \bar{\psi} ( P_+ \phi P_+ + P_- \phi^\dagger P_-) \psi \\
-	                       &= \bar{\psi}_- \phi P_+ + \bar{\psi}_+ \phi^\dagger \psi_- \\
-\end{split}
-\end{equation}
-Used that $P_\pm^2 = P_\pm$ is in spinor-space, while $\phi$ is in flavor space.
-Denote $+ = R$, $- = L$.
-Now it is apparent that LSM is invariant under $SU(2)_L \times SU(2)_R$:
-\begin{equation}
-	\psi_+ \rightarrow U_+ \psi_+, \qquad
-	\psi_- \rightarrow U_- \psi_-, \qquad
-	\phi   \rightarrow U_- \phi U_+^\dagger.
-\end{equation}
-When $h \neq 0$, this symmetry is explicitly broken.
-
 
 \TODO{what about radius $r < R$ instead of $r=R$?}
 
