@@ -1,4 +1,5 @@
 \chapter{Two-flavor quark-meson model}
+\label{chap:lsm2f}
 
 \TODO{main line: 700 (PT) vs 800 (CO) MeV all models. then ``asides'' that push down.}
 
@@ -9,6 +10,8 @@ The linear sigma model is an effective low-energy model of quantum chromodynamic
 \TODO{plot BAG PRESSURE as function of $\mu_Q$ and show how it explains the confinement/deconfinement phase transition!}
 
 \TODO{two inconsistencies: (1) match couplings at tree level although using one-loop potential. (2) neglecting bosonic one-loop contribution to effective potential (this is consistent in $N_c\rightarrow \infty$ limit, but inconsistent in terms of number of loops)}
+
+\TODO{Kyllingstad has many sources for showing that pion condensate forms only when $\mu_i > m_\pi / (2)$ (just after figure 1.5). He also has a more applicable phase diagram?}
 
 At low energy, the effective degrees of freedom of quantum chromodynamics are not individual quarks,
 but nucleons composed of up and down quarks and the three pions that we saw arose from the spontaneous chiral symmetry breaking pattern \eqref{eq:qcd:symmetry_breaking_pattern}.
@@ -51,7 +54,7 @@ We will therefore take the model as granted from the start and justify it as we 
 
 The Lagrangian density for the linear sigma model coupled to quarks is \cite{ref:jo_lsm_consistent_physical}
 \begin{equation}
-	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \Big[ i \slashed\partial + \mu \gamma^0 - g \big( \sigma + i \gamma^5 \vec\tau \cdot \vec\pi \big) \Big] q_c
+	\lagr = \bar{q} \Big[ i \slashed\partial + \mu \gamma^0 - g \big( \sigma + i \gamma^5 \vec\tau \cdot \vec\pi \big) \Big] q
 	      + \frac12 \Big[ \big( \partial_\mu \sigma \big)^2 + \big( \partial_\mu \vec\pi \big)^2 \Big] - \pot(\sigma,\vec\pi)
 \label{eq:lsm:lagrangian}
 \end{equation}
@@ -158,12 +161,13 @@ The qualitative nature of the pions depends on whether $h$ vanishes.
       and we saw above that there is a unique ground state.
       Accordingly, the pion gains a small mass \eqref{eq:lsm:mass_pi}.
 \end{itemize}
+\label{elaborate on mexican hat analogy, brim, tip/tilt, etc.}
 In neither case does the $\sigma$ mass \eqref{eq:lsm:mass_sigma} vanish -- there is no reason for it do so.
 
 The gist of the linear sigma model and its physical justification is this (take a breath):
 although the linear sigma model symmetry breaking pattern
 \begin{equation}
-	SU(2) \times SU(2) \simeq O(4) \quad \rightarrow \quad O(3)
+	SU(2) \times SU(2) \simeq O(4) \qquad \longrightarrow \qquad O(3)
 \end{equation}
 is \emph{different} from the quantum chromodynamics symmetry breaking pattern \eqref{eq:qcd:symmetry_breaking_pattern} ``under the hood'',
 it gives rise to the \emph{same} degrees of freedom (pions) ``on the outside'' and is therefore indistinguishable from it.
@@ -173,7 +177,158 @@ just like the quark masses break the chiral symmetry of quantum chromodynamics.
 According to Weinberg's philosophy presented in \cref{sec:qcd:phase_diagram_and_methods},
 the quark-meson model is therefore an appropriate effective model of quantum chromodynamics at low energy.
 
-\section{Parameter fitting}
+
+\section{Mass-radius solutions}
+
+\TODO{move afterwards}
+
+
+\section{Grand potential and equation of state}
+
+\TODO{fix flavor sum indices. make consistent with earlier stuff.}
+
+We now set out to calculate the grand potential \eqref{eq:master_intro:grand_potential}.
+With the fermionic quark fields $q$ and bosonic meson fields $\sigma$ and $\vec\pi$
+and the coupling of chemical potentials $\mu$ to conserved currents already baked into the Lagrangian \eqref{eq:lsm:lagrangian},
+the partition function \eqref{eq:master_intro:partition_function} becomes
+\begin{equation}
+	Z = \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \oint_+ \pathintdif \sigma \oint_+ \pathintdif \vec\pi \exp \left\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \lagr_E[\bar{q}, q, \sigma, \vec\pi]  \right\} .
+\end{equation}
+To calculate it we will use the \emph{mean-field approximation} for the bosonic fields,
+replacing them by their yet unknown expectation values $\avg{\sigma}$ and $\avg{\vec\pi}$ in the classical ground state
+(all we know is that $\avg{\sigma}=f_\pi$ in vacuum)
+and simply ignoring the quantum fluctuations $\tilde{\sigma}$ and $\tilde{\vec\pi}$.
+In contrast we will give fermionic fields the full treatment.
+In other words, we are treating bosons to tree-level and fermions to one-loop level
+-- we will comment more on this seemingly inconsistent approach later.
+\TODO{would boson contribution vanish in $T=0$ anyway?}
+The precise values of the meson mean fields are determined in retrospect as minima of the grand potential according to
+\begin{equation}
+	\pdv{\Omega}{\avg{\sigma}} = \pdv{\Omega}{\avg{\vec\pi}} = 0.
+\label{eq:lsm:grand_potential_minimize}
+\end{equation}
+In our treatment we will also neglect pion condensation and \emph{assume} that $\avg{\vec\pi}=0$ \emph{always} vanishes
+and only $\avg{\sigma}$ needs to be determined.
+This is known to be true at $T=0$ when the isospin chemical potential \eqref{eq:master_intro:chemical_potentials_transformed} does not exceed half the pion mass
+-- see for example the study of pion condensation in the quark-meson model by \cite{ref:jo_lsm_consistent,ref:jo_lsm_pion_condensation}.
+After inserting the Lagrangian \eqref{eq:lsm:lagrangian} the partition function reads
+\begin{equation}
+	Z = \prod_{f=1}^{\smash{N_f}} \prod_{c=1}^{\smash{N_c}} \oint_- \!\! \pathintdif \bar{q}_{f,c} \oint_- \!\! \pathintdif q_{f,c} \exp \Bigg\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \Bigg[ \sum_{f=1}^{\smash{N_f}} \sum_{c=1}^{N_c} \bar{q}_{f,c} \big( i \slashed\partial - m_q + \mu_f \gamma^0 \big) q_{f,c} - \pot(\avg{\sigma},\vec{0}) \Bigg] \Bigg\}.
+\end{equation}
+The meson potential is independent of the fields and can be pulled out of the integrals,
+while the fermionic contribution decouples into a product of identical integrals.
+We therefore have
+\begin{equation}
+\begin{split}
+	%\log Z &= -\frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 + \beta V h \avg{\sigma} \\
+	       %&+ \sum_{f=1}^{N_f} \sum_{c=1}^{N_c} \log \oint_- \pathintdif \bar{q}_f^c \oint_- \pathintdif q_f^c \exp \left\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \bar{q}_f^c (i \slashed\partial + \mu_f \gamma^0 - m_q) q_f^c \right\} .
+	\log Z = -\pot(\avg{\sigma},\vec{0}) + \sum_{f=1}^{N_f} \sum_{c=1}^{N_c} \log \oint_- \!\! \pathintdif \bar{q}_{f,c} \oint_- \!\! \pathintdif q_{f,c} \exp \bigg\{ \! \int_0^\beta \! \dif \tau \int_V \! \dif^3 x \, \bar{q}_{f,c} \big(i \slashed\partial + \mu_f \gamma^0 - m_q\big) q_{f,c} \! \bigg\} .
+\end{split}
+\end{equation}
+We have already calculated the path integral in the last term
+from equation \eqref{eq:tft:dirac_partition_function_first} to equation \eqref{eq:tft:dirac_partition_function}.
+Here we get an additional factor $\sum_{c=1}^{N_c} = N_c$ from the color sum because the summand is independent of $c$,
+while the flavor sum $\sum_{f=1}^{\smash{N_f}}$ yields $N_f$ terms that differ only by the unique chemical potentials $\mu_f$ associated with each quark flavor. 
+Thus, the grand potential \eqref{eq:master_intro:grand_potential} is
+\begin{equation}
+\begin{split}
+	%\log Z &= -\frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 + \beta V h \avg{\sigma} \\
+	       %&+ 2 V N_c \sum_{f=1}^{N_f} \int \frac{\dif^3 p}{(2 \pi)^3} \left\{ \beta E(\vec{p}) + \log \left[ e^{-\beta (E(\vec{p}) - \mu_f)}+1 \right] + \log \left[ e^{-\beta (E(\vec{p}) + \mu_f)} + 1\right] \right\} ,
+	\Omega = \pot(\avg{\sigma},\vec{0}) - \frac{2 N_c}{\beta} \sum_{f=1}^{N_f} \int \frac{\dif^3 p}{(2 \pi)^3} \left\{ \beta E(\vec{p}) + \log \left[ e^{-\beta (E(\vec{p}) - \mu_f)}+1 \right] + \log \left[ e^{-\beta (E(\vec{p}) + \mu_f)} + 1\right] \right\} ,
+\end{split}
+\label{eq:lsm:potential_divergent_logz0}
+\end{equation}
+with the dispersion relation $E(\vec{p}) = \sqrt{\smash[b]{p^2 + m_q^2}}$.
+
+% equivalent remark is made in Folkestad/Andersen 2019 "Thermodynamics and phase diagram of Polykaov-loop extended chiral models"
+Note that the fermionic contribution to the grand potential \eqref{eq:lsm:potential_divergent_logz0} is of order $\bigo(N_c)$,
+while any bosonic contribution is only of order $\bigo(1)$.
+This means that our approach of excluding bosonic fluctuations that sounds very \emph{inconsistent} in one regard
+would be \emph{exact} in the limit $N_c \rightarrow \infty$
+and can therefore be viewed as \emph{consistent} in the so-called large-$N_c$ approximation.
+Although $N_c = 3$ in nature and it may sound like we are not making a great case for ourselves,
+this is in fact a widely used \TODO{?} approximation scheme of quantum chromodynamics
+and the most common treatment found in the literature.
+\TODO{comment on another inconsistency elsewhere: match parameters at tree-level, but later with one-loop effects. but this is another inconsistency, where bosonic fluctuations are still excluded?}
+
+Like before we work in the zero-temperature approximation $T=0$ and choose positive chemical potentials so the anti-particle contribution from the last term in curly brackets vanishes.
+The middle term in curly brackets was calculated in the zero-temperature pressure $P=-\Omega$ in \eqref{eq:nstars:pressure_zeroT}.
+This time we will also include and renormalize the infinite vacuum contribution from the first term in curly brackets.
+Reinstating the Fermi momenta $p_f = \sqrt{\smash[b]{\mu_f^2-m_f^2}}$, we obtain
+\begin{equation}
+	\Omega = -N_c N_f \Omega_0 - \smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right]
+\end{equation}
+with the vacuum contribution
+\begin{equation}
+	\Omega_0 = -2 \int \frac{\dif^3 p}{(2 \pi)^3} \sqrt{p^2 + m_q^2}.
+\label{eq:lsm:vacuum_contribution_3dim}
+\end{equation}
+To renormalize it we use dimensional regularization in the minimal subtraction scheme.
+In $d = 3 - 2 \epsilon$ spatial dimensions, the vacuum contribution is
+\begin{equation}
+\begin{split}
+	\Omega_0 &= -2 \Lambda^{3-d} \int \frac{\dif^d p}{(2 \pi)^d} \sqrt{p^2 + m_q^2} \\
+	         &= -2 \Lambda^{3-d} \frac{2 \pi^{d/2}}{\Gamma(d/2)} \int_0^\infty \frac{\dif p \, p^{d-1}}{(2 \pi)^d} \sqrt{p^2 + m_q^2} .
+\end{split}
+\label{eq:lsm:vacuum_contribution_ddim}
+\end{equation}
+%\TODO{what happens to the dimensions of the potential $V$ (as consequence of requiring $\log Z$ to be dimensionless)? $V \rightarrow V \lambda^{-2\epsilon}$?}
+We have also multiplied the integral by $\Lambda^{3-d} = \Lambda^{2\epsilon}$ where $\Lambda$ is some number with $\unit{\Lambda} = \unit{p}$,
+so that $\unit{\lambda^{3-d} \dif^d p} = \unit{\dif^3 p}$ and $\Omega$ is well-defined with correct \emph{dimension} in all \emph{dimensions}.
+There is nothing that forbids us from doing so,
+as the regulator still accomplishes its only job of reducing the new integral \eqref{eq:lsm:vacuum_contribution_ddim} to the old integral \eqref{eq:lsm:vacuum_contribution_3dim} when we send $\epsilon \rightarrow 0$.
+The momentum integral can be written as an analytical continuation of the \emph{Beta function} \cite{ref:beta_function}
+\begin{equation}
+	B(x,y) = \int_0^\infty \dif t \, \frac{t^{x-1}}{(1+t)^{x+y}} = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)}
+\end{equation}
+if we substitute $t = p^2/m_q^2$ with $\dif t = 2 p \dif p / m_q^2$.
+We then find
+\begin{equation}
+\begin{split}
+	\Omega_0 &= -\Lambda^{3-d} m_q^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \int_0^\infty \dif t \, \frac{t^{d/2-1}}{(1+t)^{-1/2}} \\
+	         &= -\Lambda^{3-d} m_q^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \frac{\Gamma\big(\frac{d}{2}\big) \Gamma\big( \textstyle{-\frac{d+1}{2}} \big)}{\Gamma\big( \textstyle{-\frac{1}{2}} \big)} .
+\end{split}
+\end{equation}
+We now cancel the two factors $\Gamma(d/2)$ and replace $\Gamma(-1/2) = -2\sqrt{\pi}$.
+Then we insert $d = 3 - 2 \epsilon$ back and use the property $\Gamma(z) = \Gamma(z+1) / z$ twice to transport the argument of the Gamma function infinitesimally close to its pole at $0$,
+where we use its asymptotic expansion $\Gamma(\epsilon) = 1/\epsilon + \gamma + \bigo(\epsilon)$ upon arrival.
+Expanding everything to zeroth order in $\epsilon$ then yields
+\begin{equation}
+	\Omega_0 =       \frac{m_q^4}{8 \pi^2} \left( 4 \pi \frac{\Lambda^2}{m_q^2} \right)^\epsilon \Gamma(-2 + \epsilon)
+	         \taylor \frac{m_q^4}{16 \pi^2} \left( \frac{1}{\epsilon} + \log \frac{\Lambda^2}{m_q^2} + \frac32 - \gamma + \log 4 \pi \right) .
+\label{eq:lsm:vacuum_contribution_final}
+\end{equation}
+In hindsight, we now see that we could get rid of the terms $-\gamma + \log 4 \pi$ if we had rather used the modified minimal subtraction scheme, where one rescales $\Lambda^2 \rightarrow \Lambda^2 e^\gamma / 4 \pi$.
+With the vacuum contribution \eqref{eq:lsm:vacuum_contribution_final} in this renormalization scheme, the full logarithm \eqref{eq:lsm:potential_divergent_logz0} becomes
+\begin{equation}
+\begin{split}
+	\Omega &= \pot(\avg{\sigma},\vec{0}) + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
+	       &- \smashoperator{\sum_{\vphantom{\big|} f=\{u,d\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right]
+\end{split}
+\end{equation}
+This investigation has revealed that the term $N_c N_f m_q^4 / 16 \pi^2 \epsilon$ is responsible for the vacuum divergence.
+Recalling that $m_q=g \avg{\sigma}$,
+we also see that the divergence can be removed by the term $\lambda \avg{\sigma}^4 / 24$ in the meson potential $\pot(\avg{\sigma},\vec{0})$
+if we shift the quartic coupling
+\begin{equation}
+	\lambda \rightarrow \lambda + \delta\lambda
+	\qquad \text{with the counterterm} \qquad
+	\delta\lambda = -N_c N_f \frac{3 g^4}{2 \pi^2 \epsilon} .
+\end{equation}
+Adding free electrons to the mix, the finite and renormalized grand potential is finally
+\TODO{fix $m_f$ vs $m_q$}
+\begin{equation}
+\begin{split}
+	\Omega(\avg{\sigma},\mu_u,\mu_d,\mu_e) &= \pot(\avg{\sigma},\vec{0}) + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
+	                                       %&- \frac{N_c}{24 \pi^2} \sum_{f=\{u,d\}} \left[ \left( 2 \mu_f^2 - 5 m_q^2 \right) \mu_f \sqrt{\mu_f^2 - m_q^2} + 3 m_q^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right] \\
+	                                       %&- \frac{  1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} + 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_e^2}{m_e^2}-1} \right) \right] .
+	                                       &-\smashoperator{\sum_{\vphantom{\big|} f=\{u,d\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right] \\
+	                                       &-\phantom{\sum} \, \frac{1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} \, \, + \, 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_{\smash{e}}^2}{m_e^2}-1} \right) \right].
+\end{split}
+\label{eq:lsm:grand_potential}
+\end{equation}
+
+\subsection{Parameter fitting}
 
 \begin{table}
 \centering
@@ -208,7 +363,7 @@ The \textbf{bold values} in the right table are used as input to determine the f
 \end{table}
 
 To determine the four paremeters $g$, $m^2$, $\lambda$ and $h$ in the Lagrangian \eqref{eq:lsm:lagrangian},
-we use that the values of $\avg{\sigma}=f_\pi$, $m_\sigma$, $m_\pi$ and $m_q$ are measured and known in vacuum.
+we use measured values of the mean field $\avg{\sigma}$ and masses $m_\sigma$, $m_\pi$ and $m_q$ in vacuum.
 Inverting equations \eqref{eq:lsm:ground_state_implicit}, \eqref{eq:lsm:mass_sigmapi} and \eqref{eq:lsm:mass_quark}, we then find the parameters
 \begin{equation}
 	g       = \frac{m_q}{f_\pi}, \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
@@ -217,252 +372,75 @@ Inverting equations \eqref{eq:lsm:ground_state_implicit}, \eqref{eq:lsm:mass_sig
 	\lambda = \frac{3 m_\sigma^2 - 3 m_\pi^2}{f_\pi^2} .    % &\qquad& \text{(by \eqref{eq:lsm:ground_state_implicit})} .
 \label{eq:lsm:parameters}
 \end{equation}
-Unfortunately, the mass $m_\sigma$ is 
-The input values and output parameters are shown in \cref{tab:lsm2f:parameters}.
+According to \cite{ref:pdg_review_2021}, in vacuum the mean field $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$ is the pion decay constant,
+$m_\pi = \SI{138}{\mega\electronvolt}$ is the average mass of the three pions
+and the up and down quarks have almost equal masses $m_u \approx m_d \approx \SI{300}{\mega\electronvolt}$.
+All of these quantities have low uncertainty.
 
-\TODO{continue here}
+\begin{figure}
+\centering
+\tikzsetnextfilename{2-flavor-potential-vacuum}
+\begin{tikzpicture}
+\begin{axis}[
+	width = 15cm, height = 7cm,
+	xmin=-500, xmax=+500, xtick distance = 100, minor x tick num=9,
+	ymin=-11, ymax=+6, ytick distance=5, minor y tick num=4,
+	xlabel = {$\Delta \, / \, \si{\mega\electronvolt}$}, ylabel = {$\Omega \, / \, f_\pi^4$},
+	legend style = {at={(0.5,1.03)}, anchor=south}, legend columns=4,
+	cycle list/YlOrRd-6,
+]
+\pgfplotsset{cycle list shift=+2} % skip weakest line
+\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma500.dat}; \addlegendentry{$m_\sigma = \SI{500}{\mega\electronvolt}$};
+%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma550.dat}; \addlegendentry{$m_\sigma = \SI{550}{\mega\electronvolt}$};
+\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma600.dat}; \addlegendentry{$m_\sigma = \SI{600}{\mega\electronvolt}$};
+%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma650.dat}; \addlegendentry{$m_\sigma = \SI{650}{\mega\electronvolt}$};
+\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma700.dat}; \addlegendentry{$m_\sigma = \SI{700}{\mega\electronvolt}$};
+%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma750.dat}; \addlegendentry{$m_\sigma = \SI{750}{\mega\electronvolt}$};
+\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma800.dat}; \addlegendentry{$m_\sigma = \SI{800}{\mega\electronvolt}$};
+%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma850.dat}; \addlegendentry{$m_\sigma = \SI{850}{\mega\electronvolt}$};
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:lsm:potential_sigma_mass}\TODO{caption}
+Two-flavor vacuum potential with
+$\mu_u = \mu_d = \mu_e = 0$}
+\end{figure}
 
-\TODO{comment on $\sigma$ mass very uncertain. rather merge into calc of grand potential, to show plots for which $m_\sigma$ it works etc.?}
+On the other hand, the mass $m_\sigma$ is very uncertain and hard to choose.
+Even in 2002, according to the $\sigma$ meson status update \cite{ref:sigma_meson_status},
+it was only known to lie in the huge uncertainty range $\SI{400}{\mega\electronvolt} < m_\sigma < \SI{1200}{\mega\electronvolt}$.
+Today \cite{ref:pdg_review_2021} places it in the tighter range $\SI{400}{\mega\electronvolt} < m_\sigma < \SI{550}{\mega\electronvolt}$.
+Ideally we would like to use a value within this range, but there are several problems.
+First, the vacuum potential $\pot(\avg{\sigma},\vec{0})$ plotted in \cref{fig:lsm:potential_sigma_mass} does not have a minimum and is therefore useless for $m_\sigma \lesssim \SI{500}{\mega\electronvolt}$.
+In \cref{chap:lsm3f} we will see that the same happens in the three-flavor case, only then for even greater masses $m_\sigma \lesssim \SI{700}{\mega\electronvolt}$.
+Since we would like to compare the results obtained with two and three flavors,
+we decide to mainly operate with two common values $m_\sigma = \{700,800\} \, \si{\mega\electronvolt}$.
+\TODO{present $m_\sigma=600$ results too unless too messy}
+The two different values will illustrate qualitatively different behaviors of the chiral phase transition.
+This is the best we can do and must be regarded as a shortcoming of our model.
 
-\TODO{screw the table and write in text instead, to easier explain differences among the parameters?}
+The $\sigma$ meson is controversial and was introduced in an unsatisfying and ad-hoc manner anyway,
+in a sense only to make way for the pions that are known low-energy effective degrees of freedom of quantum chromodynamics.
+Perhaps cynically, we therefore argue that if \emph{someone} must be treated badly for the model to even function,
+the $\sigma$ meson brings with it the least severe physical consequences and is the most deserving candidate.
 
-\TODO{move AFTER grand potential, to easier comment on inconsistent matching etc.}
-
-\section{Grand potential and equation of state}
-
-\section{Mass-radius solutions}
-
-To calculate the \eqref{eq:master_intro:partition_function} we will use the mean-field approximation,
-replacing the bosonic fields by their expectation values in the classical ground state
-and studying the surrounding quantum fluctuations to first nonzero order.
-
-
-We will study quantum fluctuations to first nonzero order around the classical ground state.
-The classical ground state is given by a pair of constant meson fields $\sigma = \avg{\sigma}$ and $\pi = \avg{\pi}$ that minimizes the meson potential \TODO{IN VACCUUM, SEE (10) IN \cite{ref:lsm_2f}, this asserts that $\avg{\bar{q}q}=0$ in vacuum?}.
-The dependence on the three fields $\vec{\pi}$ is spherically symmetric, so if we imagine collapsing this three-dimensional field down to one dimension, the potential looks like the Mexican hat drawn in \cref{fig:lsm:potential}, tilted by the symmetry breaking parameter $h$.
-Provided that $h \neq 0$, the minimum of the classical ground state is discrete and located at 
-%Let us warm up with the special case $h = 0$, where the potential is symmetric under rotation of $[\sigma, \vec{\pi}]^T$ in $O(4)$ and looks like an upright Mexican hat with a continuous curve of minima along $\sigma^2 + \vec{\pi}^2 = -6m^2/\lambda$.
-%Committing to one of these classical ground states, such as $\sigma=\avg{\sigma}=\sqrt{-6m^2/\lambda}$ and $\vec{\pi}=\avg{\vec{\pi}}=\vec{0}$,
-%and shifting the fields to $\sigma \rightarrow \avg{\sigma} + \tilde{\sigma}$ and $\vec{\pi} \rightarrow \avg{\vec{\pi}} + \tilde{\vec{\pi}}$ then spontaneously breaks the symmetry to rotations of the pion quantum fluctuations $\tilde{\vec{\pi}}$ in $O(3)$ only,
-%giving rise to three massless Goldstone bosons that we interpret as pions.
-%We will work in the general case, however, where $h \neq 0$ tilts the hat so that it has a global minimum at $\sigma=\avg{\sigma}$ and $\vec{\pi}=\avg{\vec{\pi}}$ determined by
+Note that the renormalization procedure also introduced an unknown parameter $\Lambda$.
+To determine it, we require that the minimum of the grand potential \eqref{eq:lsm:grand_potential}
+remains at the minimum $\avg{\sigma} = f_\pi$ of the vacuum potential $\pot(\avg{\sigma},\vec{0})$.
+Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumption, we only need
 \begin{equation}
-	\vec{\pi} = \avg{\vec{\pi}} = \vec{0}
-	\quad \text{and} \quad
-	\sigma = \avg{\sigma}
-	\quad \text{where} \quad
-	%\pdv{\pot}{\sigma}_{(\sigma,\vec\pi)=(\avg{\sigma},\vec{0})} = m^2 \avg{\sigma} + \frac{\lambda}{6} \avg{\sigma}^3 - h = 0.
-	\pdv{\pot}{\sigma} = m^2 \avg{\sigma} + \frac{\lambda}{6} \avg{\sigma}^3 - h = 0.
-\label{eq:lsm:ground_state_implicit}
-\end{equation}
-\TODO{Kyllingstad has many sources for showing that pion condensate forms only when $\mu_i > m_\pi / (2)$ (just after figure 1.5). He also has a more applicable phase diagram?}
-%We assume that $h \neq 0$, but will briefly discuss the qualitatively different behavior in the special case $h = 0$ in a moment.
-To account for quantum fluctuations $\tilde{\sigma}$ and $\tilde{\vec{\pi}}$ around the classical ground state \eqref{eq:lsm:ground_state_implicit}, we shift
-\begin{equation}
-	\sigma \rightarrow \avg{\sigma} + \tilde{\sigma}
-	\qquad \text{and} \qquad
-	\vec\pi \rightarrow \avg{\vec\pi} + \tilde{\vec\pi}.
-\label{eq:lsm:field_shift}
-\end{equation}
-Up to first nonzero order in the quantum fluctuations $\tilde\sigma$ and $\tilde{\vec\pi}$, the Lagrangian \eqref{eq:lsm:lagrangian} is now
-\begin{equation}
-	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \Big[ i \slashed\partial + \mu \gamma^0 - m_q \Big] q_c
-	      + \frac12 \left[ \left( \partial_\mu \tilde{\sigma} \right)^2 + \left( \partial_\mu \tilde{\vec\pi} \right)^2 \right] - \pot , %\pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) ,
-\end{equation}
-where the quark fields $q$ have acquired field-dependent effective masses
-\begin{equation}
-	m_q(\avg{\sigma}) = g \avg{\sigma} .
-\label{eq:lsm:mass_quark}
-\end{equation}
-The potential \eqref{eq:lsm:potential} up to second order in the shifted fields is
-\TODO{no, I have not included $h \tilde{\sigma}$!}
-\begin{equation}
-	\pot \taylor \frac12 m^2 \avg{\sigma}^2 + \frac{\lambda}{4!} \avg{\sigma}^4 - h \avg{\sigma} + \frac12 m_\sigma^2 \sigma^2  + \frac12 m_\pi^2 \vec\pi^2 ,
-	%V(\sigma, \vec\pi) \taylor -\frac12 m^2 \avg{\sigma}^2 + \frac{\lambda}{4!} \avg{\sigma}^4 + \frac12 (\sqrt{2} m)^2 \sigma^2 .
-	%V(\sigma, \vec\pi) \taylor -\frac{3 m^4}{2 \lambda} + \frac12 (\sqrt{2} m)^2 \sigma^2 .
-\label{eq:lsm:potential_shifted}
-\end{equation}
-where the $\sigma$ and $\vec\pi$ fields have acquired the effective masses
-\begin{subequations}
-\begin{align}
-	m_\sigma^2 &= \pdv[2]{\pot}{\sigma}_{\substack{\sigma=\avg{\sigma}\\\vec{\pi}=\avg{\vec{\pi}}}}    = m^2 + \frac{\lambda}{2} \avg{\sigma}^2 \equalexplabove{\text{by \eqref{eq:lsm:ground_state_implicit}}} \frac{3h}{\avg{\sigma}} - 2 m^2 , \label{eq:lsm:mass_sigma} \\
-	m_\pi^2    &= \pdv[2]{\pot}{\vec{\pi}}_{\substack{\sigma=\avg{\sigma}\\\vec{\pi}=\avg{\vec{\pi}}}} = m^2 + \frac{\lambda}{6} \avg{\sigma}^2 \equalexplbelow{\text{by \eqref{eq:lsm:ground_state_implicit}}} \frac{h}{\avg{\sigma}} , \label{eq:lsm:mass_pi}
-\end{align}%
-\label{eq:lsm:mass_sigmapi}%
-\end{subequations}%
-The fate of the pion mass \eqref{eq:lsm:mass_pi} is determined by the presence of the symmetry breaking parameter $h$.
-In the special case $h = 0$, the potential \eqref{eq:lsm:potential} shown in \cref{fig:lsm:potential} is rather shaped like an upright Mexican hat and is symmetric under rotations of $[\sigma,\vec{\pi}]^T$ in $O(4)$.
-It then no longer has the \emph{discrete} minimum \eqref{eq:lsm:ground_state_implicit}, but a \emph{continuous} range of minima along the ``brim'' $\sigma^2 + \vec{\pi}^2 = -6m^2/\lambda$ of the hat.
-Upon committing to one of these classical ground states, such as $\sigma=\avg{\sigma}=\sqrt{-6m^2/\lambda}$ and $\vec{\pi}=\avg{\vec{\pi}}=\vec{0}$ and performing the field shift \eqref{eq:lsm:field_shift},
-the symmetry is \emph{spontaneously} broken down to rotations of only the pion quantum fluctuations $\tilde{\vec{\pi}}$ in $O(3)$.
-This gives rise to three Goldstone bosons that we interpret as \emph{massless} pions, as confirmed by equation \eqref{eq:lsm:mass_pi} with $h = 0$.
-We work in the general case, however, where $h \neq 0$ instead breaks the symmetry \emph{explicitly} by tilting the hat so it has the discrete minimum \eqref{eq:lsm:ground_state_implicit}, ultimately producing \emph{massive} pions, like those observed in nature.
-
-
-According to what we learned in \cref{chap:tft} in \cref{eq:tft:boson_partition_function_momentum_out} and \eqref{eq:tft:dirac_partition_function_first},
-the exact partition function corresponding to this theory is obtained by a path integral over periodic bosonic fields and anti-periodic fermionic fields, weighted by a Euclidean action in imaginary time:
-\TODO{sign in exponent?}
-\begin{equation}
-	Z = \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \oint_+ \pathintdif \sigma \oint_+ \pathintdif \vec\pi \exp \left\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \lagr_E[\bar{q}, q, \sigma, \vec\pi]  \right\} .
-\end{equation}
-As before, we are interested in $\log Z$ so we can calculate the thermodynamic quantities \eqref{eq:tft:average_quantities} and ultimately an equation of state $\epsilon(P)$, so we can solve the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov:tovsys}.
-Here we will account for quantum effects of the quarks by treating them up to quadratic order (or one-loop),
-but calculate only to zeroth order (or tree-level) in the meson fields and hence consider them only at the classical level.
-\TODO{a priori include bosonic fluctuations, but then they vanish in the $T=0$ limit due to \eqref{eq:tft:real_scalar_field_partition_function}}
-The partition function then reads
-\begin{equation}
-\begin{split}
-	Z &\taylor \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \\
-	  &\times  \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{c=1}^{N_c} \bar{q}_c \left( i \slashed\partial -m_q + \mu \gamma^0 \right) q_c - \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 + h \avg{\sigma} \right] \right\} \\
-	  &=       \prod_{f=1}^{\smash{N_f}} \prod_{c=1}^{\smash{N_c}} \oint_- \pathintdif \bar{q}_f^c \oint_- \pathintdif q_f^c \\
-	  &\times  \exp \left\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \left[ \sum_{f=1}^{\smash{N_f}} \sum_{c=1}^{N_c} \bar{q}_f^c \left( i \slashed\partial - m_q + \mu_f \gamma^0 \right) q_f^c - \frac12 m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \avg{\sigma}^4 + h \avg{\sigma} \right] \right\}.
-\end{split}
-\end{equation}
-The two last terms in the exponential are independent of the fields, so
-\begin{equation}
-\begin{split}
-	\log Z &= -\frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 + \beta V h \avg{\sigma} \\
-	       &+ \sum_{f=1}^{N_f} \sum_{c=1}^{N_c} \log \oint_- \pathintdif \bar{q}_f^c \oint_- \pathintdif q_f^c \exp \left\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \bar{q}_f^c (i \slashed\partial + \mu_f \gamma^0 - m_q) q_f^c \right\} .
-\end{split}
-\end{equation}
-We have already spent a great deal of effort in calculating the path integral in the last term,
-starting from \cref{eq:tft:dirac_partition_function_first} and resulting in the expression \eqref{eq:tft:dirac_partition_function}.
-Here, we get an additional factor $\sum_{c=1}^{N_c} = N_c$ from the color sum because the summand is independent of $c$,
-while the flavor sum $\sum_{f=1}^{\smash{N_f}}$ yields $N_f$ terms that differ only by the unique chemical potentials $\mu_f$ associated with each quark flavor. 
-Thus, we obtain
-\begin{equation}
-\begin{split}
-	\log Z &= -\frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 + \beta V h \avg{\sigma} \\
-	       &+ 2 V N_c \sum_{f=1}^{N_f} \int \frac{\dif^3 p}{(2 \pi)^3} \left\{ \beta E(\vec{p}) + \log \left[ e^{-\beta (E(\vec{p}) - \mu_f)}+1 \right] + \log \left[ e^{-\beta (E(\vec{p}) + \mu_f)} + 1\right] \right\} ,
-\end{split}
-\label{eq:lsm:potential_divergent_logz0}
-\end{equation}
-where the dispersion relation is
-\begin{equation}
-	E(\vec{p}) = \sqrt{p^2 + m_q^2} .
-\end{equation}
-We can assess our approximation of treating bosons to tree-level, but fermions to loop-level from expression \eqref{eq:lsm:potential_divergent_logz0}.
-The fermionic contribution in the second line is of order $\bigo(N_c^1)$, while the bosonic contribution in the first line is only of order $\bigo(N_c^0)$.
-Thus, this approximation is exact in the so-called large-$N_c$ limit $N_c \gg 1$.
-The million-dollar question that decides the accuracy of the approximation is then whether $N_c = 3 \gg 1$.
-Although it may sound like we are not making a great case for ourselves, this is the most common treatment in the literature, and thus the strategy that we will adopt for now.
-However, we will later return to this issue and consistently treat both bosons and fermions to the one-loop level, building upon the results of \cite{ref:jo_lsm_renormalization}.
-\TODO{will I return to this later? RPA -- one-loop bosons too!}
-
-Like in \cref{chap:nstars}, we assume that the chemical potentials are chosen so that anti-particles are more or less absent, so we drop their contribution in the last term in the second line.
-From the middle term in the second line, we obtained the contribution $\log Z = \beta V P$ with the pressure \eqref{eq:nstars:pressure_zeroT} in the zero-temperature approximation, which we will continue to use.
-This time, however, we will renormalize the infinite vacuum contribution from the first term in the second line, instead of simply dropping it, like we did back in \cref{chap:nstars}.
-Thus, we obtain
-\begin{equation}
-\begin{split}
-	\log Z &= -\frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 + \beta V h \avg{\sigma} + N_c N_f \log Z_0 \\
-	       &+ N_c \frac{m_q^4 \beta V}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right],
-\end{split}
-\end{equation}
-where $x_f = p_f / m_q$ are normalized Fermi momenta, $\mu_f = \smash{\sqrt{p_f^2 + m_q^2}}$ are Fermi energies and the vacuum contribution is
-\begin{equation}
-	\log Z_0 = 2 \beta V \int \frac{\dif^3 p}{(2 \pi)^3} \sqrt{p^2 + m_q^2 } .
-\label{eq:lsm:vacuum_contribution_3dim}
-\end{equation}
-To renormalize the vacuum contribution, let us use dimensional regularization in the minimal subtraction scheme.
-In $d = 3 - 2 \epsilon$ spatial dimensions, the vacuum contribution is
-\begin{equation}
-\begin{split}
-	\log Z_0 &= 2 \beta V \Lambda^{3-d} \int \frac{\dif^d p}{(2 \pi)^d} \sqrt{p^2 + m_q^2} \\
-	         &= 2 \beta V \Lambda^{3-d} \frac{2 \pi^{d/2}}{\Gamma(d/2)} \int_0^\infty \frac{\dif p \, p^{d-1}}{(2 \pi)^d} \sqrt{p^2 + m_q^2} .
-\end{split}
-\label{eq:lsm:vacuum_contribution_ddim}
-\end{equation}
-%\TODO{what happens to the dimensions of the potential $V$ (as consequence of requiring $\log Z$ to be dimensionless)? $V \rightarrow V \lambda^{-2\epsilon}$?}
-We have also multiplied the integral by $\Lambda^{3-d}$,
-where $\Lambda$ is some number with $\unit{\Lambda} = \unit{p}$,
-so that $\unit{\lambda^{3-d} \dif^d p} = \unit{\dif^3 p}$ and $\log Z$ remains dimensionless in all dimensions.
-There is nothing that forbids us from doing so, 
-as the regulator still does its only job of reducing the new integral \eqref{eq:lsm:vacuum_contribution_ddim} to the old integral \eqref{eq:lsm:vacuum_contribution_3dim} when we send $\epsilon \rightarrow 0$,
-only now in a way that is well-defined in all dimensions.
-The momentum integral can be written as an analytical continuation of the \emph{Beta function} \cite{ref:beta_function}
-\begin{equation}
-	B(x,y) = \int_0^\infty \dif t \, \frac{t^{x-1}}{(1+t)^{x+y}} = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)}
-\end{equation}
-if we substitute $t = p^2/m_q^2$ with $\dif t = 2 p \dif p / m_q^2$.
-We then find
-\begin{equation}
-\begin{split}
-	\log Z_0 &= \beta V \Lambda^{3-d} m_q^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \int_0^\infty \dif t \, \frac{t^{d/2-1}}{(1+t)^{-1/2}} \\
-	         &= \beta V \Lambda^{3-d} m_q^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \frac{\Gamma\big(\frac{d}{2}\big) \Gamma\big( \textstyle{-\frac{d+1}{2}} \big)}{\Gamma\big( \textstyle{-\frac{1}{2}} \big)} .
-\end{split}
-\end{equation}
-We now cancel the two factors $\Gamma(d/2)$ and replace $\Gamma(-1/2) = -2\sqrt{\pi}$.
-Then we insert $d = 3 - 2 \epsilon$ back and use the property $\Gamma(z) = \Gamma(z+1) / z$ twice to transport the argument of the Gamma function as close as possible to its pole at $0$,
-where we use its asymptotic expansion $\Gamma(\epsilon) = 1/\epsilon + \gamma + \bigo(\epsilon)$ upon arrival.
-Expanding everything to zeroth order in $\epsilon$ then yields
-\begin{equation}
-\begin{split}
-	\log Z_0 &=       -\frac{\beta V m_q^4}{8 \pi^2} \left( 4 \pi \frac{\Lambda^2}{m_q^2} \right)^\epsilon \Gamma(-2 + \epsilon) \\
-	         &\taylor -\frac{\beta V m_q^4}{16 \pi^2} \left( \frac{1}{\epsilon} + \log \frac{\Lambda^2}{m_q^2} + \frac32 - \gamma + \log 4 \pi \right) .
-\end{split}
-\label{eq:lsm:vacuum_contribution_final}
-\end{equation}
-In hindsight, we now see that we could get rid of the terms $-\gamma + \log 4 \pi$ if we had rather used the modified minimal subtraction scheme, where one rescales $\Lambda^2 \rightarrow \Lambda^2 e^\gamma / 4 \pi$.
-With the vacuum contribution \eqref{eq:lsm:vacuum_contribution_final} in this renormalization scheme, the full logarithm \eqref{eq:lsm:potential_divergent_logz0} becomes
-\begin{equation}
-\begin{split}
-	\log Z &= -\frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 - N_c N_f \frac{\beta V m_q^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
-	       &+ N_c \frac{m_q^4 \beta V}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right] .
-\end{split}
-\end{equation}
-This investigation has revealed that the term $-N_c N_f m_q^4 \beta V / 16 \pi^2 \epsilon$ is responsible for the divergence of the vacuum term.
-We also see that the preceding term can shield us from the guilty criminal if we split the coupling 
-\begin{equation}
-	\lambda = \lambda_P + \delta\lambda
-	\qquad \text{with the counterterm} \qquad
-	\delta\lambda = -N_c N_f \frac{3 g^4}{2 \pi^2 \epsilon} .
-\end{equation}
-Accordingly, we determine $\lambda_P$ instead of $\lambda$ from equation \eqref{eq:lsm:parameters}.
-\TODO{is this right?}
-The finite and renormalized expression for $\log Z$ is now
-\begin{equation}
-\begin{split}
-	\log Z &= -\frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda_P}{4!} \beta V \avg{\sigma}^4 + \beta V h \avg{\sigma} - N_c N_f \frac{\beta V m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
-	       &+ N_c \frac{m_q^4 \beta V}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right] .
-\end{split}
-\end{equation}
-From $\log Z$, we can finally build a bridge to thermodynamics with the grand potential density
-\begin{equation}
-\begin{split}
-	\Omega = -\frac{\log Z}{\beta V} &= \frac12 m^2 \avg{\sigma}^2 + \frac{\lambda_P}{4!} \avg{\sigma}^4 - h \avg{\sigma} + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
-	                                 &- N_c \frac{m_q^4}{24 \pi^2} \sum_{f=1}^{N_f} \left[ (2 x_f^3 - 3x_f) \sqrt{x_f^2 + 1} + 3 \asinh x_f \right] .
-\end{split}
-\end{equation}
-The renormalization procedure has introduced an unknown parameter $\Lambda$.
-To determine it, we require that the minimum of the grand potential \eqref{eq:lsm:grand_potential} remains at $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$ of the potential \eqref{eq:lsm:potential} when we are in vacuum.
-The first three terms of the grand potential are precisely the potential \eqref{eq:lsm:potential}, and hence already minimal at $\avg{\sigma} = f_\pi$ by assumption.
-In vacuum, all densities \eqref{eq:nstars:density_zeroT} and hence normalized Fermi momenta $x_f$ vanish, so the second line of the grand potential is also absent.
-Then all it takes to meet our renormalization condition is that the only remaining term satisfies
-\begin{equation}
-	\pdv*{\left[ N_c N_f \frac{m_q^4}{16 \pi^2} \left( \frac32 + \log \frac{\Lambda^2}{m_q^2} \right) \right] }{\avg{\sigma}} = 0,
-	\quad \text{yielding} \quad
-	\Lambda = \frac{g f_\pi}{\sqrt{e}} = \SI{182}{\mega\electronvolt}.
+	\pdv{\Omega}{\avg{\sigma}}_{\avg{\sigma}=f_\pi} =
+	\pdv*{\Bigg[ N_c N_f \frac{m_q^4}{16 \pi^2} \bigg( \frac32 + \log \frac{\Lambda^2}{m_q^2} \bigg) \Bigg] }{\avg{\sigma}} = 0,
+	\qquad \text{yielding} \qquad
+	\Lambda = \frac{g f_\pi}{\sqrt{e}}.
 \label{eq:lsm:potential_vacuum_minimum}
 \end{equation}
 
-To ensure the star is charge neutral, we spice our mixture of quarks and mesons with free electrons.
-This amounts to adding one more fermion term to the Lagrangian
-\begin{equation}
-	\lagr \rightarrow \lagr + \bar{\psi}_e \big( i \slashed\partial + \mu_e \gamma^0 - m_e \big) \psi_e
-	\qquad \text{with mass} \qquad
-	m_e = \SI{0.5}{\mega\electronvolt}.
-\end{equation}
-Let us also reinstate the definition $x = p / m = \sqrt{\mu^2-m^2} / m$ that we made in equation \eqref{eq:nstars:everything_zeroT}, in order to make the dependence on $\mu$ and $\avg{\sigma}$ explicit.
-With electrons, the grand potential \eqref{eq:lsm:grand_potential} becomes
-\begin{equation}
-\begin{split}
-	\Omega(\avg{\sigma},\mu_u,\mu_d,\mu_e) &= \frac12 m^2 \avg{\sigma}^2 + \frac{\lambda_P}{4!} \avg{\sigma}^4 - h \avg{\sigma} + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
-	                                       &- \frac{N_c}{24 \pi^2} \sum_{f=\{u,d\}} \left[ \left( 2 \mu_f^2 - 5 m_q^2 \right) \mu_f \sqrt{\mu_f^2 - m_q^2} + 3 m_q^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right] \\
-	                                       &- \frac{  1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} + 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_e^2}{m_e^2}-1} \right) \right] .
-\end{split}
-\label{eq:lsm:grand_potential}
-\end{equation}
+\Cref{tab:lsm2f:parameters} summarizes the chosen input values for $\avg{\sigma}=f_\pi$, $m_\pi$, $m_\sigma$ and $m_q$ and the corresponding output parameters $m^2$, $\lambda$, $g$, $h$ and $\Lambda$.
+
+\TODO{comment on inconsistent (?) matching. write $m_\sigma=\{700,800\}$ in table. include $\Lambda$}
+
+\TODO{continue here}
+
 The particle densities corresponding to the grand potential \eqref{eq:lsm:grand_potential} are
 \begin{subequations}
 \begin{align}
@@ -523,33 +501,6 @@ In the opposite case $\mu < m$, the step function would cause the whole integral
 }
 \end{figure}
 
-\begin{figure}
-\centering
-\tikzsetnextfilename{2-flavor-potential-vacuum}
-\begin{tikzpicture}
-\begin{axis}[
-	width = 15cm, height = 7cm,
-	xmin=-500, xmax=+500, xtick distance = 100, minor x tick num=9,
-	ymin=-11, ymax=+6, ytick distance=5, minor y tick num=4,
-	xlabel = {$\Delta \, / \, \si{\mega\electronvolt}$}, ylabel = {$\Omega \, / \, f_\pi^4$},
-	legend style = {at={(0.5,1.03)}, anchor=south}, legend columns=4,
-	cycle list/YlOrRd-6,
-]
-\pgfplotsset{cycle list shift=+2} % skip weakest line
-\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma500.dat}; \addlegendentry{$m_\sigma = \SI{500}{\mega\electronvolt}$};
-%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma550.dat}; \addlegendentry{$m_\sigma = \SI{550}{\mega\electronvolt}$};
-\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma600.dat}; \addlegendentry{$m_\sigma = \SI{600}{\mega\electronvolt}$};
-%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma650.dat}; \addlegendentry{$m_\sigma = \SI{650}{\mega\electronvolt}$};
-\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma700.dat}; \addlegendentry{$m_\sigma = \SI{700}{\mega\electronvolt}$};
-%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma750.dat}; \addlegendentry{$m_\sigma = \SI{750}{\mega\electronvolt}$};
-\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma800.dat}; \addlegendentry{$m_\sigma = \SI{800}{\mega\electronvolt}$};
-%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma850.dat}; \addlegendentry{$m_\sigma = \SI{850}{\mega\electronvolt}$};
-\end{axis}
-\end{tikzpicture}
-\caption{\TODO{caption}
-Two-flavor vacuum potential with
-$\mu_u = \mu_d = \mu_e = 0$}
-\end{figure}
 
 We require that the mean field $\avg{\sigma}$ is a stable minimum of the grand potential,
 so we determine it by solving
