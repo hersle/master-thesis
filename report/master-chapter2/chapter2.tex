@@ -67,7 +67,7 @@ The quark fields behave as in the MIT bag model Lagrangian \eqref{eq:mit:lagrang
 However, they are now seemingly massless and coupled to the bosonic $\sigma$ meson and three pions $\vec\pi = [\pi^+, \pi^-, \pi^0]^T$ with a Yukawa coupling $g$ and the Dirac matrices \eqref{eq:tft:pauli_matrices}.
 The meson potential features three couplings: $m^2<0$, $\lambda>0$ and $h>0$ \TODO{verify signs from numerical results!}.
 
-Like the quantum chromodynamics Lagrangian \eqref{eq:qcd:lagrangian}, the Lagrangian \eqref{eq:lsm:lagrangian} has the vector $U(1)_V$ and axial $U(1)_A$ symmetry shown in \cref{sec:qcd:symmetry}.
+Like the quantum chromodynamics Lagrangian \eqref{eq:qcd:lagrangian}, the quark-meson model Lagrangian \eqref{eq:lsm:lagrangian} has the vector $U(1)_V$ and axial $U(1)_A$ symmetry shown in \cref{sec:qcd:symmetry}.
 In contrast to the mass-conditional chiral symmetry of the former Lagrangian, however, the latter is \emph{unconditionally} invariant under chiral symmetry $SU(2)_L \times SU(2)_R$ when $h=0$ and $\mu = 0$.
 To see this, first rewrite the Yukawa coupling term in terms of left-handed and right-handed chiral fields:
 \begin{equation}
@@ -187,6 +187,10 @@ the quark-meson model is therefore an appropriate effective model of quantum chr
 
 \TODO{fix flavor sum indices. make consistent with earlier stuff.}
 
+\TODO{write $\Omega(\avg{\sigma},\vec{\mu})$ in order to keep function declaration general for ``any'' chemical potential combination?}
+
+\TODO{resolve $\avg{\sigma}$ vs $m_q$ variable use}
+
 We now set out to calculate the grand potential \eqref{eq:master_intro:grand_potential}.
 With the fermionic quark fields $q$ and bosonic meson fields $\sigma$ and $\vec\pi$
 and the coupling of chemical potentials $\mu$ to conserved currents already baked into the Lagrangian \eqref{eq:lsm:lagrangian},
@@ -203,9 +207,10 @@ In other words, we are treating bosons to tree-level and fermions to one-loop le
 -- we will comment more on this seemingly inconsistent approach later.
 \TODO{would boson contribution vanish in $T=0$ anyway?}
 The precise values of the meson mean fields are determined in retrospect as minima of the grand potential according to
+\TODO{say mean field is ``order parameter''. why not parametrize with it? call this gap equation? determine $\avg{\sigma}$ self-consistently}
 \begin{equation}
 	\pdv{\Omega}{\avg{\sigma}} = \pdv{\Omega}{\avg{\vec\pi}} = 0.
-\label{eq:lsm:grand_potential_minimize}
+\label{eq:lsm:gap_equation}
 \end{equation}
 In our treatment we will also neglect pion condensation and \emph{assume} that $\avg{\vec\pi}=0$ \emph{always} vanishes
 and only $\avg{\sigma}$ needs to be determined.
@@ -328,6 +333,17 @@ Adding free electrons to the mix, the finite and renormalized grand potential is
 \label{eq:lsm:grand_potential}
 \end{equation}
 
+The particle densities are the same as in the MIT bag model:
+\begin{subequations}
+\begin{align}
+	n_u &= -\pdv{\Omega}{\mu_u} = \frac{N_c}{3 \pi^2} \Big( \mu_u^2 - m_q^2 \Big)^{\frac32}, \\
+	n_d &= -\pdv{\Omega}{\mu_d} = \frac{N_c}{3 \pi^2} \Big( \mu_d^2 - m_q^2 \Big)^{\frac32}, \\
+	n_e &= -\pdv{\Omega}{\mu_e} = \frac{  1}{3 \pi^2} \Big( \mu_e^2 - m_e^2 \Big)^{\frac32}.
+\end{align}%
+\label{eq:lsm:particle_densities}%
+\end{subequations}%
+The pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density} follow straightforwardly from the grand potential \eqref{eq:lsm:grand_potential} and particle densities \eqref{eq:lsm:particle_densities}.
+
 \subsection{Parameter fitting}
 
 \begin{table}
@@ -437,23 +453,14 @@ Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumpt
 
 \Cref{tab:lsm2f:parameters} summarizes the chosen input values for $\avg{\sigma}=f_\pi$, $m_\pi$, $m_\sigma$ and $m_q$ and the corresponding output parameters $m^2$, $\lambda$, $g$, $h$ and $\Lambda$.
 
-\TODO{comment on inconsistent (?) matching. write $m_\sigma=\{700,800\}$ in table. include $\Lambda$}
+Also note that we have treated bosons and fit the parameters of the model using the \emph{tree level} masses \eqref{eq:lsm:mass_sigmapi},
+but handled fermions to one loop. 
+This is also inconsistent, as the tree-level masses would really receive radiative loop corrections.
+We will later investigate the effects of fitting the parameters consistently at one loop level.
 
-\TODO{continue here}
+\TODO{write $m_\sigma=\{700,800\}$ in table. include $\Lambda$}
 
-The particle densities corresponding to the grand potential \eqref{eq:lsm:grand_potential} are
-\begin{subequations}
-\begin{align}
-	n_u &= -\pdv{\Omega}{\mu_u} = \frac{N_c}{3 \pi^2} \Big( \mu_u^2 - m_q^2 \Big)^{\frac32}, \\
-	n_d &= -\pdv{\Omega}{\mu_d} = \frac{N_c}{3 \pi^2} \Big( \mu_d^2 - m_q^2 \Big)^{\frac32}, \\
-	n_e &= -\pdv{\Omega}{\mu_e} = \frac{  1}{3 \pi^2} \Big( \mu_e^2 - m_e^2 \Big)^{\frac32}.
-\end{align}%
-\label{eq:lsm:particle_densities}%
-\end{subequations}%
-Remember that the effective quark mass $m_q = g \avg{\sigma}$ also depends on the field!
-In addition, we implicitly take the real part of every square root $\sqrt{\mu^2 - m^2}$, or equivalently consider them as step functions $\Theta(\mu-m) \sqrt{\mu^2 - m^2}$.
-The rigorous understanding of this can be traced back to the zero-temperature calculation of the pressure \eqref{eq:nstars:pressure_zeroT}, related to the grand potential density by $\Omega = -P$, in which the integrand contained a step function $\Theta(\mu-E(p)) = \Theta(\mu-\sqrt{m^2+p^2})$ and we took for granted that $\mu > m$.
-In the opposite case $\mu < m$, the step function would cause the whole integral to vanish.
+\subsection{Equation of state}
 
 \begin{figure}
 \centering
@@ -503,50 +510,48 @@ In the opposite case $\mu < m$, the step function would cause the whole integral
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:grand-potential-noisospin}%
-	The grand potential \eqref{eq:lsm:grand_potential} with $\mu_e = 0$ and $\mu_u = \mu_d = \mu$ for $m_\sigma=\{700,800\} \, \si{\mega\electronvolt}$.
-	The \textcolor{blue}{blue line} and its \textcolor{gray}{gray projection} corresponds to minima determined by $\pdv{\Omega}/{\avg{\sigma}} = 0$.
+	The grand potential \eqref{eq:lsm:grand_potential} with zero isospin, or $\mu_u = \mu_d = \mu$ and $\mu_e=0$, for $m_\sigma=\{700,800\} \, \si{\mega\electronvolt}$.
+	The \textcolor{blue}{blue line} and its \textcolor{gray}{gray projection} show minima of $m_q = g \avg{\sigma}$ determined by $\pdv{\Omega}/{\avg{\sigma}} = 0$.
 }
 \end{figure}
 
-
-We require that the mean field $\avg{\sigma}$ is a stable minimum of the grand potential,
-so we determine it by solving
-\TODO{say mean field is ``order parameter''. why not parametrize with it?}
-\begin{equation}
-	\pdv{\Omega}{\avg{\sigma}} = 0.
-\label{eq:lsm:potential_minimize}
-\end{equation}
-
-To get a feeling for the general shape of the grand potential \eqref{eq:lsm:grand_potential}, we visualize the special case with $\mu_e = 0$ and $\mu_u = \mu_d = \mu$ in \cref{fig:lsm:grand-potential-nonneutral}.
-In this case, $\Omega(\avg{\sigma},\mu)$ is a function of only two variables, and the minimization condition \eqref{eq:lsm:potential_minimize} then leaves one free variable $\mu$ that parametrizes the other variable $\avg{\sigma}(\mu)$ and the grand potential $\Omega(\avg{\sigma}(\mu),\mu)$, as shown by the blue line in the figure.
-From the figure, we see that:
+Before finding the general charge neutral equation of state,
+it is easier and instructive to solve the special problem with imposed zero isospin $\mu_I=0$, or $\mu_u=\mu_d=\mu$.
+This will give us some intuition for the shape of the grand potential in the general case.
+Then the chemical equilibrium constraint \eqref{eq:lsm:chemical_equilibrium} says $\mu_e=0$,
+so electrons are absent and only the two first lines in the grand potential \eqref{eq:lsm:grand_potential} contribute.
+The grand potential $\Omega(\avg{\sigma},\mu)$ is now a function of two variables that is easy to visualize, as done in \cref{fig:lsm:grand-potential-noisospin}.
+We see that:
 \begin{itemize}
-\item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$, no square roots have real parts, so we are in vacuum with minimum at $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$, as we required in equation \eqref{eq:lsm:potential_vacuum_minimum}.
-      The feature that a \emph{range} of chemical potentials characterizes the vacuum is called the \emph{Silver Blaze property}.
-\item For $\SI{300}{\mega\electronvolt} < \mu \lesssim \SI{400}{\mega\electronvolt}$, the square roots have nonzero real parts and the minimum transitions quickly and continuously closer to zero, corresponding to a crossover.
-      Despite its rapid change, the grand potential remains a smooth function, so this does \emph{not} correspond to a phase transition of any order.
-\item For $\mu \gtrsim \SI{400}{\mega\electronvolt}$, the minimum approaches $\avg{\sigma} \rightarrow 0$ asymptotically, but never reaches it.
+\item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$ the grand potential is independent of $\mu$,
+      and we are in vacuum where only the first line of the grand potential \eqref{eq:lsm:grand_potential} contributes.
+      By construction, the minimum lies at $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$.
+      The feature that a \emph{range} of chemical potentials characterizes the vacuum is sometimes called the \emph{Silver Blaze property}.
+\item For $\SI{300}{\mega\electronvolt} < \mu \lesssim \SI{400}{\mega\electronvolt}$,
+      the quarks in the second line of the grand potential \eqref{eq:lsm:grand_potential} begins to contribute as we leave the vacuum state.
+      For $m_\sigma = \SI{700}{\mega\electronvolt}$ the minimum jumps \emph{discontinuously}, corresponding to a \emph{first-order phase transition}.
+      On the other hand, for $m_\sigma = \SI{800}{\mega\electronvolt}$ it moves quickly but still \emph{continuously}, and there is \emph{no phase transition}
+      -- this behavior is often referred to as a \emph{crossover}.
+\item For $\mu \gtrsim \SI{400}{\mega\electronvolt}$ the minimum approaches the ultra-relativistic limit $m_q \rightarrow 0$ asymptotically, but never quite reaches it.
 \end{itemize}
-Our objective, however, is to determine the equation of state $\epsilon(P)$ in the general case where we take the conditions of charge neutrality \eqref{eq:lsm:charge_neutrality} and $\beta$-equilibrium \eqref{eq:lsm:chemical_equilibrium} into account, in addition to the condition of potential minimization \eqref{eq:lsm:potential_minimize}.
-Using the densities \eqref{eq:lsm:particle_densities} and that up quarks, down quarks and electrons have respective charges $+(2/3)e$, $-(1/3)e$ and $-e$, we should now solve the \emph{system} of equations
+
+Our objective, however, is to determine the equation of state $\epsilon(P)$ in the general case,
+where the chemical potentials are constrained by the conditions of charge neutrality \eqref{eq:lsm:charge_neutrality} and $\beta$-equilibrium \eqref{eq:lsm:chemical_equilibrium} into account.
+This means that we must not only solve the gap equation \TODO{I haven't called it this yet} \eqref{eq:lsm:gap_equation},
+but the \emph{system} of two equations
 \begin{subequations}
 \begin{align}
 	0 &= \pdv{\Omega}{\avg{\sigma}} , \label{eq:lsm:minsys_min} \\
-	0 &= +\frac23 n_u - \frac13 n_d - n_e , \label{eq:lsm:minsys_charge} \\
-	\mu_d &= \mu_u + \mu_e . \label{eq:lsm:minsys_equilibrium}
+	%0 &= +\frac23 n_u - \frac13 n_d - n_e , \label{eq:lsm:minsys_charge} \\
+	0 &= 2 \Big[\mu_u^2-m_q^2\Big]^\frac32 - \Big[(\mu_u+\mu_e)^2-m_q^2\Big]^\frac32 - \Big[\mu_e^2-m_e^2\Big]^\frac32 \label{eq:lsm:minsys_charge}.
 \end{align}%
 \label{eq:lsm:minsys}%
 \end{subequations}%
-In this case $\Omega(\avg{\sigma},\mu_u,\mu_d,\mu_e)$ is a function of \emph{four} variables,
-constrained by \emph{three} equations,
-leaving \emph{one} free variable that parametrizes the others and thus the grand potential, pressure and energy density,
-from which it can be eliminated to yield the equation of state.
-
-\TODO{rewrite comment on choice of free variable. $\mu_u$ vs $\mu_Q$ vs $\Delta$}
-Which variable should we use as the free variable?
-In fact, some choices yield ill-defined parametrizations for which one value of the free variable corresponds to multiple values of a dependent variable.
-A well-defined parametrization should produce invertible functions.
-For example, using $\mu_u$ as the free variable produces a well-defined parametrization of $\avg{\sigma}(\mu_u)$ when $m_\sigma \gtrsim \SI{900}{\mega\electronvolt}$, but an ill-defined one when $m_\sigma \lesssim \SI{900}{\mega\electronvolt}$.
+for a given value of one variable -- say $\avg{\sigma} = m_q/g$.
+The solution yields $\mu_u$ and $\mu_e$, and the remaining chemical potential $\mu_d$ can then be calculated from the equilibrium constraint \eqref{eq:lsm:chemical_equilibrium}.
+Parametrizing multiple solutions in this manner, it is straightforward to calculate the densities \eqref{eq:lsm:particle_densities}, pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density},
+and hence the equation of state $\epsilon(P)$.
+The details of the numerical implementation can be found in \cref{sec:num:qstars2f} \TODO{write it}.
 
 \begin{figure}
 \centering
@@ -664,7 +669,7 @@ Dashed lines show the massless solutions \eqref{eq:lsm:densities_massless}, \eqr
 }
 \end{figure}
 
-The numerical solution of the system \eqref{eq:lsm:minsys} is described in \cref{sec:num:qstars2f}, and the results are shown in \cref{fig:lsm:2-flavor-eos}.
+and the results are shown in \cref{fig:lsm:2-flavor-eos}.
 \Cref{fig:lsm:2-flavor-eos-parametrization} shows the parametrization of the four arguments $\avg{\sigma}(\mu)$, $\mu_u(\mu)$, $\mu_d(\mu)$ and $\mu_e(\mu)$.
 From these parametrizations, we compute the particle number densities \eqref{eq:lsm:particle_densities} in \cref{fig:lsm:2-flavor-eos-density}.
 Finally, from the parametrizations and densities, we compute the pressure
