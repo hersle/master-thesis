@@ -604,16 +604,16 @@ if __name__ == "__main__":
     # TODO: make report use new data files
 
     # plot 3D potential for 2-flavor model with μu=μd
-    """
-    model = LSM2Flavor()
+    mσ = 700
+    model = LSM2FlavorModel(mσ=mσ)
     Δ = np.linspace(-1000, +1000, 100)
     μQ = np.linspace(0, 500, 50)
-    Ω = np.array([model.Ω(Δ, 0, μQ, μQ, 0, 0) for μQ in μQ])
+    Ω = np.array([model.Ω(Δ, Δ, 0, μQ, μQ, 0, 0) for μQ in μQ])
     Δ0 = np.empty_like(μQ)
     Ω0 = np.empty_like(μQ)
     for i in range(0, len(μQ)):
         μQ0 = μQ[i]
-        def Ω2(Δ): return model.Ω(Δ, 0, μQ0, μQ0, 0, 0)
+        def Ω2(Δ): return model.Ω(Δ, Δ, 0, μQ0, μQ0, 0, 0)
         sol = scipy.optimize.minimize_scalar(Ω2, bounds=(0, 350), method="bounded")
         assert sol.success, f"{sol.message} (μ = {μQ0})"
         Δ0[i] = sol.x
@@ -631,8 +631,8 @@ if __name__ == "__main__":
             Ωc.append(Ω[j,i])
     cols = [μQc, Δc, list(np.array(Ωc)/100**4), μQc, list(Δ0), list(Ω0/100**4)]
     heads = ["mu", "Delta", "Omega", "mu0", "Delta0", "Omega0"]
-    utils.writecols(cols, heads, f"data/{model.name}/potential.dat", skipevery=len(μQ))
-    """
+    utils.writecols(cols, heads, f"data/{model.name}/potential_noisospin_sigma_{mσ}.dat", skipevery=len(μQ))
+    exit()
 
     # TEST GROUND TODO: remove
     """

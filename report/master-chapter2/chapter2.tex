@@ -457,47 +457,54 @@ In the opposite case $\mu < m$, the step function would cause the whole integral
 
 \begin{figure}
 \centering
-\tikzsetnextfilename{grand-potential-nonneutral}
+\tikzsetnextfilename{grand-potential-noisospin}
 \begin{tikzpicture}
 \begin{groupplot}[
-	group style={group size={1 by 2}, vertical sep=2.0cm},
-	view={160}{30},
-	width=0.9\textwidth, height=10cm,
-	xlabel = {$\Delta \, / \, \si{\mega\electronvolt}$}, ylabel = {$\mu \, / \, \si{\mega\electronvolt}$}, zlabel = {$\Omega(\Delta, \mu) \, / \, (\SI{100}{\mega\electronvolt})^4$},
-	colormap/OrRd, point meta min=0, point meta max=1500,
+	group style={group size={2 by 1}, vertical sep=2.0cm, horizontal sep=0.05cm},
+	view={170}{25},
+	width=0.55\textwidth, height=8cm,
+	xlabel = {$m_q \, / \, \si{\mega\electronvolt}$},
+	colormap/OrRd, point meta min=0, point meta max=600,
 	3d box=complete,
 	unbounded coords=jump, % skip at nan (i.e. the phase transition)
 	extra tick style={grid=major, grid style={dashed}},
-	title style={text width={10cm}},
+	title style={text width={5cm}},
+	xlabel style={sloped}, 
+	ylabel style={sloped, xshift=-0.5cm}, yticklabel style={anchor=east},
+	zticklabels={,,},
+	title style={sloped like x axis},
+%
+	zmin=-40, zmax=+10,
+	xmin=-525, xmax=+525,
+	restrict x to domain=-550:+550,
+	restrict z to domain=-50:+30,
+	xtick distance=150, %minor x tick num=1,
+	ytick distance=100, %minor y tick num=3,
 ]
 \nextgroupplot[
-	zmin=-40, zmax=+40,
-	xmin=-999, xmax=+999,
-	xtick distance=200, %minor x tick num=5,
-	ytick distance=100, %minor y tick num=3,
-	title = {\subcaption{\label{fig:lsm:grand-potential-nonneutral-big}Large-scale form}},
+	ylabel = {$\mu \, / \, \si{\mega\electronvolt}$},
+	%zlabel = {$\Omega(m_q, \mu) \, / \, (\SI{100}{\mega\electronvolt})^4$},
+	zlabel = {$\Omega(m_q, \mu)$},
+	title = {\subcaption{\label{fig:lsm:grand-potential-noisospin-sigma700}$m_\sigma=\SI{700}{\mega\electronvolt}$}},
 ];
-\addplot3 [surf, very thin, mesh/ordering=x varies, point meta={abs(\thisrow{Delta})}] table [x=Delta, y=mu, z=Omega] {../code/data/LSM2F/potential.dat};
-%\addplot3 [red]  table [x=sigma0, y=mu0, z=omega0] {../code/data/2flavpot.dat}; % plot line of minima
-%\addplot  [gray] table [x=sigma0, y=mu0, z expr={-40}] {../code/data/2flavpot.dat}; % plot its "shadow" in bottom plane
+\addplot3 [surf, very thin, mesh/ordering=x varies, point meta={abs(\thisrow{Delta})}] table [x=Delta, y=mu, z=Omega] {../code/data/LSM2F/potential_noisospin_sigma_700.dat};
+\addplot3 [blue, x filter/.expression={\thisrow{Delta0} < 150 ? x : nan}] table [x=Delta0, y=mu0, z=Omega0]     {../code/data/LSM2F/potential_noisospin_sigma_700.dat}; % plot line of minima
+\addplot3 [blue, x filter/.expression={\thisrow{Delta0} > 150 ? x : nan}] table [x=Delta0, y=mu0, z=Omega0]     {../code/data/LSM2F/potential_noisospin_sigma_700.dat}; % plot line of minima
+\addplot3 [gray, x filter/.expression={\thisrow{Delta0} < 150 ? x : nan}] table [x=Delta0, y=mu0, z expr={-40}] {../code/data/LSM2F/potential_noisospin_sigma_700.dat}; % plot its "shadow" in bottom plane
+\addplot3 [gray, x filter/.expression={\thisrow{Delta0} > 150 ? x : nan}] table [x=Delta0, y=mu0, z expr={-40}] {../code/data/LSM2F/potential_noisospin_sigma_700.dat}; % plot its "shadow" in bottom plane
 \nextgroupplot[
-	zmin=-40, zmax=+0,
-	xmin=-475, xmax=+475,
-	restrict x to domain=-550:+550,
-	restrict z to domain=-50:10,
-	xtick distance=100, %minor x tick num=5,
-	ytick distance=100, %minor y tick num=3,
-	title = {\subcaption{\label{fig:lsm:grand-potential-nonneutral-small}Small-scale form}},
+	yticklabels={,,},
+	zticklabels={,,},
+	title = {\subcaption{\label{fig:lsm:grand-potential-noisospin-sigma800}$m_\sigma=\SI{800}{\mega\electronvolt}$}},
 ];
-\addplot3 [surf, very thin, mesh/ordering=x varies, point meta={abs(\thisrow{Delta})}] table [x=Delta, y=mu, z=Omega] {../code/data/LSM2F/potential.dat};
-\addplot3 [blue] table [x=Delta0, y=mu0, z=Omega0]     {../code/data/LSM2F/potential.dat}; % plot line of minima
-\addplot3 [gray] table [x=Delta0, y=mu0, z expr={-40}] {../code/data/LSM2F/potential.dat}; % plot its "shadow" in bottom plane
+\addplot3 [surf, very thin, mesh/ordering=x varies, point meta={abs(\thisrow{Delta})}] table [x=Delta, y=mu, z=Omega] {../code/data/LSM2F/potential_noisospin_sigma_800.dat};
+\addplot3 [blue] table [x=Delta0, y=mu0, z=Omega0]     {../code/data/LSM2F/potential_noisospin_sigma_800.dat}; % plot line of minima
+\addplot3 [gray] table [x=Delta0, y=mu0, z expr={-40}] {../code/data/LSM2F/potential_noisospin_sigma_800.dat}; % plot its "shadow" in bottom plane
 \end{groupplot}
 \end{tikzpicture}
-\caption{\label{fig:lsm:grand-potential-nonneutral}%
-	The grand potential \eqref{eq:lsm:grand_potential} with $\mu_e = 0$ and $\mu_u = \mu_d = \mu$.
-	Upper panel \subref{fig:lsm:grand-potential-nonneutral-big} shows its asymptotic form as $\avg{\sigma} \rightarrow \pm \infty$, while lower panel \subref{fig:lsm:grand-potential-nonneutral-small} highlights the interesting region around $\SI{0}{\mega\electronvolt} \lesssim \avg{\sigma} \lesssim \SI{100}{\mega\electronvolt}$.
-	The \textcolor{blue}{blue line} and its \textcolor{gray}{gray projection} corresponds to the fields $\avg{\sigma}(\mu)$ for which the potential has a minimum determined by $\pdv{\Omega}/{\avg{\sigma}} = 0$.
+\caption{\label{fig:lsm:grand-potential-noisospin}%
+	The grand potential \eqref{eq:lsm:grand_potential} with $\mu_e = 0$ and $\mu_u = \mu_d = \mu$ for $m_\sigma=\{700,800\} \, \si{\mega\electronvolt}$.
+	The \textcolor{blue}{blue line} and its \textcolor{gray}{gray projection} corresponds to minima determined by $\pdv{\Omega}/{\avg{\sigma}} = 0$.
 }
 \end{figure}
 
