@@ -412,10 +412,11 @@ class LSM2FlavorModel(LSMModel):
         h  = fπ * mπ**2
         g  = mu0 / fπ
         Λ2 = mu0**2 / np.e
-        print(f"m2 = {np.sign(m2)}*({np.sqrt(np.abs(m2))} MeV)^2 ")
-        print(f"λ  = {λ}")
-        print(f"g  = {g}")
-        print(f"h  = {np.sign(h)}*({np.abs(h)**(1/3)} MeV)^3 ")
+        print(f"m2  = {np.sign(m2)}*({np.sqrt(np.abs(m2))} MeV)^2 ")
+        print(f"λ   = {λ}")
+        print(f"g   = {g}")
+        print(f"h   = {np.sign(h)}*({np.abs(h)**(1/3)} MeV)^3 ")
+        print(f"Λ   = {np.sqrt(Λ2)} MeV")
 
         Δ, μu, μd, μe = sp.symbols("Δ μ_u μ_d μ_e", complex=True)
         σ = Δ / g
