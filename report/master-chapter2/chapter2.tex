@@ -584,18 +584,18 @@ The details of the numerical implementation can be found in \cref{sec:num:qstars
 \addplot+ [red,       densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {muu(x)};
 \addplot+ [darkgreen, densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {mud(x)};
 \addplot+ [blue,      densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {mue(x)};
-\addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=mue]    {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2F/eos_sigma_700.dat};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2F/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=mud]    {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2F/eos_sigma_700.dat};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2F/eos_sigma_800.dat};
-\addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=muu]    {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2F/eos_sigma_700.dat};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2F/eos_sigma_800.dat};
-\addplot+ [orange,    solid, opacity=0.7             ] table [x=muQ, y=Deltax] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$\Delta \, / \, \si{\mega\electronvolt}$};
-\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2F/eos_sigma_700.dat};
-\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [blue,      solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [darkgreen, solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [orange,    solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$\Delta \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2F/eos_sigma_800.dat};
 
 
 \nextgroupplot[
@@ -611,15 +611,15 @@ The details of the numerical implementation can be found in \cref{sec:num:qstars
 \addplot+ [red,       densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(muu(x))*nconv};
 \addplot+ [darkgreen, densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(mud(x))*nconv};
 \addplot+ [blue,      densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {ne(mue(x))*nconv};
-\addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=ne] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$n_e$ (electrons)};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2F/eos_sigma_700.dat};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2F/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=nd] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$n_d$ (down quarks)};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2F/eos_sigma_700.dat};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2F/eos_sigma_800.dat};
-\addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=nu] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$n_u$ (up quarks)};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2F/eos_sigma_700.dat};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [blue,      solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$n_e$ (electrons)};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [darkgreen, solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$n_d$ (down quarks)};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2F/eos_sigma_600.dat}; \addlegendentry{$n_u$ (up quarks)};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2F/eos_sigma_800.dat};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -859,29 +859,29 @@ Upon substitution of all the running couplings, the dependence on the renormaliz
 	xmin=0, xmax=600, xtick distance=100, minor x tick num=9,
 	ymin=-20, ymax=500, ytick distance=100, 
 	%ymax=600, 
-	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-parametrization}Parametrization of solutions }},
+	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-parametrization}Parametrization of solutions}},
 	legend cell align=right, legend pos=north west, reverse legend,
 ];
 %\addplot+ [orange,    densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {0};
 %\addplot+ [red,       densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {muu(x)};
 %\addplot+ [darkgreen, densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {mud(x)};
 %\addplot+ [blue,      densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {mue(x)};
-\addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=mue]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2FC/eos_sigma_600.dat};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2FC/eos_sigma_700.dat};
-%\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM2FC/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=mud]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2FC/eos_sigma_600.dat};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2FC/eos_sigma_700.dat};
-%\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM2FC/eos_sigma_800.dat};
-\addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=muu]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2FC/eos_sigma_600.dat};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2FC/eos_sigma_700.dat};
-%\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM2FC/eos_sigma_800.dat};
-\addplot+ [orange,    solid, opacity=0.7             ] table [x=muQ, y=Deltax] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\Delta \, / \, \si{\mega\electronvolt}$};
-\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2FC/eos_sigma_600.dat};
-\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2FC/eos_sigma_700.dat};
-%\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM2FC/eos_sigma_800.dat};
+\addplot+ [blue,      solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2FC/eos_sigma_700.dat};
+%\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2FC/eos_sigma_800.dat};
+\addplot+ [darkgreen, solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2FC/eos_sigma_700.dat};
+%\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2FC/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2FC/eos_sigma_700.dat};
+%\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2FC/eos_sigma_800.dat};
+\addplot+ [orange,    solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\Delta \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2FC/eos_sigma_700.dat};
+%\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2FC/eos_sigma_800.dat};
 
 
 \nextgroupplot[
@@ -897,18 +897,18 @@ Upon substitution of all the running couplings, the dependence on the renormaliz
 %\addplot+ [red,       densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(muu(x))*nconv};
 %\addplot+ [darkgreen, densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(mud(x))*nconv};
 %\addplot+ [blue,      densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {ne(mue(x))*nconv};
-\addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=ne] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_e$ (electrons)};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2FC/eos_sigma_600.dat};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2FC/eos_sigma_700.dat};
-%\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM2FC/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=nd] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_d$ (down quarks)};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2FC/eos_sigma_600.dat};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2FC/eos_sigma_700.dat};
-%\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM2FC/eos_sigma_800.dat};
-\addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=nu] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_u$ (up quarks)};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2FC/eos_sigma_600.dat};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2FC/eos_sigma_700.dat};
-%\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM2FC/eos_sigma_800.dat};
+\addplot+ [blue,      solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_e$ (electrons)};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2FC/eos_sigma_700.dat};
+%\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2FC/eos_sigma_800.dat};
+\addplot+ [darkgreen, solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_d$ (down quarks)};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2FC/eos_sigma_700.dat};
+%\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2FC/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_u$ (up quarks)};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2FC/eos_sigma_700.dat};
+%\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2FC/eos_sigma_800.dat};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
