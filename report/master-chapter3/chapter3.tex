@@ -504,16 +504,16 @@ This yields the upper bound
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-parametrization}Parametrization of solutions}},
 	legend cell align=right, legend pos=north west, reverse legend,
 ];
-\addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=mue]    {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=mue]    {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=mud]    {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=mud]    {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=muu]    {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=muu]    {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [yellow,    solid, opacity=0.7             ] table [x=muQ, y=Deltay] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\Delta_y \, / \, \si{\mega\electronvolt}$};
-\addplot+ [yellow,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltay] {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [orange,    solid, opacity=0.7             ] table [x=muQ, y=Deltax] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\Delta_x \, / \, \si{\mega\electronvolt}$};
-\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x=muQ, y=Deltax] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [blue,      solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [darkgreen, solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [yellow,    solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\Delta_y \, / \, \si{\mega\electronvolt}$};
+\addplot+ [yellow,    solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [orange,    solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\Delta_x \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM3F/eos_sigma_800.dat};
 
 \nextgroupplot[
 	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
@@ -528,14 +528,14 @@ This yields the upper bound
 %\addplot+ [red,       densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(muu(x))*nconv};
 %\addplot+ [darkgreen, densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(mud(x))*nconv};
 %\addplot+ [blue,      densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {ne(mue(x))*nconv};
-\addplot+ [blue,      solid, opacity=0.7             ] table [x=muQ, y=ne] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_e$ (electrons)};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x=muQ, y=ne] {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [purple,    solid, opacity=0.7             ] table [x=muQ, y=ns] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_s$ (strange quarks)};
-\addplot+ [purple,    solid, opacity=0.7, forget plot] table [x=muQ, y=ns] {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid, opacity=0.7             ] table [x=muQ, y=nd] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_d$ (down quarks)};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x=muQ, y=nd] {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [red,       solid, opacity=0.7             ] table [x=muQ, y=nu] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_u$ (up quarks)};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x=muQ, y=nu] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [blue,      solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_e$ (electrons)};
+\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [purple,    solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_s$ (strange quarks)};
+\addplot+ [purple,    solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [darkgreen, solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_d$ (down quarks)};
+\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_u$ (up quarks)};
+\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_800.dat};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -551,28 +551,6 @@ This yields the upper bound
 \addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_800.dat};
 \addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat};
 \end{groupplot}
-% Embed zoom-plot in a node
-\iffalse
-\node [anchor=north east] at (zoomplot) {
-	\begin{tikzpicture}[baseline, trim axis left, trim axis right]
-	\begin{axis}[
-		width=5.2cm, height=3.0cm,
-		scaled ticks=false,
-		xmin=250, xmax=500, xtick distance=50, minor x tick num=4, yticklabel style={/pgf/number format/fixed, /pgf/number format/precision=3},
-		ymin=-0.0020, ymax=0.01, ytick distance=0.01, minor y tick num=9, restrict y to domain=-0.5:0.5,
-		axis background/.style={fill=gray!50},
-	]
-	\addplot+ [red, solid, opacity=0.5, forget plot] table [x=muQ, y=nu] {../code/data/LSM2F/eos.dat};
-	\addplot+ [darkgreen, solid, opacity=0.5, forget plot] table [x=muQ, y=nd] {../code/data/LSM2F/eos.dat};
-	\addplot+ [blue, solid, opacity=0.5, forget plot] table [x=muQ, y=ne] {../code/data/LSM2F/eos.dat};
-	\addplot+ [red, solid, opacity=1.0] table [x=muQ, y=nu] {../code/data/LSM3F/eos.dat};
-	\addplot+ [darkgreen, solid, opacity=1.0] table [x=muQ, y=nd] {../code/data/LSM3F/eos.dat};
-	\addplot+ [purple, solid, opacity=1.0] table [x=muQ, y=ns] {../code/data/LSM3F/eos.dat};
-	\addplot+ [blue, solid, opacity=1.0] table [x=muQ, y=ne] {../code/data/LSM3F/eos.dat};
-	\end{axis}
-	\end{tikzpicture}
-};
-\fi
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-eos}%
 Properties of electrically charge neutral three-flavor quark matter \TODO{``quark matter'' sounds like QCD, write quark-meson model or something instead} in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu_Q = (\mu_u+\mu_d)/2$.
