@@ -89,18 +89,43 @@ class Model:
         def EperB(B):
             PB = P - B
             ϵB = ϵ + B
-            return np.interp(0, PB, ϵB/nB)
-        sol = scipy.optimize.root_scalar(lambda B: EperB(B) - 930, method="brentq", bracket=(0, 300**4))
-        assert sol.converged
-        Bbound = sol.root
-        print(f"Bag constant bound: B^(1/4) = {Bbound**(1/4)} MeV")
+            return np.interp(0, PB, ϵB/nB) # at P=0
+        f = lambda B: EperB(B) - 930 
+        Bs = np.linspace(0, 300, 10000)**4
+        if plot:
+            plt.plot(Bs**(1/4), [f(Bs) for Bs in Bs])
+            plt.ylim(-500, +500)
+            plt.show()
+        try:
+            sol = scipy.optimize.root_scalar(f, method="brentq", bracket=(1e5, 300**4)) # bracket lower bound is sensitive
+            assert sol.converged
+            Bbound = sol.root
+        except ValueError:
+            Bs = np.linspace(0, 300, 10000)**4
+            Bbound = Bs[np.argmin([f(B) for B in Bs])]
+        print(f"Bag constant bound: B^(1/4) = {Bbound**(1/4)} MeV", end=" ")
+        print(f"({(P0+Bbound)**(1/4)} MeV)")
 
         P -= B
         ϵ += B
 
-        # plt.plot(P, ϵ/nB, ".-k")
-        # plt.axhline(930, color="red")
-        # plt.show()
+        if plot:
+            plt.plot(P, ϵ/nB, ".-k")
+            plt.axhline(930, color="red")
+            plt.show()
+
+        # TODO: plot bag pressure
+        if plot:
+            μvac = np.full_like(mu, 0+0j)
+            PB = -self.Ω(mu, md, ms, μvac, μvac, μvac, μvac) - P0 - B
+            PQ = P - PB
+            plt.plot((μu+μd)/2, np.sign(PB)*np.abs(PB)**(1/4), label="bag")
+            plt.plot((μu+μd)/2, np.sign(PQ)*np.abs(PQ)**(1/4), label="quark")
+            plt.plot((μu+μd)/2, np.sign(P)*np.abs(P)**(1/4), label="total")
+            plt.xlabel(r"$\mu$")
+            plt.ylabel(r"$P$")
+            plt.legend()
+            plt.show()
 
         P1 = P[0]
         i2 = np.argmax(np.gradient(P) < 0) # last index of increasing pressure
@@ -154,7 +179,7 @@ class Model:
             # fix array by only modifying EOS, but fill out with points in phase transition
             ϵ1 = np.interp(Pt, P[:i2+1], ϵ[:i2+1])
             ϵ2 = np.interp(Pt, P[i3:], ϵ[i3:])
-            Ntarget = len(Δx)
+            Ntarget = len(mu)
             Nnow = len(ϵ[:j1]) + len(ϵ[j2:])
             Nadd = Ntarget - Nnow
             ϵ = np.concatenate((ϵ[:j1], np.linspace(ϵ1, ϵ2, Nadd), ϵ[j2:]))
@@ -263,9 +288,9 @@ class MIT2FlavorModel(Model):
     def __init__(self):
         Model.__init__(self, "MIT2F")
         self.Ω = lambda mu, md, ms, μu, μd, μs, μe: np.real(
-            -Nc/(24*π**2)*((2*μu**2-5*muf**2)*μu*np.sqrt(μu**2-muf**2)+3*muf**4*np.arcsinh(np.sqrt(μu**2/muf**2-1))) + \
-            -Nc/(24*π**2)*((2*μd**2-5*mdf**2)*μd*np.sqrt(μd**2-mdf**2)+3*mdf**4*np.arcsinh(np.sqrt(μd**2/mdf**2-1))) + \
-            -1/(24*π**2)*((2*μe**2-5*me**2)*μe*np.sqrt(μe**2-me**2)+3*me**4*np.arcsinh(np.sqrt(μe**2/me**2-1)))
+            -Nc/(24*π**2)*((2*μu**2-5*muf**2)*μu*np.sqrt(μu**2-muf**2+0j)+3*muf**4*np.arcsinh(np.sqrt(μu**2/muf**2-1+0j))) + \
+            -Nc/(24*π**2)*((2*μd**2-5*mdf**2)*μd*np.sqrt(μd**2-mdf**2+0j)+3*mdf**4*np.arcsinh(np.sqrt(μd**2/mdf**2-1+0j))) + \
+            -1/(24*π**2)*((2*μe**2-5*me**2)*μe*np.sqrt(μe**2-me**2+0j)+3*me**4*np.arcsinh(np.sqrt(μe**2/me**2-1+0j)))
         )
 
     def vacuum_masses(self):
@@ -612,6 +637,7 @@ if __name__ == "__main__":
     # TODO: remove old data files
     # TODO: make report use new data files
 
+    """
     # plot 3D potential for 2-flavor model with μu=μd
     mσ = 700
     model = LSM2FlavorModel(mσ=mσ)
@@ -641,9 +667,13 @@ if __name__ == "__main__":
     cols = [μQc, Δc, list(np.array(Ωc)/100**4), μQc, list(Δ0), list(Ω0/100**4)]
     heads = ["mu", "Delta", "Omega", "mu0", "Delta0", "Omega0"]
     utils.writecols(cols, heads, f"data/{model.name}/potential_noisospin_sigma_{mσ}.dat", skipevery=len(μQ))
+    """
+
+    LSM2FlavorModel(mσ=600).eos()
+    #LSM2FlavorModel().eos(plot=True, N=250, B=30**4)
+    #LSM2FlavorModel().star(0.0001, 30, plot=True)
     exit()
 
-    # TEST GROUND TODO: remove
     """
     Δ = np.linspace(-600, +600, 300)
     for mσ in [500, 550, 600, 650, 700, 750, 800, 850]:
@@ -689,6 +719,7 @@ if __name__ == "__main__":
     exit()
     """
 
+    """
     P1P2 = (1e-7, 1e-2)
 
     models = [MIT2FlavorModel, MIT3FlavorModel]
@@ -698,6 +729,7 @@ if __name__ == "__main__":
         for B14 in (145, 150, 155):
             model.stars(B14, P1P2, write=True)
     exit()
+    """
 
     models = [LSM2Flavor, LSM2FlavorConsistent, LSM3Flavor]
     mσs = [500, 600, 700, 800]
