@@ -71,9 +71,11 @@ class Model:
         md = np.insert(md, 0, md[0])
         ms = np.insert(ms, 0, ms[0])
 
+        μQ = (μu + μd) / 2
+
         Ω = self.Ω(mu, md, ms, μu+0j, μd+0j, μs+0j, μe+0j) # model-dependent
         P, P0 = -Ω, -Ω[0]
-        P = P - P0
+        P = P - P0 # TODO: subtract or not for bag constant stuff?
 
         nu = Nc/(3*π**2) * np.real((μu**2-mu**2+0j)**(3/2))
         nd = Nc/(3*π**2) * np.real((μd**2-md**2+0j)**(3/2))
@@ -191,8 +193,6 @@ class Model:
         if plot:
             fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 5))
 
-            μQ = (μu + μd) / 2
-
             ax1.set_xlabel(r"$\mu_Q$")
             ax1.plot(μQ, mu, ".-", color="orange", label=r"$m_u$")
             ax1.plot(μQ, md, ".-", color="orange", label=r"$m_d$")
@@ -226,6 +226,7 @@ class Model:
         nd = np.concatenate(([0, np.interp(0, P, nd)], nd[P>0]))
         ns = np.concatenate(([0, np.interp(0, P, ns)], ns[P>0]))
         ne = np.concatenate(([0, np.interp(0, P, ne)], ne[P>0]))
+        μQ = np.concatenate(([0, np.interp(0, P, μQ)], μQ[P>0]))
         P = np.concatenate(([P[0] - 10, 0], P[P>0])) # force ϵ(P<Pmin)=0 (avoid interpolation errors)
         print(f"interpolation range: {P[0]} < P < {P[-1]}")
         ϵint = scipy.interpolate.interp1d(P, ϵ); ϵint.__name__ = self.name
@@ -233,22 +234,29 @@ class Model:
         ndint = scipy.interpolate.interp1d(P, nd)
         nsint = scipy.interpolate.interp1d(P, ns)
         neint = scipy.interpolate.interp1d(P, ne)
-        return ϵint, nuint, ndint, nsint, neint
+        μQint = scipy.interpolate.interp1d(P, μQ)
+        return ϵint, nuint, ndint, nsint, neint, μQint
 
-    def star(self, Pc, B14):
-        ϵ, nu, nd, ns, ne = self.eos(B=B14**4)
+    def star(self, Pc, B14, plot=False, write=False):
+        ϵ, nu, nd, ns, ne, μQ = self.eos(B=B14**4)
         rs, ms, Ps, αs, ϵs = soltov(ϵ, Pc, maxdr=tovopts["maxdr"])
-        nus, nds, nss, nes = nu(Ps), nd(Ps), ns(Ps), ne(Ps)
+        nus, nds, nss, nes, μQs = nu(Ps), nd(Ps), ns(Ps), ne(Ps), μQ(Ps)
 
-        heads = ["r", "P", "epsilon", "nu", "nd", "ns", "ne"]
-        cols = [list(rs), list(Ps), list(ϵs), list(nus), list(nds), list(nss), list(nes)]
-        outfile = f"data/{self.name}/star_sigma_{self.mσ}_B14_{B14}_Pc_{Pc:.7f}.dat"
-        utils.writecols(cols, heads, outfile)
+        if plot:
+            plt.plot(rs, μQs)
+            plt.margins(0, 0)
+            plt.show()
+
+        if write:
+            heads = ["r", "P", "epsilon", "nu", "nd", "ns", "ne", "muQ"]
+            cols = [list(rs), list(Ps), list(ϵs), list(nus), list(nds), list(nss), list(nes), list(μQs)]
+            outfile = f"data/{self.name}/star_sigma_{self.mσ}_B14_{B14}_Pc_{Pc:.7f}.dat"
+            utils.writecols(cols, heads, outfile)
 
     def stars(self, B14, P1P2, N=1000, plot=False, write=False):
         outfile = f"data/{self.name}/stars_sigma_{self.mσ}_B14_{B14}.dat" if write else ""
         print(f"B = ({B14} MeV)^4, outfile = {outfile}")
-        ϵ, _, _, _, _ = self.eos(N=N, B=B14**4, plot=False)
+        ϵ, _, _, _, _, _ = self.eos(N=N, B=B14**4, plot=False)
         massradiusplot(ϵ, P1P2, **tovopts, visual=plot, outfile=outfile)
 
 class MIT2FlavorModel(Model):
