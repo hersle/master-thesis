@@ -110,17 +110,17 @@ We will model quark stars using the quark-extended linear sigma model, also know
 \section{Tolman-Oppenheimer-Volkoff equation and stellar stability}
 \label{sec:master_intro:tov}
 
-The structure of a spherically symmetric compact star is governed by the Tolman-Oppenheimer-Volkoff equation
-\TODO{fix overfull hbox}
+The structure of a spherically symmetric star is governed by the Tolman-Oppenheimer-Volkoff equation
 \begin{subequations}
 \begin{align}
 	\odv{P}{r} &= -\frac{G m \epsilon(P)}{r^2 c^2} \left( 1 + \frac{P}{\epsilon(P)} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \\
 	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon(P)}{c^2} .
-\end{align}
-\label{eq:master_intro:tov}
-\end{subequations}
-It is a system of two differential equations for the energy density $\epsilon(r)$, pressure $P(r)$ and mass $m(r)$ as functions of the radius $r$ from the center of the star assumed to be composed of a perfect fluid in hydrostatic equilibrium, and includes relativistic corrections.
+\end{align}%
+\label{eq:master_intro:tov}%
+\end{subequations}%
+It is a system of two differential equations for the energy density $\epsilon(r)$, pressure $P(r)$ and mass $m(r)$ as functions of the radius $r$ from the center of the star assumed to be composed of a perfect fluid in hydrostatic equilibrium.
 We derived it from the Einstein field equations \eqref{eq:einstein} and studied it in detail in \cref{chap:tov}.
+It therefore includes relativistic corrections, which is particularly important for compact stars with extreme density.
 
 To solve it, one must know the fluid's \textbf{equation of state} $\epsilon(P)$ that connects its pressure and energy density, thereby closing the system of three equations and three unknowns.
 Then the system can be integrated from the center $r=0$ with zero initial mass $m(0) = 0$ and some central pressure $P(0) = P_c$ until reaching the surface $r=R$ defined by a vanishing pressure $P(R) = 0$.
@@ -369,7 +369,9 @@ To explore the phase diagram, one must therefore turn to alternative techniques:
       \TODO{separate $\chi$PT from NJL/LSM. good now?}
 \end{itemize}
 
-\subsection{Color confinement and asymptotic freedom \cite{ref:quark_bag_model}}
+\subsection{Color confinement and asymptotic freedom}
+
+\TODO{inspiration: \cite{ref:quark_bag_model} and more?}
 
 \begin{figure}[t]
 \centering
