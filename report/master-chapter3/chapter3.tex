@@ -324,7 +324,7 @@ which in turn are used to predict the non-bold masses of the remaining particles
 \end{table}
 
 
-\subsection{Grand potential}
+\section{Grand potential}
 
 With the results from above and the tree-level potential \eqref{eq:lsm:potential_tree_3f}, it is now straightforward to generalize the two-flavor grand potential \eqref{eq:lsm:grand_potential} with the addition of a strange quark.
 Like before, we treat fermions to one-loop level, but bosons only to tree level.
@@ -417,7 +417,7 @@ $\mu_u = \mu_d = \mu_s = \mu_e = 0$}
 
 \TODO{the consistency is this: have not included vacuum renormalization of quadratic bosonic fluctuations}
 
-\subsection{Equation of state and mass-radius relation}
+\section{Equation of state and mass-radius relation}
 
 To find the equation of state,
 we will follow the same procedure as in \TODO{ref 2-flavor}.
@@ -441,7 +441,7 @@ with the particle number densities
 \end{equation}
 These five equations constrain the six variables that the grand potential \eqref{eq:lsm3f:grand_potential} depends on,
 producing a one-dimensional parametrization of values of the grand potential.
-Similarly to the chemical potentials \eqref{eq:lsm:quark_chemical_potential} we defined in the two-flavor case,
+Similarly to the chemical potentials \TODO{just refer to $\mu$s defined in intro} we defined in the two-flavor case,
 we now define the common quark, isospin and strangeness chemical potentials
 \TODO{drop first definition, keep only second?}
 \begin{equation}
@@ -465,9 +465,9 @@ and by the chain rule we then see that the common quark chemical potential $\mu$
 	n_u + n_d + n_s.
 \end{equation}
 Using the common quark chemical potential $\mu$ as the free variable,
-we now parametrize values of the grand potential and compute the equation of state \eqref{eq:lsm:eos}.
-Then we add a bag constant as in equation \eqref{eq:lsm:eos_bag}.
-We can now complement the lower bag constant bound \eqref{eq:lsm:bag_stability_2f} with an upper bound,
+we now parametrize values of the grand potential and compute the equation of state $\epsilon(P)$.
+Then we add a bag constant as in equation \TODO{ref intro bag shift}.
+We can now complement the lower bag constant bound \eqref{eq:lsm:bag_window_800} with an upper bound,
 asserting the Bodmer-Witten conjecture that three-flavor quark matter should be absolutely stable compared to $^{56}\text{Fe}$.
 \TODO{ref and discuss?}
 We require
@@ -494,7 +494,7 @@ This yields the upper bound
 \tikzsetnextfilename{3-flavor-eos}
 \begin{tikzpicture}
 \begin{groupplot}[
-	group style={group size={1 by 3}, vertical sep=2.0cm},
+	group style={group size={1 by 3}, vertical sep=1.9cm},
 	width=13cm, height=7cm,
 	extra tick style={grid=major, grid style={dashed}},
 	minor tick num=9,
@@ -557,15 +557,16 @@ This yields the upper bound
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-eos}%
-Properties of electrically charge neutral three-flavor quark matter \TODO{``quark matter'' sounds like QCD, write quark-meson model or something instead} in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu_Q = (\mu_u+\mu_d)/2$.
+Properties of electrically charge neutral three-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu_Q = (\mu_u+\mu_d)/2$.
 The two lines of each color has $m_\sigma = \SI{700}{\mega\electronvolt}$ (most ``sway'') and $m_\sigma = \SI{800}{\mega\electronvolt}$ (least ``sway'') \TODO{mark better}.
 Upper panel \subref{fig:lsm:3-flavor-eos-parametrization} shows solutions to equation \eqref{eq:lsm3f:minsys},
 middle panel \subref{fig:lsm:3-flavor-eos-density} the corresponding particle number densities \eqref{eq:lsm3f:particle_densities} and
-lower panel \subref{fig:lsm:3-flavor-eos-eos} the corresponding equation of state \eqref{eq:lsm:eos}, all with strong lines.
-Weak lines show the two-flavor results from \cref{fig:lsm:2-flavor-eos}.
-\TODO{thin and thick instead of strong and weak?}
+lower panel \subref{fig:lsm:3-flavor-eos-eos} the corresponding equation of state $\epsilon(P)$, all with strong lines.
+\TODO{fix}
 }
 \end{figure}
+
+\TODO{in figure text and elsewhere:``quark matter'' sounds like QCD, write quark-meson model or something instead} 
 
 \Cref{fig:lsm:3-flavor-eos} presents solutions to the system of equations \eqref{eq:lsm3f:minsys} and the corresponding particle densities and equation of state.
 Let us understand what is going on:
