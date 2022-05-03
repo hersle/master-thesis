@@ -564,7 +564,7 @@ After both shifts, the pressure $P$ contains a contribution
 \end{equation}
 from the first line of the grand potential \eqref{eq:lsm:grand_potential} in addition to the contribution from the particles.
 We can interpret $B(\avg{\sigma})$ as an effective density-dependent bag pressure that ranges from $-B(f_\pi)=-B$ in vacuum to $-B(0) = -\big[B-\pot(f_\pi,\vec{0})\big]$ in the ultra-relativistic limit.
-Solving inequality \eqref{eq:mit:bag_stability} numerically, we obtain the bag windows
+Solving inequality \eqref{eq:mit:bag_stability} numerically, we obtain the lower bag bounds
 \begin{subequations}
 \begin{align}
 	B(f_\pi)^\frac14 > \SI{110.6}{\mega\electronvolt},           \quad \text{or} \quad B(0)^\frac14 > \SI{145.4}{\mega\electronvolt} \qquad \Big(\text{with } m_\sigma = \SI{600}{\mega\electronvolt}\Big), \\
@@ -573,6 +573,9 @@ Solving inequality \eqref{eq:mit:bag_stability} numerically, we obtain the bag w
 \end{align}%
 \label{eq:lsm:bag_lower_bound}
 \end{subequations}%
+In the next chapter we study the three-flavor model and complement these lower bounds the by upper bounds \eqref{eq:lsm3f:bag_upper_bound} for $m_\sigma = \{700,800\}\,\si{\mega\electronvolt}$,
+yielding closed bag windows.
+\TODO{also for 700?}
 \TODO{\cite{ref:quark_star_review} about bag constant: ``comparison of the precise values obtained in different models is not generally meaningful''}
 
 \begin{figure}
@@ -773,12 +776,19 @@ A discussion of the results is in order:
 
 \end{groupplot}
 \end{tikzpicture}
-\caption{\label{fig:lsm:2-flavor-mass-radius}Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$, obtained with the equations of state for two-flavor quark matter in \cref{fig:lsm:2-flavor-eos-eos} modified by a range of bag constants above the bounds \eqref{eq:lsm:bag_lower_bound}.}
+\caption{\label{fig:lsm:2-flavor-mass-radius}%
+	Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$, obtained with the equations of state for two-flavor quark matter in \cref{fig:lsm:2-flavor-eos-eos} modified by a range of bag constants above the bounds \eqref{eq:lsm:bag_lower_bound}.
+	\TODO{use min, max and half $B$ for 700/800, and only min $B$ for 600!}
+}
 \end{figure}
 
-With the equation of state, we now solve the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} with multiple bag pressures above the lower bounds \eqref{eq:lsm:bag_lower_bound}.
+With the equation of state, we now solve the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov} with multiple bag pressures above the lower bounds \eqref{eq:lsm:bag_lower_bound}.
 We find the central pressure-parametrized mass-radius curves in \cref{fig:lsm:2-flavor-mass-radius}, producing maximum masses $1.7 < M < 2.1 M_\odot$ with corresponding radii $\SI{9}{\kilo\meter} < R < \SI{12}{\kilo\meter}$ depending on the mass $m_\sigma$.
 This is similar to the MIT bag model solutions in \cref{fig:mit:mass_radius}.
+
+The solution of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov} yields the pressure, energy density and mass profiles $P(r)$, $\epsilon(r)$ and $m(r)$ of a star.
+We can then invert the pressure $P(\mu)$ as a function of the quark chemical potential to find its radial profile $\mu(r)$,
+and hence the particle density profiles $n_i(r)$ by looking up the corresponding value in \cref{fig:lsm:2-flavor-eos}.
 
 \TODO{continue here on Tuesday}
 
@@ -1019,6 +1029,11 @@ Results analogous to those in \cref{fig:lsm:2-flavor-mass-radius}, but with the 
 The potential is straightforward to evaluate using the physical masses and pion decay constant.
 \Cref{fig:lsm:2-flavor-eos-ref,fig:lsm:2-flavor-mass-radius-ref} compare results obtained with this ``consistently fit'' grand potential to our ``inconsistent'' results from \cref{fig:lsm:2-flavor-eos,fig:lsm:2-flavor-mass-radius}.
 The lower bag constant bound \eqref{eq:lsm:bag_lower_bound} is practically speaking unmodified, so we use the same bag constants as before.
+
+\TODO{%
+	only $m_\sigma=800$ for simplicity, dont have to think about phase transition behavior of densities etc.
+	take most extreme star with largest $B$ in stability window, will show star with largest chemical potential.
+}
 
 The differences are staggering!
 \TODO{compare and discuss more, but first verify numerical results}
