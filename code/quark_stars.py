@@ -267,7 +267,14 @@ class Model:
         ϵ, nu, nd, ns, ne, μQ = self.eos(B=B14**4)
         rs, ms, Ps, αs, ϵs = soltov(ϵ, Pc, maxdr=tovopts["maxdr"])
         nus, nds, nss, nes, μQs = nu(Ps), nd(Ps), ns(Ps), ne(Ps), μQ(Ps)
-        x = rs / rs[-1] # dimensionless radius [0, 1]
+        xs = rs / rs[-1] # dimensionless radius [0, 1]
+
+        Ps *= (fm**3/GeV) * ϵ0 # now in GeV/fm^3
+        ϵs *= (fm**3/GeV) * ϵ0 # now in GeV/fm^3
+        nus /= 0.165 # now in units of n_sat
+        nds /= 0.165 # now in units of n_sat
+        nss /= 0.165 # now in units of n_sat
+        nes /= 0.165 # now in units of n_sat
 
         if plot:
             fig, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4)
@@ -688,15 +695,17 @@ if __name__ == "__main__":
 
     P1P2 = (1e-7, 1e-2)
 
-    LSM3FlavorModel(mσ=700).eos(plot=True)
-    exit()
+    LSM2FlavorModel(mσ=800).star(0.0012500875, 47, write=True) # has larger μQ than B=27^4
 
-    LSM2FlavorModel(mσ=800).stars(0, P1P2, plot=True, write=True)
-    LSM2FlavorModel(mσ=800).stars(0, P1P2, plot=True, write=True)
-    LSM2FlavorModel(mσ=800).stars(0, P1P2, plot=True, write=True)
-    LSM2FlavorModel(mσ=800).stars(27.0, P1P2, plot=True, write=True)
-    LSM2FlavorModel(mσ=800).stars(48.3, P1P2, plot=True, write=True)
-    LSM2FlavorModel(mσ=800).stars((27.0+48.3)/2, P1P2, plot=True, write=True)
+    LSM2FlavorModel(mσ=600).stars(111, P1P2, write=True)
+    LSM2FlavorModel(mσ=600).stars(131, P1P2, write=True)
+    LSM2FlavorModel(mσ=600).stars(151, P1P2, write=True)
+    LSM2FlavorModel(mσ=700).stars(68,  P1P2, write=True)
+    LSM2FlavorModel(mσ=700).stars(88,  P1P2, write=True)
+    LSM2FlavorModel(mσ=700).stars(108, P1P2, write=True)
+    LSM2FlavorModel(mσ=800).stars(27,  P1P2, write=True)
+    LSM2FlavorModel(mσ=800).stars(47,  P1P2, write=True)
+    LSM2FlavorModel(mσ=800).stars(67,  P1P2, write=True)
     exit()
 
     #LSM2FlavorModel(mσ=600).eos()

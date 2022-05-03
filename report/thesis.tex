@@ -14,6 +14,7 @@
 \newcommand\TODOM[1]{\marginpar{\TODO{#1}}}
 
 \usepackage{ifdraft}
+\usepackage[svgnames]{xcolor}
 %\usepackage[utf8]{inputenc} % ignored with lualatex / xelatex (which are utf8-based)
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -54,6 +55,10 @@
 % can use mathrlap/mathllap instead of mathclap to right/left justify instead of centering
 \newcommand{\equalexplabove}[1]{\overset{\substack{\mathrlap{\text{\hspace{-1em}#1}}\\\big\downarrow}}{=}}
 \newcommand{\equalexplbelow}[1]{\underset{\substack{\big\uparrow\\\mathrlap{\text{\hspace{-1em}#1}}}}{=}}
+
+% make nice \star symbol
+\usepackage{pifont}
+\DeclareRobustCommand{\goldenstar}{\textcolor{Goldenrod}{\mbox{\ding{72}}}}
 
 %\usepackage{unicode-math} % make code display utf8 characters properly (seems that only fontspec below is enough?)
 %\setmonofont{DejaVu Sans Mono} % will affect whole document, including URLs etc.
