@@ -101,6 +101,7 @@ class Model:
             assert sol.converged
             Bbound = sol.root
         except ValueError:
+            print("alternative bag bound method")
             Bs = np.linspace(0, 300, 10000)**4
             Bbound = Bs[np.argmin([f(B) for B in Bs])]
         print(f"Bag constant bound: B^(1/4) = {Bbound**(1/4)} MeV", end=" ")
@@ -266,15 +267,31 @@ class Model:
         ϵ, nu, nd, ns, ne, μQ = self.eos(B=B14**4)
         rs, ms, Ps, αs, ϵs = soltov(ϵ, Pc, maxdr=tovopts["maxdr"])
         nus, nds, nss, nes, μQs = nu(Ps), nd(Ps), ns(Ps), ne(Ps), μQ(Ps)
+        x = rs / rs[-1] # dimensionless radius [0, 1]
 
         if plot:
-            plt.plot(rs, μQs)
-            plt.margins(0, 0)
+            fig, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4)
+            ax1.set_xlabel(r"$r$")
+            ax2.set_xlabel(r"$r$")
+            ax3.set_xlabel(r"$r$")
+            ax4.set_xlabel(r"$r$")
+            ax1.plot(rs, Ps, label=r"$P$")
+            ax1.plot(rs, ϵs, label=r"$\epsilon$")
+            ax2.plot(rs, ms, label=r"$m$")
+            ax3.plot(rs, μQs, label=r"$\mu_Q$")
+            ax4.plot(rs, nus, label=r"$n_u$")
+            ax4.plot(rs, nds, label=r"$n_d$")
+            ax4.plot(rs, nss, label=r"$n_s$")
+            ax4.plot(rs, nes, label=r"$n_e$")
+            ax1.legend()
+            ax2.legend()
+            ax3.legend()
+            ax4.legend()
             plt.show()
 
         if write:
-            heads = ["r", "P", "epsilon", "nu", "nd", "ns", "ne", "muQ"]
-            cols = [list(rs), list(Ps), list(ϵs), list(nus), list(nds), list(nss), list(nes), list(μQs)]
+            heads = ["r", "x", "m", "P", "epsilon", "nu", "nd", "ns", "ne", "muQ"]
+            cols = [list(rs), list(xs), list(ms), list(Ps), list(ϵs), list(nus), list(nds), list(nss), list(nes), list(μQs)]
             outfile = f"data/{self.name}/star_sigma_{self.mσ}_B14_{B14}_Pc_{Pc:.7f}.dat"
             utils.writecols(cols, heads, outfile)
 
@@ -669,10 +686,29 @@ if __name__ == "__main__":
     utils.writecols(cols, heads, f"data/{model.name}/potential_noisospin_sigma_{mσ}.dat", skipevery=len(μQ))
     """
 
-    LSM2FlavorModel(mσ=600).eos()
+    P1P2 = (1e-7, 1e-2)
+
+    LSM3FlavorModel(mσ=700).eos(plot=True)
+    exit()
+
+    LSM2FlavorModel(mσ=800).stars(0, P1P2, plot=True, write=True)
+    LSM2FlavorModel(mσ=800).stars(0, P1P2, plot=True, write=True)
+    LSM2FlavorModel(mσ=800).stars(0, P1P2, plot=True, write=True)
+    LSM2FlavorModel(mσ=800).stars(27.0, P1P2, plot=True, write=True)
+    LSM2FlavorModel(mσ=800).stars(48.3, P1P2, plot=True, write=True)
+    LSM2FlavorModel(mσ=800).stars((27.0+48.3)/2, P1P2, plot=True, write=True)
+    exit()
+
+    #LSM2FlavorModel(mσ=600).eos()
     #LSM2FlavorModel().eos(plot=True, N=250, B=30**4)
     #LSM2FlavorModel().star(0.0001, 30, plot=True)
-    exit()
+    #exit()
+
+    # radial profiles for most massive stars
+    #LSM2FlavorModel(mσ=700).star(B14=60, Pc=0.000937590625, plot=True)
+    #LSM2FlavorModel(mσ=700).star(B14=90, Pc=0.0012500875, plot=True)
+    #LSM2FlavorModel(mσ=800).star(B14=60, )
+    #exit()
 
     """
     Δ = np.linspace(-600, +600, 300)
@@ -720,7 +756,6 @@ if __name__ == "__main__":
     """
 
     """
-    P1P2 = (1e-7, 1e-2)
 
     models = [MIT2FlavorModel, MIT3FlavorModel]
     for model in models:
