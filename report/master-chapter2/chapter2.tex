@@ -123,7 +123,7 @@ To account for quantum fluctuations $\tilde{\sigma}$ and $\tilde{\vec{\pi}}$ aro
 Up to second order in the quantum fluctuations,
 the Lagrangian \eqref{eq:lsm:lagrangian} becomes
 \begin{equation}
-	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \Big[ i \slashed\partial + \mu \gamma^0 - m_q \Big] q_c
+	\lagr = \sum_{f=\{u,d\}} \sum_{c=1}^{N_c} \bar{q}_{f,c} \Big[ i \slashed\partial + \mu \gamma^0 - m_q \Big] q_{f,c}
 	      + \frac12 \left[ \left( \partial_\mu \tilde{\sigma} \right)^2 + \left( \partial_\mu \tilde{\vec\pi} \right)^2 \right] - \pot(\sigma,\vec\pi) , %\pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) ,
 \end{equation}
 and the meson potential \eqref{eq:lsm:potential} becomes
@@ -167,8 +167,6 @@ According to Weinberg's philosophy presented in \cref{sec:qcd:phase_diagram_and_
 the quark-meson model is therefore an appropriate effective model of quantum chromodynamics at low energy.
 
 \section{Grand potential and equation of state}
-
-\TODO{fix flavor sum indices. make consistent with earlier stuff.}
 
 \TODO{write $\Omega(\avg{\sigma},\vec{\mu})$ in order to keep function declaration general for ``any'' chemical potential combination?}
 
@@ -246,7 +244,7 @@ The middle term in curly brackets was calculated in the zero-temperature pressur
 This time we will also include and renormalize the infinite vacuum contribution from the first term in curly brackets.
 Reinstating the Fermi momenta $p_f = \sqrt{\smash[b]{\mu_f^2-m_q^2}}$, we obtain
 \begin{equation}
-	\Omega = -N_c N_f \Omega_0 - \smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_q^2 \right) \mu_f \sqrt{\mu_f^2 - m_q^2} + 3 m_q^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right]
+	\Omega = -N_c N_f \Omega_0 - \smashoperator{\sum_{\vphantom{\big|} f=\{u,d\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_q^2 \right) \mu_f \sqrt{\mu_f^2 - m_q^2} + 3 m_q^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right]
 \end{equation}
 with the vacuum contribution
 \begin{equation}
