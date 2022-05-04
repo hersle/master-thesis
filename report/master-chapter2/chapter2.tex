@@ -170,8 +170,6 @@ the quark-meson model is therefore an appropriate effective model of quantum chr
 
 \TODO{write $\Omega(\avg{\sigma},\vec{\mu})$ in order to keep function declaration general for ``any'' chemical potential combination?}
 
-\TODO{resolve $\avg{\sigma}$ vs $m_q$ variable use}
-
 We now set out to calculate the grand potential \eqref{eq:master_intro:grand_potential}.
 With the fermionic quark fields $q$ and bosonic meson fields $\sigma$ and $\vec\pi$
 and the coupling of chemical potentials $\mu$ to conserved currents already baked into the Lagrangian \eqref{eq:lsm:lagrangian},
@@ -523,13 +521,13 @@ This means that we must not solve only the self-consistency equation \eqref{eq:l
 but the \emph{system} of two equations
 \begin{subequations}
 \begin{align}
-	0 &= \pdv{\Omega}{\avg{\sigma}} , \label{eq:lsm:minsys_min} \\
+	0 &= \pdv{\Omega}{m_q} , \label{eq:lsm:minsys_min} \\
 	%0 &= +\frac23 n_u - \frac13 n_d - n_e , \label{eq:lsm:minsys_charge} \\
 	0 &= 2 \Big[\mu_u^2-m_q^2\Big]^\frac32 - \Big[(\mu_u+\mu_e)^2-m_q^2\Big]^\frac32 - \Big[\mu_e^2-m_e^2\Big]^\frac32 \label{eq:lsm:minsys_charge}.
 \end{align}%
 \label{eq:lsm:minsys}%
 \end{subequations}%
-for a given value of one variable -- say $\avg{\sigma} = m_q/g$.
+for a given value of one variable -- say $m_q=g \avg{\sigma}$ -- which we now use instead of $\avg{\sigma}$.
 The solution yields $\mu_u$ and $\mu_e$, and the remaining chemical potential $\mu_d$ can then be calculated from the equilibrium constraint \eqref{eq:lsm:chemical_equilibrium}.
 Parametrizing multiple solutions in this manner, it is straightforward to calculate the densities \eqref{eq:lsm:particle_densities}, pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density},
 and hence the equation of state $\epsilon(P)$.
