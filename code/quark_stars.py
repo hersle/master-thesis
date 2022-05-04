@@ -418,7 +418,7 @@ class LSMModel(Model):
         axr = axl.twinx()
         ΔxΔx, ΔyΔy = np.meshgrid(Δx, Δy)
 
-        Ωf = lambda Δx, Δy: self.Ω(Δx, Δy, 0, 0, 0, 0) / fπ**4 # in vacuum
+        Ωf = lambda Δx, Δy: self.Ω(Δx, Δx, Δy, 0, 0, 0, 0) / fπ**4 # in vacuum
 
         Ω = Ωf(ΔxΔx, ΔyΔy)
         Ω0 = np.max(np.abs(Ω))
@@ -694,6 +694,7 @@ if __name__ == "__main__":
     """
 
     P1P2 = (1e-7, 1e-2)
+    """
 
     LSM2FlavorModel(mσ=800).star(0.0012500875, 47, write=True) # has larger μQ than B=27^4
 
@@ -706,6 +707,18 @@ if __name__ == "__main__":
     LSM2FlavorModel(mσ=800).stars(27,  P1P2, write=True)
     LSM2FlavorModel(mσ=800).stars(47,  P1P2, write=True)
     LSM2FlavorModel(mσ=800).stars(67,  P1P2, write=True)
+    exit()
+    """
+
+    LSM2FlavorConsistentModel(mσ=400).stars(107, P1P2, write=True)
+    LSM2FlavorConsistentModel(mσ=400).stars(127, P1P2, write=True)
+    LSM2FlavorConsistentModel(mσ=400).stars(147, P1P2, write=True)
+    LSM2FlavorConsistentModel(mσ=500).stars(84, P1P2, write=True)
+    LSM2FlavorConsistentModel(mσ=500).stars(104, P1P2, write=True)
+    LSM2FlavorConsistentModel(mσ=500).stars(124, P1P2, write=True)
+    LSM2FlavorConsistentModel(mσ=600).stars(27, P1P2, write=True)
+    LSM2FlavorConsistentModel(mσ=600).stars(47, P1P2, write=True)
+    LSM2FlavorConsistentModel(mσ=600).stars(67, P1P2, write=True)
     exit()
 
     #LSM2FlavorModel(mσ=600).eos()
@@ -722,10 +735,12 @@ if __name__ == "__main__":
     """
     Δ = np.linspace(-600, +600, 300)
     for mσ in [500, 550, 600, 650, 700, 750, 800, 850]:
-        LSM2Flavor(mσ=mσ).vacuum_potential(Δ, np.array([ms]), write=True)
+        LSM2FlavorModel(mσ=mσ).vacuum_potential(Δ, np.array([ms0]), write=True)
+    for mσ in [400, 500, 600, 700, 800]:
+        LSM2FlavorConsistentModel(mσ=mσ).vacuum_potential(Δ, np.array([ms0]), write=True)
     Δ = np.linspace(-1000, +1000, 50)
     for mσ in [500, 550, 600, 650, 700, 750, 800, 850]:
-        LSM3Flavor(mσ=mσ).vacuum_potential(Δ, Δ, write=True)
+        LSM3FlavorModel(mσ=mσ).vacuum_potential(Δ, Δ, write=True)
     """
 
     """
