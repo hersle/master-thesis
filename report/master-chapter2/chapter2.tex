@@ -327,40 +327,6 @@ The pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:maste
 \subsection{Parameter fitting}
 \label{sec:lsm:parameter_fit}
 
-\begin{table}
-\centering
-\begin{tabular}{ l r r }
-	\toprule
-	Variable & Model value                             & Experimental value \\
-	\midrule
-	$\avg{\sigma}=f_\pi$ & $\textbf{\SI{93}{\mega\electronvolt}}$  & \SI{92}{}-\SI{93}{\mega\electronvolt} \\
-	%\midrule
-	$m_u=m_d$            & $\textbf{\SI{300}{\mega\electronvolt}}$ & \approx \, \SI{300}{\mega\electronvolt} \\
-	%\midrule
-	$m_\sigma$           & $\textbf{\{700,800\}\,\si{\mega\electronvolt}}$ & \SI{400}{}-\SI{700}{\mega\electronvolt}          \\
-	$m_\pi$              & $\textbf{\SI{138}{\mega\electronvolt}}$ & \SI{138}{\mega\electronvolt}                     \\
-	\\
-	\bottomrule
-\end{tabular}
-\hfill
-\begin{tabular}{ l r }
-	\toprule
-	Parameter   & Model value                           \\
-	\midrule
-	$g$         & $\SI{3.23}{}$                         \\
-	$\lambda$   & $-\{163.4,215.4\}$                        \\
-	$m^2$       & $-(\{465.2,539.8\} \, \si{\mega\electronvolt})^2$ \\
-	$h$         & $(\SI{121.0}{\mega\electronvolt})^3$  \\
-	$\Lambda$   & $\SI{182.0}{\mega\electronvolt}$ \\
-	\bottomrule
-\end{tabular}
-\caption{\label{tab:lsm2f:parameters}%
-Parameter fit for the two-flavor linear sigma model in vacuum compared to experimental values from \cite{ref:pdg_review_2021}.
-The \textbf{bold values} in the left table are used as input to determine the parameters \eqref{eq:lsm:parameters} and \eqref{eq:lsm:potential_vacuum_minimum}.
-Two different values are used for $m_\sigma$, generating two different values of both $\lambda$ and $m^2$, while the remaining parameters remain unchanged.
-}
-\end{table}
-
 To determine the four paremeters $g$, $m^2$, $\lambda$ and $h$ in the Lagrangian \eqref{eq:lsm:lagrangian},
 we use measured values of the mean field $\avg{\sigma}$ and masses $m_\sigma$, $m_\pi$ and $m_q$ in vacuum.
 Inverting equations \eqref{eq:lsm:ground_state_implicit}, \eqref{eq:lsm:mass_sigmapi} and \eqref{eq:lsm:mass_quark}, we then find the parameters
@@ -400,7 +366,7 @@ All of these quantities have low uncertainty.
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:potential_sigma_mass}
-Two-flavor grand potential \eqref{eq:lsm:grand_potential} in vacuum with $\vec{\mu}=\vec{0}$ for varying values of $m_\sigma$.}
+Two-flavor grand potential \eqref{eq:lsm:grand_potential} in vacuum with $\vec{\mu}=\vec{0}$ for different $m_\sigma$.}
 \end{figure}
 
 On the other hand, the mass $m_\sigma$ is very uncertain and hard to choose.
@@ -432,6 +398,40 @@ Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumpt
 	\Lambda = \frac{g f_\pi}{\sqrt{e}}.
 \label{eq:lsm:potential_vacuum_minimum}
 \end{equation}
+
+\begin{table}
+\centering
+\begin{tabular}{ l r r }
+	\toprule
+	Variable & Model value                             & Experimental value \\
+	\midrule
+	$\avg{\sigma}=f_\pi$ & $\textbf{\SI{93}{\mega\electronvolt}}$  & \SI{92}{}-\SI{93}{\mega\electronvolt} \\
+	%\midrule
+	$m_u=m_d$            & $\textbf{\SI{300}{\mega\electronvolt}}$ & \approx \, \SI{300}{\mega\electronvolt} \\
+	%\midrule
+	$m_\sigma$           & $\textbf{\{700,800\}\,\si{\mega\electronvolt}}$ & \SI{400}{}-\SI{700}{\mega\electronvolt}          \\
+	$m_\pi$              & $\textbf{\SI{138}{\mega\electronvolt}}$ & \SI{138}{\mega\electronvolt}                     \\
+	\\
+	\bottomrule
+\end{tabular}
+\hfill
+\begin{tabular}{ l r }
+	\toprule
+	Parameter   & Model value                           \\
+	\midrule
+	$g$         & $\SI{3.23}{}$                         \\
+	$\lambda$   & $-\{163.4,215.4\}$                        \\
+	$m^2$       & $-(\{465.2,539.8\} \, \si{\mega\electronvolt})^2$ \\
+	$h$         & $(\SI{121.0}{\mega\electronvolt})^3$  \\
+	$\Lambda$   & $\SI{182.0}{\mega\electronvolt}$ \\
+	\bottomrule
+\end{tabular}
+\caption{\label{tab:lsm2f:parameters}%
+Parameter fit for the two-flavor linear sigma model in vacuum compared to experimental values from \cite{ref:pdg_review_2021}.
+The \textbf{bold values} in the left table are used as input to determine the parameters \eqref{eq:lsm:parameters} and \eqref{eq:lsm:potential_vacuum_minimum}.
+Two different values are used for $m_\sigma$, generating two different values of both $\lambda$ and $m^2$, while the remaining parameters remain unchanged.
+}
+\end{table}
 
 \Cref{tab:lsm2f:parameters} summarizes the chosen input values for $\avg{\sigma}=f_\pi$, $m_\pi$, $m_\sigma$ and $m_q$ and the corresponding output parameters $m^2$, $\lambda$, $g$, $h$ and $\Lambda$.
 
@@ -908,8 +908,9 @@ Coincidentally, the renormalization scale $\Lambda$ has disappeared from the gra
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:potential_sigma_mass_ref}
-Consistently fit two-flavor grand potential \eqref{eq:lsm2f:grand_potential_consistent} in vacuum with $\vec{\mu}=\vec{0}$ for varying values of $m_\sigma$.}
+Consistently fit two-flavor grand potential \eqref{eq:lsm2f:grand_potential_consistent} in vacuum with $\vec{\mu}=\vec{0}$ for different $m_\sigma$.
 \TODO{plot inconsistent with dashed lines?}
+}
 \end{figure}
 
 Like before, we will set $m_q$, $m_\pi$ and $f_\pi$ to the fixed values in \cref{tab:lsm2f:parameters}, but vary $m_\sigma$.
