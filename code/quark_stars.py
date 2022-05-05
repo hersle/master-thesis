@@ -694,7 +694,9 @@ if __name__ == "__main__":
     """
 
     P1P2 = (1e-7, 1e-2)
-    """
+
+    LSM2FlavorModel(mσ=800).eos()
+    exit()
 
     LSM2FlavorModel(mσ=800).star(0.0012500875, 47, write=True) # has larger μQ than B=27^4
 
@@ -708,7 +710,6 @@ if __name__ == "__main__":
     LSM2FlavorModel(mσ=800).stars(47,  P1P2, write=True)
     LSM2FlavorModel(mσ=800).stars(67,  P1P2, write=True)
     exit()
-    """
 
     LSM2FlavorConsistentModel(mσ=400).stars(107, P1P2, write=True)
     LSM2FlavorConsistentModel(mσ=400).stars(127, P1P2, write=True)
