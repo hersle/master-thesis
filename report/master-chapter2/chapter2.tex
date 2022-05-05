@@ -846,9 +846,7 @@ Hopefully, this remark will save someone from enduring this painful realization 
 }
 \fi
 
-\section{Refinements with consistent parameter fixing}
-
-\TODO{elaborate that this is an ``aside'', not strictly necessary, mark with star, or something?}
+\section{Refinements with consistent parameter fitting}
 
 As we remarked at the end of \cref{sec:lsm:parameter_fit},
 fitting parameters from tree-level relations is inconsistent because we calculated the grand potential \eqref{eq:lsm:grand_potential} to one-loop in the quarks.
@@ -864,6 +862,7 @@ In appendix C of the latter reference, they find the grand potential
 \begin{split}
 	\Omega &= \frac12 \frac{m_R^2}{g_R^2} \Delta^2 + \frac{\lambda_R}{24 g_R^4} \Delta^4 - \frac{h_R}{g_R} \Delta + \frac{N_c N_f}{16 \pi^2} \Delta^4 \bigg[ \frac32 + \log \frac{\Lambda^2}{\Delta^2} \bigg] + \Omega_q + \Omega_e,
 \end{split}
+\label{eq:lsm2f:grand_potential_consistent_before}
 \end{equation}
 where $\Omega_q+\Omega_e$ is the same contribution from quarks and electrons as in the two last lines of our grand potential \eqref{eq:lsm:grand_potential}.
 Now all the masses and coupling $m_R^2(\Lambda)$, $\lambda_R(\Lambda)$, $g_R(\Lambda)$ and $h_R(\Lambda)$ run with the renormalization scale $\Lambda$.
@@ -878,43 +877,56 @@ After solving their renormalization group equations and inserting their solution
 \end{split}
 \label{eq:lsm2f:grand_potential_consistent}
 \end{equation}
-Here $\Delta$ is the dynamic quark mass while $f_\pi$, $m_q$, $m_\pi$ and $m_\sigma$ are vacuum values, and
-\TODO{make my notation consistent with this?}
+In contrast to our conventions, $m_q$, $m_\pi$ and $m_\sigma$ are \emph{vacuum masses} here,
+while the dynamic quark mass $\Delta$ corresponds to what we labelled $m_q$ earlier.
+In addition, they have defined
+\TODO{try to establish common notation after reviewing 3F-model}
 \begin{equation}
-	F(p^2) = 2 - 2 r \atan \frac1r, \qquad
-	F'(p^2) = \frac{4 m_q^2}{p^4 r} \atan \frac1r - \frac{1}{p^2}, \qquad
+	F(p^2) = 2 - 2 r \atan \Big(\frac1r\Big), \qquad
+	F'(p^2) = \frac{4 m_q^2}{p^4 r} \atan \Big(\frac1r\Big) - \frac{1}{p^2}, \qquad
 	r = \sqrt{\frac{4 m_q^2}{p^2}-1} .
 \end{equation}
-Coincidentally, the renormalization scale $\Lambda$ has disappeared from the grand potential upon substitution of the renormalized couplings.
+Coincidentally, the renormalization scale $\Lambda$ has disappeared from the original expression \eqref{eq:lsm2f:grand_potential_consistent_before} upon substitution of the renormalized couplings!
 
 \begin{figure}
 \centering
 \tikzsetnextfilename{2-flavor-potential-vacuum-ref}
+\pgfplotsset{cycle list/YlOrRd-6}
 \begin{tikzpicture}
 \begin{axis}[
 	width = 15cm, height = 7cm,
 	xmin=-500, xmax=+500, xtick distance = 100, minor x tick num=9,
-	ymin=-16, ymax=+6, ytick distance=5, minor y tick num=4,
+	ymin=-11, ymax=+6, ytick distance=5, minor y tick num=4,
 	xlabel = {$\Delta \, / \, \si{\mega\electronvolt}$}, ylabel = {$\Omega \, / \, f_\pi^4$},
 	legend style = {at={(0.5,1.03)}, anchor=south}, legend columns=4,
-	cycle list/YlOrRd-6,
+	cycle multi list={
+		YlOrRd-6\nextlist
+		solid, dashed
+	},
+	transpose legend, legend columns=2, legend cell align=left,
+	%cycle list/YlOrRd-6,
 ]
-\pgfplotsset{cycle list shift=+1} % skip weakest line
+%\pgfplotsset{cycle list shift=+0} % skip weakest line
+\addplot+ [black, solid] {-12}; \addlegendentry{``Consistent''};
+\addplot+ [black, dashed] {-12}; \addlegendentry{``Inconsistent''};
 \addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2FC/potential_vacuum_sigma400.dat}; \addlegendentry{$m_\sigma = \SI{400}{\mega\electronvolt}$};
+\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma600.dat};  \addlegendentry{$m_\sigma = \SI{600}{\mega\electronvolt}$};
 \addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2FC/potential_vacuum_sigma500.dat}; \addlegendentry{$m_\sigma = \SI{500}{\mega\electronvolt}$};
+\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma700.dat};  \addlegendentry{$m_\sigma = \SI{700}{\mega\electronvolt}$};
 \addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2FC/potential_vacuum_sigma600.dat}; \addlegendentry{$m_\sigma = \SI{600}{\mega\electronvolt}$};
-\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2FC/potential_vacuum_sigma700.dat}; \addlegendentry{$m_\sigma = \SI{700}{\mega\electronvolt}$};
+\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma800.dat};  \addlegendentry{$m_\sigma = \SI{800}{\mega\electronvolt}$};
+%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2FC/potential_vacuum_sigma700.dat}; \addlegendentry{$m_\sigma = \SI{700}{\mega\electronvolt}$};
 %\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2FC/potential_vacuum_sigma800.dat}; \addlegendentry{$m_\sigma = \SI{800}{\mega\electronvolt}$};
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:potential_sigma_mass_ref}
-Consistently fit two-flavor grand potential \eqref{eq:lsm2f:grand_potential_consistent} in vacuum with $\vec{\mu}=\vec{0}$ for different $m_\sigma$.
-\TODO{plot inconsistent with dashed lines?}
+Consistently fit two-flavor grand potential \eqref{eq:lsm2f:grand_potential_consistent} in vacuum with $\vec{\mu}=\vec{0}$ for different $m_\sigma$
+compared to the inconsistently fit grand potential from \cref{fig:lsm:potential_sigma_mass}.
 }
 \end{figure}
 
-Like before, we will set $m_q$, $m_\pi$ and $f_\pi$ to the fixed values in \cref{tab:lsm2f:parameters}, but vary $m_\sigma$.
-Whereas \cref{fig:lsm:potential_sigma_mass} shows that our inconsistently fit grand potential only had stable minima for $m_\sigma \gtrsim \SI{600}{\mega\electronvolt}$ in vacuum,
+Like before, we will set $m_q$, $m_\pi$ and $f_\pi$ to the fixed vacuum values in \cref{tab:lsm2f:parameters}, but vary $m_\sigma$.
+Whereas \cref{fig:lsm:potential_sigma_mass} shows that our original inconsistently fit grand potential only had stable minima for $m_\sigma \gtrsim \SI{600}{\mega\electronvolt}$ in vacuum,
 \cref{fig:lsm:potential_sigma_mass_ref} shows that it appears for $m_\sigma \gtrsim \SI{400}{\mega\electronvolt}$ with the consistently fit grand potential.
 This allows us to set $m_\sigma$ to values within its measured range $\SI{400}{}$-$\SI{550}{\mega\electronvolt}$ without breaking the model!
 
@@ -1003,7 +1015,7 @@ and with $m_\sigma = \{500,600\} \, \si{\mega\electronvolt}$.
 }
 \end{figure}
 
-\begin{figure}[p]
+\begin{figure}[t]
 \centering
 \tikzsetnextfilename{2-flavor-mass-radius-ref}
 \begin{tikzpicture}
@@ -1056,9 +1068,8 @@ and with $m_\sigma = \{400,500,600\} \, \si{\mega\electronvolt}$.
 }
 \end{figure}
 
-The grand potential \eqref{eq:lsm2f:grand_potential_consistent} is straightforward to evaluate with the same vacuum values for $f_\pi$, $m_q$ and $m_\pi$ as in \cref{tab:lsm2f:parameters},
-but now use lower values of $m_\sigma$.
-Repeating our earlier calculations, we find the equation of state in \cref{fig:lsm:2-flavor-eos-ref},
+Repeating our earlier calculations with the new grand potential \eqref{eq:lsm2f:grand_potential_consistent} for lower values of $m_\sigma$,
+we find the equation of state in \cref{fig:lsm:2-flavor-eos-ref},
 the lower bag constant bounds
 \begin{subequations}
 \begin{align}
@@ -1072,11 +1083,13 @@ and the mass-radius solutions in \cref{fig:lsm:2-flavor-mass-radius-ref}.
 
 The ``consistent'' results with $m_\sigma=\{400,500,600\} \, \si{\mega\electronvolt}$ are
 virtually identical to the ``inconsistent'' results with $m_\sigma=\{600,700,800\} \, \si{\mega\electronvolt}$.
-This can be seen by comparing the features in \cref{fig:lsm:2-flavor-eos-ref,fig:lsm:2-flavor-mass-radius-ref},
-or more easily by noting that the vacuum potentials in \cref{fig:lsm:potential_sigma_mass}
--- which are the only thing that differs between the two approaches --
-are more or less identical to those in \cref{fig:lsm:potential_sigma_mass_ref} that have values of $m_\sigma$ that are $\SI{200}{\mega\electronvolt}$ greater.
+This can be seen by comparing the individual features in \cref{fig:lsm:2-flavor-eos-ref,fig:lsm:2-flavor-mass-radius-ref},
+or more easily by noting that the vacuum potentials in \cref{fig:lsm:potential_sigma_mass_ref}
+-- \emph{which is the difference between the two approaches} --
+more or less coincides with those in \cref{fig:lsm:potential_sigma_mass} that have about $\SI{200}{\mega\electronvolt}$ larger values of $m_\sigma$.
 
-This approach has shown the importance of fitting the parameters of the model in a consistent manner in order to achieve correspondence between model and experiment.
-In our inconsistent approach we had no other choice but to use too large values of $m_\sigma$ to avoid breaking the model and generate any results at all,
-but we now have reason to trust these results after all!
+This approach has shown the importance of fitting the parameters of the model in a consistent manner in order to achieve correspondence between experimental and model parameters.
+In our original inconsistent approach we had no other choice but to use too large values of $m_\sigma$ to avoid breaking the model and generate any results at all,
+leaving us with a doubtful and unsatisfactory feeling.
+However, comparison with the consistent approach restores our trust in these results
+and tells us that we should not be too worried by fitting too large values of $m_\sigma$ at tree-level.
