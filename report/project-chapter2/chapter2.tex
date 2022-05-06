@@ -1040,16 +1040,16 @@ We will use the \textbf{Dirac basis}
 \begin{equation}
 	\gamma^0 = \begin{bmatrix} I_2 & 0 \\ 0 & -I_2 \\ \end{bmatrix}
 	\qquad \text{and} \qquad
-	\gamma^i = \begin{bmatrix} 0 & \sigma^i \\ -\sigma^i & 0 \\ \end{bmatrix} ,
+	\gamma^i = \begin{bmatrix} 0 & \tau^i \\ -\tau^i & 0 \\ \end{bmatrix} ,
 \label{eq:tft:gamma_dirac_basis}
 \end{equation}
-where $\sigma^i$ are the \textbf{Pauli matrices}
+where $\tau^i$ are the \textbf{Pauli matrices}
 \begin{equation}
-	\sigma^1 = \begin{bmatrix} 0 & 1 \\ 1 & 0 \\ \end{bmatrix} ,
+	\tau^1 = \begin{bmatrix} 0 & 1 \\ 1 & 0 \\ \end{bmatrix} ,
 	\qquad
-	\sigma^2 = \begin{bmatrix} 0 & -i \\ i & 0 \\ \end{bmatrix}
+	\tau^2 = \begin{bmatrix} 0 & -i \\ i & 0 \\ \end{bmatrix}
 	\qquad \text{and} \qquad
-	\sigma^3 = \begin{bmatrix} 1 & 0 \\ 0 & -1 \\ \end{bmatrix} .
+	\tau^3 = \begin{bmatrix} 1 & 0 \\ 0 & -1 \\ \end{bmatrix} .
 \label{eq:tft:pauli_matrices}
 \end{equation}
 
@@ -1148,8 +1148,8 @@ First, let us use the Dirac basis representation \eqref{eq:tft:gamma_dirac_basis
 This gives the block matrix
 \begin{equation}
 	D_n(\vec{p}) = \begin{bmatrix}
-	                   -E_n - i \mu + i m c^2         & i c \, \vec{\sigma} \cdot \vec{p}    \\ 
-	                   i c \, \vec{\sigma} \cdot \vec{p} & -E_n - i \mu - i m c^2 \\ 
+	                   -E_n - i \mu + i m c^2         & i c \, \vec{\tau} \cdot \vec{p}    \\ 
+	                   i c \, \vec{\tau} \cdot \vec{p} & -E_n - i \mu - i m c^2 \\ 
 	               \end{bmatrix} .
 \label{eq:tft:matrix_Dnp}
 \end{equation}
@@ -1162,8 +1162,8 @@ which is familiar for a non-block $2 \times 2$ matrix, but in fact also valid fo
 This is applicable in our situation, where $D$ is diagonal.
 %Ignoring the factor $i \beta$ for now and taking care of it later using $\tdet AB  = \tdet{A} \tdet{B}$ and $\tdet{i \beta} = (i \beta)^4 = \beta^4$, we get
 Matching the block matrices $A$, $B$, $C$ and $D$ with those in \cref{eq:tft:matrix_Dnp},
-we then have $AD = (E_n + i \mu)^2 + (mc^2)^2$ and $BC = - (\vec{\sigma} \cdot \vec{p})^2 c^2$.
-From the Pauli matrices \eqref{eq:tft:pauli_matrices}, it is straightforward to verify the property $(\vec{\sigma} \cdot \vec{p})^2 = \vec{p}^2$.
+we then have $AD = (E_n + i \mu)^2 + (mc^2)^2$ and $BC = - (\vec{\tau} \cdot \vec{p})^2 c^2$.
+From the Pauli matrices \eqref{eq:tft:pauli_matrices}, it is straightforward to verify the property $(\vec{\tau} \cdot \vec{p})^2 = \vec{p}^2$.
 Introducing the relativistic dispersion relation \eqref{eq:tft:dispersion} again, we then get the simple diagonal $2 \times 2$ matrix
 $AD - BC = (E_n + i \mu)^2 + E^2(\vec{p})$.
 The determinant then becomes
@@ -1176,11 +1176,11 @@ The determinant then becomes
 \begin{split}
 	\tdet D  & = \tdet \left\{ -\beta \hbar \omega_n - i \beta \mu + i \beta m c^2 \gamma^0 + i \beta c \gamma^0 \vec{\gamma} \cdot \vec{p} \right\} \\
 	         & = \tdet \begin{pmatrix} 
-	                 -\beta \hbar \omega_n - i \beta \mu + i \beta m c^2           & i \beta c \vec{\sigma} \cdot \vec{p}                \\ 
-	                 i \beta c \vec{\sigma} \cdot \vec{p}                          & -\beta \hbar \omega_n - i \beta \mu - i \beta m c^2 \\ 
+	                 -\beta \hbar \omega_n - i \beta \mu + i \beta m c^2           & i \beta c \vec{\tau} \cdot \vec{p}                \\ 
+	                 i \beta c \vec{\tau} \cdot \vec{p}                          & -\beta \hbar \omega_n - i \beta \mu - i \beta m c^2 \\ 
 	             \end{pmatrix} \\
-	         & = \tdet \left\{ (-\beta \hbar \omega_n - i \beta \mu + i \beta mc^2) (-\beta \hbar \omega_n - i \beta \mu - i \beta m c^2) + \beta^2 c^2 (\vec{\sigma} \cdot \vec{p})^2 \right\} \\
-	         & = \tdet \left\{ (-\beta \hbar \omega_n - i \beta \mu)^2 + (\beta m c^2)^2 + \beta^2 c^2 \underbrace{(\vec{\sigma} \cdot \vec{p})^2}_{\vec{p}^2} \right\} \\
+	         & = \tdet \left\{ (-\beta \hbar \omega_n - i \beta \mu + i \beta mc^2) (-\beta \hbar \omega_n - i \beta \mu - i \beta m c^2) + \beta^2 c^2 (\vec{\tau} \cdot \vec{p})^2 \right\} \\
+	         & = \tdet \left\{ (-\beta \hbar \omega_n - i \beta \mu)^2 + (\beta m c^2)^2 + \beta^2 c^2 \underbrace{(\vec{\tau} \cdot \vec{p})^2}_{\vec{p}^2} \right\} \\
 	         & = \tdet \left\{ \beta^2 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right] \right\} \\
 	         & = \beta^4 \left[ (\hbar \omega_n + i \mu)^2 + \hbar^2 \omega^2 \right]^2
 \end{split}
