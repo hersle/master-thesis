@@ -1,8 +1,6 @@
 \chapter{Two-flavor quark-meson model}
 \label{chap:lsm2f}
 
-\TODO{two inconsistencies: (1) match couplings at tree level although using one-loop potential. (2) neglecting bosonic one-loop contribution to effective potential (this is consistent in $N_c\rightarrow \infty$ limit, but inconsistent in terms of number of loops)}
-
 At low energy the effective degrees of freedom of quantum chromodynamics are not individual quarks,
 but nucleons composed of up and down quarks and the three pions that we saw arose from the spontaneous chiral symmetry breaking pattern \eqref{eq:qcd:symmetry_breaking_pattern}.
 The MIT bag model that we discussed in \cref{chap:mit} modeled quark stars by simply confining a free Fermi gas of quarks in baryons with a bag constant $B$.
@@ -35,7 +33,7 @@ We will therefore take the model as granted from the start and justify it as we 
 \caption{\label{fig:lsm:potential}%
 	A two-dimensional realization of the potential \eqref{eq:lsm:potential} looks like a Mexican hat, tilted along the $\sigma$-axis by the explicit symmetry breaking parameter $h$.
 	If $h = 0$, the hat is upright with a continuous range of minima around $\sigma^2 + \vec\pi^2 = -6m^2 / \lambda$;
-	while if $h \neq 0$, the hat is tilted and has the discrete minimum \eqref{eq:lsm:ground_state_implicit}.
+	while if $h \neq 0$, the hat is tilted and has a unique global minimum determined by equation \eqref{eq:lsm:ground_state_implicit}.
 }
 \end{figure}
 
@@ -57,8 +55,8 @@ However, they are now seemingly massless and coupled to a bosonic $\sigma$ meson
 The meson potential features three couplings $m^2<0$, $\lambda>0$ and $h>0$.
 
 Like the quantum chromodynamics Lagrangian \eqref{eq:qcd:lagrangian}, the quark-meson model Lagrangian \eqref{eq:lsm:lagrangian} has the vector $U(1)_V$ and axial $U(1)_A$ symmetry shown in \cref{sec:qcd:symmetry}.
-In contrast to the mass-conditional chiral symmetry of the former Lagrangian, however, the latter is \emph{unconditionally} invariant under chiral symmetry $SU(2)_L \times SU(2)_R$ when $h=0$ and $\mu = 0$.
-To see this, first rewrite the Yukawa coupling term in terms of left-handed and right-handed chiral fields:
+In contrast to the mass-conditional chiral symmetry of the former Lagrangian, however, the latter is \emph{unconditionally} invariant under a $SU(2)_L \times SU(2)_R$ transformation when $h=0$ and $\mu = 0$.
+To see this, first express the Yukawa coupling term with left-handed and right-handed chiral fields:
 \begin{equation}
 \begin{aligned}
 	\bar{q} \big[\sigma + i \gamma^5 \vec{\tau} \cdot \vec{\pi}\big] q &= \bar{q} \big[ (P_+ + P_-) \sigma + (P_+ - P_-) i \vec{\tau} \cdot \vec{\pi}\big] q && \; \big( P_\pm = \tfrac{1}{2} (1 \pm \gamma^5) \big) \\
@@ -353,7 +351,7 @@ All of these quantities have low uncertainty.
 	width = 15cm, height = 7cm,
 	xmin=-500, xmax=+500, xtick distance = 100, minor x tick num=9,
 	ymin=-11, ymax=+6, ytick distance=5, minor y tick num=4,
-	xlabel = {$\Delta \, / \, \si{\mega\electronvolt}$}, ylabel = {$\Omega \, / \, f_\pi^4$},
+	xlabel = {$m_q \, / \, \si{\mega\electronvolt}$}, ylabel = {$\Omega \, / \, f_\pi^4$},
 	legend style = {at={(0.5,1.03)}, anchor=south}, legend columns=4,
 	cycle list/YlOrRd-6,
 ]
@@ -410,7 +408,7 @@ Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumpt
 	%\midrule
 	$m_u=m_d$            & $\textbf{\SI{300}{\mega\electronvolt}}$ & \approx \, \SI{300}{\mega\electronvolt} \\
 	%\midrule
-	$m_\sigma$           & $\textbf{\{700,800\}\,\si{\mega\electronvolt}}$ & \SI{400}{}-\SI{700}{\mega\electronvolt}          \\
+	$m_\sigma$           & $\textbf{\{700,800\}\,\si{\mega\electronvolt}}$ & \SI{400}{}-\SI{550}{\mega\electronvolt}          \\
 	$m_\pi$              & $\textbf{\SI{138}{\mega\electronvolt}}$ & \SI{138}{\mega\electronvolt}                     \\
 	\\
 	\bottomrule
@@ -449,6 +447,7 @@ This will give us some intuition for the shape of the grand potential in the cha
 The chemical equilibrium constraint \eqref{eq:lsm:chemical_equilibrium} then says $\mu_e=0$,
 so electrons are absent and only the two first lines in the grand potential \eqref{eq:lsm:grand_potential} contribute.
 It is now a function $\Omega(\avg{\sigma},\mu)$ of only two variables that is easy to visualize, as done in \cref{fig:lsm:grand-potential-noisospin}.
+Although we defined $\Omega$ as a function of $\avg{\sigma}$, we will discuss following results in terms of $m_q = g \avg{\sigma}$, as it is easier to compare to the quark chemical potentials.
 We see that:
 \begin{itemize}
 \item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$ the grand potential is independent of $\mu$,
@@ -513,8 +512,7 @@ We see that:
 \end{tikzpicture}
 \caption{\label{fig:lsm:grand-potential-noisospin}%
 	The grand potential \eqref{eq:lsm:grand_potential} with zero isospin, or $\mu_u = \mu_d = \mu$ and $\mu_e=0$, for $m_\sigma=\{700,800\} \, \si{\mega\electronvolt}$.
-	The \textcolor{blue}{blue line} and its \textcolor{gray}{gray projection} show minima of $m_q = g \avg{\sigma}$ determined by $\pdv{\Omega}/{\avg{\sigma}} = 0$.
-	\TODO{$\avg{\sigma}$ here instead of $m_q$}
+	The \textcolor{blue}{blue line} and its \textcolor{gray}{gray projection} show its minima $m_q = g \avg{\sigma}$ determined by the self-consistency equation \eqref{eq:lsm:gap_equation}.
 }
 \end{figure}
 
@@ -606,17 +604,17 @@ Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bag
 \addplot+ [red,       dotted, semithick, opacity=0.7, forget plot, domain=0:700] {muu(x)};
 \addplot+ [darkgreen, dotted, semithick, opacity=0.7, forget plot, domain=0:700] {mud(x)};
 \addplot+ [blue,      dotted, semithick, opacity=0.7, forget plot, domain=0:700] {mue(x)};
-\addplot+ [black, solid] {-100}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
-\addplot+ [black, densely dashed] {-100}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
 \addplot+ [black, dotted] {-100}; \addlegendentry{$m_q=m_e=0$};
-\addplot+ [blue,      solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2F/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2F/eos_sigma_800.dat};
-\addplot+ [red,       solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2F/eos_sigma_800.dat};
-\addplot+ [orange,    solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$m_q \, / \, \si{\mega\electronvolt}$};
-\addplot+ [orange,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [black, densely dashed] {-100}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
+\addplot+ [black, solid] {-100}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [blue,      solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [darkgreen, solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [red,       solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [orange,    solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$m_q \, / \, \si{\mega\electronvolt}$};
 \addplot+ [black, every axis plot post/.append style={mark=*, mark options={fill=black}}, solid, domain=0:1, samples=2, forget plot] ({138/(1.12-0.88)}, {0.88*138/(1.12-0.88)+138*x}) node [pos=0.5, right] {$m_\pi$};
 
 
@@ -627,18 +625,18 @@ Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bag
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-density}Particle number densities}},
 	legend cell align=left, legend pos=north west, reverse legend, legend columns=3, legend transposed,
 ];
-\addplot+ [black, solid] {-10}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
-\addplot+ [black, densely dashed] {-10}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
 \addplot+ [black, dotted] {-10}; \addlegendentry{$m_q=m_e=0$};
+\addplot+ [black, densely dashed] {-10}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
+\addplot+ [black, solid] {-10}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
 \addplot+ [red,       dotted, semithick, opacity=0.7, forget plot, domain=0:700] {nq(muu(x))*nconv};
 \addplot+ [darkgreen, dotted, semithick, opacity=0.7, forget plot, domain=0:700] {nq(mud(x))*nconv};
 \addplot+ [blue,      dotted, semithick, opacity=0.7, forget plot, domain=0:700] {ne(mue(x))*nconv};
-\addplot+ [blue,      solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$n_e\,\,$};
-\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2F/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$n_d\,\,$};
-\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2F/eos_sigma_800.dat};
-\addplot+ [red,       solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$n_u\,\,$};
-\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [blue,      solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$n_e\,\,$};
+\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [darkgreen, solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$n_d\,\,$};
+\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2F/eos_sigma_700.dat};
+\addplot+ [red,       solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$n_u\,\,$};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -647,11 +645,11 @@ Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bag
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
 ];
+\addplot+ [black, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+%\addplot+ [black, solid, opacity=0.7, forget plot] table [x=P,y=epsilon] {../code/data/LSM2F/eos_sigma_800.dat};
+\addplot+ [gray, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (before Maxwell construction)};
+\addplot+ [black, densely dashed, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (after Maxwell construction)};
 \addplot+ [black, dotted, opacity=0.7, domain=0:0.1] {3*x}; \addlegendentry{$m_q=m_e=0$};
-\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (before Maxwell construction)};
-\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (after Maxwell construction)};
-\addplot+ [black, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
-\addplot+ [black, densely dashed, opacity=0.7, forget plot] table [x=P,y=epsilon] {../code/data/LSM2F/eos_sigma_800.dat};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos}%
@@ -663,7 +661,7 @@ Dotted lines show the massless solutions \eqref{eq:mit:densities_massless}, \eqr
 }
 \end{figure}
 
-The details of the numerical implementation can be found in \cref{sec:num:qstars2f} \TODO{write it}.
+The details of the numerical implementation can be found in \cref{sec:num:qstars2f}.
 We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 \begin{itemize}
 \item The phase transition or crossover behaves qualitatively identically as in \cref{fig:lsm:grand-potential-noisospin}:
@@ -690,7 +688,6 @@ We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 
 \section{Stellar solutions}
 
-% TODO: start here
 \begin{figure}[p]
 \centering
 \tikzsetnextfilename{2-flavor-mass-radius}
@@ -781,7 +778,9 @@ We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 \addplot+ [red] table [x=r, y=nu] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat}; \addlegendentry{$n_u$};
 \addplot+ [darkgreen] table [x=r, y=nd] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat}; \addlegendentry{$n_d$};
 \addplot+ [blue] table [x=r, y=ne] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat}; \addlegendentry{$n_e$};
-\addplot+ [black, dashed] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat}; \addlegendentry{$n_B$};
+\addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat};
+% cheat legend
+\addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat}; \addlegendentry{$n_B$};
 \end{groupplot}
 \node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {Maximum mass star profile ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{47}{\mega\electronvolt}$, $P_c=10^{34.727} \, \si{\pascal}$)};
 \end{tikzpicture}
@@ -798,7 +797,7 @@ We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 	The solution of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov} yields $P(r)$ and $m(r)$ directly,
 	and $\epsilon(r)$ is then easily computed from the equation of state $\epsilon(P)$.
 	Meanwhile, $\mu(r)$ is obtained from $P(r)$ after inverting $P(\mu) \rightarrow \mu(P)$,
-	and $n_i(r)$ and the other chemical potentials can then be looked up in \cref{fig:lsm:2-flavor-eos}.
+	and $n_i(r)$ and other properties can then be looked up in \cref{fig:lsm:2-flavor-eos}.
 }
 \end{figure}
 
@@ -878,10 +877,9 @@ After solving their renormalization group equations and inserting their solution
 \end{split}
 \label{eq:lsm2f:grand_potential_consistent}
 \end{equation}
-In contrast to our conventions, $m_q$, $m_\pi$ and $m_\sigma$ are \emph{vacuum masses} here,
-while the dynamic quark mass $\Delta$ corresponds to what we labelled $m_q$ earlier.
-In addition, they have defined
-\TODO{try to establish common notation after reviewing 3F-model}
+In contrast to our conventions, they refer to \emph{vacuum masses} with $m_q$, $m_\pi$ and $m_\sigma$
+and the dynamic quark mass with $\Delta$, equivalent to our $m_q=g\avg{\sigma}$.
+In addition, they define
 \begin{equation}
 	F(p^2) = 2 - 2 r \atan \Big(\frac1r\Big), \qquad
 	F'(p^2) = \frac{4 m_q^2}{p^4 r} \atan \Big(\frac1r\Big) - \frac{1}{p^2}, \qquad
@@ -962,17 +960,17 @@ This allows us to set $m_\sigma$ to values within its measured range $\SI{400}{}
 \addplot+ [red,       dotted, semithick, opacity=0.7, forget plot, domain=0:700] {muu(x)};
 \addplot+ [darkgreen, dotted, semithick, opacity=0.7, forget plot, domain=0:700] {mud(x)};
 \addplot+ [blue,      dotted, semithick, opacity=0.7, forget plot, domain=0:700] {mue(x)};
-\addplot+ [black, solid] {-100}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$};
-\addplot+ [black, densely dashed] {-100}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
 \addplot+ [black, dotted] {-100}; \addlegendentry{$m_q=m_e=0$};
-\addplot+ [blue,      solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2FC/eos_sigma_600.dat};
-\addplot+ [darkgreen, solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2FC/eos_sigma_600.dat};
-\addplot+ [red,       solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2FC/eos_sigma_600.dat};
-\addplot+ [orange,    solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$m_q \, / \, \si{\mega\electronvolt}$};
-\addplot+ [orange,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [black, densely dashed] {-100}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$};
+\addplot+ [black, solid] {-100}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
+\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2FC/eos_sigma_500.dat};
+\addplot+ [blue,      solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2FC/eos_sigma_600.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2FC/eos_sigma_500.dat};
+\addplot+ [darkgreen, solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2FC/eos_sigma_600.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2FC/eos_sigma_500.dat};
+\addplot+ [red,       solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2FC/eos_sigma_600.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2FC/eos_sigma_500.dat};
+\addplot+ [orange,    solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2FC/eos_sigma_600.dat}; \addlegendentry{$m_q \, / \, \si{\mega\electronvolt}$};
 \addplot+ [black, every axis plot post/.append style={mark=*, mark options={fill=black}}, solid, domain=0:1, samples=2, forget plot] ({138/(1.12-0.88)}, {0.88*138/(1.12-0.88)+138*x}) node [pos=0.5, right] {$m_\pi$};
 
 
@@ -983,18 +981,18 @@ This allows us to set $m_\sigma$ to values within its measured range $\SI{400}{}
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-density}Particle number densities}},
 	legend cell align=left, legend pos=north west, reverse legend, legend columns=3, legend transposed,
 ];
-\addplot+ [black, solid] {-10}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$};
-\addplot+ [black, densely dashed] {-10}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
 \addplot+ [black, dotted] {-10}; \addlegendentry{$m_q=m_e=0$};
+\addplot+ [black, densely dashed] {-10}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$};
+\addplot+ [black, solid] {-10}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
 \addplot+ [red,       dotted, semithick, opacity=0.7, forget plot, domain=0:700] {nq(muu(x))*nconv};
 \addplot+ [darkgreen, dotted, semithick, opacity=0.7, forget plot, domain=0:700] {nq(mud(x))*nconv};
 \addplot+ [blue,      dotted, semithick, opacity=0.7, forget plot, domain=0:700] {ne(mue(x))*nconv};
-\addplot+ [blue,      solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_e\,\,$};
-\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2FC/eos_sigma_600.dat};
-\addplot+ [darkgreen, solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_d\,\,$};
-\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2FC/eos_sigma_600.dat};
-\addplot+ [red,       solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$n_u\,\,$};
-\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2FC/eos_sigma_600.dat};
+\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2FC/eos_sigma_500.dat};
+\addplot+ [blue,      solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM2FC/eos_sigma_600.dat}; \addlegendentry{$n_e\,\,$};
+\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2FC/eos_sigma_500.dat};
+\addplot+ [darkgreen, solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM2FC/eos_sigma_600.dat}; \addlegendentry{$n_d\,\,$};
+\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2FC/eos_sigma_500.dat};
+\addplot+ [red,       solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM2FC/eos_sigma_600.dat}; \addlegendentry{$n_u\,\,$};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -1003,11 +1001,11 @@ This allows us to set $m_\sigma$ to values within its measured range $\SI{400}{}
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
 ];
+\addplot+ [black, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_600.dat}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
+\addplot+ [gray, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$ (before Maxwell construction)};
+\addplot+ [black, densely dashed, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$ (after Maxwell construction)};
 \addplot+ [black, dotted, opacity=0.7, domain=0:0.1] {3*x}; \addlegendentry{$m_q=m_e=0$};
-\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$ (before Maxwell construction)};
-\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$ (after Maxwell construction)};
-\addplot+ [black, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_600.dat}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
-\addplot+ [black, densely dashed, opacity=0.7, forget plot] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_600.dat};
+%\addplot+ [black, densely dashed, opacity=0.7, forget plot] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_600.dat};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos-ref}%
@@ -1077,9 +1075,9 @@ the lower bag constant bounds
 	B^\frac14 > \SI{107.3}{\mega\electronvolt}           \quad \Big(\text{or } \big(B-\pot(f_\pi,\vec{0})\big)^\frac14 > \SI{145.4}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{400}{\mega\electronvolt}\Big), \\
 	B^\frac14 > \phantom{0}\SI{83.9}{\mega\electronvolt} \quad \Big(\text{or } \big(B-\pot(f_\pi,\vec{0})\big)^\frac14 > \SI{145.9}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{500}{\mega\electronvolt}\Big), \\
 	B^\frac14 > \phantom{0}\SI{27.2}{\mega\electronvolt} \quad \Big(\text{or } \big(B-\pot(f_\pi,\vec{0})\big)^\frac14 > \SI{155.3}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{600}{\mega\electronvolt}\Big),
-\end{align}%%
+\end{align}%
 \label{eq:lsm:bag_lower_bound_ref}%
-\end{subequations}%%
+\end{subequations}
 and the mass-radius solutions in \cref{fig:lsm:2-flavor-mass-radius-ref}.
 
 The ``consistent'' results with $m_\sigma=\{400,500,600\} \, \si{\mega\electronvolt}$ are
@@ -1098,3 +1096,5 @@ and tells us that we should not be too worried by fitting too large values of $m
 \section{Summary}
 
 \TODO{what to write here?}
+
+\TODO{two inconsistencies: (1) match couplings at tree level although using one-loop potential. (2) neglecting bosonic one-loop contribution to effective potential (this is consistent in $N_c\rightarrow \infty$ limit, but inconsistent in terms of number of loops)}
