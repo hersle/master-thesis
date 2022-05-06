@@ -1,31 +1,34 @@
 \chapter{Three-flavor quark-meson model}
 \label{chap:lsm3f}
 
+\TODO{what more to write in intro?}
+
+\TODO{demonstrate generalization from 2 to 3 flavors?}
+
 \TODO{rewrite, structure everything with subheaders}
 
-To generalize the two-flavor Lagrangian \eqref{eq:lsm:lagrangian} to three flavors, let us first rewrite it to the form
+\TODO{bold notation for vectors now just confusing? so drop it?}
+
+In this chapter we will study the generalization of the quark-meson model in \cref{chap:lsm2f} to three flavors,
+thereby throwing the strange quark into the mix.
+This means we continue to study an effective model of quantum chromodynamics that takes chiral symmetry breaking into account,
+and still treat confinement only phenomenologically with a bag constant $B$.
+
+\section{Lagrangian, vacuum considerations and symmetry breaking}
+
+The Lagrangian density of the three-flavor model is
 \begin{equation}
-\begin{split}
-	\lagr_2 &= \sum_{c=1}^{N_c} \bar{q}_c \big[ i \slashed\partial + \mu \gamma^0 - g (\sigma_a + i \gamma_5 \pi_a ) T_a \big] q_c + \trace\big[(\partial_\mu \phi)^\dagger (\partial_\mu \phi)\big] \\
-	        &- m^2 \trace\big[\phi^\dagger \phi\big] - \frac{\lambda}{6} \big[\trace(\phi^\dagger \phi)\big]^2 + \trace\big[H(\phi+\phi^\dagger)\big],
-\end{split}
-\end{equation}
-where $T_a = \tau_a / 2$ are the generators of $SU(2)$ \emph{including} $T_0 = \diag (1/2, 1/2)$ and $\phi = \phi_a T_a$ and $H = h_a T_a$ and the traces are taken in flavor space.
-To generalize to $SU(3)$, simply replace the four (extended) Pauli matrices by the nine (extended) Gell-Mann-matrices.
-The three-flavor generalization of the two-flavor quark-meson model Lagrangian \eqref{eq:lsm:lagrangian} is then
-\begin{equation}
-	\lagr = \sum_{c=1}^{N_c} \bar{q}_c \big[ i \slashed\partial + \mu \gamma^0 - g \phi_5 \big] q_c + \trace\big[(\partial_\mu \phi)^\dagger (\partial_\mu \phi)\big] - \pot(\sigma, \pi)
+	\lagr = \bar{q} \big[ i \slashed\partial + \mu \gamma^0 - g (\sigma_a + i \gamma^5 \pi_a) \big] q + \trace\big[(\partial_\mu \phi)^\dagger (\partial_\mu \phi)\big] - \pot(\sigma, \pi)
 \label{eq:lsm:lagrangian3f}
 \end{equation}
-As we will shortly explain, we can add an additional quartic interaction to the meson potential
+with the meson potential
 \begin{equation}
-	\pot(\sigma, \pi) = m^2 \trace\big[\phi^\dagger \phi\big] + \lambda_1 \big[\trace(\phi^\dagger \phi)\big]^2 + \lambda_2 \trace\big[(\phi^\dagger \phi)^2\big] - c \tdet(\phi^\dagger \phi) - \trace\big[H(\phi+\phi^\dagger)\big].
+	\pot(\sigma, \pi) = m^2 \trace\big[\phi^\dagger \phi\big] + \lambda_1 \big[\trace(\phi^\dagger \phi)\big]^2 + \lambda_2 \trace\big[(\phi^\dagger \phi)^2\big] - \trace\big[H(\phi+\phi^\dagger)\big].
 \label{eq:lsm:potential3f}
 \end{equation}
-Here $\sigma_a$ and $\pi_a$ are meson fields contained in the linear combinations $\phi = \phi_a T_a = (\sigma_a + i \pi_a) T_a$ and $\phi_5 = (\phi_5)_a T_a = (\sigma_a + i \gamma_5 \pi_a) T_a$,
-while $q_c = [u, d, s]^T$ are three quark fields with color-degeneracy $N_c=3$ whose conserved charge densities are coupled to three quark chemical potentials $\mu = \diag(\mu_u, \mu_d, \mu_s)$.
-The potential features a mass coupling $m^2$, two quartic couplings $\lambda_1$ and $\lambda_2$, an anomaly coupling $c$ and explicit symmetry breakers $h_a$ in the matrix $H = h_a T_a$.
-The index $a$ runs from $0$ through $8$, corresponding to the nine generators $T_a = \lambda_a/2$ and the Gell-Mann matrices
+The quark fields $q$ and chemical potentials $\mu$ now have $N_f=3$ flavors $\{u,d,s\}$,
+while $\sigma_a$ and $\pi_a$ are two meson nonets packed into $\phi = \phi_a T_a = (\sigma_a + i \pi_a) T_a$.
+The eight $SU(3)$ generators $T_a = \lambda_a/2$ are extended with the identity and given through the extended Gell-Mann matrices
 \begin{equation}
 \begin{NiceMatrixBlock}[auto-columns-width]
 \setlength{\arraycolsep}{0pt}
@@ -44,18 +47,33 @@ The index $a$ runs from $0$ through $8$, corresponding to the nine generators $T
 \end{NiceMatrixBlock}
 \label{eq:lsm:gell_mann_matrices}
 \end{equation}
-\TODO{first one is special and doesn't ``generate'' anything. mention this?}
+%which are normalized to $\trace[T_a T_b] = \delta_{ab}/2$ and $\trace[\lambda_a \lamda_b] = 2 \delta_{ab}$.
+The meson potential features explicit symmetry breakers $h_a$ in the matrix $H = h_a T_a$ and now has \emph{two} quartic couplings $\lambda_1$ and $\lambda_2$,
+not to be confused with the Gell-Mann matrices \eqref{eq:lsm:gell_mann_matrices}.
+This can be understood from the \emph{Hamilton-Caley theorem} \cite[equation (1) and (2)]{ref:hamilton_caley},
+which links $\trace A, \ldots, \trace A^N$ for any $N \times N$ matrix $A$.
+With three flavors there we can therefore form \emph{two} independent coupling terms
+$\lambda_1 \trace [ (\phi^\dagger \phi) ]^2$ and $\lambda_2 \trace (\phi^\dagger \phi)^2$ up to quadratic order in the fields,
+while only one independent one can be made in with two flavors.
+\TODO{relate to renormalization? significant?}
+The other features are identical to those of the two-flavor Lagrangian \eqref{eq:lsm:lagrangian}.
 
-\TODO{rewrite/extend}
-Note that we now have \emph{two} quartic coupling terms in the forms $\lambda_1 \trace [ (\phi^\dagger \phi) ]^2$ and $\lambda_2 \trace (\phi^\dagger \phi)^2$,
-whereas we only had one of them in the two-flavor case.
-In fact, the \emph{Hamilton-Caley theorem} \cite[equation (1) and (2)]{ref:hamilton_caley} uniquely fixes $\trace (A^n)$ in terms of $\trace (A), \ldots, \trace (A^{n-1})$ for an $n \times n$ matrix $A$.
-This is the reason for including $n-1$ quartic couplings in the $SU(n)$-case.
-\TODO{want to have as many relevant terms as possible, so include it in line with the EFT ``philosophy''}
+This general form of the model has thirteen undetermined parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$ and $h_0,\ldots,h_8$.
+Only the diagonal part of $\avg{\sigma}$ can be nonzero, so we we can only have $\{h_0,h_3,h_8\} \neq 0$.
+\TODO{why? what does it mean when people write that ``$\avg{\phi} \neq 0$ must carry the same quantum numbers as the vacuum, so therefore only its diagonal part can be nonzero''???}
+As discussed thoroughly in \cite[section III]{ref:lsm3f_details},
+several symmetry breaking patterns can be generated by setting different combinations of $\{h_0,h_3,h_8\}$ to zero.
+We want to break chiral symmetry and continue treating up and down quarks on equal footing, but the more massive strange quark separately, and therefore set $h_3=0$ and keep $\{h_0,h_8\} \neq 0$.
+Had we also kept $h_3$ nonzero, we would also have broken isospin symmetry and generated slightly different up and down quark masses.
+Isospin is only slightly broken in nature and the up and down quark masses are almost equal, so this would cause a lot of sweat for little gain.
+This leaves six unknown parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_0$, $h_8$ that will later be fit to as many experimental values.
 
-This general form of the model has fourteen undetermined parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $c$ and $h_a$.
-We set $c=h_1=h_2=h_3=h_4=h_5=h_6=h_7=0$ \TODO{why? want $u$ and $d$ treated equally, and $s$ differently. look at Gell-Mann matrices, see that only $0$ and $8$ does such a thing.  want to break $SU(3)$, this is why i choose the non-zero $h$. but $c=0$ is a choice -- no anomaly},
-leaving six unknown parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_0$, $h_8$ that must be fitted to as many experimental values.
+\TODO{continue from here}
+
+\TODO{why? want $u$ and $d$ treated equally, and $s$ differently. look at Gell-Mann matrices, see that only $0$ and $8$ does such a thing.  want to break $SU(3)$, this is why i choose the non-zero $h$. but $c=0$ is a choice -- no anomaly},
+
+\TODO{later consider effects of anomaly coupling $c$?}
+
 In this case, the classical ground state corresponds to a global minimum of the potential located at
 \begin{equation}
 	\sigma_a = \avg{\sigma_a} \quad \text{and} \quad \pi_a = \avg{\pi_a} = 0, \qquad \text{where \emph{only} $\avg{\sigma_0} \neq 0$ and $\avg{\sigma_8} \neq 0$ are nonzero.}
