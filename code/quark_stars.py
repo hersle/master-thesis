@@ -553,20 +553,26 @@ class LSM3FlavorModel(LSMModel):
         hy = σy0 * (m2 + λ1*(σx0**2+σy0**2) + λ2*σy0**2)
         Λx = g*σx0/(2*np.sqrt(np.e))
         Λy = g*σx0/(np.sqrt(2*np.e))
-        Λ = (2*Λx+Λy)/3
+        common_renormalization_scale = False
+        if common_renormalization_scale:
+            Λ = (2*Λx+Λy)/3
+            Λx = Λ # set common, averaged renormalization scale
+            Λy = Λ
         print(f"m2 = {np.sign(m2)}*({np.sqrt(np.abs(m2))} MeV)^2 ")
         print(f"λ1 = {λ1}")
         print(f"λ2 = {λ2}")
         print(f"g  = {g}")
         print(f"hx = ({hx**(1/3)} MeV)^3")
         print(f"hy = ({hy**(1/3)} MeV)^3")
-        print(f"Λ  = {Λ} MeV")
+        print(f"Λx = {Λx} MeV")
+        print(f"Λy = {Λy} MeV")
+        #print(f"Λ  = {Λ} MeV")
 
         Δx, Δy, μu, μd, μs, μe = sp.symbols("Δ_x Δ_y μ_u μ_d μ_s μ_e", complex=True)
         σx = 2*Δx/g
         σy = np.sqrt(2)*Δy/g
         Ωb = m2/2*(σx**2+σy**2) + λ1/4*(σx**2+σy**2)**2 + λ2/8*(σx**4+2*σy**4) - hx*σx - hy*σy 
-        Ωr = Nc/(16*π**2)*(Δx**4*(3/2+sp.log(Λ**2/Δx**2))+Δx**4*(3/2+sp.log(Λ**2/Δx**2))+Δy**4*(3/2+sp.log(Λ**2/Δy**2)))
+        Ωr = Nc/(16*π**2)*(Δx**4*(3/2+sp.log(Λx**2/Δx**2))+Δx**4*(3/2+sp.log(Λx**2/Δx**2))+Δy**4*(3/2+sp.log(Λy**2/Δy**2)))
         Ωu = -Nc/(24*π**2)*((2*μu**2-5*Δx**2)*μu*sp.sqrt(μu**2-Δx**2)+3*Δx**4*sp.asinh(sp.sqrt(μu**2/Δx**2-1)))
         Ωd = -Nc/(24*π**2)*((2*μd**2-5*Δx**2)*μd*sp.sqrt(μd**2-Δx**2)+3*Δx**4*sp.asinh(sp.sqrt(μd**2/Δx**2-1)))
         Ωs = -Nc/(24*π**2)*((2*μs**2-5*Δy**2)*μs*sp.sqrt(μs**2-Δy**2)+3*Δy**4*sp.asinh(sp.sqrt(μs**2/Δy**2-1)))
@@ -623,6 +629,7 @@ class LSM3FlavorAnomalyModel(LSM3FlavorModel):
         Λx = g*σx0/(2*np.sqrt(np.e))
         Λy = g*σx0/(np.sqrt(2*np.e))
         Λ = (2*Λx+Λy)/3
+        # TODO: multiple renormalization scales here, as in normal LSM3F?
         print(f"m2 = {np.sign(m2)}*({np.sqrt(np.abs(m2))} MeV)^2 ")
         print(f"λ1 = {λ1}")
         print(f"λ2 = {λ2}")
@@ -695,6 +702,7 @@ if __name__ == "__main__":
 
     P1P2 = (1e-7, 1e-2)
 
+    """
     LSM2FlavorModel(mσ=800).eos()
     exit()
 
@@ -720,6 +728,12 @@ if __name__ == "__main__":
     LSM2FlavorConsistentModel(mσ=600).stars(27, P1P2, write=True)
     LSM2FlavorConsistentModel(mσ=600).stars(47, P1P2, write=True)
     LSM2FlavorConsistentModel(mσ=600).stars(67, P1P2, write=True)
+    exit()
+    """
+
+    LSM3FlavorModel(mσ=600).eos(plot=True, write=True)
+    LSM3FlavorModel(mσ=700).eos(plot=True, write=True)
+    LSM3FlavorModel(mσ=800).eos(plot=True, write=True)
     exit()
 
     #LSM2FlavorModel(mσ=600).eos()
