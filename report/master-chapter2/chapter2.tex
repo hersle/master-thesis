@@ -290,7 +290,7 @@ In hindsight, we now see that we could get rid of the terms $-\gamma + \log 4 \p
 With the vacuum contribution \eqref{eq:lsm:vacuum_contribution_final} in this renormalization scheme, the full grand potential \eqref{eq:lsm:potential_divergent_logz0} becomes
 \begin{equation}
 \begin{split}
-	\Omega &= \pot(\avg{\sigma},\vec{0}) + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
+	\Omega &= \pot(\avg{\sigma},\vec{0}) + N_c N_f \frac{m_q^4}{16 \pi^2} \Bigg[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \Bigg] \\
 	       &- \smashoperator{\sum_{\vphantom{\big|} f=\{u,d\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_q^2 \right) \mu_f \sqrt{\mu_f^2 - m_q^2} + 3 m_q^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right]
 \end{split}
 \label{eq:lsm:grand_potential_nonrenormalized}
@@ -307,7 +307,7 @@ if we shift the quartic coupling
 Adding free electrons to the mix, the finite and renormalized grand potential is finally
 \begin{equation}
 \begin{split}
-	\Omega(\avg{\sigma},\vec{\mu}) &= \pot(\avg{\sigma},\vec{0}) + N_c N_f \frac{m_q^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \right] \\
+	\Omega(\avg{\sigma},\vec{\mu}) &= \pot(\avg{\sigma},\vec{0}) + N_c N_f \frac{m_q^4}{16 \pi^2} \Bigg[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \Bigg] \\
 	                               %&- \frac{N_c}{24 \pi^2} \sum_{f=\{u,d\}} \left[ \left( 2 \mu_f^2 - 5 m_q^2 \right) \mu_f \sqrt{\mu_f^2 - m_q^2} + 3 m_q^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right] \\
 	                               %&- \frac{  1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} + 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_e^2}{m_e^2}-1} \right) \right] .
 	                               &-\smashoperator{\sum_{\vphantom{\big|} f=\{u,d\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_q^2 \right) \mu_f \sqrt{\mu_f^2 - m_q^2} + 3 m_q^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right] \\
@@ -329,6 +329,7 @@ The pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:maste
 
 \subsection{Parameter fitting}
 \label{sec:lsm:parameter_fit}
+\TODO{consistent sectioning with LSM3F}
 \TODO{move before grand potential, to be consistent with LSM3F? remove $\Lambda$ from fit, also to be consistent with LSM3F?}
 
 To determine the four paremeters $g$, $m^2$, $\lambda$ and $h$ in the Lagrangian \eqref{eq:lsm:lagrangian},
@@ -405,7 +406,7 @@ Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumpt
 \centering
 \begin{tabular}{ l r r }
 	\toprule
-	Variable & Model value                             & Experimental value \\
+	Variable & Model                                   & Experimental       \\
 	\midrule
 	$\avg{\sigma}=f_\pi$ & $\textbf{\SI{93}{\mega\electronvolt}}$  & \SI{92}{}-\SI{93}{\mega\electronvolt} \\
 	%\midrule
@@ -419,19 +420,20 @@ Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumpt
 \hfill
 \begin{tabular}{ l r }
 	\toprule
-	Parameter   & Model value                           \\
+	Parameter   & Model                                 \\
 	\midrule
 	$g$         & $\SI{3.23}{}$                         \\
-	$\lambda$   & $\{163.4,215.4\}$                        \\
-	$m^2$       & $-(\{465.2,539.8\} \, \si{\mega\electronvolt})^2$ \\
-	$h$         & $(\SI{121.0}{\mega\electronvolt})^3$  \\
-	$\Lambda$   & $\SI{182.0}{\mega\electronvolt}$ \\
+	$\lambda$   & $\{163,215\}$                        \\
+	$m^2$       & $-(\{465,540\} \, \si{\mega\electronvolt})^2$ \\
+	$h$         & $(\SI{121}{\mega\electronvolt})^3$  \\
+	$\Lambda$   & $\SI{182}{\mega\electronvolt}$ \\
 	\bottomrule
 \end{tabular}
 \caption{\label{tab:lsm2f:parameters}%
-Parameter fit for the two-flavor linear sigma model in vacuum compared to experimental values from \cite{ref:pdg_review_2021}.
-The \textbf{bold values} in the left table are used as input to determine the parameters \eqref{eq:lsm:parameters} and \eqref{eq:lsm:potential_vacuum_minimum}.
+Values of the variables in the left table are used as input to determine the four model parameters in the right table.
+Experimental values are taken from \cite{ref:pdg_review_2021}.
 Two different values are used for $m_\sigma$, generating two different values of both $\lambda$ and $m^2$, while the remaining parameters remain unchanged.
+\TODO{three vals for $m_\sigma$ as in LSM3F?}
 }
 \end{table}
 
@@ -650,8 +652,8 @@ Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bag
 ];
 \addplot+ [black, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
 %\addplot+ [black, solid, opacity=0.7, forget plot] table [x=P,y=epsilon] {../code/data/LSM2F/eos_sigma_800.dat};
-\addplot+ [gray, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (before Maxwell construction)};
-\addplot+ [black, densely dashed, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (after Maxwell construction)};
+\addplot+ [gray, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (uncorrected)};
+\addplot+ [black, densely dashed, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (corrected)};
 \addplot+ [black, dotted, opacity=0.7, domain=0:0.1] {3*x}; \addlegendentry{$m_q=m_e=0$};
 \end{groupplot}
 \end{tikzpicture}
@@ -659,7 +661,7 @@ Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bag
 Properties of electrically charge neutral two-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu_Q = (\mu_u+\mu_d)/2$.
 Upper panel \subref{fig:lsm:2-flavor-eos-parametrization} shows solutions to equation \eqref{eq:lsm:minsys},
 middle panel \subref{fig:lsm:2-flavor-eos-density} the corresponding particle number densities \eqref{eq:lsm:particle_densities} and
-lower panel \subref{fig:lsm:2-flavor-eos-eos} the corresponding equation of state $\epsilon(P)$.
+lower panel \subref{fig:lsm:2-flavor-eos-eos} the corresponding equation of state $\epsilon(P)$ corrected with the Maxwell construction.
 Dotted lines show the massless solutions \eqref{eq:mit:densities_massless}, \eqref{eq:mit:chemical_potentials_massless_2f} and \eqref{eq:mit:eos_ur}.
 }
 \end{figure}
@@ -850,6 +852,7 @@ Hopefully, this remark will save someone from enduring this painful realization 
 \fi
 
 \section{Refinements with consistent parameter fitting}
+\label{sec:lsm2f:refinement}
 
 As we remarked at the end of \cref{sec:lsm:parameter_fit},
 fitting parameters from tree-level relations is inconsistent because we calculated the grand potential \eqref{eq:lsm:grand_potential} to one-loop in the quarks.

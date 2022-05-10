@@ -552,7 +552,7 @@ class LSM3FlavorModel(LSMModel):
         hx = σx0 * (m2 + λ1*(σx0**2+σy0**2) + λ2/2*σx0**2)
         hy = σy0 * (m2 + λ1*(σx0**2+σy0**2) + λ2*σy0**2)
         Λx = g*σx0/(2*np.sqrt(np.e))
-        Λy = g*σx0/(np.sqrt(2*np.e))
+        Λy = g*σy0/(np.sqrt(2*np.e))
         common_renormalization_scale = False
         if common_renormalization_scale:
             Λ = (2*Λx+Λy)/3
@@ -566,7 +566,8 @@ class LSM3FlavorModel(LSMModel):
         print(f"hy = ({hy**(1/3)} MeV)^3")
         print(f"Λx = {Λx} MeV")
         print(f"Λy = {Λy} MeV")
-        #print(f"Λ  = {Λ} MeV")
+        print(f"mx = {g*σx0/2} MeV")
+        print(f"my = {g*σy0/np.sqrt(2)} MeV")
 
         Δx, Δy, μu, μd, μs, μe = sp.symbols("Δ_x Δ_y μ_u μ_d μ_s μ_e", complex=True)
         σx = 2*Δx/g
@@ -627,7 +628,7 @@ class LSM3FlavorAnomalyModel(LSM3FlavorModel):
         hx = σx0 * (m2 + λ1*(σx0**2+σy0**2) + λ2/2*σx0**2)
         hy = σy0 * (m2 + λ1*(σx0**2+σy0**2) + λ2*σy0**2)
         Λx = g*σx0/(2*np.sqrt(np.e))
-        Λy = g*σx0/(np.sqrt(2*np.e))
+        Λy = g*σy0/(np.sqrt(2*np.e))
         Λ = (2*Λx+Λy)/3
         # TODO: multiple renormalization scales here, as in normal LSM3F?
         print(f"m2 = {np.sign(m2)}*({np.sqrt(np.abs(m2))} MeV)^2 ")
@@ -703,6 +704,8 @@ if __name__ == "__main__":
     P1P2 = (1e-7, 1e-2)
 
     """
+    LSM2FlavorModel(mσ=600).eos()
+    LSM2FlavorModel(mσ=700).eos()
     LSM2FlavorModel(mσ=800).eos()
     exit()
 
@@ -729,11 +732,22 @@ if __name__ == "__main__":
     LSM2FlavorConsistentModel(mσ=600).stars(47, P1P2, write=True)
     LSM2FlavorConsistentModel(mσ=600).stars(67, P1P2, write=True)
     exit()
-    """
 
     LSM3FlavorModel(mσ=600).eos(plot=True, write=True)
     LSM3FlavorModel(mσ=700).eos(plot=True, write=True)
     LSM3FlavorModel(mσ=800).eos(plot=True, write=True)
+    exit()
+    """
+
+    LSM3FlavorModel(mσ=600).stars(111, P1P2, write=True)
+    LSM3FlavorModel(mσ=600).stars(131, P1P2, write=True)
+    LSM3FlavorModel(mσ=600).stars(151, P1P2, write=True)
+    LSM3FlavorModel(mσ=700).stars(68,  P1P2, write=True)
+    LSM3FlavorModel(mσ=700).stars(88,  P1P2, write=True)
+    LSM3FlavorModel(mσ=700).stars(108, P1P2, write=True)
+    LSM3FlavorModel(mσ=800).stars(27,  P1P2, write=True)
+    LSM3FlavorModel(mσ=800).stars(47,  P1P2, write=True)
+    LSM3FlavorModel(mσ=800).stars(67,  P1P2, write=True)
     exit()
 
     #LSM2FlavorModel(mσ=600).eos()
@@ -753,10 +767,11 @@ if __name__ == "__main__":
         LSM2FlavorModel(mσ=mσ).vacuum_potential(Δ, np.array([ms0]), write=True)
     for mσ in [400, 500, 600, 700, 800]:
         LSM2FlavorConsistentModel(mσ=mσ).vacuum_potential(Δ, np.array([ms0]), write=True)
-    Δ = np.linspace(-1000, +1000, 50)
-    for mσ in [500, 550, 600, 650, 700, 750, 800, 850]:
-        LSM3FlavorModel(mσ=mσ).vacuum_potential(Δ, Δ, write=True)
     """
+    Δ = np.linspace(-1000, +1000, 50)
+    for mσ in [500, 600, 700, 800]:
+        LSM3FlavorModel(mσ=mσ).vacuum_potential(Δ, Δ, write=True)
+    exit()
 
     """
     model = LSM2Flavor(mσ=500) # TODO: need mσ > 600 to avoid starting backwards?

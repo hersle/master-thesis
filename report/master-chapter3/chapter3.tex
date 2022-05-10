@@ -117,10 +117,10 @@ We also define the transformed symmetry breakers $h_x$ and $h_y$ from $h_0$ and 
 In the new basis \eqref{eq:lsm:strange_basis}, the Yukawa coupling \eqref{eq:lsm:yukawa3f} takes our sought-after form
 \begin{equation}
 	- \smashoperator{\sum_{f=\{u,d,s\}}} m_f \bar{q}_f q_f
-	\quad \text{with effective quark masses} \quad
-	m_u = m_d = \frac{g \avg{\sigma_x}}{2}
+	\quad \text{with quark masses} \quad
+	m_u = m_d = m_x = \frac{g \avg{\sigma_x}}{2}
 	\quad \text{and} \quad
-	m_s = \frac{g \avg{\sigma_y}}{\sqrt{2}}.
+	m_s = m_y = \frac{g \avg{\sigma_y}}{\sqrt{2}}.
 \label{eq:lsm:quark_masses_3f}
 \end{equation}
 
@@ -319,42 +319,116 @@ generate the eight particle masses
 \end{align}%
 \label{eq:lsm:mass_system_3f}%
 \end{subequations}%
+These relations will come in handy when we fit the parameters of the model in \cref{sec:lsm3f:parameter_fit}.
+
+
+\section{Grand potential}
+
+Let us calculate the grand potential $\Omega$ in the same way as in \cref{sec:lsm:grand_potential},
+neglecting pion condensation by keeping $\avg{\pi}=0$
+and using the mean-field approximation for $\avg{\sigma_x}$ and $\avg{\sigma_y}$,
+determining them in retrospect according to the self-consistency equations
+\begin{equation}
+	\pdv{\Omega}{\avg{\sigma_x}} =
+	\pdv{\Omega}{\avg{\sigma_y}} = 0.
+\end{equation}
+
+The calculation proceeds more or less identically up to the non-renormalized grand potential \eqref{eq:lsm:grand_potential_nonrenormalized},
+only with a different vacuum potential $\pot(\avg{\sigma},\avg{\pi})$, $N_f=3$ flavors and $m_u = m_d \neq m_s$.
+In addition, instead of using one common renormalization scale, we operate with two separate scales $\Lambda_x$ and $\Lambda_y$ for the non-strange and strange quarks, respectively.
+Before removing the vacuum divergence, we then have the divergent grand potential
+\begin{equation}
+\begin{split}
+	\Omega(\avg{\sigma},\mu) &= \pot(\avg{\sigma},0) + \frac{N_c m_x^4}{8 \pi^2} \Bigg[ \frac{1}{\epsilon} + \frac{3}{2} + \log\bigg(\frac{\Lambda_x^2}{m_x^2}\bigg) \Bigg] + \frac{N_c m_y^4}{16 \pi^2} \Bigg[ \frac{1}{\epsilon} + \frac{3}{2} + \log\bigg(\frac{\Lambda_y^2}{m_y^2}\bigg) \Bigg] \\ % + N_c \smashoperator{\sum_{\vphantom{\big|}f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right] \\
+	                         &-\smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right]. \\
+\end{split}
+\end{equation}
+Once again, we see that the divergent term
+\begin{equation}
+	N_c \frac{2 m_x^4 + m_y^4}{16 \pi^2 \epsilon} =
+	\frac{N_c g^4}{16 \pi^2} \frac{\avg{\sigma_x}^4 + 2 \avg{\sigma_y}^4}{8 \epsilon}
+\end{equation}
+can be removed by shifting the $\lambda_2$ coupling in the vacuum meson potential \eqref{eq:lsm:potential_tree_3f} to
+\begin{equation}
+	\lambda_2 \rightarrow \lambda_2 + \delta\lambda_2 \qquad \text{with the counterterm} \qquad \delta\lambda_2 = -\frac{N_c g^4}{16 \pi^2 \epsilon} .
+\end{equation}
+Adding electrons, we obtain the natural generalization of the two-flavor grand potential \eqref{eq:lsm:grand_potential},
+\begin{equation}
+\begin{split}
+	\Omega(\avg{\sigma},\vec{\mu}) &= \pot(\avg{\sigma},0) + N_c \frac{m_x^4}{8 \pi^2} \Bigg[ \frac{1}{\epsilon} + \frac{3}{2} + \log\bigg(\frac{\Lambda_x^2}{m_x^2}\bigg) \Bigg] + N_c \frac{m_y^4}{16 \pi^2} \Bigg[ \frac{1}{\epsilon} + \frac{3}{2} + \log\bigg(\frac{\Lambda_y^2}{m_y^2}\bigg) \Bigg] \\ % + N_c \smashoperator{\sum_{\vphantom{\big|}f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right] \\
+	                               &-\smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right] \\
+	                               &-\phantom{\sum} \, \frac{1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} \, + 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_{\smash{e}}^2}{m_e^2}-1} \right) \right].
+\end{split}
+\label{eq:lsm3f:grand_potential}
+\end{equation}
+
+With two flavors we determined the parameter $\Lambda$ in equation \eqref{eq:lsm:potential_vacuum_minimum} by requiring the minimum to remain at $\avg{\sigma}=f_\pi$ in vacuum.
+Now, the natural generalization of this procedure is to determine $\Lambda_x$ and $\Lambda_y$ so that the minimum remains at \eqref{eq:lsm3f:decay_constants} in vacuum, solving
+\begin{equation}
+	\pdv{\Omega}{\avg{\sigma_x}} = \pdv{\Omega}{\avg{\sigma_y}} = 0,
+	\quad \text{so}
+	\quad \Lambda_x = \frac{m_x}{\sqrt{e}} = \SI{182.0}{\mega\electronvolt}
+	\quad \text{and} \quad
+	\Lambda_y = \frac{m_y}{\sqrt{e}} = \SI{260.2}{\mega\electronvolt}.
+\end{equation}
+
+This is not the only way to do it.
+Instead we could do like \cite{ref:master_berge} and operate with one common renormalization scale $\Lambda = \Lambda_x = \Lambda_y$ in the grand potential,
+for example chosen as the flavor-weighted average $\Lambda = (2 \cdot \SI{182.0}{\mega\electronvolt} + \SI{260.2}{\mega\electronvolt}) / 3 = \SI{208.0}{\mega\electronvolt}$ of the two we have found.
+In particular, this means that the minimum of $\Omega$ in vacuum is no longer at the minimum of $\pot$.
+This is unsatisfying and has surprising consequences --
+for example, if $\Omega$ is fit to some vacuum quark mass $m_x = g f_\pi/2$,
+\emph{its minimum $\avg{\sigma_x} \neq f_\pi$ moves away} and generates a \emph{different} mass $m_u = g \avg{\sigma_x} / 2$.
+Of course, our approach also has its caveats, as it is not apparent how to interpret the presence of two different renormalization scales, let alone one.
+But it does not behave in this unpredictable way, and it also permits use of lower values of $m_\sigma$ without removing the minimum,
+consistent with the behavior in \cref{chap:lsm2f}.
+Ideally, a more consistent calculation such as the one presented in \cref{sec:lsm2f:refinement} should be done anyway,
+where one preferable renormalization scale appears, and we even saw that it dropped out in that specific case.
+It is hard to say which approach are of least evil,
+and this is another reason to at the very least complement the work of \cite{ref:master_berge} with the different approach.
 
 \section{Parameter fitting at tree-level}
+\label{sec:lsm3f:parameter_fit}
 
 We are now in position to fit the six model parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_x$ and $h_y$ in vacuum,
 where the pion and kaon decay constants $f_\pi$ and $f_K$ are related to the nonzero expectation values by
 \cite{ref:lsm3f_details}
 \begin{equation}
-	f_\pi = \sqrt{\frac23} \avg{\sigma_0} + \frac{\avg{\sigma_8}}{\sqrt{3}}
-	      %= \avg{\sigma_x}
-	\quad \text{and} \quad
-	f_K = \sqrt{\frac23} \avg{\sigma_0} - \frac{\avg{\sigma_8}}{\sqrt{12}},
-	    %= \frac{\avg{\sigma_y}}{\sqrt{2}} + \frac{\avg{\sigma_x}}{2} .
-	\quad \text{or} \quad
+	%f_\pi = \sqrt{\frac23} \avg{\sigma_0} + \frac{\avg{\sigma_8}}{\sqrt{3}}
+	%\quad \text{and} \quad
+	%f_K = \sqrt{\frac23} \avg{\sigma_0} - \frac{\avg{\sigma_8}}{\sqrt{12}},
+	%\quad \text{or} \quad
 	\avg{\sigma_x} = f_\pi
-	\quad \text{and} \quad
+	\qquad \text{and} \qquad
 	\avg{\sigma_y} = \sqrt{2} f_K - \frac{f_\pi}{\sqrt{2}}.
 \label{eq:lsm3f:decay_constants}
 \end{equation}
-With vacuum measurements of the two decay constants and three of the meson masses \eqref{eq:lsm:mass_system_3f},
-we determine the three parameters $m^2$, $\lambda_1$ and $\lambda_2$ and use them to predict the remaining meson masses.
-It is then straightforward to calculate the symmetry breakers $h_x$ and $h_y$ from equation \eqref{eq:lsm3f:symmetry_breakers}.
-Likewise, we use one of the quark masses \eqref{eq:lsm:quark_masses_3f} to determine the parameter $g$, then use it to predict the other quark mass.
+With vacuum measurements of the two decay constants and one of the quark masses \eqref{eq:lsm:quark_masses_3f},
+we determine the parameter $g$, then use it to predict the other quark masses.
+Likewise, we use vacuum measurements of three of the meson masses \eqref{eq:lsm:mass_system_3f} to determine the three parameters $m^2$, $\lambda_1$ and $\lambda_2$,
+then use them to predict the remaining meson masses.
+It is then straightforward to calculate the two symmetry breakers $h_x$ and $h_y$ from equation \eqref{eq:lsm3f:symmetry_breakers}.
 
 \Cref{tab:lsm3f:parameters} shows the numerical values used in the fit and the predicted particle masses.
-Our choice of using $m_\sigma$, $m_\pi$ and $m_K$ as input masses is not the only choice, and other choices would yield different values of the couplings that would predict different meson masses.
-We have continued to use $\sigma$ and $\pi$ masses for consistency with our two-flavor analysis and added the third $K$ mass, as there are the mesons with lowest energy.
-This is the same approach used by \cite{ref:lsm3f} and \cite{ref:lsm3f_details}, for example.
+In general there are $8!/3!5! = 56$ possible choices for selecting three of the eight meson masses,
+each returning different values for $m^2$, $\lambda_1$ and $\lambda_2$.
+We keep using $m_\sigma$ and $m_\pi$ for continuity and welcome $m_K$ as the final member, thereby obtaining the unique selection of mesons with the smallest mass and lowest energy.
+This is the same selection used by \cite{ref:lsm3f} and \cite{ref:lsm3f_details}, for example.
 Note that there is a particularly large discrepancy between the modeled and experimental $\eta'$ mass
 -- this can be improved by including an anomaly term in the Lagrangian, as also shown in the two references above.
 \TODO{do this as a refinement?}
+
+Like in \cref{sec:lsm:parameter_fit},
+we keep all parameters fixed except $m_\sigma$, due to its large experimental uncertainty.
+As shown in the lasagne of different vacuum potentials in \cref{fig:lsm3f:potential_sigma_mass},
+they still admit minima for $m_\sigma \geq \SI{600}{\mega\electronvolt}$,
+so we continue to use $m_\sigma=\{600,700,800\} \, \si{\mega\electronvolt}$.
 
 \begin{table}
 \centering
 \begin{tabular}{ l r r }
 	\toprule
-	Physical variable & Model value                             & Experimental value                      \\
+	Variable          & Model                                   & Experimental                            \\
 	\midrule
 	$f_\pi$           & $\textbf{\SI{93}{\mega\electronvolt}}$  & \SI{92}{}-\SI{93}{\mega\electronvolt}            \\
 	$f_K$             & $\textbf{\SI{113}{\mega\electronvolt}}$ & \SI{113}{\mega\electronvolt}                     \\
@@ -364,7 +438,7 @@ Note that there is a particularly large discrepancy between the modeled and expe
 	$m_s$             & $\SI{429}{\mega\electronvolt}$          & \TODO{?}                                         \\
 	\midrule
 	$m_{f_0}$         & $\SI{1347}{\mega\electronvolt}$         & \SI{1200}{}-\SI{1500}{\mega\electronvolt}        \\
-	$m_\sigma$        & $\textbf{\SI{800}{\mega\electronvolt}}$ & \SI{400}{}-\SI{700}{\mega\electronvolt}          \\
+	$m_\sigma$        & $\textbf{\{600,700,800\}\si{\mega\electronvolt}}$ & \SI{400}{}-\SI{700}{\mega\electronvolt}          \\
 	$m_{a_0}$         & $\SI{870}{\mega\electronvolt}$          & \SI{980}{\mega\electronvolt}                     \\
 	$m_\kappa$        & $\SI{1141}{\mega\electronvolt}$         & \SI{1414}{\mega\electronvolt}                    \\
 	$m_\eta$          & $\SI{636}{\mega\electronvolt}$          & \SI{548}{\mega\electronvolt}                     \\
@@ -376,14 +450,14 @@ Note that there is a particularly large discrepancy between the modeled and expe
 \hfill
 \begin{tabular}{ l r }
 	\toprule
-	Parameter   & Value                                 \\
+	Parameter   & Model                                 \\
 	\midrule
 	$g$         & $\SI{6.45}{}$                         \\
-	$\lambda_1$ & $-\SI{6.19}{}$                        \\
+	$\lambda_1$ & $-\{18.2,13.0,6.2\}$                        \\
 	$\lambda_2$ & $ \SI{85.3}{}$                        \\
-	$m^2$       & $-(\SI{491.7}{\mega\electronvolt})^2$ \\
-	$h_x$       & $(\SI{121.0}{\mega\electronvolt})^3$  \\
-	$h_y$       & $(\SI{336.4}{\mega\electronvolt})^3$  \\
+	$m^2$       & $-(\{178,351,492\}\si{\mega\electronvolt})^2$ \\
+	$h_x$       & $(\SI{121}{\mega\electronvolt})^3$  \\
+	$h_y$       & $(\SI{336}{\mega\electronvolt})^3$  \\
 	\\
 	\\
 	\\
@@ -395,80 +469,12 @@ Note that there is a particularly large discrepancy between the modeled and expe
 	\bottomrule 
 \end{tabular}
 \caption{\label{tab:lsm3f:parameters}%
-Parameter fit for the three-flavor linear sigma model in vacuum compared to experimental values from \cite{ref:pdg_review_2021}.
-The \textbf{bold values} in the right table are used as input to determine the six model parameters in the left table,
-which in turn are used to predict the non-bold masses of the remaining particles in the right table.
+\textbf{Bold values} of the variables in the left table are used as input to determine the six model parameters in the right table,
+which in turn are used to generate the remaining non-bold masses in the left table.
+Experimental values are taken from \cite{ref:pdg_review_2021}.
+Three different values are used for $m_\sigma$, generating three different values for both $\lambda_1$ and $m^2$, while the remaining parameters remain unchanged.
 }
 \end{table}
-
-
-\section{Grand potential}
-
-Let us calculate the grand potential $\Omega$ in the same way as in \cref{sec:lsm:grand_potential},
-neglecting pion condensation by keeping $\avg{\pi_a}=0$
-and using the mean-field approximation for $\avg{\sigma_x}$ and $\avg{\sigma_y}$,
-determining them in retrospect according to the self-consistency equations
-\begin{equation}
-	\pdv{\Omega}{\avg{\sigma_x}} =
-	\pdv{\Omega}{\avg{\sigma_y}} = 0.
-\end{equation}
-
-The calculation proceeds more or less identically up to the non-renormalized grand potential \eqref{eq:lsm:grand_potential_nonrenormalized},
-only now we have a different vacuum potential $\pot(\avg{\sigma},\avg{\pi})$, $N_f=3$ flavors and must remember $m_u = m_d \neq m_s$.
-Before removing the vacuum divergence, we then have
-\begin{equation}
-\begin{split}
-	\Omega(\avg{\sigma_x},\avg{\sigma_y},\vec{\mu}) &= \pot(\avg{\sigma},\avg{\pi}) + N_c \smashoperator{\sum_{\vphantom{\big|}f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right] \\
-	                                                &-\smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right]. \\
-\end{split}
-\end{equation}
-Once again, we see that the divergent term
-\begin{equation}
-	N_c \smashoperator{\sum_{\vphantom{\big|}f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \frac{1}{\epsilon} =
-	\frac{N_c g^4}{16 \pi^2} \frac{\avg{\sigma_x}^4 + 2 \avg{\sigma_y}^4}{8 \epsilon}
-\end{equation}
-can be removed by shifting the $\lambda_2$ coupling in the vacuum meson potential \eqref{eq:lsm:potential_tree_3f} like
-\begin{equation}
-	\lambda_2 \rightarrow \lambda_2 + \delta\lambda_2 \qquad \text{with the counterterm} \qquad \delta\lambda_2 = -\frac{N_c g^4}{16 \pi^2 \epsilon} .
-\end{equation}
-Adding electrons, we obtain the natural generalization of the two-flavor grand potential \eqref{eq:lsm:grand_potential},
-\begin{equation}
-\begin{split}
-	\Omega(\avg{\sigma_x},\avg{\sigma_y},\vec{\mu}) &= \pot(\avg{\sigma},0) + N_c \smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \left[ \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right] \\
-	                                                &-\smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_q^2 \right) \mu_f \sqrt{\mu_f^2 - m_q^2} + 3 m_q^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right] \\
-	                                                &-\phantom{\sum} \, \frac{1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} \, + 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_{\smash{e}}^2}{m_e^2}-1} \right) \right].
-\end{split}
-\label{eq:lsm3f:grand_potential}
-\end{equation}
-With two-flavors, we determined the parameter $\Lambda$ in equation \eqref{eq:lsm:potential_vacuum_minimum} by requiring the minimum of the grand potential to remain at $\avg{\sigma}=f_\pi$.
-The natural generalization of this procedure now would be to find two values of $\Lambda$,
-\begin{subequations}
-\begin{align}
-	\Lambda_x \quad \text{such that} \quad \pdv{\Omega}{\avg{\sigma_x}} = 0, & \quad \text{yielding} \quad \Lambda_x = g \avg{\sigma_x} / 2 \sqrt{e} = \SI{182.0}{\mega\electronvolt}, \\
-	\Lambda_y \quad \text{such that} \quad \pdv{\Omega}{\avg{\sigma_y}} = 0, & \quad \text{yielding} \quad \Lambda_y = g \avg{\sigma_y} / \sqrt{2 e} = \SI{260.2}{\mega\electronvolt}.
-\end{align}
-\end{subequations}
-However, we can only operate with one renormalization parameter $\Lambda$ \TODO{why? why not two separate $\Lambda_x$ and $\Lambda_y$? surely cannot be a big difference?}.
-We let all three quark flavors have an equal say by taking the average
-\begin{equation}
-	\Lambda = \frac{2 \Lambda_x + \Lambda_y}{3} = \SI{208.0}{\mega\electronvolt}.
-\label{eq:lsm3f:renormalization_average}
-\end{equation}
-As the partial of the second term of the second term on the first line of the grand potential \eqref{eq:lsm3f:grand_potential} no longer vanishes at the original minimum \eqref{eq:lsm3f:decay_constants},
-\emph{its minimum changes with this procedure}.
-A good first thought would be to look for the new minimum as the point where the partial derivative of this term vanishes,
-but at that point the partial derivative of $\pot(\avg{\sigma},0)$ would no longer vanish!
-Consequently, \emph{the new minimum generally changes with any parameter of the model!}.
-
-Whether it is most accurate to operate with $\Lambda_x$ and $\Lambda_y$ or only $\Lambda$ depends on the physical interpretation of the renormalization scales.
-Interesting to note that $\Lambda$ is closest to QCD Landau pole around $\SI{200}{\mega\electronvolt}$, \cite{ref:presentation_renormalization_scale}
-where one coupling in quantum chromodynamics explodes and perturbation theory breaks down.
-If we can interpret $\Lambda$ as a cutoff beyond which , then the value \eqref{eq:lsm3f:renormalization_average} is indeed the one that is most comparable to the Landau pole around $\SI{200}{\mega\electronvolt}$ of quantum chromodynamics.
-\TODO{???}
-\TODO{someone that uses multiple renormalization scales: \url{https://journals.aps.org/prd/abstract/10.1103/PhysRevD.55.2202}}
-
-\emph{This shifts the minimum of the grand potential \eqref{eq:lsm3f:grand_potential} in vacuum away from \eqref{eq:lsm:mass_system_3f},
-and the minimum will generally change with any parameter in the model!}
 
 \begin{figure}
 \centering
@@ -479,29 +485,36 @@ and the minimum will generally change with any parameter in the model!}
 	restrict x to domain=-510:+510, xmin=-500, xmax=+500, xtick distance = 150, minor x tick num=14,
 	restrict y to domain=-610:+610, ymin=-600, ymax=+600, ytick distance = 150, minor y tick num=14,
 	%ymin=-11, ymax=+6, ytick distance=5, minor y tick num=4,
-	xlabel = {$\Delta_x \, / \, \si{\mega\electronvolt}$}, ylabel = {$\Delta_y \, / \, \si{\mega\electronvolt}$}, zlabel = {$\Omega \, / \, f_\pi^4$},
+	xlabel = {$m_x \, / \, \si{\mega\electronvolt}$}, ylabel = {$m_y \, / \, \si{\mega\electronvolt}$}, zlabel = {$\Omega(\avg{\sigma},0) \, / \, f_\pi^4$},
 	%legend style = {at={(0.5,1.03)}, anchor=south}, transpose legend, legend columns=2,
 	%cycle list/YlOrRd-9,
 	grid = major,
-	view = {127}{7},
+	view = {127}{14}, % 127 7 before
 	colormap/Greys, colormap/YlOrRd, % load
 	colormap/Greys, mesh/interior colormap name=YlOrRd, % set with name (https://tex.stackexchange.com/a/359491)
 ]
+
 %\pgfplotsset{cycle list shift=+1} % skip weakest line
 \addplot3 [surf, thin, point meta=explicit] table [x=Deltax, y=Deltay, z expr={\thisrow{Omega} +  0}, meta expr={\thisrow{Omega}}] {../code/data/LSM3F/potential_vacuum_sigma500.dat};% \addlegendentry{$m_\sigma = \SI{600}{\mega\electronvolt}$};
 \addplot3 [surf, thin, point meta=explicit] table [x=Deltax, y=Deltay, z expr={\thisrow{Omega} + 40}, meta expr={\thisrow{Omega}}] {../code/data/LSM3F/potential_vacuum_sigma600.dat};% \addlegendentry{$m_\sigma = \SI{600}{\mega\electronvolt}$};
 \addplot3 [surf, thin, point meta=explicit] table [x=Deltax, y=Deltay, z expr={\thisrow{Omega} + 80}, meta expr={\thisrow{Omega}}] {../code/data/LSM3F/potential_vacuum_sigma700.dat};% \addlegendentry{$m_\sigma = \SI{700}{\mega\electronvolt}$};
-\addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=0.5pt] coordinates {(317,522,37.21)} node [above, font=\footnotesize] {$(\Delta_x, \Delta_y) = (\SI{317}{\mega\electronvolt},\SI{522}{\mega\electronvolt})$};
-\addplot3 coordinates {(317,522,-3)} node [above, xshift=-0.5cm, yshift=+0.2cm, black, font=\footnotesize] {no minimum};
-\addplot3 coordinates {(317,522,-43)} node [above, xshift=-0.5cm, yshift=+0.2cm, black, font=\footnotesize] {no minimum};
-\addplot3 coordinates {(450,0,0)} node [black, rotate=-30, yshift=+1cm] {$m_\sigma = \SI{500}{\mega\electronvolt}$};
-\addplot3 coordinates {(450,0,40)} node [black, rotate=-30, yshift=+1cm] {$m_\sigma = \SI{600}{\mega\electronvolt}$};
-\addplot3 coordinates {(450,0,80)} node [black, rotate=-30, yshift=+1cm] {$m_\sigma = \SI{700}{\mega\electronvolt}$};
+\addplot3 [surf, thin, point meta=explicit] table [x=Deltax, y=Deltay, z expr={\thisrow{Omega} +120}, meta expr={\thisrow{Omega}}] {../code/data/LSM3F/potential_vacuum_sigma800.dat};% \addlegendentry{$m_\sigma = \SI{800}{\mega\electronvolt}$};
+
+\addplot3 coordinates {(300,429,-33.0)} node [above, xshift=-0.0cm, yshift=-0.0cm, black, font=\footnotesize] {no minimum}; % 500
+\addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=0.5pt] coordinates {(300,429,+7.0)} node [above, font=\footnotesize] {minimum}; % 600
+\addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=0.5pt] coordinates {(300,429,+41.6)} node [above, font=\footnotesize] {minimum}; % 700
+\addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=0.5pt] coordinates {(300,429,+74.7)} node [above, font=\footnotesize] {minimum}; % 800
+
+\addplot3 coordinates {(450,0,0)} node [black, rotate=-30, yshift=+0.5cm] {$m_\sigma = \SI{500}{\mega\electronvolt}$};
+\addplot3 coordinates {(450,0,40)} node [black, rotate=-30, yshift=+0.5cm] {$m_\sigma = \SI{600}{\mega\electronvolt}$};
+\addplot3 coordinates {(450,0,80)} node [black, rotate=-30, yshift=+0.5cm] {$m_\sigma = \SI{700}{\mega\electronvolt}$};
+\addplot3 coordinates {(450,0,120)} node [black, rotate=-30, yshift=+0.5cm] {$m_\sigma = \SI{800}{\mega\electronvolt}$};
 \end{axis}
 \end{tikzpicture}
-\caption{\TODO{caption, add 600-700-800}
-Three-flavor vacuum potential with
-$\mu_u = \mu_d = \mu_s = \mu_e = 0$}
+\caption{\label{fig:lsm3f:potential_sigma_mass}%
+Three-flavor grand potentials \eqref{eq:lsm3f:grand_potential} in vacuum with $\mu=0$ for different $m_\sigma$,
+offset by constants to make them comparable to the human eye.
+}
 \end{figure}
 
 \TODO{concluding remarks?}
@@ -512,76 +525,6 @@ $\mu_u = \mu_d = \mu_s = \mu_e = 0$}
 
 \section{Equation of state and mass-radius relation}
 
-To find the equation of state,
-we will follow the same procedure as in \TODO{ref 2-flavor}.
-The generalization of the system of equations \eqref{eq:lsm:minsys} with strange quarks with electric charge $-(1/3)e$ in the chemical equilibrium \eqref{eq:lsm:chemical_equilibrium} is
-\begin{subequations}
-\begin{align}
-	0 &= \pdv{\Omega}{\avg{\sigma_x}}, \\
-	0 &= \pdv{\Omega}{\avg{\sigma_y}}, \\
-	0 &= \frac23 n_u - \frac13 n_d - \frac13 n_s - n_e, \\
-	\mu_d &= \mu_u + \mu_e, \\
-	\mu_d &= \mu_s,
-\end{align}%
-\label{eq:lsm3f:minsys}%
-\end{subequations}%
-with the particle number densities
-\begin{equation}
-	n_f = \frac{N_c}{3\pi^2} \Big(\mu_f^2 - m_f^2\Big)^{\frac32} \quad \text{for $f = u,d,s$}
-	\qquad \text{and} \qquad
-	n_e = \frac{  1}{3\pi^2} \Big(\mu_e^2 - m_e^2\Big)^{\frac32}.
-\label{eq:lsm3f:particle_densities}
-\end{equation}
-These five equations constrain the six variables that the grand potential \eqref{eq:lsm3f:grand_potential} depends on,
-producing a one-dimensional parametrization of values of the grand potential.
-Similarly to the chemical potentials \TODO{just refer to $\mu$s defined in intro} we defined in the two-flavor case,
-we now define the common quark, isospin and strangeness chemical potentials
-\TODO{drop first definition, keep only second?}
-\begin{equation}
-	\mu = \frac12 (\mu_u + \mu_d), \qquad
-	\mu_I = \frac12 (\mu_u - \mu_d), \qquad
-	\mu_S = \frac12 (\mu_u + \mu_d) - \mu_s.
-\end{equation}
-Inverting the relations give
-\begin{equation}
-	\mu_u = \mu + \mu_I, \qquad
-	\mu_d = \mu - \mu_I, \qquad
-	\mu_s = \mu - \mu_S ,
-\end{equation}
-and by the chain rule we then see that the common quark chemical potential $\mu$ is associated with the total quark density
-\TODO{use big index $Q$ for quarks for consistency with $I$ and $S$?}
-\begin{equation}
-	n_q = -\pdv{\Omega}{\mu} =
-	-\pdv{\Omega}{\mu_u} \pdv{\mu_u}{\mu}
-	-\pdv{\Omega}{\mu_d} \pdv{\mu_d}{\mu}
-	-\pdv{\Omega}{\mu_s} \pdv{\mu_s}{\mu} =
-	n_u + n_d + n_s.
-\end{equation}
-Using the common quark chemical potential $\mu$ as the free variable,
-we now parametrize values of the grand potential and compute the equation of state $\epsilon(P)$.
-Then we add a bag constant as in equation \TODO{ref intro bag shift}.
-We can now complement the lower bag constant bound \eqref{eq:lsm:bag_window_800} with an upper bound,
-asserting the Bodmer-Witten conjecture that three-flavor quark matter should be absolutely stable compared to $^{56}\text{Fe}$.
-\TODO{ref and discuss?}
-We require
-\begin{subequations}
-\begin{equation}
-	\frac{E_3}{N_B} = \frac{\epsilon_3}{n_B} < \SI{930}{\mega\electronvolt}
-	\quad \text{at} \quad
-	P(\mu,B) = 0
-\end{equation}
-with the three-flavor energy density $\epsilon_3 = \sum_i \mu_i n_i$ and the baryon density $n_B = N_B / V = (n_u+n_d+n_s)/3$.
-This yields the upper bound
-\end{subequations}
-\TODO{finish}
-\begin{subequations}
-\begin{align}
-	\text{no solution!} \Big(\text{with } m_\sigma = \SI{700}{\mega\electronvolt}\Big), \label{eq:lsm3f:bag_upper_bound_700} \\
-	B(f_\pi)^\frac14 < \SI{46.5}{\mega\electronvolt}, \quad \text{or} \quad B(0)^\frac14 > \SI{156.5}{\mega\electronvolt} \qquad \Big(\text{with } m_\sigma = \SI{800}{\mega\electronvolt}\Big). \label{eq:lsm3f:bag_upper_bound_800}
-\end{align}%
-\label{eq:lsm3f:bag_upper_bound}
-\end{subequations}%
-
 \begin{figure}
 \centering
 \tikzsetnextfilename{3-flavor-eos}
@@ -591,33 +534,43 @@ This yields the upper bound
 	width=13cm, height=7cm,
 	extra tick style={grid=major, grid style={dashed}},
 	minor tick num=9,
+	legend style={xshift=-0.2cm, fill=none},
 ]
 \nextgroupplot[
-	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$},
+	xlabel={$\mu \, / \, \si{\mega\electronvolt}$},
 	%xmin=0, xmax=600, ymax=500, xtick distance=100, ytick distance=100, minor x tick num=9,
 	xmin=0, xmax=800, xtick distance=100, minor x tick num=9,
-	ymin=-20, ymax=700, ytick distance=100, 
+	ymin=-20, ymax=1000, ytick distance=100, 
 	%ymax=600, 
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-parametrization}Parametrization of solutions}},
-	legend cell align=right, legend pos=north west, reverse legend,
+	legend cell align=left, legend pos=north west, legend columns=5, legend transposed, reverse legend,
 ];
-\addplot+ [blue,      solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [red,       solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [yellow,    solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\Delta_y \, / \, \si{\mega\electronvolt}$};
-\addplot+ [yellow,    solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms] {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [orange,    solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$\Delta_x \, / \, \si{\mega\electronvolt}$};
-\addplot+ [orange,    solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [orange, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {0};
+\addplot+ [yellow, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {0};
+\addplot+ [red, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {x};
+\addplot+ [darkgreen, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {x};
+\addplot+ [blue, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {x};
+\addplot+ [black] {-10}; \addlegendimage{empty legend}; \addlegendentry{};
+\addplot+ [black, dotted] {-100}; \addlegendentry{$m_f=m_e=0$};
+\addplot+ [black, densely dashed] {-100}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
+\addplot+ [black, solid] {-100}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [blue,      solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [darkgreen, solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [red,       solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [yellow,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [yellow,    solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_y \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [orange,    solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_x \, / \, \si{\mega\electronvolt}$};
 
 \nextgroupplot[
-	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
+	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
 	xmin=0, xmax=800, xtick distance=100, minor x tick num=9,
-	ymax=5.0, ytick distance=1.0, minor y tick num=9, restrict y to domain=-10:10,
+	ymin=-0.01, ymax=4.0, ytick distance=1.0, minor y tick num=9, restrict y to domain=-10:10,
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-density}Particle number densities}},
-	legend cell align=left, legend pos=north west, reverse legend,
+	legend cell align=left, legend pos=north west, legend columns=4, legend transposed, reverse legend,
 ];
 %\coordinate (zoomplot) at (232, 1.32);
 %\draw [draw=none, fill=gray!50] (250, -0.005) rectangle (350, 0.02);
@@ -625,32 +578,36 @@ This yields the upper bound
 %\addplot+ [red,       densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(muu(x))*nconv};
 %\addplot+ [darkgreen, densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(mud(x))*nconv};
 %\addplot+ [blue,      densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {ne(mue(x))*nconv};
-\addplot+ [blue,      solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_e$ (electrons)};
-\addplot+ [blue,      solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [purple,    solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_s$ (strange quarks)};
-\addplot+ [purple,    solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_d$ (down quarks)};
-\addplot+ [darkgreen, solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [red,       solid, opacity=0.7             ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$n_u$ (up quarks)};
-\addplot+ [red,       solid, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [black] {-1}; \addlegendimage{empty legend}; \addlegendentry{\vphantom{$m = \SI{0}{\mega\electronvolt}$}};
+\addplot+ [black, dotted] {-1}; \addlegendentry{$m_f=m_e=0$};
+\addplot+ [black, densely dashed] {-1}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
+\addplot+ [black, solid] {-1}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [blue,      solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_e$};
+\addplot+ [purple,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [purple,    solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_s$};
+\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [darkgreen, solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_d$};
+\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [red,       solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_u$};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
-	xmin=-0.005, xmax=0.4, ymin=0, ymax=2.0, xtick distance=0.1, ytick distance=1.0, minor y tick num=9, restrict y to domain=-3:+3,
+	xmin=-0.005, xmax=0.8, ymin=0, ymax=3.5, xtick distance=0.1, ytick distance=1.0, minor y tick num=9, restrict y to domain=-10:+10,
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
 ];
 %\addplot+ [black!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=P, y expr={3*\thisrow{P}+4*0.07774628475613433}] {../code/data/LSM2F/eos.dat}; % +4*P0, since both ϵ and P modified by P0
 %\addplot+ [black, densely dashed, opacity=0.4, domain=0:0.1, forget plot] {3*x}; % +4*P0, since both ϵ and P modified by P0
-\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{before Maxwell construction};
-\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{after Maxwell construction};
-\addplot+ [gray, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_800.dat};
-\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat};
+\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+\addplot+ [gray, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (uncorrected)};
+\addplot+ [black, densely dashed, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (corrected)};
+\addplot+ [black, dotted, opacity=0.7, domain=0:3.0] {3*x}; \addlegendentry{$m_f=m_e=0$};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-eos}%
-Properties of electrically charge neutral three-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu_Q = (\mu_u+\mu_d)/2$.
+Properties of electrically charge neutral three-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
 The two lines of each color has $m_\sigma = \SI{700}{\mega\electronvolt}$ (most ``sway'') and $m_\sigma = \SI{800}{\mega\electronvolt}$ (least ``sway'') \TODO{mark better}.
 Upper panel \subref{fig:lsm:3-flavor-eos-parametrization} shows solutions to equation \eqref{eq:lsm3f:minsys},
 middle panel \subref{fig:lsm:3-flavor-eos-density} the corresponding particle number densities \eqref{eq:lsm3f:particle_densities} and
@@ -659,61 +616,102 @@ lower panel \subref{fig:lsm:3-flavor-eos-eos} the corresponding equation of stat
 }
 \end{figure}
 
-\TODO{in figure text and elsewhere:``quark matter'' sounds like QCD, write quark-meson model or something instead} 
-
-\Cref{fig:lsm:3-flavor-eos} presents solutions to the system of equations \eqref{eq:lsm3f:minsys} and the corresponding particle densities and equation of state.
-Let us understand what is going on:
-\begin{itemize}
-\item In the vacuum $\mu < \SI{300}{\mega\electronvolt}$, the minima $\avg{\sigma_x}$ and $\avg{\sigma_y}$ do \emph{not} correspond exactly to the decay constants \eqref{eq:lsm3f:decay_constants}.
-      This is because the renormalization parameters $\Lambda_x$ and $\Lambda_y$ that preserved the minima were averaged into one common parameter \eqref{eq:lsm3f:renormalization_average} that slightly shifts the minima.
-      \TODO{I could say this already when I took the average.}
-\item The up and down quarks transition from \TODO{the?} vacuum slightly before $\mu = \SI{300}{\mega\electronvolt}$ due to the slight decrease of the minimum.
-      The crossover then proceeds somewhat less rapidly than in the two-flavor case, which manifests itself in a less steep \TODO{stiffer/softer?} equation of state at low pressures.
-      At the same time, the electron density attains a negligible nonzero value to ensure charge neutrality.
-      Although strange quarks have not yet transitioned from vacuum, the strange minima $\avg{\sigma_y}$ drops a bit simultaneously with the non-strange transition due to the cross term $\lambda_1 \avg{\sigma_x}^2 \avg{\sigma_y}^2 / 2$ in the grand potential \eqref{eq:lsm3f:grand_potential}.
-      \TODO{quarks do not transition from vacuum. write clearly ``what'' transitions from vacuum.}
-\item After the strange quark transitions from vacuum slightly before $\mu = \SI{429}{\mega\electronvolt}$, the three-flavor system behaves qualitatively differently from the two-flavor system.
-      The already low electron density is then completely wiped out, while the negatively charged strange quarks provides charge neutrality.
-      Compared to the non-strange one, the strange crossover takes place very slowly and produces a gentle ramp onto a second plateau of the equation of state.
-\item As $\mu \rightarrow \infty$, we see that $\avg{\sigma_x} \rightarrow \avg{\sigma_y} \rightarrow 0$ eliminates the quark masses.
-      In this ultra-relativistic and massless limit, $\mu_e = 0$ and $\mu_u = \mu_d = \mu_s = \mu$ is a trivial solution to the system \eqref{eq:lsm3f:minsys},
-      towards which we see that the numerical solution indeed converges.
-\end{itemize}
-
 \begin{figure}
 \centering
 \tikzsetnextfilename{3-flavor-density-ratios}
 \begin{tikzpicture}
 \begin{axis}[
 	width=12cm, height=5cm,
-	xlabel={$n_B \, / \, n_\text{sat}$}, ylabel={$n_i \, / \, n_\text{tot}$},
+	xlabel={$n_B \, / \, n_\text{sat}$}, ylabel={$n_i \, / \, n_B$},
 	xmin=0, xmax=50, xtick distance=5, minor x tick num=4, restrict x to domain=0.01:100,
-	ymin=-0.05, ymax=0.7, ytick distance=0.1, minor y tick num=9,
+	ymin=-0.05, ymax=2.05, ytick distance=0.5, minor y tick num=4,
 	declare function={sat=0.165;},
-	legend cell align=left, legend columns=2,
+	legend cell align=left, legend columns=1, legend transposed,
 ]
-\addplot [blue] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{ne}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/LSM3F/eos.dat};
-\addlegendentry{$n_e$ (electrons)};
-\addplot [red] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{nu}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/LSM3F/eos.dat};
-\addlegendentry{$n_u$ (up quarks)};
-\addplot [darkgreen] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{nd}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/LSM3F/eos.dat};
-\addlegendentry{$n_d$ (down quarks)};
-\addplot [purple] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={\thisrow{ns}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns}+\thisrow{ne})}] {../code/data/LSM3F/eos.dat};
-\addlegendentry{$n_s$ (strange quarks)};
+\addplot [blue] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{ne}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
+\addlegendentry{$n_e$};
+\addplot [red] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{nu}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
+\addlegendentry{$n_u$};
+\addplot [darkgreen] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{nd}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
+\addlegendentry{$n_d$};
+\addplot [purple] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{ns}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
+\addlegendentry{$n_s$};
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm3f:3-flavor-density-ratios}%
-Fractions of each particle density $n_i$
-to the total density $n_\text{tot} = n_u + n_d + n_s + n_e$
-as a function of the baryon density $n_B = (n_u+n_d+n_s)/3$
+Fractions of each particle density $n_i$ to the baryon density $n_B = (n_u+n_d+n_s)/3$
 in units of the nuclear saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$
 for charge-neutral three-flavor quark matter.
 }
 \end{figure}
 
-In \cref{fig:lsm3f:3-flavor-density-ratios}, we also plot the proportions of each particle density with respect to the total baryon density.
-The baryon density is shown in units of the nuclear saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$ at which nuclei begin to overlap. \cite{ref:saturation_density}
-It shows that the strange quarks arise for baryon densities that exceed $n_B \gtrsim 4 n_\text{sat}$, which can indeed be the case inside normal neutron stars. \cite{ref:strange_stars_saturation_density}
+To find the equation of state we will follow the same procedure as in \cref{chap:lsm2f}.
+The generalization of the system of equations \eqref{eq:lsm:minsys} with strange quarks that we need to solve,
+subject to charge neutrality \eqref{eq:lsm:charge_neutrality} and chemical equilibrium \eqref{eq:lsm:chemical_equilibrium},
+is
+\begin{subequations}
+\begin{align}
+	0 &= \pdv{\Omega}{\avg{\sigma_x}} , \label{eq:lsm3f:minsys_minx} \\
+	0 &= \pdv{\Omega}{\avg{\sigma_y}} , \label{eq:lsm3f:minsys_miny} \\
+	0 &= 2 \Big[\mu_u^2-m_u^2\Big]^\frac32 - \Big[(\mu_u+\mu_e)^2-m_d^2\Big]^\frac32 - \Big[(\mu_u+\mu_e)^2-m_s^2\Big]^\frac32 - \Big[\mu_e^2-m_e^2\Big]^\frac32 \label{eq:lsm:minsys3f_charge}.
+\end{align}%
+\label{eq:lsm3f:minsys}%
+\end{subequations}%
+For a given value of one variable -- say $\avg{\sigma_x}$ --
+the solution to these three equations yields $\avg{\sigma_y}$, $\mu_u$ and $\mu_e$,
+and $\mu_d$ and $\mu_s$ then follows from the chemical equilibrium constraint \eqref{eq:lsm:chemical_equilibrium}.
+As before, using the numerical implementation in \cref{sec:num:qstars2f},
+we parametrize multiple solutions this way and calculate the particle densities
+\begin{equation}
+	n_f = -\pdv{\Omega}{\mu_f} = \frac{N_c}{3 \pi^2} \Big( \mu_f^2 - m_f^2 \Big)^{\frac32}
+	\qquad \text{and} \qquad
+	n_e = -\pdv{\Omega}{\mu_e} = \frac{  1}{3 \pi^2} \Big( \mu_e^2 - m_e^2 \Big)^{\frac32},
+\label{eq:lsm3f:particle_densities}
+\end{equation}%
+the pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density}, and finally eliminate the free variable to get the equation of state $\epsilon(P)$.
+\Cref{fig:lsm:3-flavor-eos} presents solutions to the system of equations \eqref{eq:lsm3f:minsys} and the corresponding particle densities and equation of state:
+\begin{itemize}
+\item There is a non-strange crossover (for $m_\sigma=\SI{800}{\mega\electronvolt}$)
+      or discontinuous phase transition (for $m_\sigma=\SI{700}{\mega\electronvolt}$)
+      at $\mu=\SI{300}{\mega\electronvolt}$, like in the two-flavor case in \cref{fig:lsm:2-flavor-eos}.
+      Even the strange minimum $\avg{\sigma_y}$ moves a bit during this transition, due to the cross term $\lambda_1 \avg{\sigma_x}^2 \avg{\sigma_y}^2 / 2$ in the grand potential \eqref{eq:lsm3f:grand_potential}.
+      Accordingly, the equations of state are quite similar for $P < \SI{0.05}{\giga\electronvolt\per\femto\meter\cubed}$.
+\item There is a strange crossover at $\mu = \SI{429}{\mega\electronvolt}$ for all values of $m_\sigma$.
+      It is significantly slower than the non-strange transition, and the strange quark retains a noticeable mass when the non-strange quarks have lost theirs.
+      During this crossover, the equation of state gently ramps up from the two-flavor level to a second plateau.
+\item In the massless limit $\avg{\sigma_x} \rightarrow \avg{\sigma_y} \rightarrow 0$, the ultra-relativistic solution \eqref{eq:mit:chemical_potentials_massless_3f} is recovered.
+\item After spreading before the strange crossover, $\mu_u$ and $\mu_d$ find back to each other in the ultra-relativistic limit,
+      so the isospin chemical potential $\mu_I=(\mu_u-\mu_d)/2$ never exceeds half the pion mass.
+      In contrast to the two-flavor case, neglecting pion condensation is therefore a consistent assumption with three flavors.
+\item As confirmed by \cref{fig:lsm3f:3-flavor-density-ratios}, each quark density converges towards a third of the total baryon density as the density increases.
+      At low densities the strange quark is absent and there are twice as many down quarks as up quarks, as in the two-flavor case.
+      The fraction of up quarks is the same at all densities.
+      \TODO{The baryon density is shown in units of the nuclear saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$ at which nuclei begin to overlap. \cite{ref:saturation_density}
+      It shows that the strange quarks arise for baryon densities that exceed $n_B \gtrsim 4 n_\text{sat}$, which can indeed be the case inside normal neutron stars. \cite{ref:strange_stars_saturation_density}}
+      \TODO{I got it wrong in 2F: there is a TRANSITION at 4-7 n0, not necessarily this where it is valid.}
+\item After the strange crossover, the strange quark provides charge neutrality and wipes out the already small electron density.
+\item Like before, the equation of state always satisfies the microscopic stability criteria \eqref{eq:nstars:stability_speed_of_sound} and \eqref{eq:nstars:stability_pressure_energy_density}.
+\end{itemize}
+
+Once again, we modify the equation of state with bag constants $B$ according to the shift \eqref{eq:mit:bag_shift}
+and determine upper bounds for them by solving the three-flavor inequality \eqref{eq:mit:bag_stability}, owing to the strange matter hypothesis.
+This yields the upper bag constant bounds
+\begin{subequations}
+\begin{align}
+	%\text{no solution!} \Big(\text{with } m_\sigma = \SI{700}{\mega\electronvolt}\Big), \label{eq:lsm3f:bag_upper_bound_700} \\
+	%B(f_\pi)^\frac14 < \SI{46.5}{\mega\electronvolt}, \quad \text{or} \quad B(0)^\frac14 > \SI{156.5}{\mega\electronvolt} \qquad \Big(\text{with } m_\sigma = \SI{800}{\mega\electronvolt}\Big). \label{eq:lsm3f:bag_upper_bound_800}
+	B^\frac14 < \SI{112.0}{\mega\electronvolt}           \quad \Big(\text{or } \big(B-\pot_0\big)^\frac14 > \SI{226.4}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{600}{\mega\electronvolt}\Big), \label{eq:lsm3f:bag_upper_bound_600} \\
+	B^\frac14 < \phantom{0}\SI{68.2}{\mega\electronvolt} \quad \Big(\text{or } \big(B-\pot_0\big)^\frac14 > \SI{231.4}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{700}{\mega\electronvolt}\Big), \label{eq:lsm3f:bag_upper_bound_700} \\
+	B^\frac14 < \phantom{0}\SI{27.0}{\mega\electronvolt} \quad \Big(\text{or } \big(B-\pot_0\big)^\frac14 > \SI{241.3}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{800}{\mega\electronvolt}\Big). \label{eq:lsm3f:bag_upper_bound_800}
+\end{align}%
+\label{eq:lsm3f:bag_upper_bound}%
+\end{subequations}%
+These are so close to the lower bounds \eqref{eq:lsm:bag_lower_bound} that the inequalities practically become \emph{equalities},
+so the bag constants are more or less fixed \emph{if} the strange matter hypothesis holds, but can take greater values if it does not.
+\TODO{reflect this in two-flavor text}
+Note that if one uses one common renormalization scale $\Lambda$ and let the vacuum quark masses move from their fit values,
+one obtains the rather different bounds $B^\frac14 < \{6.3,48.2\} \, \si{\mega\electronvolt}$ for $m_\sigma=\{700,800\}\,\si{\mega\electronvolt}$,
+whereas the potential is broken for $m_\sigma=\SI{600}{\mega\electronvolt}$.
 
 \pgfplotsset{
 	mesh line legend/.style={legend image code/.code=\meshlinelegend#1},
@@ -762,16 +760,13 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 \makeatother
 %% End code for the coloured line legend
 
-\begin{figure}[t]
+\begin{figure}[p]
 \centering
 \tikzsetnextfilename{3-flavor-mass-radius}
-\tikzset{
-	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
-}
 \begin{tikzpicture}
 \begin{groupplot}[
-	group style={group size={2 by 1}, vertical sep=0cm, horizontal sep=0.5cm},
-	width=8cm, height=8cm,
+	group style={group size={3 by 1}, vertical sep=0cm, horizontal sep=0.3cm},
+	width=6cm, height=6cm,
 	xmin=5, xmax=20, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
 	point meta=explicit, point meta min=33, point meta max=36,
 	%colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
@@ -785,34 +780,66 @@ It shows that the strange quarks arise for baryon densities that exceed $n_B \gt
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
-	title = {$m_\sigma = \SI{700}{\mega\electronvolt}$ \\ $B^\frac14 = \{60,75,90\} \, \si{\mega\electronvolt}$},
+	title = {$m_\sigma = \SI{600}{\mega\electronvolt}$ \\ $B^\frac14 = \{111,131,151\} \, \si{\mega\electronvolt}$},
+	legend columns=2, legend style={anchor=north, at={(0.5, 0.98)}},
 ];
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_60.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_75.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_90.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_131.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_151.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addlegendentry{$N_f \!=\! 2$};
+\addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_600_B14_131.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_600_B14_151.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addlegendentry{$N_f \!=\! 3$};
 
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	yticklabels={,,},
-	title = {$m_\sigma = \SI{800}{\mega\electronvolt}$ \\ $B^\frac14 = \{30,45,60\} \, \si{\mega\electronvolt}$},
-	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.87,-0.25)}, anchor=north east, xticklabel pos=lower},
+	title = {$m_\sigma = \SI{700}{\mega\electronvolt}$ \\ $B^\frac14 = \{68,88,108\} \, \si{\mega\electronvolt}$},
+	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.5,-0.3)}, anchor=north, xticklabel pos=lower},
 ];
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_60.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_75.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_90.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_88.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_108.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+%\addlegendentry{$N_f=2$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_68.dat};  % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_88.dat};  % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_108.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+%\addlegendentry{$N_f=3$};
+
+\nextgroupplot[
+	xlabel={$R \, / \, \si{\kilo\meter}$},
+	yticklabels={,,},
+	title = {$m_\sigma = \SI{800}{\mega\electronvolt}$ \\ $B^\frac14 = \{27,47,67\} \, \si{\mega\electronvolt}$},
+];
+\addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_47.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_67.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+%\addlegendentry{$N_f=2$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_47.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_67.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+%\addlegendentry{$N_f=3$};
+%\node[scale=0.75] at (10.449, 1.762) {\goldenstar};
 
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-mass-radius}%
-Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$, obtained with the equations of state for three-flavor quark matter in \cref{fig:lsm:3-flavor-eos-eos} modified by bag constants around the bounds \eqref{eq:lsm:bag_lower_bound} and \eqref{eq:lsm3f:bag_upper_bound}.
-%Colorful lines show the three-flavor results, while gray lines show the two-flavor solutions from \cref{fig:lsm:2-flavor-mass-radius} with the same bag constants.
-%The upper and middle panels show mass and radius as a function of central pressure with a horizontal axis common to the color bar, while the lower panel displays the solutions in the mass-radius plane.
+	Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$, obtained with the equations of state for two-flavor quark matter in \cref{fig:lsm:3-flavor-eos-eos} modified by a range of bag constants above the bounds \eqref{eq:lsm:bag_lower_bound}.
 }
+
+\bigskip
+
+\TODO{three flavor extreme star}
+
 \end{figure}
 
-Next, we solve the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} with this equation of state,
-modified by a range of bag constants below the three-flavor upper bound \eqref{eq:lsm3f:bag_upper_bound} and above the two-flavor lower bound \eqref{eq:lsm:bag_lower_bound} that we found earlier.
-The solutions are displayed in \cref{fig:lsm:3-flavor-mass-radius}.
+Solving the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} like in \cref{chap:lsm2f} and using the same bag constants,
+we obtain the mass-radius solutions displayed in \cref{fig:lsm:3-flavor-mass-radius}:
+\begin{itemize}
+\item \TODO{less massive than two-flavor stars}
+\item \TODO{remarks}
+\end{itemize}
 
 A noteworthy feature is that stars become smaller and less massive for greater bag constants $B$.
 The ``bagging'' \TODO{ref} of the equation of state lifts points in the $P$-$\epsilon$-diagram up and to the left,
@@ -936,17 +963,5 @@ In \cref{fig:lsm:3-flavor-mass-radius-outside} we therefore examine the mass-rad
 This shows that it is possible to obtain maximum masses well below $1.8 M_\odot$ with this model by using larger bag constants.
 
 \TODO{mass-radius plot for small $B$ is shaped qualitatively differently than e.g. bag model (curves straight towards origin) and \cite{ref:quark_star_njl}}
-
-\TODO{add to this list!}
-
-\TODO{interpret non-quark terms in pressure as effective mass-dependent bag pressure? then $B$ normalizes its scale?}
-
-\TODO{plot pressure in units of $10^{34} Pa$?}
-
-\TODO{Some bag constants yield stars on downward $M$-curve, and my program even tells me they are stable???}
-
-\TODO{$\chi$PT is a \emph{theory}, LSM is a \emph{model} -- JO}
-
-\TODO{subfigure references are shaky! control this before handing in! fix by regenerating figure to which the reference is wrong.}
 
 \TODO{main conclusion (here or with 2-flavor model): model shows star is made of $u,d,s$ for $n>4 n_\text{sat}$ and $u,d$ for $n<4 n_\text{sat}$}
