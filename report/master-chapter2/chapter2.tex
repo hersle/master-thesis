@@ -566,14 +566,8 @@ Solving inequality \eqref{eq:mit:bag_stability} numerically, we obtain the lower
 \end{align}%%
 \label{eq:lsm:bag_lower_bound}%
 \end{subequations}%%
-In the next chapter we study the three-flavor generalization of this model and look for complementing upper bounds due to the strange matter hypothesis.
-We find that the three-flavor inequality \eqref{eq:mit:bag_stability} has no solution for $m_\sigma=\SI{700}{\mega\electronvolt}$,
-while for $m_\sigma=\SI{800}{\mega\electronvolt}$ we get the upper bound \eqref{eq:lsm3f:bag_upper_bound_800},
-yielding the closed bag window
-\begin{equation}
-	\SI{27.0}{\mega\electronvolt} < B^\frac14 < \SI{46.5}{\mega\electronvolt} \qquad \big(m_\sigma = \SI{800}{\mega\electronvolt}\big).
-\label{eq:lsm:bag_window_800}
-\end{equation}
+In the next chapter we study the three-flavor generalization of this model and find the complementing upper bounds \eqref{eq:lsm3f:bag_upper_bound} due to the strange matter hypothesis.
+If the strange matter hypothesis is respected, the bag constant inequalities can be regarded as equalities.
 
 As pointed out by \cite[section IV-B]{ref:quark_star_review}, it is generally not meaningful to compare bag constants across different models.
 Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bagless} it is the bounds of $B-\pot(f_\pi,\vec{0})$, not $B$, that is comparable to the MIT bag constant lower bound \eqref{eq:mit:bag_window}.
@@ -609,7 +603,7 @@ Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bag
 \addplot+ [red,       dotted, semithick, opacity=0.7, forget plot, domain=0:700] {muu(x)};
 \addplot+ [darkgreen, dotted, semithick, opacity=0.7, forget plot, domain=0:700] {mud(x)};
 \addplot+ [blue,      dotted, semithick, opacity=0.7, forget plot, domain=0:700] {mue(x)};
-\addplot+ [black, dotted] {-100}; \addlegendentry{$m_q=m_e=0$};
+\addplot+ [black, dotted] {-100}; \addlegendentry{massless};
 \addplot+ [black, densely dashed] {-100}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
 \addplot+ [black, solid] {-100}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
 \addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2F/eos_sigma_700.dat};
@@ -630,7 +624,7 @@ Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bag
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-density}Particle number densities}},
 	legend cell align=left, legend pos=north west, reverse legend, legend columns=3, legend transposed,
 ];
-\addplot+ [black, dotted] {-10}; \addlegendentry{$m_q=m_e=0$};
+\addplot+ [black, dotted] {-10}; \addlegendentry{massless};
 \addplot+ [black, densely dashed] {-10}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
 \addplot+ [black, solid] {-10}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
 \addplot+ [red,       dotted, semithick, opacity=0.7, forget plot, domain=0:700] {nq(muu(x))*nconv};
@@ -654,7 +648,7 @@ Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bag
 %\addplot+ [black, solid, opacity=0.7, forget plot] table [x=P,y=epsilon] {../code/data/LSM2F/eos_sigma_800.dat};
 \addplot+ [gray, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (uncorrected)};
 \addplot+ [black, densely dashed, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (corrected)};
-\addplot+ [black, dotted, opacity=0.7, domain=0:0.1] {3*x}; \addlegendentry{$m_q=m_e=0$};
+\addplot+ [black, dotted, opacity=0.7, domain=0:0.1] {3*x}; \addlegendentry{massless};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos}%
@@ -737,7 +731,7 @@ We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_47.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_67.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\node[scale=0.75] at (10.449, 1.762) {\goldenstar};
+\node[scale=0.75] at (11.269, 1.775) {\goldenstar};
 
 \end{groupplot}
 \end{tikzpicture}
@@ -753,7 +747,7 @@ We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 	group style={group size={2 by 2}, horizontal sep=1.2cm, vertical sep=0.4cm},
 	width=8cm, height=6cm,
 	ylabel style={yshift=-0.2cm},
-	enlargelimits=false, xtick distance=1.0, minor xtick={0,0.1,...,10.5},
+	enlargelimits=false, xtick distance=1.0, minor xtick={0,0.1,...,11.3},
 	legend cell align=left,
 ]
 \nextgroupplot[
@@ -761,33 +755,34 @@ We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 	ymax=1.5, ytick distance=0.5, minor y tick num=4,
 	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 ];
-\addplot+ [blue] table [x=r, y=epsilon] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat}; \addlegendentry{$\epsilon$};
-\addplot+ [red] table [x=r, y=P] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat}; \addlegendentry{$P$};
+\addplot+ [blue] table [x=r, y=epsilon] {../code/data/LSM2F/star_sigma_800_B14_27_Pc_0.0012501.dat}; \addlegendentry{$\epsilon$};
+\addplot+ [red] table [x=r, y=P] {../code/data/LSM2F/star_sigma_800_B14_27_Pc_0.0012501.dat}; \addlegendentry{$P$};
 \nextgroupplot[
 	ylabel=$m \, / \, M_\odot$,
 	xticklabels={,,},
 	ymax=2, ytick distance=0.5, minor y tick num=4,
 ];
-\addplot+ [black] table [x=r, y=m] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat};
+\addplot+ [black] table [x=r, y=m] {../code/data/LSM2F/star_sigma_800_B14_27_Pc_0.0012501.dat};
 \nextgroupplot[
 	xlabel=$r \, / \, \si{\kilo\meter}$,
 	ylabel=$\mu_Q \, / \, \si{\mega\electronvolt}$,
 	ymin=300, ymax=500, ytick distance=50, minor y tick num=4,
 ];
-\addplot+ [black] table [x=r, y=muQ] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat};
+\addplot+ [black] table [x=r, y=muQ] {../code/data/LSM2F/star_sigma_800_B14_27_Pc_0.0012501.dat};
 \nextgroupplot[
 	xlabel=$r \, / \, \si{\kilo\meter}$,
 	ylabel=$n_i \, / \, n_\text{sat}$,
 	ymax=15, ytick distance=5, minor y tick num=4,
 ];
-\addplot+ [red] table [x=r, y=nu] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat}; \addlegendentry{$n_u$};
-\addplot+ [darkgreen] table [x=r, y=nd] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat}; \addlegendentry{$n_d$};
-\addplot+ [blue] table [x=r, y=ne] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat}; \addlegendentry{$n_e$};
-\addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat};
+\addplot+ [red] table [x=r, y=nu] {../code/data/LSM2F/star_sigma_800_B14_27_Pc_0.0012501.dat}; \addlegendentry{$n_u$};
+\addplot+ [darkgreen] table [x=r, y=nd] {../code/data/LSM2F/star_sigma_800_B14_27_Pc_0.0012501.dat}; \addlegendentry{$n_d$};
+\addplot+ [blue] table [x=r, y=ne] {../code/data/LSM2F/star_sigma_800_B14_27_Pc_0.0012501.dat}; \addlegendentry{$n_e$};
+\addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F/star_sigma_800_B14_27_Pc_0.0012501.dat};
 % cheat legend
-\addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F/star_sigma_800_B14_47_Pc_0.0012501.dat}; \addlegendentry{$n_B$};
+\addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F/star_sigma_800_B14_27_Pc_0.0012501.dat}; \addlegendentry{$n_B$};
 \end{groupplot}
-\node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {Maximum mass star profile ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{47}{\mega\electronvolt}$, $P_c=10^{34.727} \, \si{\pascal}$)};
+\node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}]
+{Maximum mass star profile ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{27}{\mega\electronvolt}$, $P_c=10^{34.727} \, \si{\pascal}$)};
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-star}%
 	Radial profiles for the
@@ -809,24 +804,22 @@ We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 With the equation of state, we now solve the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov} with multiple bag pressures above the lower bounds \eqref{eq:lsm:bag_lower_bound}.
 We find the central pressure-parametrized mass-radius curves in \cref{fig:lsm:2-flavor-mass-radius}:
 \begin{itemize}
-\item The most massive star has $M = 2.0 \, M_\odot$ and $R = \SI{11}{\kilo\meter}$.
-      It occurs for the lowest value of $m_\sigma=\SI{600}{\mega\electronvolt}$ and saturates the lower bag constant bound \eqref{eq:lsm:bag_lower_bound}, but there is no upper bag bound in this case.
-      Its average mass density is $\rho = M / (4 \pi R^3/3) = \SI{7e14}{\kilo\gram\per\liter}$!
-\item For $m_\sigma = \SI{800}{\mega\electronvolt}$ we have the closed bag window \eqref{eq:lsm:bag_window_800},
-      and the maximum mass stars have $M \approx \SI{1.76}{} M_\odot$ and $\SI{10}{\kilo\meter} < R < \SI{12}{\kilo\meter}$.
+\item For bag constants that just satisfy the lower bound \eqref{eq:lsm:bag_lower_bound},
+      stars have maximum masses $1.7 \, M_\odot < M < 2.0 \, M_\odot$ and corresponding radii $R \approx \SI{11}{\kilo\meter}$
+      depending on the value chosen for $m_\sigma$.
+      The heaviest of these has an average mass density of $\rho = M / (4 \pi R^3/3) = \SI{7e14}{\kilo\gram\per\liter}$!
+\item For greater bag constants that violate the strange matter hypothesis, both the masses and radii decrease.
+      With sufficiently high bag constants one can cover any mass and radii below the largest ones.
 \item As $m_\sigma$ increases away from its measured value,
-      the maximum mass decreases and becomes more resilient to changes in $B$ and stars tend to inflate up to larger sizes for low pressures.
+      the maximum mass decreases and becomes more resilient to changes in $B$, and stars tend to inflate up to larger sizes for low pressures.
 \item The results are generally comparable to the MIT bag model solutions in \cref{fig:mit:mass_radius}.
 \end{itemize}
 
-In \cref{fig:lsm:2-flavor-star} we take an in-depth look at the most ``extreme'' stable star measured in terms of the quark chemical potential $\mu_Q$
-that is in the bag window and does not complicate things with a phase transition.
-This is the maximum mass star along the sequence that saturates the upper bag constant bound \eqref{eq:lsm3f:bag_upper_bound} with $m_\sigma=\SI{800}{\mega\electronvolt}$.
-We see that:
+In \cref{fig:lsm:2-flavor-star} we take an in-depth look at the maximum mass star that has no complicating phase transition and respects the strange matter hypothesis:
 \begin{itemize}
 \label{list:lsm:2-flavor-star-discussion}
-\item By definition, the pressure $P(R)=0$ vanishes at the surface $R=\SI{10.4}{\kilo\meter}$,
-      and the corresponding cumulative mass $m(R)=M=\SI{1.76}{}\,M_\odot$ evaluates to the total mass.
+\item By definition, the pressure $P(R)=0$ vanishes at the surface $R=\SI{11.3}{\kilo\meter}$,
+      and the corresponding cumulative mass $m(R)=M=\SI{1.77}{}\,M_\odot$ evaluates to the total mass.
 \item The quark chemical potential $\mu_Q(R)$ at the surface exceeds the vacuum value $\SI{300}{\mega\electronvolt}$ because of the bag constant shift \eqref{eq:mit:bag_shift}.
 \item Fortunately, the quark chemical potential $\mu_Q(r) < \SI{490}{\mega\electronvolt}$ never exceeds $\SI{575}{\mega\electronvolt}$, beyond which we saw that neglecting pion condensation was an inconsistent approximation. % in \cref{fig:lsm:2-flavor-eos-parametrization}.
 \item The crossover around $\mu_Q \approx \SI{320}{\mega\electronvolt}$ takes place very close to the surface of the star,
@@ -834,7 +827,7 @@ We see that:
 \item Hybrid neutron stars are typically assumed to consist of nuclear matter for $n_B \lesssim 2 n_\text{sat}$,
       quark matter for $4 n_\text{sat} \lesssim n_B \lesssim 7 n_\text{sat}$ and something in-between for $2 n_\text{sat} \lesssim n_B \lesssim 4 n_\text{sat}$.
       If the core of this quark star were to model the core of such a hybrid star,
-      it would have a radius $R' \approx \SI{5}{\kilo\meter}$, mass $M'=m(R')=\SI{0.45}{\kilo\meter}$, central pressure $P_c \approx \SI{0.33}{\giga\electronvolt\per\femto\meter\cubed}$
+      it would have a radius $R' \approx \SI{5}{\kilo\meter}$, mass $M'=m(R')=\SI{0.45}{\kilo\meter}$ and central pressure $P_c \approx \SI{0.33}{\giga\electronvolt\per\femto\meter\cubed}$
       and consist predominantly of quarks with twice as many up quarks as down quarks.
 \end{itemize}
 
@@ -967,7 +960,7 @@ This allows us to set $m_\sigma$ to values within its measured range $\SI{400}{}
 \addplot+ [red,       dotted, semithick, opacity=0.7, forget plot, domain=0:700] {muu(x)};
 \addplot+ [darkgreen, dotted, semithick, opacity=0.7, forget plot, domain=0:700] {mud(x)};
 \addplot+ [blue,      dotted, semithick, opacity=0.7, forget plot, domain=0:700] {mue(x)};
-\addplot+ [black, dotted] {-100}; \addlegendentry{$m_q=m_e=0$};
+\addplot+ [black, dotted] {-100}; \addlegendentry{massless};
 \addplot+ [black, densely dashed] {-100}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$};
 \addplot+ [black, solid] {-100}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
 \addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2FC/eos_sigma_500.dat};
@@ -988,7 +981,7 @@ This allows us to set $m_\sigma$ to values within its measured range $\SI{400}{}
 	title={\subcaption{\label{fig:lsm:2-flavor-eos-ref-density}Particle number densities}},
 	legend cell align=left, legend pos=north west, reverse legend, legend columns=3, legend transposed,
 ];
-\addplot+ [black, dotted] {-10}; \addlegendentry{$m_q=m_e=0$};
+\addplot+ [black, dotted] {-10}; \addlegendentry{massless};
 \addplot+ [black, densely dashed] {-10}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$};
 \addplot+ [black, solid] {-10}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
 \addplot+ [red,       dotted, semithick, opacity=0.7, forget plot, domain=0:700] {nq(muu(x))*nconv};
@@ -1011,7 +1004,7 @@ This allows us to set $m_\sigma$ to values within its measured range $\SI{400}{}
 \addplot+ [black, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_600.dat}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
 \addplot+ [gray, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$ (before Maxwell construction)};
 \addplot+ [black, densely dashed, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$ (after Maxwell construction)};
-\addplot+ [black, dotted, opacity=0.7, domain=0:0.1] {3*x}; \addlegendentry{$m_q=m_e=0$};
+\addplot+ [black, dotted, opacity=0.7, domain=0:0.1] {3*x}; \addlegendentry{massless};
 %\addplot+ [black, densely dashed, opacity=0.7, forget plot] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_600.dat};
 \end{groupplot}
 \end{tikzpicture}
@@ -1105,7 +1098,8 @@ and tells us that we should not be too worried by fitting too large values of $m
 In this chapter we have modeled pure quark stars consisting of up and down quarks with the two-flavor quark-meson model.
 Our main results were the equation of state in \cref{fig:lsm:2-flavor-eos}, mass-radius solutions in \cref{fig:lsm:2-flavor-mass-radius} and the radial profile of a representative maximum mass star in \cref{fig:lsm:2-flavor-star}.
 The equation of state exhibited a crossover for $m_\sigma \geq \SI{800}{\mega\electronvolt}$ and a discontinuous phase transition for $m_\sigma < \SI{800}{\mega\electronvolt}$.
-Depending on the bag constant $B$ and mass $m_\sigma$, we obtained stars with masses around $1.5 M_\odot \lesssim M \lesssim 2.0 M_\odot$ and radii around $\SI{7}{\kilo\meter} \lesssim R \lesssim \SI{12}{\kilo\meter}$.
+For bag constants that respected both instability of two-flavor quark matter and the strange matter hypothesis,
+we obtained stars with maximum  masses $1.7 \, M_\odot < M < 2.0 \, M_\odot$ and corresponding radii $R \approx \SI{11}{\kilo\meter}$ for different choices of $m_\sigma$.
 
 Our heart rates increased momentarily when we saw that neglecting pion condensation was an inconsistent approximation for $\mu > \SI{575}{\mega\electronvolt}$,
 but went back down when we saw that $\mu < \SI{490}{\mega\electronvolt}$ in the inspected maximum mass star did not exceed this.

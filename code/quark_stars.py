@@ -707,9 +707,13 @@ if __name__ == "__main__":
     LSM2FlavorModel(mσ=600).eos()
     LSM2FlavorModel(mσ=700).eos()
     LSM2FlavorModel(mσ=800).eos()
+    """
+
+    # LSM2FlavorModel(mσ=800).star(0.0012500875, 47, write=True) # has larger μQ than B=27^4
+    LSM2FlavorModel(mσ=800).star(0.0012500875, 27, write=True) # has larger μQ than B=27^4
     exit()
 
-    LSM2FlavorModel(mσ=800).star(0.0012500875, 47, write=True) # has larger μQ than B=27^4
+    """
 
     LSM2FlavorModel(mσ=600).stars(111, P1P2, write=True)
     LSM2FlavorModel(mσ=600).stars(131, P1P2, write=True)
