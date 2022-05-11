@@ -7,12 +7,9 @@
 
 \TODO{rewrite, structure everything with subheaders}
 
-\TODO{bold notation for vectors now just confusing? so drop it?}
-
 \TODO{short comment on using different normalization convention for potential couplings, because they are fit to experimental values anyway}
 
-\TODO{\cite{ref:lsm3f_details}: ``For $N_f=3$, the effective, low-energy degrees of freedom of QCD are the scalar and pseudoscalar mesons.''}
-
+With three flavors, the effective, low-energy degrees of freedom of quantum chromodynamics are the scalar and pseudoscalar mesons. %\cite{ref:lsm3f_details}
 In this chapter we will study the generalization of the quark-meson model in \cref{chap:lsm2f} to three flavors,
 thereby throwing the strange quark into the mix.
 This means we continue to study an effective model of quantum chromodynamics that takes chiral symmetry breaking into account,
@@ -539,23 +536,27 @@ offset by constants to make them comparable to the human eye.
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$},
 	%xmin=0, xmax=600, ymax=500, xtick distance=100, ytick distance=100, minor x tick num=9,
-	xmin=0, xmax=800, xtick distance=100, minor x tick num=9,
-	ymin=-20, ymax=1000, ytick distance=100, 
+	xmin=0, xmax=700, xtick distance=100, minor x tick num=9,
+	ymin=-20, ymax=1100, ytick distance=100, 
 	%ymax=600, 
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-parametrization}Parametrization of solutions}},
-	legend cell align=left, legend pos=north west, legend columns=5, legend transposed, reverse legend,
+	legend cell align=left, legend pos=north west, legend columns=6, legend transposed, reverse legend,
 ];
 \addplot+ [orange, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {0};
 \addplot+ [yellow, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {0};
 \addplot+ [red, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {x};
 \addplot+ [darkgreen, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {x};
 \addplot+ [blue, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {x};
-\addplot+ [black] {-10}; \addlegendimage{empty legend}; \addlegendentry{};
-\addplot+ [black, dotted] {-100}; \addlegendentry{$m_f=m_e=0$};
+\addplot+ {-100}; \addlegendimage{empty legend} \addlegendentry{}
+\addplot+ {-100}; \addlegendimage{empty legend} \addlegendentry{}
+\addplot+ {-100}; \addlegendimage{empty legend} \addlegendentry{}
+\addplot+ [black, dotted] {-100}; \addlegendentry{massless};
 \addplot+ [black, densely dashed] {-100}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
 \addplot+ [black, solid] {-100}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
 \addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_700.dat};
 \addplot+ [blue,      solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [darkgreen, solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_s \, / \, \si{\mega\electronvolt}$};
 \addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_700.dat};
 \addplot+ [darkgreen, solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
 \addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_700.dat};
@@ -567,7 +568,7 @@ offset by constants to make them comparable to the human eye.
 
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
-	xmin=0, xmax=800, xtick distance=100, minor x tick num=9,
+	xmin=0, xmax=700, xtick distance=100, minor x tick num=9,
 	ymin=-0.01, ymax=4.0, ytick distance=1.0, minor y tick num=9, restrict y to domain=-10:10,
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-density}Particle number densities}},
 	legend cell align=left, legend pos=north west, legend columns=4, legend transposed, reverse legend,
@@ -679,6 +680,11 @@ the pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:maste
 \item There is a strange crossover at $\mu = \SI{429}{\mega\electronvolt}$ for all values of $m_\sigma$.
       It is significantly slower than the non-strange transition, and the strange quark retains a noticeable mass when the non-strange quarks have lost theirs.
       During this crossover, the equation of state gently ramps up from the two-flavor level to a second plateau.
+\item Whereas the up and down quark densities become nonzero at their vacuum mass $\mu = \SI{300}{\mega\electronvolt}$,
+      the strange quark density does so at a value $\mu < \SI{429}{\mega\electronvolt}$ below its vacuum mass.
+      The explanation (here for $m_\sigma=\SI{800}{\mega\electronvolt}$) is that $m_x$ remains at its vacuum value up to $\mu = \SI{300}{\mega\electronvolt}$,
+      beyond which \emph{both} $m_x$ and $m_y$ starts to fall.
+      By the time it intersects $\mu_s$, the effective strange mass has fallen to $m_y = \SI{375}{\mega\electronvolt}$.
 \item In the massless limit $\avg{\sigma_x} \rightarrow \avg{\sigma_y} \rightarrow 0$, the ultra-relativistic solution \eqref{eq:mit:chemical_potentials_massless_3f} is recovered.
 \item After spreading before the strange crossover, $\mu_u$ and $\mu_d$ find back to each other in the ultra-relativistic limit,
       so the isospin chemical potential $\mu_I=(\mu_u-\mu_d)/2$ never exceeds half the pion mass.
@@ -781,7 +787,7 @@ whereas the potential is broken for $m_\sigma=\SI{600}{\mega\electronvolt}$.
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
 	title = {$m_\sigma = \SI{600}{\mega\electronvolt}$ \\ $B^\frac14 = \{111,131,151\} \, \si{\mega\electronvolt}$},
-	legend columns=2, legend style={anchor=north, at={(0.5, 0.98)}},
+	legend columns=2, legend style={anchor=north, at={(0.5, 0.96)}},
 ];
 \addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_131.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -820,7 +826,7 @@ whereas the potential is broken for $m_\sigma=\SI{600}{\mega\electronvolt}$.
 \addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_47.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_67.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 %\addlegendentry{$N_f=3$};
-%\node[scale=0.75] at (10.449, 1.762) {\goldenstar};
+\node[scale=0.75] at (11.565, 1.630) {\goldenstar};
 
 \end{groupplot}
 \end{tikzpicture}
@@ -830,17 +836,98 @@ whereas the potential is broken for $m_\sigma=\SI{600}{\mega\electronvolt}$.
 
 \bigskip
 
-\TODO{three flavor extreme star}
+\tikzsetnextfilename{3-flavor-extreme-star}
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size={2 by 2}, horizontal sep=1.2cm, vertical sep=0.4cm},
+	width=8cm, height=6cm,
+	ylabel style={yshift=-0.2cm},
+	enlargelimits=false, xtick distance=1.0, minor xtick={0,0.1,...,11.6},
+	legend cell align=left,
+]
+\nextgroupplot[
+	xticklabels={,,},
+	ymax=1.5, ytick distance=0.5, minor y tick num=4,
+	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+];
+\addplot+ [blue] table [x=r, y=epsilon] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$\epsilon$};
+\addplot+ [red] table [x=r, y=P] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$P$};
+\nextgroupplot[
+	ylabel=$m \, / \, M_\odot$,
+	xticklabels={,,},
+	ymax=2, ytick distance=0.5, minor y tick num=4,
+];
+\addplot+ [black] table [x=r, y=m] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat};
+\nextgroupplot[
+	xlabel=$r \, / \, \si{\kilo\meter}$,
+	ylabel=$\mu \, / \, \si{\mega\electronvolt}$,
+	ymin=300, ymax=500, ytick distance=50, minor y tick num=4,
+];
+\addplot+ [black] table [x=r, y=muQ] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat};
+\nextgroupplot[
+	xlabel=$r \, / \, \si{\kilo\meter}$,
+	ylabel=$n_i \, / \, n_\text{sat}$,
+	ymax=15, ytick distance=5, minor y tick num=4,
+];
+\addplot+ [red] table [x=r, y=nu] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_u$};
+\addplot+ [darkgreen] table [x=r, y=nd] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_d$};
+\addplot+ [purple] table [x=r, y=ns] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_s$};
+\addplot+ [blue] table [x=r, y=ne] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_e$};
+\addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat};
+% cheat legend
+\addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_B$};
+\end{groupplot}
+\node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {Maximum mass star profile ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{27}{\mega\electronvolt}$, $P_c=10^{34.602} \, \si{\pascal}$)};
+\end{tikzpicture}
+\caption{\label{fig:lsm:3-flavor-star}%
+	Radial profiles for the
+	pressure $P$,
+	energy density $\epsilon$,
+	cumulative mass $m$,
+	quark chemical potential $\mu_Q$,
+	particle densities $n_i$
+	and baryon density $n_B = (n_u+n_d)/3$
+	for the maximum mass three-flavor quark star \goldenstar in \cref{fig:lsm:3-flavor-mass-radius}.
+	The nuclear saturation density is $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$.
+	The solution of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov} yields $P(r)$ and $m(r)$ directly,
+	and $\epsilon(r)$ is then easily computed from the equation of state $\epsilon(P)$.
+	Meanwhile, $\mu(r)$ is obtained from $P(r)$ after inverting $P(\mu) \rightarrow \mu(P)$,
+	and $n_i(r)$ and other properties can then be looked up in \cref{fig:lsm:3-flavor-eos}.
+}
 
 \end{figure}
 
 Solving the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} like in \cref{chap:lsm2f} and using the same bag constants,
 we obtain the mass-radius solutions displayed in \cref{fig:lsm:3-flavor-mass-radius}:
 \begin{itemize}
-\item \TODO{less massive than two-flavor stars}
-\item \TODO{remarks}
+\item For stars with sufficiently low central pressure,
+      the quark chemical potential $\mu$ inside does not reach large enough levels to activate the strange quark.
+      Then the three-flavor equation of state follows the two-flavor one almost perfectly, and so does the mass-radius curve.
+      It is somewhat surprising that the correspondence is so good, given that the two models use different vacuum potentials.
+\item For stars with higher central pressure, $\mu$ exceeds the vacuum strange quark mass and the strange quark is present in the core of the star.
+      Exactly at the threshold, we see that the mass-radius curve grows apart from the two-flavor curve into a new branch with lower stellar masses.
+      This is caused by the softening of the equation of state as it ramps up to another plateau during the strange crossover.
+\item The masses and radii are generally comparable to the two-flavor results, except that the mass is lowered for stars with strange quarks.
+      For stars that just satisfy the lower bag bound and hence respect instability of two-flavor quark matter with respect to hadronic matter,
+      we find masses $1.6 \leq M \leq 1.7 \, M_\odot$ and radii $\SI{11}{\kilo\meter} \leq R \leq \SI{12}{\kilo\meter}$ depending on the precise mass $m_\sigma$.
+      Greater bag constants violate the strange matter hypothesis and result in lighter and smaller stars.
 \end{itemize}
 
+In \cref{fig:lsm:3-flavor-star} we take a more detailed look at the maximum mass star that has no phase transition and respects the strange matter hypothesis:
+\begin{itemize}
+\item Apart from the presence of strange quarks, many features are similar to that of the two-flavor star we discussed on page \pageref{list:lsm:2-flavor-star-discussion}.
+\item The star is composed of three-flavor quark matter including strange quarks for $r \leq \SI{6.5}{\kilo\meter}$ and two-flavor quark matter out to the surface.
+\item With a maximum chemical potential $\mu=\SI{465}{\mega\electronvolt}$, the strange quark has a significant mass at the center compared to the up and down quarks, as seen from \cref{fig:lsm:3-flavor-eos-parametrization}.
+      Accordingly, the star is far from realizing ultra-relativistic three-flavor quark matter with equal proportions of each quark.
+\item The maximum chemical potential is comparable between the two-flavor and three-flavor model.
+      If we assert that this carries over to a four-flavor model that also includes the charm quark with a constituent mass $m_c \approx \SI{1550}{\mega\electronvolt}$,
+      we would expect it to be present only for extreme central pressures and chemical potentials that lie far beyond the maximum mass star.
+      For physical and stable stars, three-flavor models are therefore the most complicated ones we need to study.
+\item If the core of this star is used to model the core of a hybrid neutron star with a quark model for $n_B > 4 n_\text{sat}$,
+      this core would extend for $R'=\SI{5}{\kilo\meter}$, weigh in at $M' = m(R') = 0.4 \, M_\odot$, have a central pressure $P_c'=p(R')=\SI{0.12}{\giga\electronvolt\per\femto\meter\cubed}$ and be entirely composed of three-flavor quark matter.
+\end{itemize}
+
+\TODO{move this to MIT, to introduce stiffness in the easiest chapter?}
 A noteworthy feature is that stars become smaller and less massive for greater bag constants $B$.
 The ``bagging'' \TODO{ref} of the equation of state lifts points in the $P$-$\epsilon$-diagram up and to the left,
 so that a given pressure corresponds to a greater energy density and number density, and a given energy density and number density corresponds to a lower pressure.
@@ -850,117 +937,16 @@ The softening caused by increased bag constants increases the mass gradient \eqr
 which in turn increases the mass $m(r)$ for a given central pressure and hence also increases the magnitude of the pressure gradient \eqref{eq:tov:tovsys_pressure},
 causing the surface defined by $P(R)=0$ to be reached quicker and therefore reducing the radius.
 
+\TODO{move this to MIT, to introduce stiffness in the easiest chapter?}
 However, the combination of a smaller size and greater mass gradient have opposite effects on the total integrated mass, so its change is a matter of balance.
 In fact, we see that the maximum masses are resilient towards changes in the bag constant within the bag window we have considered, meaning the two effects balance each other out.
 For lower pressure stars, however, greater bag constants significantly increase the mass of stars.
-
-\begin{figure}[t]
-\centering
-\tikzsetnextfilename{3-flavor-radial-densities}
-\begin{tikzpicture}
-\begin{axis}[
-	width=15cm, height=8cm,
-	title = {Radial density profile for 3-flavor quark stars},
-	xlabel = {$r \, / \, \si{\kilo\meter}$}, ylabel = {$n_i \, / \, n_\text{sat}$},
-	enlarge x limits = false,
-	xtick distance=1.0, minor x tick num=9,
-	ymin=-0.3, ymax=11, ytick distance=1.0, minor y tick num=9,
-	cycle multi list = {
-		black,blue,red,darkgreen,purple\nextlist
-		dotted,dashed,solid
-	},
-	legend pos=north east, legend cell align=left, %legend columns=1, transpose legend,
-]
-
-% fake plots for legend
-\addplot [black] {-1}; \addlegendentry{$n_B$ (baryons)};
-\addplot [red] {-1}; \addlegendentry{$n_u$ (up quarks)};
-\addplot [darkgreen] {-1}; \addlegendentry{$n_d$ (down quarks)};
-\addplot [purple] {-1}; \addlegendentry{$n_s$ (strange quarks)};
-\addplot [blue] {-1}; \addlegendentry{$n_e$ (electrons)};
-\addplot [black, dotted] {-1}; \addlegendentry{$P_c = 10^{34.41} \, \si{\pascal}$};
-\addplot [black, dashed] {-1}; \addlegendentry{$P_c = 10^{34.53} \, \si{\pascal}$};
-\addplot [black, solid] {-1}; \addlegendentry{$P_c = 10^{34.63} \, \si{\pascal}$};
-\pgfplotsset{cycle list shift=-8};
-
-\pgfplotsinvokeforeach{0.0006000,0.0008000,0.0010000}{
-	\addplot table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3/0.165}] {../code/data/LSM3F/star_B14_38_Pc_#1.dat};
-}
-\pgfplotsinvokeforeach{0.0006000,0.0008000,0.0010000}{
-	\addplot table [x=r, y expr={\thisrow{ne}/0.165}] {../code/data/LSM3F/star_B14_38_Pc_#1.dat};
-}
-\pgfplotsinvokeforeach{0.0006000,0.0008000,0.0010000}{
-	\addplot table [x=r, y expr={\thisrow{nu}/0.165}] {../code/data/LSM3F/star_B14_38_Pc_#1.dat};
-}
-\pgfplotsinvokeforeach{0.0006000,0.0008000,0.0010000}{
-	\addplot table [x=r, y expr={\thisrow{nd}/0.165}] {../code/data/LSM3F/star_B14_38_Pc_#1.dat};
-}
-\pgfplotsinvokeforeach{0.0006000,0.0008000,0.0010000}{
-	\addplot table [x=r, y expr={\thisrow{ns}/0.165}] {../code/data/LSM3F/star_B14_38_Pc_#1.dat};
-}
-\end{axis}
-\end{tikzpicture}
-\caption{\label{fig:lsm3f:3-flavor-radial-density}%
-	Radial density profile of each particle for three three-flavor quark stars \TODO{three three} at and slightly on \TODO{weird?} each side of the maximum mass in \cref{fig:lsm:3-flavor-mass-radius}, all with the bag constant $B = (\SI{38}{\mega\electronvolt})^4$.
-	In agreement with \cref{fig:lsm3f:3-flavor-density-ratios}, the stars gain a strange quark core as the baryon density $n_B = (n_u+n_d+n_s)/3$ exceeds $4$ nuclear saturation densities $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$.
-}
-\end{figure}
-
-To investigate the composition of the stars and effects from the addition of strange quarks,
-we plot radial density profiles of the different particles in \cref{fig:lsm3f:3-flavor-radial-density}.
-
-It shows that the central pressure must exceed $P_c \gtrsim 10^{34.41} \si{\pascal} = \SI{0.16}{\giga\electronvolt\per\femto\meter\cubed}$ for the star to have a core with strange quarks.
-Indeed, this corresponds to the beginning of the ``ramp'' up to the strange quark level of the equation of state in \cref{fig:lsm:3-flavor-eos-eos}.
-From \cref{fig:lsm:3-flavor-mass-radius}, we see that this central pressure corresponds to a stable star very near the maximum mass, suggesting that stars composed of strange quarks would be very rare.
-If one were to include the more unstable and energetic charm, bottom and top quarks in a more general six-flavor model, we would expect them to be present only for even greater central pressures corresponding to unstable and unphysical stars only. \TODO{ref?}
-
-For lower central pressures $P_c \lesssim 10^{34.41} \si{\pascal} = \SI{0.16}{\giga\electronvolt\per\femto\meter\cubed}$, the stars modeled with the three-flavor model consist only of up and down quarks.
-Despite this, the masses and radii of these stars differ greatly from those modeled with the two-flavor model!
-This is caused by difference in the equations of state for low pressures in \cref{fig:lsm:3-flavor-eos-eos}, that we traced back to the less rapid crossover in the three-flavor model.
-Although we do not expect the charm, bottom and top quarks to be physically present in stable stars, it would be interesting to whether merely including them in the model would cause similar effects.
-
-\begin{figure}[b]
-\centering
-\tikzsetnextfilename{3-flavor-mass-radius-outside}
-\begin{tikzpicture}
-\begin{axis}[
-	%width=15cm, height=12cm,
-	width=15cm, height=10.5cm,
-	xlabel={$R \, / \, \si{\kilo\meter}$}, ylabel={$M \, / \, M_\odot$}, title={Mass-radius diagram for 3-flavor quark stars outside bag window }, title style={yshift=2.0cm},
-	xmin=7, xmax=24, ymin=0.4, ymax=1.9, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
-	point meta=explicit, point meta min=32, point meta max=39,
-	colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
-	declare function={
-		e0 = 4.266500881855304e+37;
-	},
-	legend pos=north east, legend cell align=right,
-]
-\tikzset{
-	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
-}
-\pgfplotsinvokeforeach{6,13,...,132}{
-\addplot+ [solid, mesh, x filter/.expression={\thisrow{P} < ((0.001) + (0.0015-0.001)/(132-6)*(#1-6)) ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_#1.dat};
-}
-\addplot+ [draw=none, x filter/.expression={\thisrow{P} < ((0.001) + (0.0015-0.001)/(132-6)*(6-6)) ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_6.dat} node [Bpin, font=\scriptsize, yshift=-0.15cm, pos=0.945] {$B=(\SI{6}{\mega\electronvolt})^4$};
-\addplot+ [draw=none, x filter/.expression={\thisrow{P} < ((0.001) + (0.0015-0.001)/(132-13)*(13-6)) ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_13.dat} node [Bpin, font=\scriptsize, yshift=-0.15cm, pos=0.890] {$B=(\SI{13}{\mega\electronvolt})^4$};
-\addplot+ [draw=none, x filter/.expression={\thisrow{P} < ((0.001) + (0.0015-0.001)/(132-13)*(20-6)) ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_20.dat} node [Bpin, font=\scriptsize, yshift=-0.15cm, pos=0.870] {$B=(\SI{20}{\mega\electronvolt})^4$};
-\addplot+ [draw=none, x filter/.expression={\thisrow{P} < ((0.001) + (0.0015-0.001)/(132-13)*(27-6)) ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_27.dat} node [Bpin, font=\scriptsize, yshift=-0.15cm, pos=0.86] {$B=(\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [draw=none, x filter/.expression={\thisrow{P} < ((0.001) + (0.0015-0.001)/(132-13)*(34-6)) ? x : nan}] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_B14_34.dat} node [Bpin, font=\scriptsize, yshift=+0.1cm, pos=0.860] {$\vdots$};
-
-\end{axis}
-\end{tikzpicture}
-\caption{\label{fig:lsm:3-flavor-mass-radius-outside}Mass-radius solutions up to the maximum mass with the three-flavor equation of state as in \cref{fig:lsm:3-flavor-mass-radius} using bag constants $B$ outside the bag window, ranging from $B^{1/4}=\SI{6}{\mega\electronvolt}$ (rightmost curve) to $B^{1/4}=\SI{132}{\mega\electronvolt}$ in increments of $\SI{7}{\mega\electronvolt}$ (leftmost curve).}
-\end{figure}
 
 In a sense, our computation of the lower bag constant bound \eqref{eq:lsm:bag_lower_bound} using the instability of two-flavor quark matter at $P=0$ is inconsistent.
 Due to nonzero bag constants above this bound, the stars in \cref{fig:lsm3f:3-flavor-radial-density} have nonzero densities of up and down quarks \emph{at} the surface defined by $P(R)=0$, contradicting the assumption for the bound.
 This means that it is not really possible to use the two-flavor and three-flavor models to describe a pure quark star.
 However, we could make a hybrid star with a quark core described by one of these models and a nuclear envelope described by a different model, so that the quark matter no longer touches the zero-pressure space outside the star.
 \TODO{will try this?}
-
-Moreover, the upper bag constant bound \eqref{eq:lsm3f:bag_upper_bound} is based on the strange matter hypothesis and is by no means certain.
-In \cref{fig:lsm:3-flavor-mass-radius-outside} we therefore examine the mass-radius curves obtained as in \cref{fig:lsm:3-flavor-mass-radius}, only outside the bag window considered there.
-This shows that it is possible to obtain maximum masses well below $1.8 M_\odot$ with this model by using larger bag constants.
 
 \TODO{mass-radius plot for small $B$ is shaped qualitatively differently than e.g. bag model (curves straight towards origin) and \cite{ref:quark_star_njl}}
 

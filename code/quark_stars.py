@@ -739,6 +739,9 @@ if __name__ == "__main__":
     exit()
     """
 
+    LSM3FlavorModel(mσ=800).star(0.000937590625, 27, write=True) # has larger μQ than B=27^4
+    exit()
+
     LSM3FlavorModel(mσ=600).stars(111, P1P2, write=True)
     LSM3FlavorModel(mσ=600).stars(131, P1P2, write=True)
     LSM3FlavorModel(mσ=600).stars(151, P1P2, write=True)
