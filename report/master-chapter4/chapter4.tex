@@ -1,0 +1,88 @@
+\chapter{A hybrid neutron star}
+
+\TODO{use APR equation of state from \cite{ref:quark_star_review}, use coarsest method of simply checking where it intersects quark equation of state as function of $\mu_B$}
+
+\TODO{data table for EOS at \url{https://compose.obspm.fr/eos/68}. is chemical equilibrium, beta equilibrium. and zero temperature. and has charge neutrality?}
+
+\begin{figure}
+\centering
+\tikzsetnextfilename{hybrid-flavor-eos}
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size={1 by 2}, vertical sep=1.9cm},
+	width=13cm, height=7cm,
+	extra tick style={grid=major, grid style={dashed}},
+	minor tick num=9,
+	legend style={xshift=-0.2cm, fill=none},
+]
+\nextgroupplot[
+	xlabel={$n_B \, / \, n_\text{sat}$},
+	ylabel={$P \, / \, \si{\giga\electronvolt\per\femto\meter\cubed}$},
+	xmin=0, ymin=0, xmax=8, ymax=0.4, restrict x to domain=0:40, restrict y to domain=0:5,
+	title={TITLE},
+];
+\addplot+ [red, solid] table [x=nB2,y=P] {../code/data/LSM3F_APR/eos_sigma_800.dat};
+\addplot+ [blue, solid] table [x=nB1,y=P1] {../code/data/LSM3F_APR/eos_sigma_800.dat};
+\addplot+ [black, densely dashed] table [x=nB,y=P] {../code/data/LSM3F_APR/eos_sigma_800.dat};
+\nextgroupplot[
+	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+	xmin=0, xmax=0.2, ymin=0, ymax=1.0, xtick distance=0.1, ytick distance=1.0, minor y tick num=9, restrict x to domain=0:5, restrict y to domain=0:5,
+	title={Hybrid equation of state ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{27}{\mega\electronvolt}$)},
+	legend cell align=left, legend pos=north west,
+];
+\addplot+ [red, solid] table [x=P,y=epsilon2] {../code/data/LSM3F_APR/eos_sigma_800.dat};
+\addplot+ [blue, solid] table [x=P1,y=epsilon1] {../code/data/LSM3F_APR/eos_sigma_800.dat};
+\addplot+ [black, densely dashed] table [x=P,y=epsilon] {../code/data/LSM3F_APR/eos_sigma_800.dat};
+\end{groupplot}
+\end{tikzpicture}
+\caption{\label{fig:lsm:hybrid-eos}%
+\TODO{fix}
+}
+\end{figure}
+
+\begin{figure}
+\centering
+\tikzsetnextfilename{hybrid-flavor-mass-radius}
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size={3 by 1}, vertical sep=0cm, horizontal sep=0.3cm},
+	width=6cm, height=6cm,
+	xmin=5, xmax=20, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
+	point meta=explicit, point meta min=33, point meta max=36,
+	%colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+	/tikz/declare function={
+		e0 = 4.266500881855304e+37;
+	},
+]
+\tikzset{
+	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
+}
+\nextgroupplot[
+	xlabel={$R \, / \, \si{\kilo\meter}$},
+	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
+	title = {$m_\sigma = \SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$},
+	legend columns=2, legend style={anchor=north, at={(0.5, 0.96)}},
+];
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+
+\nextgroupplot[
+	xlabel={$R \, / \, \si{\kilo\meter}$},
+	yticklabels={,,},
+	title = {$m_\sigma = \SI{700}{\mega\electronvolt}$, $B^\frac14 = \SI{68}{\mega\electronvolt}$},
+	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.5,-0.3)}, anchor=north, xticklabel pos=lower},
+];
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat};  % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+
+\nextgroupplot[
+	xlabel={$R \, / \, \si{\kilo\meter}$},
+	yticklabels={,,},
+	title = {$m_\sigma = \SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{27}{\mega\electronvolt}$},
+];
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+
+\end{groupplot}
+\end{tikzpicture}
+
+
+\end{figure}

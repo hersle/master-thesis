@@ -28,6 +28,8 @@ mη = 539
 mηp = 963
 me = 0.5
 
+nsat = 0.165 # (1/fm^3)
+
 σx0 = fπ
 σy0 = np.sqrt(2)*fK-fπ/np.sqrt(2)
 
@@ -663,6 +665,81 @@ class LSM3FlavorAnomalyModel(LSM3FlavorModel):
 
         Model.__init__(self, f"LSM3FA", mσ=mσ, mπ=mπ, mK=mK, ma0=ma0)
 
+class HybridModel(Model):
+    def __init__(self, mσ=mσ):
+        self.name = "LSM3F_APR"
+        self.mσ = mσ
+
+    def eos(self, N=1000, B=27**4, plot=False, write=False):
+        arr = np.loadtxt("data/APR/eos.dat")
+        mn = 939.56542052 # MeV / c^2
+        nB = arr[:,0]
+        P_over_nB = arr[:,1]
+        ϵ_over_nBmn_minus_one = arr[:,6]
+        P = P_over_nB * nB
+        ϵ = (ϵ_over_nBmn_minus_one + 1) * (nB*mn)
+
+        nB1 = nB / nsat
+        P1  = P * 1e-3 * (GeV/fm**3) / ϵ0 # MeV/fm^3 -> GeV/fm^3 -> kg*m^2/s^2/m^3 -> TOV-dimless
+        ϵ1  = ϵ * 1e-3 * (GeV/fm**3) / ϵ0 # MeV/fm^3 -> GeV/fm^3 -> kg*m^2/s^2/m^3 -> TOV-dimless
+        
+        ϵ2int, nu2int, nd2int, ns2int, _, _ = LSM3FlavorModel(mσ=self.mσ).eos(N=N-len(P1), B=B) # TODO: inc N
+        nB2 = (nu2int(P1)+nd2int(P1)+ns2int(P1)) / 3 / nsat
+
+        if plot:
+            plt.plot(nB1, P1, "-b.")
+            plt.plot(nB2, P1, "-r.")
+            #plt.scatter(nB0, P0)
+            plt.show()
+
+        # find intersecting nB (from top)
+        P1i = scipy.interpolate.interp1d(nB1, P1)
+        P2i = scipy.interpolate.interp1d(nB2, P1)
+        sol = scipy.optimize.root_scalar(lambda nB: P2i(nB)-P1i(nB), method="brentq", bracket=(3, 6))
+        assert sol.converged
+        nB0 = sol.root
+        P0 = P1i(nB0)
+
+        # compute pressure for larger values to increase interpolation range
+        P2 = np.linspace(P0, 1e-1, N-len(P1))
+        ϵ2 = ϵ2int(P2)
+        P  = np.concatenate((P1[P1<P0], P2))
+        ϵ  = np.concatenate((ϵ1[P1<P0], ϵ2))
+
+        if plot:
+            plt.plot(P, ϵ, "-k.", linewidth=4)
+            plt.plot(P1, ϵ1, "-b.")
+            plt.plot(P, ϵ2int(P), "-r.")
+            plt.show()
+
+        # hack: exploit nu=nd=ns=nB for density interpolation
+        nB1 = nB1 # already have from data set
+        nB2 = (nu2int(P2)+nd2int(P2)+ns2int(P2)) / 3 / nsat # compute with P2 instead of P1 # TODO: deviates by 0.165
+        nB = np.concatenate((nB1[P1<P0], nB2))
+        nBint = scipy.interpolate.interp1d(P, nB)
+
+        ϵ = np.concatenate(([0], ϵ))
+        P = np.concatenate(([-10], P)) # force ϵ(P<Pmin)=0 (avoid interpolation errors)
+        nB = np.concatenate(([0], nB)) # force ϵ(P<Pmin)=0 (avoid interpolation errors)
+        ϵint = scipy.interpolate.interp1d(P, ϵ); ϵint.__name__ = self.name
+
+        # ignore electrons and μQ
+        zerofunc = lambda x: 0*x # works for scalars and arrays
+
+        if write:
+            nB2 = (nu2int(P)+nd2int(P)+ns2int(P)) / 3 / nsat # compute with P instead
+            ϵ1 = ϵ1 * ϵ0 / (GeV/fm**3)
+            ϵ2 = np.concatenate(([0], ϵ2int(P[1:]))) * ϵ0 / (GeV/fm**3) # skip -10
+            ϵ  = ϵ * ϵ0 / (GeV/fm**3)
+            P  = P * ϵ0 / (GeV/fm**3)
+            P1 = P1* ϵ0 / (GeV/fm**3)
+            cols  = [list(nB), list(nB1), list(nB2), list(P), list(P1), list(ϵ), list(ϵ1), list(ϵ2)]
+            heads = ["nB", "nB1", "nB2", "P", "P1", "epsilon", "epsilon1", "epsilon2"]
+            outfile = f"data/{self.name}/eos_sigma_{self.mσ}.dat"
+            utils.writecols(cols, heads, outfile)
+
+        return ϵint, nBint, nBint, nBint, zerofunc, zerofunc
+
 if __name__ == "__main__":
     # plot massive, interacting and massless, free equation of state
 
@@ -702,6 +779,11 @@ if __name__ == "__main__":
     """
 
     P1P2 = (1e-7, 1e-2)
+
+    HybridModel(mσ=800).eos(B=27**4, write=True)
+    #HybridModel(mσ=800).star(0.0009465624999999999, 27, write=True)
+    HybridModel(mσ=800).stars(27, (1e-5, 1e-2), write=True)
+    exit()
 
     """
     LSM2FlavorModel(mσ=600).eos()
