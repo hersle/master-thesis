@@ -33,7 +33,7 @@ nsat = 0.165 # (1/fm^3)
 σx0 = fπ
 σy0 = np.sqrt(2)*fK-fπ/np.sqrt(2)
 
-tovopts = {"tolD": 0.40, "maxdr": 1e-2, "nmodes": 0}
+tovopts = {"tolD": 0.20, "maxdr": 1e-2, "nmodes": 0}
 tovμQ = np.concatenate([np.linspace(0, 700, 200)[1:], np.linspace(700, 5000, 100)])
 
 def charge(mu, md, ms, μu, μd, μs, μe):
@@ -666,39 +666,50 @@ class LSM3FlavorAnomalyModel(LSM3FlavorModel):
         Model.__init__(self, f"LSM3FA", mσ=mσ, mπ=mπ, mK=mK, ma0=ma0)
 
 class HybridModel(Model):
-    def __init__(self, mσ=mσ):
+    def __init__(self, mσ=600):
         self.name = "LSM3F_APR"
         self.mσ = mσ
 
-    def eos(self, N=1000, B=27**4, plot=False, write=False):
+    def eos(self, N=1000, B=111**4, hybrid=True, plot=False, write=False):
         arr = np.loadtxt("data/APR/eos.dat")
-        mn = 939.56542052 # MeV / c^2
+        #mn = 939.56542052 # MeV / c^2
+        mn = 900
         nB = arr[:,0]
         P_over_nB = arr[:,1]
+        μB_over_mn_minus_one = arr[:,3]
         ϵ_over_nBmn_minus_one = arr[:,6]
         P = P_over_nB * nB
         ϵ = (ϵ_over_nBmn_minus_one + 1) * (nB*mn)
 
-        nB1 = nB / nsat
+        nB1 = nB
+        μB1 = (μB_over_mn_minus_one + 1) * mn
         P1  = P * 1e-3 * (GeV/fm**3) / ϵ0 # MeV/fm^3 -> GeV/fm^3 -> kg*m^2/s^2/m^3 -> TOV-dimless
         ϵ1  = ϵ * 1e-3 * (GeV/fm**3) / ϵ0 # MeV/fm^3 -> GeV/fm^3 -> kg*m^2/s^2/m^3 -> TOV-dimless
         
-        ϵ2int, nu2int, nd2int, ns2int, _, _ = LSM3FlavorModel(mσ=self.mσ).eos(N=N-len(P1), B=B) # TODO: inc N
-        nB2 = (nu2int(P1)+nd2int(P1)+ns2int(P1)) / 3 / nsat
+        ϵ2int, nu2int, nd2int, ns2int, _, μQ2int = LSM3FlavorModel(mσ=self.mσ).eos(N=N-len(P1), B=B) # TODO: inc N
+        nB2 = (nu2int(P1)+nd2int(P1)+ns2int(P1)) / 3
+        μB2 = μQ2int(P1) * 3
 
         if plot:
-            plt.plot(nB1, P1, "-b.")
-            plt.plot(nB2, P1, "-r.")
+            fig, (ax1, ax2) = plt.subplots(1, 2)
+            ax1.plot(μB1, P1, "-b.")
+            ax1.plot(μB2, P1, "-r.")
+            ax2.plot(μB1, nB1/nsat, "-b.")
+            ax2.plot(μB1, nB2/nsat, "-r.")
             #plt.scatter(nB0, P0)
             plt.show()
 
         # find intersecting nB (from top)
-        P1i = scipy.interpolate.interp1d(nB1, P1)
-        P2i = scipy.interpolate.interp1d(nB2, P1)
-        sol = scipy.optimize.root_scalar(lambda nB: P2i(nB)-P1i(nB), method="brentq", bracket=(3, 6))
+        P1i = scipy.interpolate.interp1d(μB1, P1)
+        P2i = scipy.interpolate.interp1d(μB2, P1)
+        sol = scipy.optimize.root_scalar(lambda μB: P2i(μB)-P1i(μB), method="brentq", bracket=(1200, 2000))
         assert sol.converged
-        nB0 = sol.root
-        P0 = P1i(nB0)
+        μB0 = sol.root
+        if not hybrid:
+            μB0 = 2700 # will use only hadronic EOS
+        P0 = P1i(μB0)
+        print(f"μB0 = {μB0}")
+        print(f"P0  = {P0} = 10^({np.log10(P0*ϵ0)}) Pa")
 
         # compute pressure for larger values to increase interpolation range
         P2 = np.linspace(P0, 1e-1, N-len(P1))
@@ -714,31 +725,48 @@ class HybridModel(Model):
 
         # hack: exploit nu=nd=ns=nB for density interpolation
         nB1 = nB1 # already have from data set
-        nB2 = (nu2int(P2)+nd2int(P2)+ns2int(P2)) / 3 / nsat # compute with P2 instead of P1 # TODO: deviates by 0.165
+        nB2 = (nu2int(P2)+nd2int(P2)+ns2int(P2)) / 3 # compute with P2 instead of P1
         nB = np.concatenate((nB1[P1<P0], nB2))
-        nBint = scipy.interpolate.interp1d(P, nB)
+        nu = np.concatenate((nB1[P1<P0], nu2int(P2)))
+        nd = np.concatenate((nB1[P1<P0], nd2int(P2)))
+        ns = np.concatenate((nB1[P1<P0], ns2int(P2)))
+
+        μB1 = μB1 # already have from data set
+        μB2 = μQ2int(P2) * 3
+        μB = np.concatenate((μB1[P1<P0], μB2))
 
         ϵ = np.concatenate(([0], ϵ))
         P = np.concatenate(([-10], P)) # force ϵ(P<Pmin)=0 (avoid interpolation errors)
-        nB = np.concatenate(([0], nB)) # force ϵ(P<Pmin)=0 (avoid interpolation errors)
+        nB = np.concatenate(([0], nB))
+        nu = np.concatenate(([0], nu))
+        nd = np.concatenate(([0], nd))
+        ns = np.concatenate(([0], ns))
+        μB = np.concatenate(([0], μB))
         ϵint = scipy.interpolate.interp1d(P, ϵ); ϵint.__name__ = self.name
+        nBint = scipy.interpolate.interp1d(P, nB)
+        nuint = scipy.interpolate.interp1d(P, nu)
+        ndint = scipy.interpolate.interp1d(P, nd)
+        nsint = scipy.interpolate.interp1d(P, ns)
+        μBint = scipy.interpolate.interp1d(P, μB)
 
-        # ignore electrons and μQ
+        # ignore electrons
         zerofunc = lambda x: 0*x # works for scalars and arrays
 
         if write:
-            nB2 = (nu2int(P)+nd2int(P)+ns2int(P)) / 3 / nsat # compute with P instead
+            nB2 = (nu2int(P)+nd2int(P)+ns2int(P)) / 3 # compute with P instead
+            μB2 = μQ2int(P) * 3 # compute with P instead
             ϵ1 = ϵ1 * ϵ0 / (GeV/fm**3)
             ϵ2 = np.concatenate(([0], ϵ2int(P[1:]))) * ϵ0 / (GeV/fm**3) # skip -10
             ϵ  = ϵ * ϵ0 / (GeV/fm**3)
             P  = P * ϵ0 / (GeV/fm**3)
             P1 = P1* ϵ0 / (GeV/fm**3)
-            cols  = [list(nB), list(nB1), list(nB2), list(P), list(P1), list(ϵ), list(ϵ1), list(ϵ2)]
-            heads = ["nB", "nB1", "nB2", "P", "P1", "epsilon", "epsilon1", "epsilon2"]
+            cols  = [list(nB), list(nB1), list(nB2), list(μB), list(μB1), list(μB2), list(P), list(P1), list(ϵ), list(ϵ1), list(ϵ2)]
+            heads = ["nB", "nB1", "nB2", "muB", "muB1", "muB2", "P", "P1", "epsilon", "epsilon1", "epsilon2"]
             outfile = f"data/{self.name}/eos_sigma_{self.mσ}.dat"
             utils.writecols(cols, heads, outfile)
 
-        return ϵint, nBint, nBint, nBint, zerofunc, zerofunc
+        μQint = lambda P: μBint(P) / 3
+        return ϵint, nuint, ndint, nsint, zerofunc, μQint
 
 if __name__ == "__main__":
     # plot massive, interacting and massless, free equation of state
@@ -780,9 +808,15 @@ if __name__ == "__main__":
 
     P1P2 = (1e-7, 1e-2)
 
-    HybridModel(mσ=800).eos(B=27**4, write=True)
-    #HybridModel(mσ=800).star(0.0009465624999999999, 27, write=True)
-    HybridModel(mσ=800).stars(27, (1e-5, 1e-2), write=True)
+    # TODO: transition occurs at maximum mass??
+    # TODO: try lower mσ
+    #HybridModel(mσ=600).eos(B=111**4, plot=True, hybrid=False)
+    #HybridModel(mσ=600).stars(111, (1e-5, 1e-2), plot=True, write=True)
+    #HybridModel(mσ=700).stars(68, (1e-5, 1e-2), plot=True, write=True)
+    #HybridModel(mσ=800).stars(27, (1e-5, 1e-2), plot=True, write=True)
+    HybridModel(mσ=600).star(0.0007904687499999999, 111, plot=True, write=True)
+    HybridModel(mσ=700).star(0.0009465624999999999, 68, plot=True, write=True)
+    HybridModel(mσ=800).star(0.0012587499999999999, 27, plot=True, write=True)
     exit()
 
     """
