@@ -520,7 +520,7 @@ offset by constants to make them comparable to the human eye.
 
 \TODO{the consistency is this: have not included vacuum renormalization of quadratic bosonic fluctuations}
 
-\section{Equation of state and mass-radius relation}
+\section{Equation of state}
 
 \begin{figure}
 \centering
@@ -628,12 +628,11 @@ offset by constants to make them comparable to the human eye.
 };
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-eos}%
-Properties of electrically charge neutral three-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
-The two lines of each color has $m_\sigma = \SI{700}{\mega\electronvolt}$ (most ``sway'') and $m_\sigma = \SI{800}{\mega\electronvolt}$ (least ``sway'') \TODO{mark better}.
+Properties of electrically charge neutral three-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu_Q = (\mu_u+\mu_d)/2$.
 Upper panel \subref{fig:lsm:3-flavor-eos-parametrization} shows solutions to equation \eqref{eq:lsm3f:minsys},
 middle panel \subref{fig:lsm:3-flavor-eos-density} the corresponding particle number densities \eqref{eq:lsm3f:particle_densities} and
-lower panel \subref{fig:lsm:3-flavor-eos-eos} the corresponding equation of state $\epsilon(P)$, all with strong lines.
-\TODO{fix}
+lower panel \subref{fig:lsm:3-flavor-eos-eos} the corresponding equation of state $\epsilon(P)$ corrected with the Maxwell construction.
+Dotted lines show the massless solutions \eqref{eq:mit:densities_massless}, \eqref{eq:mit:chemical_potentials_massless_3f} and \eqref{eq:mit:eos_ur}.
 }
 \end{figure}
 
@@ -647,7 +646,7 @@ lower panel \subref{fig:lsm:3-flavor-eos-eos} the corresponding equation of stat
 	xmin=0, xmax=50, xtick distance=5, minor x tick num=4, restrict x to domain=0.01:100,
 	ymin=-0.05, ymax=2.05, ytick distance=0.5, minor y tick num=4,
 	declare function={sat=0.165;},
-	legend cell align=left, legend columns=1, legend transposed,
+	legend cell align=left, legend columns=4, legend transposed,
 ]
 \addplot [blue] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{ne}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
 \addlegendentry{$n_e$};
@@ -917,6 +916,8 @@ whereas the potential is broken for $m_\sigma=\SI{600}{\mega\electronvolt}$.
 
 \end{figure}
 
+\section{Stellar solutions}
+
 Solving the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} like in \cref{chap:lsm2f} and using the same bag constants,
 we obtain the mass-radius solutions displayed in \cref{fig:lsm:3-flavor-mass-radius}:
 \begin{itemize}
@@ -929,7 +930,7 @@ we obtain the mass-radius solutions displayed in \cref{fig:lsm:3-flavor-mass-rad
       This is caused by the softening of the equation of state as it ramps up to another plateau during the strange crossover.
 \item The masses and radii are generally comparable to the two-flavor results, except that the mass is lowered for stars with strange quarks.
       For stars that just satisfy the lower bag bound and hence respect instability of two-flavor quark matter with respect to hadronic matter,
-      we find masses $1.6 \leq M \leq 1.7 \, M_\odot$ and radii $\SI{11}{\kilo\meter} \leq R \leq \SI{12}{\kilo\meter}$ depending on the precise mass $m_\sigma$.
+      we find masses $1.6 \leq M \leq 1.8 \, M_\odot$ and radii $\SI{11}{\kilo\meter} \leq R \leq \SI{12}{\kilo\meter}$ depending on the precise mass $m_\sigma$.
       Greater bag constants violate the strange matter hypothesis and result in lighter and smaller stars.
 \end{itemize}
 
@@ -953,6 +954,24 @@ This means that it is not really possible to use the two-flavor and three-flavor
 However, we could make a hybrid star with a quark core described by one of these models and a nuclear envelope described by a different model, so that the quark matter no longer touches the zero-pressure space outside the star.
 \TODO{will try this?}
 
-\TODO{mass-radius plot for small $B$ is shaped qualitatively differently than e.g. bag model (curves straight towards origin) and \cite{ref:quark_star_njl}}
+\section{Summary}
 
-\TODO{main conclusion (here or with 2-flavor model): model shows star is made of $u,d,s$ for $n>4 n_\text{sat}$ and $u,d$ for $n<4 n_\text{sat}$}
+In this chapter we have studied quark stars modeled with the three-flavor quark-meson model.
+We found that the addition of the strange quark produces maximum masses $1.6 \, M_\odot \leq M \leq 1.8 \, M_\odot$
+and corresponding radii $\SI{11}{\kilo\meter} \leq R \leq \SI{12}{\kilo\meter}$,
+depending on the $\sigma$-meson mass $m_\sigma$.
+If the strange matter hypothesis is violated, one can use greater bag constants and produce arbitrarily smaller and less massive stars.
+The three-flavor stars are less massive than their two-flavor counterparts.
+Only close to the maximum mass star does the pressure become sufficiently high
+for the baryon density $n_B$ to exceed $4 n_\text{sat}$
+and activate the presence of the strange quark.
+As with the two-flavor model, we saw that chiral symmetry restoration happens in a crossover for $m_\sigma \geq \SI{800}{\mega\electronvolt}$,
+but a first-order phase transition for $m_\sigma < \SI{800}{\mega\electronvolt}$.
+
+By fitting parameters at tree-level, it was again impossible to use physical values of $m_\sigma$ without breaking the grand potential.
+Ideally, a consistent calculation like the one presented in \cref{sec:lsm2f:refinement},
+where one takes loop effects into account when fitting the parameters of the grand potential,
+should be carried out also for the three-flavor model.
+Unfortunately, no such calculation has been done yet,
+and we rely on the lesson learned in \cref{sec:lsm2f:refinement} --
+that we have reason to trust our results with values of $m_\sigma$ that exceed the physical values by about $\SI{200}{\mega\electronvolt}$.
