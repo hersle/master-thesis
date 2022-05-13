@@ -560,9 +560,9 @@ we can interpret $B(\avg{\sigma})$ as an dynamic bag pressure that ranges from $
 Solving inequality \eqref{eq:mit:bag_stability} numerically, we obtain the lower bag bounds
 \begin{subequations}
 \begin{align}
-	B^\frac14 > \SI{110.6}{\mega\electronvolt}           \quad \Big(\text{or } \big(B-\pot(f_\pi,\vec{0})\big)^\frac14 > \SI{145.4}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{600}{\mega\electronvolt}\Big), \label{eq:lsm:bag_lower_bound_600} \\
-	B^\frac14 > \phantom{0}\SI{67.7}{\mega\electronvolt} \quad \Big(\text{or } \big(B-\pot(f_\pi,\vec{0})\big)^\frac14 > \SI{146.3}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{700}{\mega\electronvolt}\Big), \label{eq:lsm:bag_lower_bound_700} \\
-	B^\frac14 > \phantom{0}\SI{27.0}{\mega\electronvolt} \quad \Big(\text{or } \big(B-\pot(f_\pi,\vec{0})\big)^\frac14 > \SI{156.5}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{800}{\mega\electronvolt}\Big). \label{eq:lsm:bag_lower_bound_800}
+	B > (\SI{110.6}{\mega\electronvolt})^4           \quad \Big(\text{or } B-\pot(f_\pi,\vec{0}) > (\SI{145.4}{\mega\electronvolt})^4\Big) \qquad \Big(m_\sigma = \SI{600}{\mega\electronvolt}\Big), \label{eq:lsm:bag_lower_bound_600} \\
+	B > \phantom{0}(\SI{67.7}{\mega\electronvolt})^4 \quad \Big(\text{or } B-\pot(f_\pi,\vec{0}) > (\SI{146.3}{\mega\electronvolt})^4\Big) \qquad \Big(m_\sigma = \SI{700}{\mega\electronvolt}\Big), \label{eq:lsm:bag_lower_bound_700} \\
+	B > \phantom{0}(\SI{27.0}{\mega\electronvolt})^4 \quad \Big(\text{or } B-\pot(f_\pi,\vec{0}) > (\SI{156.5}{\mega\electronvolt})^4\Big) \qquad \Big(m_\sigma = \SI{800}{\mega\electronvolt}\Big). \label{eq:lsm:bag_lower_bound_800}
 \end{align}%%
 \label{eq:lsm:bag_lower_bound}%
 \end{subequations}%%
@@ -592,6 +592,7 @@ Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bag
 ]
 \nextgroupplot[
 	xlabel={$\mu_Q \, / \, \si{\mega\electronvolt}$},
+	ylabel={$\{m_i,\mu_i\} \, / \, \si{\mega\electronvolt}$},
 	%xmin=0, xmax=600, ymax=500, xtick distance=100, ytick distance=100, minor x tick num=9,
 	xmin=0, xmax=700, xtick distance=100, minor x tick num=9,
 	ymin=-20, ymax=700, ytick distance=100, 
@@ -607,13 +608,13 @@ Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bag
 \addplot+ [black, densely dashed] {-100}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
 \addplot+ [black, solid] {-100}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
 \addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2F/eos_sigma_700.dat};
-\addplot+ [blue,      solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
+\addplot+ [blue,      solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue]    {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$\mu_e$};
 \addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2F/eos_sigma_700.dat};
-\addplot+ [darkgreen, solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
+\addplot+ [darkgreen, solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud]    {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$\mu_d$};
 \addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2F/eos_sigma_700.dat};
-\addplot+ [red,       solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
+\addplot+ [red,       solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu]    {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$\mu_u$};
 \addplot+ [orange,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2F/eos_sigma_700.dat};
-\addplot+ [orange,    solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$m_q \, / \, \si{\mega\electronvolt}$};
+\addplot+ [orange,    solid, opacity=0.7] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu] {../code/data/LSM2F/eos_sigma_800.dat}; \addlegendentry{$m_q$};
 \addplot+ [black, every axis plot post/.append style={mark=*, mark options={fill=black}}, solid, domain=0:1, samples=2, forget plot] ({138/(1.12-0.88)}, {0.88*138/(1.12-0.88)+138*x}) node [pos=0.5, right] {$m_\pi$};
 
 

@@ -535,36 +535,40 @@ offset by constants to make them comparable to the human eye.
 ]
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$},
+	ylabel={$\{m_i,\mu_i\} \, / \, \si{\mega\electronvolt}$},
 	%xmin=0, xmax=600, ymax=500, xtick distance=100, ytick distance=100, minor x tick num=9,
 	xmin=0, xmax=700, xtick distance=100, minor x tick num=9,
-	ymin=-20, ymax=1100, ytick distance=100, 
+	ymin=-20, ymax=850, ytick distance=100, 
 	%ymax=600, 
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-parametrization}Parametrization of solutions}},
-	legend cell align=left, legend pos=north west, legend columns=6, legend transposed, reverse legend,
+	legend cell align=left, legend pos=north west, legend columns=5, legend transposed,
 ];
 \addplot+ [orange, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {0};
 \addplot+ [yellow, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {0};
 \addplot+ [red, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {x};
 \addplot+ [darkgreen, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {x};
 \addplot+ [blue, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {x};
-\addplot+ {-100}; \addlegendimage{empty legend} \addlegendentry{}
-\addplot+ {-100}; \addlegendimage{empty legend} \addlegendentry{}
-\addplot+ {-100}; \addlegendimage{empty legend} \addlegendentry{}
-\addplot+ [black, dotted] {-100}; \addlegendentry{massless};
-\addplot+ [black, densely dashed] {-100}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
-\addplot+ [black, solid] {-100}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
-\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [blue,      solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_e \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [darkgreen, solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_s \, / \, \si{\mega\electronvolt}$};
-\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [darkgreen, solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_d \, / \, \si{\mega\electronvolt}$};
-\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [red,       solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_u \, / \, \si{\mega\electronvolt}$};
-\addplot+ [yellow,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [yellow,    solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_y \, / \, \si{\mega\electronvolt}$};
+
+\addplot+ [orange,    solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_x$};
 \addplot+ [orange,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [orange,    solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_x \, / \, \si{\mega\electronvolt}$};
+\addplot+ [yellow,    solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_y$};
+\addplot+ [yellow,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [red,       solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_u$};
+\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [darkgreen, solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_d=\mu_s$};
+\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [darkgreen, solid,          opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_800.dat}; %\addlegendentry{$\mu_s$};
+\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [blue,      solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_e$};
+\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_700.dat};
+
+\addplot+ [black, solid] {-100}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+\addplot+ [black, densely dashed] {-100}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
+\addplot+ [black, dotted] {-100}; \addlegendentry{massless};
+\addlegendimage{empty legend}; % ???
+\addlegendimage{empty legend}; % ???
+\addplot+ {-50}; \addlegendimage{empty legend} \addlegendentry{}
+\addplot+ {-50}; \addlegendimage{empty legend} \addlegendentry{}
 
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
@@ -580,7 +584,7 @@ offset by constants to make them comparable to the human eye.
 %\addplot+ [darkgreen, densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(mud(x))*nconv};
 %\addplot+ [blue,      densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {ne(mue(x))*nconv};
 \addplot+ [black] {-1}; \addlegendimage{empty legend}; \addlegendentry{\vphantom{$m = \SI{0}{\mega\electronvolt}$}};
-\addplot+ [black, dotted] {-1}; \addlegendentry{$m_f=m_e=0$};
+\addplot+ [black, dotted] {-1}; \addlegendentry{massless};
 \addplot+ [black, densely dashed] {-1}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
 \addplot+ [black, solid] {-1}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
 \addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_700.dat};
@@ -601,11 +605,27 @@ offset by constants to make them comparable to the human eye.
 ];
 %\addplot+ [black!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=P, y expr={3*\thisrow{P}+4*0.07774628475613433}] {../code/data/LSM2F/eos.dat}; % +4*P0, since both ϵ and P modified by P0
 %\addplot+ [black, densely dashed, opacity=0.4, domain=0:0.1, forget plot] {3*x}; % +4*P0, since both ϵ and P modified by P0
-\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
-\addplot+ [gray, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (uncorrected)};
-\addplot+ [black, densely dashed, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (corrected)};
-\addplot+ [black, dotted, opacity=0.7, domain=0:3.0] {3*x}; \addlegendentry{$m_f=m_e=0$};
+\addplot+ [black, solid] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+\addplot+ [gray, densely dashed] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (uncorrected)};
+\addplot+ [black, densely dashed] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (corrected)};
+\addplot+ [black, dotted, domain=0:3.0] {3*x}; \addlegendentry{massless};
+\coordinate (zoomplot) at (0.55, 0.0);
 \end{groupplot}
+\node [anchor=south west] at (zoomplot) {
+	\begin{tikzpicture}[trim axis left, trim axis right] % use axes as bounding box
+	\begin{axis}[
+		width=4cm, height=4cm,
+		axis background/.style={fill=white},
+		xmin=-0.002, xmax=+0.01, xtick distance=0.01, restrict x to domain=-0.03:+0.03,
+		ymin=0, ymax=0.3, restrict y to domain=-1:+1,
+	]
+	\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat};
+	\addplot+ [gray, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat};
+	\addplot+ [black, densely dashed, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat};
+	\addplot+ [black, dotted, opacity=0.7, domain=0:0.05] {3*x};
+	\end{axis}
+	\end{tikzpicture}
+};
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-eos}%
 Properties of electrically charge neutral three-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
@@ -706,9 +726,9 @@ This yields the upper bag constant bounds
 \begin{align}
 	%\text{no solution!} \Big(\text{with } m_\sigma = \SI{700}{\mega\electronvolt}\Big), \label{eq:lsm3f:bag_upper_bound_700} \\
 	%B(f_\pi)^\frac14 < \SI{46.5}{\mega\electronvolt}, \quad \text{or} \quad B(0)^\frac14 > \SI{156.5}{\mega\electronvolt} \qquad \Big(\text{with } m_\sigma = \SI{800}{\mega\electronvolt}\Big). \label{eq:lsm3f:bag_upper_bound_800}
-	B^\frac14 < \SI{112.0}{\mega\electronvolt}           \quad \Big(\text{or } \big(B-\pot_0\big)^\frac14 > \SI{226.4}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{600}{\mega\electronvolt}\Big), \label{eq:lsm3f:bag_upper_bound_600} \\
-	B^\frac14 < \phantom{0}\SI{68.2}{\mega\electronvolt} \quad \Big(\text{or } \big(B-\pot_0\big)^\frac14 > \SI{231.4}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{700}{\mega\electronvolt}\Big), \label{eq:lsm3f:bag_upper_bound_700} \\
-	B^\frac14 < \phantom{0}\SI{27.0}{\mega\electronvolt} \quad \Big(\text{or } \big(B-\pot_0\big)^\frac14 > \SI{241.3}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{800}{\mega\electronvolt}\Big). \label{eq:lsm3f:bag_upper_bound_800}
+	B < (\SI{112.0}{\mega\electronvolt})^4           \quad \Big(\text{or } B-\pot_0 > (\SI{226.4}{\mega\electronvolt})^4\Big) \qquad \Big(m_\sigma = \SI{600}{\mega\electronvolt}\Big), \label{eq:lsm3f:bag_upper_bound_600} \\
+	B < \phantom{0}(\SI{68.2}{\mega\electronvolt})^4 \quad \Big(\text{or } B-\pot_0 > (\SI{231.4}{\mega\electronvolt})^4\Big) \qquad \Big(m_\sigma = \SI{700}{\mega\electronvolt}\Big), \label{eq:lsm3f:bag_upper_bound_700} \\
+	B < \phantom{0}(\SI{27.0}{\mega\electronvolt})^4 \quad \Big(\text{or } B-\pot_0 > (\SI{241.3}{\mega\electronvolt})^4\Big) \qquad \Big(m_\sigma = \SI{800}{\mega\electronvolt}\Big). \label{eq:lsm3f:bag_upper_bound_800}
 \end{align}%
 \label{eq:lsm3f:bag_upper_bound}%
 \end{subequations}%
@@ -779,6 +799,7 @@ whereas the potential is broken for $m_\sigma=\SI{600}{\mega\electronvolt}$.
 	/tikz/declare function={
 		e0 = 4.266500881855304e+37;
 	},
+	legend columns=2, legend style={anchor=north, at={(0.5, 0.96)}},
 ]
 \tikzset{
 	Bpin/.style={gray, sloped, allow upside down=true, rotate=180, yshift=+0.4cm, font=\small},
@@ -787,7 +808,6 @@ whereas the potential is broken for $m_\sigma=\SI{600}{\mega\electronvolt}$.
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
 	title = {$m_\sigma = \SI{600}{\mega\electronvolt}$ \\ $B^\frac14 = \{111,131,151\} \, \si{\mega\electronvolt}$},
-	legend columns=2, legend style={anchor=north, at={(0.5, 0.96)}},
 ];
 \addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_131.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -807,11 +827,11 @@ whereas the potential is broken for $m_\sigma=\SI{600}{\mega\electronvolt}$.
 \addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_88.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_108.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-%\addlegendentry{$N_f=2$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_68.dat};  % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addlegendentry{$N_f=2$};
+\addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_68.dat};  % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_88.dat};  % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_108.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-%\addlegendentry{$N_f=3$};
+\addlegendentry{$N_f=3$};
 
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
@@ -821,11 +841,11 @@ whereas the potential is broken for $m_\sigma=\SI{600}{\mega\electronvolt}$.
 \addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_47.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_67.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-%\addlegendentry{$N_f=2$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addlegendentry{$N_f=2$};
+\addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_47.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_67.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-%\addlegendentry{$N_f=3$};
+\addlegendentry{$N_f=3$};
 \node[scale=0.75] at (11.565, 1.630) {\goldenstar};
 
 \end{groupplot}
