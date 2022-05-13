@@ -421,7 +421,12 @@ In contrast, the upper bounds disagree due to the massless approximation being w
 
 \section{Mass-radius solutions}
 
-\begin{figure}[b]
+Having established the bag window \eqref{eq:mit:bag_window},
+different equations of state are finally available to us by making the shift \eqref{eq:mit:bag_shift}
+of the equation of state in \cref{fig:mit:eos-eos} with varying bag constants inside the window.
+We then integrate the Tolman-Oppenheimer-Volkoff equation numerically as described in \cref{sec:master_intro:tov},
+obtaining the results in the mass-radius diagram in \cref{fig:mit:mass_radius}:
+\begin{figure}[t]
 \centering
 \tikzsetnextfilename{mit-mass-radius}
 \tikzset{
@@ -470,24 +475,51 @@ Lower bag constants correspond to greater maximum masses.
 \TODO{add bag constant labels?}
 }
 \end{figure}
+\begin{itemize}
+\item As mentioned in \cref{sec:master_intro:tov},
+      stars with central pressure exceeding that of the maximum mass star are unstable,
+      so we cut off the curve not long after the mass peak.
+\item Using bag constants inside the bag window \eqref{eq:mit:bag_window},
+      the MIT bag model realizes quark stars with maximum masses $1.6 \, M_\odot \leq M \leq 1.7 \, M_\odot$ with $N_f=2$ flavors
+      and $1.7 \, M_\odot \leq M \leq 2.0 \, M_\odot$ with $N_f=3$ flavors,
+      in both cases with corresponding radii $\SI{9}{\kilo\meter} \leq R \leq \SI{11}{\kilo\meter}$.
+\item The smaller the bag constant, the larger and more massive the star.
+      The bag shift \eqref{eq:mit:bag_shift} lifts the equation of state in the $P$-$\epsilon$-diagram up and to the left
+      so that a given pressure corresponds to a greater energy density.
+      Viewed the other way around, a given density corresponds to a lower pressure and makes the material easier to compress,
+      so we say that the equation of state is \emph{softened}.
+      Conversely, an equation of state where a given pressure corresponds to a lower energy density, and a given density to a higher pressure,
+      describes material that is harder to compress and is said to be \emph{stiffer}.
+      In other words, lower bag constants produce stiffer equations of state and larger and more massive stars.
 
-Having established the bag window \eqref{eq:mit:bag_window},
-different equations of state are finally available to us by shifting the equation of state in \cref{fig:mit:eos-eos}
-according to equation \eqref{eq:mit:bag_shift} with varying bag constants inside the window.
-We then integrate the Tolman-Oppenheimer-Volkoff equation numerically as described in \cref{sec:master_intro:tov},
-obtaining the results mass-radius diagram in \cref{fig:mit:mass_radius}.
+      The increase in size is easy to understand:
+      integrating the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov} from a fixed central pressure $P_c$,
+      a stiffer equation of state yields a strictly smaller mass gradient $\odv{m}/{r}$ and pressure gradient magnitude $\abs{\odv{P}/{r}}$,
+      so the surface $P(R)=0$ is reached for a smaller radius.
+      The increase in mass can then only be explained by the greater radius outweighing the smaller mass gradient.
+\item Notice the qualitatively similar shapes of mass-radius curves corresponding to different bag constants.
+      As mentionde in \cite[equation 8.29]{ref:glendenning},
+      it is in fact possible to show that with the bagged ultra-relativistic equation of state $\epsilon = 3P + 4B$,
+      the Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov} admits scaling solutions
+      where the masses $M(B)$ and $M(B')$ and radii $R(B)$ and $R(B')$ corresponding to two different bag constants $B$ and $B'$
+      are related by $M(B') = \sqrt{B/B'} \, M(B)$ and $R(B') = \sqrt{B/B'} \, R(B)$.
+      These relations hold only approximately in our massive case.
+\end{itemize}
 
-As mentioned in \cref{sec:master_intro:tov},
-stars with central pressure exceeding that of the maximum mass star are unstable,
-so we cut off the curve not long after the mass peak.
-The MIT bag model realizes quark stars with maximum masses $1.6 \, M_\odot < M < 2.0 \, M_\odot$ and radii $\SI{9}{\kilo\meter} < R < \SI{11}{\kilo\meter}$.
+\section{Summary}
 
-Also notice the qualitatively very similar shapes of the mass-radius curves for different bag constants.
-In fact, it is possible to show that with the bagged ultra-relativistic equation of state $\epsilon = 3P + 4B$,
-the Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov} takes on scaling solutions
-where the masses $M(B)$ and $M(B')$ and radii $R(B)$ and $R(B')$ corresponding to two different bag constants $B$ and $B'$
-are related by $M(B') = \sqrt{B/B'} \, M(B)$ and $R(B') = \sqrt{B/B'} \, R(B)$. \cite[equation 8.29]{ref:glendenning}
-These relations hold only approximately in our massive case.
+In this chapter we have reviewed the simplest and most well-known model of quark stars
+as a free Fermi gas featuring a bag constant $B$ that provides a rough, phenomenological imitation of quark confinement.
+We described a method of determining a window of acceptable bag constants by assuming that at zero pressure,
+two-flavor quark matter is unstable and can decay to hadronic matter,
+which in turn can decay to three-flavor quark matter according to the strange matter hypothesis.
+By constraining the chemical potentials associated with each particle species,
+we saw how to determine the equation of state $\epsilon(P)$,
+which in turn was used to integrate the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov},
+yielding solutions corresponding to stars with given masses and radii.
+We obtained maximum masses $1.6 \, M_\odot \leq M \leq 1.7 M_\odot$ with $N_f=2$ flavors
+and $1.7 \, M_\odot \leq M \leq 2.0 \, M_\odot$ with $N_f=3$ flavors.
+This concludes our introduction to the basic concepts to be used in the remainder of this thesis.
 
 \TODO{as in \cite{ref:quark_star_review}, $B$ is diff between the perturbative (chirally symmetric) and the non-perturbative (symmetry-broken) vacua, NOT confined/deconfined?}
 
