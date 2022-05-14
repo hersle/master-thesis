@@ -140,7 +140,7 @@ The quadruple product traces $\trace[T_a T_b T_c T_d]$ are more challenging than
 They can be done with pen, paper and clever use of properties of the Gell-Mann matrices,
 but with our explicit knowledge \eqref{eq:lsm:gell_mann_matrices} of the matrices
 it is easier and less error-prone to calculate them by brute force and a symbolic computer program.
-Using the program in \TODO{create and ref short appendix},
+Using the program in \cref{chap:lsm3fpotential},
 we create a 559-term-long explicit representation of $\pot(\sigma,\pi)$ for arbitrary $h_a$ certainly not 
 Evaluated in the minimum \eqref{eq:lsm:ground_state_3f}, its value is
 \begin{equation}
@@ -156,12 +156,7 @@ by taking first derivatives of the 559 terms and evaluating it in the minimum \e
 \end{align}
 \label{eq:lsm3f:symmetry_breakers}%
 \end{subequations}
-Note also that $\pdv{\pot}/{\sigma_a} = -h_a$ for $a \neq \{0,8\}$ and $\pdv{\pot}/{\pi_a}=0$ for all $a$ in the minimum \eqref{eq:lsm:ground_state_3f},
-which confirms our earlier claim that the corresponding fields indeed vanish in vacuum.
-No brute force is needed to see this --
-all $\pi_a$ contributions to $\pot(\sigma,\pi)$ are of quadratic order and higher,
-so at least one order is left after differentiation and there are no survivors after the vacuum \eqref{eq:lsm:ground_state_3f} has swept the floor.
-In the case of $\sigma_a$ for $a \neq \{0,8\}$, the symmetry breaker $h_a$ survives differentiation of the trace \eqref{eq:lsm3f:traces_hphi}, so if it vanishes then so does the corresponding expectation value $\avg{\sigma_a}$.
+Note also that $\pdv{\pot}/{\sigma_a} = -h_a = 0$ for $a \neq \{0,8\}$ and $\pdv{\pot}/{\pi_a}=0$ for all $a$ indeed vanish in the minimum \eqref{eq:lsm:ground_state_3f}.
 
 Things get messier and our computational approach really comes in handy when evaluating the mass-generating second derivatives
 \begin{equation}

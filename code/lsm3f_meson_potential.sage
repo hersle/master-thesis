@@ -23,7 +23,7 @@ h = [var(f"h{a}", latex_name=f"h_{a}") for a in range(0, 9)]
 σx, σy = var("σx", latex_name=r"\sigma_x"), var("σy", latex_name=r"\sigma_y")
 hx, hy = var("hx", latex_name=r"h_x"), var("hy", latex_name=r"h_y")
 transf = matrix([[sqrt(2/3), sqrt(1/3)], [sqrt(1/3), -sqrt(2/3)]])
-xyeqs = [
+eqsxy = [
     σ[0] == (transf.inverse() * vector([σx, σy]))[0],
     σ[8] == (transf.inverse() * vector([σx, σy]))[1],
     h[0] == (transf.inverse() * vector([hx, hy]))[0],
@@ -47,13 +47,24 @@ for a in range(0, 9):
             for d in range(0, 9):
                 trϕϕϕϕ += conjugate(ϕ[a]*ϕ[c])*ϕ[b]*ϕ[d] * (T[a]*T[b]*T[c]*T[d]).trace()
 V = expand(simplify(m2 * trϕϕ + λ1 * trϕϕ^2 + λ2 * trϕϕϕϕ - trHϕ))
-Vtree = V.substitute(avgeqs, xyeqs).expand().simplify().collect(λ1).collect(λ2)
+Vtree = V.substitute(avgeqs, eqsxy).expand().simplify().collect(λ1).collect(λ2)
 print(f"V = {Vtree}")
 
+dVxtree = diff(V.substitute(eqsxy),σx).substitute(avgeqs).simplify_full().collect(λ1)
+dVytree = diff(V.substitute(eqsxy),σy).substitute(avgeqs).simplify_full().collect(λ1)
+print(f"dVx = {dVxtree}")
+print(f"dVy = {dVytree}")
+for a in range(0, 9):
+    dVσa = diff(V,σ[a]).substitute(avgeqs)
+    print(f"dVσ{a} = {dVσa}")
+for a in range(0, 9):
+    dVπa = diff(V,π[a]).substitute(avgeqs)
+    print(f"dVπ{a} = {dVπa}")
+
 # mass matrices
-m2σσ = matrix(9, 9, lambda a, b: diff(V,σ[a],σ[b]).substitute(avgeqs).collect(λ1).collect(λ2))
-m2σπ = matrix(9, 9, lambda a, b: diff(V,σ[a],π[b]).substitute(avgeqs).collect(λ1).collect(λ2))
-m2ππ = matrix(9, 9, lambda a, b: diff(V,π[a],π[b]).substitute(avgeqs).collect(λ1).collect(λ2)) # TODO: one term in m2ππ[0,8] differs from Berge!
+m2σσ = matrix(9, 9, lambda a, b: diff(V,σ[a],σ[b]).subs(avgeqs).collect(λ1).collect(λ2))
+m2σπ = matrix(9, 9, lambda a, b: diff(V,σ[a],π[b]).subs(avgeqs).collect(λ1).collect(λ2))
+m2ππ = matrix(9, 9, lambda a, b: diff(V,π[a],π[b]).subs(avgeqs).collect(λ1).collect(λ2))
 for a in range(0, 9):
     for b in range(0, 9):
         print(f"m2σσ[{a},{b}] = {m2σσ[a,b]}")
@@ -63,20 +74,3 @@ for a in range(0, 9):
 for a in range(0, 9):
     for b in range(0, 9):
         print(f"m2ππ[{a},{b}] = {m2ππ[a,b]}")
-
-# find eigenvalues with given multiplicities eig[2] (3 for π, 4 for k)
-m2σ = m2σσ.eigenvalues()[0].collect(λ1).collect(λ2)
-m2f = m2σσ.eigenvalues()[1].collect(λ1).collect(λ2)
-m2a = m2σσ.eigenvalues()[2].collect(λ1).collect(λ2)
-m2κ = m2σσ.eigenvalues()[5].collect(λ1).collect(λ2)
-m2ηp = m2ππ.eigenvalues()[1].collect(λ1).collect(λ2)
-m2η = m2ππ.eigenvalues()[0].collect(λ1).collect(λ2)
-m2π = m2ππ.eigenvalues()[2].collect(λ1).collect(λ2)
-m2K = m2ππ.eigenvalues()[5].collect(λ1).collect(λ2)
-print(f"m2σ = {m2σ}\nm2π = {m2π}\nm2K = {m2K}")
-
-eqhx = diff(V.substitute(xyeqs), σx).substitute(avgeqs).expand().simplify() == 0
-eqhy = diff(V.substitute(xyeqs), σy).substitute(avgeqs).expand().simplify() == 0
-solhxhy = solve([eqhx, eqhy], [hx, hy])
-hx, hy = solhxhy[0][0].rhs(), solhxhy[0][1].rhs()
-print(f"hx = {hx}\nhy = {hy}")
