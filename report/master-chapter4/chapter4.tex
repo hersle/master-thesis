@@ -166,10 +166,11 @@ Assuming that the quark matter equation of state is unreliable in this regime an
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
 	xmin=5, xmax=35, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
 	%title = {$m_\sigma = \SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$ },
-	legend columns=2, legend style={anchor=north, at={(0.5, 0.96)}},
+	legend columns=1, legend pos=south east, legend cell align=right,
+	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.8,-0.3)}, anchor=north, xticklabel pos=lower},
 ];
-\addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
+\addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \draw [Latex-] (11.35,2.06) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
@@ -180,7 +181,8 @@ Assuming that the quark matter equation of state is unreliable in this regime an
 \nextgroupplot[
 	width=5cm, 
 	xlabel={$R \, / \, \si{\kilo\meter}$},
-	xmin=10, xmax=12, ymin=1.8, ymax=2.1, xtick distance=1, ytick distance=0.1, minor tick num=9, grid=major,
+	xmin=11, xmax=12, ymin=1.8, ymax=2.1, xtick distance=1, ytick distance=0.1, minor tick num=9, %grid=major,
+	extra y ticks={2}, extra y tick labels={,,}, extra tick style={grid=major},
 	%title = {$m_\sigma = \SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$ },
 	legend columns=2, legend style={anchor=north, at={(0.5, 0.96)}},
 ];
