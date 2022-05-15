@@ -394,10 +394,10 @@ To determine it, we require that the minimum of the grand potential \eqref{eq:ls
 remains at the minimum $\avg{\sigma} = f_\pi$ of the vacuum potential $\pot(\avg{\sigma},\vec{0})$.
 Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumption, we only need
 \begin{equation}
-	\pdv{\Omega}{\avg{\sigma}}_{\avg{\sigma}=f_\pi} =
-	\pdv*{\Bigg[ N_c N_f \frac{m_q^4}{16 \pi^2} \bigg( \frac32 + \log \frac{\Lambda^2}{m_q^2} \bigg) \Bigg] }{\avg{\sigma}}_{\avg{\sigma}=f_\pi} = 0,
+	\pdv{\Omega}{\avg{\sigma}} =
+	\pdv*{\Bigg[ N_c N_f \frac{m_q^4}{16 \pi^2} \bigg( \frac32 + \log \frac{\Lambda^2}{m_q^2} \bigg) \Bigg] }{\avg{\sigma}} = 0,
 	\quad \text{yielding} \quad
-	\Lambda = \frac{g f_\pi}{\sqrt{e}}.
+	\Lambda = \frac{g f_\pi}{\sqrt{e}} = \SI{182.0}{\mega\electronvolt}.
 \label{eq:lsm:potential_vacuum_minimum}
 \end{equation}
 
@@ -411,9 +411,8 @@ Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumpt
 	%\midrule
 	$m_u=m_d$            & $\textbf{\SI{300}{\mega\electronvolt}}$ & \approx \, \SI{300}{\mega\electronvolt} \\
 	%\midrule
-	$m_\sigma$           & $\textbf{\{700,800\}\,\si{\mega\electronvolt}}$ & \SI{400}{}-\SI{550}{\mega\electronvolt}          \\
+	$m_\sigma$           & $\textbf{\{600,700,800\}\,\si{\mega\electronvolt}}$ & \SI{400}{}-\SI{550}{\mega\electronvolt}          \\
 	$m_\pi$              & $\textbf{\SI{138}{\mega\electronvolt}}$ & \SI{138}{\mega\electronvolt}                     \\
-	\\
 	\bottomrule
 \end{tabular}
 \hfill
@@ -422,17 +421,16 @@ Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumpt
 	Parameter   & Model                                 \\
 	\midrule
 	$g$         & $\SI{3.23}{}$                         \\
-	$\lambda$   & $\{163,215\}$                        \\
-	$m^2$       & $-(\{465,540\} \, \si{\mega\electronvolt})^2$ \\
+	$\lambda$   & $\{118,163,215\}$                        \\
+	$m^2$       & $-(\{389,465,540\} \, \si{\mega\electronvolt})^2$ \\
 	$h$         & $(\SI{121}{\mega\electronvolt})^3$  \\
-	$\Lambda$   & $\SI{182}{\mega\electronvolt}$ \\
+	%$\Lambda$   & $\SI{182}{\mega\electronvolt}$ \\
 	\bottomrule
 \end{tabular}
 \caption{\label{tab:lsm2f:parameters}%
 Values of the variables in the left table are used as input to determine the four model parameters in the right table.
 Experimental values are taken from \cite{ref:pdg_review_2021}.
 Two different values are used for $m_\sigma$, generating two different values of both $\lambda$ and $m^2$, while the remaining parameters remain unchanged.
-\TODO{three vals for $m_\sigma$ as in LSM3F?}
 }
 \end{table}
 
