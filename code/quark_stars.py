@@ -755,8 +755,8 @@ class HybridModel(Model):
         # compute pressure for larger values to increase interpolation range
         P2 = np.linspace(P0, 1e-1, N-len(P1))
         ϵ2 = ϵ2int(P2)
-        P  = np.concatenate((P1[P1<P0], P2))
-        ϵ  = np.concatenate((ϵ1[P1<P0], ϵ2))
+        P  = np.concatenate((P1[P1<P0], [P0], P2))
+        ϵ  = np.concatenate((ϵ1[P1<P0], [np.interp(P0, P1, ϵ1)], ϵ2))
 
         if plot:
             plt.plot(P, ϵ, "-k.", linewidth=4)
@@ -767,14 +767,14 @@ class HybridModel(Model):
         # hack: exploit nu=nd=ns=nB for density interpolation
         nB1 = nB1 # already have from data set
         nB2 = (nu2int(P2)+nd2int(P2)+ns2int(P2)) / 3 # compute with P2 instead of P1
-        nB = np.concatenate((nB1[P1<P0], nB2))
-        nu = np.concatenate((nB1[P1<P0], nu2int(P2)))
-        nd = np.concatenate((nB1[P1<P0], nd2int(P2)))
-        ns = np.concatenate((nB1[P1<P0], ns2int(P2)))
+        nB = np.concatenate((nB1[P1<P0], [np.interp(P0, P1, nB1)], nB2))
+        nu = np.concatenate((nB1[P1<P0], [np.interp(P0, P1, nB1)], nu2int(P2)))
+        nd = np.concatenate((nB1[P1<P0], [np.interp(P0, P1, nB1)], nd2int(P2)))
+        ns = np.concatenate((nB1[P1<P0], [np.interp(P0, P1, nB1)], ns2int(P2)))
 
         μB1 = μB1 # already have from data set
         μB2 = μQ2int(P2) * 3
-        μB = np.concatenate((μB1[P1<P0], μB2))
+        μB = np.concatenate((μB1[P1<P0], [np.interp(P0, P1, μB1)], μB2))
 
         ϵ = np.concatenate(([0], ϵ))
         P = np.concatenate(([-10], P)) # force ϵ(P<Pmin)=0 (avoid interpolation errors)
@@ -926,7 +926,7 @@ if __name__ == "__main__":
 
     # hybrid model (3-flavor quark-meson model + APR hadronic EOS)
     """
-    HybridModel(mσ=600).eos(B=111**4, plot=False, write=True)
+    HybridModel(mσ=600).eos(B=111**4, plot=True, write=True)
     HybridModel(mσ=600).stars(111, (1e-5, 1e-2), plot=True, write=True)
     HybridModel(mσ=700).stars(68,  (1e-5, 1e-2), plot=True, write=True)
     HybridModel(mσ=800).stars(27,  (1e-5, 1e-2), plot=True, write=True)

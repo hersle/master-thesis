@@ -88,7 +88,7 @@ The philosophy behind this method is that the preferable phase at any baryon che
 	ylabel={$P \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	xmin=900, xmax=1700, restrict x to domain=800:2100, 
 	ymin=0, ymax=0.4, restrict y to domain=0:5,
-	title={Hybrid equation of state},
+	title={Hybrid equation of state },
 	title style={yshift=+0.9cm},
 	legend style={anchor=south, at={(0.5,1.04)}}, legend columns=3,
 ];
@@ -169,7 +169,7 @@ Assuming that the quark matter equation of state is unreliable in this regime an
 }
 \nextgroupplot[
 	width=10cm, 
-	xlabel={$R \, / \, \si{\kilo\meter}$},
+	xlabel={$R \, / \, \si{\kilo\meter}$ },
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
 	xmin=5, xmax=35, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
 	%title = {$m_\sigma = \SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$ },
@@ -183,7 +183,7 @@ Assuming that the quark matter equation of state is unreliable in this regime an
 \draw [Latex-] (11.35,2.06) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
 \draw [Latex-] (11.45,1.96) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
 \draw [Latex-] (11.55,1.89) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
-\node[scale=0.75] at (11.23, 2.06) {\goldenstar};
+\node[scale=0.75] at (11.226, 2.07) {\goldenstar};
 
 \nextgroupplot[
 	width=5cm, 
@@ -197,7 +197,7 @@ Assuming that the quark matter equation of state is unreliable in this regime an
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\node[scale=0.75] at (11.23, 2.06) {\goldenstar};
+\node[scale=0.75] at (11.226, 2.07) {\goldenstar};
 \end{groupplot}
 \end{tikzpicture}
 
@@ -220,7 +220,7 @@ Assuming that the quark matter equation of state is unreliable in this regime an
 \nextgroupplot[
 	xticklabels={,,},
 	ymax=2.0, ytick distance=0.5, minor y tick num=4,
-	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$ },
 ];
 \addplot+ [blue] table [x=r, y=epsilon] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat}; \addlegendentry{$\epsilon$};
 \addplot+ [red] table [x=r, y=P] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat}; \addlegendentry{$P$};
@@ -241,16 +241,16 @@ Assuming that the quark matter equation of state is unreliable in this regime an
 	ylabel=$n_i \, / \, n_\text{sat}$,
 	ymax=15, ytick distance=5, minor y tick num=4,
 ];
-\addplot+ [red, x filter/.expression={\thisrow{r}<1.7 ? x : nan}] table [x=r, y=nu] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat}; \addlegendentry{$n_u$};
-\addplot+ [darkgreen, x filter/.expression={\thisrow{r}<1.7 ? x : nan}] table [x=r, y=nd] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat}; \addlegendentry{$n_d$};
-\addplot+ [purple, x filter/.expression={\thisrow{r}<1.7 ? x : nan}] table [x=r, y=ns] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat}; \addlegendentry{$n_s$};
-%\addplot+ [blue, x filter/.expression={\thisrow{r}<1.7}] table [x=r, y=ne] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat}; \addlegendentry{$n_e$};
+\addplot+ [red, x filter/.expression={\thisrow{r}<1.34 ? x : nan}] table [x=r, y=nu] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat}; \addlegendentry{$n_u$};
+\addplot+ [darkgreen, x filter/.expression={\thisrow{r}<1.34 ? x : nan}] table [x=r, y=nd] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat}; \addlegendentry{$n_d$};
+\addplot+ [purple, x filter/.expression={\thisrow{r}<1.34 ? x : nan}] table [x=r, y=ns] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat}; \addlegendentry{$n_s$};
+%\addplot+ [blue, x filter/.expression={\thisrow{r}<1.34}] table [x=r, y=ne] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat}; \addlegendentry{$n_e$};
 \addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat};
-\addplot+ [black, solid, forget plot, x filter/.expression={\thisrow{r}>=1.7 ? x : nan}] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat};
+\addplot+ [black, solid, forget plot, x filter/.expression={\thisrow{r}>=1.33 ? x : nan}] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat};
 % cheat legend
 \addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F_APR/star_sigma_800_B14_27_Pc_0.0012587.dat}; \addlegendentry{$n_B$};
 \end{groupplot}
-\node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {Maximum mass star profile ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{27}{\mega\electronvolt}$, $P_c=10^{34.730} \, \si{\pascal}$)};
+\node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {\goldenstar Maximum mass star profile ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{27}{\mega\electronvolt}$, $P_c=10^{34.730} \, \si{\pascal}$)};
 \end{tikzpicture}
 \caption{\label{fig:hybrid:star}%
 	Radial profiles for the
@@ -269,7 +269,7 @@ for $m_\sigma=\{600,700,800\} \, \si{\mega\electronvolt}$ and the lowermost bag 
 we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius}:
 \begin{itemize}
 \item After onset of the quark phase, the mass-radius curve develops new branches below the maximum hadron-only neutron star
-      with maximum masses $1.85 M_\odot \leq M \lesssim 2.05 \leq M_\odot$.
+      with maximum masses $1.90 M_\odot \leq M \lesssim 2.07 \leq M_\odot$.
 \item At first glance, the new branches seem to plummet in mass straight after the branch point and indicate that all the hybrid stars are unstable.
       However, close inspection of the right panel in \cref{fig:hybrid:mass-radius} shows that the branches begin with a \emph{tiny} segment of stable stars whose masses increase up to the maximum.
       This supports the general claim in \cite{ref:quark_star_review} that quark cores are rare and have a very small size and mass, if at all existent.
@@ -278,9 +278,9 @@ we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius}:
 Qualitatively, the radial profiles of the three maximum mass stars are very similar.
 We take a detailed look at the one for $m_\sigma=\SI{800}{\mega\electronvolt}$ and $B^\frac14 = \SI{27}{\mega\electronvolt}$ in \cref{fig:hybrid:star}:
 \begin{itemize}
-\item The quark core has a central baryon density $n_B = 7 n_\text{sat}$ and extends about $R'=\SI{1.3}{\kilo\meter} = 0.12 R$ with a mass of only $M' = m(R') = 0.01 M_\odot = 0.005 M$.
+\item The quark core has a central baryon density $n_B = 7 n_\text{sat}$ and extends $R'=\SI{1.3}{\kilo\meter} = 0.12 R$ from the center with a mass of only $M' = m(R') = 0.01 M_\odot = 0.005 M$.
       It contains three-flavor quark matter with up, down and strange quarks.
-\item The phase transition from quark to hadronic matter takes place for $\SI{1.3}{\kilo\meter} \leq r \leq \SI{1.7}{\kilo\meter}$ and entails huge drops $\Delta\epsilon = \SI{0.8}{\giga\electronvolt\per\femto\meter\cubed}$ and $\Delta n_B = 2 n_\text{sat}$ in energy and baryon density.
+\item The phase transition from quark to hadronic matter takes place at $R'=\SI{1.3}{\kilo\meter}$ and entails huge drops $\Delta\epsilon = \SI{0.8}{\giga\electronvolt\per\femto\meter\cubed}$ and $\Delta n_B = 2 n_\text{sat}$ in energy and baryon density.
       Physically, stars are simply not able to support these dramatic discontinuous phase transitions, and the hybrid branches are therefore almost purely unstable.
 \item The hadronic phase dominates, making up $\SI{99.8}{\percent}$ of the star's volume and $\SI{99.5}{\percent}$ of its mass.
 \end{itemize}
