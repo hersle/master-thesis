@@ -461,9 +461,9 @@ obtaining the results in the mass-radius diagram in \cref{fig:mit:mass_radius}:
 	title = {$N_f=3$}, title style={text width=5cm},
 	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.87,-0.25)}, anchor=north east, xticklabel pos=lower},
 ];
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_60.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_75.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_90.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_145.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_150.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_155.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 
 \end{groupplot}
 \end{tikzpicture}
@@ -482,7 +482,7 @@ Lower bag constants correspond to greater maximum masses.
 \item Using bag constants inside the bag window \eqref{eq:mit:bag_window},
       the MIT bag model realizes quark stars with maximum masses
       $1.7 \, M_\odot \leq M \leq 2.0 \, M_\odot$ with $N_f=2$ flavors
-      and $1.6 \, M_\odot \leq M \leq 1.7 \, M_\odot$ with $N_f=3$ flavors,
+      and $1.6 \, M_\odot \leq M \leq 1.9 \, M_\odot$ with $N_f=3$ flavors,
       in both cases with corresponding radii $\SI{9}{\kilo\meter} \leq R \leq \SI{11}{\kilo\meter}$.
 \item The smaller the bag constant, the larger and more massive the star.
       The bag shift \eqref{eq:mit:bag_shift} lifts the equation of state in the $P$-$\epsilon$-diagram up and to the left
@@ -518,8 +518,8 @@ By constraining the chemical potentials associated with each particle species,
 we saw how to determine the equation of state $\epsilon(P)$,
 which in turn was used to integrate the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov},
 yielding solutions corresponding to stars with given masses and radii.
-We obtained maximum masses $1.6 \, M_\odot \leq M \leq 1.7 M_\odot$ with $N_f=2$ flavors
-and $1.7 \, M_\odot \leq M \leq 2.0 \, M_\odot$ with $N_f=3$ flavors.
+We obtained maximum masses $1.7 \, M_\odot \leq M \leq 2.0 M_\odot$ with $N_f=2$ flavors
+and $1.6 \, M_\odot \leq M \leq 1.9 \, M_\odot$ with $N_f=3$ flavors.
 This concludes our introduction to the basic concepts to be used in the remainder of this thesis.
 
 \TODO{as in \cite{ref:quark_star_review}, $B$ is diff between the perturbative (chirally symmetric) and the non-perturbative (symmetry-broken) vacua, NOT confined/deconfined?}
