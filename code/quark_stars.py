@@ -920,8 +920,8 @@ if __name__ == "__main__":
 
     # hybrid model (3-flavor quark-meson model + APR hadronic EOS)
     #HybridModel(mσ=600).eos(B=111**4, plot=True, write=True)
-    HybridModel(mσ=600).stars(111, (1e-5, 1e-2), write=True)
-    HybridModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True)
-    HybridModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True)
+    HybridModel(mσ=600).stars(111, (1e-5, 1e-2), write=True) # use tolD=0.01
+    HybridModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True) # use tolD=0.01
+    HybridModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True) # use tolD=0.01
     #HybridModel(mσ=800).star(0.0012587499999999999, 27, plot=True, write=True)
     #exit()
