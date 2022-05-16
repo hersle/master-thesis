@@ -1,20 +1,22 @@
 \chapter{Three-flavor quark-meson model}
 \label{chap:lsm3f}
 
-\TODO{what more to write in intro?}
-
 \TODO{demonstrate generalization from 2 to 3 flavors?}
 
-\TODO{rewrite, structure everything with subheaders}
-
-\TODO{short comment on using different normalization convention for potential couplings, because they are fit to experimental values anyway}
-
-With three flavors, the effective, low-energy degrees of freedom of quantum chromodynamics are the scalar and pseudoscalar mesons. %\cite{ref:lsm3f_details}
 In this chapter we will study the generalization of the quark-meson model in \cref{chap:lsm2f} to three flavors,
 thereby throwing the strange quark into the mix.
-This means we continue to study an effective model of quantum chromodynamics that takes chiral symmetry breaking into account,
-and still treat confinement only phenomenologically with a bag constant $B$.
-\TODO{reflect the confinement thing in LSM2F chapter}
+With three flavors, the effective, low-energy degrees of freedom of quantum chromodynamics are the scalar and pseudoscalar mesons. %\cite{ref:lsm3f_details}
+Like the two-flavor model, this model takes chiral symmetry breaking of quantum chromodynamics into account,
+but treats confinement only phenomenologically with a bag constant $B$.
+
+Most features of this model behave as natural generalizations of the two-flavor model.
+For example, we will handle one strange quark condensate in parallel with the common up and down quark condensates.
+Whereas there is a unique way of fixing the parameters in the two-flavor model, however,
+we will see that the three-flavor model presents us with a multitude of ways of fitting the parameters,
+so that some experimental values must be predicted rather than fit.
+
+Due to the heavier mass of the strange quark,
+we expect its effects to become apparent in the mass-radius diagram only for stars that have a large central pressure and thus large quark chemical potential.
 
 \section{Lagrangian, vacuum considerations and symmetry breaking}
 
@@ -505,15 +507,16 @@ Three different values are used for $m_\sigma$, generating three different value
 \end{tikzpicture}
 \caption{\label{fig:lsm3f:potential_sigma_mass}%
 Three-flavor grand potentials \eqref{eq:lsm3f:grand_potential} in vacuum with $\mu=0$ for different $m_\sigma$,
-offset by constants to make them comparable to the human eye.
+offset by constants into a lasagna that is digestible for human interpretation.
 }
 \end{figure}
 
-\TODO{concluding remarks?}
-
-\TODO{remark on fitting at tree-level only. inconsistent. would really receive radiative corrections from fermion loop diagram, even in $N_c \rightarrow \infty$ limit.}
-
-\TODO{the consistency is this: have not included vacuum renormalization of quadratic bosonic fluctuations}
+As explained in the two-flavor model in \cref{sec:lsm2f:refinement},
+our way of fitting parameters at tree-level to a grand potential calculated to one loop is really inconsistent.
+However, we know of no consistent calculation done with three flavors, like the one presented in that section.
+The lesson we learned in that section was that consistent parameter fitting lets us use lower values of $m_\sigma$.
+We therefore hope that inconsistently fit values $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$
+is representative of the physically measured masses $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{550}{\mega\electronvolt}$.
 
 \section{Equation of state}
 
@@ -704,11 +707,9 @@ the pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:maste
       so the isospin chemical potential $\mu_I=(\mu_u-\mu_d)/2$ never exceeds half the pion mass.
       In contrast to the two-flavor case, neglecting pion condensation is therefore a consistent assumption with three flavors.
 \item As confirmed by \cref{fig:lsm3f:3-flavor-density-ratios}, each quark density converges towards a third of the total baryon density as the density increases.
-      At low densities the strange quark is absent and there are twice as many down quarks as up quarks, as in the two-flavor case.
+      At low densities the strange quark is absent and there are twice as many down quarks as up quarks, as in the two-flavor case,
+      and the strange quark enters as the density exceeds $4 \, n_\text{sat}$.
       The fraction of up quarks is the same at all densities.
-      \TODO{The baryon density is shown in units of the nuclear saturation density $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$ at which nuclei begin to overlap. \cite{ref:saturation_density}
-      It shows that the strange quarks arise for baryon densities that exceed $n_B \gtrsim 4 n_\text{sat}$, which can indeed be the case inside normal neutron stars. \cite{ref:strange_stars_saturation_density}}
-      \TODO{I got it wrong in 2F: there is a TRANSITION at 4-7 n0, not necessarily this where it is valid.}
 \item After the strange crossover, the strange quark provides charge neutrality and wipes out the already small electron density.
 \item Like before, the equation of state always satisfies the microscopic stability criteria \eqref{eq:nstars:stability_speed_of_sound} and \eqref{eq:nstars:stability_pressure_energy_density}.
 \end{itemize}
@@ -891,7 +892,7 @@ whereas the potential is broken for $m_\sigma=\SI{600}{\mega\electronvolt}$.
 % cheat legend
 \addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_B$};
 \end{groupplot}
-\node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {Maximum mass star profile ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{27}{\mega\electronvolt}$, $P_c=10^{34.602} \, \si{\pascal}$)};
+\node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {\goldenstar Maximum mass star profile ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{27}{\mega\electronvolt}$, $P_c=10^{34.602} \, \si{\pascal}$)};
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-star}%
 	Radial profiles for the
@@ -942,12 +943,6 @@ In \cref{fig:lsm:3-flavor-star} we take a more detailed look at the maximum mass
 %\item If the core of this star is used to model the core of a hybrid neutron star with a quark model for $n_B > 4 n_\text{sat}$,
       %this core would extend for $R'=\SI{5}{\kilo\meter}$, weigh in at $M' = m(R') = 0.4 \, M_\odot$, have a central pressure $P_c'=p(R')=\SI{0.12}{\giga\electronvolt\per\femto\meter\cubed}$ and be entirely composed of three-flavor quark matter.
 \end{itemize}
-
-In a sense, our computation of the lower bag constant bound \eqref{eq:lsm:bag_lower_bound} using the instability of two-flavor quark matter at $P=0$ is inconsistent.
-Due to nonzero bag constants above this bound, the stars in \cref{fig:lsm3f:3-flavor-radial-density} have nonzero densities of up and down quarks \emph{at} the surface defined by $P(R)=0$, contradicting the assumption for the bound.
-This means that it is not really possible to use the two-flavor and three-flavor models to describe a pure quark star.
-However, we could make a hybrid star with a quark core described by one of these models and a nuclear envelope described by a different model, so that the quark matter no longer touches the zero-pressure space outside the star.
-\TODO{will try this?}
 
 \section{Summary}
 
