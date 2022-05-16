@@ -709,7 +709,7 @@ We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
-	title = {$m_\sigma = \SI{600}{\mega\electronvolt}$ \\ $B^\frac14 = \{111,131,151\} \, \si{\mega\electronvolt}$},
+	title = {$m_\sigma = \SI{600}{\mega\electronvolt }$ \\ $B^\frac14 = \{111,131,151\} \, \si{\mega\electronvolt}$},
 ];
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_131.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -1037,7 +1037,7 @@ and with $m_\sigma = \{500,600\} \, \si{\mega\electronvolt}$.
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
-	title = {$m_\sigma = \SI{400}{\mega\electronvolt}$ \\ $B^\frac14 = \{107,127,147\} \, \si{\mega\electronvolt}$},
+	title = {$m_\sigma = \SI{400}{\mega\electronvolt}$ \\ $B^\frac14 = \{107,127,147\} \, \si{\mega\electronvolt}$ },
 ];
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_400_B14_107.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_400_B14_127.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};

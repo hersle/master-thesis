@@ -1,14 +1,59 @@
-\chapter*{Acknowledgements}
+\chapter*{Disclaimer (to the examiner)}
 
-\TODO{acknowledgements}
+\iffalse
+\vspace{-40pt}
+\begin{center}
+\tikzsetnextfilename{disclaimer-warning}
+\begin{tikzpicture}
+	\fill[black] (0, 0) rectangle (\textwidth, 20pt);
+	\fill[pattern={Lines[angle=45, line width=15pt, distance=30pt]}, pattern color=yellow] (0, 0) rectangle (\textwidth, 20pt);
+\end{tikzpicture}
+\end{center}
+\fi
 
-\begin{tcolorbox}[fonttitle=\bfseries, title=Disclaimer regarding evaluation]
-This document combines the work of a project and master thesis and is split in three parts:
+%\begin{tcolorbox}[fonttitle=\bfseries, title=Disclaimer regarding evaluation]
+This document joins the work of a project and master thesis and is split in three parts:
 \begin{enumerate}
 \item \Cref{part:project} comprises the project thesis.
 \item \Cref{part:master} comprises the master thesis and builds upon the work of \cref{part:project}.
 \item \Cref{part:appendices} comprises appendices for both \cref{part:project} and \cref{part:master}.
+      Appendices \ref{chap:gr}, \ref{chap:relfluid}, \ref{chap:matsum} and \ref{chap:integrals} are part of the project thesis,
+      while appendices \ref{chap:lsm3fpotential} and \ref{chap:code} are part of the master thesis.
 \end{enumerate}
-During evaluation, only the contents of \cref{part:master} and the appendices in \cref{part:appendices} it refers to should be considered part of the master thesis.
-Use of results from \cref{part:project} in \cref{part:master} are accompanied by references and short summaries, so that the parts are intended to be read separately.
-\end{tcolorbox}
+
+\textbf{During examination, only \cref{part:master} and \cref{chap:lsm3fpotential,chap:code} should be considered part of the master thesis.}
+
+This structure has been chosen in order to avoid self-plagiarism by clearly separating the two,
+while still maintaining the continuity and progression from \cref{part:project} to \cref{part:master}.
+\Cref{part:master} makes use of several results from \cref{part:project} and frequently refers to it for readers who seek more background information,
+but such references are always accompanied by short summaries for those who rather wish to read the master thesis independently of the project thesis.
+
+\mbox{}\vfill
+\begin{center}
+\tikzsetnextfilename{disclaimer-warning}
+\begin{tikzpicture}
+	\fill[black] (0, 0) rectangle (\textwidth, 20pt);
+	\fill[pattern={Lines[angle=45, line width=15pt, distance=30pt]}, pattern color=yellow] (0, 0) rectangle (\textwidth, 20pt);
+\end{tikzpicture}
+\end{center}
+
+\chapter*{Acknowledgements}
+
+This thesis marks the end of five great years of studying physics at NTNU in Trondheim.
+
+My supervisor, Professor Jens Oluf Andersen,
+has regularly given me thoughtful and invaluable feedback on my work.
+When I first met him,
+I remember that I was a little lost as he sketched the plan for this thesis.
+Over the coming two semesters, he guided me through the steps of this plan at an understanding and adaptive pace.
+Looking back, I see very clearly how well-thought-out his plan was,
+and how he has challenged me to take daunting steps into unknown territory along the way,
+but always had realistic expectations of my work.
+His friendliness makes him a breeze to cooperate with,
+and his flexibility has encouraged me to work under freedom and to steer relevant pieces of the work into my interests and skills.
+I am sincerely grateful for the time and effort he has devoted to me!
+
+Last, but not least, I am very grateful to the large group of friends with whom I have spent my time in Trondheim.
+Without them life here would be very monotonous.
+
+\null\hfill \textit{-- Trondheim, 16th of May 2022}

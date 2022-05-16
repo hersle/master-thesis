@@ -33,7 +33,7 @@ nsat = 0.165
 σx0 = fπ
 σy0 = np.sqrt(2)*fK-fπ/np.sqrt(2)
 
-tovopts = {"tolD": 0.10, "maxdr": 1e-2, "nmodes": 0}
+tovopts = {"tolD": 0.001, "maxdr": 1e-2, "nmodes": 0}
 tovμQ = np.concatenate([np.linspace(0, 700, 200)[1:], np.linspace(700, 5000, 100)])
 
 def charge(mu, md, ms, μu, μd, μs, μe):
@@ -872,64 +872,56 @@ if __name__ == "__main__":
     """
 
     # 2-flavor quark-meson model
-    """
-    LSM2FlavorModel(mσ=600).eos(write=True)
-    LSM2FlavorModel(mσ=700).eos(write=True)
-    LSM2FlavorModel(mσ=800).eos(write=True)
-    LSM2FlavorModel(mσ=600).stars(111, (1e-7, 1e-2), write=True)
-    LSM2FlavorModel(mσ=600).stars(131, (1e-7, 1e-2), write=True)
-    LSM2FlavorModel(mσ=600).stars(151, (1e-7, 1e-2), write=True)
-    LSM2FlavorModel(mσ=700).stars(68,  (1e-7, 1e-2), write=True)
-    LSM2FlavorModel(mσ=700).stars(88,  (1e-7, 1e-2), write=True)
-    LSM2FlavorModel(mσ=700).stars(108, (1e-7, 1e-2), write=True)
-    LSM2FlavorModel(mσ=800).stars(27,  (1e-7, 1e-2), write=True)
-    LSM2FlavorModel(mσ=800).stars(47,  (1e-7, 1e-2), write=True)
-    LSM2FlavorModel(mσ=800).stars(67,  (1e-7, 1e-2), write=True)
-    LSM2FlavorModel(mσ=800).star(0.0012500875, 27, write=True)
-    exit()
-    """
+    #LSM2FlavorModel(mσ=600).eos(write=True)
+    #LSM2FlavorModel(mσ=700).eos(write=True)
+    #LSM2FlavorModel(mσ=800).eos(write=True)
+    #LSM2FlavorModel(mσ=600).stars(111, (1e-7, 1e-2), write=True)
+    #LSM2FlavorModel(mσ=600).stars(131, (1e-7, 1e-2), write=True)
+    #LSM2FlavorModel(mσ=600).stars(151, (1e-7, 1e-2), write=True)
+    #LSM2FlavorModel(mσ=700).stars(68,  (1e-7, 1e-2), write=True)
+    #LSM2FlavorModel(mσ=700).stars(88,  (1e-7, 1e-2), write=True)
+    #LSM2FlavorModel(mσ=700).stars(108, (1e-7, 1e-2), write=True)
+    #LSM2FlavorModel(mσ=800).stars(27,  (1e-7, 1e-2), write=True)
+    #LSM2FlavorModel(mσ=800).stars(47,  (1e-7, 1e-2), write=True)
+    #LSM2FlavorModel(mσ=800).stars(67,  (1e-7, 1e-2), write=True)
+    #LSM2FlavorModel(mσ=800).star(0.0012500875, 27, write=True)
+    #exit()
 
     # 2-flavor consistent quark-meson model
-    """
-    LSM2FlavorConsistentModel(mσ=400).eos(plot=False, write=True)
-    LSM2FlavorConsistentModel(mσ=500).eos(plot=False, write=True)
-    LSM2FlavorConsistentModel(mσ=600).eos(plot=False, write=True)
-    LSM2FlavorConsistentModel(mσ=400).stars(107, (1e-7, 1e-2), write=True)
-    LSM2FlavorConsistentModel(mσ=400).stars(127, (1e-7, 1e-2), write=True)
-    LSM2FlavorConsistentModel(mσ=400).stars(147, (1e-7, 1e-2), write=True)
-    LSM2FlavorConsistentModel(mσ=500).stars(84,  (1e-7, 1e-2), write=True)
-    LSM2FlavorConsistentModel(mσ=500).stars(104, (1e-7, 1e-2), write=True)
-    LSM2FlavorConsistentModel(mσ=500).stars(124, (1e-7, 1e-2), write=True)
-    LSM2FlavorConsistentModel(mσ=600).stars(27,  (1e-7, 1e-2), write=True)
-    LSM2FlavorConsistentModel(mσ=600).stars(47,  (1e-7, 1e-2), write=True)
-    LSM2FlavorConsistentModel(mσ=600).stars(67,  (1e-7, 1e-2), write=True)
-    exit()
-    """
+    #LSM2FlavorConsistentModel(mσ=400).eos(plot=False, write=True)
+    #LSM2FlavorConsistentModel(mσ=500).eos(plot=False, write=True)
+    #LSM2FlavorConsistentModel(mσ=600).eos(plot=False, write=True)
+    #LSM2FlavorConsistentModel(mσ=400).stars(107, (1e-7, 1e-2), write=True)
+    #LSM2FlavorConsistentModel(mσ=400).stars(127, (1e-7, 1e-2), write=True)
+    #LSM2FlavorConsistentModel(mσ=400).stars(147, (1e-7, 1e-2), write=True)
+    #LSM2FlavorConsistentModel(mσ=500).stars(84,  (1e-7, 1e-2), write=True)
+    #LSM2FlavorConsistentModel(mσ=500).stars(104, (1e-7, 1e-2), write=True)
+    #LSM2FlavorConsistentModel(mσ=500).stars(124, (1e-7, 1e-2), write=True)
+    #LSM2FlavorConsistentModel(mσ=600).stars(27,  (1e-7, 1e-2), write=True)
+    #LSM2FlavorConsistentModel(mσ=600).stars(47,  (1e-7, 1e-2), write=True)
+    #LSM2FlavorConsistentModel(mσ=600).stars(67,  (1e-7, 1e-2), write=True)
+    #exit()
 
     # 3-flavor quark-meson model
-    """
-    LSM3FlavorModel(mσ=600).eos(plot=False, write=True)
-    LSM3FlavorModel(mσ=700).eos(plot=False, write=True)
-    LSM3FlavorModel(mσ=800).eos(plot=False, write=True)
-    LSM3FlavorModel(mσ=600).stars(111, (1e-7, 1e-2), write=True)
-    LSM3FlavorModel(mσ=600).stars(131, (1e-7, 1e-2), write=True)
-    LSM3FlavorModel(mσ=600).stars(151, (1e-7, 1e-2), write=True)
-    LSM3FlavorModel(mσ=700).stars(68,  (1e-7, 1e-2), write=True)
-    LSM3FlavorModel(mσ=700).stars(88,  (1e-7, 1e-2), write=True)
-    LSM3FlavorModel(mσ=700).stars(108, (1e-7, 1e-2), write=True)
-    LSM3FlavorModel(mσ=800).stars(27,  (1e-7, 1e-2), write=True)
-    LSM3FlavorModel(mσ=800).stars(47,  (1e-7, 1e-2), write=True)
-    LSM3FlavorModel(mσ=800).stars(67,  (1e-7, 1e-2), write=True)
-    LSM3FlavorModel(mσ=800).star(0.000937590625, 27, write=True)
-    exit()
-    """
+    #LSM3FlavorModel(mσ=600).eos(plot=False, write=True)
+    #LSM3FlavorModel(mσ=700).eos(plot=False, write=True)
+    #LSM3FlavorModel(mσ=800).eos(plot=False, write=True)
+    #LSM3FlavorModel(mσ=600).stars(111, (1e-7, 1e-2), write=True)
+    #LSM3FlavorModel(mσ=600).stars(131, (1e-7, 1e-2), write=True)
+    #LSM3FlavorModel(mσ=600).stars(151, (1e-7, 1e-2), write=True)
+    #LSM3FlavorModel(mσ=700).stars(68,  (1e-7, 1e-2), write=True)
+    #LSM3FlavorModel(mσ=700).stars(88,  (1e-7, 1e-2), write=True)
+    #LSM3FlavorModel(mσ=700).stars(108, (1e-7, 1e-2), write=True)
+    #LSM3FlavorModel(mσ=800).stars(27,  (1e-7, 1e-2), write=True)
+    #LSM3FlavorModel(mσ=800).stars(47,  (1e-7, 1e-2), write=True)
+    #LSM3FlavorModel(mσ=800).stars(67,  (1e-7, 1e-2), write=True)
+    #LSM3FlavorModel(mσ=800).star(0.000937590625, 27, write=True)
+    #exit()
 
     # hybrid model (3-flavor quark-meson model + APR hadronic EOS)
-    """
-    HybridModel(mσ=600).eos(B=111**4, plot=True, write=True)
-    HybridModel(mσ=600).stars(111, (1e-5, 1e-2), plot=True, write=True)
-    HybridModel(mσ=700).stars(68,  (1e-5, 1e-2), plot=True, write=True)
-    HybridModel(mσ=800).stars(27,  (1e-5, 1e-2), plot=True, write=True)
-    HybridModel(mσ=800).star(0.0012587499999999999, 27, plot=True, write=True)
-    exit()
-    """
+    #HybridModel(mσ=600).eos(B=111**4, plot=True, write=True)
+    HybridModel(mσ=600).stars(111, (1e-5, 1e-2), write=True)
+    HybridModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True)
+    HybridModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True)
+    #HybridModel(mσ=800).star(0.0012587499999999999, 27, plot=True, write=True)
+    #exit()
