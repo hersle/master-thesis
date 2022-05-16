@@ -92,9 +92,9 @@ The philosophy behind this method is that the preferable phase at any baryon che
 	title style={yshift=+0.9cm},
 	legend style={anchor=south, at={(0.5,1.04)}}, legend columns=3,
 ];
-\addplot+ [red, solid, very thick] table [x=muB2,y=P] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{quark phase};
-\addplot+ [blue, solid, very thick] table [x=muB1,y=P1] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{hadron phase};
-\addplot+ [black, dashed, very thick] table [x=muB,y=P] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{hybrid phase};
+\addplot+ [red, solid, very thick] table [x=muB2,y=P] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{quark phase \quad};
+\addplot+ [blue!50!cyan, solid, very thick] table [x=muB1,y=P1] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{hadron phase \quad};
+\addplot+ [black, dashed, very thick] table [x=muB,y=P] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{hybrid phase \quad};
 \node at (1305, 0.2) [circle, fill, inner sep=1.5pt] {};
 
 \nextgroupplot[
@@ -104,7 +104,7 @@ The philosophy behind this method is that the preferable phase at any baryon che
 	ymin=0, ymax=10, ytick distance=1, restrict y to domain=-1:12,
 ];
 \addplot+ [red, solid, very thick] table [x=muB,y expr={\thisrow{nB2}/0.165}] {../code/data/LSM3F_APR/eos_sigma_600.dat};
-\addplot+ [blue, solid, very thick] table [x=muB1,y expr={\thisrow{nB1}/0.165}] {../code/data/LSM3F_APR/eos_sigma_600.dat};
+\addplot+ [blue!50!cyan, solid, very thick] table [x=muB1,y expr={\thisrow{nB1}/0.165}] {../code/data/LSM3F_APR/eos_sigma_600.dat};
 \addplot+ [black, dashed, very thick] table [x=muB,y expr={\thisrow{nB}/0.165}] {../code/data/LSM3F_APR/eos_sigma_600.dat};
 
 \nextgroupplot[
@@ -113,7 +113,7 @@ The philosophy behind this method is that the preferable phase at any baryon che
 	xmin=0, xmax=0.4, ymin=0, ymax=2.0, xtick distance=0.1, ytick distance=1.0, minor y tick num=9, restrict x to domain=0:5, restrict y to domain=0:5,
 ];
 \addplot+ [red, solid, very thick] table [x=P,y=epsilon2] {../code/data/LSM3F_APR/eos_sigma_600.dat};
-\addplot+ [blue, solid, very thick] table [x=P1,y=epsilon1] {../code/data/LSM3F_APR/eos_sigma_600.dat};
+\addplot+ [blue!50!cyan, solid, very thick] table [x=P1,y=epsilon1] {../code/data/LSM3F_APR/eos_sigma_600.dat};
 \addplot+ [black, dashed, very thick] table [x=P,y=epsilon] {../code/data/LSM3F_APR/eos_sigma_600.dat};
 \end{groupplot}
 \end{tikzpicture}
@@ -291,7 +291,7 @@ In this chapter we have constructed hybrid stars modeled with the three-flavor q
 and the Akmal-Pandharipande-Ravenhall hadronic equation of state in the outer region.
 We saw that the hadronic mass-radius relation developed a very short branch of stable hybrid stars,
 but a discontinuous transition between the two phases destabilized the stars immediately thereafter.
-The hybrid branch realized maximum masses $1.85 M_\odot \lesssim M \lesssim 2.05 M_\odot$ depending on the $\sigma$-meson mass $m_\sigma$ used in the quark-meson model.
+The hybrid branch realized maximum masses $1.90 M_\odot \lesssim M \lesssim 2.07 M_\odot$ depending on the $\sigma$-meson mass $m_\sigma$ used in the quark-meson model.
 These results are in good agreement with hybrid stars modeled with the hadronic Walecka model and Nambu-Jona-Lasinio model for quark matter by \cite{ref:hybrid_stars_njl}.
 They also find that the stability of the hybrid stars increases if the phase transition is smoothened out with the Gibbs construction,
 making it very interesting to see how a more sophisticated construction of the hybrid equation of state would play out with our model.
