@@ -335,33 +335,32 @@ The main properties of the up, down and strange quarks are gathered in \cref{tab
 
 The phase diagram of quantum chromodynamics describes the phase of quark matter
 as a function of temperature $T$ and the common quark, isospin and strangeness chemical potentials
-\TODO{JO suggests $\mu$ since $\mu_Q$ can refer to charge chemical potential. some use $\mu_q$}
 \begin{equation}
-	\mu_Q = \frac{\mu_u + \mu_d}{2}, \qquad
+	\mu   = \frac{\mu_u + \mu_d}{2}, \qquad
 	\mu_I = \frac{\mu_u - \mu_d}{2}, \qquad
 	\mu_S = \frac{\mu_u - \mu_d}{2} - \mu_s.
 \label{eq:master_intro:chemical_potentials_transformed}
 \end{equation}
 Inverting these relations for the individual quark chemical potentials give
 \begin{equation}
-	\mu_u = \mu_Q + \mu_I, \qquad
-	\mu_d = \mu_Q - \mu_I, \qquad
-	\mu_s = \mu_Q - \mu_S .
+	\mu_u = \mu + \mu_I, \qquad
+	\mu_d = \mu - \mu_I, \qquad
+	\mu_s = \mu - \mu_S .
 \label{eq:master_intro:chemical_potentials_particles}
 \end{equation}
-By the chain rule we can derive that the suitably named common quark chemical potential $\mu_Q$ corresponds to the total quark density
+By the chain rule we can derive that the suitably named common quark chemical potential $\mu$ corresponds to the total quark density
 \begin{equation}
-	n_Q = -\pdv{\Omega}{\mu_Q} =
-	-\pdv{\Omega}{\mu_u} \pdv{\mu_u}{\mu_Q}
-	-\pdv{\Omega}{\mu_d} \pdv{\mu_d}{\mu_Q}
-	-\pdv{\Omega}{\mu_s} \pdv{\mu_s}{\mu_Q} =
+	n_Q = -\pdv{\Omega}{\mu} =
+	-\pdv{\Omega}{\mu_u} \pdv{\mu_u}{\mu}
+	-\pdv{\Omega}{\mu_d} \pdv{\mu_d}{\mu}
+	-\pdv{\Omega}{\mu_s} \pdv{\mu_s}{\mu} =
 	n_u + n_d + n_s.
 \end{equation}
-Some authors rather prefer to talk about the baryon chemical potential $\mu_B = 3 \mu_Q$ and baryon density $n_B = n_Q / 3$.
+Some authors rather prefer to talk about the baryon chemical potential $\mu_B = 3 \mu$ and baryon density $n_B = n_Q / 3$.
 Although mapping out the phase diagram is an active area of research, a rough qualitative picture is known, and the slice with $\mu_I = \mu_S = 0$ is shown in \cref{fig:qcd:phase_diagram}.
 We have already argued that one can set $T=0$ in compact stars,
 and we will later see that the additional constraints of chemical equilibrium \eqref{eq:lsm:chemical_equilibrium} and charge neutrality \eqref{eq:lsm:charge_neutrality} entail that
-the state of quark matter in compact stars is parametrized by a curve in the diagram that lies close to the $\mu_Q$-axis.
+the state of quark matter in compact stars is parametrized by a curve in the diagram that lies close to the $\mu$-axis.
 We will shortly discuss the most important qualitative properties of quantum chromodynamics and relate them to this phase diagram.
 
 The general theory of quantum chromodynamics is notorious for being very difficult to work with,
