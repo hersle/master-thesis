@@ -1749,6 +1749,34 @@ We make a total of four sweeps for the mass-radius diagram in \cref{fig:nstars:m
 \section{Equations of state for quark stars and hybrid stars}
 \label{sec:num:qstars2f}
 
+\TODO{add MITModel base class in code}
+
+\begin{center}
+\tikzsetnextfilename{quark-star-class-hierarchy}
+\begin{tikzpicture}[
+	every node/.style={rectangle, fill=blue!20, draw=black, thick, font=\small}, % ellipse is too wide
+	grow'=right,
+	level distance=4cm,
+	level 1/.style={sibling distance=3cm},
+	level 2/.style={sibling distance=2cm},
+]
+\node {Model}
+	child {node {MITModel}
+		child {node {MIT2FlavorModel}}
+		child {node {MIT3FlavorModel}}
+	}
+	child {node {LSMModel}
+		child {node {LSM2FlavorModel}
+			child {node {LSM2FlavorConsistentModel}}
+		}
+		child {node {LSM3FlavorModel}
+			%child {node {LSM3FlavorAnomalyModel}}
+		}
+	}
+	child {node {HybridModel}};
+\end{tikzpicture}
+\end{center}
+
 \TODO{finish this, restructure individual models, present class diagram?}
 
 This program finds the solution shown in \cref{fig:lsm:2-flavor-eos-parametrization} to the system of equations \eqref{eq:lsm:minsys} and the equation of state shown in \cref{fig:lsm:2-flavor-eos-eos}.
