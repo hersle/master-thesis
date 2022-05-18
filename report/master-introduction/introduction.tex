@@ -137,9 +137,11 @@ It therefore includes relativistic corrections, which is particularly important 
 
 To solve it, one must know the fluid's \textbf{equation of state} $\epsilon(P)$ that connects its pressure and energy density, thereby closing the system of three equations and three unknowns.
 Then the system can be integrated from the center $r=0$ with zero initial mass $m(0) = 0$ and some central pressure $P(0) = P_c$ until reaching the surface $r=R$ defined by a vanishing pressure $P(R) = 0$.
-This yields the radial profiles $\epsilon(r)$, $P(r)$ and $m(r)$, and the star's total mass $M = m(R)$ can then be calculated.
-As the central pressure is unknown, it is common to parametrize a sequence of stars with a range of central pressures, solve the Tolman-Oppenheimer-Volkoff equations for each of them and finally draw a curve of their masses and radii in a mass-radius diagram.
-\TODO{emphasize that one central pressure corresponds to one mass and one radius?}
+This yields the radial profiles $\epsilon(r)$, $P(r)$ and $m(r)$, and the total mass $M = m(R)$ can then be calculated.
+Thus, one central pressure $P_c$ corresponds to one star with mass $M$ and radius $R$.
+As the central pressure is unknown,
+it is common to parametrize a sequence of stars with a range of central pressures,
+solve the Tolman-Oppenheimer-Volkoff equations for each of them and finally draw a curve of their masses and radii in a mass-radius diagram.
 
 In \cref{sec:nstars:numtov} we wrote a program that integrates the Tolman-Oppenheimer-Volkoff equation for an arbitrary equation of state and generates a smooth mass-radius curve between two given central pressures.
 This will be of great use as we encounter new equations of state.
