@@ -1,6 +1,8 @@
 \chapter{A hybrid quark-hadron model}
 \label{chap:hybrid}
 
+\TODO{try two-flavor hybrid star!}
+
 \TODO{reflect changes with denser mass-radius plot in the text}
 
 \begin{figure}[th!]
@@ -17,7 +19,7 @@
 \end{tikzpicture}
 \caption{\label{fig:hybrid:illustration}%
 	A hybrid star composed of a core with strange quark matter surrounded by a hadronic phase.
-	Quark cores are thought to be very small compared to the hadronic region, and the drawing is not to scale in this regard.
+	Quark cores are thought to be very small compared to the hadronic region, and the drawing is not to scale in this regard!
 }
 \end{figure}
 
@@ -72,7 +74,7 @@ we apply the coarsest procedure outlined in \cite[section V-C]{ref:quark_star_re
 \item \label{step:hybrid:four}%
       Eliminate $\mu_B$ from $P(\mu_B)$ and $\epsilon(\mu_B)$ to obtain the hybrid equation of state $\epsilon(P)$.
 \end{enumerate}
-The philosophy behind this method is that the preferable phase at any baryon chemical potential $\mu_B$ is the one with the greatest pressure $P$, or lowest grand potential $\Omega = -P$.
+The philosophy behind this method is that the preferable phase at any baryon chemical potential $\mu_B$ is the one with the greater pressure $P$, or lowest grand potential $\Omega = -P$.
 
 \begin{figure}
 \centering
@@ -124,6 +126,7 @@ Hybrid equation of state obtained
 by combining the three-flavor quark-meson model (with $m_\sigma=\SI{600}{\mega\electronvolt}$ and $B^\frac14 = \SI{27}{\mega\electronvolt}$) for the core
 with the Akmal-Pandharipande-Ravenhall hadronic equation of state for the outer region,
 according to steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hybrid:construction}.
+\TODO{stretch pressure intersection?}
 }
 \end{figure}
 
@@ -134,6 +137,7 @@ Due to the jump in density, a discontinuous phase transition between the two dev
 
 Ideally, one should correct the equation of state across the phase transition by using the Maxwell construction so that it takes place at constant pressure.
 We neglect this for simplicity.
+\TODO{but now I have fixed this!!}
 
 The biggest problem with this rough splicing method is that it assumes the equations of state for both phases to be valid near the intersection point.
 In reality it is unreliable to compare them across the entire range of densities from hadronic to quark matter.
@@ -151,6 +155,8 @@ Assuming that the quark matter equation of state is unreliable in this regime an
 The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 
 \section{Stellar solutions}
+
+\TODO{add band of two stars in \cite{ref:quark_hybrid_additional_ref}}
 
 \begin{figure}
 \centering

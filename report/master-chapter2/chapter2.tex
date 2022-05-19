@@ -4,9 +4,10 @@
 At low energy the effective degrees of freedom of quantum chromodynamics are not individual quarks,
 but nucleons composed of up and down quarks and the three pions that we saw arose from the spontaneous chiral symmetry breaking pattern \eqref{eq:qcd:symmetry_breaking_pattern}.
 The MIT bag model that we discussed in \cref{chap:mit} modeled quark stars by simply confining a free Fermi gas of quarks in baryons with a bag constant $B$.
-We will now crank up the difficulty and investigate the \textbf{linear sigma model}, which also takes chiral symmetry breaking and the resulting pions into account by introducing an ``ad--hoc'' $\sigma$ particle.
+We will now crank up the difficulty and investigate the \textbf{linear sigma model}, which also takes chiral symmetry breaking and the pions into account by introducing an ``ad--hoc'' $\sigma$ particle.
 The linear sigma model was originally introduced by \cite{ref:lsm_original} as an effective model for nucleons interacting with pions and scalar mesons,
-but we will interpret the fermions as quarks instead of nucleons in what is commonly referred to as a \textbf{quark-meson model}.
+but we \TODO{others also have} will interpret the fermions as quarks instead of nucleons in what is commonly referred to as a \textbf{quark-meson model}.
+\TODO{introduce (QM)? (QCD)? etc.}
 
 The physical justification for this effective model of quantum chromodynamics is best made retrospectively after seeing exactly how it gives rise to chiral symmetry breaking.
 We will therefore take the model as granted from the start and justify it as we go along.
@@ -40,7 +41,7 @@ We will therefore take the model as granted from the start and justify it as we 
 \section{Lagrangian, symmetries and physical justification}
 \label{sec:lsm:vacuum}
 
-The Lagrangian density for the linear sigma model coupled to quarks is \cite{ref:jo_lsm_consistent_physical}
+The Lagrangian density for the linear sigma model coupled to quarks is \cite{ref:lsm_2f}
 \begin{equation}
 	\lagr = \bar{q} \Big[ i \slashed\partial + \mu \gamma^0 - g \big( \sigma + i \gamma^5 \vec\tau \cdot \vec\pi \big) \Big] q
 	      + \frac12 \Big[ \big( \partial_\mu \sigma \big)^2 + \big( \partial_\mu \vec\pi \big)^2 \Big] - \pot(\sigma,\vec\pi)
@@ -51,11 +52,11 @@ with the meson potential
 	\pot(\sigma, \vec\pi) = \frac{m^2}{2} \big( \sigma^2 + \vec\pi^2 \big) + \frac{\lambda}{4!} \big( \sigma^2 + \vec\pi^2 \big)^2 - h \sigma .
 \label{eq:lsm:potential}
 \end{equation}
-The quark fields behave as in the MIT bag model Lagrangian \eqref{eq:mit:lagrangian} with $N_f=2$ flavor indices $u$ and $d$, $N_c=3$ color indices and four Dirac spinor indices, and are coupled to two chemical potentials with the flavor-space matrix $\mu = \diag (\mu_u, \mu_d)$.
-However, they are now seemingly massless and coupled to a bosonic $\sigma$ meson and three bosonic pions $\vec\pi = [\pi^+, \pi^-, \pi^0]^T$ with a Yukawa coupling $g$ and the Pauli matrices \eqref{eq:tft:pauli_matrices}.
+The quark fields behave as in the MIT bag model Lagrangian \eqref{eq:mit:lagrangian} with $N_f=2$ flavor indices $u$ and $d$, $N_c=3$ color indices and four Dirac spinor indices, and are coupled to two quark chemical potentials with the flavor-space matrix $\mu = \diag (\mu_u, \mu_d)$.
+However, they are now seemingly massless and coupled to a bosonic $\sigma$ meson and three bosonic \TODO{only say pions here and elsewhere} pions $\vec\pi = [\pi^+, \pi^-, \pi^0]^T$ with a Yukawa coupling $g$ and the Pauli matrices \eqref{eq:tft:pauli_matrices}.
 The meson potential features three couplings $m^2<0$, $\lambda>0$ and $h>0$.
 
-Like the quantum chromodynamics Lagrangian \eqref{eq:qcd:lagrangian}, the quark-meson model Lagrangian \eqref{eq:lsm:lagrangian} has the vector $U(1)_V$ and axial $U(1)_A$ symmetry shown in \cref{sec:master_intro:qcd}.
+Like the quantum chromodynamics \TODO{QCD here and elsewhere} Lagrangian \eqref{eq:qcd:lagrangian}, the quark-meson model Lagrangian \eqref{eq:lsm:lagrangian} has a vector $U(1)_V$ and axial $U(1)_A$ symmetry shown in \cref{sec:master_intro:qcd}.
 In contrast to the mass-conditional chiral symmetry of the former Lagrangian, however, the latter is \emph{unconditionally} invariant under a $SU(2)_L \times SU(2)_R$ transformation when $h=0$ and $\mu = 0$.
 To see this, first express the Yukawa coupling term with left-handed and right-handed chiral fields:
 \begin{equation}
@@ -87,13 +88,13 @@ and hence the Lagrangian \eqref{eq:lsm:lagrangian} are invariant.
 This proves the claimed unconditional $SU(2)_L \times SU(2)_R$ symmetry when $h=0$ and $\mu=0$.
 Since the group $SU(2)_L \times SU(2)_R$ is isomorphic to $O(4)$,
 the symmetry can equivalently be understood by considering the meson fields as a four-vector $[\sigma, \vec{\pi}]^T$
-and noting that the meson potential \eqref{eq:lsm:potential} is invariant under rotation of this vector in $O(4)$.
+and noting that the meson potential \eqref{eq:lsm:potential} is invariant under rotation of this vector in $O(4)$ \TODO{really in $R^4$-space, say $O(4)$ in another way}.
 
 What can be the relevance of this unconditional symmetry,
 when it was precisely the \emph{breaking} of chiral symmetry that led to the pions of quantum chromodynamics in \cref{sec:master_intro:qcd}?
 The short answer -- to be expanded upon in the following -- is that the different mathematical symmetries give rise to the \emph{same} physical consequences.
 
-In vacuum the fermions do not contribute to the grand potential,
+In the vacuum, the fermions do not contribute to the grand potential,
 and the ground state values $\sigma = \avg{\sigma}$ and $\vec{\pi} = \avg{\vec{\pi}}$ are given by minima of the meson potential $\pot(\avg{\sigma},\avg{\vec{\pi}})$ illustrated in \cref{fig:lsm:potential}.
 From equation \eqref{eq:lsm:potential} we see that they are given by
 \begin{equation}
@@ -109,7 +110,7 @@ From equation \eqref{eq:lsm:potential} we see that they are given by
 The qualitative nature of the solutions depend on whether $h$ vanishes:
 \begin{itemize}
 \item In the \textbf{chiral limit} $h=0$,
-      the ground state solutions are a degenerate range of stable minima along the circle $\avg{\sigma}^2+\avg{\vec{\pi}}^2=-6m^2/\lambda$.
+      the ground state solutions are a degenerate range of minima along the circle $\avg{\sigma}^2+\avg{\vec{\pi}}^2=-6m^2/\lambda$.
       Without any loss of generality, let us pick the one located at $\avg{\sigma} = \sqrt{-6m^2/\lambda}>0$ and $\avg{\vec{\pi}}=0$.
 \item At the \textbf{physical point} $h \neq 0$,
       the ground state of the potential is a unique global minimum at $\avg{\sigma} \neq 0$ and $\avg{\vec{\pi}}=0$ determined implicitly by \eqref{eq:lsm:ground_state_implicit}.
@@ -143,7 +144,7 @@ The quark and meson fields have now acquired the effective masses
 The qualitative nature of the pions depends on whether $h$ vanishes:
 \begin{itemize}
 \item In the \textbf{chiral limit} $h = 0$ the $SU(2)_L \times SU(2)_R$ symmetry \eqref{eq:lsm:meson_symmetry} is exact,
-      and we saw above that there is a degenerate range of ground states.
+      and we saw above that there is a degenerate range \TODO{JO: ``vacuum manifold''} of ground states.
       Upon committing to the nonzero $\avg{\sigma}$ minimum above, the $O(4)$ rotation symmetry of the four original meson fields $[\sigma,\vec\pi]^T$ are spontaneously broken
       to rotation of only the three pion quantum fluctuations $\tilde{\vec\pi}$ in $O(3)$.
       Accordingly, the pion mass \eqref{eq:lsm:mass_pi} vanishes and the three pions are indeed Goldstone bosons associated with spontaneous symmetry breaking.
@@ -186,7 +187,7 @@ replacing them by their yet \emph{unknown} expectation values $\avg{\sigma}$ and
 and simply ignoring their quantum fluctuations $\tilde{\sigma}$ and $\tilde{\vec\pi}$.
 In contrast we will give the fermions full treatment,
 motivated by their more dramatic behavior at zero temperature.
-\TODO{is this argument valid, with BEC etc?}
+\TODO{is this argument valid, with BEC etc? yes -- good as a motivator. mention $1/N_c$-scheme as a scheme in which everything is \emph{consistent} later!}
 After calculating the grand potential with unknown mean fields,
 their precise values are found \emph{self-consistently with the original assumption} as minima of the grand potential by solving
 \begin{equation}
@@ -663,7 +664,7 @@ Dotted lines show the massless solutions \eqref{eq:mit:densities_massless}, \eqr
 The details of the numerical implementation can be found in \cref{sec:num:qstars2f}.
 We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 \begin{itemize}
-\item The phase transition or crossover behaves qualitatively identically as in \cref{fig:lsm:grand-potential-noisospin}:
+\item The phase transition or crossover behaves similarly as in \cref{fig:lsm:grand-potential-noisospin}:
       the grand potential \eqref{eq:lsm:grand_potential} and its minimum $\avg{\sigma}=m_q/g$ is independent of $\mu$ in vacuum where $\mu < \SI{300}{\mega\electronvolt}$;
       undergoes a crossover (with $m_\sigma=\SI{700}{\mega\electronvolt}$) or a first-order phase transition (with $m_\sigma=\SI{800}{\mega\electronvolt}$) for $\SI{300}{\mega\electronvolt} < \mu \lesssim \SI{400}{\mega\electronvolt}$;
       and approaches the ultra-relativistic limit $\avg{\sigma}\rightarrow 0$ for $\mu \gtrsim \SI{400}{\mega\electronvolt}$.
