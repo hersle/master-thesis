@@ -7,7 +7,6 @@ The MIT bag model that we discussed in \cref{chap:mit} modeled quark stars by si
 We will now crank up the difficulty and investigate the \textbf{linear sigma model}, which also takes chiral symmetry breaking and the pions into account by introducing an ``ad--hoc'' $\sigma$ particle.
 The linear sigma model was originally introduced by \cite{ref:lsm_original} as an effective model for nucleons interacting with pions and scalar mesons,
 but the fermions have since been interpreted as quarks in what is commonly referred to as a \textbf{quark-meson model}.
-\TODO{introduce (QM)? (QCD)? etc.}
 
 The physical justification for this effective model of quantum chromodynamics is best made retrospectively after seeing exactly how it gives rise to chiral symmetry breaking.
 We will therefore take the model as granted from the start and justify it as we go along.
@@ -88,7 +87,7 @@ and hence the Lagrangian \eqref{eq:lsm:lagrangian} are invariant.
 This proves the claimed unconditional $SU(2)_L \times SU(2)_R$ symmetry when $h=0$ and $\mu=0$.
 Since the group $SU(2)_L \times SU(2)_R$ is isomorphic to $O(4)$,
 the symmetry can equivalently be understood by considering the meson fields as a four-vector $[\sigma, \vec{\pi}]^T$
-and noting that the meson potential \eqref{eq:lsm:potential} is invariant under rotation of this vector in $O(4)$ \TODO{really in $R^4$-space, say $O(4)$ in another way}.
+and noting that the meson potential \eqref{eq:lsm:potential} is invariant under rotation of this vector in four-space.
 
 What can be the relevance of this unconditional symmetry,
 when it was precisely the \emph{breaking} of chiral symmetry that led to the pions of quantum chromodynamics in \cref{sec:master_intro:qcd}?
@@ -110,8 +109,9 @@ From equation \eqref{eq:lsm:potential} we see that they are given by
 The qualitative nature of the solutions depend on whether $h$ vanishes:
 \begin{itemize}
 \item In the \textbf{chiral limit} $h=0$,
-      the ground state solutions are a degenerate range of minima along the circle $\avg{\sigma}^2+\avg{\vec{\pi}}^2=-6m^2/\lambda$.
-      Without any loss of generality, let us pick the one located at $\avg{\sigma} = \sqrt{-6m^2/\lambda}>0$ and $\avg{\vec{\pi}}=0$.
+      the ground state solutions are a degenerate range of minima along the circle $\avg{\sigma}^2+\avg{\vec{\pi}}^2=-6m^2/\lambda$,
+      sometimes referred to as a vacuum manifold.
+      Without any loss of generality, we pick the one at $\avg{\sigma} = \sqrt{-6m^2/\lambda}>0$ and $\avg{\vec{\pi}}=0$.
 \item At the \textbf{physical point} $h \neq 0$,
       the ground state of the potential is a unique global minimum at $\avg{\sigma} \neq 0$ and $\avg{\vec{\pi}}=0$ determined implicitly by \eqref{eq:lsm:ground_state_implicit}.
 \end{itemize}
@@ -148,7 +148,7 @@ In nature, isospin symmetry is seemingly only slightly broken, and the up and do
 The qualitative nature of the pions depends on whether $h$ vanishes:
 \begin{itemize}
 \item In the \textbf{chiral limit} $h = 0$ the $SU(2)_L \times SU(2)_R$ symmetry \eqref{eq:lsm:meson_symmetry} is exact,
-      and we saw above that there is a degenerate range \TODO{JO: ``vacuum manifold''} of ground states.
+      and we saw above that there is a vacuum manifold of ground states.
       Upon committing to the nonzero $\avg{\sigma}$ minimum above, the $O(4)$ rotation symmetry of the four original meson fields $[\sigma,\vec\pi]^T$ are spontaneously broken
       to rotation of only the three pion quantum fluctuations $\tilde{\vec\pi}$ in $O(3)$.
       Accordingly, the pion mass \eqref{eq:lsm:mass_pi} vanishes and the three pions are indeed Goldstone bosons associated with spontaneous symmetry breaking.
