@@ -311,7 +311,10 @@ class Model:
         ϵ, _, _, _, _, _ = self.eos(N=N, B=B14**4, plot=False)
         massradiusplot(ϵ, P1P2, **tovopts, visual=plot, outfile=outfile)
 
-class MIT2FlavorModel(Model):
+class MITModel(Model):
+    pass
+
+class MIT2FlavorModel(MITModel):
     def __init__(self):
         Model.__init__(self, "MIT2F")
         self.Ω = lambda mu, md, ms, μu, μd, μs, μe: np.real(
@@ -353,7 +356,7 @@ class MIT2FlavorModel(Model):
         μs = np.full_like(μQ, 0)
         return mu, md, ms, μu, μd, μs, μe
 
-class MIT3FlavorModel(Model):
+class MIT3FlavorModel(MITModel):
     def __init__(self):
         Model.__init__(self, "MIT3F")
         self.Ω = lambda mu, md, ms, μu, μd, μs, μe: np.real(
