@@ -1749,23 +1749,25 @@ We make a total of four sweeps for the mass-radius diagram in \cref{fig:nstars:m
 \section{Equations of state for quark stars and hybrid stars}
 \label{sec:num:qstars2f}
 
-\TODO{add MITModel base class in code}
+This program finds all equations of state and stellar solutions in chapters \ref{chap:mit}, \ref{chap:lsm2f}, \ref{chap:lsm3f} and \ref{chap:hybrid}.
+In order to increase reusability of common code and decrease its maintenance burden,
+the models inherit functionality from each other according to the following class diagram:
 
 \begin{center}
 \tikzsetnextfilename{quark-star-class-hierarchy}
 \begin{tikzpicture}[
-	every node/.style={rectangle, fill=blue!20, draw=black, thick, font=\small}, % ellipse is too wide
+	every node/.style={rectangle, fill=blue!20, draw=black, thick, font=\small, align=center}, % ellipse is too wide
 	grow'=right,
 	level distance=4cm,
 	level 1/.style={sibling distance=3cm},
 	level 2/.style={sibling distance=2cm},
 ]
 \node {Model}
-	child {node {MITModel}
+	child {node {MITModel \\ \scriptsize \textcolor{darkgray}{(chapter 7)}}
 		child {node {MIT2FlavorModel}}
 		child {node {MIT3FlavorModel}}
 	}
-	child {node {LSMModel}
+	child {node {LSMModel \\ \scriptsize \textcolor{darkgray}{(chapter 8 and 9)}}
 		child {node {LSM2FlavorModel}
 			child {node {LSM2FlavorConsistentModel}}
 		}
@@ -1773,13 +1775,32 @@ We make a total of four sweeps for the mass-radius diagram in \cref{fig:nstars:m
 			%child {node {LSM3FlavorAnomalyModel}}
 		}
 	}
-	child {node {HybridModel}};
+	child {node {HybridModel \\ \scriptsize \textcolor{darkgray}{(chapter 10)}}};
 \end{tikzpicture}
 \end{center}
 
-\TODO{finish this, restructure individual models, present class diagram?}
+For each model, the program performs the following tasks:
+\begin{itemize}
+\item It numerically fits parameters to the grand potential \eqref{eq:master_intro:grand_potential} at zero temperature
+      and evaluates it and its derivatives with respect to any mean fields that are present.
+\item It finds the equation of state $\epsilon(P)$.
+      First, pressures \eqref{eq:master_intro:pressure} and energy densities \eqref{eq:master_intro:energy_density} are parametrized with one independent mean field or chemical potential.
+      Simultaneously, other mean fields and chemical potentials are determined by solving a system of equations that consist of the constraints \eqref{eq:lsm:chemical_equilibrium} and \eqref{eq:lsm:charge_neutrality} and self-consistency equations \eqref{eq:lsm:gap_equation} for any mean fields that are present.
+      Finally, the independent variable is eliminated numerically to yield the equation of state.
+      Numerically, the function $\epsilon(P)$ is implemented with splines as a linearly interpolating function between the parametrized points.
+\item If the equation of state exhibits a phase transition,
+      it is corrected with the Maxwell construction
+      by establishing one vapor pressure at which the transition takes place,
+      as explained in \cite[equation 4.69]{ref:master_francesco}.
+\item It establishes upper or lower bounds for the bag constant $B$
+      by making shifts \eqref{eq:mit:bag_shift} with different bag constants
+      and solving the side of inequality \eqref{eq:mit:bag_stability} that matches the number of flavors in the model.
+\item It integrates the Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov}
+      using the program in \cref{sec:nstars:numtov},
+      producing both mass-radius diagrams and radial profiles for various quantities in individual stars.
+\end{itemize}
 
-This program finds the solution shown in \cref{fig:lsm:2-flavor-eos-parametrization} to the system of equations \eqref{eq:lsm:minsys} and the equation of state shown in \cref{fig:lsm:2-flavor-eos-eos}.
-It then integrates the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} with this equation of state for a range of bag pressures, producing the mass-radius curves shown in \cref{fig:lsm:2-flavor-mass-radius}.
+For readability, self-documentation and one-to-one correspondence,
+the code uses Unicode variable names that resemble the variables and equations in the main text.
 
 \codefile{python}{../code/quark_stars.py}{quark\_stars.py}
