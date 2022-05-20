@@ -926,5 +926,6 @@ if __name__ == "__main__":
     #HybridModel(mσ=600).stars(111, (1e-5, 1e-2), write=True) # use tolD=0.001
     #HybridModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True) # use tolD=0.001
     #HybridModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True) # use tolD=0.001
+    #HybridModel(mσ=600).star(0.0008160778808593749, 111, plot=True, write=True)
     #HybridModel(mσ=800).star(0.0012587499999999999, 27, plot=True, write=True)
     #exit()
