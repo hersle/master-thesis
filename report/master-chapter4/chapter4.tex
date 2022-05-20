@@ -1,7 +1,7 @@
 \chapter{A hybrid quark-hadron model}
 \label{chap:hybrid}
 
-\TODO{try two-flavor hybrid star!}
+\TODO{try two-flavor hybrid star! merge results into text.}
 
 \TODO{reflect changes with denser mass-radius plot in the text}
 
@@ -80,7 +80,7 @@ The philosophy behind this method is that the preferable phase at any baryon che
 
 \begin{figure}
 \centering
-\tikzsetnextfilename{hybrid-flavor-eos}
+\tikzsetnextfilename{hybrid-flavor-eos-2}
 \begin{tikzpicture}
 \begin{groupplot}[
 	group style={group size={1 by 3}, vertical sep=1.5cm},
@@ -94,7 +94,60 @@ The philosophy behind this method is that the preferable phase at any baryon che
 	ylabel={$P \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	xmin=900, xmax=1700, restrict x to domain=800:2100, 
 	ymin=0, ymax=0.4, restrict y to domain=0:5,
-	title={Hybrid equation of state },
+	title={Two-flavor hybrid equation of state },
+	title style={yshift=+0.9cm},
+	legend style={anchor=south, at={(0.5,1.04)}}, legend columns=3,
+];
+\addplot+ [red, solid, very thick] table [x=muB2,y=P] {../code/data/LSM2F_APR/eos_sigma_600.dat}; \addlegendentry{quark phase \quad};
+\addplot+ [blue!50!cyan, solid, very thick] table [x=muB1,y=P1] {../code/data/LSM2F_APR/eos_sigma_600.dat}; \addlegendentry{hadron phase \quad};
+\addplot+ [black, dashed, very thick] table [x=muB,y=P] {../code/data/LSM2F_APR/eos_sigma_600.dat}; \addlegendentry{hybrid phase \quad};
+\node at (1359, 0.241) [circle, fill, inner sep=1.5pt] {};
+
+\nextgroupplot[
+	xlabel={$\mu_B \, / \, \si{\mega\electronvolt}$},
+	ylabel={$n_B \, / \, (\si{\per\femto\meter\cubed})$},
+	xmin=900, xmax=1700, restrict x to domain=800:2100, 
+	ymin=0, ymax=10, ytick distance=1, restrict y to domain=-1:12,
+];
+\addplot+ [red, solid, very thick] table [x=muB,y expr={\thisrow{nB2}/0.165}] {../code/data/LSM2F_APR/eos_sigma_600.dat};
+\addplot+ [blue!50!cyan, solid, very thick] table [x=muB1,y expr={\thisrow{nB1}/0.165}] {../code/data/LSM2F_APR/eos_sigma_600.dat};
+\addplot+ [black, dashed, very thick] table [x=muB,y expr={\thisrow{nB}/0.165}] {../code/data/LSM2F_APR/eos_sigma_600.dat};
+
+\nextgroupplot[
+	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+	xmin=0, xmax=0.4, ymin=0, ymax=2.0, xtick distance=0.1, ytick distance=1.0, minor y tick num=9, restrict x to domain=0:5, restrict y to domain=0:5,
+];
+\addplot+ [red, solid, very thick] table [x=P,y=epsilon2] {../code/data/LSM2F_APR/eos_sigma_600.dat};
+\addplot+ [blue!50!cyan, solid, very thick] table [x=P1,y=epsilon1] {../code/data/LSM2F_APR/eos_sigma_600.dat};
+\addplot+ [black, dashed, very thick] table [x=P,y=epsilon] {../code/data/LSM2F_APR/eos_sigma_600.dat};
+\end{groupplot}
+\end{tikzpicture}
+\caption{\label{fig:hybrid:eos-2}%
+Hybrid equation of state obtained
+by combining the two-flavor quark-meson model (with $m_\sigma=\SI{600}{\mega\electronvolt}$ and $B^\frac14 = \SI{111}{\mega\electronvolt}$) for the core
+with the Akmal-Pandharipande-Ravenhall hadronic equation of state for the outer region,
+according to steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hybrid:construction}.
+}
+\end{figure}
+
+\begin{figure}
+\centering
+\tikzsetnextfilename{hybrid-flavor-eos-3}
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size={1 by 3}, vertical sep=1.5cm},
+	width=13cm, height=7cm,
+	extra tick style={grid=major, grid style={dashed}},
+	minor tick num=9,
+	legend style={xshift=-0.2cm, fill=none},
+]
+\nextgroupplot[
+	xlabel={$\mu_B \, / \, \si{\mega\electronvolt}$},
+	ylabel={$P \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+	xmin=900, xmax=1700, restrict x to domain=800:2100, 
+	ymin=0, ymax=0.4, restrict y to domain=0:5,
+	title={Three-flavor hybrid equation of state },
 	title style={yshift=+0.9cm},
 	legend style={anchor=south, at={(0.5,1.04)}}, legend columns=3,
 ];
@@ -123,7 +176,7 @@ The philosophy behind this method is that the preferable phase at any baryon che
 \addplot+ [black, dashed, very thick] table [x=P,y=epsilon] {../code/data/LSM3F_APR/eos_sigma_600.dat};
 \end{groupplot}
 \end{tikzpicture}
-\caption{\label{fig:hybrid:eos}%
+\caption{\label{fig:hybrid:eos-3}%
 Hybrid equation of state obtained
 by combining the three-flavor quark-meson model (with $m_\sigma=\SI{600}{\mega\electronvolt}$ and $B^\frac14 = \SI{111}{\mega\electronvolt}$) for the core
 with the Akmal-Pandharipande-Ravenhall hadronic equation of state for the outer region,
