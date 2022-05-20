@@ -706,10 +706,6 @@ class LSM3FlavorAnomalyModel(LSM3FlavorModel):
         Model.__init__(self, f"LSM3FA", mσ=mσ, mπ=mπ, mK=mK, ma0=ma0)
 
 class HybridModel(Model):
-    def __init__(self, mσ=600):
-        self.name = "LSM3F_APR"
-        self.mσ = mσ
-
     def eos(self, N=1000, B=111**4, hybrid=True, plot=False, write=False):
         arr = np.loadtxt("data/APR/eos.dat")
         #mn = 939.56542052 # MeV / c^2
@@ -726,7 +722,7 @@ class HybridModel(Model):
         P1  = P * 1e-3 * (GeV/fm**3) / ϵ0 # MeV/fm^3 -> GeV/fm^3 -> SI -> TOV-dimless
         ϵ1  = ϵ * 1e-3 * (GeV/fm**3) / ϵ0 # MeV/fm^3 -> GeV/fm^3 -> SI -> TOV-dimless
         
-        ϵ2int, nu2int, nd2int, ns2int, _, μQ2int = LSM3FlavorModel(
+        ϵ2int, nu2int, nd2int, ns2int, _, μQ2int = self.quarkmodel(
             mσ=self.mσ).eos(N=N-len(P1), B=B
         )
         nB2 = (nu2int(P1)+nd2int(P1)+ns2int(P1)) / 3
@@ -812,6 +808,18 @@ class HybridModel(Model):
 
         μQint = lambda P: μBint(P) / 3
         return ϵint, nuint, ndint, nsint, zerofunc, μQint
+
+class Hybrid2FlavorModel(HybridModel):
+    def __init__(self, mσ=600):
+        self.name = "LSM2F_APR"
+        self.mσ = mσ
+        self.quarkmodel = LSM2FlavorModel
+
+class Hybrid3FlavorModel(HybridModel):
+    def __init__(self, mσ=600):
+        self.name = "LSM3F_APR"
+        self.mσ = mσ
+        self.quarkmodel = LSM3FlavorModel
 
 if __name__ == "__main__":
     # plot 3D potential for 2-flavor model with μu=μd
@@ -921,11 +929,19 @@ if __name__ == "__main__":
     #LSM3FlavorModel(mσ=800).star(0.000937590625, 27, write=True)
     #exit()
 
+    # hybrid model (2-flavor quark-meson model + APR hadronic EOS)
+    #Hybrid2FlavorModel(mσ=600).eos(B=111**4, plot=True, write=True) # TODO: add to report
+    #Hybrid2FlavorModel(mσ=600).stars(111, (1e-5, 1e-2), write=True) # use tolD=0.01
+    #Hybrid2FlavorModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True) # use tolD=0.01
+    #Hybrid2FlavorModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True) # use tolD=0.01
+    #Hybrid2FlavorModel(mσ=600).star(0.001180703125, 111, plot=True, write=True)
+    #exit()
+
     # hybrid model (3-flavor quark-meson model + APR hadronic EOS)
-    #HybridModel(mσ=600).eos(B=111**4, plot=True, write=True)
-    #HybridModel(mσ=600).stars(111, (1e-5, 1e-2), write=True) # use tolD=0.001
-    #HybridModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True) # use tolD=0.001
-    #HybridModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True) # use tolD=0.001
-    #HybridModel(mσ=600).star(0.0008160778808593749, 111, plot=True, write=True)
-    #HybridModel(mσ=800).star(0.0012587499999999999, 27, plot=True, write=True)
+    #Hybrid3FlavorModel(mσ=600).eos(B=111**4, plot=True, write=True)
+    #Hybrid3FlavorModel(mσ=600).stars(111, (1e-5, 1e-2), write=True) # use tolD=0.001
+    #Hybrid3FlavorModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True) # use tolD=0.001
+    #Hybrid3FlavorModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True) # use tolD=0.001
+    #Hybrid3FlavorModel(mσ=600).star(0.0008160778808593749, 111, plot=True, write=True)
+    #Hybrid3FlavorModel(mσ=800).star(0.0012587499999999999, 27, plot=True, write=True)
     #exit()
