@@ -152,8 +152,6 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 
 \section{Stellar solutions}
 
-\TODO{add band of two stars in \cite{ref:quark_hybrid_additional_ref}}
-
 \begin{figure}
 \centering
 
@@ -176,10 +174,17 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	xlabel={$R \, / \, \si{\kilo\meter}$ },
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
 	xmin=5, xmax=35, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
-	%title = {$m_\sigma = \SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$ },
-	legend columns=1, legend pos=south east, legend cell align=right,
+	legend columns=4, legend pos=south east, legend cell align=right, legend transposed,
 	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.8,-0.3)}, anchor=north, xticklabel pos=lower},
 ];
+\addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
+\addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
+\addplot [yellow, opacity=0.5] fill between [of=J0348lo and J0348hi]; \addlegendentry{PSR J0348$+$0432};
+
+\addplot [name path=J1614lo, draw=none, forget plot, domain=0:40] {1.91 - 0.02};
+\addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
+\addplot [green, opacity=0.5] fill between [of=J1614lo and J1614hi]; \addlegendentry{PSR J1614$-$2230};
+
 \addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
 \addplot+ [solid, each nth point=8, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
 \addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -194,20 +199,29 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	xmin=11, xmax=12, ymin=1.8, ymax=2.1, xtick distance=1, ytick distance=0.1, minor tick num=9, %grid=major,
 	extra y ticks={2}, extra y tick labels={,,}, extra tick style={grid=major},
-	%title = {$m_\sigma = \SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$ },
-	legend columns=2, legend style={anchor=north, at={(0.5, 0.96)}},
 ];
+\addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
+\addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
+\addplot [yellow, opacity=0.5] fill between [of=J0348lo and J0348hi];
+
+\addplot [name path=J1614lo, draw=none, forget plot, domain=0:40] {1.91 - 0.02};
+\addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
+\addplot [green, opacity=0.5] fill between [of=J1614lo and J1614hi];
+
 \addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \node[scale=0.75] at (11.467, 1.904) {\goldenstar};
+
 \end{groupplot}
 \end{tikzpicture}
 
 \caption{\label{fig:hybrid:mass-radius}%
 	Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$,
 	obtained with three hybrid equations of state like the one in \cref{fig:hybrid:eos} with different values of $m_\sigma$ and $B$ in the three-flavor quark-meson model.
+	The bands show measured masses of the two pulsars PSR J1614$-$2230 and PSR J0348$+$0432 from \cite{ref:antoniadis,ref:arzoumanian}.
+	\TODO{discuss bands in text. any EOS must come over this magical limit}
 }
 
 \bigskip
@@ -237,7 +251,7 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \nextgroupplot[
 	xlabel=$r \, / \, \si{\kilo\meter}$,
 	ylabel=$\mu_B \, / \, \si{\giga\electronvolt}$,
-	ymin=0.9, ymax=1.5, ytick distance=0.1, minor y tick num=4, restrict y to domain=0.8:1.6,
+	ymin=0.9, ymax=1.5, ytick distance=0.1, minor y tick num=4, % restrict y to domain=0.8:1.6,
 ];
 \addplot+ [black] table [x=r, y expr={\thisrow{muQ}*3.0/1000.0}] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat};
 \nextgroupplot[
@@ -276,27 +290,32 @@ we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius}:
 \item After onset of the quark phase, the mass-radius curve develops new branches below the maximum hadron-only neutron star
       with maximum masses $1.90 M_\odot \leq M \lesssim 2.07 \leq M_\odot$.
 \item At first glance, the new branches seem to plummet in mass straight after the branch point and indicate that all the hybrid stars are unstable.
-      However, close inspection of the right panel in \cref{fig:hybrid:mass-radius} shows that the branches begin with a \emph{tiny} segment of stable stars whose masses increase up to the maximum.
+      However, close inspection of the right panel shows that the branch with $m_\sigma = \SI{600}{\mega\electronvolt}$
+      begins with a \emph{tiny} segment of stable stars whose masses increase up to the maximum $1.90 \, M_\odot$.
+      The branches with greater values of $m_\sigma$ go straight downhill and have unstable stars.
       This supports the general claim in \cite{ref:quark_star_review} that quark cores are rare and have a very small size and mass, if at all existent.
 \end{itemize}
 
 Qualitatively, the radial profiles of the three maximum mass stars are very similar.
-We take a detailed look at the one for $m_\sigma=\SI{800}{\mega\electronvolt}$ and $B^\frac14 = \SI{27}{\mega\electronvolt}$ in \cref{fig:hybrid:star}:
+We take a detailed look at the one for $m_\sigma=\SI{600}{\mega\electronvolt}$ and $B^\frac14 = \SI{111}{\mega\electronvolt}$ in \cref{fig:hybrid:star}:
 \begin{itemize}
-\item The quark core has a central baryon density $n_B = 7 n_\text{sat}$ and extends $R'=\SI{1.3}{\kilo\meter} = 0.12 R$ from the center with a mass of only $M' = m(R') = 0.01 M_\odot = 0.005 M$.
+\item The quark core has a central baryon density $n_B = 6 n_\text{sat}$ and extends $R'=\SI{1.6}{\kilo\meter} = 0.14 R$ from the center with a mass of only $M' = m(R') = 0.02 M_\odot = 0.01 M$.
       It contains three-flavor quark matter with up, down and strange quarks.
-\item The phase transition from quark to hadronic matter takes place at $R'=\SI{1.3}{\kilo\meter}$ and entails huge drops $\Delta\epsilon = \SI{0.8}{\giga\electronvolt\per\femto\meter\cubed}$ and $\Delta n_B = 2 n_\text{sat}$ in energy and baryon density.
+\item The phase transition from quark to hadronic matter takes place at $R'=\SI{1.6}{\kilo\meter}$ and entails big drops $\Delta\epsilon = \SI{0.3}{\giga\electronvolt\per\femto\meter\cubed}$ and $\Delta n_B = 1.5 n_\text{sat}$ in energy and baryon density.
       Physically, stars are simply not able to support these dramatic discontinuous phase transitions, and the hybrid branches are therefore almost purely unstable.
-\item The hadronic phase dominates, making up $\SI{99.8}{\percent}$ of the star's volume and $\SI{99.5}{\percent}$ of its mass.
+\item The hadronic phase dominates, making up $\SI{99.7}{\percent}$ of the star's volume and $\SI{99.0}{\percent}$ of its mass.
 \end{itemize}
 
 \section{Summary}
 
+\TODO{continue updating with new 600 MeV stuff}
+
 In this chapter we have constructed hybrid stars modeled with the three-flavor quark-meson model in the core
 and the Akmal-Pandharipande-Ravenhall hadronic equation of state in the outer region.
-We saw that the hadronic mass-radius relation developed a very short branch of stable hybrid stars,
+We saw that the hadronic mass-radius relation developed a very short branch of stable hybrid stars up to a maximum mass $M \leq 1.90 \, M_\odot$ for $m_\sigma=\SI{600}{\mega\electronvolt}$ in the quark-meson model,
 but a discontinuous transition between the two phases destabilized the stars immediately thereafter.
-The hybrid branch realized maximum masses $1.90 M_\odot \lesssim M \lesssim 2.07 M_\odot$ depending on the $\sigma$-meson mass $m_\sigma$ used in the quark-meson model.
+For larger values between $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$,
+the hybrid branches realized maximum masses $1.90 M_\odot \lesssim M \lesssim 2.07 M_\odot$.
 These results are in good agreement with hybrid stars modeled with the hadronic Walecka model and Nambu-Jona-Lasinio model for quark matter by \cite{ref:hybrid_stars_njl}.
 They also find that the stability of the hybrid stars increases if the phase transition is smoothened out with the Gibbs construction,
 making it very interesting to see how a more sophisticated construction of the hybrid equation of state would play out with our model.
