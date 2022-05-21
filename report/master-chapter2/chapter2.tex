@@ -790,7 +790,7 @@ We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 \addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F/star_sigma_800_B14_27_Pc_0.0012501.dat}; \addlegendentry{$n_B$};
 \end{groupplot}
 \node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}]
-{\goldenstar Maximum mass star profile ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{27}{\mega\electronvolt}$, $P_c=10^{34.727} \, \si{\pascal}$)};
+{\goldenstar Maximum mass star ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{27}{\mega\electronvolt}$, $P_c=10^{34.727} \, \si{\pascal}$)};
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-star}%
 	Radial profiles for the

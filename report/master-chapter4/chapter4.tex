@@ -84,19 +84,17 @@ The philosophy behind this method is that the preferable phase at any baryon che
 \begin{tikzpicture}
 \begin{groupplot}[
 	group style={group size={1 by 3}, vertical sep=1.5cm},
-	width=13cm, height=7cm,
+	width=13cm, height=8.0cm,
 	extra tick style={grid=major, grid style={dashed}},
 	minor tick num=9,
-	legend style={xshift=-0.2cm, fill=none},
+	legend columns=1, legend pos=north west,
 ]
 \nextgroupplot[
 	xlabel={$\mu_B \, / \, \si{\mega\electronvolt}$},
 	ylabel={$P \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	xmin=900, xmax=1700, restrict x to domain=800:2100, 
 	ymin=0, ymax=0.4, restrict y to domain=0:5,
-	title={Two-flavor hybrid equation of state },
-	title style={yshift=+0.9cm},
-	legend style={anchor=south, at={(0.5,1.04)}}, legend columns=3,
+	title={Two-flavor hybrid equation of state}, % ($m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$)},
 ];
 \addplot+ [red, solid, very thick] table [x=muB2,y=P] {../code/data/LSM2F_APR/eos_sigma_600.dat}; \addlegendentry{quark phase \quad};
 \addplot+ [blue!50!cyan, solid, very thick] table [x=muB1,y=P1] {../code/data/LSM2F_APR/eos_sigma_600.dat}; \addlegendentry{hadron phase \quad};
@@ -105,7 +103,7 @@ The philosophy behind this method is that the preferable phase at any baryon che
 
 \nextgroupplot[
 	xlabel={$\mu_B \, / \, \si{\mega\electronvolt}$},
-	ylabel={$n_B \, / \, (\si{\per\femto\meter\cubed})$},
+	ylabel={$n_B \, / \, n_\text{sat}$},
 	xmin=900, xmax=1700, restrict x to domain=800:2100, 
 	ymin=0, ymax=10, ytick distance=1, restrict y to domain=-1:12,
 ];
@@ -123,33 +121,25 @@ The philosophy behind this method is that the preferable phase at any baryon che
 \addplot+ [black, dashed, very thick] table [x=P,y=epsilon] {../code/data/LSM2F_APR/eos_sigma_600.dat};
 \end{groupplot}
 \end{tikzpicture}
-\caption{\label{fig:hybrid:eos-2}%
-Hybrid equation of state obtained
-by combining the two-flavor quark-meson model (with $m_\sigma=\SI{600}{\mega\electronvolt}$ and $B^\frac14 = \SI{111}{\mega\electronvolt}$) for the core
-with the Akmal-Pandharipande-Ravenhall hadronic equation of state for the outer region,
-according to steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hybrid:construction}.
-}
 \end{figure}
 
-\begin{figure}
+\begin{figure}\ContinuedFloat
 \centering
 \tikzsetnextfilename{hybrid-flavor-eos-3}
 \begin{tikzpicture}
 \begin{groupplot}[
 	group style={group size={1 by 3}, vertical sep=1.5cm},
-	width=13cm, height=7cm,
+	width=13cm, height=8.0cm,
 	extra tick style={grid=major, grid style={dashed}},
 	minor tick num=9,
-	legend style={xshift=-0.2cm, fill=none},
+	legend columns=1, legend pos=north west,
 ]
 \nextgroupplot[
 	xlabel={$\mu_B \, / \, \si{\mega\electronvolt}$},
 	ylabel={$P \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	xmin=900, xmax=1700, restrict x to domain=800:2100, 
 	ymin=0, ymax=0.4, restrict y to domain=0:5,
-	title={Three-flavor hybrid equation of state },
-	title style={yshift=+0.9cm},
-	legend style={anchor=south, at={(0.5,1.04)}}, legend columns=3,
+	title={Three-flavor hybrid equation of state}, % ($m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$)},
 ];
 \addplot+ [red, solid, very thick] table [x=muB2,y=P] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{quark phase \quad};
 \addplot+ [blue!50!cyan, solid, very thick] table [x=muB1,y=P1] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{hadron phase \quad};
@@ -158,7 +148,7 @@ according to steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hy
 
 \nextgroupplot[
 	xlabel={$\mu_B \, / \, \si{\mega\electronvolt}$},
-	ylabel={$n_B \, / \, (\si{\per\femto\meter\cubed})$},
+	ylabel={$n_B \, / \, n_\text{sat}$},
 	xmin=900, xmax=1700, restrict x to domain=800:2100, 
 	ymin=0, ymax=10, ytick distance=1, restrict y to domain=-1:12,
 ];
@@ -176,11 +166,11 @@ according to steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hy
 \addplot+ [black, dashed, very thick] table [x=P,y=epsilon] {../code/data/LSM3F_APR/eos_sigma_600.dat};
 \end{groupplot}
 \end{tikzpicture}
-\caption{\label{fig:hybrid:eos-3}%
-Hybrid equation of state obtained
-by combining the three-flavor quark-meson model (with $m_\sigma=\SI{600}{\mega\electronvolt}$ and $B^\frac14 = \SI{111}{\mega\electronvolt}$) for the core
-with the Akmal-Pandharipande-Ravenhall hadronic equation of state for the outer region,
-according to steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hybrid:construction}.
+\caption{\label{fig:hybrid:eos}%
+Hybrid equations of state combining
+the two-flavor or three-flavor quark-meson model
+with the hadronic Akmal-Pandharipande-Ravenhall equation of state,
+built with steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hybrid:construction}.
 }
 \end{figure}
 
@@ -230,7 +220,7 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
 	xmin=5, xmax=35, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
 	legend columns=4, legend pos=south east, legend cell align=right, legend transposed,
-	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.8,-0.3)}, anchor=north, xticklabel pos=lower},
+	%colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.8,-0.3)}, anchor=north, xticklabel pos=lower},
 ];
 \addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
 \addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
@@ -273,74 +263,7 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \node (title) at ($(group c1r1.north west)!0.5!(group c2r1.north east)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {Two-flavor mass-radius solutions};
 \end{tikzpicture}
 
-\caption{\label{fig:hybrid:mass-radius-2}%
-	Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$,
-	obtained with three hybrid equations of state like the one in \cref{fig:hybrid:eos} with different values of $m_\sigma$ and $B$ in the three-flavor quark-meson model.
-	The bands show measured masses of the two pulsars PSR J1614$-$2230 and PSR J0348$+$0432 from \cite{ref:antoniadis,ref:arzoumanian}.
-	\TODO{discuss bands in text. any EOS must come over this magical limit}
-}
-
 \bigskip
-
-\tikzsetnextfilename{hybrid-2-flavor-extreme-star}
-\begin{tikzpicture}
-\begin{groupplot}[
-	group style={group size={2 by 2}, horizontal sep=1.2cm, vertical sep=0.4cm},
-	width=8cm, height=6cm,
-	ylabel style={yshift=-0.2cm},
-	enlargelimits=false, xtick distance=1.0, minor xtick={0,0.1,...,11.6},
-	legend cell align=left,
-]
-\nextgroupplot[
-	xticklabels={,,},
-	ymax=1.5, ytick distance=0.5, minor y tick num=4,
-	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$ },
-];
-\addplot+ [blue] table [x=r, y=epsilon] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$\epsilon$};
-\addplot+ [red] table [x=r, y=P] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$P$};
-\nextgroupplot[
-	ylabel=$m \, / \, M_\odot$,
-	xticklabels={,,},
-	ymax=2.0, ytick distance=0.5, minor y tick num=4,
-];
-\addplot+ [black] table [x=r, y=m] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
-\nextgroupplot[
-	xlabel=$r \, / \, \si{\kilo\meter}$,
-	ylabel=$\mu_B \, / \, \si{\giga\electronvolt}$,
-	ymin=0.9, ymax=1.5, ytick distance=0.1, minor y tick num=4, % restrict y to domain=0.8:1.6,
-];
-\addplot+ [black] table [x=r, y expr={\thisrow{muQ}*3.0/1000.0}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
-\nextgroupplot[
-	xlabel=$r \, / \, \si{\kilo\meter}$,
-	ylabel=$n_i \, / \, n_\text{sat}$,
-	ymax=15, ytick distance=5, minor y tick num=4,
-];
-\addplot+ [red, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=nu] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_u$};
-\addplot+ [darkgreen, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=nd] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_d$};
-%\addplot+ [purple, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=ns] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_s$};
-%\addplot+ [blue, x filter/.expression={\thisrow{r}<3.14}] table [x=r, y=ne] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_e$};
-\addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
-\addplot+ [black, solid, forget plot, x filter/.expression={\thisrow{r}>=3.14 ? x : nan}] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
-% cheat legend
-\addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_B$};
-\end{groupplot}
-\node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, xshift=-0.25cm, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {\goldenstar Maximum mass star profile ($N_f=2$, $m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$, $P_c=10^{34.59} \, \si{\pascal}$)};
-\end{tikzpicture}
-\caption{\label{fig:hybrid:star-2}%
-	Radial profiles for the
-	pressure $P$,
-	energy density $\epsilon$,
-	cumulative mass $m$,
-	baryon chemical potential $\mu_B$
-	and particle densities $n_i$
-	for the maximum mass hybrid star \goldenstar in \cref{fig:hybrid:mass-radius-2}.
-	\TODO{update text with new properties}
-}
-
-\end{figure}
-
-\begin{figure}
-\centering
 
 \tikzsetnextfilename{hybrid-3-flavor-mass-radius}
 \begin{tikzpicture}
@@ -405,12 +328,61 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \node (title) at ($(group c1r1.north west)!0.5!(group c2r1.north east)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {Three-flavor mass-radius solutions};
 \end{tikzpicture}
 
-\caption{\label{fig:hybrid:mass-radius-3}%
+\caption{\label{fig:hybrid:mass-radius}%
 	Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$,
-	obtained with three hybrid equations of state like the one in \cref{fig:hybrid:eos} with different values of $m_\sigma$ and $B$ in the three-flavor quark-meson model.
+	obtained with two-flavor and three-flavor hybrid equations of state like those in \cref{fig:hybrid:eos}
+	using different values of $m_\sigma$ and $B$ in the quark-meson model.
 	The bands show measured masses of the two pulsars PSR J1614$-$2230 and PSR J0348$+$0432 from \cite{ref:antoniadis,ref:arzoumanian}.
 	\TODO{discuss bands in text. any EOS must come over this magical limit}
 }
+\end{figure}
+
+\begin{figure}
+\centering
+\tikzsetnextfilename{hybrid-2-flavor-extreme-star}
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size={2 by 2}, horizontal sep=1.2cm, vertical sep=0.4cm},
+	width=8cm, height=6cm,
+	ylabel style={yshift=-0.2cm},
+	enlargelimits=false, xtick distance=1.0, minor xtick={0,0.1,...,11.6},
+	legend cell align=left,
+]
+\nextgroupplot[
+	xticklabels={,,},
+	ymax=1.5, ytick distance=0.5, minor y tick num=4,
+	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$ },
+];
+\addplot+ [blue] table [x=r, y=epsilon] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$\epsilon$};
+\addplot+ [red] table [x=r, y=P] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$P$};
+\nextgroupplot[
+	ylabel=$m \, / \, M_\odot$,
+	xticklabels={,,},
+	ymax=2.1, ytick distance=0.5, minor y tick num=4,
+];
+\addplot+ [black] table [x=r, y=m] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
+\nextgroupplot[
+	xlabel=$r \, / \, \si{\kilo\meter}$,
+	ylabel=$\mu_B \, / \, \si{\giga\electronvolt}$,
+	ymin=0.9, ymax=1.5, ytick distance=0.1, minor y tick num=4, % restrict y to domain=0.8:1.6,
+];
+\addplot+ [black] table [x=r, y expr={\thisrow{muQ}*3.0/1000.0}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
+\nextgroupplot[
+	xlabel=$r \, / \, \si{\kilo\meter}$,
+	ylabel=$n_i \, / \, n_\text{sat}$,
+	ymax=15, ytick distance=5, minor y tick num=4,
+];
+\addplot+ [red, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=nu] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_u$};
+\addplot+ [darkgreen, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=nd] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_d$};
+%\addplot+ [purple, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=ns] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_s$};
+%\addplot+ [blue, x filter/.expression={\thisrow{r}<3.14}] table [x=r, y=ne] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_e$};
+\addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
+\addplot+ [black, solid, forget plot, x filter/.expression={\thisrow{r}>=3.14 ? x : nan}] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
+% cheat legend
+\addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_B$};
+\end{groupplot}
+\node (title) at (group c2r1.north east) [above, anchor=south east, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {\goldenstar Two-flavor maximum mass star ($m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$, $P_c=10^{34.59} \, \si{\pascal}$)};
+\end{tikzpicture}
 
 \bigskip
 
@@ -433,7 +405,7 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \nextgroupplot[
 	ylabel=$m \, / \, M_\odot$,
 	xticklabels={,,},
-	ymax=2.0, ytick distance=0.5, minor y tick num=4,
+	ymax=2.1, ytick distance=0.5, minor y tick num=4,
 ];
 \addplot+ [black] table [x=r, y=m] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat};
 \nextgroupplot[
@@ -456,16 +428,16 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 % cheat legend
 \addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_B$};
 \end{groupplot}
-\node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, xshift=-0.25cm, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {\goldenstar Maximum mass star profile ($N_f=3$, $m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$, $P_c=10^{34.51} \, \si{\pascal}$)};
+\node (title) at (group c2r1.north east) [above, anchor=south east, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {\goldenstar Three-flavor maximum mass star ($m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$, $P_c=10^{34.51} \, \si{\pascal}$)};
 \end{tikzpicture}
-\caption{\label{fig:hybrid:star-3}%
+\caption{\label{fig:hybrid:star}%
 	Radial profiles for the
 	pressure $P$,
 	energy density $\epsilon$,
 	cumulative mass $m$,
 	baryon chemical potential $\mu_B$
 	and particle densities $n_i$
-	for the maximum mass hybrid star \goldenstar in \cref{fig:hybrid:mass-radius-3}.
+	for the maximum mass hybrid stars \goldenstar \TODO{different star colors?} in \cref{fig:hybrid:mass-radius}.
 	\TODO{update text with new properties}
 }
 
@@ -473,7 +445,7 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 
 Solving the Tolman-Oppenheimer-Volkoff with hybrid equations of state obtained in this manner
 for $m_\sigma=\{600,700,800\} \, \si{\mega\electronvolt}$ and the lowermost bag constants \eqref{eq:lsm:bag_lower_bound} that respect instability of two-flavor quark matter,
-we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius-3}:
+we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius}:
 \begin{itemize}
 \item After onset of the quark phase, the mass-radius curve develops new branches below the maximum hadron-only neutron star
       with maximum masses $1.90 M_\odot \leq M \lesssim 2.07 \leq M_\odot$.
