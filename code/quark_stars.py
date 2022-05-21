@@ -631,80 +631,6 @@ class LSM3FlavorModel(LSMModel):
         μu, μd, μs = μelim(μQ, μe)
         return μQ, Δy, μu, μd, μs, μe
 
-# incomplete
-class LSM3FlavorAnomalyModel(LSM3FlavorModel):
-    def __init__(self, mσ=mσ, mπ=mπ, mK=mK, ma0=ma0):
-        def system(m2_λ1_λ2_c):
-            m2, λ1, λ2, c = m2_λ1_λ2_c
-            m2σσ00 = m2 + λ1/3*(4*np.sqrt(2)*σx0*σy0+7*σx0**2+5*σy0**2) + \
-                     λ2*(σx0**2+σy0**2) - np.sqrt(2)*c/3*(np.sqrt(2)*σx0+σy0)
-            m2σσ11 = m2 + λ1*(σx0**2+σy0**2) + 3*λ2/2*σx0**2 + np.sqrt(2)*c/2*σy0
-            m2σσ88 = m2 - λ1/3*(4*np.sqrt(2)*σx0*σy0-5*σx0**2-7*σy0**2) + \
-                     λ2/2*(σx0**2+4*σy0**2) + np.sqrt(2)*c/3*(np.sqrt(2)*σx0-σy0/2)
-            m2σσ08 = 2/3*λ1*(np.sqrt(2)*σx0**2-np.sqrt(2)*σy0**2-σx0*σy0) + \
-                     λ2/np.sqrt(2)*(σx0**2-2*σy0**2) + \
-                     c/(3*np.sqrt(2))*(σx0-np.sqrt(2)*σy0)
-            m2ππ11 = m2 + λ1*(σx0**2+σy0**2) + λ2/2*σx0**2 - np.sqrt(2)/2*c*σy0
-            m2ππ44 = m2 + λ1*(σx0**2+σy0**2) - \
-                     λ2/2*(np.sqrt(2)*σx0*σy0-σx0**2-2*σy0**2) - c/2*σx0
-            θσ = np.arctan(2*m2σσ08 / (m2σσ88-m2σσ00)) / 2
-            m2σ = m2σσ00*np.cos(θσ)**2 + m2σσ88*np.sin(θσ)**2 - m2σσ08*np.sin(2*θσ)
-            m2π = m2ππ11
-            m2K = m2ππ44
-            m2a0 = m2σσ11
-            return (m2σ - mσ**2, m2π - mπ**2, m2K - mK**2, m2a0 - ma0**2)
-
-        sol = scipy.optimize.root(system, (-100, -10, +100, +100), method="lm")
-        m2, λ1, λ2, c = sol.x
-        g = 2*mu0/σx0
-        hx = σx0 * (m2 + λ1*(σx0**2+σy0**2) + λ2/2*σx0**2)
-        hy = σy0 * (m2 + λ1*(σx0**2+σy0**2) + λ2*σy0**2)
-        Λx = g*σx0/(2*np.sqrt(np.e))
-        Λy = g*σy0/(np.sqrt(2*np.e))
-        Λ = (2*Λx+Λy)/3
-        # TODO: if completing, 
-        #       use multiple renormalization scales here, as in normal LSM3F
-        print(f"m2 = {np.sign(m2)}*({np.sqrt(np.abs(m2))} MeV)^2 ")
-        print(f"λ1 = {λ1}")
-        print(f"λ2 = {λ2}")
-        print(f"c  = {c}")
-        print(f"g  = {g}")
-        print(f"hx = ({hx**(1/3)} MeV)^3")
-        print(f"hy = ({hy**(1/3)} MeV)^3")
-        print(f"Λ  = {Λ} MeV")
-
-        Δx, Δy, μu, μd, μs, μe = sp.symbols("Δ_x Δ_y μ_u μ_d μ_s μ_e", complex=True)
-        σx = 2*Δx/g
-        σy = np.sqrt(2)*Δy/g
-        Ωb = m2/2*(σx**2+σy**2) + λ1/4*(σx**2+σy**2)**2 + λ2/8*(σx**4+2*σy**4) - \
-             hx*σx - hy*σy - c/(2*sp.sqrt(2))*σx**2*σy
-        Ωr = Nc/(16*π**2)*(Δx**4*(3/2+sp.log(Λ**2/Δx**2))+\
-             Δx**4*(3/2+sp.log(Λ**2/Δx**2))+Δy**4*(3/2+sp.log(Λ**2/Δy**2)))
-        Ωu = -Nc/(24*π**2)*((2*μu**2-5*Δx**2)*μu*sp.sqrt(μu**2-Δx**2)+\
-              3*Δx**4*sp.asinh(sp.sqrt(μu**2/Δx**2-1)))
-        Ωd = -Nc/(24*π**2)*((2*μd**2-5*Δx**2)*μd*sp.sqrt(μd**2-Δx**2)+\
-              3*Δx**4*sp.asinh(sp.sqrt(μd**2/Δx**2-1)))
-        Ωs = -Nc/(24*π**2)*((2*μs**2-5*Δy**2)*μs*sp.sqrt(μs**2-Δy**2)+\
-              3*Δy**4*sp.asinh(sp.sqrt(μs**2/Δy**2-1)))
-        Ωe =  -1/(24*π**2)*((2*μe**2-5*me**2)*μe*sp.sqrt(μe**2-me**2)+\
-              3*me**4*sp.asinh(sp.sqrt(μe**2/me**2-1)))
-
-        Ω  = Ωb + Ωr + Ωu + Ωd + Ωs + Ωe
-        dΩx = sp.diff(Ω, Δx)
-        dΩy = sp.diff(Ω, Δy)
-
-        Ω   = sp.lambdify((Δx, Δy, μu, μd, μs, μe), Ω,   "numpy")
-        dΩx = sp.lambdify((Δx, Δy, μu, μd, μs, μe), dΩx, "numpy")
-        dΩy = sp.lambdify((Δx, Δy, μu, μd, μs, μe), dΩy, "numpy")
-        self.Ω   = lambda mu, md, ms, μu, μd, μs, μe: \
-                   np.real(  Ω(mu+0j, ms+0j, μu+0j, μd+0j, μs+0j, μe+0j))
-        self.dΩx = lambda mu, md, ms, μu, μd, μs, μe: \
-                   np.real(dΩx(mu+0j, ms+0j, μu+0j, μd+0j, μs+0j, μe+0j))
-        self.dΩy = lambda mu, md, ms, μu, μd, μs, μe: \
-                   np.real(dΩy(mu+0j, ms+0j, μu+0j, μd+0j, μs+0j, μe+0j))
-
-        Model.__init__(self, f"LSM3FA", mσ=mσ, mπ=mπ, mK=mK, ma0=ma0)
-
 class HybridModel(Model):
     def eos(self, N=1000, B=111**4, hybrid=True, plot=False, write=False):
         arr = np.loadtxt("data/APR/eos.dat")
@@ -930,7 +856,7 @@ if __name__ == "__main__":
     #exit()
 
     # hybrid model (2-flavor quark-meson model + APR hadronic EOS)
-    #Hybrid2FlavorModel(mσ=600).eos(B=111**4, plot=True, write=True) # TODO: add to report
+    #Hybrid2FlavorModel(mσ=600).eos(B=111**4, plot=True, write=True)
     #Hybrid2FlavorModel(mσ=600).stars(111, (1e-5, 1e-2), write=True) # use tolD=0.01
     #Hybrid2FlavorModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True) # use tolD=0.01
     #Hybrid2FlavorModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True) # use tolD=0.01
