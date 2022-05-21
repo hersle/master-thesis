@@ -1,10 +1,6 @@
 \chapter{A hybrid quark-hadron model}
 \label{chap:hybrid}
 
-\TODO{try two-flavor hybrid star! merge results into text.}
-
-\TODO{reflect changes with denser mass-radius plot in the text}
-
 \begin{figure}[th!]
 \centering
 \tikzsetnextfilename{hybrid-star-illustration}
@@ -25,25 +21,30 @@
 
 In the preceding chapters we have modeled stars consisting of pure quark matter all the way from the center to the surface.
 These models have accounted for the chiral symmetry of quantum chromodynamics,
-but confinement has been imitated poorly by a mere bag constant $B$.
+but did not model confinement of quarks in hadrons.
 As one approaches the surface of a star,
 the effects of confinement becomes increasingly important,
 making hadrons the essential components instead of individual quarks.
 The models we have used are therefore reliable only in the dense core of the stars,
-and it is unrealistic to see the pure quark stars we have modeled in nature.
+and it is unrealistic to see the pure quark stars that we have modeled in nature.
 
 Moreover, one crucial aspect of modeling pure quark stars is inconsistent.
 To calculate the lower bag constant bound, we assumed that two-flavor quark matter is unstable compared to hadronic matter at zero pressure.
-But all the quark stars we modeled consisted of two-flavor quark matter close to and at the surface,
-where the pressure vanishes by definition!
+But all the quark stars we modeled consisted of two-flavor quark matter out to the surface,
+where the pressure is zero by definition!
 This is incompatible with the original assumption,
-so a physical quark star must really be have a crust of hadronic matter near the surface.
+so a physical quark star must really have a crust of hadronic matter near the surface.
 
-To mitigate these problems it is common to model \textbf{hybrid stars} that consist of
-quark matter only in the core where the density is high, 
-surrounded by hadronic matter closer to the surface where the density is low.
+As explained in the review \cite{ref:quark_star_review},
+it is indeed believed that the most massive observed neutron stars
+could be \textbf{hybrid stars} that consist of a small quark matter core with high density,
+surrounded by hadronic matter in the outer low-density region.
+Two candidates are the recently observed heavy pulsars PSR J0348$+$0432 and PSR J1614$-$2230
+with respective masses $M = (2.01 \pm 0.04) \, M_\odot$ and $M = (1.91 \pm 0.02) \, M_\odot$ \cite{ref:antoniadis,ref:arzoumanian}.
+Due to these observations, hybrid star models strive to reach the $2 M_\odot$-limit.
+
 In our final piece of work
-we assemble a hybrid star modeled with the \textbf{three-flavor quark-meson model} from \cref{chap:lsm3f} in the core,
+we assemble a hybrid star modeled with the \textbf{quark-meson model} from \cref{chap:lsm3f} in the core,
 and with the representative \textbf{Akmal-Pandharipande-Ravenhall} (\textbf{APR}) hadronic equation of state from \cite{ref:apr} in the outer region.
 Both equations of state are found at zero temperature, in chemical equilibrium and $\beta$-equilibrium and subject to global electrical charge neutrality.
 
@@ -53,7 +54,7 @@ Both equations of state are found at zero temperature, in chemical equilibrium a
 \label{sec:hybrid:construction}
 
 The individual equations of state for the two models are available to us from two different sources:
-the three-flavor quark-meson model from the results in \cref{chap:lsm3f},
+the two-flavor and three-flavor quark-meson model from the results in \cref{chap:lsm2f,chap:lsm3f},
 and the APR equation of state from data points at \cite{ref:apr_data}.
 Data sets from both sources include the baryon chemical potential $\mu_B$, baryon density $n_B$, pressure $P$ and energy density $\epsilon$.
 
@@ -76,7 +77,10 @@ we apply the coarsest procedure outlined in \cite[section V-C]{ref:quark_star_re
 \item \label{step:hybrid:four}%
       Eliminate $\mu_B$ from $P(\mu_B)$ and $\epsilon(\mu_B)$ to obtain the hybrid equation of state $\epsilon(P)$.
 \end{enumerate}
-The philosophy behind this method is that the preferable phase at any baryon chemical potential $\mu_B$ is the one with the greater pressure $P$, or lowest grand potential $\Omega = -P$.
+Effectively, the equations of state $\epsilon_H(P)$ and $\epsilon_Q(P)$ of each phase are concatenated into one equation of state $\epsilon(P)$
+that prefers the phase with greater pressure at a given baryon chemical potential $\mu_B$.
+The philosophy behind the method is that at any baryon chemical potential $\mu_B$,
+the preferable phase is the one with the lower grand potential $\Omega = -P$.
 
 \begin{figure}
 \centering
@@ -84,10 +88,10 @@ The philosophy behind this method is that the preferable phase at any baryon che
 \begin{tikzpicture}
 \begin{groupplot}[
 	group style={group size={1 by 3}, vertical sep=1.5cm},
-	width=13cm, height=8.0cm,
+	width=13cm, height=7.5cm,
 	extra tick style={grid=major, grid style={dashed}},
 	minor tick num=9,
-	legend columns=1, legend pos=north west,
+	legend columns=1, legend pos=north west, legend cell align=right,
 ]
 \nextgroupplot[
 	xlabel={$\mu_B \, / \, \si{\mega\electronvolt}$},
@@ -129,10 +133,10 @@ The philosophy behind this method is that the preferable phase at any baryon che
 \begin{tikzpicture}
 \begin{groupplot}[
 	group style={group size={1 by 3}, vertical sep=1.5cm},
-	width=13cm, height=8.0cm,
+	width=13cm, height=7.5cm,
 	extra tick style={grid=major, grid style={dashed}},
 	minor tick num=9,
-	legend columns=1, legend pos=north west,
+	legend columns=1, legend pos=north west, legend cell align=right,
 ]
 \nextgroupplot[
 	xlabel={$\mu_B \, / \, \si{\mega\electronvolt}$},
@@ -167,18 +171,20 @@ The philosophy behind this method is that the preferable phase at any baryon che
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:hybrid:eos}%
-Hybrid equations of state combining
+Hybrid equations of state built from
 the two-flavor or three-flavor quark-meson model
-with the hadronic Akmal-Pandharipande-Ravenhall equation of state,
-built with steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hybrid:construction}.
+with $m_\sigma=\SI{600}{\mega\electronvolt}$ and $B^\frac14 = \SI{111}{\mega\electronvolt}$
+and the hadronic Akmal-Pandharipande-Ravenhall equation of state
+with steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hybrid:construction}.
 }
 \end{figure}
 
-\Cref{fig:hybrid:eos} shows the step-by-step construction of a hybrid equation of state that joints the three-flavor quark-meson model and hadronic APR equation of state.
-In this case, where we have used $m_\sigma=\SI{600}{\mega\electronvolt}$ and $B^\frac14 = \SI{111}{\mega\electronvolt}$ in the quark-meson model,
-the pressures intersect at $\mu_B \approx \SI{1300}{\mega\electronvolt}$, which corresponds to a density $n_B \approx 4 n_\text{sat}$ in the hadronic phase and $n_B \approx 5.5 n_\text{sat}$ in the quark phase.
-Due to the jump in density, a discontinuous phase transition between the two develops and is also visible at $\SI{0.19}{\giga\electronvolt\per\femto\meter\cubed} \lesssim P \lesssim \SI{0.20}{\giga\electronvolt\per\femto\meter\cubed}$ in the final hybrid equation of state $\epsilon(P)$.
-The transition takes the form of a line of constant vapor pressure, like in the Maxwell construction.
+\Cref{fig:hybrid:eos} shows the step-by-step construction of two hybrid equation of state that joins the quark-meson model with two or three flavors with the hadronic APR equation of state.
+In this case we have used $m_\sigma=\SI{600}{\mega\electronvolt}$ and $B^\frac14 = \SI{111}{\mega\electronvolt}$ in the quark-meson model.
+For example, in the three-flavor case, the pressures intersect at $\mu_B \approx \SI{1300}{\mega\electronvolt}$, which corresponds to a density $n_B \approx 4 n_\text{sat}$ in the hadronic phase and $n_B \approx 5.5 n_\text{sat}$ in the quark phase.
+Due to the jump in density, a discontinuous phase transition between the two develops at $P = \SI{0.2}{\giga\electronvolt\per\femto\meter\cubed}$.
+The transition takes the form of a line of constant vapor pressure, as in the Maxwell construction.
+Note that the phase transition is less dramatic with only two flavors in the quark phase.
 
 The biggest problem with this rough splicing method is that it assumes the equations of state for both phases to be valid near the intersection point.
 In reality it is unreliable to compare them across the entire range of densities from hadronic to quark matter.
@@ -224,11 +230,11 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 ];
 \addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
 \addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
-\addplot [yellow, opacity=0.5] fill between [of=J0348lo and J0348hi]; \addlegendentry{PSR J0348$+$0432};
+\addplot [green, opacity=0.5] fill between [of=J0348lo and J0348hi]; \addlegendentry{PSR J0348$+$0432};
 
 \addplot [name path=J1614lo, draw=none, forget plot, domain=0:40] {1.91 - 0.02};
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
-\addplot [green, opacity=0.5] fill between [of=J1614lo and J1614hi]; \addlegendentry{PSR J1614$-$2230};
+\addplot [yellow, opacity=0.5] fill between [of=J1614lo and J1614hi]; \addlegendentry{PSR J1614$-$2230};
 
 \addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
 \addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
@@ -247,11 +253,11 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 ];
 \addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
 \addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
-\addplot [yellow, opacity=0.5] fill between [of=J0348lo and J0348hi];
+\addplot [green, opacity=0.5] fill between [of=J0348lo and J0348hi];
 
 \addplot [name path=J1614lo, draw=none, forget plot, domain=0:40] {1.91 - 0.02};
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
-\addplot [green, opacity=0.5] fill between [of=J1614lo and J1614hi];
+\addplot [yellow, opacity=0.5] fill between [of=J1614lo and J1614hi];
 
 \addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -289,11 +295,11 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 ];
 \addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
 \addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
-\addplot [yellow, opacity=0.5] fill between [of=J0348lo and J0348hi]; \addlegendentry{PSR J0348$+$0432};
+\addplot [green, opacity=0.5] fill between [of=J0348lo and J0348hi]; \addlegendentry{PSR J0348$+$0432};
 
 \addplot [name path=J1614lo, draw=none, forget plot, domain=0:40] {1.91 - 0.02};
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
-\addplot [green, opacity=0.5] fill between [of=J1614lo and J1614hi]; \addlegendentry{PSR J1614$-$2230};
+\addplot [yellow, opacity=0.5] fill between [of=J1614lo and J1614hi]; \addlegendentry{PSR J1614$-$2230};
 
 \addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
 \addplot+ [solid, each nth point=8, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
@@ -312,11 +318,11 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 ];
 \addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
 \addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
-\addplot [yellow, opacity=0.5] fill between [of=J0348lo and J0348hi];
+\addplot [green, opacity=0.5] fill between [of=J0348lo and J0348hi];
 
 \addplot [name path=J1614lo, draw=none, forget plot, domain=0:40] {1.91 - 0.02};
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
-\addplot [green, opacity=0.5] fill between [of=J1614lo and J1614hi];
+\addplot [yellow, opacity=0.5] fill between [of=J1614lo and J1614hi];
 
 \addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -333,7 +339,6 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	obtained with two-flavor and three-flavor hybrid equations of state like those in \cref{fig:hybrid:eos}
 	using different values of $m_\sigma$ and $B$ in the quark-meson model.
 	The bands show measured masses of the two pulsars PSR J1614$-$2230 and PSR J0348$+$0432 from \cite{ref:antoniadis,ref:arzoumanian}.
-	\TODO{discuss bands in text. any EOS must come over this magical limit}
 }
 \end{figure}
 
@@ -437,46 +442,57 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	cumulative mass $m$,
 	baryon chemical potential $\mu_B$
 	and particle densities $n_i$
-	for the maximum mass hybrid stars \goldenstar \TODO{different star colors?} in \cref{fig:hybrid:mass-radius}.
-	\TODO{update text with new properties}
+	for the maximum mass hybrid stars \goldenstar in \cref{fig:hybrid:mass-radius}.
 }
 
 \end{figure}
 
 Solving the Tolman-Oppenheimer-Volkoff with hybrid equations of state obtained in this manner
-for $m_\sigma=\{600,700,800\} \, \si{\mega\electronvolt}$ and the lowermost bag constants \eqref{eq:lsm:bag_lower_bound} that respect instability of two-flavor quark matter,
+for $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$ and the lowermost bag constants \eqref{eq:lsm:bag_lower_bound} that respect instability of two-flavor quark matter,
 we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius}:
 \begin{itemize}
 \item After onset of the quark phase, the mass-radius curve develops new branches below the maximum hadron-only neutron star
-      with maximum masses $1.90 M_\odot \leq M \lesssim 2.07 \leq M_\odot$.
-\item At first glance, the new branches seem to plummet in mass straight after the branch point and indicate that all the hybrid stars are unstable.
-      However, close inspection of the right panel shows that the branch with $m_\sigma = \SI{600}{\mega\electronvolt}$
-      begins with a \emph{tiny} segment of stable stars whose masses increase up to the maximum $1.90 \, M_\odot$.
-      The branches with greater values of $m_\sigma$ go straight downhill and have unstable stars.
+      with maximum masses $2.00 M_\odot \leq M \leq 2.09$ with two flavors in the core
+      and $1.90 M_\odot \leq M \leq 2.07 \leq M_\odot$ with three flavors.
+\item At first glance, the hybrid branches seem to plummet in mass immediately after diverging from the mass-increasing hadronic curve,
+      indicating that all the hybrid stars are unstable.
+      However, close inspection of the right panel shows that the nosedive is preceded by a small segment of mass-increasing and thus stable hybrid stars.
+      This stable segment is longer in the two-flavor model and for smaller values of $m_\sigma$;
+      in the three-flavor model it is only visible for the lowest value $m_\sigma = \SI{600}{\mega\electronvolt}$.
       This supports the general claim in \cite{ref:quark_star_review} that quark cores are rare and have a very small size and mass, if at all existent.
+\item The maximum mass stars live in the neighborhood of the pulsars PSR J0348$+$0432 and PSR J1614$-$2230 and are certainly compatible with observations.
 \end{itemize}
 
-Qualitatively, the radial profiles of the three maximum mass stars are very similar.
-We take a detailed look at the one for $m_\sigma=\SI{600}{\mega\electronvolt}$ and $B^\frac14 = \SI{111}{\mega\electronvolt}$ in \cref{fig:hybrid:star-3}:
+We take a detailed look at two maximum mass stars
+with $m_\sigma=\SI{600}{\mega\electronvolt}$ and $B^\frac14 = \SI{111}{\mega\electronvolt}$ in \cref{fig:hybrid:star},
+for which both the two-flavor and three-flavor branches exhibit notable stable segments:
 \begin{itemize}
-\item The quark core has a central baryon density $n_B = 6 n_\text{sat}$ and extends $R'=\SI{1.6}{\kilo\meter} = 0.14 R$ from the center with a mass of only $M' = m(R') = 0.02 M_\odot = 0.01 M$.
-      It contains three-flavor quark matter with up, down and strange quarks.
-\item The phase transition from quark to hadronic matter takes place at $R'=\SI{1.6}{\kilo\meter}$ and entails big drops $\Delta\epsilon = \SI{0.3}{\giga\electronvolt\per\femto\meter\cubed}$ and $\Delta n_B = 1.5 n_\text{sat}$ in energy and baryon density.
-      Physically, stars are simply not able to support these dramatic discontinuous phase transitions, and the hybrid branches are therefore almost purely unstable.
-\item The hadronic phase dominates, making up $\SI{99.7}{\percent}$ of the star's volume and $\SI{99.0}{\percent}$ of its mass.
+\item In both cases, the quark core has a central baryon density $n_B = 6 n_\text{sat}$.
+      With two flavors, the core extends $R' = \SI{3.1}{\kilo\meter}$ and has a mass of $0.12 M_\odot = 0.06 M$.
+      With three flavors, the core radius $R' = \SI{1.6}{\kilo\meter}$ is almost halved and the mass $0.02 M_\odot = 0.01 M$ is cut in six.
+      Like the pure quark stars in \cref{chap:mit,chap:lsm2f,chap:lsm3f},
+      two-flavor quark cores in hybrid stars are generally larger and heavier than three-flavor ones.
+\item The phase transition entails a big drop in density and energy density of about $1.5 n_\text{sat}$ from the three-flavor quark core,
+      but the fall is only half as high in the two-flavor model.
+      Physically, hybrid stars turn unstable as they cannot support these dramatic sharp phase transitions,
+      and the less severe transition with two-flavor quark cores explains why there are more stable two-flavor hybrid stars.
+\item The hadronic phase dominates, 
+      making up more than $\SI{98.0}{\percent}$ of the star's volume and $\SI{94}{\percent}$ of its mass in the two-flavor case,
+      and respectively $\SI{99.7}{\percent}$ and $\SI{99.0}{\percent}$ in the three-flavor case.
 \end{itemize}
 
 \section{Summary}
 
-\TODO{continue updating with new 600 MeV stuff}
-
-In this chapter we have constructed hybrid stars modeled with the three-flavor quark-meson model in the core
-and the Akmal-Pandharipande-Ravenhall hadronic equation of state in the outer region.
-We saw that the hadronic mass-radius relation developed a very short branch of stable hybrid stars up to a maximum mass $M \leq 1.90 \, M_\odot$ for $m_\sigma=\SI{600}{\mega\electronvolt}$ in the quark-meson model,
-but a discontinuous transition between the two phases destabilized the stars immediately thereafter.
-For larger values between $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$,
-the hybrid branches realized maximum masses $1.90 M_\odot \lesssim M \lesssim 2.07 M_\odot$.
+In this chapter we have constructed hybrid stars modeled with the two-flavor or three-flavor quark-meson model in the core
+and the hadronic Akmal-Pandharipande-Ravenhall equation of state in the outer region.
+Using $\sigma$-meson masses $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$ in the quark-meson model,
+we saw that the hadronic mass-radius relation developed very short branches of hybrid stars
+up to maximum masses $2.00 M_\odot \leq M \leq 2.09$ with two flavors in the core
+and $1.90 M_\odot \leq M \leq 2.07 \leq M_\odot$ with three flavors.
+Generally speaking, the two-flavor cores are both more massive and likely to be stable than three-flavor cores.
+This overlaps with recent mass measurements of the pulsars PSR J0348$+$0432 and PSR J1614$-$2230 around the $2 M_\odot$-limit.
+After the maximum mass star, a discontinuous transition between the two phases destabilizes the stars.
 These results are in good agreement with hybrid stars modeled with the hadronic Walecka model and Nambu-Jona-Lasinio model for quark matter by \cite{ref:hybrid_stars_njl}.
 They also find that the stability of the hybrid stars increases if the phase transition is smoothened out with the Gibbs construction,
 making it very interesting to see how a more sophisticated construction of the hybrid equation of state would play out with our model.
-This should certainly be studied in further work.
+This could certainly be studied in further work.
