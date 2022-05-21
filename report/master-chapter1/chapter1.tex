@@ -76,61 +76,6 @@ the chemical potentials $\mu_u$, $\mu_d$ and $\mu_s$ follow from definition \eqr
 Elimination of three of four chemical potentials yields two functions $P(\mu)$ and $\epsilon(\mu)$,
 and the former can finally be inverted to yield the equation of state $\epsilon(P)$.
 
-\subsubsection{Ultra-relativistic limit}
-
-Before tackling the general solution numerically,
-it is instructive and in fact not far from accurate to solve this problem analytically in the ultra-relativistic limit $m_i \rightarrow 0$.
-The grand potential \eqref{eq:mit:grand_potential} then reduces to
-\begin{equation}
-	\Omega(\vec{\mu}) = -\frac{N_c \mu_u^4}{12 \pi^2} - \frac{N_c \mu_d^4}{12 \pi^2} - \frac{N_c \mu_s^4}{12 \pi^2} - \frac{\mu_e^4}{12 \pi^2},
-\label{eq:mit:grand_potential_massless}
-\end{equation}
-while the densities \eqref{eq:mit:particle_densities} become
-\begin{equation}
-	n_f = -\pdv{\Omega}{\mu_f} = \frac{N_c \mu_f^3}{3 \pi^2}
-	\text{ for $f \in \{u,d,s\}$}
-	\quad \text{and} \quad
-	n_e = -\pdv{\Omega}{\mu_e} = \frac{    \mu_e^3}{3 \pi^2}.
-\label{eq:mit:densities_massless}
-\end{equation}
-\emph{Regardless} of the relations between the chemical potentials,
-the equation of state is then simply
-\begin{equation}
-	\epsilon = -P + \sum_i \mu_i n_i
-	         = -P + \frac{1}{3 \pi^2} \Big(N_c \mu_u^4 + N_c \mu_d^4 + N_c \mu_s^4 + \mu_e^4\Big)
-	         = -P - 4 \Omega 
-	         = -P + 4 P 
-	         = 3 P \, !
-\label{eq:mit:eos_ur}
-\end{equation}
-We can also find approximate analytical relations between the chemical potentials in the ultra-relativistic limit
-if we also assume that the electron density in the charge neutrality condition \eqref{eq:mit:charge_neutrality_explicit} can be neglected.
-This assumption is subject to a self-consistency check down the line.
-In the two-flavor case, this simplifies the condition to $n_d = 2 n_u$ with the solution $\mu_d = 2^{1/3} \mu_u$.
-According to the $\beta$-equilibrium condition \eqref{eq:lsm:chemical_equilibrium},
-the chemical potential of the electrons is then $\mu_e = \mu_d - \mu_u \approx (2^{1/3}-1) \mu_u$
-and corresponds to the density $n_e = (2^{1/3}-1)^3 n_u / N_c = 0.006 \, n_u \ll n_u < n_d$,
-so neglecting the electron density is a self-consistent approximation.
-Expressing the chemical potentials in terms of the quark chemical potential \eqref{eq:master_intro:chemical_potentials_transformed},
-we then have
-\begin{equation}
-	\mu_u = \underbrace{\frac{2}{1+2^{1/3}}}_{0.88} \mu , \quad
-	\mu_d = \underbrace{\frac{2}{1+2^{-1/3}}}_{1.12} \mu \quad \text{and} \quad
-	\mu_e = \underbrace{2 \frac{2^{1/3}-1}{2^{1/3}+1}}_{0.29} \mu
-	\qquad (N_f = 2) .
-\label{eq:mit:chemical_potentials_massless_2f}
-\end{equation}
-With three flavors, the charge neutrality condition \eqref{eq:mit:charge_neutrality_explicit} becomes $2 n_u - n_d - n_s = 0$
-and has the very simple solution $n_u = n_d = n_s$ with
-\begin{equation}
-	\mu_u = \mu_d = \mu_s = \mu
-	\qquad \text{and} \qquad
-	\mu_e = 0
-	\qquad (N_f = 3) .
-\label{eq:mit:chemical_potentials_massless_3f}
-\end{equation}
-As $\mu_e = \mu_d - \mu_u = 0$, neglecting the electron contribution is exact in this case.
-
 \begin{figure}
 \centering
 \tikzsetnextfilename{mit-eos}
@@ -223,6 +168,61 @@ lower panel \subref{fig:mit:eos-eos} the resulting equation of state.
 }
 \end{figure}
 
+\subsubsection{Ultra-relativistic limit}
+
+Before tackling the general solution numerically,
+it is instructive and in fact not far from accurate to solve this problem analytically in the ultra-relativistic limit $m_i \rightarrow 0$.
+The grand potential \eqref{eq:mit:grand_potential} then reduces to
+\begin{equation}
+	\Omega(\vec{\mu}) = -\frac{N_c \mu_u^4}{12 \pi^2} - \frac{N_c \mu_d^4}{12 \pi^2} - \frac{N_c \mu_s^4}{12 \pi^2} - \frac{\mu_e^4}{12 \pi^2},
+\label{eq:mit:grand_potential_massless}
+\end{equation}
+while the densities \eqref{eq:mit:particle_densities} become
+\begin{equation}
+	n_f = -\pdv{\Omega}{\mu_f} = \frac{N_c \mu_f^3}{3 \pi^2}
+	\text{ for $f \in \{u,d,s\}$}
+	\quad \text{and} \quad
+	n_e = -\pdv{\Omega}{\mu_e} = \frac{    \mu_e^3}{3 \pi^2}.
+\label{eq:mit:densities_massless}
+\end{equation}
+\emph{Regardless} of the relations between the chemical potentials,
+the equation of state is then simply
+\begin{equation}
+	\epsilon = -P + \sum_i \mu_i n_i
+	         = -P + \frac{1}{3 \pi^2} \Big(N_c \mu_u^4 + N_c \mu_d^4 + N_c \mu_s^4 + \mu_e^4\Big)
+	         = -P - 4 \Omega 
+	         = -P + 4 P 
+	         = 3 P \, !
+\label{eq:mit:eos_ur}
+\end{equation}
+We can also find approximate analytical relations between the chemical potentials in the ultra-relativistic limit
+if we also assume that the electron density in the charge neutrality condition \eqref{eq:mit:charge_neutrality_explicit} can be neglected.
+This assumption is subject to a self-consistency check down the line.
+In the two-flavor case, this simplifies the condition to $n_d = 2 n_u$ with the solution $\mu_d = 2^{1/3} \mu_u$.
+According to the $\beta$-equilibrium condition \eqref{eq:lsm:chemical_equilibrium},
+the chemical potential of the electrons is then $\mu_e = \mu_d - \mu_u \approx (2^{1/3}-1) \mu_u$
+and corresponds to the density $n_e = (2^{1/3}-1)^3 n_u / N_c = 0.006 \, n_u \ll n_u < n_d$,
+so neglecting the electron density is a self-consistent approximation.
+Expressing the chemical potentials in terms of the quark chemical potential \eqref{eq:master_intro:chemical_potentials_transformed},
+we then have
+\begin{equation}
+	\mu_u = \underbrace{\frac{2}{1+2^{1/3}}}_{0.88} \mu , \quad
+	\mu_d = \underbrace{\frac{2}{1+2^{-1/3}}}_{1.12} \mu \quad \text{and} \quad
+	\mu_e = \underbrace{2 \frac{2^{1/3}-1}{2^{1/3}+1}}_{0.29} \mu
+	\qquad (N_f = 2) .
+\label{eq:mit:chemical_potentials_massless_2f}
+\end{equation}
+With three flavors, the charge neutrality condition \eqref{eq:mit:charge_neutrality_explicit} becomes $2 n_u - n_d - n_s = 0$
+and has the very simple solution $n_u = n_d = n_s$ with
+\begin{equation}
+	\mu_u = \mu_d = \mu_s = \mu
+	\qquad \text{and} \qquad
+	\mu_e = 0
+	\qquad (N_f = 3) .
+\label{eq:mit:chemical_potentials_massless_3f}
+\end{equation}
+As $\mu_e = \mu_d - \mu_u = 0$, neglecting the electron contribution is exact in this case.
+
 \subsubsection{General solution}
 
 We now calculate the general solution with massive quarks using the program in \cref{sec:num:qstars2f},
@@ -236,16 +236,16 @@ as $\mu_i \gg m_i$, thereby verifying our numerical calculations.
 
 \section{Bag constant and strange matter hypothesis}
 
-\TODO{I MODEL QUARK STARS WITH NO CONFINEMENT. B ALSO CALLED VACUUM CONSTANT. SEE MAILS WITH JO. MY STARS NEVER HAVE NEGATIVE PRESSURE.}
+\TODO{elsewhere: reflect that all quark stars are pure quark stars with no confinement}
 
 For chemical potentials $\mu_i < m_i$ the (real part of the) densities \eqref{eq:mit:particle_densities} vanish,
 so we refer to this region of the phase diagram as the \textbf{vacuum phase}.
 So far we have modeled the quarks as a free Fermi gas of \emph{deconfined} quarks.
 We know, however, that quarks are \emph{confined} in hadrons at low energies.
-How can we incorporate this in our model?
+Can we somehow modify the deconfined model to incorporate confinement?
 
 The pressure $P = -\Omega$ due to the grand potential density \eqref{eq:mit:grand_potential} is normalized to $P = 0$ in the vacuum.
-Suppose that we shift $\Omega \rightarrow \Omega + B$ by a \textbf{bag constant} $B$.
+Suppose that we shift $\Omega \rightarrow \Omega + B$ by a \textbf{vacuum constant} $B$.
 This in turn shifts the pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density} to
 \begin{equation}
 	P(\mu) \rightarrow P(\mu) - B
@@ -253,7 +253,10 @@ This in turn shifts the pressure \eqref{eq:master_intro:pressure} and energy den
 	\epsilon(\mu) \rightarrow \epsilon(\mu) + B,
 \label{eq:mit:bag_shift}
 \end{equation}
-effectively moving the equation of state in \cref{fig:mit:eos-eos} $45^\circ$ north-west in $P$-$\epsilon$-space.
+effectively moving the equation of state in \cref{fig:mit:eos-eos} $45^\circ$ north-west.
+The vacuum constant is hence a phenomenological parameter that we can vary
+to adjust the normalization of the grand potential in vacuum,
+and hence the zero-point energy and pressure and equation of state.
 
 \begin{figure}[t]
 \centering
@@ -341,17 +344,27 @@ effectively moving the equation of state in \cref{fig:mit:eos-eos} $45^\circ$ no
 }
 \end{figure}
 
-Relative to the \emph{deconfined} phase with assumed zero vacuum pressure in the quantum chromodynamics phase diagram in \cref{fig:qcd:phase_diagram},
-a positive bag constant creates a negative vacuum pressure $P = -B$.
-This is illustrated in \cref{fig:mit:bag_constant}.
-It can therefore be interpreted as a mechanism that \emph{confines} the quarks to ``bags'' that represent hadrons.
-The quarks inside the bag would exert an outwards pressure that counteracts the external bag pressure and stabilizes the bag.
-Despite its ad-hoc entry as a mere constant shift of the grand potential,
-the bag constant is given the physically vital interpretation as the pressure difference between the confined and deconfined vacua
-and is an extremely simple and crude way of incorporating confinement in our model.
+
+A positive vacuum constant $B$ creates a negative pressure $P = -B$ in vacuum.
+In a sense, it can therefore be interpreted as a mechanism that \emph{confines} the quarks to ``bags'' that resemble hadrons.
+Due to this physical interpretation, $B$ is more often called the \textbf{bag constant}.
+From inside the bag, the quarks exert an outwards kinetic pressure that counteracts the external bag pressure and stabilizes the hadron.
+The bag constant can therefore be interpreted as the pressure difference between two phases of confined and deconfined vacuum,
+as illustrated in \cref{fig:mit:bag_constant}.
 As an analogy, imagine a swimming pool full of water representing the deconfined phase:
 it would cost an amount $BV$ of energy to expel water from a volume $V$ and create a bag of vacuum in the pool,
-and a plastic bag covering this volume would have to generate some internal pressure to survive against the pressure from the surrounding water.
+and a plastic bag enclosing this volume would have to generate some internal pressure to survive against the pressure from the surrounding water.
+
+Despite the interpretation of $B$ as a confinement mechanism,
+it is very important to note that the quark stars we will model 
+will be integrated from a positive central pressure to a vanishing pressure at the surface,
+and therefore have \emph{non-negative pressure everywhere} and \emph{only contain deconfined quark matter}.
+The negative-pressure regime in the equation of state that arises due to the bag shift \eqref{eq:mit:bag_shift}
+\emph{is outside reach of the pressure range within the quark stars}.
+We should therefore not take the bag constant's interpretation as a confinement mechanism too literally in our case,
+and it is perhaps better to think of it only as a phenomenological parameter that we can vary to adjust the normalization of the grand potential
+and -- as we will see now -- a parameter that determines the stability relationship of quark matter compared to hadronic matter.
+\TODO{spør hva JO tenker om ny bag-tolkning}
 
 What values can the bag constant take?
 Let us perform a heuristic calculation where we picture quarks to be confined in a spherical bag of radius $R$, as depicted in \cref{fig:mit:bag-constant-confined}.
