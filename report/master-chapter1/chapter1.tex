@@ -2,15 +2,17 @@
 \label{chap:mit}
 
 To illustrate some of the concepts in \cref{chap:master_intro} and gently familiarize ourselves with additional ones,
-let us first model quark stars consisting of a free Fermi gas of \emph{confined} quarks with the \textbf{MIT bag model}.
-Originally introduced by \cite{ref:mit_bag_model_original} at MIT, this simple phenomenological model accounts for confinement of quarks in hadrons by adding a \textbf{bag constant} $B$ on top of a normal, deconfined ideal Fermi gas.
+let us first model quark stars consisting of a free Fermi gas of quarks with the \textbf{MIT bag model}.
+Originally introduced by \cite{ref:mit_bag_model_original} at MIT,
+this simple phenomenological model accounts for confinement of quarks in hadrons by adding a \textbf{bag constant} $B$ on top of a normal, deconfined ideal Fermi gas.
+However, we will see that quark stars in this model consist of \emph{deconfined} quark matter.
 Moreover, we will discuss the \textbf{strange matter hypothesis} and how it can be used to determine an interval of acceptable values of $B$.
 
 We will start by simply ignoring the gluon fields $A_\mu^a$ from the quantum chromodynamics Lagrangian \eqref{eq:qcd:lagrangian}.
 In addition, we couple the conserved vector current $j^\mu_f = \bar{q}_f \gamma^\mu q_f$ to a chemical potential $\mu_f$ for each quark flavor,
-allowing us to tune the densities \eqref{eq:master_intro:densities} of quarks.
-For an explanation of how the chemical potentials can be thought of as an analogy to constant gauge fields,
-the interested reader can consult the discussion surrounding equations \eqref{eq:tft:conserved_current}--\eqref{eq:tft:chemical_potential}.
+allowing us to tune the densities \eqref{eq:master_intro:densities} of quarks.%
+\footnote{For an explanation of how the chemical potentials can be thought of as an analogy to constant gauge fields,
+the interested reader can consult the discussion surrounding equations \eqref{eq:tft:conserved_current}--\eqref{eq:tft:chemical_potential}.}
 With these modifications, the Lagrangian becomes
 \begin{equation}
 	\lagr = \bar{q} (i \slashed\partial + \mu \gamma^0 - m) q
@@ -242,7 +244,7 @@ For chemical potentials $\mu_i < m_i$ the (real part of the) densities \eqref{eq
 so we refer to this region of the phase diagram as the \textbf{vacuum phase}.
 So far we have modeled the quarks as a free Fermi gas of \emph{deconfined} quarks.
 We know, however, that quarks are \emph{confined} in hadrons at low energies.
-Can we somehow modify the deconfined model to incorporate confinement?
+Let us see how the MIT bag model attempts to incorporate confinement with a so-called bag constant.
 
 The pressure $P = -\Omega$ due to the grand potential density \eqref{eq:mit:grand_potential} is normalized to $P = 0$ in the vacuum.
 Suppose that we shift $\Omega \rightarrow \Omega + B$ by a \textbf{vacuum constant} $B$.
@@ -253,10 +255,10 @@ This in turn shifts the pressure \eqref{eq:master_intro:pressure} and energy den
 	\epsilon(\mu) \rightarrow \epsilon(\mu) + B,
 \label{eq:mit:bag_shift}
 \end{equation}
-effectively moving the equation of state in \cref{fig:mit:eos-eos} $45^\circ$ north-west.
-The vacuum constant is hence a phenomenological parameter that we can vary
-to adjust the normalization of the grand potential in vacuum,
-and hence the zero-point energy and pressure and equation of state.
+effectively moving the equation of state in \cref{fig:mit:eos-eos} north-west in $P$-$\epsilon$-space.
+The vacuum constant is hence a phenomenological parameter
+that adjusts the normalization of the grand potential in vacuum,
+and hence the zero-point energy and pressure, and the equation of state.
 
 \begin{figure}[t]
 \centering
@@ -351,6 +353,7 @@ Due to this physical interpretation, $B$ is more often called the \textbf{bag co
 From inside the bag, the quarks exert an outwards kinetic pressure that counteracts the external bag pressure and stabilizes the hadron.
 The bag constant can therefore be interpreted as the pressure difference between two phases of confined and deconfined vacuum,
 as illustrated in \cref{fig:mit:bag_constant}.
+
 As an analogy, imagine a swimming pool full of water representing the deconfined phase:
 it would cost an amount $BV$ of energy to expel water from a volume $V$ and create a bag of vacuum in the pool,
 and a plastic bag enclosing this volume would have to generate some internal pressure to survive against the pressure from the surrounding water.
@@ -442,7 +445,7 @@ Having established the bag window \eqref{eq:mit:bag_window},
 different equations of state are finally available to us by making the shift \eqref{eq:mit:bag_shift}
 of the equation of state in \cref{fig:mit:eos-eos} with varying bag constants inside the window.
 We then integrate the Tolman-Oppenheimer-Volkoff equation numerically as described in \cref{sec:master_intro:tov},
-obtaining the results in the mass-radius diagram in \cref{fig:mit:mass_radius}:
+obtaining the quark stars in \cref{fig:mit:mass_radius}:
 \begin{figure}[t]
 \centering
 \tikzsetnextfilename{mit-mass-radius}
@@ -527,7 +530,7 @@ Lower bag constants correspond to greater maximum masses.
 \section{Summary}
 
 In this chapter we have reviewed the simplest and most well-known model of quark stars
-as a free Fermi gas featuring a bag constant $B$ that provides a rough, phenomenological imitation of quark confinement.
+as a free Fermi gas featuring a phenomenological bag constant $B$.
 We described a method of determining a window of acceptable bag constants by assuming that at zero pressure,
 two-flavor quark matter is unstable and can decay to hadronic matter,
 which in turn can decay to three-flavor quark matter according to the strange matter hypothesis.

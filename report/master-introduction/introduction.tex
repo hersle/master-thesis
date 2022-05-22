@@ -111,7 +111,7 @@ Both their masses and radii are very similar to common neutron stars.
 Quarks and the mediators of the strong force between them -- gluons -- are described by the theory of \textbf{quantum chromodynamics}.
 Very roughly speaking, it predicts that quarks are confined in hadrons at low temperatures and densities due to a property called \textbf{color confinement},
 but deconfined and free of all interactions at high temperatures or densities because of another property called \textbf{asymptotic freedom}.
-The confined and deconfined phases are separated by the \textbf{chiral phase transition}.
+In addition to the confinement transition, quantum chromodynamics includes a \textbf{chiral phase transition}.
 Unfortunately, it is very hard to work analytically with the general theory of quantum chromodynamics,
 so one must turn to approximations and alternative models.
 We will model quark stars using the quark-extended linear sigma model, also known as the quark-meson model.
@@ -439,10 +439,10 @@ it is known that the deconfined phase turns into a \textbf{color-flavor-locked p
 Asymptotic freedom was first discovered by \cite{ref:asymptotic_freedom_gross_wilczek,ref:asymptotic_freedom_politzer}, who were recognized with the Nobel Prize in 2004.
 \TODO{få Jens til å ``godkjenne''}
 
-As we will see in the next chapter,
-we will model confinement only phenomenologically with a \emph{bag constant} that attempts to confine the quarks in hadronic ``bags''.
-A more accurate way of treating confinement is to use models extended with the \emph{Polyakov loop},
-which is an order parameter of confinement in quantum chromodynamics. \cite{ref:master_folkestad}
+The \emph{Polyakov loop} is an order parameter of confinement in quantum chromodynamics.
+We will model quark stars that consist of deconfined quark matter,
+but there also exist effective models that take the Polyakov loop and confinement into account
+-- see, for example, \cite{ref:master_folkestad} for an introduction.
 \TODO{få `` godkjenning''}
 
 %As the temperature increases, confined hadronic quark matter turns into a \emph{deconfined} \textbf{quark-gluon plasma} in the upper right of \cref{fig:qcd:phase_diagram} where they are free of all interactions and move around at will.
@@ -473,10 +473,11 @@ Moreover, it is known that the ground state of quantum chromodynamics admits a n
 \begin{equation}
 	\avg{\bar{q} q} %= \avg{\bar{q}_- q_-} + \avg{\bar{q}_+ q_+} + \avg{\bar{q}_- q_+} + \avg{\bar{q}_+ q_-}
 	                                                            = \avg{\bar{q}_- q_+} + \avg{\bar{q}_+ q_-},
+\label{eq:qcd:condensate}
 \end{equation}
 which is generally \emph{not} invariant under the chiral transformation.
 The fact that the ground state does not carry the same symmetry as its Lagrangian is the signature of \textbf{spontaneous symmetry breaking}.
-Only if $U_- = U_+$ are all terms invariant -- this is the $SU(N_f)_V$ \textbf{vector symmetry} where both left-handed and right-handed fields are transformed in the same way.
+Only if $U_- = U_+$ are is the condensate \eqref{eq:qcd:condensate} invariant -- this is the $SU(N_f)_V$ \textbf{vector symmetry} where both left-handed and right-handed fields are transformed in the same way.
 The isospin symmetry is also a symmetry of the \emph{massive} Lagrangian \eqref{eq:qcd:lagrangian_chiral} \emph{if} all quark masses are set equal so that the mass matrix $m$ is proportional to the identity matrix.
 We therefore say that quantum chromodynamics exhibits \textbf{chiral symmetry breaking}
 \begin{equation}
@@ -491,8 +492,7 @@ In the real world, however, the quarks have different masses and cause the chira
 We say that the different quark masses cause \textbf{explicit symmetry breaking}, in the sense that the Lagrangian changes by a small amount under the chiral transformation.
 The physical consequence of this is that there are no massless Goldstone bosons, but rather very light pseudo-Goldstone bosons.
 
-The breaking of chiral symmetry leads to the \textbf{chiral phase transition} shown in \cref{fig:qcd:phase_diagram},
-connecting the confined and deconfined phases of quark matter.
+The breaking of chiral symmetry leads to the \textbf{chiral phase transition} shown in \cref{fig:qcd:phase_diagram}.
 It is analogous to the phase transition and spontaneous symmetry breaking in a paramagnet described with the Ising model,
 where an external magnetic field $B$ explicitly breaks the symmetry of spin orientations encapsulated in the order parameter of the magnetization $M$,
 just like the quark masses $m$ explicitly breaks chiral symmetry ordered encapsulated in the order parameter of the quark condensate $\avg{\bar{q} q}$.

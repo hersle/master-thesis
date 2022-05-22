@@ -3,13 +3,13 @@
 
 At low energy the effective degrees of freedom of quantum chromodynamics are not individual quarks,
 but nucleons composed of up and down quarks and the three pions that we saw arose from the spontaneous chiral symmetry breaking pattern \eqref{eq:qcd:symmetry_breaking_pattern}.
-The MIT bag model that we discussed in \cref{chap:mit} modeled quark stars by simply confining a free Fermi gas of quarks in baryons with a bag constant $B$.
+The MIT bag model that we discussed in \cref{chap:mit} modeled quark stars as a deconfined Fermi gas of quarks with a bag constant $B$.
 We will now crank up the difficulty and investigate the \textbf{linear sigma model}, which also takes chiral symmetry breaking and the pions into account by introducing an ``ad--hoc'' $\sigma$ particle.
 The linear sigma model was originally introduced by \cite{ref:lsm_original} as an effective model for nucleons interacting with pions and scalar mesons,
 but the fermions have since been interpreted as quarks in what is commonly referred to as a \textbf{quark-meson model}.
 
 The physical justification for this effective model of quantum chromodynamics is best made retrospectively after seeing exactly how it gives rise to chiral symmetry breaking.
-We will therefore take the model as granted from the start and justify it as we go along.
+We will therefore take the model as granted from the start and try to justify it as we go along.
 
 \textit{This chapter is inspired by references \cite{ref:lsm_2f}, \cite{ref:lsm_notes} and \cite{ref:jo_lsm_consistent_physical}.}
 
@@ -174,14 +174,14 @@ Practically speaking, the two different symmetry breaking patterns are therefore
 and according to Weinberg's philosophy presented in \cref{sec:master_intro:qcd}
 the quark-meson model is an appropriate effective model of quantum chromodynamics at low energy.
 The parameter $h \neq 0$ only serves to explicitly break the symmetry into an approximate one,
-just like the quark masses break the chiral symmetry of quantum chromodynamics.
+just like the quark masses explicitly break the chiral symmetry of quantum chromodynamics.
 This is the physical justification of the quark-meson model.
 
 \section{Grand potential}
 \label{sec:lsm:grand_potential}
 
 With our recently gained faith in the quark-meson model,
-let us set out to calculate the grand potential \eqref{eq:master_intro:grand_potential}.
+let us set out to calculate its grand potential \eqref{eq:master_intro:grand_potential}.
 With the quark fields $q$, the meson fields $\sigma$ and $\vec\pi$
 and the coupling of chemical potentials $\mu$ to conserved vector currents already baked into the Lagrangian \eqref{eq:lsm:lagrangian},
 the partition function \eqref{eq:master_intro:partition_function} is
@@ -338,7 +338,7 @@ The pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:maste
 \label{sec:lsm:parameter_fit}
 
 To determine the four paremeters $g$, $m^2$, $\lambda$ and $h$ in the Lagrangian \eqref{eq:lsm:lagrangian},
-we use measured values of the ground state $\avg{\sigma}$ and masses $m_\sigma$, $m_\pi$ and $m_q$ in vacuum.
+we use measured values of the ground state $\avg{\sigma}=f_\pi$ and masses $m_\sigma$, $m_\pi$ and $m_q$ in vacuum.
 Inverting equations \eqref{eq:lsm:ground_state_implicit}, \eqref{eq:lsm:mass_sigmapi} and \eqref{eq:lsm:mass_quark}, we then find the parameters
 \begin{equation}
 	g       = \frac{m_q}{f_\pi}, \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
@@ -667,7 +667,7 @@ Dotted lines show the massless solutions \eqref{eq:mit:densities_massless}, \eqr
 }
 \end{figure}
 
-The details of the numerical implementation can be found in \cref{sec:num:qstars2f}.
+The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 \begin{itemize}
 \item The phase transition or crossover behaves similarly as in \cref{fig:lsm:grand-potential-noisospin}:
@@ -812,11 +812,12 @@ With the equation of state, we now solve the Tolman-Oppenheimer-Volkoff equation
 We find the central pressure-parametrized mass-radius curves in \cref{fig:lsm:2-flavor-mass-radius}:
 \begin{itemize}
 \item For bag constants that just satisfy the lower bound \eqref{eq:lsm:bag_lower_bound},
-      stars have maximum masses $1.7 \, M_\odot < M < 2.0 \, M_\odot$ and corresponding radii $R \approx \SI{11}{\kilo\meter}$
+      stars have maximum masses $1.7 \, M_\odot \leq M \leq 2.0 \, M_\odot$ and corresponding radii $R \approx \SI{11}{\kilo\meter}$
       depending on the value chosen for $m_\sigma$.
       The heaviest of these has an average mass density of $\rho = M / (4 \pi R^3/3) = \SI{7e14}{\kilo\gram\per\liter}$!
 \item For greater bag constants that violate the strange matter hypothesis, both the masses and radii decrease.
-      With sufficiently high bag constants one can cover any mass and radii below the largest ones.
+      With sufficiently high bag constants one can cover any mass and radii below the largest ones,
+      and we therefore pay special attention to the lowest stability-respecting bag constants.
 \item As $m_\sigma$ increases away from its measured value,
       the maximum mass decreases and becomes more resilient to changes in $B$, and stars tend to inflate up to larger sizes for low pressures.
 \item The results are generally comparable to the MIT bag model solutions in \cref{fig:mit:mass_radius}.
@@ -1102,7 +1103,7 @@ and tells us that we should not be too worried by fitting too large values of $m
 
 \section{Summary}
 
-In this chapter we have modeled pure quark stars consisting of up and down quarks with the two-flavor quark-meson model.
+In this chapter we have modeled pure quark stars consisting of deconfined up and down quarks with the two-flavor quark-meson model.
 Our main results were the equation of state in \cref{fig:lsm:2-flavor-eos}, mass-radius solutions in \cref{fig:lsm:2-flavor-mass-radius} and the radial profile of a representative maximum mass star in \cref{fig:lsm:2-flavor-star}.
 Chiral symmetry was restored in a crossover for $m_\sigma \geq \SI{800}{\mega\electronvolt}$ and a discontinuous phase transition for $m_\sigma < \SI{800}{\mega\electronvolt}$.
 For bag constants that respected both instability of two-flavor quark matter and the strange matter hypothesis,
