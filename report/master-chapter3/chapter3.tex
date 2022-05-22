@@ -149,9 +149,23 @@ To do so, we need to evaluate the traces
 \label{eq:lsm3f:traces}%
 \end{subequations}%
 The quadruple product traces $\trace[T_a T_b T_c T_d]$ are more challenging than the double product traces $\trace[T_a T_b] = \delta_{ab}/2$.
-They can be done with pen, paper and clever use of properties of the Gell-Mann matrices, \TODO{show ``bootstrapping'' procedure for credz}
-but with our explicit knowledge \eqref{eq:lsm:gell_mann_matrices} of the matrices
-it is easier and less error-prone to calculate them by brute force and a symbolic computer program.
+If one figures out the structure constants $f_{abc}$ and $d_{abc}$
+defined by the (anti-)commutators $[T_a,T_b]=i f_{abc} T_c$ and $\{T_a,T_b\}=d_{abc} T_c$,
+these traces can be done with pen, paper and painkillers
+by bootstrapping traces of the Gell-Mann matrices like
+\begin{subequations}
+\begin{align}
+	\trace\Big[T_a T_b\Big] &= \frac{1}{2} \delta_{ab} \label{eq:lsm3f:trace2}, \\
+	\trace\Big[T_a T_b T_c\Big] &= \frac{1}{2} \trace\Big[T_a\Big(\overbrace{[T_b,T_c]}^{\smash{i f_{bcd} T_d}}+\overbrace{\{T_b,T_c\}}^{\smash{d_{bcd} T_d}}\Big)\Big]
+	                             %= \frac{1}{2} \Big( i f_{bcd} + d_{bcd} \Big) \trace\Big[T_a T_d\Big]
+	                             \equalexplabove{\smash[t]{use \eqref{eq:lsm3f:trace2}}} \frac{1}{2^2} \Big( i f_{bca} + d_{bca} \Big), \label{eq:lsm3f:trace3} \\
+	\trace\Big[T_a T_b T_c T_d\Big] &= \frac{1}{2} \trace\Big[T_a T_b \Big( \underbrace{[T_c,T_d]}_{\smash{i f_{cde} T_e}} + \underbrace{\{T_c,T_d\}}_{\smash{d_{cde} T_e}} \Big) \Big]
+	                                 %= \frac{1}{2} \Big( i f_{cde} + d_{cde} \Big) \trace\Big[T_a T_b T_e\Big]
+	                                 \equalexplbelow{\smash[b]{use \eqref{eq:lsm3f:trace3}}} \frac{1}{2^3} \Big( i f_{cde} + d_{cde} \Big) \Big( i f_{bea} + d_{bea} \Big). \label{eq:lsm3f:trace4}
+\end{align}
+\end{subequations}
+However, with our explicit knowledge \eqref{eq:lsm:gell_mann_matrices} of the matrices
+it is easier and less error-prone to simply calculate all the traces by brute force with a symbolic computer program.
 Using the program in \cref{chap:lsm3fpotential},
 we create a 559-term-long explicit representation of $\pot(\sigma,\pi)$ for arbitrary $h_a$.
 Evaluated in the minimum \eqref{eq:lsm:ground_state_3f}, its value is
