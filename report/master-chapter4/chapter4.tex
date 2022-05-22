@@ -38,9 +38,9 @@ As explained in the review \cite{ref:quark_star_review},
 it is indeed believed that the most massive observed neutron stars
 could be \textbf{hybrid stars} that consist of a small deconfined quark matter core with high density,
 surrounded by hadronic matter in the outer low-density region.
-Two candidates are the recently observed heavy pulsars PSR J0348$+$0432 and PSR J1614$-$2230
-with respective masses $M = (2.01 \pm 0.04) \, M_\odot$ and $M = (1.91 \pm 0.02) \, M_\odot$ \cite{ref:antoniadis,ref:arzoumanian}.
-Due to these observations, hybrid star models strive to reach the $2 M_\odot$-limit.
+Three candidates are the recently observed heavy pulsars PSR J0348$+$0432, PSR J1614$-$2230 and PSR J0740$+$6620
+with respective masses $M = (2.01 \pm 0.04) \, M_\odot$ \cite{ref:antoniadis}, $M = (1.91 \pm 0.02) \, M_\odot$ \cite{ref:arzoumanian} and $M = (2.08 \pm 0.07) \, M_\odot$ \cite{ref:fonseca}.
+Due to these observations, hybrid star models strive to pass the $2 M_\odot$-limit.
 
 In our final piece of work
 we assemble a hybrid star modeled with the \textbf{quark-meson model} from \cref{chap:lsm3f} in the core,
@@ -224,16 +224,20 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	xlabel={$R \, / \, \si{\kilo\meter}$ },
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
 	xmin=5, xmax=35, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
-	legend columns=4, legend pos=south east, legend cell align=right, legend transposed,
+	legend columns=5, legend pos=south east, legend cell align=right, legend transposed,
 	%colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.8,-0.3)}, anchor=north, xticklabel pos=lower},
 ];
+\addplot [name path=J0748lo, draw=none, forget plot, domain=0:40] {2.08 - 0.07};
+\addplot [name path=J0748hi, draw=none, forget plot, domain=0:40] {2.08 + 0.07};
+\addplot [red, opacity=0.4] fill between [of=J0748lo and J0748hi]; \addlegendentry{PSR J0748$+$6620};
+
 \addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
 \addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
-\addplot [green, opacity=0.5] fill between [of=J0348lo and J0348hi]; \addlegendentry{PSR J0348$+$0432};
+\addplot [green, opacity=0.4] fill between [of=J0348lo and J0348hi]; \addlegendentry{PSR J0348$+$0432};
 
 \addplot [name path=J1614lo, draw=none, forget plot, domain=0:40] {1.91 - 0.02};
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
-\addplot [yellow, opacity=0.5] fill between [of=J1614lo and J1614hi]; \addlegendentry{PSR J1614$-$2230};
+\addplot [yellow, opacity=0.4] fill between [of=J1614lo and J1614hi]; \addlegendentry{PSR J1614$-$2230};
 
 \addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
 \addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
@@ -247,16 +251,20 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \nextgroupplot[
 	width=5cm, 
 	xlabel={$R \, / \, \si{\kilo\meter}$},
-	xmin=11, xmax=12, ymin=1.8, ymax=2.1, xtick distance=1, ytick distance=0.1, minor tick num=9, %grid=major,
+	xmin=11, xmax=12, ymin=1.85, ymax=2.15, xtick distance=1, ytick distance=0.1, minor tick num=9, %grid=major,
 	extra y ticks={2}, extra y tick labels={,,}, extra tick style={grid=major},
 ];
+\addplot [name path=J0748lo, draw=none, forget plot, domain=0:40] {2.08 - 0.07};
+\addplot [name path=J0748hi, draw=none, forget plot, domain=0:40] {2.08 + 0.07};
+\addplot [red, opacity=0.4] fill between [of=J0748lo and J0748hi];
+
 \addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
 \addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
-\addplot [green, opacity=0.5] fill between [of=J0348lo and J0348hi];
+\addplot [green, opacity=0.4] fill between [of=J0348lo and J0348hi];
 
 \addplot [name path=J1614lo, draw=none, forget plot, domain=0:40] {1.91 - 0.02};
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
-\addplot [yellow, opacity=0.5] fill between [of=J1614lo and J1614hi];
+\addplot [yellow, opacity=0.4] fill between [of=J1614lo and J1614hi];
 
 \addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -289,16 +297,20 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	xlabel={$R \, / \, \si{\kilo\meter}$ },
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
 	xmin=5, xmax=35, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
-	legend columns=4, legend pos=south east, legend cell align=right, legend transposed,
+	legend columns=5, legend pos=south east, legend cell align=right, legend transposed,
 	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.8,-0.3)}, anchor=north, xticklabel pos=lower},
 ];
+\addplot [name path=J0748lo, draw=none, forget plot, domain=0:40] {2.08 - 0.07};
+\addplot [name path=J0748hi, draw=none, forget plot, domain=0:40] {2.08 + 0.07};
+\addplot [red, opacity=0.4] fill between [of=J0748lo and J0748hi]; \addlegendentry{PSR J0748$+$6620};
+
 \addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
 \addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
-\addplot [green, opacity=0.5] fill between [of=J0348lo and J0348hi]; \addlegendentry{PSR J0348$+$0432};
+\addplot [green, opacity=0.4] fill between [of=J0348lo and J0348hi]; \addlegendentry{PSR J0348$+$0432};
 
 \addplot [name path=J1614lo, draw=none, forget plot, domain=0:40] {1.91 - 0.02};
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
-\addplot [yellow, opacity=0.5] fill between [of=J1614lo and J1614hi]; \addlegendentry{PSR J1614$-$2230};
+\addplot [yellow, opacity=0.4] fill between [of=J1614lo and J1614hi]; \addlegendentry{PSR J1614$-$2230};
 
 \addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
 \addplot+ [solid, each nth point=8, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
@@ -312,16 +324,20 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \nextgroupplot[
 	width=5cm, 
 	xlabel={$R \, / \, \si{\kilo\meter}$},
-	xmin=11, xmax=12, ymin=1.8, ymax=2.1, xtick distance=1, ytick distance=0.1, minor tick num=9, %grid=major,
+	xmin=11, xmax=12, ymin=1.85, ymax=2.15, xtick distance=1, ytick distance=0.1, minor tick num=9, %grid=major,
 	extra y ticks={2}, extra y tick labels={,,}, extra tick style={grid=major},
 ];
+\addplot [name path=J0748lo, draw=none, forget plot, domain=0:40] {2.08 - 0.07};
+\addplot [name path=J0748hi, draw=none, forget plot, domain=0:40] {2.08 + 0.07};
+\addplot [red, opacity=0.4] fill between [of=J0748lo and J0748hi];
+
 \addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
 \addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
-\addplot [green, opacity=0.5] fill between [of=J0348lo and J0348hi];
+\addplot [green, opacity=0.4] fill between [of=J0348lo and J0348hi];
 
 \addplot [name path=J1614lo, draw=none, forget plot, domain=0:40] {1.91 - 0.02};
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
-\addplot [yellow, opacity=0.5] fill between [of=J1614lo and J1614hi];
+\addplot [yellow, opacity=0.4] fill between [of=J1614lo and J1614hi];
 
 \addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -337,7 +353,7 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$,
 	obtained with two-flavor and three-flavor hybrid equations of state like those in \cref{fig:hybrid:eos}
 	using different values of $m_\sigma$ and $B$ in the quark-meson model.
-	The bands show measured masses of the two pulsars PSR J1614$-$2230 and PSR J0348$+$0432 from \cite{ref:antoniadis,ref:arzoumanian}.
+	The bands show measured masses of the heavy pulsars PSR J1614$-$2230, PSR J0348$+$0432 and PSR J0740$+$6620 from \cite{ref:antoniadis,ref:arzoumanian,ref:fonseca}.
 }
 \end{figure}
 
@@ -459,7 +475,7 @@ we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius}:
       This stable segment is longer in the two-flavor model and for smaller values of $m_\sigma$;
       in the three-flavor model it is only visible for the lowest value $m_\sigma = \SI{600}{\mega\electronvolt}$.
       This supports the general claim in \cite{ref:quark_star_review} that quark cores are rare and have a very small size and mass, if at all existent.
-\item The maximum mass stars live in the neighborhood of the pulsars PSR J0348$+$0432 and PSR J1614$-$2230 and are certainly compatible with observations.
+\item The maximum mass stars live in the neighborhood of the heavy pulsars PSR J0348$+$0432, PSR J1614$-$2230 and PSR J0740$+$6620 and are certainly compatible with observations.
 \end{itemize}
 
 We take a detailed look at two maximum mass stars
@@ -489,7 +505,7 @@ we saw that the hadronic mass-radius relation developed very short branches of h
 up to maximum masses $2.00 M_\odot \leq M \leq 2.09$ with two flavors in the core
 and $1.90 M_\odot \leq M \leq 2.07 \leq M_\odot$ with three flavors.
 Generally speaking, the two-flavor cores are both more massive and likely to be stable than three-flavor cores.
-This overlaps with recent mass measurements of the pulsars PSR J0348$+$0432 and PSR J1614$-$2230 around the $2 M_\odot$-limit.
+This overlaps with recent mass measurements of the heavy pulsars PSR J0348$+$0432, PSR J1614$-$2230 and PSR J0740$+$6620 around and above the $2 M_\odot$-limit.
 After the maximum mass star, a discontinuous transition between the two phases destabilizes the stars.
 These results are in good agreement with hybrid stars modeled with the hadronic Walecka model and Nambu-Jona-Lasinio model for quark matter by \cite{ref:hybrid_stars_njl}.
 They also find that the stability of the hybrid stars increases if the phase transition is smoothened out with the Gibbs construction,
