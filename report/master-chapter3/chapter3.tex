@@ -411,9 +411,12 @@ In general there are $8!/3!5! = 56$ possible choices for selecting three of the 
 each returning different values for $m^2$, $\lambda_1$ and $\lambda_2$.
 We keep using $m_\sigma$ and $m_\pi$ for continuity and welcome $m_K$ as the final member, thereby obtaining the unique selection of mesons with the smallest mass and lowest energy.
 This is the same selection used by \cite{ref:lsm3f} and \cite{ref:lsm3f_details}, for example.
-Note that there is a particularly large discrepancy between the modeled and experimental $\eta'$ mass
--- this can be improved by including an anomaly term in the Lagrangian, as also shown in the two references above.
-\TODO{do this as a refinement?  later consider effects of anomaly coupling $c$?}
+
+Note that there is a particularly large discrepancy between the modeled and experimental $\eta'$ mass.
+This can be improved by including a term $c \, (\tdet{\phi} + \tdet{\phi^\dagger})$ in the Lagrangian that accounts for the anomalous axial $U(1)_A$ symmetry of quantum chromodynamics discussed in \cref{sec:master_intro:qcd}.
+How to do so is also shown \cite{ref:lsm3f} and \cite{ref:lsm3f_details},
+but we do not include it here in order to keep the two-flavor and three-flavor models as similar and comparable as possible.
+In particular, they find that its inclusion drives the chiral transition closer to being a discontinuous phase transition rather than a crossover.
 
 Like in \cref{sec:lsm:parameter_fit},
 we keep all parameters fixed except $m_\sigma$, due to its large experimental uncertainty.
@@ -535,7 +538,7 @@ Three different values are used for $m_\sigma$, generating three different value
 \end{tikzpicture}
 \caption{\label{fig:lsm3f:potential_sigma_mass}%
 Three-flavor grand potentials \eqref{eq:lsm3f:grand_potential} in vacuum with $\mu=0$ for different $m_\sigma$,
-offset by constants into a lasagna that is digestible for human interpretation.
+offset by constants into a human-digestible lasagna.
 }
 \end{figure}
 
