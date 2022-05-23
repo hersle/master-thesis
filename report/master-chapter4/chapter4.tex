@@ -102,7 +102,7 @@ the preferable phase is the one with the lower grand potential $\Omega = -P$.
 \addplot+ [red, solid, very thick] table [x=muB2,y=P] {../code/data/LSM2F_APR/eos_sigma_600.dat}; \addlegendentry{quark phase \quad};
 \addplot+ [blue!50!cyan, solid, very thick] table [x=muB1,y=P1] {../code/data/LSM2F_APR/eos_sigma_600.dat}; \addlegendentry{hadron phase \quad};
 \addplot+ [black, dashed, very thick] table [x=muB,y=P] {../code/data/LSM2F_APR/eos_sigma_600.dat}; \addlegendentry{hybrid phase \quad};
-\node at (1359, 0.241) [circle, fill, inner sep=1.5pt] {};
+\node at (1359, 0.241) [circle, fill, inner sep=1.5pt, label={[anchor=north west, font=\small]below:$\big(\mu_B^0,P^0\big)$}] {};
 
 \nextgroupplot[
 	xlabel={$\mu_B \, / \, \si{\mega\electronvolt}$},
@@ -113,6 +113,8 @@ the preferable phase is the one with the lower grand potential $\Omega = -P$.
 \addplot+ [red, solid, very thick] table [x=muB,y expr={\thisrow{nB2}/0.165}] {../code/data/LSM2F_APR/eos_sigma_600.dat};
 \addplot+ [blue!50!cyan, solid, very thick] table [x=muB1,y expr={\thisrow{nB1}/0.165}] {../code/data/LSM2F_APR/eos_sigma_600.dat};
 \addplot+ [black, dashed, very thick] table [x=muB,y expr={\thisrow{nB}/0.165}] {../code/data/LSM2F_APR/eos_sigma_600.dat};
+\node at (1359, 0.73/0.165) [circle, fill, inner sep=1.5pt, label={[anchor=north west, font=\small]below:$\big(\mu_B^0,n_{BH}^0\big)$}] {};
+\node at (1359, 0.85/0.165) [circle, fill, inner sep=1.5pt, label={[anchor=south east, font=\small]above:$\big(\mu_B^0,n_{BQ}^0\big)$}] {};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -122,6 +124,8 @@ the preferable phase is the one with the lower grand potential $\Omega = -P$.
 \addplot+ [red, solid, very thick] table [x=P,y=epsilon2] {../code/data/LSM2F_APR/eos_sigma_600.dat};
 \addplot+ [blue!50!cyan, solid, very thick] table [x=P1,y=epsilon1] {../code/data/LSM2F_APR/eos_sigma_600.dat};
 \addplot+ [black, dashed, very thick] table [x=P,y=epsilon] {../code/data/LSM2F_APR/eos_sigma_600.dat};
+\node at (0.241, 0.762) [circle, fill, inner sep=1.5pt, label={[anchor=north west, font=\small]below:$\big(P^0,\epsilon_H(P^0)\big)$}] {};
+\node at (0.241, 0.953) [circle, fill, inner sep=1.5pt, label={[anchor=south east, font=\small]above:$\big(P^0,\epsilon_Q(P^0)\big)$}] {};
 \end{groupplot}
 \end{tikzpicture}
 \end{figure}
@@ -147,7 +151,7 @@ the preferable phase is the one with the lower grand potential $\Omega = -P$.
 \addplot+ [red, solid, very thick] table [x=muB2,y=P] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{quark phase \quad};
 \addplot+ [blue!50!cyan, solid, very thick] table [x=muB1,y=P1] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{hadron phase \quad};
 \addplot+ [black, dashed, very thick] table [x=muB,y=P] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{hybrid phase \quad};
-\node at (1305, 0.2) [circle, fill, inner sep=1.5pt] {};
+\node at (1305, 0.2) [circle, fill, inner sep=1.5pt, label={[anchor=north west, font=\small]below:$\big(\mu_B^0,P^0\big)$}] {};
 
 \nextgroupplot[
 	xlabel={$\mu_B \, / \, \si{\mega\electronvolt}$},
@@ -158,6 +162,8 @@ the preferable phase is the one with the lower grand potential $\Omega = -P$.
 \addplot+ [red, solid, very thick] table [x=muB,y expr={\thisrow{nB2}/0.165}] {../code/data/LSM3F_APR/eos_sigma_600.dat};
 \addplot+ [blue!50!cyan, solid, very thick] table [x=muB1,y expr={\thisrow{nB1}/0.165}] {../code/data/LSM3F_APR/eos_sigma_600.dat};
 \addplot+ [black, dashed, very thick] table [x=muB,y expr={\thisrow{nB}/0.165}] {../code/data/LSM3F_APR/eos_sigma_600.dat};
+\node at (1307, 0.693/0.165) [circle, fill, inner sep=1.5pt, label={[anchor=north west, font=\small]below:$\big(\mu_B^0,n_{BH}^0\big)$}] {};
+\node at (1307, 0.918/0.165) [circle, fill, inner sep=1.5pt, label={[anchor=south east, font=\small]above:$\big(\mu_B^0,n_{BQ}^0\big)$}] {};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -167,6 +173,8 @@ the preferable phase is the one with the lower grand potential $\Omega = -P$.
 \addplot+ [red, solid, very thick] table [x=P,y=epsilon2] {../code/data/LSM3F_APR/eos_sigma_600.dat};
 \addplot+ [blue!50!cyan, solid, very thick] table [x=P1,y=epsilon1] {../code/data/LSM3F_APR/eos_sigma_600.dat};
 \addplot+ [black, dashed, very thick] table [x=P,y=epsilon] {../code/data/LSM3F_APR/eos_sigma_600.dat};
+\node at (0.202, 0.713) [circle, fill, inner sep=1.5pt, label={[anchor=north west, font=\small]below:$\big(P^0,\epsilon_H(P^0)\big)$}] {};
+\node at (0.202, 1.020) [circle, fill, inner sep=1.5pt, label={[anchor=south east, font=\small]above:$\big(P^0,\epsilon_Q(P^0)\big)$}] {};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:hybrid:eos}%
