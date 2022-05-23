@@ -550,30 +550,36 @@ With the grand potential \eqref{eq:lsm:grand_potential},
 the pressure $P = - \Omega$ will be nonzero in the vacuum state with $\mu < \SI{300}{\mega\electronvolt}$.
 First, we therefore compute the pressure \emph{relative to} vacuum by shifting
 \begin{equation}
-	P \rightarrow P - P(\mu < \SI{300}{\mega\electronvolt}) = P + \Omega(\avg{\sigma}=f_\pi) .
+	P \rightarrow P - P(\mu \leq \SI{300}{\mega\electronvolt}) = P + \Omega(\avg{\sigma}=f_\pi) .
 \label{eq:lsm:pressure_bagless}
 \end{equation}
 Second, and like with the MIT bag model in \cref{chap:mit},
 we allow for a bag constant $B$ by making the shift \eqref{eq:mit:bag_shift}.
-After both shifts, the pressure $P$ contains a contribution
+To be clear, after both shifts the pressure in vacuum is $P(\mu \leq \SI{300}{\mega\electronvolt}) = -B$,
+and the non-quark contribution to the general pressure is
 \begin{equation}
 	-B(\avg{\sigma}) = -\big[B+\pot(\avg{\sigma},\vec{0})-\pot(f_\pi,\vec{0})\big]
 \label{eq:lsm:bag_pressure}
 \end{equation}
-from the first line of the grand potential \eqref{eq:lsm:grand_potential} in addition to the contribution from the particles.
+from the first line of the grand potential \eqref{eq:lsm:grand_potential}.
 Unlike the constant $B$ in the MIT bag model,
 we can interpret $B(\avg{\sigma})$ as an dynamic bag pressure that ranges from $-B(f_\pi)=-B$ in vacuum to $-B(0) = -\big[B-\pot(f_\pi,\vec{0})\big]$ in the ultra-relativistic limit.
 Solving inequality \eqref{eq:mit:bag_stability} numerically, we obtain the lower bag bounds
 \begin{subequations}
 \begin{align}
-	B > (\SI{110.6}{\mega\electronvolt})^4           \quad \Big(\text{or } B-\pot(f_\pi,\vec{0}) > (\SI{145.4}{\mega\electronvolt})^4\Big) \qquad \Big(m_\sigma = \SI{600}{\mega\electronvolt}\Big), \label{eq:lsm:bag_lower_bound_600} \\
-	B > \phantom{0}(\SI{67.7}{\mega\electronvolt})^4 \quad \Big(\text{or } B-\pot(f_\pi,\vec{0}) > (\SI{146.3}{\mega\electronvolt})^4\Big) \qquad \Big(m_\sigma = \SI{700}{\mega\electronvolt}\Big), \label{eq:lsm:bag_lower_bound_700} \\
-	B > \phantom{0}(\SI{27.0}{\mega\electronvolt})^4 \quad \Big(\text{or } B-\pot(f_\pi,\vec{0}) > (\SI{156.5}{\mega\electronvolt})^4\Big) \qquad \Big(m_\sigma = \SI{800}{\mega\electronvolt}\Big). \label{eq:lsm:bag_lower_bound_800}
+	B \geq (\SI{110.6}{\mega\electronvolt})^4           \quad \Big(\text{or } B-\pot(f_\pi,\vec{0}) \geq (\SI{145.4}{\mega\electronvolt})^4\Big) \qquad \Big(m_\sigma = \SI{600}{\mega\electronvolt}\Big), \label{eq:lsm:bag_lower_bound_600} \\
+	B \geq \phantom{0}(\SI{67.7}{\mega\electronvolt})^4 \quad \Big(\text{or } B-\pot(f_\pi,\vec{0}) \geq (\SI{146.3}{\mega\electronvolt})^4\Big) \qquad \Big(m_\sigma = \SI{700}{\mega\electronvolt}\Big), \label{eq:lsm:bag_lower_bound_700} \\
+	B \geq \phantom{0}(\SI{27.0}{\mega\electronvolt})^4 \quad \Big(\text{or } B-\pot(f_\pi,\vec{0}) \geq (\SI{156.5}{\mega\electronvolt})^4\Big) \qquad \Big(m_\sigma = \SI{800}{\mega\electronvolt}\Big). \label{eq:lsm:bag_lower_bound_800}
 \end{align}%%
 \label{eq:lsm:bag_lower_bound}%
 \end{subequations}%%
 In the next chapter we study the three-flavor generalization of this model and find the complementing upper bounds \eqref{eq:lsm3f:bag_upper_bound} due to the strange matter hypothesis.
-If the strange matter hypothesis is respected, the bag constant inequalities can be regarded as equalities.
+These upper bounds almost coincide with the lower bounds,
+so the inequalities can be squeezed into equalities \emph{if} the strange matter hypothesis is true.
+Whether it really is true is an entirely different and larger discussion,
+but the \emph{lower} bounds are based on instability of two-flavor quark matter compared to hadronic matter and are trustworthy.
+We therefore focus our attention on the bag constants that lie at the lower bounds \eqref{eq:lsm:bag_lower_bound},
+as they generate greater maximum masses and arbitrarily lower masses can be reached with arbitrarily greater bag constants.
 
 As pointed out by \cite[section IV-B]{ref:quark_star_review}, it is generally not meaningful to compare bag constants across different models.
 Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bagless} it is the bounds of $B-\pot(f_\pi,\vec{0})$, not $B$, that is comparable to the MIT bag constant lower bound \eqref{eq:mit:bag_window}.
@@ -1080,9 +1086,9 @@ we find the equation of state in \cref{fig:lsm:2-flavor-eos-ref},
 the lower bag constant bounds
 \begin{subequations}
 \begin{align}
-	B^\frac14 > \SI{107.3}{\mega\electronvolt}           \quad \Big(\text{or } \big(B-\pot(f_\pi,\vec{0})\big)^\frac14 > \SI{145.4}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{400}{\mega\electronvolt}\Big), \\
-	B^\frac14 > \phantom{0}\SI{83.9}{\mega\electronvolt} \quad \Big(\text{or } \big(B-\pot(f_\pi,\vec{0})\big)^\frac14 > \SI{145.9}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{500}{\mega\electronvolt}\Big), \\
-	B^\frac14 > \phantom{0}\SI{27.2}{\mega\electronvolt} \quad \Big(\text{or } \big(B-\pot(f_\pi,\vec{0})\big)^\frac14 > \SI{155.3}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{600}{\mega\electronvolt}\Big),
+	B^\frac14 \geq \SI{107.3}{\mega\electronvolt}           \quad \Big(\text{or } \big(B-\pot(f_\pi,\vec{0})\big)^\frac14 \geq \SI{145.4}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{400}{\mega\electronvolt}\Big), \\
+	B^\frac14 \geq \phantom{0}\SI{83.9}{\mega\electronvolt} \quad \Big(\text{or } \big(B-\pot(f_\pi,\vec{0})\big)^\frac14 \geq \SI{145.9}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{500}{\mega\electronvolt}\Big), \\
+	B^\frac14 \geq \phantom{0}\SI{27.2}{\mega\electronvolt} \quad \Big(\text{or } \big(B-\pot(f_\pi,\vec{0})\big)^\frac14 \geq \SI{155.3}{\mega\electronvolt}\Big) \qquad \Big(m_\sigma = \SI{600}{\mega\electronvolt}\Big),
 \end{align}%
 \label{eq:lsm:bag_lower_bound_ref}%
 \end{subequations}
@@ -1092,7 +1098,7 @@ The ``consistent'' results with $m_\sigma=\{400,500,600\} \, \si{\mega\electronv
 virtually identical to the ``inconsistent'' results with $m_\sigma=\{600,700,800\} \, \si{\mega\electronvolt}$.
 This can be seen by comparing the individual features in \cref{fig:lsm:2-flavor-eos-ref,fig:lsm:2-flavor-mass-radius-ref},
 or more easily by noting that the vacuum potentials in \cref{fig:lsm:potential_sigma_mass_ref}
--- \emph{which is the difference between the two approaches} --
+-- \emph{which is the only difference between the two approaches} --
 more or less coincides with those in \cref{fig:lsm:potential_sigma_mass} that have about $\SI{200}{\mega\electronvolt}$ larger values of $m_\sigma$.
 
 This approach has shown the importance of fitting the parameters of the model in a consistent manner in order to achieve correspondence between experimental and model parameters.
