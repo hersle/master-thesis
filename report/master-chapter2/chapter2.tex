@@ -53,13 +53,14 @@ with the meson potential
 	\pot(\sigma, \vec\pi) = \frac{m^2}{2} \big( \sigma^2 + \vec\pi^2 \big) + \frac{\lambda}{4!} \big( \sigma^2 + \vec\pi^2 \big)^2 - h \sigma .
 \label{eq:lsm:potential}
 \end{equation}
-The quark fields behave as in the MIT bag model Lagrangian \eqref{eq:mit:lagrangian} with $N_f=2$ flavor indices $u$ and $d$, $N_c=3$ color indices and four Dirac spinor indices, and are coupled to two quark chemical potentials with the flavor-space matrix $\mu = \diag (\mu_u, \mu_d)$.
+The quark fields behave as in the MIT bag model Lagrangian \eqref{eq:mit:lagrangian} with $N_f=2$ flavor indices $\{u,d\}$, $N_c=3$ color indices and four Dirac spinor indices, and are coupled to two quark chemical potentials with the flavor-space matrix $\mu = \diag (\mu_u, \mu_d)$.
 However, they are now seemingly massless and coupled to a $\sigma$ meson and three pions $\vec\pi = [\pi^+, \pi^-, \pi^0]^T$ with a Yukawa coupling $g$ and the Pauli matrices \eqref{eq:tft:pauli_matrices}.
 The meson potential features three couplings $m^2<0$, $\lambda>0$ and $h>0$.
 
 Like quantum chromodynamics, the quark-meson model Lagrangian \eqref{eq:lsm:lagrangian} has a vector $U(1)_V$ and axial $U(1)_A$ symmetry shown in \cref{sec:master_intro:qcd}.
-In contrast to the mass-conditional chiral symmetry of the former Lagrangian, however, the latter is \emph{unconditionally} invariant under a $SU(2)_L \times SU(2)_R$ transformation when $h=0$ and $\mu = 0$.
-To see this, first express the Yukawa coupling term with left-handed and right-handed chiral fields:
+In contrast to the mass-conditional chiral symmetry of quantum chromodynamics, however,
+the latter is \emph{unconditionally} invariant under a $SU(2)_L \times SU(2)_R$ transformation when $h=0$ and $\mu = 0$.
+To see this, first express the Yukawa coupling term with left-handed and right-handed chiral fields $q_\pm = P_\pm q$:
 \begin{equation}
 \begin{aligned}
 	\bar{q} \big[\sigma + i \gamma^5 \vec{\tau} \cdot \vec{\pi}\big] q &= \bar{q} \big[ (P_+ + P_-) \sigma + (P_+ - P_-) i \vec{\tau} \cdot \vec{\pi}\big] q && \; \big( P_\pm = \tfrac{1}{2} (1 \pm \gamma^5) \big) \\
@@ -71,7 +72,7 @@ To see this, first express the Yukawa coupling term with left-handed and right-h
 \end{aligned}
 \label{eq:lsm:yukawa_symmetry}
 \end{equation}
-Second, observe that the meson potential \eqref{eq:lsm:potential} with $h=0$ only depends on the flavor-space trace
+Second, note that the meson potential \eqref{eq:lsm:potential} with $h=0$ only depends on the flavor-space trace
 \begin{equation}
 	\tfrac12 \trace\big[\phi^\dagger \phi\big] = \tfrac12 \big( \underbrace{\trace\big[1\big]}_2 \sigma^2 - i^2 \underbrace{\trace\big[\tau_a \tau_b \big]}_{2 \delta_{ab}} \pi_a \pi_b \big) = \sigma^2 + \vec{\pi}^2.
 \label{eq:lsm:meson_symmetry}
@@ -81,7 +82,7 @@ Under the $SU(2)_L \times SU(2)_R$ transformation
 	q_+ \rightarrow U_+ q_+, \qquad
 	q_- \rightarrow U_- q_-
 	\qquad \text{and} \qquad
-	\phi   \rightarrow U_- \phi U_+^\dagger
+	\phi   \rightarrow U_- \phi U_+^\dagger,
 \end{equation}
 the Yukawa interaction \eqref{eq:lsm:yukawa_symmetry},
 the meson potential argument \eqref{eq:lsm:meson_symmetry}
@@ -92,12 +93,15 @@ the symmetry can equivalently be understood by considering the meson fields as a
 and noting that the meson potential \eqref{eq:lsm:potential} is invariant under rotation of this vector in four-space.
 
 What can be the relevance of this unconditional symmetry,
-when it was precisely the \emph{breaking} of chiral symmetry that led to the pions of quantum chromodynamics in \cref{sec:master_intro:qcd}?
-The short answer -- to be expanded upon in the following -- is that the different mathematical symmetries give rise to the \emph{same} physical consequences.
+when it was precisely the \emph{breaking} of it that led to the chiral symmetry breaking of quantum chromodynamics in \cref{sec:master_intro:qcd}?
+The short answer is that at the end of the day,
+the different mathematical symmetries give rise to the \emph{same} physical consequences.
+The longer answer follows below.
 
 In the vacuum, the fermions do not contribute to the grand potential,
-and the ground state values $\sigma = \avg{\sigma}$ and $\vec{\pi} = \avg{\vec{\pi}}$ are given by minima of the meson potential $\pot(\avg{\sigma},\avg{\vec{\pi}})$ illustrated in \cref{fig:lsm:potential}.
-From equation \eqref{eq:lsm:potential} we see that they are given by
+and the ground state values $\sigma = \avg{\sigma}$ and $\vec{\pi} = \avg{\vec{\pi}}$
+are given by minima of the meson potential $\pot(\avg{\sigma},\avg{\vec{\pi}})$ given in \eqref{eq:lsm:potential} and illustrated in \cref{fig:lsm:potential}.
+We see that they are given by
 \begin{equation}
 	%\vec{\pi} = \avg{\vec{\pi}}
 	%\quad \text{and} \quad
