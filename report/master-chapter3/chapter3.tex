@@ -5,7 +5,7 @@ With three flavors, the effective low-energy degrees of freedom of quantum chrom
 In this chapter we will study the generalization of the quark-meson model in \cref{chap:lsm2f} to three flavors,
 thereby throwing the strange quark into the mix.
 Most features of this model behave as natural generalizations of the two-flavor model.
-For example, we will handle one strange quark condensate in parallel with the common up and down quark condensates.
+For example, we will handle a strange quark condensate in parallel with the common up and down quark condensates.
 Whereas there is a unique way of fixing the parameters in the two-flavor model, however,
 we will see that the three-flavor model presents us with a multitude of ways of doing this,
 so that some experimental values must be predicted rather than fit.
@@ -55,7 +55,7 @@ The eight $SU(3)$ generators $T_a = \lambda_a/2$ are extended with the identity 
 \label{eq:lsm:gell_mann_matrices}
 \end{equation}
 %which are normalized to $\trace[T_a T_b] = \delta_{ab}/2$ and $\trace[\lambda_a \lamda_b] = 2 \delta_{ab}$.
-As before, the Lagrangian has $U(1)_V \times U(1)_A \times SU(N_f)_L \times SU(N_f)_R$
+Like before, the Lagrangian has $U(1)_V \times U(1)_A \times SU(N_f)_L \times SU(N_f)_R$ symmetry
 in the absence of the explicit symmetry breakers $h_a$ in the matrix $H = h_a T_a$.
 Moreover, there are now \emph{two} quartic couplings $\lambda_1$ and $\lambda_2$,
 not to be confused with the Gell-Mann matrices \eqref{eq:lsm:gell_mann_matrices}.
@@ -63,9 +63,12 @@ This can be understood from the \emph{Hamilton-Caley theorem} \cite[equation (1)
 which links the $N$ traces $\trace A, \ldots, \trace A^N$ for any $N \times N$ matrix $A$.
 With three flavors we can therefore form \emph{two} independent coupling terms
 $\lambda_1 \trace[(\phi^\dagger \phi)]^2$ and $\lambda_2 \trace[(\phi^\dagger \phi)^2]$ up to quadratic order in the fields,
-as opposed to only one that can be constructed with two flavors.
-\TODO{why is precisely fourth order the target? relate to renormalization? significant?}
-Every other feature of the Lagrangian is identical to or the natural generalization of that in the corresponding two-flavor Lagrangian \eqref{eq:lsm:lagrangian}.
+as opposed to only one that can be constructed with two flavors.%
+\footnote{That precisely fourth order is the target implies that the theory is renormalizable,
+in the sense that divergences can be removed by shifting the couplings already in the Lagrangian with counterterms.
+Divergences from, say, sixth-order terms in the Lagrangian could only have been removed by counterterms in higher-order terms
+and would make the theory non-renormalizable.}
+Every other feature of the Lagrangian is identical to or a natural generalization of that in the corresponding two-flavor Lagrangian \eqref{eq:lsm:lagrangian}.
 
 This general form of the model has thirteen undetermined parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$ and $h_0,\ldots,h_8$.
 We continue to neglect pion condensation by setting $\avg{\pi_a}=0$,
@@ -86,7 +89,6 @@ These different symmetry breaking patterns are discussed in more detail in \cite
 Since we treated up and down quarks with degenerate mass in \cref{chap:lsm2f},
 we will set $h_3 = 0$ and keep $\{h_0,h_8\} \neq 0$ to account for the heavier strange quark separately from the non-strange quarks.
 This leaves six unknown parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_0$, $h_8$ that must be fit to as many experimental values.
-\TODO{få ``godkjenning'' av 2 avsnitt over'' fra JO?}
 
 The explicit symmetry breakers $\{h_0,h_8\}\neq 0$ dig a global minimum for the vacuum and the classical ground state at
 \begin{equation}
