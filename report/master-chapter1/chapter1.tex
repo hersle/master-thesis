@@ -347,8 +347,9 @@ and hence the zero-point energy and pressure, and the equation of state.
 
 A positive vacuum constant $B$ creates a negative pressure $P = -B$ in vacuum.
 In a sense, it can therefore be interpreted as a mechanism that \emph{confines} the quarks to ``bags'' that resemble hadrons.
-Due to this physical interpretation, $B$ is more often called the \textbf{bag constant}.
-From inside the bag, the quarks exert an outwards kinetic pressure that counteracts the external bag pressure and stabilizes the hadron.
+Due to this common physical interpretation, $B$ is more often called the \textbf{bag constant}.
+The quarks in the bag exert an outwards kinetic pressure that counteracts the external bag pressure and stabilizes the hadron.
+%From inside the bag, the quarks exert an outwards kinetic pressure that counteracts the external bag pressure and stabilizes the hadron.
 The bag constant can therefore be interpreted as the pressure difference between two phases of confined and deconfined vacuum,
 as illustrated in \cref{fig:mit:bag_constant}.
 
@@ -356,16 +357,15 @@ As an analogy, imagine a swimming pool full of water representing the deconfined
 it would cost an amount $BV$ of energy to expel water from a volume $V$ and create a bag of vacuum in the pool,
 and a plastic bag enclosing this volume would have to generate some internal pressure to survive against the pressure from the surrounding water.
 
-Despite the interpretation of $B$ as a confinement mechanism,
+Despite the common interpretation of $B$ as a confinement mechanism,
 it is very important to note that the quark stars we will model 
 will be integrated from a positive central pressure to a vanishing pressure at the surface,
 and therefore have \emph{non-negative pressure everywhere} and \emph{only contain deconfined quark matter}.
-The negative-pressure regime in the equation of state that arises due to the bag shift \eqref{eq:mit:bag_shift}
-\emph{is outside reach of the pressure range within the quark stars}.
+The integration of the Tolman-Oppenheimer-Volkoff equation stops when it reaches the surface defined by $P=0$,
+so the confinement-interpretable part of the equation of state with negative pressure due to the shift \eqref{eq:mit:bag_shift} is \emph{unused}.
 We should therefore not take the bag constant's interpretation as a confinement mechanism too literally in our case,
 and it is perhaps better to think of it only as a phenomenological parameter that we can vary to adjust the normalization of the grand potential
-and -- as we will see now -- a parameter that determines the stability relationship of quark matter compared to hadronic matter.
-\TODO{spør hva JO tenker om ny bag-tolkning}
+and -- as we will see shortly -- a parameter that determines the stability relationship of quark matter compared to hadronic matter.
 
 What values can the bag constant take?
 Let us perform a heuristic calculation where we picture quarks to be confined in a spherical bag of radius $R$, as depicted in \cref{fig:mit:bag-constant-confined}.
@@ -377,7 +377,7 @@ Solving for $C = 4 \pi B R^4$, the energy of this stable configuration is $E = 1
 Assuming a neutron with total energy $E = m c^2 = \SI{940}{\giga\electronvolt}$ and radius $R \approx \SI{1}{\femto\meter} = 1 / \SI{197}{\mega\electronvolt}$,
 the bag constant is
 \begin{equation}
-	B = (\SI{143.9}{\mega\electronvolt})^4.
+	B = \frac{3 E}{16 \pi R^3} = (\SI{143.9}{\mega\electronvolt})^4.
 \label{eq:mit:bag_constant_optimal}
 \end{equation}
 
