@@ -33,7 +33,7 @@ nsat = 0.165
 σx0 = fπ
 σy0 = np.sqrt(2)*fK-fπ/np.sqrt(2)
 
-tovopts = {"tolD": 0.02, "maxdr": 1e-2, "nmodes": 0}
+tovopts = {"tolD": 0.01, "maxdr": 1e-2, "nmodes": 0}
 tovμQ = np.concatenate([np.linspace(0, 700, 200)[1:], np.linspace(700, 5000, 100)])
 
 def charge(mu, md, ms, μu, μd, μs, μe):
@@ -747,6 +747,12 @@ class Hybrid3FlavorModel(HybridModel):
         self.mσ = mσ
         self.quarkmodel = LSM3FlavorModel
 
+class Hybrid2FlavorConsistentModel(HybridModel):
+    def __init__(self, mσ=600):
+        self.name = "LSM2FC_APR"
+        self.mσ = mσ
+        self.quarkmodel = LSM2FlavorConsistentModel
+
 if __name__ == "__main__":
     # plot 3D potential for 2-flavor model with μu=μd
     """
@@ -870,4 +876,10 @@ if __name__ == "__main__":
     #Hybrid3FlavorModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True) # use tolD=0.001
     #Hybrid3FlavorModel(mσ=600).star(0.0008160778808593749, 111, plot=True, write=True)
     #Hybrid3FlavorModel(mσ=800).star(0.0012587499999999999, 27, plot=True, write=True)
+    #exit()
+
+    # consistent hybrid model (2-flavor consistent quark-meson omdel + APR hadronic EOS)
+    #Hybrid2FlavorConsistentModel(mσ=400).stars(107, (1e-5, 1e-2), write=True, plot=True) # use tolD=0.01
+    #Hybrid2FlavorConsistentModel(mσ=500).stars(84,  (1e-5, 1e-2), write=True, plot=True) # use tolD=0.01
+    #Hybrid2FlavorConsistentModel(mσ=600).stars(27,  (1e-5, 1e-2), write=True, plot=True) # use tolD=0.01
     #exit()

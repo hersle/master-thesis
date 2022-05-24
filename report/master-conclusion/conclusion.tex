@@ -37,15 +37,15 @@ Greater bag constants violate the strange matter hypothesis and generate only lo
 \end{tabular}}
 \end{table}
 
-In this thesis we have modeled quark stars using the MIT bag model and quark-meson model with two and three flavors,
+In this thesis we have modeled quark stars using the MIT bag model and the quark-meson model with two and three flavors,
 and finally hybrid stars by combining the quark-meson model and hadronic Akmal-Pandharipande-Ravenhall equation of state.
 The resulting maximum masses and corresponding radii are summarized in \cref{tab:master_conclusion:results}.
 In particular, with the quark-meson model we managed to create pure two-flavor quark stars with masses up to $M \leq 2.0 \, M_\odot$ and three-flavor quark stars up to $M \leq 1.8 \, M_\odot$.
-Using $m_\sigma = \SI{600}{\mega\electronvolt}$ in the three-flavor quark-meson model,
-we could also form a short range of stable hybrid stars up to $M \leq 1.9 \, M_\odot$ containing very small quark cores with mass $M_\text{core} \leq 0.02 M_\odot$,
-but denser hybrid stars were unstable against radial perturbations due to a discontinuous phase transition between the quark and hadron phases.
-With two-flavor quark cores,
-we obtained more massive stable hybrid stars up towards $M \leq 2.1 \, M_\odot$ using larger masses $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$.
+We could also form short ranges of stable hybrid stars up to $M \leq 2.1 \, M_\odot$.
+They contained very small quark cores no more massive than $0.12 M_\odot$ and $0.02 M_\odot$ with two and three flavors, respectively.
+This resonates with the general view that hybrid star quark cores are generally small. \cite{ref:quark_star_review} \TODO{cite ref 104 within?}
+Both three-flavor quark and hybrid stars are generally less massive than two-flavor stars due to their softer equations of state.
+Denser hybrid stars are unstable against radial perturbations due to a discontinuous phase transition between the quark and hadron phases.
 In short, we find it possible to model hybrid stars with small quark cores around the recent mass observations of the pulsars PSR J1614$-$2230, PSR J0348$+$0432 and PSR J0748$+$6620 around and above $2 M_\odot$,
 and pure quark stars of slightly lower mass.
 
@@ -57,13 +57,15 @@ many observed neutron stars could one day really turn out to be hybrid stars, if
 
 The parameter space of the quark-meson model is particularly plagued by the ``ad-hoc'' $\sigma$-meson,
 whose mass is known only within the large range $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{550}{\mega\electronvolt}$.
+Depending on its value, we saw that chiral symmetry restoration occurred in a rapid crossover for $m_\sigma \geq \SI{800}{\mega\electronvolt}$,
+but a discontinuous phase transition for $m_\sigma < \SI{800}{\mega\electronvolt}$.
 Moreover, we could only fit greater masses $m_\sigma \geq \SI{600}{\mega\electronvolt}$ to prevent the ground state of the grand potential from vanishing in vacuum.
 We nailed this problem down to the inconsistency of fitting parameters at tree-level to a potential that is calculated to one loop,
 and repeated our calculation with a consistently fit potential to learn that we could still trust our results,
-as if the inconsistently fit values of $m_\sigma$ corresponded to $\SI{200}{\mega\electronvolt}$ lower values.
-Such a consistently fit grand potential is currently only found for the two-flavor model, and it would be useful to find one also for the three-flavor model.
-In addition, we saw that chiral symmetry restoration occurred in a rapid crossover for $m_\sigma \geq \SI{800}{\mega\electronvolt}$,
-but a discontinuous phase transition for $m_\sigma < \SI{800}{\mega\electronvolt}$.
+as if inconsistently fit masses $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$
+corresponds to consistently fit masses $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{600}{\mega\electronvolt}$.
+Such a consistently fit grand potential is currently only found for the two-flavor model,
+and it would be useful to find one also for the three-flavor model.
 
 In earlier work, \cite{ref:lsm3f_compact_stars} have modeled pure quark stars with a vector meson-extended three-flavor quark meson model,
 and this work has since been incorporated into hybrid stars in \cite{ref:lsm3f_hybrid_stars}.
@@ -72,13 +74,25 @@ they find hybrid stars a maximum mass $M \lesssim 1.9 M_\odot$ in \cite[figure 8
 and we find the same maximum mass using similar parameters except $B = (\SI{111}{\mega\electronvolt})^4$.
 Quark stars have also been modeled with the Nambu-Jona-Lasinio model in \cite{ref:quark_star_njl} and generalized to hybrid stars in \cite{ref:hybrid_stars_njl}, for example.
 In \cite[figure 3]{ref:hybrid_stars_njl}, they also find maximum hybrid star masses $1.9 M_\odot \leq M \leq 2.1 M_\odot$ with reasonable parameter choices.
-Finally, the hybrid stars in \cite{ref:quark_hybrid_additional_ref} also lie in the band $2.0 M_\odot \leq M \leq 2.1 M_\odot$.
+Even \cite{ref:quark_hybrid_additional_ref} find hybrid stars in the band $2.0 M_\odot \leq M \leq 2.1 M_\odot$.
 Although these works use different models and hadronic equations of state,
-our results are in relatively good agreement.
+our results are in very good agreement.
 
 \section{Outlook}
 
-There are many possible directions for future work.
+One natural extension of our work would be to
+explore the parameter space more thoroughly.
+Here our philosophy has been to keep almost all parameters fixed,
+but vary the most uncertain parameter $m_\sigma$ and focus on the lowest corresponding stability-respecting $B$,
+because it generates greater maximum masses.
+A more thorough treatment could also vary the quark masses $m_u$, $m_d$ and $m_s$,
+other meson masses like $m_\pi$ and $m_K$ and use larger bag constants $B$.
+Larger bag constants would particularly be of interest in hybrid stars,
+because they would generate longer branches of stable stars, although less massive.
+For example, \cite{ref:lsm3f_compact_stars} and \cite{ref:lsm3f_hybrid_stars}
+make such explorations of the parameter space for quark and hybrid stars
+using a variation of our model.
+\TODO{Just Do It?}
 
 Our treatment of bosons to tree-level and fermions to one loop was inconsistent in terms of loops,
 but consistent in the large-$N_c$ approximation scheme.
@@ -92,8 +106,10 @@ Different and more sophisticated effective models could also be examined.
 For example, confinement could be incorporated with Polyakov-loop extended quark-meson models (PQM models, see for example \cite{ref:pqm_2f,ref:pqm_3f,ref:master_folkestad}) and NJL models (PNJL models, see for example \cite{ref:pnjl_2f,ref:pnjl_3f,ref:pnjl_3f_zeroT}).
 It would also be interesting to see the effects of modeling the color superconducting phase of the phase diagram in \cref{fig:qcd:phase_diagram}.
 
-More effort could also be put into studying hybrid stars by handling the phase transition in a more careful manner,
-for example using interpolation techniques like those explained in \cite{ref:quark_star_review}.
+More effort could also be put into handling the phase transition in the hybrid stars in a more careful manner.
+For example, one could use the interpolation techniques explained in \cite{ref:quark_star_review}
+near the intersection point of the phase transition,
+where both the quark and hadronic equations of state are reliable.
 
 One could also make more accurate calculations at nonzero temperature,
 explore the parameter space of the bag constant, quark and meson masses in a detailed manner,
