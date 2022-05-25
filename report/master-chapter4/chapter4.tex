@@ -207,7 +207,7 @@ with steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hybrid:con
 	xlabel = {$P \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	xmin=0, ymin=0, xmax=0.5, ymax=3.5, restrict x to domain=-1:+4, restrict y to domain=-1:+4,
 	legend columns=1, legend style={anchor=north, at={(0.5, 0.98)}},
-	grid = both, minor grid style = {ultra thin},
+	grid = both, minor grid style = {ultra thin, gray!10!white},
 ];
 \nextgroupplot[
 	title = {Two-flavor equations of state},
@@ -232,7 +232,7 @@ with steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hybrid:con
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:hybrid:eos-all}%
-	Six hybrid equations of state constructed the one in \cref{fig:hybrid:eos}
+	Six hybrid equations of state constructed like the one in \cref{fig:hybrid:eos}
 	using the three parameter sets that generated the most massive quark stars
 	with the two-flavor and three-flavor quark-meson models.
 }
@@ -248,6 +248,8 @@ Due to the jump in density,
 a discontinuous phase transition develops at $P = \SI{0.2}{\giga\electronvolt\per\femto\meter\cubed}$
 accompanied by a drop $\Delta \epsilon = \SI{0.3}{\giga\electronvolt\per\femto\meter\cubed}$ in energy density.
 The transition takes the form of a line of constant vapor pressure, as in a Maxwell construction.
+The construction is virtually identical with the two-flavor quark-meson model,
+only with a smaller drop $\Delta \epsilon$.
 
 The biggest problem with this rough splicing method is that it assumes the equations of state for both phases to be valid near the intersection point.
 In reality it is unreliable to compare them across the entire range of densities from hadronic to quark matter.
@@ -278,7 +280,7 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 
 \section{Stellar solutions}
 
-\begin{figure}[b!]
+\begin{figure}[t!]
 \centering
 
 \tikzsetnextfilename{hybrid-2-flavor-mass-radius}
@@ -561,7 +563,7 @@ we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius}:
       Since the transition pressure $P^0$
       is almost equal with two and three flavors,
       the drop $\Delta \epsilon$ is greater in the three-flavor model and explains its shorter stable hybrid branches.
-      This shows that criterion \eqref{eq:hybrid:stability_criterion} is consistent with our findings.
+      This shows that criterion \eqref{eq:hybrid:stability_criterion} is consistent with our findings. \TODO{les}
 \item Like before, we focus on the lowest bag constants respecting the lower bounds \eqref{eq:lsm:bag_lower_bound}
       because they generate more interesting results with longer branches of stable hybrid stars.
       For a \emph{fixed} value of $m_\sigma$,
@@ -575,20 +577,49 @@ we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius}:
 \item The maximum mass stars live in the neighborhood of the heavy pulsars PSR J0348$+$0432, PSR J1614$-$2230 and PSR J0740$+$6620 and are certainly compatible with observations.
 \end{itemize}
 
-We take a detailed look at the two maximum mass stars
-on top of the longest stable hybrid branches in \cref{fig:hybrid:star},
+We inspect the two maximum mass stars on the hybrid branches in \cref{fig:hybrid:star}:
 \begin{itemize}
 \item In both cases, the quark core has a central baryon density $n_B = 6 n_\text{sat}$.
-      With two flavors, the core extends $R' = \SI{3.1}{\kilo\meter}$ and has a mass of $0.12 M_\odot = 0.06 M$.
-      With three flavors, the core radius $R' = \SI{1.6}{\kilo\meter}$ is almost halved and the mass $0.02 M_\odot = 0.01 M$ is cut in six.
+      With $N_f=\{2,3\}$, it extends $R' = \{3.1,1.6\} \, \si{\kilo\meter}$ and has a mass $M_\text{core} = \{0.12,0.02\} \, M_\odot$.
       Like the pure quark stars in \cref{chap:mit,chap:lsm2f,chap:lsm3f},
       two-flavor quark cores in hybrid stars are generally larger and heavier than three-flavor ones.
-\item We see that the drop $\Delta \epsilon$ and $\Delta n_B$ in energy density and baryon density 
-      is only about half as high in the two-flavor stars compared to the three-flavor stars.
-\item The hadronic phase dominates, 
-      making up more than $\SI{98.0}{\percent}$ of the star's volume and $\SI{94}{\percent}$ of its mass in the two-flavor case,
-      and respectively $\SI{99.7}{\percent}$ and $\SI{99.0}{\percent}$ with three flavors.
+\item We again see that the drops $\Delta \epsilon$ and $\Delta n_B$ in energy density and baryon density 
+      are notably lower in the two-flavor hybrid stars.
+\item The hadronic phase dominates with both $N_f=\{2,3\}$, 
+      making up $\{98.0,99.7\} \, \si{\percent}$ of the stars' volume and $\{94,99\} \, \si{\percent}$ of their masses.
 \end{itemize}
+
+\begin{figure}[t!]
+\centering
+\tikzsetnextfilename{hybrid-flavor-eos-consistent}
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size={1 by 1}, vertical sep=1cm},
+	width=8cm, height=7cm,
+	minor tick num=9,
+	xlabel = {$P \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+	xmin=0, ymin=0, xmax=0.5, ymax=3.5, restrict x to domain=-1:+4, restrict y to domain=-1:+4, xtick distance=0.1,
+	legend columns=1,
+	legend style={anchor=north, at={(0.5, 0.98)}},
+	grid = both, minor grid style = {ultra thin, gray!10!white},
+];
+\nextgroupplot[
+	title = {Consistently fit two-flavor equations of state}, title style={text width=12cm},
+	ylabel = {$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+];
+\addplot [red, solid] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_400.dat};
+\addlegendentry{$m_\sigma=\SI{400}{\mega\electronvolt}$, $B^\frac14 = \SI{107}{\mega\electronvolt}$};
+\addplot [darkgreen, dashed] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_500.dat};
+\addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{84}{\mega\electronvolt}$};
+\addplot [blue, dotted] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_600.dat};
+\addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{27}{\mega\electronvolt}$};
+\end{groupplot}
+\end{tikzpicture}
+\caption{\label{fig:hybrid:eos-consistent}%
+	Hybrid equations of state like in \cref{fig:hybrid:eos-all}
+	with the consistently fit two-flavor quark-meson model from \cref{sec:lsm2f:refinement}.
+}
+\end{figure}
 
 \begin{figure}
 \centering
@@ -633,6 +664,7 @@ on top of the longest stable hybrid branches in \cref{fig:hybrid:star},
 \draw [Latex-] (11.45,2.09) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
 \draw [Latex-] (11.55,2.01) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{500}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{84}{\mega\electronvolt}$};
 \draw [Latex-] (11.65,1.98) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{400}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{107}{\mega\electronvolt}$};
+\node[scale=0.75] at (11.216, 1.996) {\goldenstar};
 
 \nextgroupplot[
 	width=5cm, 
@@ -656,31 +688,199 @@ on top of the longest stable hybrid branches in \cref{fig:hybrid:star},
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_400_B14_107.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_500_B14_84.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_600_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\node[scale=0.75] at (11.216, 1.996) {\goldenstar};
 
 \end{groupplot}
-\node (title) at ($(group c1r1.north west)!0.5!(group c2r1.north east)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {Consistently fit two-flavor mass-radius solutions};
+\node (title) at ($(group c1r1.north west)!0.5!(group c2r1.north east)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}, align=center] {Consistently fit two-flavor hybrid star mass-radius solutions};
 \end{tikzpicture}
 \caption{\label{fig:hybrid:mass-radius-consistent}%
-	Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$,
-	obtained with the hybrid equations of state like those in \cref{fig:hybrid:eos},
-	except with the consistently fit two-flavor equations of state from \cref{sec:lsm2f:refinement} in the quark core,
-	using different values of $m_\sigma$ and the corresponding lowest bag constants $B$ above the lower bound \eqref{eq:lsm:bag_lower_bound_ref} in the quark-meson model.
-	The colored bands show measured masses of three heavy pulsars from \cite{ref:antoniadis,ref:arzoumanian,ref:fonseca}.
+	Mass-radius solutions like in \cref{fig:hybrid:mass-radius}
+	with the consistently fit two-flavor hybrid equations of state from \cref{fig:hybrid:eos-consistent}.
 }
 \end{figure}
 
-\TODO{continue here}
+\begin{figure}
+\centering
+\tikzsetnextfilename{hybrid-flavor-extreme-star-consistent}
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size={2 by 2}, horizontal sep=1.2cm, vertical sep=0.4cm},
+	width=8cm, height=6cm,
+	ylabel style={yshift=-0.2cm},
+	enlargelimits=false, xtick distance=1.0, minor xtick={0,0.1,...,11.6},
+	legend cell align=left,
+]
+\nextgroupplot[
+	xticklabels={,,},
+	ymax=1.5, ytick distance=0.5, minor y tick num=4,
+	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$ },
+];
+\addplot+ [blue] table [x=r, y=epsilon] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$\epsilon$};
+\addplot+ [red] table [x=r, y=P] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$P$};
+\nextgroupplot[
+	ylabel=$m \, / \, M_\odot$,
+	xticklabels={,,},
+	ymax=2.1, ytick distance=0.5, minor y tick num=4,
+];
+\addplot+ [black] table [x=r, y=m] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
+\nextgroupplot[
+	xlabel=$r \, / \, \si{\kilo\meter}$,
+	ylabel=$\mu_B \, / \, \si{\giga\electronvolt}$,
+	ymin=0.9, ymax=1.5, ytick distance=0.1, minor y tick num=4, % restrict y to domain=0.8:1.6,
+];
+\addplot+ [black] table [x=r, y expr={\thisrow{muQ}*3.0/1000.0}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
+\nextgroupplot[
+	xlabel=$r \, / \, \si{\kilo\meter}$,
+	ylabel=$n_i \, / \, n_\text{sat}$,
+	ymax=15, ytick distance=5, minor y tick num=4,
+];
+\addplot+ [red, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=nu] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_u$};
+\addplot+ [darkgreen, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=nd] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_d$};
+%\addplot+ [purple, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=ns] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_s$};
+%\addplot+ [blue, x filter/.expression={\thisrow{r}<3.22}] table [x=r, y=ne] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_e$};
+\addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
+\addplot+ [black, solid, forget plot, x filter/.expression={\thisrow{r}>=3.22 ? x : nan}] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
+% cheat legend
+\addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_B$};
+\end{groupplot}
+\node (title) at ($(group c1r1.north west)!0.5!(group c2r1.north east)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}, align=center] {\goldenstar Consistently fit two-flavor maximum mass star\\($m_\sigma=\SI{400}{\mega\electronvolt}$, $B^\frac14 = \SI{107}{\mega\electronvolt}$, $P_c=10^{34.59} \, \si{\pascal}$)};
+\end{tikzpicture}
+\caption{\label{fig:hybrid:star-consistent}%
+	Radial profiles like in \cref{fig:hybrid:star} for the maximum mass star \goldenstar in \cref{fig:hybrid:mass-radius-consistent}.
+}
+\end{figure}
 
-Finally, we pay one last visit to our consistently fit two-flavor quark-meson model in \cref{sec:lsm2f:refinement}.
+\iffalse
+\begin{figure}
+\centering
+\tikzsetnextfilename{hybrid-2-flavor-consistent-super}
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size={2 by 3}},
+	width=8cm, height=7cm,
+	minor tick num=9,
+	/tikz/declare function={e0 = 4.266500881855304e+37;},
+]
+\nextgroupplot[
+	title = {Consistently fit two-flavor equations of state}, title style={text width=12cm},
+	ylabel = {$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+	xmin=0, ymin=0, xmax=0.5, ymax=3.5, restrict x to domain=-1:+4, restrict y to domain=-1:+4, xtick distance=0.1,
+	grid = both, minor grid style = {ultra thin},
+];
+\addplot [red, solid] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_400.dat};
+\addlegendentry{$m_\sigma=\SI{400}{\mega\electronvolt}$, $B^\frac14 = \SI{107}{\mega\electronvolt}$};
+\addplot [darkgreen, dashed] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_500.dat};
+\addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{84}{\mega\electronvolt}$};
+\addplot [blue, dotted] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_600.dat};
+\addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{27}{\mega\electronvolt}$};
+
+\nextgroupplot[
+	point meta=explicit, point meta min=33, point meta max=36,
+	%colorbar horizontal, colormap name=plasmarev, colorbar style={xlabel=$\log_{10} (P_c \, / \, \si{\pascal})$, xtick distance=1, minor x tick num=9, at={(0.5,1.03)}, anchor=south, xticklabel pos=upper},
+	xmin=10, xmax=15, ymin=0.25, ymax=2.75,
+	legend pos = north west, legend cell align = right, legend columns = 2,
+]
+\addplot [name path=J0748lo, draw=none, forget plot, domain=0:40] {2.08 - 0.07};
+\addplot [name path=J0748hi, draw=none, forget plot, domain=0:40] {2.08 + 0.07};
+\addplot [red, opacity=0.4, forget plot] fill between [of=J0748lo and J0748hi]; % \addlegendentry{PSR J0748$+$6620};
+
+\addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
+\addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
+\addplot [green, opacity=0.4, forget plot] fill between [of=J0348lo and J0348hi]; % \addlegendentry{PSR J0348$+$0432};
+
+\addplot [name path=J1614lo, draw=none, forget plot, domain=0:40] {1.91 - 0.02};
+\addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
+\addplot [yellow, opacity=0.4, forget plot] fill between [of=J1614lo and J1614hi]; % \addlegendentry{PSR J1614$-$2230};
+
+\addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
+\addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_400_B14_107.dat}; \addlegendentry{hybrid stars};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_500_B14_84.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_600_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\draw [Latex-] (11.35,2.09) -- (11.8,2.20) node [anchor=west] {$\{m_\sigma,B^\frac14\}=\{600,27\} \, \si{\mega\electronvolt}$};
+\draw [Latex-] (11.45,2.00) -- (11.8,2.00) node [anchor=west] {$\{m_\sigma,B^\frac14\}=\{500,84\} \, \si{\mega\electronvolt}$};
+\draw [Latex-] (11.50,1.96) -- (11.8,1.80) node [anchor=west] {$\{m_\sigma,B^\frac14\}=\{400,107\} \, \si{\mega\electronvolt}$};
+\coordinate (zoomplot) at (13.0, 0.2);
+\node[scale=0.75] at (11.216, 1.996) {\goldenstar};
+
+\nextgroupplot[
+	enlargelimits=false, xtick distance=1.0, minor xtick={0,0.1,...,11.6},
+	ymax=1.5,
+]
+\addplot+ [blue] table [x=r, y=epsilon] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$\epsilon$};
+\addplot+ [red] table [x=r, y=P] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$P$};
+
+\nextgroupplot[
+	enlargelimits=false, xtick distance=1.0, minor xtick={0,0.1,...,11.6},
+	ylabel=$m \, / \, M_\odot$,
+	xticklabels={,,},
+	ymax=2.1, ytick distance=0.5, minor y tick num=4,
+];
+\addplot+ [black] table [x=r, y=m] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
+
+\nextgroupplot[
+	enlargelimits=false, xtick distance=1.0, minor xtick={0,0.1,...,11.6},
+	xlabel=$r \, / \, \si{\kilo\meter}$,
+	ylabel=$\mu_B \, / \, \si{\giga\electronvolt}$,
+	ymin=0.9, ymax=1.5, ytick distance=0.1, minor y tick num=4, % restrict y to domain=0.8:1.6,
+];
+\addplot+ [black] table [x=r, y expr={\thisrow{muQ}*3.0/1000.0}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
+
+\nextgroupplot[
+	enlargelimits=false, xtick distance=1.0, minor xtick={0,0.1,...,11.6},
+	xlabel=$r \, / \, \si{\kilo\meter}$,
+	ylabel=$n_i \, / \, n_\text{sat}$,
+	ymax=15, ytick distance=5, minor y tick num=4,
+];
+\addplot+ [red, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=nu] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_u$};
+\addplot+ [darkgreen, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=nd] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_d$};
+%\addplot+ [purple, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=ns] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_s$};
+%\addplot+ [blue, x filter/.expression={\thisrow{r}<3.22}] table [x=r, y=ne] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_e$};
+\addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
+\addplot+ [black, solid, forget plot, x filter/.expression={\thisrow{r}>=3.22 ? x : nan}] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
+% cheat legend
+\addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_B$};
+\end{groupplot}
+\node [anchor=south west] at (zoomplot) {
+	\begin{tikzpicture}[
+		trim axis left, trim axis right,
+		/tikz/declare function={e0 = 4.266500881855304e+37;},
+	]
+	\begin{axis}[
+		width=3cm, height=3cm,
+		ymin=1.85, ymax=2.15, xmin=11, xmax=12,
+		xtick distance=1, ytick distance=0.1,
+	]
+	\addplot [name path=J0748lo, draw=none, forget plot, domain=0:40] {2.08 - 0.07};
+	\addplot [name path=J0748hi, draw=none, forget plot, domain=0:40] {2.08 + 0.07};
+	\addplot [red, opacity=0.4] fill between [of=J0748lo and J0748hi];
+
+	\addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
+	\addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
+	\addplot [green, opacity=0.4] fill between [of=J0348lo and J0348hi];
+
+	\addplot [name path=J1614lo, draw=none, forget plot, domain=0:40] {1.91 - 0.02};
+	\addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
+	\addplot [yellow, opacity=0.4] fill between [of=J1614lo and J1614hi];
+
+	\addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat};
+	\addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_400_B14_107.dat};
+	\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_500_B14_84.dat};
+	\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_600_B14_27.dat};
+	\end{axis}
+	\end{tikzpicture}
+};
+\end{tikzpicture}
+\end{figure}
+\fi
+
+For completeness and to round everything off,
+we pay one last visit to our consistently fit two-flavor quark-meson model in \cref{sec:lsm2f:refinement}.
 Recall that the quark star results with inconsistently fit $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$
 practically speaking coincided with those from consistently fit $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{600}{\mega\electronvolt}$,
 so we should expect the same to hold when using this model for the quark core in a hybrid star.
 Using the slightly modified lower bag constant bounds \eqref{eq:lsm:bag_lower_bound_ref} that we found with the consistently fit model,
-we repeat our calculations and find the results in \cref{fig:hybrid:consistent}
-we repeat the hybrid star construction and find the results in \cref{fig:hybrid:mass-radius-consistent}.
-Indeed, they agree very well with the inconsistently fit grand potential for $\SI{200}{\mega\electronvolt}$ larger values of $m_\sigma$.
-
-\TODO{create one super-figure with consistent fitting, including EOS, MR and radial profiles}
+we repeat our calculations and find the results in \cref{fig:hybrid:eos-consistent,fig:hybrid:mass-radius-consistent,fig:hybrid:star-consistent}.
+Indeed, we see that they agree very well with the results using inconsistently fit $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$.
 
 \section{Summary}
 
@@ -690,7 +890,7 @@ Using $\sigma$-meson masses $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI
 we saw that the hadronic mass-radius relation developed very short branches of hybrid stars
 up to maximum masses $2.00 M_\odot \leq M \leq 2.09$ with two flavors in the core
 and $1.90 M_\odot \leq M \leq 2.07 \leq M_\odot$ with three flavors.
-Generally speaking, the two-flavor cores are both more massive and likely to be stable than three-flavor cores.
+In general, the two-flavor cores are both more massive and stable than three-flavor cores.
 This overlaps with recent mass measurements of the heavy pulsars PSR J0348$+$0432, PSR J1614$-$2230 and PSR J0740$+$6620 around and above the $2 M_\odot$-limit.
 After the maximum mass star, a discontinuous transition between the two phases destabilizes the stars.
 These results are in good agreement with hybrid stars modeled with the hadronic Walecka model and Nambu-Jona-Lasinio model for quark matter by \cite{ref:hybrid_stars_njl}.
