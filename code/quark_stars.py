@@ -676,6 +676,7 @@ class HybridModel(Model):
         P0 = P1i(μB0)
         print(f"μB0 = {μB0}")
         print(f"P0  = {P0} = 10^({np.log10(P0*ϵ0)}) Pa")
+        print(f"Δϵ  = {ϵ2int(P0)-np.interp(P0, P1, ϵ1) * ϵ0 / (GeV/fm**3)}")
 
         # compute pressure for larger values to increase interpolation range
         P2 = np.linspace(P0, 1e-1, N-len(P1))
@@ -863,6 +864,8 @@ if __name__ == "__main__":
 
     # hybrid model (2-flavor quark-meson model + APR hadronic EOS)
     #Hybrid2FlavorModel(mσ=600).eos(B=111**4, plot=True, write=True)
+    #Hybrid2FlavorModel(mσ=700).eos(B=68**4, plot=True, write=True)
+    #Hybrid2FlavorModel(mσ=800).eos(B=27**4, plot=True, write=True)
     #Hybrid2FlavorModel(mσ=600).stars(111, (1e-5, 1e-2), write=True) # use tolD=0.01
     #Hybrid2FlavorModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True) # use tolD=0.01
     #Hybrid2FlavorModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True) # use tolD=0.01
@@ -871,6 +874,8 @@ if __name__ == "__main__":
 
     # hybrid model (3-flavor quark-meson model + APR hadronic EOS)
     #Hybrid3FlavorModel(mσ=600).eos(B=111**4, plot=True, write=True)
+    #Hybrid3FlavorModel(mσ=700).eos(B=68**4, plot=True, write=True)
+    #Hybrid3FlavorModel(mσ=800).eos(B=27**4, plot=True, write=True)
     #Hybrid3FlavorModel(mσ=600).stars(111, (1e-5, 1e-2), write=True) # use tolD=0.001
     #Hybrid3FlavorModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True) # use tolD=0.001
     #Hybrid3FlavorModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True) # use tolD=0.001

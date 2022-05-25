@@ -186,6 +186,45 @@ with steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hybrid:con
 }
 \end{figure}
 
+\begin{figure}
+\centering
+\tikzsetnextfilename{hybrid-flavor-eos-all}
+\begin{tikzpicture}
+\begin{groupplot}[
+	group style={group size={2 by 1}, vertical sep=1cm},
+	width=8cm, height=7cm,
+	minor tick num=9,
+	xlabel = {$P \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+	xmin=0, ymin=0, xmax=0.5, ymax=3.5, restrict x to domain=-1:+4, restrict y to domain=-1:+4,
+	legend columns=1, legend style={anchor=north, at={(0.5, 0.98)}},
+];
+\nextgroupplot[
+	title = {Two-flavor equations of state},
+	ylabel = {$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
+];
+\addplot [red, solid] table [x=P, y=epsilon] {../code/data/LSM2F_APR/eos_sigma_600.dat};
+\addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$};
+\addplot [darkgreen, dashed] table [x=P, y=epsilon] {../code/data/LSM2F_APR/eos_sigma_700.dat};
+\addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{68}{\mega\electronvolt}$};
+\addplot [blue, dotted] table [x=P, y=epsilon] {../code/data/LSM2F_APR/eos_sigma_800.dat};
+\addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{27}{\mega\electronvolt}$};
+
+\nextgroupplot[
+	title = {Three-flavor equations of state},
+];
+\addplot [red, solid] table [x=P, y=epsilon] {../code/data/LSM3F_APR/eos_sigma_600.dat};
+\addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$};
+\addplot [darkgreen, dashed] table [x=P, y=epsilon] {../code/data/LSM3F_APR/eos_sigma_700.dat};
+\addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{68}{\mega\electronvolt}$};
+\addplot [blue, dotted] table [x=P, y=epsilon] {../code/data/LSM3F_APR/eos_sigma_800.dat};
+\addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{27}{\mega\electronvolt}$};
+\end{groupplot}
+\end{tikzpicture}
+\caption{\label{fig:hybrid:eos-all}%
+\TODO{caption}
+}
+\end{figure}
+
 \Cref{fig:hybrid:eos} shows the step-by-step construction of two hybrid equation of state that joins the quark-meson model with two or three flavors with the hadronic APR equation of state.
 In this case we have used $m_\sigma=\SI{600}{\mega\electronvolt}$ and $B^\frac14 = \SI{111}{\mega\electronvolt}$ in the quark-meson model.
 For example, in the three-flavor case, the pressures intersect at $\mu_B \approx \SI{1300}{\mega\electronvolt}$, which corresponds to a density $n_B \approx 4 n_\text{sat}$ in the hadronic phase and $n_B \approx 5.5 n_\text{sat}$ in the quark phase.
