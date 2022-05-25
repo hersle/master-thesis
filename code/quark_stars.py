@@ -678,6 +678,11 @@ class HybridModel(Model):
         print(f"P0  = {P0} = 10^({np.log10(P0*ϵ0)}) Pa")
         print(f"Δϵ  = {ϵ2int(P0)-np.interp(P0, P1, ϵ1) * ϵ0 / (GeV/fm**3)}")
 
+        # should it be stable? see ref:hybrid_star_stability_criterion, equation 15
+        lhs = ϵ2int(P0)-np.interp(P0, P1, ϵ1)
+        rhs = np.interp(P0,P1,ϵ1)/2+3/2*P0
+        print(f"Should be stable? {lhs} < {rhs} ? {lhs < rhs}")
+
         # compute pressure for larger values to increase interpolation range
         P2 = np.linspace(P0, 1e-1, N-len(P1))
         ϵ2 = ϵ2int(P2)

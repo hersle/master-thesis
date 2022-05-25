@@ -124,8 +124,8 @@ the preferable phase is the one with the lower grand potential $\Omega = -P$.
 \addplot+ [red, solid, very thick] table [x=P,y=epsilon2] {../code/data/LSM2F_APR/eos_sigma_600.dat};
 \addplot+ [blue!50!cyan, solid, very thick] table [x=P1,y=epsilon1] {../code/data/LSM2F_APR/eos_sigma_600.dat};
 \addplot+ [black, dashed, very thick] table [x=P,y=epsilon] {../code/data/LSM2F_APR/eos_sigma_600.dat};
-\node at (0.241, 0.762) [circle, fill, inner sep=1.5pt, label={[anchor=north west, font=\small]below:$\big(P^0,\epsilon_H(P^0)\big)$}] {};
-\node at (0.241, 0.953) [circle, fill, inner sep=1.5pt, label={[anchor=south east, font=\small]above:$\big(P^0,\epsilon_Q(P^0)\big)$}] {};
+\node at (0.241, 0.762) [circle, fill, inner sep=1.5pt, label={[anchor=north west, font=\small]below:$\big(P^0,\epsilon_H^0\big)$}] {};
+\node at (0.241, 0.953) [circle, fill, inner sep=1.5pt, label={[anchor=south east, font=\small]above:$\big(P^0,\epsilon_Q^0\big)$}] {};
 \end{groupplot}
 \end{tikzpicture}
 \end{figure}
@@ -173,8 +173,8 @@ the preferable phase is the one with the lower grand potential $\Omega = -P$.
 \addplot+ [red, solid, very thick] table [x=P,y=epsilon2] {../code/data/LSM3F_APR/eos_sigma_600.dat};
 \addplot+ [blue!50!cyan, solid, very thick] table [x=P1,y=epsilon1] {../code/data/LSM3F_APR/eos_sigma_600.dat};
 \addplot+ [black, dashed, very thick] table [x=P,y=epsilon] {../code/data/LSM3F_APR/eos_sigma_600.dat};
-\node at (0.202, 0.713) [circle, fill, inner sep=1.5pt, label={[anchor=north west, font=\small]below:$\big(P^0,\epsilon_H(P^0)\big)$}] {};
-\node at (0.202, 1.020) [circle, fill, inner sep=1.5pt, label={[anchor=south east, font=\small]above:$\big(P^0,\epsilon_Q(P^0)\big)$}] {};
+\node at (0.202, 0.713) [circle, fill, inner sep=1.5pt, label={[anchor=north west, font=\small]below:$\big(P^0,\epsilon_H^0\big)$}] {};
+\node at (0.202, 1.020) [circle, fill, inner sep=1.5pt, label={[anchor=south east, font=\small]above:$\big(P^0,\epsilon_Q^0\big)$}] {};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:hybrid:eos}%
@@ -197,6 +197,7 @@ with steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hybrid:con
 	xlabel = {$P \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	xmin=0, ymin=0, xmax=0.5, ymax=3.5, restrict x to domain=-1:+4, restrict y to domain=-1:+4,
 	legend columns=1, legend style={anchor=north, at={(0.5, 0.98)}},
+	grid = both, minor grid style = {ultra thin},
 ];
 \nextgroupplot[
 	title = {Two-flavor equations of state},
@@ -221,7 +222,9 @@ with steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hybrid:con
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:hybrid:eos-all}%
-\TODO{caption}
+	Six equations of state constructed like those in \cref{fig:hybrid:eos}
+	with the parameters that generated the most massive quark stars
+	in \cref{chap:lsm2f,chap:lsm3f}.
 }
 \end{figure}
 
@@ -230,7 +233,15 @@ In this case we have used $m_\sigma=\SI{600}{\mega\electronvolt}$ and $B^\frac14
 For example, in the three-flavor case, the pressures intersect at $\mu_B \approx \SI{1300}{\mega\electronvolt}$, which corresponds to a density $n_B \approx 4 n_\text{sat}$ in the hadronic phase and $n_B \approx 5.5 n_\text{sat}$ in the quark phase.
 Due to the jump in density, a discontinuous phase transition between the two develops at $P = \SI{0.2}{\giga\electronvolt\per\femto\meter\cubed}$.
 The transition takes the form of a line of constant vapor pressure, as in the Maxwell construction.
-Note that the phase transition is less dramatic with only two flavors in the quark phase.
+
+In \cref{fig:hybrid:eos-all} we gather all six equations of state
+for $N_f = \{2,3\}$ and $m_\sigma = \{600,700,800\} \, \si{\mega\electronvolt}$
+and the corresponding lowest bag constants satisfying the lower bound \eqref{eq:lsm:bag_lower_bound}.
+These are the parameters we considered in earlier chapters that generated the most massive quark stars.
+Note that the phase transition generally becomes more dramatic
+with three flavors in the quark phase
+and increasing $m_\sigma$,
+accompanied by decreasing $B$.
 
 The biggest problem with this rough splicing method is that it assumes the equations of state for both phases to be valid near the intersection point.
 In reality it is unreliable to compare them across the entire range of densities from hadronic to quark matter.
@@ -516,12 +527,22 @@ we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius}:
 \item After onset of the quark phase, the mass-radius curve develops new branches below the maximum hadron-only neutron star
       with maximum masses $2.00 M_\odot \leq M \leq 2.09 M_\odot$ with two flavors in the core
       and $1.90 M_\odot \leq M \leq 2.07 M_\odot$ with three flavors.
-\item At first glance, the hybrid branches seem to plummet in mass immediately after diverging from the mass-increasing hadronic curve,
+\item At first glance, the hybrid branches in the left panel seem to plummet in mass immediately after diverging from the mass-increasing hadronic curve,
       indicating that all the hybrid stars are unstable.
-      However, close inspection of the right panel shows that the nosedive is preceded by a small segment of mass-increasing and thus stable hybrid stars.
-      This stable segment is longer in the two-flavor model and for smaller values of $m_\sigma$;
-      in the three-flavor model it is only visible for the lowest value $m_\sigma = \SI{600}{\mega\electronvolt}$.
-      This supports the general claim in \cite{ref:quark_star_review} that quark cores are rare and have a very small size and mass, if at all existent.
+      However, close inspection of the right panel shows that the dive is preceded by a small segment of mass-increasing and thus stable hybrid stars.
+      This stable segment is longer in the two-flavor model and for smaller values of $m_\sigma$,
+      and such a segment is visible in all six branches, even if very tiny.
+      This supports the general claim in \cite{ref:quark_star_review} that quark cores are rare and very small, if existent.
+\item In fact, \cite[equation 15]{ref:hybrid_star_stability_criterion} shows that under general circumstances and no matter how small the quark core is,
+      the energy density drop $\Delta \epsilon = \epsilon_Q^0 - \epsilon_H^0$ in the phase transition
+      destabilizes the beginning of the hybrid branch \emph{if and only if}
+      \begin{equation}
+          \Delta \epsilon > \frac12 \epsilon_H^0 + \frac32 P^0.
+      \label{eq:hybrid:stability_criterion}
+      \end{equation}
+      It is straightforward to verify that \emph{none} of the six equations of state in \cref{fig:hybrid:eos-all} satisfy this criterion,
+      although the three-flavor equation of state with $m_\sigma=\SI{800}{\mega\electronvolt}$ comes close.
+      This criterion is therefore consistent with our hybrid branches.
 \item Like before, we focus on the lowest bag constants respecting the lower bounds \eqref{eq:lsm:bag_lower_bound}
       because they generate more interesting results with longer branches of stable hybrid stars.
       For a fixed value of $m_\sigma$,
@@ -529,6 +550,7 @@ we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius}:
       moving its intersection with the hadronic curve to greater baryon chemical potentials $\mu_B^0$ and pressures $P^0$.
       The hybrid mass-radius curve would then branch off the hadronic curve closer to the maximum mass,
       where we see that the stable hybrid segment shortens.
+      Alternatively, this can be understood from the stability criterion \eqref{eq:hybrid:stability_criterion}.
       This effect is shown clearly in \cite[figure 14]{ref:lsm3f_hybrid_stars}.
 \item The maximum mass stars live in the neighborhood of the heavy pulsars PSR J0348$+$0432, PSR J1614$-$2230 and PSR J0740$+$6620 and are certainly compatible with observations.
 \end{itemize}
