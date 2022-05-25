@@ -1,53 +1,61 @@
 \chapter{A hybrid quark-hadron model}
 \label{chap:hybrid}
 
-\begin{figure}[th!]
+\begin{figure}[bh!]
 \centering
 \tikzsetnextfilename{hybrid-star-illustration}
 \begin{tikzpicture}
-\draw[draw=black, fill=blue!  0!purple, circular glow={fill=blue!0!purple}] circle [radius=90pt]; % \node [rotate=45] at (135:37.5pt) {H}; \node [] at ( 90:37.5pt) {$\cdots$}; \node [, rotate=-45] at (45:37.5pt) {Fe};
-\node [align=center] at (0pt, 65pt) {hadronic phase\\($n,p,\ldots$)};
+\draw[draw=black, fill=blue!  0!purple, circular glow={fill=blue!0!purple}] circle [radius=80pt]; % \node [rotate=45] at (135:37.5pt) {H}; \node [] at ( 90:37.5pt) {$\cdots$}; \node [, rotate=-45] at (45:37.5pt) {Fe};
+\node [align=center] at (0pt, 55pt) {hadronic phase\\($n,p,\ldots$)};
 
-\draw[draw=none, fill=green!60!black, circular glow={fill=green!60!black}] circle [radius=40pt];
+\draw[draw=none, fill=green!60!black, circular glow={fill=green!60!black}] circle [radius=30pt];
 \node [align=center] at (0pt, 0pt) {quark phase\\($u,d,s$)};
 
-\draw[draw=none] (-120pt, -120pt) rectangle (+120pt, +120pt);
+\draw[draw=none] (-100pt, -100pt) rectangle (+100pt, +100pt);
 \end{tikzpicture}
 \caption{\label{fig:hybrid:illustration}%
-	A hybrid star composed of a core with strange quark matter surrounded by a hadronic phase.
-	Quark cores are thought to be very small compared to the hadronic region, and the drawing is not to scale in this regard!
+	A hybrid star with a strange quark core surrounded by a hadronic envelope.
+	Compared to the hadronic phase,
+	quark cores are thought to be much smaller than shown here.
 }
 \end{figure}
 
-In the preceding chapters we have modeled stars consisting of deconfined quark matter all the way from the center to the surface.
-These models have accounted for the chiral symmetry of quantum chromodynamics,
-but did not model confinement of quarks in hadrons.
-As one approaches the surface of a neutron star,
-the effects of confinement becomes increasingly important,
-making hadrons the essential components instead of individual quarks.
-It is therefore regarded as unlikely to find pure quark stars in nature.
+In the preceding chapters we modeled pure quark stars
+consisting of deconfined quark matter all the way from the center to the surface.
+These models accounted for the chiral symmetry breaking of quantum chromodynamics.
+They also featured a bag constant
+that generally allowed for negative pressure in the equation of state,
+therefore often interpreted as a confinement mechanism.
+However, the pressure in the stars were restricted to \emph{non-negative} values,
+so they contained only \emph{deconfined} quarks.
+According to quantum chromodynamics,
+quarks are confined in hadrons at low density and temperature,
+so these stars are unlikely to be seen in nature.
 
-Moreover, one crucial aspect of modeling pure quark stars is inconsistent.
-To calculate the lower bag constant bound, we assumed that two-flavor quark matter is unstable compared to hadronic matter at zero pressure.
-But all the quark stars we modeled consisted of two-flavor quark matter out to the surface,
-where the pressure is zero by definition!
-This is incompatible with the original assumption,
-so a physical quark star must really have a crust of hadronic matter near the surface.
+\iffalse
+To calculate the lower bag constant bound \eqref{eq:lsm:bag_lower_bound},
+we even assumed that two-flavor quark matter is unstable compared to hadronic matter at zero pressure.
+But the surface has zero pressure \emph{by definition},
+so it is inconsistent that two-flavor quark matter exists there!
+\fi
 
-As explained in the review \cite{ref:quark_star_review},
-it is indeed believed that the most massive observed neutron stars
-could be \textbf{hybrid stars} that consist of a small deconfined quark matter core with high density,
-surrounded by hadronic matter in the outer low-density region.
-Three candidates are the recently observed heavy pulsars PSR J0348$+$0432, PSR J1614$-$2230 and PSR J0740$+$6620
-with respective masses $M = (2.01 \pm 0.04) \, M_\odot$ \cite{ref:antoniadis}, $M = (1.91 \pm 0.02) \, M_\odot$ \cite{ref:arzoumanian} and $M = (2.08 \pm 0.07) \, M_\odot$ \cite{ref:fonseca}.
-Due to these observations, hybrid star models strive to pass the $2 M_\odot$-limit.
+Realistically,
+quark matter can therefore only be found in high-density cores of \textbf{hybrid stars}
+surrounded by envelopes of low-density hadronic matter.
+The recent observations \cite{ref:antoniadis,ref:arzoumanian,ref:fonseca}
+of the heavy pulsars PSR J0348$+$0432, PSR J1614$-$2230 and PSR J0740$+$6620
+with masses $M = \{2.01 \pm 0.04, 1.91 \pm 0.02, 2.08 \pm 0.07\} \, M_\odot$ 
+suggest that real neutron stars could indeed reach sufficient densities
+for deconfined quark matter to form in the core.
+Due to these observations, hybrid star models are benchmarked by their ability to pass the $2 M_\odot$-limit.
 
-In our final piece of work
-we assemble a hybrid star modeled with the \textbf{quark-meson model} from \cref{chap:lsm3f} in the core,
-and with the representative \textbf{Akmal-Pandharipande-Ravenhall} (\textbf{APR}) hadronic equation of state from \cite{ref:apr} in the outer region.
-Both equations of state are found at zero temperature, in chemical equilibrium and $\beta$-equilibrium and subject to global electrical charge neutrality.
+In our final piece of work,
+we assemble hybrid stars with the \textbf{quark-meson model} from \cref{chap:lsm2f,chap:lsm3f} in the core,
+surrounded by a phase governed by the representative \textbf{Akmal-Pandharipande-Ravenhall} (\textbf{APR}) hadronic equation of state from \cite{ref:apr}.
+All equations of state are found at zero temperature, in $\beta$-equilibrium and subject to local charge neutrality.
 
 \textit{This chapter is inspired by reference \cite{ref:quark_star_review}.}
+\TODO{les intro igjen med confinement osv.}
 
 \section{Construction of the hybrid equation of state}
 \label{sec:hybrid:construction}
