@@ -87,7 +87,7 @@ we apply the coarsest procedure outlined in \cite[section V-C]{ref:quark_star_re
 Effectively, the equations of state $\epsilon_H(P)$ and $\epsilon_Q(P)$ of each phase are concatenated into one equation of state $\epsilon(P)$
 that prefers the phase with greater pressure for a given baryon chemical potential $\mu_B$.
 The philosophy behind the method is that at any baryon chemical potential $\mu_B$,
-the preferable phase is the one with the lower grand potential $\Omega = -P$.
+nature prefers the phase with the lower grand potential $\Omega = -P$.
 
 \iffalse
 \begin{figure}
@@ -99,7 +99,7 @@ the preferable phase is the one with the lower grand potential $\Omega = -P$.
 	width=13cm, height=7.5cm,
 	extra tick style={grid=major, grid style={dashed}},
 	minor tick num=9,
-	legend columns=1, legend pos=north west, legend cell align=right,
+	legend columns=1, legend pos=north west, legend cell align=left,
 ]
 \nextgroupplot[
 	xlabel={$\mu_B \, / \, \si{\mega\electronvolt}$},
@@ -210,46 +210,45 @@ with steps \ref{step:hybrid:one}--\ref{step:hybrid:four} in \cref{sec:hybrid:con
 	grid = both, minor grid style = {ultra thin, gray!10!white},
 ];
 \nextgroupplot[
-	title = {Two-flavor equations of state},
+	title = {Two-flavor hybrid equations of state},
 	ylabel = {$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 ];
 \addplot [red, solid] table [x=P, y=epsilon] {../code/data/LSM2F_APR/eos_sigma_600.dat};
-\addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$};
+\addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$, $\vphantom{\big)} \smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
 \addplot [darkgreen, dashed] table [x=P, y=epsilon] {../code/data/LSM2F_APR/eos_sigma_700.dat};
-\addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{68}{\mega\electronvolt}$};
+\addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$, $\vphantom{\big)} \smash{B^\frac14} = \phantom{0}\SI{68}{\mega\electronvolt}$};
 \addplot [blue, dotted] table [x=P, y=epsilon] {../code/data/LSM2F_APR/eos_sigma_800.dat};
-\addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{27}{\mega\electronvolt}$};
+\addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$, $\vphantom{\big)} \smash{B^\frac14} = \phantom{0}\SI{27}{\mega\electronvolt}$};
 
 \nextgroupplot[
-	title = {Three-flavor equations of state},
+	title = {Three-flavor hybrid equations of state},
 ];
 \addplot [red, solid] table [x=P, y=epsilon] {../code/data/LSM3F_APR/eos_sigma_600.dat};
-\addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$};
+\addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$, $\vphantom{\big)} \smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
 \addplot [darkgreen, dashed] table [x=P, y=epsilon] {../code/data/LSM3F_APR/eos_sigma_700.dat};
-\addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{68}{\mega\electronvolt}$};
+\addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$, $\vphantom{\big)} \smash{B^\frac14} = \phantom{0}\SI{68}{\mega\electronvolt}$};
 \addplot [blue, dotted] table [x=P, y=epsilon] {../code/data/LSM3F_APR/eos_sigma_800.dat};
-\addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{27}{\mega\electronvolt}$};
+\addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$, $\vphantom{\big)} \smash{B^\frac14} = \phantom{0}\SI{27}{\mega\electronvolt}$};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:hybrid:eos-all}%
 	Six hybrid equations of state constructed like the one in \cref{fig:hybrid:eos}
 	using the three parameter sets that generated the most massive quark stars
-	with the two-flavor and three-flavor quark-meson models.
+	with the two-flavor and three-flavor quark-meson models in \cref{chap:lsm2f,chap:lsm3f}.
 }
 \end{figure}
 
-\Cref{fig:hybrid:eos} shows the step-by-step construction of the hybrid equation of state
-that joins the three-flavor quark-meson model with some given parameters
-with the hadronic hadronic APR equation of state.
+\Cref{fig:hybrid:eos} shows an example of the step-by-step construction of a hybrid equation of state
+that joins the three-flavor quark-meson model
+with the hadronic APR equation of state.
 The pressures intersect at $\mu_B \approx \SI{1300}{\mega\electronvolt}$,
-which corresponds to a density $n_{BH}^0 \approx 4 n_\text{sat}$ in the hadronic phase
+which corresponds to the density $n_{BH}^0 \approx 4 n_\text{sat}$ in the hadronic phase
 and $n_{BQ}^0 \approx 5.5 n_\text{sat}$ in the quark phase.
-Due to the jump in density,
-a discontinuous phase transition develops at $P = \SI{0.2}{\giga\electronvolt\per\femto\meter\cubed}$
-accompanied by a drop $\Delta \epsilon = \SI{0.3}{\giga\electronvolt\per\femto\meter\cubed}$ in energy density.
-The transition takes the form of a line of constant vapor pressure, as in a Maxwell construction.
+The energy density drops by $\Delta \epsilon = \epsilon_Q^0 - \epsilon_H^0 = \SI{0.3}{\giga\electronvolt\per\femto\meter\cubed}$
+in a discontinuous phase transition at $P = \SI{0.2}{\giga\electronvolt\per\femto\meter\cubed}$.
+The transition takes the form of a line of constant vapor pressure, like in a Maxwell construction.
 The construction is virtually identical with the two-flavor quark-meson model,
-only with a smaller drop $\Delta \epsilon$.
+only with a lower drop $\Delta \epsilon$.
 
 The biggest problem with this rough splicing method is that it assumes the equations of state for both phases to be valid near the intersection point.
 In reality it is unreliable to compare them across the entire range of densities from hadronic to quark matter.
@@ -262,17 +261,18 @@ aiming only to investigate the mere possibility of using the quark-meson model i
 
 In our case,
 the problems related to comparison of the two phases is emphasized
-by the presence of a \emph{second} intersection point at a lower chemical potential.
+by the presence of a \emph{second} intersection point at a lower baryon chemical potential $\mu_B \approx \SI{1100}{\mega\electronvolt}$.
 This means that the hadron phase does not have the greatest pressure for all chemical potentials below the first intersection point!
 Assuming that the quark equation of state is unreliable in this regime anyway,
-we simply gloss over this small problem.
+we simply gloss over this small inconsistency.
+It would be utterly insane to go back to the quark phase near the surface.
 
 In \cref{fig:hybrid:eos-all} we gather six equations of state constructed in this way
 for $N_f = \{2,3\}$ and $m_\sigma = \{600,700,800\} \, \si{\mega\electronvolt}$
 with the corresponding lowest bag constants satisfying the lower bound \eqref{eq:lsm:bag_lower_bound}.
 These are the parameters we considered in earlier chapters that generated the most massive quark stars.
 Note that the phase transition generally becomes more dramatic
-with three flavors in the quark phase
+with three quark flavors
 and increasing $m_\sigma$,
 accompanied by decreasing $B$.
 
@@ -321,9 +321,9 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\draw [Latex-] (11.45,2.09) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
-\draw [Latex-] (11.55,2.01) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
-\draw [Latex-] (11.65,1.98) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
+\draw [Latex-] (11.4,2.09) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
+\draw [Latex-] (11.5,2.00) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
+\draw [Latex-] (11.5,1.98) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
 \node[scale=0.75] at (11.223, 1.999) {\goldenstar};
 
 \nextgroupplot[
@@ -348,6 +348,9 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\draw [Latex-] (11.4,2.09) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
+\draw [Latex-] (11.5,2.00) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
+\draw [Latex-] (11.5,1.98) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
 \node[scale=0.75] at (11.223, 1.999) {\goldenstar};
 
 \end{groupplot}
@@ -394,8 +397,8 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \addplot+ [solid, each nth point=8, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
 \addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\draw [Latex-] (11.45,2.07) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
-\draw [Latex-] (11.55,1.96) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
+\draw [Latex-] (11.45,2.08) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
+\draw [Latex-] (11.55,1.97) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
 \draw [Latex-] (11.65,1.90) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
 \node[scale=0.75] at (11.467, 1.904) {\goldenstar};
 
@@ -421,6 +424,9 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\draw [Latex-] (11.45,2.08) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
+\draw [Latex-] (11.55,1.97) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
+\draw [Latex-] (11.65,1.90) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
 \node[scale=0.75] at (11.467, 1.904) {\goldenstar};
 
 \end{groupplot}
@@ -542,18 +548,18 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 Solving the Tolman-Oppenheimer-Volkoff with the hybrid equations of state in \cref{fig:hybrid:eos-all},
 we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius}:
 \begin{itemize}
-\item After onset of the quark phase, the mass-radius curve develops new branches below the maximum hadron-only neutron star
+\item After onset of the quark phase, the mass-radius curve develops new hybrid star branches below the maximum mass hadron-only neutron star
       with maximum masses $2.00 M_\odot \leq M \leq 2.09 M_\odot$ with two flavors in the core
       and $1.90 M_\odot \leq M \leq 2.07 M_\odot$ with three flavors.
 \item At first glance, the hybrid branches in the left panel seem to plummet in mass immediately after diverging from the mass-increasing hadronic curve,
       indicating that all the hybrid stars are unstable.
       However, close inspection of the right panel shows that the dive is preceded by a small segment of mass-increasing and thus stable hybrid stars.
       This stable segment is longer in the two-flavor model and for smaller values of $m_\sigma$,
-      and such a segment is visible in all six branches, if only a very tiny one.
-      This supports the general claim in \cite{ref:quark_star_review} that quark cores are rare and very small, if existent.
-\item In fact, \cite[equation 15]{ref:hybrid_star_stability_criterion} shows that under general circumstances and no matter how small the quark core is,
+      and such a segment is visible on all six branches, if only a very tiny one.
+      This supports the general claim in \cite{ref:quark_star_review} that quark cores are rare and very small, if they exist at all.
+\item In fact, \cite[equation 15]{ref:hybrid_star_stability_criterion} and references within show that under general circumstances and no matter how small the quark core is,
       the energy density drop $\Delta \epsilon = \epsilon_Q^0 - \epsilon_H^0$ in the phase transition
-      destabilizes the beginning of the hybrid branch \emph{if and only if}
+      immediately destabilizes the hybrid branch \emph{if and only if}
       \begin{equation}
           \Delta \epsilon > \frac12 \epsilon_H^0 + \frac32 P^0.
       \label{eq:hybrid:stability_criterion}
@@ -562,12 +568,12 @@ we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius}:
       although the three-flavor equation of state with $m_\sigma=\SI{800}{\mega\electronvolt}$ comes close.
       Since the transition pressure $P^0$
       is almost equal with two and three flavors,
-      the drop $\Delta \epsilon$ is greater in the three-flavor model and explains its shorter stable hybrid branches.
+      the higher drop $\Delta \epsilon$ in the three-flavor model explains its shorter stable hybrid branches.
       This shows that criterion \eqref{eq:hybrid:stability_criterion} is consistent with our findings. \TODO{les}
 \item Like before, we focus on the lowest bag constants respecting the lower bounds \eqref{eq:lsm:bag_lower_bound}
       because they generate more interesting results with longer branches of stable hybrid stars.
       For a \emph{fixed} value of $m_\sigma$,
-      a greater bag constant $B$ in the bag shift \eqref{eq:mit:bag_shift}
+      a greater $B$ in the bag shift \eqref{eq:mit:bag_shift}
       lowers the quark pressure curve in the upper panels of \cref{fig:hybrid:eos},
       moving its intersection with the hadronic curve to a greater baryon chemical potential $\mu_B^0$ and pressure $P^0$.
       The hybrid mass-radius curve would then branch off the hadronic curve closer to the maximum mass,
@@ -577,14 +583,14 @@ we obtain the mass-radius curves in \cref{fig:hybrid:mass-radius}:
 \item The maximum mass stars live in the neighborhood of the heavy pulsars PSR J0348$+$0432, PSR J1614$-$2230 and PSR J0740$+$6620 and are certainly compatible with observations.
 \end{itemize}
 
-We inspect the two maximum mass stars on the hybrid branches in \cref{fig:hybrid:star}:
+We inspect two maximum mass stars on the hybrid branches in \cref{fig:hybrid:star}:
 \begin{itemize}
-\item In both cases, the quark core has a central baryon density $n_B = 6 n_\text{sat}$.
-      With $N_f=\{2,3\}$, it extends $R' = \{3.1,1.6\} \, \si{\kilo\meter}$ and has a mass $M_\text{core} = \{0.12,0.02\} \, M_\odot$.
+\item With both $N_f=\{2,3\}$, the quark core has a central baryon density $n_B = 6 n_\text{sat}$.
+      It extends $R' = \{3.1,1.6\} \, \si{\kilo\meter}$ and has masses $M_\text{core} = \{0.12,0.02\} \, M_\odot$.
       Like the pure quark stars in \cref{chap:mit,chap:lsm2f,chap:lsm3f},
       two-flavor quark cores in hybrid stars are generally larger and heavier than three-flavor ones.
-\item We again see that the drops $\Delta \epsilon$ and $\Delta n_B$ in energy density and baryon density 
-      are notably lower in the two-flavor hybrid stars.
+%\item We again see that the drops $\Delta \epsilon$ and $\Delta n_B$ in energy density and baryon density 
+      %are notably lower in the two-flavor hybrid stars.
 \item The hadronic phase dominates with both $N_f=\{2,3\}$, 
       making up $\{98.0,99.7\} \, \si{\percent}$ of the stars' volume and $\{94,99\} \, \si{\percent}$ of their masses.
 \end{itemize}
@@ -608,11 +614,11 @@ We inspect the two maximum mass stars on the hybrid branches in \cref{fig:hybrid
 	ylabel = {$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 ];
 \addplot [red, solid] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_400.dat};
-\addlegendentry{$m_\sigma=\SI{400}{\mega\electronvolt}$, $B^\frac14 = \SI{107}{\mega\electronvolt}$};
+\addlegendentry{$m_\sigma=\SI{400}{\mega\electronvolt}$, $\vphantom{\big)}\smash{B^\frac14} = \SI{107}{\mega\electronvolt}$};
 \addplot [darkgreen, dashed] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_500.dat};
-\addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{84}{\mega\electronvolt}$};
+\addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$, $\vphantom{\big)}\smash{B^\frac14} = \phantom{0}\SI{84}{\mega\electronvolt}$};
 \addplot [blue, dotted] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_600.dat};
-\addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \phantom{0}\SI{27}{\mega\electronvolt}$};
+\addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$, $\vphantom{\big)}\smash{B^\frac14} = \phantom{0}\SI{27}{\mega\electronvolt}$};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:hybrid:eos-consistent}%
@@ -661,9 +667,9 @@ We inspect the two maximum mass stars on the hybrid branches in \cref{fig:hybrid
 \addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_400_B14_107.dat}; \addlegendentry{hybrid stars};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_500_B14_84.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_600_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\draw [Latex-] (11.45,2.09) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
-\draw [Latex-] (11.55,2.01) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{500}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{84}{\mega\electronvolt}$};
-\draw [Latex-] (11.65,1.98) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{400}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{107}{\mega\electronvolt}$};
+\draw [Latex-] (11.4,2.09) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
+\draw [Latex-] (11.5,2.00) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
+\draw [Latex-] (11.5,1.98) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
 \node[scale=0.75] at (11.216, 1.996) {\goldenstar};
 
 \nextgroupplot[
@@ -688,6 +694,9 @@ We inspect the two maximum mass stars on the hybrid branches in \cref{fig:hybrid
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_400_B14_107.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_500_B14_84.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_600_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\draw [Latex-] (11.4,2.09) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
+\draw [Latex-] (11.5,2.00) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
+\draw [Latex-] (11.5,1.98) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
 \node[scale=0.75] at (11.216, 1.996) {\goldenstar};
 
 \end{groupplot}
@@ -876,7 +885,7 @@ We inspect the two maximum mass stars on the hybrid branches in \cref{fig:hybrid
 For completeness and to round everything off,
 we pay one last visit to our consistently fit two-flavor quark-meson model in \cref{sec:lsm2f:refinement}.
 Recall that the quark star results with inconsistently fit $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$
-practically speaking coincided with those from consistently fit $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{600}{\mega\electronvolt}$,
+effectively coincided with those from consistently fit $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{600}{\mega\electronvolt}$,
 so we should expect the same to hold when using this model for the quark core in a hybrid star.
 Using the slightly modified lower bag constant bounds \eqref{eq:lsm:bag_lower_bound_ref} that we found with the consistently fit model,
 we repeat our calculations and find the results in \cref{fig:hybrid:eos-consistent,fig:hybrid:mass-radius-consistent,fig:hybrid:star-consistent}.
@@ -884,16 +893,12 @@ Indeed, we see that they agree very well with the results using inconsistently f
 
 \section{Summary}
 
-In this chapter we have constructed hybrid stars modeled with the two-flavor or three-flavor quark-meson model in the core
+In this chapter we have constructed hybrid stars modeled with the two-flavor and three-flavor quark-meson model in the core,
 and the hadronic Akmal-Pandharipande-Ravenhall equation of state in the outer region.
 Using $\sigma$-meson masses $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$ in the quark-meson model,
 we saw that the hadronic mass-radius relation developed very short branches of hybrid stars
-up to maximum masses $2.00 M_\odot \leq M \leq 2.09$ with two flavors in the core
-and $1.90 M_\odot \leq M \leq 2.07 \leq M_\odot$ with three flavors.
+up to maximum masses $2.00 M_\odot \leq M \leq 2.09 M_\odot$ with two flavors in the core
+and $1.90 M_\odot \leq M \leq 2.07 M_\odot$ with three flavors.
 In general, the two-flavor cores are both more massive and stable than three-flavor cores.
-This overlaps with recent mass measurements of the heavy pulsars PSR J0348$+$0432, PSR J1614$-$2230 and PSR J0740$+$6620 around and above the $2 M_\odot$-limit.
+These maximum masses overlap with recent mass measurements of the heavy pulsars PSR J0348$+$0432, PSR J1614$-$2230 and PSR J0740$+$6620 around and above the $2 M_\odot$-limit.
 After the maximum mass star, a discontinuous transition between the two phases destabilizes the stars.
-These results are in good agreement with hybrid stars modeled with the hadronic Walecka model and Nambu-Jona-Lasinio model for quark matter by \cite{ref:hybrid_stars_njl}.
-They also find that the stability of the hybrid stars increases if the phase transition is smoothened out with the Gibbs construction,
-making it very interesting to see how a more sophisticated construction of the hybrid equation of state would play out with our model.
-This could certainly be studied in further work.
