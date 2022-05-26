@@ -5,8 +5,17 @@ To illustrate some of the concepts in \cref{chap:master_intro} and gently famili
 let us first model quark stars consisting of a free Fermi gas of quarks with the \textbf{MIT bag model}.
 Originally introduced by \cite{ref:mit_bag_model_original} at MIT,
 this simple phenomenological model accounts for confinement of quarks in hadrons by adding a \textbf{bag constant} $B$ on top of a normal, deconfined ideal Fermi gas.
-However, we will see that quark stars in this model consist of \emph{deconfined} quark matter.
-Moreover, we will discuss the \textbf{strange matter hypothesis} and how it can be used to determine an interval of acceptable values of $B$.
+We will see that $B$ describes an external pressure that can effectively be thought of as an enclosed bag that resists stretching and groups quarks,
+almost as if they were trapped in a balloon made of an extremely resistant ``unburstable'' material.
+However, we will also see that this confinement effect is suppressed in the modeled quark stars, which then consist only of \emph{deconfined} quark matter.
+Moreover, we will discuss instability of two-flavor quark matter compared to hadronic matter 
+and the \textbf{strange matter hypothesis},
+and see how this can be used to determine a \textbf{bag window} of acceptable values for $B$.
+
+\textit{This chapter is inspired by reference \cite{ref:glendenning} and \cite{ref:quark_bag_model}.}
+
+\section{Lagrangian, grand potential and equation of state}
+\label{sec:mit:eos}
 
 We will start by simply ignoring the gluon fields $A_\mu^a$ from the quantum chromodynamics Lagrangian \eqref{eq:qcd:lagrangian}.
 In addition, we couple the conserved vector current $j^\mu_f = \bar{q}_f \gamma^\mu q_f$ to a chemical potential $\mu_f$ for each quark flavor,
@@ -14,6 +23,7 @@ allowing us to tune the densities \eqref{eq:master_intro:densities} of quarks.%
 \footnote{For an explanation of how the chemical potentials can be thought of as an analogy to constant gauge fields,
 the interested reader can consult the discussion surrounding equations \eqref{eq:tft:conserved_current}--\eqref{eq:tft:chemical_potential}.}
 With these modifications, the Lagrangian becomes
+\TODO{use constituent masses?}
 \begin{equation}
 	\lagr = \bar{q} (i \slashed\partial + \mu \gamma^0 - m) q
 	      = \sum_{c=1}^{N_c} \sum_{f=\{u,d,s\}} \bar{q}_{f,c} (i \slashed\partial + \mu_f \gamma^0 - m_f) q_{f,c} .
@@ -24,20 +34,20 @@ Unless $N_f$ is specified explicitly, we perform the general analysis with $N_f=
 and simply drop terms or factors indexed by the strange quark $s$ to get expressions for $N_f = 2$.
 As we have simply omitted the gluons, we will continue to use the lone quark masses in \cref{tab:qcd:quark_properties}.
 
-\textit{This chapter is inspired by reference \cite{ref:glendenning} and \cite{ref:quark_bag_model}.}
-
-\section{Grand potential and equation of state}
-\label{sec:mit:eos}
-
-With the Euclidean version of the Lagrangian density \eqref{eq:mit:lagrangian},
+With the Euclidean version $\lagr_E$ of the Lagrangian \eqref{eq:mit:lagrangian},
 the partition function \eqref{eq:master_intro:partition_function} reads
 \begin{equation}
-	Z = \prod_{c=1}^{N_c} \prod_{f=\{u,d,s\}} \oint_- \pathintdif \bar{q}_{f,c} \oint_- \pathintdif q_{f,c} \exp \bigg\{ \int_0^\beta \dif \tau \int_V \dif^3 x \lagr_E [q_{f,c},\bar{q}_{f,c}] \bigg\} .
+\begin{split}
+	%Z &= \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \exp \bigg\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \lagr_E [q,\bar{q}] \bigg\} \\
+	Z &= \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \exp \bigg\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \bar{q} \big( i \slashed\partial + \mu_f \gamma^0 - m_f) q \bigg\} \\
+	  &= \prod_{c=1}^{N_c} \prod_{f=\{u,d,s\}} \oint_- \pathintdif \bar{q}_{f,c} \oint_- \pathintdif q_{f,c} \exp \bigg\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \bar{q}_{f,c} \big( i \slashed\partial + \mu_f \gamma^0 - m_f) q_{f,c} \bigg\} \\
+\end{split}
 \end{equation}
-It decouples into a product of path integrals \eqref{eq:tft:dirac_partition_function_first} that we encountered back in \cref{chap:tft}
+It decouples into a product of $N_c \times N_f$ path integrals \eqref{eq:tft:dirac_partition_function_first} that we encountered back in \cref{chap:tft}
 and simplified to the form \eqref{eq:tft:dirac_partition_function} for arbitrary temperature.
-Then we neglected the divergent vacuum contribution from the first term and calculated it explicitly in the zero-temperature approximation,
-arriving at the pressure \eqref{eq:nstars:pressure_zeroT} that is related to the grand potential density \eqref{eq:master_intro:grand_potential} by a simple sign flip.
+There we neglected the divergent vacuum contribution from the first term and calculated the path integral explicitly in the zero-temperature approximation,
+arriving at the pressure \eqref{eq:nstars:pressure_zeroT} that is related to the grand potential density $\Omega$ by the simple sign flip \eqref{eq:master_intro:pressure}.
+The path integrals differ only by the unique chemical potentials $\mu_f$ associated with each quark flavor.
 Adding a background of free electrons and reinstating the Fermi momenta $p_f = \sqrt{\smash[b]{\mu_f^2-m_f^2}}$ for each particle species,
 we can write the grand potential as
 \begin{equation}
@@ -58,25 +68,28 @@ Using this convention, the corresponding quark and electron densities \eqref{eq:
 	n_e = -\pdv{\Omega}{\mu_e} = \frac{  1}{3 \pi^2} \Big( \mu_e^2 - m_e^2 \Big)^{\frac32},
 \label{eq:mit:particle_densities}%
 \end{equation}
-and the pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density} follow.
+and the pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density} easily follow with $T=0$.
 
-We now see explicitly that the grand potential and hence the pressure and energy density are functions of the four chemical potentials $\mu_u$, $\mu_d$, $\mu_s$ and $\mu_e$.
+We now see explicitly that $\Omega$ and hence $P$ and $\epsilon$ are functions of the four chemical potentials $\mu_u$, $\mu_d$, $\mu_s$ and $\mu_e$.
 As explained in \cref{sec:master_intro:tft},
 we reduce them to a single independent chemical potential with the three constraints \eqref{eq:lsm:chemical_equilibrium} and \eqref{eq:lsm:charge_neutrality},
-and take this to be the quark chemical potential $\mu$ defined in equation \eqref{eq:master_intro:chemical_potentials_transformed}.
-With the quark charges in \cref{tab:qcd:quark_properties}, the densities \eqref{eq:mit:particle_densities} and for a given value of $\mu$,
-we must then find the electron chemical potential $\mu_e$ that solves
+and take it to be the quark chemical potential $\mu$ defined in equation \eqref{eq:master_intro:chemical_potentials_transformed}.
+Inserting the charges in \cref{tab:qcd:quark_properties} and the densities \eqref{eq:mit:particle_densities},
+the charge neutrality condition \eqref{eq:lsm:charge_neutrality} to be solved is
 \begin{equation}
-	2 \Big[\mu_u^2-m_u^2\Big]^\frac32
-	- \Big[(\mu_u+\mu_e)^2-m_d^2\Big]^\frac32 
-	- \Big[(\mu_u+\mu_e)^2-m_s^2\Big]^\frac32 
-	- \Big[\mu_e^2-m_e^2\Big]^\frac32 = 0.
+	2 \Big(\mu_u^2-m_u^2\Big)^\frac32
+	- \Big(\mu_d^2-m_d^2\Big)^\frac32 
+	- \Big(\mu_s^2-m_s^2\Big)^\frac32 
+	- \Big(\mu_e^2-m_e^2\Big)^\frac32 = 0.
 \label{eq:mit:charge_neutrality_explicit}
 \end{equation}
-Having chosen a value of $\mu$ and determined a value of $\mu_e$,
-the chemical potentials $\mu_u$, $\mu_d$ and $\mu_s$ follow from definition \eqref{eq:master_intro:chemical_potentials_transformed} and the chemical equilibrium constraint \eqref{eq:lsm:chemical_equilibrium}. 
-Elimination of three of four chemical potentials yields two functions $P(\mu)$ and $\epsilon(\mu)$,
-and the former can finally be inverted to yield the equation of state $\epsilon(P)$.
+To solve it for a given value of $\mu=(\mu_u+\mu_d)/2$,
+first note that $\{\mu,\mu_e\}$
+can be translated to $\{\mu_u,\mu_d,\mu_s\}$ with the $\beta$-equilibrium constraint \eqref{eq:lsm:chemical_equilibrium}.
+For a given value of $\mu$, we then vary $\mu_e$ until we have found the solution.
+Repeating this procedure for different $\mu$,
+we find the pressure $P(\mu)$ and energy density $\epsilon(\mu)$ as functions of $\mu$.
+We then invert the $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to obtain the equation of state $\epsilon(P)$.
 
 \begin{figure}
 \centering
@@ -181,26 +194,27 @@ The grand potential \eqref{eq:mit:grand_potential} then reduces to
 \end{equation}
 while the densities \eqref{eq:mit:particle_densities} become
 \begin{equation}
-	n_f = -\pdv{\Omega}{\mu_f} = \frac{N_c \mu_f^3}{3 \pi^2}
-	\text{ for $f \in \{u,d,s\}$}
-	\quad \text{and} \quad
-	n_e = -\pdv{\Omega}{\mu_e} = \frac{    \mu_e^3}{3 \pi^2}.
+	n_f = \frac{N_c \mu_f^3}{3 \pi^2}
+	\qquad \text{and} \qquad
+	n_e = \frac{    \mu_e^3}{3 \pi^2}.
 \label{eq:mit:densities_massless}
 \end{equation}
 \emph{Regardless} of the relations between the chemical potentials,
 the equation of state is then simply
 \begin{equation}
-	\epsilon = -P + \sum_i \mu_i n_i
-	         = -P + \frac{1}{3 \pi^2} \Big(N_c \mu_u^4 + N_c \mu_d^4 + N_c \mu_s^4 + \mu_e^4\Big)
-	         = -P - 4 \Omega 
-	         = -P + 4 P 
+	\epsilon \equalexplbelow{\text{by \eqref{eq:master_intro:energy_density}}} -P + \sum_i \mu_i n_i
+	         \equalexplbelow{\text{by \eqref{eq:mit:densities_massless}}} -P + \frac{1}{3 \pi^2} \Big(N_c \mu_u^4 + N_c \mu_d^4 + N_c \mu_s^4 + \mu_e^4\Big)
+	         \equalexplbelow{\text{by \eqref{eq:mit:grand_potential_massless}}} -P - 4 \Omega 
+	         \equalexplbelow{\text{by \eqref{eq:master_intro:pressure}}} -P + 4 P 
 	         = 3 P \, !
 \label{eq:mit:eos_ur}
 \end{equation}
-We can also find approximate analytical relations between the chemical potentials in the ultra-relativistic limit
-if we also assume that the electron density in the charge neutrality condition \eqref{eq:mit:charge_neutrality_explicit} can be neglected.
+Although they are not needed for the equation of state,
+we can also find approximate analytical relations between the chemical potentials in the ultra-relativistic limit.
+They will be useful to compare with the general numerical solution, for which the equation of state \emph{does} depend on these relations.
+To do so, we assume that the electron density in the charge neutrality condition \eqref{eq:mit:charge_neutrality_explicit} can be neglected.
 This assumption is subject to a self-consistency check down the line.
-In the two-flavor case, this simplifies the condition to $n_d = 2 n_u$ with the solution $\mu_d = 2^{1/3} \mu_u$.
+In the two-flavor case, this simplifies the charge neutrality condition \eqref{eq:mit:charge_neutrality_explicit} to $\mu_d^3 = 2 \mu_u^3$, or $n_d = 2 n_u$, with the solution $\mu_d = 2^{1/3} \mu_u$.
 According to the $\beta$-equilibrium condition \eqref{eq:lsm:chemical_equilibrium},
 the chemical potential of the electrons is then $\mu_e = \mu_d - \mu_u \approx (2^{1/3}-1) \mu_u$
 and corresponds to the density $n_e = (2^{1/3}-1)^3 n_u / N_c = 0.006 \, n_u \ll n_u < n_d$,
@@ -215,10 +229,11 @@ we then have
 \label{eq:mit:chemical_potentials_massless_2f}
 \end{equation}
 With three flavors, the charge neutrality condition \eqref{eq:mit:charge_neutrality_explicit} becomes $2 n_u - n_d - n_s = 0$
-and has the very simple solution $n_u = n_d = n_s$ with
+after neglecting electrons.
+It has the very simple solution $n_u = n_d = n_s$ with
 \begin{equation}
 	\mu_u = \mu_d = \mu_s = \mu
-	\qquad \text{and} \qquad
+	\quad \text{and} \quad
 	\mu_e = 0
 	\qquad (N_f = 3) .
 \label{eq:mit:chemical_potentials_massless_3f}
@@ -231,7 +246,7 @@ We now calculate the general solution with massive quarks using the program in \
 solving equation \eqref{eq:mit:charge_neutrality_explicit} numerically for different quark chemical potentials $\mu$.
 We obtain the chemical potentials, densities and equation of state shown in \cref{fig:mit:eos}.
 Note that the electron density is very small, but nonzero.
-Indeed, we see that they are very close to the ultra-relativistic relations
+Indeed, we see that the results are very close to the ultra-relativistic relations
 \eqref{eq:mit:densities_massless}-\eqref{eq:mit:chemical_potentials_massless_3f}
 as $\mu_i \gg m_i$, thereby verifying our numerical calculations.
 
@@ -242,7 +257,7 @@ For chemical potentials $\mu_i < m_i$ the (real part of the) densities \eqref{eq
 so we refer to this region of the phase diagram as the \textbf{vacuum phase}.
 So far we have modeled the quarks as a free Fermi gas of \emph{deconfined} quarks.
 We know, however, that quarks are \emph{confined} in hadrons at low energies.
-Let us see how the MIT bag model attempts to incorporate confinement with a so-called bag constant.
+Let us see how the MIT bag model attempts to incorporate confinement with the so-called bag constant.
 
 The pressure $P = -\Omega$ due to the grand potential density \eqref{eq:mit:grand_potential} is normalized to $P = 0$ in the vacuum.
 Suppose that we shift $\Omega \rightarrow \Omega + B$ by a \textbf{vacuum constant} $B$.
@@ -335,7 +350,7 @@ and hence the zero-point energy and pressure, and the equation of state.
 \end{tikzpicture}
 }
 \caption{\label{fig:mit:bag_constant}%
-	The bag constant $B$ can be interpreted as the pressure difference between the deconfined and confined vacua of quantum chromodynamics.
+	The bag constant $B$ can be interpreted as the pressure difference between two deconfined and confined vacuum phases.
 	In the confined phase \subref{fig:mit:bag-constant-confined},
 	the surrounding quark-forbidden deconfined medium may pressurize hadronic ``bags''
 	inside which quarks are trapped and stabilize the bag by exerting a counteracting kinetic pressure.
@@ -347,64 +362,65 @@ and hence the zero-point energy and pressure, and the equation of state.
 
 A positive vacuum constant $B$ creates a negative pressure $P = -B$ in vacuum.
 In a sense, it can therefore be interpreted as a mechanism that \emph{confines} the quarks to ``bags'' that resemble hadrons.
-Due to this common physical interpretation, $B$ is more often called the \textbf{bag constant}.
+Due to this common physical interpretation, $B$ is often called the \textbf{bag constant}.
 The quarks in the bag exert an outwards kinetic pressure that counteracts the external bag pressure and stabilizes the hadron.
 %From inside the bag, the quarks exert an outwards kinetic pressure that counteracts the external bag pressure and stabilizes the hadron.
 The bag constant can therefore be interpreted as the pressure difference between two phases of confined and deconfined vacuum,
 as illustrated in \cref{fig:mit:bag_constant}.
 
-As an analogy, imagine a swimming pool full of water representing the deconfined phase:
-it would cost an amount $BV$ of energy to expel water from a volume $V$ and create a bag of vacuum in the pool,
+As an analogy, imagine a swimming pool full of water representing the deconfined phase.
+It would cost an amount $BV$ of energy to expel water from a volume $V$ and create a vacuum in the pool,
 and a plastic bag enclosing this volume would have to generate some internal pressure to survive against the pressure from the surrounding water.
 
 Despite the common interpretation of $B$ as a confinement mechanism,
 it is very important to note that the quark stars we will model 
 will be integrated from a positive central pressure to a vanishing pressure at the surface,
-and therefore have \emph{non-negative pressure everywhere} and \emph{only contain deconfined quark matter}.
+and therefore have \emph{non-negative pressure} everywhere and only contain \emph{deconfined} quark matter.
 The integration of the Tolman-Oppenheimer-Volkoff equation stops when it reaches the surface defined by $P=0$,
-so the confinement-interpretable part of the equation of state with negative pressure due to the shift \eqref{eq:mit:bag_shift} is \emph{unused}.
-We should therefore not take the bag constant's interpretation as a confinement mechanism too literally in our case,
-and it is perhaps better to think of it only as a phenomenological parameter that we can vary to adjust the normalization of the grand potential
-and -- as we will see shortly -- a parameter that determines the stability relationship of quark matter compared to hadronic matter.
+so the confinement-interpretable part of the equation of state with negative pressure due to the shift \eqref{eq:mit:bag_shift} is \emph{unused} in a quark star.
+We should therefore not take the confinement interpretation too literally in our case,
+and it is perhaps better to think of $B$ only as a phenomenological parameter that we can vary to adjust the normalization of the grand potential
+and -- as we will see shortly -- a parameter that determines 
+the stability of the quark matter is compared to hadronic matter.
 
 What values can the bag constant take?
 Let us perform a heuristic calculation where we picture quarks to be confined in a spherical bag of radius $R$, as depicted in \cref{fig:mit:bag-constant-confined}.
-The vacuum energy associated with the mere existence of the bag is then $E_V = 4 \pi R^3 B / 3$.
+The vacuum energy associated with the mere existence of this bag is $E_V = 4 \pi R^3 B / 3$.
 By Heisenberg's uncertainty principle $\Delta p \Delta x \geq \hbar/2$, a quark confined to a region extending $\Delta x = 2R$ in one dimension with mean momentum $\avg{p} = 0$ has momentum $p \lesssim \hbar/4R \propto 1/R$.
 In the ultra-relativistic regime where we can neglect the particles' mass, the kinetic energy inside the bag is therefore $E_K = pc = C / R$ for some constant $C$.
 As a function of $R$, the total energy $E = E_V + E_K$ has a minimum at $R = (C/4 \pi B)^{1/4}$ for which the bag is stable.
-Solving for $C = 4 \pi B R^4$, the energy of this stable configuration is $E = 16 \pi R^3 B / 3$.
-Assuming a neutron with total energy $E = m c^2 = \SI{940}{\giga\electronvolt}$ and radius $R \approx \SI{1}{\femto\meter} = 1 / \SI{197}{\mega\electronvolt}$,
+Eliminating $C$, the energy of this stable configuration is $E = 16 \pi R^3 B / 3$.
+Assuming a neutron with total energy $E = m c^2 = \SI{940}{\giga\electronvolt}$ and radius $R \approx \SI{1}{\femto\meter} = 1 / \SI{197}{\mega\electronvolt}$ in natural units,
 the bag constant is
 \begin{equation}
 	B = \frac{3 E}{16 \pi R^3} = (\SI{143.9}{\mega\electronvolt})^4.
 \label{eq:mit:bag_constant_optimal}
 \end{equation}
 
-Another approach lets us determine a range of values for the bag constant.
-In the early days with high density and temperature, the universe likely passed through a phase of deconfined quark-gluon plasma.
+Another approach lets us determine a \emph{range} of values for the bag constant.
+In the early days with high density and temperature, the universe likely passed through a phase of deconfined quark-gluon plasma. \cite{ref:glendenning}
 Today, two-flavor quark matter is accreting in nuclei through fusion towards iron-56 in stars, which seemingly represent the ground state of nuclear matter.
 However, the \textbf{strange matter hypothesis} of \cite{ref:strange_hypothesis_bodmer} and \cite{ref:strange_hypothesis_witten} conjectures that this state is only \emph{metastable}
 and could decay to three-flavor quark matter consisting of up, down and strange quarks.
 If true, the universe could turn into a very \emph{strange} place some day.
 
-Iron-56 is the most stable nuclide with an energy of $E/N_B = (E/V) / (N_B/V) = \epsilon/n_B = \SI{930}{\mega\electronvolt}$ per baryon.
+Iron-56 is the most stable nuclide with an energy of $E/N_B = \epsilon/n_B = \SI{930}{\mega\electronvolt}$ per baryon.
 If we denote the energy densities of two-flavor and three-flavor quark matter by $\epsilon_2$ and $\epsilon_3$,
-then the instability of two-flavor quark matter and hypothesized stability of three-flavor quark matter at zero pressure $P=0$,
-which characterizes stability of the system,
-imply the inequality
+then the instability and hypothesized stability of two-flavor and three-flavor quark matter at zero pressure $P=0$,
+which characterizes equilibrium of the system in the absence of other forces,
+imply the double inequality
 \begin{equation}
 	\frac{\epsilon_3(P=0)}{n_B} \leq \SI{930}{\mega\electronvolt} \leq \frac{\epsilon_2(P=0)}{n_B} .
 \label{eq:mit:bag_stability}
 \end{equation}
-We will shortly see that this yields a range of bag constants that we call a \textbf{bag window}.
+We will now see that this yields a range of bag constants that we call a \textbf{bag window}.
 
 \subsubsection{Ultra-relativistic bag window}
 
-Let us first examine how the ultra-relativistic equation of state is affected by the addition of a bag constant
-and the corresponding bag window generated by inequality \eqref{eq:mit:bag_stability}.
+Let us first examine how the ultra-relativistic equation of state is affected by the addition of a bag constant,
+and how inequality \eqref{eq:mit:bag_stability} generates a corresponding bag window.
 The bag shift \eqref{eq:mit:bag_shift} changes the equation of state \eqref{eq:mit:eos_ur} to $\epsilon = 3 P + 4 B$.
-Neglecting electrons again, the baryon density is $n_B = n_u = \mu_u^3 / \pi^2$,
+Neglecting electrons again, the baryon density is always $n_B = (n_u+n_d+n_s)/3 = n_u = \mu_u^3 / \pi^2$,
 since $n_d = 2 n_u$ and $n_s=0$ in the two-flavor case and $n_u=n_d=n_s$ in the three-flavor case.
 With two flavors we also had $\mu_d = 2^{1/3} \mu_u$,
 so the grand potential density \eqref{eq:mit:grand_potential_massless}
@@ -439,9 +455,8 @@ In contrast, the upper bounds disagree due to the massless approximation being w
 
 \section{Mass-radius solutions}
 
-Having established the bag window \eqref{eq:mit:bag_window},
-different equations of state are finally available to us by making the shift \eqref{eq:mit:bag_shift}
-of the equation of state in \cref{fig:mit:eos-eos} with varying bag constants inside the window.
+Different equations of state are now finally available to us by making the shift \eqref{eq:mit:bag_shift}
+with multiple bag constants inside the established bag window \eqref{eq:mit:bag_window}.
 We then integrate the Tolman-Oppenheimer-Volkoff equation numerically as described in \cref{sec:master_intro:tov},
 obtaining the quark stars in \cref{fig:mit:mass_radius}:
 \begin{figure}[t]
@@ -467,7 +482,7 @@ obtaining the quark stars in \cref{fig:mit:mass_radius}:
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
-	title = {$N_f=2$}, title style={text width=5cm},
+	title = {Two-flavor quark stars}, title style={text width=5cm},
 ];
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_sigma_800_B14_145.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_sigma_800_B14_150.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -476,7 +491,7 @@ obtaining the quark stars in \cref{fig:mit:mass_radius}:
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	yticklabels={,,},
-	title = {$N_f=3$}, title style={text width=5cm},
+	title = {Three-flavor quark stars}, title style={text width=5cm},
 	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.87,-0.25)}, anchor=north east, xticklabel pos=lower},
 ];
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_145.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -495,7 +510,7 @@ Lower bag constants correspond to greater maximum masses.
 \end{figure}
 \begin{itemize}
 \item As mentioned in \cref{sec:master_intro:tov},
-      stars with central pressure exceeding that of the maximum mass star are unstable,
+      stars with central pressure exceeding that of the maximum mass star are unstable against radial perturbations,
       so we cut off the curve not long after the mass peak.
 \item Using bag constants inside the bag window \eqref{eq:mit:bag_window},
       the MIT bag model realizes quark stars with maximum masses
@@ -504,17 +519,18 @@ Lower bag constants correspond to greater maximum masses.
       in both cases with corresponding radii $\SI{9}{\kilo\meter} \leq R \leq \SI{11}{\kilo\meter}$.
 \item The smaller the bag constant, the larger and more massive the star.
       The bag shift \eqref{eq:mit:bag_shift} lifts the equation of state in the $P$-$\epsilon$-diagram up and to the left
-      so that a given pressure corresponds to a greater energy density.
-      Viewed the other way around, a given density corresponds to a lower pressure and makes the material easier to compress,
-      so we say that the equation of state is \emph{softened}.
-      Conversely, an equation of state where a given pressure corresponds to a lower energy density, and a given density to a higher pressure,
+      so that a (energy) density corresponds to a lower pressure.
+      This makes the star easier to compress, so we say that the equation of state is \emph{softened}.
+      Conversely, an equation of state where a given (energy) density corresponds to a higher pressure,
+      for example obtained by decreasing the bag constant,
       describes material that is harder to compress and is said to be \emph{stiffer}.
-      In other words, lower bag constants produce stiffer equations of state and larger and more massive stars.
+      In other words, lower bag constants produce stiffer equations of state,
+      corresponding to larger and more massive stars.
 
       The increase in size is easy to understand:
       integrating the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov} from a fixed central pressure $P_c$,
       a stiffer equation of state yields a strictly smaller mass gradient $\odv{m}/{r}$ and pressure gradient magnitude $\abs{\odv{P}/{r}}$,
-      so the surface $P(R)=0$ is reached for a smaller radius.
+      so the surface $P(R)=0$ is reached at a greater radius.
       The increase in mass can then only be explained by the greater radius outweighing the smaller mass gradient.
 \item Notice the qualitatively similar shapes of mass-radius curves corresponding to different bag constants.
       As mentionde in \cite[equation 8.29]{ref:glendenning},
