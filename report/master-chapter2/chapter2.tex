@@ -145,13 +145,18 @@ where the quark and meson fields have acquired the effective masses
 \begin{align}
 	m_q &= g \avg{\sigma}, \label{eq:lsm:mass_quark} \\
 	m_\sigma^2 &= \pdv[2]{\pot}{\sigma}\iffalse_{\substack{\sigma=\avg{\sigma}\\\vec{\pi}=\avg{\vec{\pi}}}}\fi    = m^2 + \frac{\lambda}{2} \avg{\sigma}^2 \equalexplabove{\smash[t]{\text{ by \eqref{eq:lsm:ground_state_implicit}}}} \frac{3h}{\avg{\sigma}} - 2 m^2 , \label{eq:lsm:mass_sigma} \\
-	m_\pi^2    &= \pdv[2]{\pot}{\vec{\pi}}\iffalse_{\substack{\sigma=\avg{\sigma}\\\vec{\pi}=\avg{\vec{\pi}}}}\fi = m^2 + \frac{\lambda}{6} \avg{\sigma}^2 \equalexplbelow{\text{ by \eqref{eq:lsm:ground_state_implicit}}} \frac{h}{\avg{\sigma}} . \label{eq:lsm:mass_pi}
+	m_\pi^2    &= \pdv[2]{\pot}{\vec{\pi}}\iffalse_{\substack{\sigma=\avg{\sigma}\\\vec{\pi}=\avg{\vec{\pi}}}}\fi = m^2 + \frac{\lambda}{6} \avg{\sigma}^2 \equalexplbelow{\smash[b]{\text{ by \eqref{eq:lsm:ground_state_implicit}}}} \frac{h}{\avg{\sigma}} . \label{eq:lsm:mass_pi}
 \end{align}%
 \label{eq:lsm:mass_sigmapi}%
 \end{subequations}%
 
-Note that the up and down quarks have a common mass $m_u = m_d = m_q$.
+Note that the up and down quarks have a degenerate mass $m_u = m_d = m_q$.
 In nature, isospin symmetry is seemingly only slightly broken, and the up and down quark masses are indeed almost equal.
+The squared meson masses $m_\sigma^2$ and $m_\pi^2$ are called \emph{curvature masses}
+due to their relation with the second derivative of the potential.
+They coincide with the physical pole masses of the particles' propagators
+only at tree level, where loop effects are neglected.
+\TODO{ok?}
 
 The qualitative nature of the pions depends on whether $h$ vanishes:
 \begin{itemize}
@@ -305,7 +310,7 @@ the large-$N_c$ approximation is in fact a common and well-studied approximation
 \label{sec:lsm:parameter_fit}
 
 To determine the four paremeters $g$, $m^2$, $\lambda$ and $h$ in the Lagrangian \eqref{eq:lsm:lagrangian},
-we use measured values of the ground state $\avg{\sigma}=f_\pi$ and masses $m_\sigma$, $m_\pi$ and $m_q$ in vacuum.
+we use measured values of the ground state $\avg{\sigma}=f_\pi$ and curvature masses $m_\sigma$, $m_\pi$ and $m_q$ in vacuum.
 Inverting equations \eqref{eq:lsm:ground_state_implicit}, \eqref{eq:lsm:mass_sigmapi} and \eqref{eq:lsm:mass_quark}, we then find the parameters
 \begin{equation}
 	g       = \frac{m_q}{f_\pi}, \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
@@ -408,11 +413,12 @@ Two different values are used for $m_\sigma$, generating two different values of
 \end{tabular}
 \end{table}
 
-Also note that we have treated bosons and fit the parameters of the model using the \emph{tree level} masses \eqref{eq:lsm:mass_sigmapi},
+Also note that we have treated bosons to tree level and fit parameters to their curvature masses \eqref{eq:lsm:mass_sigmapi},
 but handled fermions to one loop. 
-This is also inconsistent, as the masses would really receive radiative loop corrections in this case.
+This is also inconsistent, as the physical pole masses would really receive radiative loop corrections in this case.
 In \cref{sec:lsm2f:refinement} we will investigate the effects of fitting the parameters consistently at one loop level,
 and we will see that this also resolves the large discrepancy in the parameter $m_\sigma$.
+\TODO{ok?}
 
 \section{Equation of state}
 
@@ -850,7 +856,8 @@ Hopefully, this remark will save someone from enduring this painful realization 
 
 As we remarked at the end of \cref{sec:lsm:parameter_fit},
 fitting parameters from tree-level relations is inconsistent because we calculated the grand potential \eqref{eq:lsm:grand_potential} to one-loop in the quarks.
-This is, however, the conventional approach often taken in the literature -- see for example \cite{ref:jo_lsm_consistent_chiral,ref:lsm_2f,ref:lsm2f_nuclear}.
+This is, however, the conventional approach often taken in the literature.
+\cite{ref:lsm2f_nuclear,ref:lsm_2f,ref:lsm3f,ref:lsm3f_compact_stars}.
 In a consistent treatment, the parameters should be fitted at the same level to which the grand potential is calculated.
 
 To conclude this chapter we examine the effects of using such a consistent approach.
@@ -925,10 +932,10 @@ compared to the inconsistently fit grand potential from \cref{fig:lsm:potential_
 }
 \end{figure}
 
-Like before, we will set $m_q$, $m_\pi$ and $f_\pi$ to the fixed vacuum values in \cref{tab:lsm2f:parameters}, but vary $m_\sigma$.
-Whereas \cref{fig:lsm:potential_sigma_mass} shows that our original inconsistently fit grand potential only had stable minima for $m_\sigma \gtrsim \SI{600}{\mega\electronvolt}$ in vacuum,
-\cref{fig:lsm:potential_sigma_mass_ref} shows that it appears for $m_\sigma \gtrsim \SI{400}{\mega\electronvolt}$ with the consistently fit grand potential.
-This allows us to set $m_\sigma$ to values within its measured range $\SI{400}{}$-$\SI{550}{\mega\electronvolt}$ without breaking the model!
+Like before, we will fix $m_q$, $m_\pi$ and $f_\pi$ to the vacuum values in \cref{tab:lsm2f:parameters}, but vary $m_\sigma$.
+Whereas \cref{fig:lsm:potential_sigma_mass} shows that our original inconsistently fit grand potential only had stable minima for $m_\sigma \geq \SI{600}{\mega\electronvolt}$ in vacuum,
+\cref{fig:lsm:potential_sigma_mass_ref} shows that it appears for $m_\sigma \geq \SI{400}{\mega\electronvolt}$ with the consistently fit grand potential.
+This allows us to set $m_\sigma$ to values within its measured range $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{550}{\mega\electronvolt}$ without breaking the model!
 
 \begin{figure}
 \centering
