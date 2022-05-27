@@ -37,6 +37,99 @@ Greater bag constants violate the strange matter hypothesis and generate only lo
 \end{tabular}}
 \end{table}
 
+\begin{figure}
+\centering
+\tikzsetnextfilename{summary-mass-radius}
+\pgfplotsset{cycle list/Set1-9}
+\begin{tikzpicture}
+\newcommand\ploteverything{
+\addplot [name path=J0748lo, draw=none, forget plot, domain=0:40] {2.08 - 0.07};
+\addplot [name path=J0748hi, draw=none, forget plot, domain=0:40] {2.08 + 0.07};
+\addplot [red, opacity=0.3, forget plot] fill between [of=J0748lo and J0748hi]; % \addlegendentry{PSR J0748$+$6620};
+\node [anchor=west, red, font=\scriptsize] at (7.2, 2.08) {PSR J0748$+$6620};
+
+\addplot [name path=J0348lo, draw=none, forget plot, domain=0:40] {2.01 - 0.04};
+\addplot [name path=J0348hi, draw=none, forget plot, domain=0:40] {2.01 + 0.04};
+\addplot [green, opacity=0.3, forget plot] fill between [of=J0348lo and J0348hi]; % \addlegendentry{PSR J0348$+$0432};
+\node [anchor=west, green, font=\scriptsize] at (7.2, 2.01) {PSR J0348$+$0432};
+
+\addplot [name path=J1614lo, draw=none, forget plot, domain=0:40] {1.91 - 0.02};
+\addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
+\addplot [yellow, opacity=0.3, forget plot] fill between [of=J1614lo and J1614hi]; % \addlegendentry{PSR J1614$-$2230};
+\node [anchor=west, yellow, font=\scriptsize] at (7.2, 1.91) {PSR J1614$-$2230};
+
+\addplot+ [solid, index of colormap={8 of Set1-9}, draw=none] table [x=R, y=M] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{APR}; % hack: put BEFORE hybrids in legend
+\addplot+ [white] {2.6}; \addlegendentry{};
+\addplot+ [white] {2.6}; \addlegendentry{};
+\addplot+ [white] {2.6}; \addlegendentry{};
+\addplot+ [white] {2.6}; \addlegendentry{};
+\addplot+ [white] {2.6}; \addlegendentry{};
+
+\addplot+ [densely dashed, opacity=0.6, index of colormap={3 of Set1-9}] table [x=R, y=M] {../code/data/MIT2F/stars_sigma_800_B14_155.dat}; \addlegendentry{$\text{MIT}_2 \, (\smash{B^{\frac14}}\!\!=\!\SI{155}{\mega\electronvolt})$};
+\addplot+ [densely dashed, opacity=0.8, index of colormap={3 of Set1-9}] table [x=R, y=M] {../code/data/MIT2F/stars_sigma_800_B14_150.dat}; \addlegendentry{$\text{MIT}_2 \, (\smash{B^{\frac14}}\!\!=\!\SI{150}{\mega\electronvolt})$};
+\addplot+ [densely dashed, opacity=1.0, index of colormap={3 of Set1-9}] table [x=R, y=M] {../code/data/MIT2F/stars_sigma_800_B14_145.dat}; \addlegendentry{$\text{MIT}_2 \, (\smash{B^{\frac14}}\!\!=\!\SI{145}{\mega\electronvolt})$};
+\addplot+ [solid,          opacity=0.6, index of colormap={3 of Set1-9}] table [x=R, y=M] {../code/data/MIT3F/stars_sigma_800_B14_155.dat}; \addlegendentry{$\text{MIT}_3 \, (\smash{B^{\frac14}}\!\!=\!\SI{155}{\mega\electronvolt})$};
+\addplot+ [solid,          opacity=0.8, index of colormap={3 of Set1-9}] table [x=R, y=M] {../code/data/MIT3F/stars_sigma_800_B14_150.dat}; \addlegendentry{$\text{MIT}_3 \, (\smash{B^{\frac14}}\!\!=\!\SI{150}{\mega\electronvolt})$};
+\addplot+ [solid,          opacity=1.0, index of colormap={3 of Set1-9}] table [x=R, y=M] {../code/data/MIT3F/stars_sigma_800_B14_145.dat}; \addlegendentry{$\text{MIT}_3 \, (\smash{B^{\frac14}}\!\!=\!\SI{145}{\mega\electronvolt})$};
+
+\addplot+ [densely dashed, opacity=0.6, index of colormap={4 of Set1-9}] table [x=R, y=M] {../code/data/LSM2F/stars_sigma_600_B14_111.dat}; \addlegendentry{$\text{QM}_2 \, (m_\sigma\!\!=\!\SI{600}{\mega\electronvolt})\!$};
+\addplot+ [densely dashed, opacity=0.8, index of colormap={4 of Set1-9}] table [x=R, y=M] {../code/data/LSM2F/stars_sigma_700_B14_68.dat};  \addlegendentry{$\text{QM}_2 \, (m_\sigma\!\!=\!\SI{700}{\mega\electronvolt})\!$};
+\addplot+ [densely dashed, opacity=1.0, index of colormap={4 of Set1-9}] table [x=R, y=M] {../code/data/LSM2F/stars_sigma_800_B14_27.dat};  \addlegendentry{$\text{QM}_2 \, (m_\sigma\!\!=\!\SI{800}{\mega\electronvolt})\!$};
+\addplot+ [solid,          opacity=0.6, index of colormap={4 of Set1-9}] table [x=R, y=M] {../code/data/LSM3F/stars_sigma_600_B14_111.dat}; \addlegendentry{$\text{QM}_3 \, (m_\sigma\!\!=\!\SI{600}{\mega\electronvolt})\!$};
+\addplot+ [solid,          opacity=0.8, index of colormap={4 of Set1-9}] table [x=R, y=M] {../code/data/LSM3F/stars_sigma_700_B14_68.dat};  \addlegendentry{$\text{QM}_3 \, (m_\sigma\!\!=\!\SI{700}{\mega\electronvolt})\!$};
+\addplot+ [solid,          opacity=1.0, index of colormap={4 of Set1-9}] table [x=R, y=M] {../code/data/LSM3F/stars_sigma_800_B14_27.dat};  \addlegendentry{$\text{QM}_3 \, (m_\sigma\!\!=\!\SI{800}{\mega\electronvolt})\!$};
+
+\addplot+ [densely dashed, opacity=0.6, index of colormap={1 of Set1-9}] table [x=R, y=M] {../code/data/LSM2F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{$\text{QM}_2\!\!+\!\!\text{APR} \, (m_\sigma\!\!=\!\SI{600}{\mega\electronvolt})$};
+\addplot+ [densely dashed, opacity=0.8, index of colormap={1 of Set1-9}] table [x=R, y=M] {../code/data/LSM2F_APR/stars_sigma_700_B14_68.dat};  \addlegendentry{$\text{QM}_2\!\!+\!\!\text{APR} \, (m_\sigma\!\!=\!\SI{700}{\mega\electronvolt})$};
+\addplot+ [densely dashed, opacity=1.0, index of colormap={1 of Set1-9}] table [x=R, y=M] {../code/data/LSM2F_APR/stars_sigma_800_B14_27.dat};  \addlegendentry{$\text{QM}_2\!\!+\!\!\text{APR} \, (m_\sigma\!\!=\!\SI{800}{\mega\electronvolt})$};
+\addplot+ [solid,          opacity=0.6, index of colormap={1 of Set1-9}] table [x=R, y=M] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{$\text{QM}_3\!\!+\!\!\text{APR} \, (m_\sigma\!\!=\!\SI{600}{\mega\electronvolt})$};
+\addplot+ [solid,          opacity=0.8, index of colormap={1 of Set1-9}] table [x=R, y=M] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat};  \addlegendentry{$\text{QM}_3\!\!+\!\!\text{APR} \, (m_\sigma\!\!=\!\SI{700}{\mega\electronvolt})$};
+\addplot+ [solid,          opacity=1.0, index of colormap={1 of Set1-9}] table [x=R, y=M] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat};  \addlegendentry{$\text{QM}_3\!\!+\!\!\text{APR} \, (m_\sigma\!\!=\!\SI{800}{\mega\electronvolt})$};
+
+\addplot+ [solid, index of colormap={8 of Set1-9}, forget plot] table [x=R, y=M] {../code/data/LSM3F_APR/stars_hadron.dat}; % hack: draw OVER hybrids
+}
+\begin{axis}[
+	width=16cm,
+	height=11cm,
+	xlabel={$R \, / \, \si{\kilo\meter}$ },
+	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
+	xmin=7, xmax=16, ymin=0.0, ymax=2.5, xtick distance=1, ytick distance=0.5, minor x tick num=9, minor y tick num=4,
+	grid=both, minor grid style={ultra thin, gray!10!white},
+	legend transposed, legend columns=6, legend cell align = left, legend style={font=\small, anchor=north, at={(0.5, -0.15)}},
+	title = {Quark and hybrid star mass-radius relations for all models},
+	restrict y to domain=0.2:3.0,
+];
+\ploteverything
+\coordinate (zoomplot) at (15.8, 2.4);
+\end{axis}
+\node [anchor=north east] at (zoomplot) {
+	\begin{tikzpicture}[trim axis left, trim axis right, baseline]
+	\begin{axis}[
+		axis background/.style={fill=white},
+		width=5cm, height=6cm,
+		xmin=11, xmax=12, ymin=1.85, ymax=2.15, xtick distance=1.0, ytick distance=0.5, minor x tick num=9, minor y tick num=4, extra y ticks={1.9, 2.1},
+		grid=both, minor grid style={ultra thin, gray!10!white},
+	]
+	\ploteverything
+	\legend{};
+	\end{axis}
+	\end{tikzpicture}
+};
+\end{tikzpicture}
+\caption{\label{fig:conclusion:mass-radius}%
+	\TODO{summary mass-radius plot}
+	Summary of all mass-radius relations obtained in this thesis:
+	neutron stars with the hadronic Akmal-Pandharipande-Ravenhall equation of state (APR);
+	quark stars with the two-flavor and three-flavor MIT bag models ($\text{MIT}_2$ and $\text{MIT}_3$)
+	and quark meson models ($\text{QM}_2$ and $\text{QM}_3$);
+	and hybrid stars joining $\text{QM}_2+\text{APR}$ and $\text{QM}_3+\text{APR}$.
+	For comparison, the colored bands show measured masses
+	of the heavy pulsars \textcolor{green}{PSR J0348$+$0432}, \textcolor{yellow}{PSR J1614$-$2230} and \textcolor{red}{PSR J0740$+$6620}
+	from \cite{ref:antoniadis,ref:arzoumanian,ref:fonseca}.
+	\TODO{finish caption}
+}
+\end{figure}
+
 In this thesis we have modeled quark stars using the MIT bag model and the quark-meson model with two and three flavors,
 and finally hybrid stars by combining the quark-meson model and hadronic Akmal-Pandharipande-Ravenhall equation of state.
 The resulting maximum masses and corresponding radii are summarized in \cref{tab:master_conclusion:results}.
