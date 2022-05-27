@@ -467,7 +467,7 @@ obtaining the quark stars in \cref{fig:mit:mass_radius}:
 }
 \begin{tikzpicture}
 \begin{groupplot}[
-	group style={group size={2 by 1}, vertical sep=0cm, horizontal sep=0.5cm},
+	group style={group size={2 by 1}, vertical sep=0cm, horizontal sep=0.7cm},
 	width=8cm, height=8cm,
 	xmin=5, xmax=20, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
 	point meta=explicit, point meta min=33, point meta max=36,
@@ -482,7 +482,7 @@ obtaining the quark stars in \cref{fig:mit:mass_radius}:
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
-	title = {Two-flavor quark stars}, title style={text width=5cm},
+	title = {Two-flavor MIT bag model quark stars\\$B^\frac14 = \{145,150,155\}\,\si{\mega\electronvolt}$}, title style={text width=7.5cm},
 ];
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_sigma_800_B14_145.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_sigma_800_B14_150.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -491,7 +491,7 @@ obtaining the quark stars in \cref{fig:mit:mass_radius}:
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	yticklabels={,,},
-	title = {Three-flavor quark stars}, title style={text width=5cm},
+	title = {Three-flavor MIT bag model quark stars\\$B^\frac14 = \{145,150,155\}\,\si{\mega\electronvolt}$}, title style={text width=7.5cm},
 	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.87,-0.25)}, anchor=north east, xticklabel pos=lower},
 ];
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_145.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};

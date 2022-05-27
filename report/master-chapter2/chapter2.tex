@@ -727,9 +727,11 @@ We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 \node[scale=0.75] at (11.269, 1.775) {\goldenstar};
 
 \end{groupplot}
+\node [anchor=south, yshift=+1.5cm] at (group c2r1.north) {Two-flavor quark-meson model quark stars};
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-mass-radius}%
 	Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$, obtained with the equations of state for two-flavor quark matter in \cref{fig:lsm:2-flavor-eos-eos} modified by a range of bag constants above the bounds \eqref{eq:lsm:bag_lower_bound}.
+	\TODO{mass-radius relation}
 }
 
 \bigskip
@@ -1060,6 +1062,7 @@ and $m_\sigma = \{500,600\} \, \si{\mega\electronvolt}$.
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_600_B14_67.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 
 \end{groupplot}
+\node [anchor=south, yshift=+1.5cm] at (group c2r1.north) {Two-flavor consistently fit quark-meson model quark stars};
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-mass-radius-ref}%
 Results like those in \cref{fig:lsm:2-flavor-eos} with the consistently fit one-loop and large-$N_c$ grand potential \eqref{eq:lsm2f:grand_potential_consistent}
