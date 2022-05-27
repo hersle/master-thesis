@@ -188,9 +188,9 @@ This is the physical justification of the quark-meson model.
 \label{sec:lsm:grand_potential}
 
 With our recently gained faith in the quark-meson model,
-let us set out to calculate its grand potential \eqref{eq:master_intro:grand_potential}.
+we set out to calculate its grand potential \eqref{eq:master_intro:grand_potential}.
 With the quark fields $q$, the meson fields $\sigma$ and $\vec\pi$
-and the coupling of chemical potentials $\mu$ to conserved vector currents already baked into the Lagrangian \eqref{eq:lsm:lagrangian},
+and the coupling of conserved currents $j^\mu = \bar{q} \gamma^\mu q$ to chemical potentials $\mu$ already baked into the Lagrangian \eqref{eq:lsm:lagrangian},
 the partition function \eqref{eq:master_intro:partition_function} is
 \begin{equation}
 	Z = \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \oint_+ \pathintdif \sigma \oint_+ \pathintdif \vec\pi \exp \left\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \lagr_E[\bar{q}, q, \sigma, \vec\pi]  \right\} .
@@ -244,75 +244,23 @@ Thus, the grand potential \eqref{eq:master_intro:grand_potential} is
 \label{eq:lsm:potential_divergent_logz0}
 \end{equation}
 with the dispersion relation $E(\vec{p}) = \sqrt{\smash[b]{p^2 + m_q^2}}$.
-
-% equivalent remark is made in Folkestad/Andersen 2019 "Thermodynamics and phase diagram of Polykaov-loop extended chiral models"
-Note that the fermionic contribution to the grand potential \eqref{eq:lsm:potential_divergent_logz0} is of order $\bigo(N_c^1)$,
-while any bosonic contribution would only be of order $\bigo(N_c^0)$.
-Although our exclusion of bosonic fluctuations is \emph{inconsistent} with respect to the number of loops considered in Feynman diagrams,
-it can be regarded as \emph{consistent} in the large-$N_c$ approximation scheme.
-Although only $N_c = 3$ in nature,
-the large-$N_c$ approximation is in fact a common and well-studied approximation scheme of quantum chromodynamics.
-It was originally proposed by \cite{ref:large_Nc_proposition}, and a recent review can be found in \cite{ref:large_Nc_review}.
-
-Like before we work in the zero-temperature approximation $T=0$ and choose positive chemical potentials so the anti-particle contribution from the last term in curly brackets vanishes.
-The integral of the middle term in the curly brackets was calculated in the zero-temperature pressure $P=-\Omega$ in equation \eqref{eq:nstars:pressure_zeroT}.
-This time we also include and renormalize the infinite vacuum contribution from the integral over the preceding term.
-Reinstating the Fermi momenta $p_f = \sqrt{\smash[b]{\mu_f^2-m_q^2}}$, we obtain
-\begin{equation}
-	\Omega = -N_c N_f \Omega_0 - \smashoperator{\sum_{\vphantom{\big|} f=\{u,d\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_q^2 \right) \mu_f \sqrt{\mu_f^2 - m_q^2} + 3 m_q^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right]
-\end{equation}
-with the vacuum contribution
-\TODO{move to appendix?}
-\begin{equation}
-	\Omega_0 = -2 \int \frac{\dif^3 p}{(2 \pi)^3} E(\vec{p})
-	         = -2 \int \frac{\dif^3 p}{(2 \pi)^3} \sqrt{p^2 + m_q^2}.
-\label{eq:lsm:vacuum_contribution_3dim}
-\end{equation}
-To renormalize the vacuum contribution \eqref{eq:lsm:vacuum_contribution_3dim} we use dimensional regularization in the minimal subtraction scheme.
-In $d = 3 - 2 \epsilon$ spatial dimensions, it is
-\begin{equation}
-\begin{split}
-	\Omega_0 &= -2 \Lambda^{3-d} \int \frac{\dif^d p}{(2 \pi)^d} \sqrt{p^2 + m_q^2} \\
-	         &= -2 \Lambda^{3-d} \frac{2 \pi^{d/2}}{\Gamma(d/2)} \int_0^\infty \frac{\dif p \, p^{d-1}}{(2 \pi)^d} \sqrt{p^2 + m_q^2} .
-\end{split}
-\label{eq:lsm:vacuum_contribution_ddim}
-\end{equation}
-%\TODO{what happens to the dimensions of the potential $V$ (as consequence of requiring $\log Z$ to be dimensionless)? $V \rightarrow V \lambda^{-2\epsilon}$?}
-We have also multiplied the integral by $\Lambda^{3-d} = \Lambda^{2\epsilon}$ where $\Lambda$ is some number with $\unit{\Lambda} = \unit{p}$,
-so that $\unit{\lambda^{3-d} \dif^d p} = \unit{\dif^3 p}$ and $\Omega$ is well-defined with correct physical \emph{dimension} in all \emph{dimensions}.
-There is nothing that forbids us from doing so,
-as the regulator still accomplishes its only job of reducing the new integral \eqref{eq:lsm:vacuum_contribution_ddim} to the old integral \eqref{eq:lsm:vacuum_contribution_3dim} when we send $\epsilon \rightarrow 0$.
-The momentum integral can be written as an analytical continuation of the \emph{Beta function} \cite{ref:beta_function}
-\begin{equation}
-	B(x,y) = \int_0^\infty \dif t \, \frac{t^{x-1}}{(1+t)^{x+y}} = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)}
-\end{equation}
-if we substitute $t = p^2/m_q^2$ with $\dif t = 2 p \dif p / m_q^2$.
-We then find
-\begin{equation}
-\begin{split}
-	\Omega_0 &= -\Lambda^{3-d} m_q^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \int_0^\infty \dif t \, \frac{t^{d/2-1}}{(1+t)^{-1/2}} \\
-	         &= -\Lambda^{3-d} m_q^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \frac{\Gamma\big(\frac{d}{2}\big) \Gamma\big( \textstyle{-\frac{d+1}{2}} \big)}{\Gamma\big( \textstyle{-\frac{1}{2}} \big)} .
-\end{split}
-\end{equation}
-We now cancel the two factors $\Gamma(d/2)$ and replace $\Gamma(-1/2) = -2\sqrt{\pi}$.
-Then we insert $d = 3 - 2 \epsilon$ back and use the property $\Gamma(z) = \Gamma(z+1) / z$ twice to transport the argument of the Gamma function infinitesimally close to its pole at $0$,
-where we use its asymptotic expansion $\Gamma(\epsilon) = 1/\epsilon + \gamma + \bigo(\epsilon)$ upon arrival.
-Expanding everything to zeroth order in $\epsilon$ then yields
-\begin{equation}
-	\Omega_0 =       \frac{m_q^4}{8 \pi^2} \left( 4 \pi \frac{\Lambda^2}{m_q^2} \right)^\epsilon \Gamma(-2 + \epsilon)
-	         \taylor \frac{m_q^4}{16 \pi^2} \left( \frac{1}{\epsilon} + \log \frac{\Lambda^2}{m_q^2} + \frac32 - \gamma + \log 4 \pi \right) .
-\label{eq:lsm:vacuum_contribution_final}
-\end{equation}
-In hindsight, we now see that we could get rid of the terms $-\gamma + \log 4 \pi$ if we had rather used the modified minimal subtraction scheme, where one rescales $\Lambda^2 \rightarrow \Lambda^2 e^\gamma / 4 \pi$.
-With the vacuum contribution \eqref{eq:lsm:vacuum_contribution_final} in this renormalization scheme, the full grand potential \eqref{eq:lsm:potential_divergent_logz0} becomes
+We work in the zero-temperature approximation $T=0$ and choose positive chemical potentials,
+so the anti-particle contribution from the last term in curly brackets vanishes.
+The integral of the middle term in curly brackets was calculated in the zero-temperature pressure $P=-\Omega$ in equation \eqref{eq:nstars:pressure_zeroT}.
+This time we also include and renormalize the infinite vacuum contribution from the integral of the first term in curly brackets.
+It is called the \emph{Dirac sea}, and we renormalize it in the modified minimal subtraction scheme in \cref{chap:diracsea}.
+Reinstating $x_f = p_f / m_q = \sqrt{\smash[b]{\mu_f^2-m_q^2}} / m_q$ into expression \eqref{eq:nstars:pressure_zeroT}
+and including the renormalized Dirac sea \eqref{eq:diracsea:pole_expansion_modified},
+the divergent grand potential \eqref{eq:lsm:potential_divergent_logz0} becomes
 \begin{equation}
 \begin{split}
 	\Omega &= \pot(\avg{\sigma},\vec{0}) + N_c N_f \frac{m_q^4}{16 \pi^2} \Bigg[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \Bigg] \\
-	       &- \smashoperator{\sum_{\vphantom{\big|} f=\{u,d\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_q^2 \right) \mu_f \sqrt{\mu_f^2 - m_q^2} + 3 m_q^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right]
+	       &- \smashoperator{\sum_{\vphantom{\big|} f=\{u,d\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_q^2 \right) \mu_f \sqrt{\mu_f^2 - m_q^2} + 3 m_q^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right] .
 \end{split}
 \label{eq:lsm:grand_potential_nonrenormalized}
 \end{equation}
-This investigation has revealed that the term $N_c N_f m_q^4 / 16 \pi^2 \epsilon$ is responsible for the vacuum divergence.
+The renormalization has introduced a renormalization scale $\Lambda$ that we will determine later.
+It also exposes the Dirac sea vacuum divergence in the pole $N_c N_f m_q^4 / 16 \pi^2 \epsilon$.
 Recalling that $m_q=g \avg{\sigma}$,
 we also see that the divergence can be removed by the term $\lambda \avg{\sigma}^4 / 24$ in the meson potential $\pot(\avg{\sigma},\vec{0})$
 if we shift the quartic coupling
@@ -342,6 +290,17 @@ The particle densities are the same as in the MIT bag model:
 \end{equation}%
 The pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density} follow straightforwardly from the grand potential \eqref{eq:lsm:grand_potential} and particle densities \eqref{eq:lsm:particle_densities}
 with $T=0$.
+
+% equivalent remark is made in Folkestad/Andersen 2019 "Thermodynamics and phase diagram of Polykaov-loop extended chiral models"
+Note that the fermionic contribution to the grand potential \eqref{eq:lsm:grand_potential} is of order $\bigo(N_c^1)$,
+while any bosonic contribution would necessarily only be of order $\bigo(N_c^0)$.
+Although our exclusion of bosonic fluctuations 
+and inclusion of fermionic fluctuations
+is \emph{inconsistent} with respect to the number of loops considered in Feynman diagrams,
+this approach can be regarded as \emph{consistent} in the large-$N_c$ approximation scheme.
+Although only $N_c = 3$ in nature,
+the large-$N_c$ approximation is in fact a common and well-studied approximation scheme of quantum chromodynamics.
+\cite{ref:large_Nc_review}.
 
 \section{Parameter fitting at tree-level}
 \label{sec:lsm:parameter_fit}
