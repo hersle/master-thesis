@@ -501,7 +501,6 @@ of $\beta$-equilibrium \eqref{eq:lsm:chemical_equilibrium}
 and charge neutrality \eqref{eq:lsm:charge_neutrality}.
 This means that we must not solve only the self-consistency equation \eqref{eq:lsm:gap_equation},
 but the \emph{system} of equations
-\TODO{comment on using $\avg{\sigma}$ free instead of $\mu$ because of phase transition}
 \begin{subequations}
 \begin{align}
 	0 &= \pdv{\Omega}{\avg{\sigma}} , \label{eq:lsm:minsys_min} \\
@@ -513,9 +512,16 @@ but the \emph{system} of equations
 \end{subequations}%
 This is a system of three equations for the four unknowns $\avg{\sigma}$, $\mu_u$, $\mu_d$ and $\mu_e$.
 Remember that $m_q = g \avg{\sigma}$.
-We parametrize solutions with one variable, say $\avg{\sigma}$,
+We parametrize solutions with one free variable, 
 and calculate the densities \eqref{eq:lsm:particle_densities}, pressure \eqref{eq:master_intro:pressure}, energy density \eqref{eq:master_intro:energy_density}
 and the equation of state $\epsilon(P)$ like in \cref{chap:mit}.
+
+In particular, we now use $\avg{\sigma}$ as the free variable instead of $\mu$.
+As revealed by peeking ahead at the results in \cref{fig:lsm:2-flavor-eos-parametrization},
+the possible presence of a phase transition implies that
+one $\mu$ can correspond to multiple $\avg{\sigma}$,
+while all $\avg{\sigma}$ correspond to only one $\mu$ outside vacuum.
+It is therefore only the parametrization with $\avg{\sigma}$ that can capture the multiple solutions.
 
 How should we normalize the pressure this time?
 With the grand potential \eqref{eq:lsm:grand_potential},
@@ -582,7 +588,7 @@ Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bag
 	xmin=0, xmax=700, xtick distance=100, minor x tick num=9,
 	ymin=-20, ymax=700, ytick distance=100, 
 	%ymax=600, 
-	title={\subcaption{\label{fig:lsm:2-flavor-eos-parametrization}Parametrization of solutions }},
+	title={\subcaption{\label{fig:lsm:2-flavor-eos-parametrization}Parametrization of solutions}},
 	legend cell align=left, legend pos=north west, reverse legend, legend columns=4, legend transposed,
 ];
 \addplot+ [orange,    dotted, semithick, opacity=0.7, forget plot, domain=0:700] {0};
