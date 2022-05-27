@@ -89,8 +89,8 @@ Greater bag constants violate the strange matter hypothesis and generate only lo
 \addplot+ [solid, index of colormap={8 of Set1-9}, forget plot] table [x=R, y=M] {../code/data/LSM3F_APR/stars_hadron.dat}; % hack: draw OVER hybrids
 }
 \begin{axis}[
-	width=16cm,
-	height=11cm,
+	width=15.5cm,
+	height=10.5cm,
 	xlabel={$R \, / \, \si{\kilo\meter}$ },
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
 	xmin=7, xmax=16, ymin=0.0, ymax=2.5, xtick distance=1, ytick distance=0.5, minor x tick num=9, minor y tick num=4,
@@ -100,7 +100,7 @@ Greater bag constants violate the strange matter hypothesis and generate only lo
 	restrict y to domain=0.2:3.0,
 ];
 \ploteverything
-\coordinate (zoomplot) at (15.8, 2.4);
+\coordinate (zoomplot) at (15.9, 2.4);
 \end{axis}
 \node [anchor=north east] at (zoomplot) {
 	\begin{tikzpicture}[trim axis left, trim axis right, baseline]
@@ -127,6 +127,7 @@ Greater bag constants violate the strange matter hypothesis and generate only lo
 	of the heavy pulsars \textcolor{green}{PSR J0348$+$0432}, \textcolor{yellow}{PSR J1614$-$2230} and \textcolor{red}{PSR J0740$+$6620}
 	from \cite{ref:antoniadis,ref:arzoumanian,ref:fonseca}.
 	\TODO{finish caption}
+	\TODO{JO se}
 }
 \end{figure}
 
