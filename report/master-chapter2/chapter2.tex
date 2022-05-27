@@ -45,10 +45,9 @@ We will therefore take the model as granted from the start and try to justify it
 The Lagrangian density for the linear sigma model coupled to quarks is \cite{ref:lsm_2f}
 \begin{equation}
 	\lagr = \bar{q} \Big[ i \slashed\partial + \mu \gamma^0 - g \big( \sigma + i \gamma^5 \vec\tau \cdot \vec\pi \big) \Big] q
-	      + \frac12 \Big[ \big( \partial_\mu \sigma \big)^2 + \big( \partial_\mu \vec\pi \big)^2 \Big] - \pot(\sigma,\vec\pi)
+	      + \frac12 \Big[ \big( \partial_\mu \sigma \big) \big( \partial^\mu \sigma \big) + \big( \partial_\mu \vec\pi \big) \big( \partial^\mu \vec\pi \big) \Big] - \pot(\sigma,\vec\pi)
 \label{eq:lsm:lagrangian}
 \end{equation}
-\TODO{JO mail: lagr above in Mink space but has Eucl inds?}
 with the meson potential
 \begin{equation}
 	\pot(\sigma, \vec\pi) = \frac{m^2}{2} \big( \sigma^2 + \vec\pi^2 \big) + \frac{\lambda}{4!} \big( \sigma^2 + \vec\pi^2 \big)^2 - h \sigma .
@@ -135,7 +134,7 @@ Up to second order in the quantum fluctuations,
 the Lagrangian \eqref{eq:lsm:lagrangian} becomes
 \begin{equation}
 	\lagr = \sum_{f=1}^{N_f} \sum_{c=1}^{N_c} \bar{q} \Big[ i \slashed\partial + \mu \gamma^0 - m_q \Big] q
-	      + \frac12 \left[ \left( \partial_\mu \tilde{\sigma} \right)^2 + \left( \partial_\mu \tilde{\vec\pi} \right)^2 \right] - \pot(\sigma,\vec\pi) , %\pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) ,
+	      + \frac12 \Big[ \big( \partial_\mu \tilde{\sigma} \big) \big( \partial^\mu \tilde{\sigma} \big) + \big( \partial_\mu \tilde{\vec\pi} \big) \big( \partial^\mu \tilde{\vec\pi} \big) \Big] - \pot(\sigma,\vec\pi) , %\pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) ,
 \end{equation}
 with the second-order meson potential \eqref{eq:lsm:potential}
 \begin{equation}
