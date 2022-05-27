@@ -258,22 +258,23 @@ and including the renormalized Dirac sea \eqref{eq:diracsea:pole_expansion_modif
 the divergent grand potential \eqref{eq:lsm:potential_divergent_logz0} becomes
 \begin{equation}
 \begin{split}
-	\Omega &= \pot(\avg{\sigma},\vec{0}) + N_c N_f \frac{m_q^4}{16 \pi^2} \Bigg[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \Bigg] \\
+	\Omega &= \pot(\avg{\sigma},\vec{0}) + N_c N_f \frac{m_q^4}{16 \pi^2} \Bigg[ \textcolor{red}{\frac{1}{\epsilon}} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \Bigg] \\
 	       &- \smashoperator{\sum_{\vphantom{\big|} f=\{u,d\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_q^2 \right) \mu_f \sqrt{\mu_f^2 - m_q^2} + 3 m_q^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_q^2}-1} \right) \right] .
 \end{split}
 \label{eq:lsm:grand_potential_nonrenormalized}
 \end{equation}
 The renormalization has introduced a renormalization scale $\Lambda$ that we will determine later.
-It also exposes the Dirac sea vacuum divergence in the pole $N_c N_f m_q^4 / 16 \pi^2 \epsilon$.
-Recalling that $m_q=g \avg{\sigma}$,
-we also see that the divergence can be removed by the term $\lambda \avg{\sigma}^4 / 24$ in the meson potential $\pot(\avg{\sigma},\vec{0})$
-if we shift the quartic coupling
-\TODO{show \emph{I} find CT}
+It also exposes the Dirac sea vacuum divergence in the pole \textcolor{red}{$N_c N_f m_q^4 / 16 \pi^2 \epsilon$}.
+Recalling that $m_q=g \avg{\sigma}$ and glancing back at the meson potential \eqref{eq:lsm:potential},
+we also see that this divergence can be removed by the term \textcolor{blue}{$\lambda \avg{\sigma}^4 / 24$} in $\pot(\avg{\sigma},\vec{0})$
+if the quartic coupling is shifted to
 \begin{equation}
-	\lambda \rightarrow \lambda + \delta\lambda
+	\lambda \rightarrow \lambda + \textcolor{blue}{\delta\lambda}
 	\qquad \text{with the counterterm} \qquad
-	\delta\lambda = -N_c N_f \frac{3 g^4}{2 \pi^2 \epsilon} .
+	\textcolor{blue}{\delta\lambda = -N_c N_f \frac{3 g^4}{2 \pi^2 \epsilon}} .
 \end{equation}
+Then $\textcolor{red}{N_c N_f m_q^4 / 16 \pi^2 \epsilon} + \textcolor{blue}{\delta\lambda \avg{\sigma}^4 / 24} = 0$,
+demonstrating that the theory is renormalizable.
 Adding free electrons to the mix, the finite and renormalized grand potential is finally
 \begin{equation}
 \begin{split}
@@ -290,24 +291,23 @@ the particle densities are
 \begin{equation}
 	n_f = -\pdv{\Omega}{\mu_f} = \frac{N_c}{3 \pi^2} \Big( \mu_f^2 - m_q^2 \Big)^{\frac32}
 	\qquad \text{and} \qquad
-	n_e = -\pdv{\Omega}{\mu_e} = \frac{  1}{3 \pi^2} \Big( \mu_e^2 - m_e^2 \Big)^{\frac32}.
+	n_e = -\pdv{\Omega}{\mu_e} = \frac{  1}{3 \pi^2} \Big( \mu_e^2 - m_e^2 \Big)^{\frac32},
 \label{eq:lsm:particle_densities}%
 \end{equation}%
 and the pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density} follow at $T=0$.
+\TODO{next para ok?}
 
 % equivalent remark is made in Folkestad/Andersen 2019 "Thermodynamics and phase diagram of Polykaov-loop extended chiral models"
 % ("one-loop large-N_c limit")
-It can be argued that it is \emph{inconsistent} to treat bosons and fermions to zero and one loops, respectively.
+It can be argued that treating bosons and fermions to zero and one loops is \emph{inconsistent}.
 However, note that the fermionic contribution to the grand potential \eqref{eq:lsm:grand_potential} is of order $\bigo(N_c^1)$,
 while any purely bosonic contribution would necessarily only be of order $\bigo(N_c^0)$.
-Hence, it is equally valid to argue that our approach is \emph{consistent} in the large-$N_c$ approximation scheme.
-Strictly speaking, this is only true if the number of loops is simultaneously restricted to one;
-otherwise the Feynman diagram due to the $\bar{q} \sigma q$ Yukawa interaction, of order $\bigo(N_c^1)$ and with \emph{two} loops,
-should also be included, for example.
+Hence, we can also make a case for our approach being \emph{consistent} in the large-$N_c$ approximation scheme.
+Strictly speaking, this only holds if the number of loops is simultaneously restricted to one;
+otherwise the \emph{two}-loop and $\bigo(N_c^1)$ Feynman diagram due to the $\bar{q} \sigma q$ Yukawa interaction should also be included.
 Although only $N_c = 3$ in nature,
 the large-$N_c$ approximation is in fact a common and well-studied approximation scheme of quantum chromodynamics.
 \cite{ref:large_Nc_review}.
-\TODO{ok?}
 
 \section{Parameter fitting at tree-level}
 \label{sec:lsm:parameter_fit}

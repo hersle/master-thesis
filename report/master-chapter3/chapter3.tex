@@ -366,19 +366,23 @@ We comment on this in the next section.
 Before removing the vacuum divergence, we then have the divergent grand potential
 \begin{equation}
 \begin{split}
-	\Omega(\avg{\sigma},\mu) &= \pot(\avg{\sigma},0) + \frac{N_c m_x^4}{8 \pi^2} \Bigg[ \frac{1}{\epsilon} + \frac{3}{2} + \log\bigg(\frac{\Lambda_x^2}{m_x^2}\bigg) \Bigg] + \frac{N_c m_y^4}{16 \pi^2} \Bigg[ \frac{1}{\epsilon} + \frac{3}{2} + \log\bigg(\frac{\Lambda_y^2}{m_y^2}\bigg) \Bigg] \\ % + N_c \smashoperator{\sum_{\vphantom{\big|}f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right] \\
+	\Omega(\avg{\sigma},\mu) &= \pot(\avg{\sigma},0) + \frac{N_c m_x^4}{8 \pi^2} \Bigg[ \textcolor{red}{\frac{1}{\epsilon}} + \frac{3}{2} + \log\bigg(\frac{\Lambda_x^2}{m_x^2}\bigg) \Bigg] + \frac{N_c m_y^4}{16 \pi^2} \Bigg[ \textcolor{red}{\frac{1}{\epsilon}} + \frac{3}{2} + \log\bigg(\frac{\Lambda_y^2}{m_y^2}\bigg) \Bigg] \\ % + N_c \smashoperator{\sum_{\vphantom{\big|}f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right] \\
 	                         &-\smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right]. \\
 \end{split}
 \end{equation}
-Once again, we see that the divergent term
+The divergence $\textcolor{red}{N_c (2 m_x^4 + m_y^2) / 16 \pi^2 \epsilon} = \textcolor{red}{N_c g^4 (\avg{\sigma_x}^4 + 2\avg{\sigma_y}^4) / 128 \epsilon}$
+%\begin{equation}
+%	\textcolor{red}{
+%	N_c \frac{2 m_x^4 + m_y^4}{16 \pi^2 \epsilon} = \frac{N_c g^4}{16 \pi^2} \frac{\avg{\sigma_x}^4 + 2 \avg{\sigma_y}^4}{8 \epsilon}
+%	}
+%\end{equation}
+can again be absorbed by $\textcolor{blue}{\lambda_2 (\avg{\sigma_x}^4+2\avg{\sigma_y}^4)/8}$ 
+in the meson potential \eqref{eq:lsm:potential_tree_3f} if we shift
 \begin{equation}
-	N_c \frac{2 m_x^4 + m_y^4}{16 \pi^2 \epsilon} =
-	\frac{N_c g^4}{16 \pi^2} \frac{\avg{\sigma_x}^4 + 2 \avg{\sigma_y}^4}{8 \epsilon}
+	\lambda_2 \rightarrow \lambda_2 + \textcolor{blue}{\delta\lambda_2} \qquad \text{with the counterterm} \qquad \textcolor{blue}{\delta\lambda_2 = -\frac{N_c g^4}{16 \pi^2 \epsilon}}.
 \end{equation}
-can be removed by shifting the $\lambda_2$ coupling in the vacuum meson potential \eqref{eq:lsm:potential_tree_3f} to
-\begin{equation}
-	\lambda_2 \rightarrow \lambda_2 + \delta\lambda_2 \qquad \text{with the counterterm} \qquad \delta\lambda_2 = -\frac{N_c g^4}{16 \pi^2 \epsilon} .
-\end{equation}
+Then $\textcolor{red}{N_c (2 m_x^4 + m_y^2) / 16 \pi^2 \epsilon} + \textcolor{blue}{\delta\lambda_2 (\avg{\sigma_x}^4+2\avg{\sigma_y}^4)} = 0$,
+and the theory is again renormalizable.
 Adding electrons, we obtain the natural generalization of the two-flavor grand potential \eqref{eq:lsm:grand_potential},
 \begin{equation}
 \begin{split}
