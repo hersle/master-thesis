@@ -394,9 +394,9 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \addplot [yellow, opacity=0.4] fill between [of=J1614lo and J1614hi]; \addlegendentry{PSR J1614$-$2230};
 
 \addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
-\addplot+ [solid, each nth point=8, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
-\addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \draw [Latex-] (11.45,2.08) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
 \draw [Latex-] (11.55,1.97) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
 \draw [Latex-] (11.65,1.90) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
@@ -421,9 +421,9 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \addplot [yellow, opacity=0.4] fill between [of=J1614lo and J1614hi];
 
 \addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, each nth point=8, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \draw [Latex-] (11.45,2.08) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
 \draw [Latex-] (11.55,1.97) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
 \draw [Latex-] (11.65,1.90) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
