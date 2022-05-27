@@ -268,6 +268,7 @@ It also exposes the Dirac sea vacuum divergence in the pole $N_c N_f m_q^4 / 16 
 Recalling that $m_q=g \avg{\sigma}$,
 we also see that the divergence can be removed by the term $\lambda \avg{\sigma}^4 / 24$ in the meson potential $\pot(\avg{\sigma},\vec{0})$
 if we shift the quartic coupling
+\TODO{show \emph{I} find CT}
 \begin{equation}
 	\lambda \rightarrow \lambda + \delta\lambda
 	\qquad \text{with the counterterm} \qquad
@@ -284,27 +285,29 @@ Adding free electrons to the mix, the finite and renormalized grand potential is
 \end{split}
 \label{eq:lsm:grand_potential}
 \end{equation}
-
-The particle densities are the same as in the MIT bag model:
+As in the MIT bag model,
+the particle densities are
 \begin{equation}
 	n_f = -\pdv{\Omega}{\mu_f} = \frac{N_c}{3 \pi^2} \Big( \mu_f^2 - m_q^2 \Big)^{\frac32}
 	\qquad \text{and} \qquad
 	n_e = -\pdv{\Omega}{\mu_e} = \frac{  1}{3 \pi^2} \Big( \mu_e^2 - m_e^2 \Big)^{\frac32}.
 \label{eq:lsm:particle_densities}%
 \end{equation}%
-The pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density} follow straightforwardly from the grand potential \eqref{eq:lsm:grand_potential} and particle densities \eqref{eq:lsm:particle_densities}
-with $T=0$.
+and the pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density} follow at $T=0$.
 
 % equivalent remark is made in Folkestad/Andersen 2019 "Thermodynamics and phase diagram of Polykaov-loop extended chiral models"
-Note that the fermionic contribution to the grand potential \eqref{eq:lsm:grand_potential} is of order $\bigo(N_c^1)$,
-while any bosonic contribution would necessarily only be of order $\bigo(N_c^0)$.
-Although our exclusion of bosonic fluctuations 
-and inclusion of fermionic fluctuations
-is \emph{inconsistent} with respect to the number of loops considered in Feynman diagrams,
-this approach can be regarded as \emph{consistent} in the large-$N_c$ approximation scheme.
+% ("one-loop large-N_c limit")
+It can be argued that it is \emph{inconsistent} to treat bosons and fermions to zero and one loops, respectively.
+However, note that the fermionic contribution to the grand potential \eqref{eq:lsm:grand_potential} is of order $\bigo(N_c^1)$,
+while any purely bosonic contribution would necessarily only be of order $\bigo(N_c^0)$.
+Hence, it is equally valid to argue that our approach is \emph{consistent} in the large-$N_c$ approximation scheme.
+Strictly speaking, this is only true if the number of loops is simultaneously restricted to one;
+otherwise the Feynman diagram due to the $\bar{q} \sigma q$ Yukawa interaction, of order $\bigo(N_c^1)$ and with \emph{two} loops,
+should also be included, for example.
 Although only $N_c = 3$ in nature,
 the large-$N_c$ approximation is in fact a common and well-studied approximation scheme of quantum chromodynamics.
 \cite{ref:large_Nc_review}.
+\TODO{ok?}
 
 \section{Parameter fitting at tree-level}
 \label{sec:lsm:parameter_fit}
