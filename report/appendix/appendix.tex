@@ -1817,8 +1817,8 @@ the models inherit functionality from each other according to the following clas
 	every node/.style={rectangle, fill=blue!20, draw=black, thick, font=\small, align=center}, % ellipse is too wide
 	grow'=right,
 	level distance=4cm,
-	level 1/.style={sibling distance=3cm},
-	level 2/.style={sibling distance=2cm},
+	level 1/.style={sibling distance=3.5cm},
+	level 2/.style={sibling distance=1.5cm},
 ]
 \node {Model}
 	child {node {MITModel \\ \scriptsize \textcolor{darkgray}{(chapter 7)}}
@@ -1835,6 +1835,7 @@ the models inherit functionality from each other according to the following clas
 	}
 	child {node {HybridModel \\ \scriptsize \textcolor{darkgray}{(chapter 10)}}
 		child {node {Hybrid2FlavorModel}}
+		child {node {Hybrid2FlavorConsistentModel}}
 		child {node {Hybrid3FlavorModel}}
 	};
 \end{tikzpicture}
@@ -1863,5 +1864,7 @@ For each model, the program performs the following tasks:
 
 For readability, self-documentation and one-to-one correspondence,
 the code uses Unicode variable names that resemble the variables and equations in the main text.
+
+\pagebreak
 
 \codefile{python}{../code/quark_stars.py}{quark\_stars.py}
