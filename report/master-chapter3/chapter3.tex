@@ -11,9 +11,9 @@ we will see that the three-flavor model presents us with a multitude of ways of 
 so that some experimental values must be predicted rather than fit.
 
 Three-flavor models are particularly interesting for quark stars.
-If the strange matter hypothesis is true,
-there is a greater possibility of finding stars that consist of stable three-flavor quark matter
-as opposed to unstable two-flavor quark matter, both with respect to hadronic matter.
+While two-flavor quark matter is unstable with respect to hadronic matter,
+pure quark stars consisting only of strange quark matter would be stable and more likely to exist
+\emph{if} the strange matter hypothesis is true.
 Due to the heavier mass of the strange quark,
 we expect its effects to become apparent in the mass-radius diagram
 only for stars that have a large central pressure and thus large quark chemical potential.
@@ -396,8 +396,8 @@ Adding electrons, we obtain the natural generalization of the two-flavor grand p
 \section{Parameter fitting at tree-level}
 \label{sec:lsm3f:parameter_fit}
 
-We are now in position to fit the six model parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_x$ and $h_y$ in vacuum,
-where the pion and kaon decay constants $f_\pi$ and $f_K$ are related to the nonzero expectation values by
+We are now in position to fit the six parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_x$ and $h_y$.
+In vacuum, the pion and kaon decay constants $f_\pi$ and $f_K$ are related to the nonzero expectation values
 \cite{ref:lsm3f_details}
 \begin{equation}
 	%f_\pi = \sqrt{\frac23} \avg{\sigma_0} + \frac{\avg{\sigma_8}}{\sqrt{3}}
@@ -422,11 +422,12 @@ We keep using $m_\sigma$ and $m_\pi$ for continuity from \cref{chap:lsm2f}
 and include $m_K$ as the third mass, thereby obtaining the unique selection of mesons with lowest mass and energy.
 This is the same selection used by \cite{ref:lsm3f} and \cite{ref:lsm3f_details}, for example.
 
-Note that there is a particularly large discrepancy between the modeled and experimental $\eta'$ mass.
-This can be improved by including a term $c \, (\tdet{\phi} + \tdet{\phi^\dagger})$ in the Lagrangian that accounts for the anomalous axial $U(1)_A$ symmetry of quantum chromodynamics discussed in \cref{sec:master_intro:qcd}.
-How to do so is also shown \cite{ref:lsm3f} and \cite{ref:lsm3f_details},
-but we do not include it here in order to keep the two-flavor and three-flavor models as similar and comparable as possible.
-In particular, they find that its inclusion drives the chiral transition closer to being a discontinuous phase transition rather than a crossover.
+Note the particularly large discrepancy between the modeled and experimental $\eta'$ mass.
+This can be improved by including a term $c \, (\tdet{\phi} + \tdet{\phi^\dagger})$ in the Lagrangian that accounts for the anomalous axial $U(1)_A$ symmetry of quantum chromodynamics discussed in \cref{sec:master_intro:qcd},
+also shown in \cite{ref:lsm3f} and \cite{ref:lsm3f_details}.
+In order to keep the two-flavor and three-flavor models as similar and comparable as possible,
+we do not include it here.
+In particular, they find that it drives the chiral transition closer to being a discontinuous phase transition rather than a crossover.
 
 Like in \cref{sec:lsm:parameter_fit},
 we keep all parameters fixed except $m_\sigma$, due to its large experimental uncertainty.
@@ -443,17 +444,16 @@ Now, the natural generalization of this procedure is to determine $\Lambda_x$ an
 	\quad \text{and} \quad
 	\Lambda_y = \frac{m_y}{\sqrt{e}} = \SI{260.2}{\mega\electronvolt}.
 \end{equation}
-
 This is not the only way to do it.
-Instead we could do like \cite{ref:master_berge} and operate with one common renormalization scale $\Lambda = \Lambda_x = \Lambda_y$ in the grand potential,
+Like \cite{ref:master_berge},
+we could rather operate with one common scale $\Lambda = \Lambda_x = \Lambda_y$ in the grand potential,
 for example chosen as the flavor-weighted average $\Lambda = (2 \cdot \SI{182.0}{\mega\electronvolt} + \SI{260.2}{\mega\electronvolt}) / 3 = \SI{208.0}{\mega\electronvolt}$ of the two we have found.
 In particular, this means that the minimum of $\Omega$ in vacuum is no longer at the minimum of $\pot$.
-This is unsatisfying and has surprising consequences --
-for example, if $\Omega$ is fit to some vacuum quark mass $m_x = g f_\pi/2$,
-\emph{its minimum $\avg{\sigma_x} \neq f_\pi$ moves away} and generates a \emph{different} mass $m_u = g \avg{\sigma_x} / 2$.
+This is unsatisfying and has surprising consequences
+For example, if $\Omega$ is fit to some vacuum quark mass $m_x = g f_\pi/2$,
+\emph{its minimum $\avg{\sigma_x} \neq f_\pi$ moves away} and generates a \emph{different} mass $m_x = g \avg{\sigma_x} / 2$.
 Of course, our approach also has its caveats, as it is not apparent how to interpret the presence of two different renormalization scales, let alone one.
-But it does not behave in this unpredictable way, and it also permits use of lower values of $m_\sigma$ without removing the minimum,
-consistent with the behavior in \cref{chap:lsm2f}.
+But it does not behave in this unpredictable way, and it also permits using the same values of $m_\sigma$ as in \cref{chap:lsm2f} without breaking the potential.
 Ideally, a more consistent calculation such as the one presented in \cref{sec:lsm2f:refinement} should be done anyway,
 where one preferable renormalization scale appears, and we even saw that it dropped out in that specific case.
 It is hard to say which approach is better,
@@ -557,8 +557,8 @@ Recall from the consistently fit two-flavor model in \cref{sec:lsm2f:refinement}
 that our way of fitting parameters at tree-level to a grand potential calculated to one loop is really inconsistent.
 However, we know of no similar consistent calculation done with three flavors.
 The lesson we learned back there was that inconsistently fit $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$
-is representative of the physically measured masses $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{600}{\mega\electronvolt}$,
-so we hope that the same remains true with three flavors.
+is representative of physically measured masses $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{600}{\mega\electronvolt}$,
+so we can only hope that the same remains true with three flavors.
 
 \section{Equation of state}
 
@@ -947,7 +947,7 @@ This is one of the reasons for why we operate with two renormalization scales he
 % cheat legend
 \addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_B$};
 \end{groupplot}
-\node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {\goldenstar Maximum mass star ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{27}{\mega\electronvolt}$, $P_c=10^{34.602} \, \si{\pascal}$)};
+\node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {\goldenstar Maximum mass star ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{27}{\mega\electronvolt}$, $P_c=10^{34.60} \, \si{\pascal}$)};
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-star}%
 	Radial profiles for the
@@ -967,16 +967,16 @@ This is one of the reasons for why we operate with two renormalization scales he
 Solving the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov} like in \cref{chap:lsm2f} with the same bag constants used there,
 we obtain the mass-radius solutions displayed in \cref{fig:lsm:3-flavor-mass-radius}:
 \begin{itemize}
-\item For stars with sufficiently low central pressure,
-      the quark chemical potential $\mu$ inside does not reach large enough levels to activate the strange quark.
-      Then the three-flavor equation of state tracks the two-flavor one almost perfectly, and so does the mass-radius curve.
-      It is somewhat surprising that the correspondence is so good, given that the two models use different vacuum potentials.
-\item For stars with greater central pressure, $\mu$ reaches sufficient levels and the strange quark is present in the core of the star.
+\item For stars with low central pressure,
+      the quark chemical potential $\mu$ does not reach large enough levels to activate the strange quark.
+      Then the three-flavor equation of state and mass-radius curve track the two-flavor versions almost perfectly.
+      As the two models use different vacuum potentials, it is somewhat surprising that the correspondence is so good.
+\item For stars with greater central pressure, $\mu$ reaches sufficient levels and the strange quark is present in the core.
       Exactly at the threshold, we see that the mass-radius curve grows apart from the two-flavor curve into a new branch with lower stellar masses.
-      This is caused by the softening of the equation of state as it ramps up to another plateau during the strange crossover.
-\item The masses and radii are generally comparable to the two-flavor results, except that the mass is lowered for stars with strange quarks.
+      This is caused by the softening of the equation of state as it ramps up during the strange crossover.
+\item The masses and radii are comparable to the two-flavor results, except that the mass is lowered for stars with strange quarks.
       For stars that just satisfy the lower bag bound and hence respect instability of two-flavor quark matter with respect to hadronic matter,
-      we find masses $1.6 \, M_\odot\leq M \leq 1.8 \, M_\odot$ and radii $\SI{11}{\kilo\meter} \leq R \leq \SI{12}{\kilo\meter}$ depending on the precise mass $m_\sigma$.
+      we find maximum masses $1.6 \, M_\odot\leq M \leq 1.8 \, M_\odot$ and corresponding radii $\SI{11}{\kilo\meter} \leq R \leq \SI{12}{\kilo\meter}$ depending on the precise mass $m_\sigma$.
       Greater bag constants violate the strange matter hypothesis and result in only lighter and smaller stars, like before.
 \end{itemize}
 
@@ -984,29 +984,45 @@ In \cref{fig:lsm:3-flavor-star} we take a more detailed look at the maximum mass
 \begin{itemize}
 \item Apart from the presence of strange quarks, many features are similar to that of the two-flavor star we discussed on page \pageref{list:lsm:2-flavor-star-discussion}.
 \item The star is composed of three-flavor quark matter including strange quarks for $r \leq \SI{6.5}{\kilo\meter}$ and two-flavor quark matter out to the surface.
-\item With a maximum chemical potential $\mu=\SI{465}{\mega\electronvolt}$, the strange quark has a significant mass at the center compared to the up and down quarks, as seen from \cref{fig:lsm:3-flavor-eos-parametrization}.
-      Accordingly, the star is far from realizing ultra-relativistic three-flavor quark matter with equal proportions of each quark.
+\item With a maximum chemical potential $\mu=\SI{465}{\mega\electronvolt}$, the strange quark is much heavier than the up and down quarks at the center, as seen from \cref{fig:lsm:3-flavor-eos-parametrization}.
+      Thus, the star is far from realizing ultra-relativistic three-flavor quark matter.
 \item The maximum central chemical potential is comparable in the two-flavor and three-flavor models.
       If we assert that this carries over to a four-flavor model that also includes the charm quark with a constituent mass $m_c \approx \SI{1550}{\mega\electronvolt}$,
-      we would expect it to be present only for extreme central pressures and chemical potentials that lie far beyond the maximum mass star.
-      For physical and stable stars, three-flavor models are therefore the most complicated ones we need to study.
+      we would expect it to be present only for extreme central pressures far beyond that of the maximum mass star.
+      For physical and stable stars, we therefore only need to include the three lightest quarks.
 %\item If the core of this star is used to model the core of a hybrid neutron star with a quark model for $n_B > 4 n_\text{sat}$,
       %this core would extend for $R'=\SI{5}{\kilo\meter}$, weigh in at $M' = m(R') = 0.4 \, M_\odot$, have a central pressure $P_c'=p(R')=\SI{0.12}{\giga\electronvolt\per\femto\meter\cubed}$ and be entirely composed of three-flavor quark matter.
 \end{itemize}
+Since these pure quark stars consist of two-flavor quark matter out to the surface
+and this is unstable with respect to hadronic matter,
+they are unlikely to be found in nature.
+The only hope of realizing pure three-flavor quark stars is
+if the strange matter hypothesis is true and they consist of strange quark matter \emph{everywhere}.
+The only way of achieving this with our model is to increase the bag constant.
+We have checked that for all $m_\sigma$ considered,
+roughly $B^\frac14 \gtrsim \SI{145}{\mega\electronvolt}$ is required for the $s$ quark to survive out to the surface.
+Unfortunately, this exceeds the upper bound \eqref{eq:lsm3f:bag_upper_bound} \emph{also} due to the strange matter hypothesis,
+so it is not possible to self-consistently model pure strange quark stars with this model!
+\TODO{les, plot a SQS?}
 
 \section{Summary}
 
-In this chapter we have studied quark stars modeled with the three-flavor quark-meson model.
+In this chapter we have modeled quark stars with the three-flavor quark-meson model.
 We found that the addition of the strange quark lowered the maximum masses to $1.6 \, M_\odot \leq M \leq 1.8 \, M_\odot$
 with corresponding radii $\SI{11}{\kilo\meter} \leq R \leq \SI{12}{\kilo\meter}$,
-using $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$ and the lowest stability-respecting bag constants.
+using $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$ and the lowest instability-respecting bag constants.
+As with the two-flavor model, chiral symmetry restoration happens in a crossover for $m_\sigma \geq \SI{800}{\mega\electronvolt}$,
+but a first-order phase transition for $m_\sigma < \SI{800}{\mega\electronvolt}$.
 If the strange matter hypothesis is violated, one can use greater bag constants and produce arbitrarily smaller and less massive stars.
 The three-flavor stars are less massive than their two-flavor counterparts.
-Only close to the maximum mass star does the pressure become sufficiently high
-for the baryon density $n_B$ to exceed $4 n_\text{sat}$
-and activate the presence of the strange quark.
-As with the two-flavor model, we saw that chiral symmetry restoration happens in a crossover for $m_\sigma \geq \SI{800}{\mega\electronvolt}$,
-but a first-order phase transition for $m_\sigma < \SI{800}{\mega\electronvolt}$.
+Only close to the maximum mass star does the pressure and density become sufficiently high
+to activate the presence of the strange quark.
+
+Unfortunately, we do not find it possible to model realistic pure quark stars with this model.
+The stars we found consisted of unstable two-flavor quark matter out to the surface.
+For them to be stable, the strange quark must exist out to the surface and the strange matter hypothesis must be true.
+This could only be achieved in this model by
+increasing the bag constant beyond its upper bound -- \emph{also} due to the strange matter hypothesis and hence contradicting it.
 
 By fitting parameters at tree-level, it was again impossible to use physical values of $m_\sigma$ without breaking the grand potential.
 Ideally, a consistent calculation like the one presented in \cref{sec:lsm2f:refinement}

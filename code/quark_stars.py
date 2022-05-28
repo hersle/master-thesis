@@ -217,7 +217,7 @@ class Model:
             utils.writecols(cols, heads, outfile)
 
         if plot:
-            fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 5))
+            fig, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4, figsize=(25, 5))
 
             ax1.set_xlabel(r"$\mu_Q$")
             ax1.plot(μQ, mu, ".-", color="orange", label=r"$m_u$")
@@ -241,6 +241,14 @@ class Model:
             ax3.set_ylabel(r"$\epsilon$")
             ax3.plot(Porg, ϵorg, ".-", color="gray") # compare
             ax3.plot(P, ϵ, ".-", color="black")
+
+            ax4.plot(μQ, (P/(MeV**4 / (ħ*c)**3)/(fm**3 / GeV))**0.25)
+            #P0 *= (MeV**4 / (ħ*c)**3) # now in units kg*m^2/s^2/m^3
+            #P0 *= (fm**3 / GeV) # now in units GeV/fm^3
+            ax4.set_xlabel(r"$\mu / MeV$")
+            ax4.set_ylabel(r"$P^{\frac{1}{4}} / MeV$")
+            ax4.set_xlim(0, 1000)
+            ax4.set_ylim(0, 500)
 
             plt.show()
 
@@ -866,6 +874,15 @@ if __name__ == "__main__":
     #LSM3FlavorModel(mσ=800).stars(67,  (1e-7, 1e-2), write=True)
     #LSM3FlavorModel(mσ=800).star(0.000937590625, 27, write=True)
     #exit()
+
+    # strange quark stars (need B^(1/4) ≳ 145 MeV in all models)
+    # TODO: finish considering this
+    #LSM3FlavorModel(mσ=800).eos(B=0**4, plot=True)
+    #LSM3FlavorModel(mσ=600).star(1e-3, 145, plot=True)
+    #for mσ in (600, 700, 800):
+        #LSM3FlavorModel(mσ=mσ).stars(145, (1e-7, 1e-2), write=True)
+        #LSM3FlavorModel(mσ=mσ).stars(165, (1e-7, 1e-2), write=True)
+        #LSM3FlavorModel(mσ=mσ).stars(185, (1e-7, 1e-2), write=True)
 
     # hybrid model (2-flavor quark-meson model + APR hadronic EOS)
     #Hybrid2FlavorModel(mσ=600).eos(B=111**4, plot=True, write=True)
