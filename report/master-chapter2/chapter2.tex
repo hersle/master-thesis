@@ -10,8 +10,9 @@ but the fermions have since been interpreted as quarks in what is commonly refer
 
 Quark stars consisting only of two-flavor quark matter are unlikely to be found in nature,
 as two-flavor quark matter is observed to be unstable compared to hadronic matter.
-Nevertheless, they are a natural stepping stone for possibly stable strange quark stars,
-and could make up the core of a dense hybrid star.
+Nevertheless, they are a natural stepping stone for modeling possibly stable strange quark stars
+and dense hybrid neutron stars whose core could be made up of two-flavor quark matter.
+\TODO{ok?}
 
 The physical justification for this effective model of quantum chromodynamics is best made retrospectively after seeing exactly how it gives rise to chiral symmetry breaking.
 We will therefore take the model as granted from the start and try to justify it as we go along.
@@ -1022,8 +1023,8 @@ This allows us to set $m_\sigma$ to values within its measured range $\SI{400}{\
 	legend cell align=left, legend pos=north west,
 ];
 \addplot+ [black, solid, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_600.dat}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
-\addplot+ [gray, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$ (before Maxwell construction)};
-\addplot+ [black, densely dashed, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$ (after Maxwell construction)};
+\addplot+ [gray, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$ (uncorrected)};
+\addplot+ [black, densely dashed, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_500.dat}; \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$ (corrected)};
 \addplot+ [black, dotted, opacity=0.7, domain=0:0.1] {3*x}; \addlegendentry{massless};
 %\addplot+ [black, densely dashed, opacity=0.7, forget plot] table [x=P,y=epsilon] {../code/data/LSM2FC/eos_sigma_600.dat};
 \end{groupplot}
@@ -1124,14 +1125,15 @@ Chiral symmetry was restored in a crossover for $m_\sigma \geq \SI{800}{\mega\el
 For bag constants that respect instability of two-flavor quark matter,
 we obtained quark stars with maximum masses $1.7 \, M_\odot \leq M \leq 2.0 \, M_\odot$ and corresponding radii $R \approx \SI{11}{\kilo\meter}$ for different choices of $m_\sigma$.
 
-Due to the instability of two-flavor quark matter with respect to hadronic matter,
-pure two-flavor quark stars is are unlikely to be realized in nature
-and are more likely to make up the quark core of a dense hybrid star.
-
 Our heart rates increased momentarily when we saw that neglecting pion condensation was an inconsistent approximation for $\mu > \SI{575}{\mega\electronvolt}$,
 but went back down when we saw that the chemical potential in the inspected maximum mass star did not exceed this.
 We found it difficult to fit measured values $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{550}{\mega\electronvolt}$ for the $\sigma$-meson without breaking the model and had to make do with larger values,
 but later regained trust in our results when we explained this with the inconsistency of fitting parameters at tree-level to a grand potential that is calculated to one fermion loop.
+
+Due to the instability of two-flavor quark matter with respect to hadronic matter,
+pure two-flavor quark stars is are unlikely to be realized in nature
+and are more likely to make up the quark core of a dense hybrid star.
+\TODO{ok?}
 
 %Acceptable bag constants $B$ were determined by assuming that two-flavor quark matter is unstable compared to hadronic matter at zero pressure.
 %Unfortunately, this also tells us that our model is inconsistent: the pure quark star consists of two-flavor quark matter all the way out to the surface \emph{where the pressure vanishes by definition}.
