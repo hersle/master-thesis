@@ -888,9 +888,9 @@ if __name__ == "__main__":
     #Hybrid2FlavorModel(mσ=600).eos(B=111**4, plot=True, write=True)
     #Hybrid2FlavorModel(mσ=700).eos(B=68**4, plot=True, write=True)
     #Hybrid2FlavorModel(mσ=800).eos(B=27**4, plot=True, write=True)
-    #Hybrid2FlavorModel(mσ=600).stars(111, (1e-5, 1e-2), write=True) # use tolD=0.01
-    #Hybrid2FlavorModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True) # use tolD=0.01
-    #Hybrid2FlavorModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True) # use tolD=0.01
+    #Hybrid2FlavorModel(mσ=600).stars(111, (1e-5, 1e-2), write=True)
+    #Hybrid2FlavorModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True)
+    #Hybrid2FlavorModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True)
     #Hybrid2FlavorModel(mσ=600).star(0.001180703125, 111, plot=True, write=True)
     #exit()
 
@@ -898,9 +898,9 @@ if __name__ == "__main__":
     #Hybrid3FlavorModel(mσ=600).eos(B=111**4, plot=True, write=True)
     #Hybrid3FlavorModel(mσ=700).eos(B=68**4, plot=True, write=True)
     #Hybrid3FlavorModel(mσ=800).eos(B=27**4, plot=True, write=True)
-    #Hybrid3FlavorModel(mσ=600).stars(111, (1e-5, 1e-2), write=True) # use tolD=0.01
-    #Hybrid3FlavorModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True) # use tolD=0.01
-    #Hybrid3FlavorModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True) # use tolD=0.01
+    #Hybrid3FlavorModel(mσ=600).stars(111, (1e-5, 1e-2), write=True)
+    #Hybrid3FlavorModel(mσ=700).stars(68,  (1e-5, 1e-2), write=True)
+    #Hybrid3FlavorModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True)
     #Hybrid3FlavorModel(mσ=600).star(0.0008160778808593749, 111, plot=True, write=True)
     #Hybrid3FlavorModel(mσ=800).star(0.0012587499999999999, 27, plot=True, write=True)
     #exit()
@@ -909,9 +909,9 @@ if __name__ == "__main__":
     #Hybrid2FlavorConsistentModel(mσ=400).eos(B=107**4, plot=True, write=True)
     #Hybrid2FlavorConsistentModel(mσ=500).eos(B=84**4, plot=True, write=True)
     #Hybrid2FlavorConsistentModel(mσ=600).eos(B=27**4, plot=True, write=True)
-    #Hybrid2FlavorConsistentModel(mσ=400).stars(107, (1e-5, 1e-2), write=True) # use tolD=0.01
-    #Hybrid2FlavorConsistentModel(mσ=500).stars(84,  (1e-5, 1e-2), write=True) # use tolD=0.01
-    #Hybrid2FlavorConsistentModel(mσ=600).stars(27,  (1e-5, 1e-2), write=True) # use tolD=0.01
+    #Hybrid2FlavorConsistentModel(mσ=400).stars(107, (1e-5, 1e-2), write=True)
+    #Hybrid2FlavorConsistentModel(mσ=500).stars(84,  (1e-5, 1e-2), write=True)
+    #Hybrid2FlavorConsistentModel(mσ=600).stars(27,  (1e-5, 1e-2), write=True)
     #Hybrid2FlavorConsistentModel(mσ=400).star(0.001180703125, 107, plot=True, write=True)
 
     #exit()
