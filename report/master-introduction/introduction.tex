@@ -38,21 +38,22 @@ write this in QCD intro and reflect in later chapters.
 	level 3/.style={level distance=4.7cm},
 	level 4/.style={level distance=4.3cm, sibling distance=5.3cm},
 	sibling distance=6cm,
-	every label/.style={text width=4cm, text centered, inner sep=0pt, yshift=+2pt},
+	every label/.style={text width=4cm, align=center, inner sep=0pt, yshift=+2pt},
 	element/.style={font=\small},
 	blackhole/.pic={
-		\draw [fill=black, circular glow={fill=red!50!orange}] circle[radius=40pt];
+		\draw[fill=black, circular glow={fill=red!50!orange}] circle[radius=40pt];
 		\draw[draw=none] (-0pt, -55pt) rectangle (+0pt, +55pt);
 	},
 	neutronstar/.pic={
 		\draw[draw=black, fill=blue!  0!purple, circular glow={fill=blue!0!purple}] circle [radius=45pt]; \node [element, rotate=45] at (135:37.5pt) {H}; \node [element] at ( 90:37.5pt) {$\cdots$}; \node [element, rotate=-45] at (45:37.5pt) {Fe};
 		\draw[draw=black, fill=blue! 25!purple] circle [radius=30pt]; \node [element, rotate=+45] at (135:22.5pt) {$n$}; \node [element, rotate=0] at (90:22.5pt) {$p$}; \node [element, rotate=-45] at (45:22.5pt) {$e^-$};
-		\draw[draw=black, fill=blue! 50!purple] circle [radius=15pt]; \node [element] at (90:0pt) {???};
+		\draw[draw=black, fill=blue! 50!purple] circle [radius=15pt]; \node [element] at (90:0pt) {$u,d,s$};
 		\draw[draw=none] (-0pt, -55pt) rectangle (+0pt, +55pt);
 	},
 	quarkstar/.pic={
-		\draw[draw=black, fill=green!50!black, circular glow={fill=green!30!black}] circle [radius=45pt]; \node [element, rotate=0] at (90:32.5pt) {$u$, $d$};
-		\draw[draw=black, fill=green!80!black] circle [radius=20pt]; \node [element] at (90:0pt) {$u$, $d$, $s$};
+		%\draw[draw=black, fill=green!50!black, circular glow={fill=green!30!black}] circle [radius=45pt]; \node [element, rotate=0] at (90:32.5pt) {$u$, $d$};
+		%\draw[draw=black, fill=green!80!black] circle [radius=20pt]; \node [element] at (90:0pt) {$u$, $d$, $s$};
+		\draw[draw=black, fill=green!70!black, circular glow={fill=green!50!black}] circle [radius=45pt]; \node [element] at (90:0pt) {$u$, $d$, $s$};
 		\draw[draw=none] (-0pt, -55pt) rectangle (+0pt, +55pt);
 	},
 	whitedwarf/.pic={
@@ -62,14 +63,14 @@ write this in QCD intro and reflect in later chapters.
 	},
 ]
 	\node (whitedwarf) at (0, 0) [label={above:\footnotesize$0.08 M_\odot \lesssim M_0 \lesssim 8 M_\odot$}, label={below:\subcaption{\label{fig:master_intro:star_evolution_white_dwarf}White dwarf}}] {\tikz \pic {whitedwarf};};
-	\node (neutronstar) at (3.3, 0) [label={above:\footnotesize$8 M_\odot \lesssim M_0 \lesssim 40 M_\odot$}, label={below:\subcaption{\label{fig:master_intro:star_evolution_neutron_star}Neutron star}}] {\tikz \pic {neutronstar};};
-	\node (neutronstar) at (7.5, 0) [label={above:\footnotesize$M_0 \approx 40 M_\odot$ (?)}, label={below:\subcaption{\label{fig:master_intro:star_evolution_quark_star}Quark star (?)}}] {\tikz \pic {quarkstar};};
+	\node (neutronstar) at (3.5, 0) [label={above:\footnotesize$8 M_\odot \lesssim M_0 \lesssim 40 M_\odot$}, label={below:\subcaption{\label{fig:master_intro:star_evolution_neutron_star}(Hybrid) neutron star}}] {\tikz \pic {neutronstar};};
+	\node (quarkstar) at (7.6, 0) [label={below:\subcaption{\label{fig:master_intro:star_evolution_quark_star}(Strange) quark star}}] {\tikz \pic {quarkstar};};
 	\node (blackhole) at (11.5, 0) [label={above:\footnotesize$M_0 \gtrsim 40 M_\odot$}, label={below:\subcaption{\label{fig:master_intro:star_evolution_black_hole}Black hole}}] {\tikz \pic {blackhole};};
 \end{tikzpicture}
 \caption{\label{fig:master_intro:star_evolution_end}%
-	The final stages of a star's life depending on its initial mass $M_0$.
-	Between neutron stars and black holes,
-	there could be a new class of stars called \textbf{quark stars}.
+	Final stages of a star's life, depending on its birth mass $M_0$.
+	Quark matter can exist in pure \textbf{(strange) quark stars}
+	or in the cores of the heaviest \textbf{(hybrid) neutron stars}.
 }
 \end{figure}
 
@@ -80,35 +81,54 @@ If $0.08 M_\odot \lesssim M_0 \lesssim 8 M_\odot$, a main-sequence star eventual
 If $8 M_\odot \lesssim M_0 \lesssim 40 M_\odot$, a main-sequence star rather explodes in a \textbf{supernova} and becomes a \textbf{neutron star} (\cref{fig:master_intro:star_evolution_neutron_star}) that is squeezed by gravity beyond the maximum supported pressure of white dwarfs, reaching a new equilibrium mainly supported by the degeneracy pressure of baryons and nuclei.
 If $M_0 \gtrsim 40 M_\odot$, the supernova remnant cannot support itself and collapses to a \textbf{black hole} (\cref{fig:master_intro:star_evolution_black_hole}).
 
+\iffalse
 \begin{table}
 \centering
 \caption{\label{tab:master_intro:quark_star_candidates}%
 The masses and radii of \st{past} and present quark star candidates.
 \TODO{bullshit?}
+\TODO{drop table and ref possible strange quark stars in text?}
 }
 \begin{tabular}{ l r r l }
 	\toprule
 	Star & Mass $M$ & Radius $R$ & References \\
 	\midrule
-	\st{RX J1856.5-3754} & \st{$0.9 M_\odot$} & \st{$\SI{17}{\kilo\meter}$} & \cite{ref:RXJ1856} \\
+	\st{RX J18565$-$3754} & \st{$0.9 M_\odot$} & \st{$\SI{17}{\kilo\meter}$} & \cite{ref:RXJ1856,ref:3c58} \\
 	3C 58 & unknown & $\SI{15}{\kilo\meter}$ & \cite{ref:3c58} \\
-	XTE U1739-285 & $1.5 \, M_\odot$ & $\SI{11}{\kilo\meter}$ & \cite{ref:XTEJ1739} \\
+	XTE U1739$-$285 & $1.5 \, M_\odot$ & $\SI{11}{\kilo\meter}$ & \cite{ref:XTEJ1739} \\
 	PSR B0943+10 & $0.02 M_\odot$ & $\SI{2.6}{\kilo\meter}$ & \cite{ref:PSRB0943} \\
 	SN1987A remnant & $1.6 M_\odot$ & unknown & \cite{ref:SN1987A_1,ref:SN1987A_2} \\
 	ASASSN-15lh & unknown & unknown & \cite{ref:ASASSN} \\
 	\bottomrule
 \end{tabular}
 \end{table}
+\fi
 
-As first proposed by \cite{ref:quark_star_proposition_1}, however,
-there could be a narrow range between neutron stars and black holes where a yet unseen equilibrium configuration can be reached,
-where the baryons are forced to merge into an ultra-dense form of matter composed of their constituent quarks.
-It is speculated that such quark matter can be found in both pure \textbf{quark stars} and inside the cores of \textbf{hybrid neutron stars}.
-If quark matter includes strange quarks in addition to up and down quarks, it is referred to as strange quark matter and the star is called a \textbf{strange quark star}.
-Although no decisive observation has been made of a quark star,
-a few candidates are listed in \cref{tab:master_intro:quark_star_candidates}.
-Both their masses and radii are very similar to common neutron stars.
-\TODO{bullshit?}
+As first proposed by \cite{ref:quark_star_proposition_1,ref:quark_star_proposition_2},
+the density in the cores of the heaviest neutron stars on brink of collapse to black holes could be so high 
+that baryons break up into deconfined quark matter.
+Neutron stars with such quark cores are called \textbf{hybrid stars} (\cref{fig:master_intro:star_evolution_neutron_star}).
+Moreover, \textbf{(strange) quark stars} (\cref{fig:master_intro:star_evolution_quark_star}) consisting \emph{only} of (strange) quark matter could exist. \cite{ref:glendenning}
+While two-flavor quark matter is unstable with respect to hadronic matter and \emph{cannot} be realized in pure quark stars,
+the \emph{strange matter hypothesis} of \cite{ref:strange_hypothesis_bodmer,ref:strange_hypothesis_witten} suggests that
+hadronic matter could be only a long-lived \emph{metastable} state and that its true ground state is three-flavor quark matter,
+which \emph{could} make up pure and stable quark stars.
+
+As explained in greater detail in \cref{sec:intro:pulsars},
+all observed neutron stars are identified by radiation emitted from rapidly spinning \textbf{pulsa}ting \textbf{r}adio (\textbf{pulsar} or \textbf{PSR}) sources.
+Based only on such measurements, it is difficult to determine the precise composition of the sources and whether they are neutron stars, hybrid stars or strange quark stars.
+The recent observations \cite{ref:antoniadis,ref:arzoumanian,ref:fonseca}
+of the heavy pulsars PSR J0348$+$0432, PSR J1614$-$2230 and PSR J0740$+$6620
+with masses $M = \{2.01 \pm 0.04, 1.91 \pm 0.02, 2.08 \pm 0.07\} \, M_\odot$ 
+suggest that neutron stars indeed reach sufficient densities for the formation of quark cores in hybrid stars.
+Observed strange quark star candidates include 
+RX J185635$-$3754 \cite{ref:RXJ1856}, 
+3C58 \cite{ref:3c58}, 
+ASASSN$-$15lh \cite{ref:ASASSN}, 
+PSR B0943$+$10 \cite{ref:PSRB0943}
+and the yet undiscovered SN1987A remnant \cite{ref:SN1987A_1,ref:SN1987A_2}.
+Moreover, the observation of a pulsar with a sub-millisecond rotation period would strongly suggest the existence of strange quark stars. \cite{ref:glendenning} % sec 10.3 (PDF)
+\TODO{new intro OK?} 
 
 Quarks and the mediators of the strong force between them -- gluons -- are described by the theory of \textbf{quantum chromodynamics}.
 Very roughly speaking, it predicts that quarks are confined in hadrons at low temperatures and densities due to a property called \textbf{color confinement},
@@ -118,7 +138,6 @@ Unfortunately, it is very hard to work analytically with the general theory of q
 so one must turn to approximations and models.
 We will model quark and hybrid stars using the quark-meson model;
 elaborating, complementing and building upon earlier work by \cite{ref:master_berge}.
-\TODO{OK?} 
 
 \textit{This chapter is inspired by \cref{part:project} and references \cite{ref:glendenning} and \cite{ref:schwartz}.}
 
