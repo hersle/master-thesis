@@ -5,16 +5,7 @@
 \begin{table}[b!]
 \centering
 \caption{\label{tab:master_conclusion:results}%
-Summary of maximum masses and corresponding radii obtained using all models in this thesis.
-In the MIT bag model, all parameters are fixed except $\SI{145}{\mega\electronvolt} \leq B^\frac14 \leq \SI{155}{\mega\electronvolt}$.
-The quark-meson model varies 
-$\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$
-and
-$\SI{27}{\mega\electronvolt} \leq B^\frac14 \leq \SI{111}{\mega\electronvolt}$,
-where the lower and upper $B$ is used only with the respective lower and upper $m_\sigma$.
-The hybrid model joins the quark-meson model with the same parameters and the hadronic Akmal-Pandharipande-Ravenhall equation of state.
-The bag constants are the lowest ones that respect instability of two-flavor quark matter compared to hadronic matter.
-Greater bag constants violate the strange matter hypothesis and generate only lower maximum masses.
+Maximum masses and corresponding radii obtained using all models in this thesis summarized in \cref{fig:conclusion:mass-radius}.
 }
 {\setlength{\tabcolsep}{4pt} % affect only this table
 \begin{tabular}{ c l l c c c }
@@ -37,7 +28,7 @@ Greater bag constants violate the strange matter hypothesis and generate only lo
 \end{tabular}}
 \end{table}
 
-\begin{figure}
+\begin{figure}[t!]
 \centering
 \tikzsetnextfilename{summary-mass-radius}
 \pgfplotsset{cycle list/Set1-9}
@@ -107,7 +98,7 @@ Greater bag constants violate the strange matter hypothesis and generate only lo
 	\begin{axis}[
 		axis background/.style={fill=white},
 		width=5cm, height=6cm,
-		xmin=11, xmax=12, ymin=1.85, ymax=2.15, xtick distance=1.0, ytick distance=0.5, minor x tick num=9, minor y tick num=4, extra y ticks={1.9, 2.1},
+		xmin=11, xmax=12, ymin=1.85, ymax=2.15, xtick distance=1.0, ytick distance=0.1, minor x tick num=9, minor y tick num=9, %extra y ticks={1.9, 2.1},
 		grid=both, minor grid style={ultra thin, gray!10!white},
 	]
 	\ploteverything
@@ -117,35 +108,39 @@ Greater bag constants violate the strange matter hypothesis and generate only lo
 };
 \end{tikzpicture}
 \caption{\label{fig:conclusion:mass-radius}%
-	\TODO{summary mass-radius plot}
 	Summary of all mass-radius relations obtained in this thesis:
 	neutron stars with the hadronic Akmal-Pandharipande-Ravenhall equation of state (APR);
 	quark stars with the two-flavor and three-flavor MIT bag models ($\text{MIT}_2$ and $\text{MIT}_3$)
-	and quark meson models ($\text{QM}_2$ and $\text{QM}_3$);
+	and quark-meson models ($\text{QM}_2$ and $\text{QM}_3$);
 	and hybrid stars joining $\text{QM}_2+\text{APR}$ and $\text{QM}_3+\text{APR}$.
+	In the $\text{MIT}_2$ and $\text{MIT}_3$ models, we have used bag constants covering the bag window \eqref{eq:mit:bag_window}.
+	In the $\text{QM}_2$ and $\text{QM}_3$ models, we vary $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$
+	and use the corresponding lowest bag constants above the lower bounds \eqref{eq:lsm:bag_lower_bound},
+	as greater bag constants only generate less massive stars.
 	For comparison, the colored bands show measured masses
 	of the heavy pulsars \textcolor{green}{PSR J0348$+$0432}, \textcolor{yellow}{PSR J1614$-$2230} and \textcolor{red}{PSR J0740$+$6620}
 	from \cite{ref:antoniadis,ref:arzoumanian,ref:fonseca}.
-	\TODO{finish caption}
+	For clearer presentations of the results with each model,
+	please look at \cref{fig:mit:mass_radius,fig:lsm:2-flavor-mass-radius,fig:lsm:3-flavor-mass-radius,fig:hybrid:mass-radius}.
 	\TODO{JO se}
 }
 \end{figure}
 
 In this thesis we have modeled quark stars using the MIT bag model and the quark-meson model with two and three flavors,
 and finally hybrid stars by combining the quark-meson model and hadronic Akmal-Pandharipande-Ravenhall equation of state.
-The resulting maximum masses and corresponding radii are summarized in \cref{tab:master_conclusion:results}.
-\TODO{also create final, ultimate mass-radius figure with all curves? maximum mass curve only for each model.}
-In particular, with the quark-meson model we managed to create pure two-flavor quark stars with masses up to $M \leq 2.0 \, M_\odot$ and three-flavor quark stars up to $M \leq 1.8 \, M_\odot$.
+The resulting mass-radius relations are summarized in \cref{fig:conclusion:mass-radius},
+and their maximum masses and corresponding radii are gathered in \cref{tab:master_conclusion:results}.
+In particular, with the quark-meson model we could create pure quark stars with two-flavor up to $M \leq 2.0 \, M_\odot$ and with three-flavors up to $M \leq 1.8 \, M_\odot$.
 We could also form short ranges of stable hybrid stars up to $M \leq 2.1 \, M_\odot$.
 They contained very small quark cores no more massive than $0.12 M_\odot$ and $0.02 M_\odot$ with two and three flavors, respectively.
 This resonates with the general view in \cite{ref:quark_star_review} that hybrid star quark cores are generally small.
-Both three-flavor quark and hybrid stars are generally less massive than two-flavor stars due to their softer equations of state.
+We saw that three-flavor quark and hybrid stars are generally less massive than two-flavor stars due to their softer equations of state.
 Denser hybrid stars beyond the maximum mass are unstable against radial perturbations due to the discontinuous phase transition between the quark and hadron phases.
-In short, we find it possible to model hybrid stars with small quark cores around the recent mass observations of the pulsars PSR J1614$-$2230, PSR J0348$+$0432 and PSR J0748$+$6620 around and above $2 M_\odot$,
+We find it possible to model hybrid stars with small quark cores around the recent mass observations of the heavy pulsars PSR J1614$-$2230, PSR J0348$+$0432 and PSR J0748$+$6620 around and above $2 M_\odot$,
 and pure quark stars of slightly lower mass.
 
 The fact that hybrid stars seem to exhibit very small quark cores
-make it very easy to mistake neutron stars for hybrid stars.
+make it very easy to mistake them for neutron stars.
 It is difficult to decide whether a pulsar has a tiny quark core based on measurements made lightyears away from it.
 With future advances in our theoretical understanding and observational techniques,
 many observed neutron stars could really turn out to be hybrid stars.
@@ -163,8 +158,8 @@ as if inconsistently fit masses $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq
 corresponds to consistently fit masses $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{600}{\mega\electronvolt}$.
 Such a consistently fit grand potential has only been found for the two-flavor model.
 
-In earlier work, \cite{ref:lsm3f_compact_stars} have modeled pure quark stars with a vector meson-extended three-flavor quark meson model,
-and this work has since been incorporated into hybrid stars in \cite{ref:lsm3f_hybrid_stars}.
+In earlier work, \cite{ref:lsm3f_compact_stars} have modeled pure quark stars with a vector meson-extended three-flavor quark-meson model,
+and this was incorporated into hybrid stars in \cite{ref:lsm3f_hybrid_stars}.
 With the vector meson interaction turned off and using parameters comparable to ours,
 they find hybrid stars with similar maximum masses $M \lesssim 1.9 M_\odot$ in \cite[figure 8]{ref:lsm3f_hybrid_stars}. % only B differs?
 Quark stars have also been modeled with the Nambu-Jona-Lasinio model in \cite{ref:quark_star_njl} and generalized to hybrid stars in \cite{ref:hybrid_stars_njl}, for example.
