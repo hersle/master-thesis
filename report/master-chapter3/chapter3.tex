@@ -994,17 +994,50 @@ In \cref{fig:lsm:3-flavor-star} we take a more detailed look at the maximum mass
 %\item If the core of this star is used to model the core of a hybrid neutron star with a quark model for $n_B > 4 n_\text{sat}$,
       %this core would extend for $R'=\SI{5}{\kilo\meter}$, weigh in at $M' = m(R') = 0.4 \, M_\odot$, have a central pressure $P_c'=p(R')=\SI{0.12}{\giga\electronvolt\per\femto\meter\cubed}$ and be entirely composed of three-flavor quark matter.
 \end{itemize}
-Since these pure quark stars consist of two-flavor quark matter out to the surface
-and this is unstable with respect to hadronic matter,
+Since these pure quark stars consist of three-flavor quark matter only in the core
+and two-flavor quark matter out to the surface,
+and the latter is unstable with respect to hadronic matter,
 they are unlikely to be found in nature.
 The only hope of realizing pure three-flavor quark stars is
 if the strange matter hypothesis is true and they consist of strange quark matter \emph{everywhere}.
-The only way of achieving this with our model is to increase the bag constant.
-We have checked that for all $m_\sigma$ considered,
-roughly $B^\frac14 \gtrsim \SI{145}{\mega\electronvolt}$ is required for the $s$ quark to survive out to the surface.
-Unfortunately, this exceeds the upper bound \eqref{eq:lsm3f:bag_upper_bound} \emph{also} due to the strange matter hypothesis,
-so it is not possible to self-consistently model pure strange quark stars with this model!
-\TODO{les, plot a SQS?}
+Looking back at \cref{fig:lsm:3-flavor-eos-density}, the strange quark is present for all $m_\sigma$ only when $\mu \gtrsim \SI{350}{\mega\electronvolt}$.
+The only way of creating a strange quark star with our model is to increase $B$
+so much that after the bag shift \eqref{eq:mit:bag_shift},
+$\mu \gtrsim \SI{350}{\mega\electronvolt}$ at the surface defined by $P=0$.
+Now look at $P(\mu)$ in \cref{fig:lsm:3-flavor-pressure};
+for $P(\mu \gtrsim \SI{350}{\mega\electronvolt})=0$, we need to shift $P(\mu) \rightarrow P(\mu) - B$
+with $\smash{B^\frac14} \gtrsim \SI{120}{\mega\electronvolt}$.
+This is the minimum required bag constant for the strange quark to appear out to the surface with all $m_\sigma$.
+Unfortunately, this \emph{exceeds} the upper bound \eqref{eq:lsm3f:bag_upper_bound}, which was \emph{also} calculated with the strange matter hypothesis.
+\emph{This means that it is not possible to self-consistently model pure strange quark stars with this model!}
+\TODO{les}
+
+\begin{figure}[b!]
+\centering
+\tikzsetnextfilename{3-flavor-pressure}
+\begin{tikzpicture}
+\begin{axis}[
+	width=13cm, height=7cm,
+	xmin=250, xmax=500, ymin=-75, ymax=250,
+	xtick distance=25, ytick distance=50, minor tick num=4, grid=major,
+	xlabel = {$\mu \, / \, \si{\mega\electronvolt}$},
+	ylabel = {$\text{sign}(P) \cdot \abs{P}^\frac14 \, / \, \si{\mega\electronvolt}$},
+	declare function = {conv = 1.3061920575081208e-10;},
+	legend pos = south east,
+]
+\addplot+ [black, densely dotted] table [x expr={(\thisrow{muu}+\thisrow{mud}) / 2}, y expr={sign(\thisrow{Porg})*abs(\thisrow{Porg}/conv)^0.25}] {../code/data/LSM3F/eos_sigma_600.dat}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
+\addplot+ [black, densely dashed] table [x expr={(\thisrow{muu}+\thisrow{mud}) / 2}, y expr={sign(\thisrow{Porg})*abs(\thisrow{Porg}/conv)^0.25}] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
+\addplot+ [black, solid]          table [x expr={(\thisrow{muu}+\thisrow{mud}) / 2}, y expr={sign(\thisrow{Porg})*abs(\thisrow{Porg}/conv)^0.25}] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:lsm:3-flavor-pressure}%
+	Pressure $P(\mu)$ as a function of the quark chemical potential $\mu$
+	corresponding to the equations of state in \cref{fig:lsm:3-flavor-eos-eos}
+	before the Maxwell construction and the bag shift \eqref{eq:mit:bag_shift}.
+	The funny behavior at the start is caused by the phase transition,
+	and is corrected with a boring straight line after the Maxwell construction.
+}
+\end{figure}
 
 \section{Summary}
 
