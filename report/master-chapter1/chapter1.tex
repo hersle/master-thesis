@@ -18,21 +18,20 @@ and see how this can be used to determine a \textbf{bag window} of acceptable va
 \label{sec:mit:eos}
 
 We will start by simply ignoring the gluon fields $A_\mu^a$ from the quantum chromodynamics Lagrangian \eqref{eq:qcd:lagrangian}.
-In addition, we couple the conserved vector current $j^\mu_f = \bar{q}_f \gamma^\mu q_f$ to a chemical potential $\mu_f$ for each quark flavor,
-allowing us to tune the densities \eqref{eq:master_intro:densities} of quarks.%
-\footnote{For an explanation of how the chemical potentials can be thought of as an analogy to constant gauge fields,
-the interested reader can consult the discussion surrounding equations \eqref{eq:tft:conserved_current}--\eqref{eq:tft:chemical_potential}.}
+In addition, we couple the conserved vector current $\smash{j_f^\mu} = \bar{q}_f \gamma^\mu q_f$ to a chemical potential $\mu_f$ for each quark flavor,
+allowing us to tune the densities \eqref{eq:master_intro:densities} of quarks.
+%\footnote{For an explanation of how the chemical potentials can be thought of as an analogy to constant gauge fields,
+%the interested reader can consult the discussion surrounding equations \eqref{eq:tft:conserved_current}--\eqref{eq:tft:chemical_potential}.}
 With these modifications, the Lagrangian becomes
-\TODO{use constituent masses?}
 \begin{equation}
 	\lagr = \bar{q} (i \slashed\partial + \mu \gamma^0 - m) q
-	      = \sum_{c=1}^{N_c} \sum_{f=\{u,d,s\}} \bar{q}_{f,c} (i \slashed\partial + \mu_f \gamma^0 - m_f) q_{f,c} .
+	      = \sum_{c=1}^{N_c} \sum_{f=1}^{\smash{N_f}} \bar{q}_{f,c} (i \slashed\partial + \mu_f \gamma^0 - m_f) q_{f,c} .
 \label{eq:mit:lagrangian}
 \end{equation}
 In this model the two-flavor and three-flavor analysis is very similar, so we consider them in parallel.
-Unless $N_f$ is specified explicitly, we perform the general analysis with $N_f=3$
-and simply drop terms or factors indexed by the strange quark $s$ to get expressions for $N_f = 2$.
-As we have simply omitted the gluons, we will continue to use the lone quark masses in \cref{tab:qcd:quark_properties}.
+Unless $N_f$ is specified explicitly, we perform the general analysis with $N_f=3$, or $f=\{u,d,s\}$,
+and simply drop terms or factors indexed by the strange quark $s$ to get expressions for $N_f = 2$, or $f=\{u,d\}$.
+As we have simply omitted the gluons, we set the quark masses $m_f$ to the lone quark masses in \cref{tab:qcd:quark_properties}.
 
 With the Euclidean version $\lagr_E$ of the Lagrangian \eqref{eq:mit:lagrangian},
 the partition function \eqref{eq:master_intro:partition_function} reads
@@ -40,19 +39,19 @@ the partition function \eqref{eq:master_intro:partition_function} reads
 \begin{split}
 	%Z &= \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \exp \bigg\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \lagr_E [q,\bar{q}] \bigg\} \\
 	Z &= \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \exp \bigg\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \bar{q} \big( i \slashed\partial + \mu_f \gamma^0 - m_f) q \bigg\} \\
-	  &= \prod_{c=1}^{N_c} \prod_{f=\{u,d,s\}} \oint_- \pathintdif \bar{q}_{f,c} \oint_- \pathintdif q_{f,c} \exp \bigg\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \bar{q}_{f,c} \big( i \slashed\partial + \mu_f \gamma^0 - m_f) q_{f,c} \bigg\} \\
+	  &= \prod_{c=1}^{N_c} \prod_{f=1}^{\smash{N_f}} \oint_- \pathintdif \bar{q}_{f,c} \oint_- \pathintdif q_{f,c} \exp \bigg\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \bar{q}_{f,c} \big( i \slashed\partial + \mu_f \gamma^0 - m_f) q_{f,c} \bigg\} \\
 \end{split}
 \end{equation}
 It decouples into a product of $N_c \times N_f$ path integrals \eqref{eq:tft:dirac_partition_function_first} that we encountered back in \cref{chap:tft}
 and simplified to the form \eqref{eq:tft:dirac_partition_function} for arbitrary temperature.
 There we neglected the divergent vacuum contribution from the first term and calculated the path integral explicitly in the zero-temperature approximation,
 arriving at the pressure \eqref{eq:nstars:pressure_zeroT} that is related to the grand potential density $\Omega$ by the simple sign flip \eqref{eq:master_intro:pressure}.
-The path integrals differ only by the unique chemical potentials $\mu_f$ associated with each quark flavor.
+The path integrals differ only by the unique chemical potentials $\smash{\mu_f}$ associated with each quark flavor.
 Adding a background of free electrons and reinstating $x_f = p_f / m_f = \sqrt{\smash[b]{\mu_f^2-m_f^2}} / m_f$ for each particle species,
 we can write the grand potential as
 \begin{equation}
 \begin{split}
-	\Omega(\vec{\mu}) = &-\smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right] \\
+	\Omega(\vec{\mu}) = &-\sum_{f=1}^{\smash{N_f}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right] \\
 	                    &-\phantom{\sum} \, \frac{1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} \, \, + \, 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_{\smash{e}}^2}{m_e^2}-1} \right) \right].
 \label{eq:mit:grand_potential}
 \end{split}
@@ -60,8 +59,8 @@ we can write the grand potential as
 This expression is only valid when $\mu_i \geq m_i$,
 as we assumed so during calculation of the zero-temperature pressure integral \eqref{eq:nstars:pressure_zeroT} containing the step function $\Theta(\mu_i-\sqrt{\smash[b]{m_i^2-p^2}})$.
 In the opposite case $\mu_i < m_i$, the step function would be turned off for all $p$ and make the integral vanish.
-Equivalently, the grand potential above is valid for \emph{all} $\mu_i$ if we implicitly take its \emph{real part}.
-Using this convention, the corresponding quark and electron densities \eqref{eq:master_intro:densities} are
+Equivalently, we can consider the grand potential above valid for \emph{all} $\mu_i$ if we implicitly take its \emph{real part}.
+Adopting this convention, the corresponding quark and electron densities \eqref{eq:master_intro:densities} are
 \begin{equation}
 	n_f = -\pdv{\Omega}{\mu_f} = \frac{N_c}{3 \pi^2} \Big( \mu_f^2 - m_f^2 \Big)^{\frac32}
 	\qquad \text{and} \qquad
@@ -74,7 +73,7 @@ We now see explicitly that $\Omega$ and hence $P$ and $\epsilon$ are functions o
 As explained in \cref{sec:master_intro:tft},
 we reduce them to a single independent chemical potential with the three constraints \eqref{eq:lsm:chemical_equilibrium} and \eqref{eq:lsm:charge_neutrality},
 and take it to be the quark chemical potential $\mu$ defined in equation \eqref{eq:master_intro:chemical_potentials_transformed}.
-Inserting the charges in \cref{tab:qcd:quark_properties} and the densities \eqref{eq:mit:particle_densities},
+Inserting $N_c=3$, the charges in \cref{tab:qcd:quark_properties} and the densities \eqref{eq:mit:particle_densities},
 the charge neutrality condition \eqref{eq:lsm:charge_neutrality} to be solved is
 \begin{equation}
 	2 \Big(\mu_u^2-m_u^2\Big)^\frac32
@@ -88,8 +87,8 @@ first note that $\{\mu,\mu_e\}$
 can be translated to $\{\mu_u,\mu_d,\mu_s\}$ with the $\beta$-equilibrium constraint \eqref{eq:lsm:chemical_equilibrium}.
 For a given value of $\mu$, we then vary $\mu_e$ until we have found the solution.
 Repeating this procedure for different $\mu$,
-we find the pressure $P(\mu)$ and energy density $\epsilon(\mu)$ as functions of $\mu$.
-We then invert the $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to obtain the equation of state $\epsilon(P)$.
+we parametrize the pressure $P(\mu)$ and energy density $\epsilon(\mu)$ as functions of $\mu$.
+We then invert $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to obtain the equation of state $\epsilon(P)$.
 
 \begin{figure}
 \centering
@@ -117,15 +116,15 @@ We then invert the $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to ob
 	ymin=0, ymax=700, ytick distance=100, 
 	%ymax=600, 
 	title={\subcaption{\label{fig:mit:eos-parametrization}Parametrization of solutions}},
-	legend cell align=right, legend pos=north west,
+	legend cell align=left, legend pos=north west,
 ];
 % fake legend
 \addplot+ [black, solid, opacity=0.3] {-100}; \addlegendentry{$N_f=2$};
 \addplot+ [black, solid, opacity=0.8] {-100}; \addlegendentry{$N_f=3$};
-\addplot+ [red, solid, opacity=1.0] {-100}; \addlegendentry{$i=u$};
-\addplot+ [darkgreen, solid, opacity=1.0] {-100}; \addlegendentry{$i=d$};
-\addplot+ [purple, solid, opacity=1.0] {-100}; \addlegendentry{$i=s$};
-\addplot+ [blue, solid, opacity=1.0] {-100}; \addlegendentry{$i=e$};
+\addplot+ [red, solid, opacity=1.0] {-100}; \addlegendentry{$\mu_u$};
+\addplot+ [darkgreen, solid, opacity=1.0] {-100}; \addlegendentry{$\mu_d$};
+\addplot+ [purple, solid, opacity=1.0] {-100}; \addlegendentry{$\mu_s$};
+\addplot+ [blue, solid, opacity=1.0] {-100}; \addlegendentry{$\mu_e$};
 
 % 2-flavor
 \addplot+ [red,       solid,  opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=muu] {../code/data/MIT2F/eos_sigma_800.dat};
@@ -143,15 +142,15 @@ We then invert the $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to ob
 	xmin=0, xmax=700, xtick distance=100, minor x tick num=9,
 	ymin=-0.2, ymax=5.0, ytick distance=1.0, minor y tick num=4, restrict y to domain=-10:10,
 	title={\subcaption{\label{fig:mit:eos-density}Particle number densities}},
-	legend cell align=right, legend pos=north west,
+	legend cell align=left, legend pos=north west,
 ];
 % fake legend
 \addplot+ [black, solid, opacity=0.3] {-10}; \addlegendentry{$N_f=2$};
 \addplot+ [black, solid, opacity=0.8] {-10}; \addlegendentry{$N_f=3$};
-\addplot+ [red, solid, opacity=1.0] {-10}; \addlegendentry{$i=u$};
-\addplot+ [darkgreen, solid, opacity=1.0] {-10}; \addlegendentry{$i=d$};
-\addplot+ [purple, solid, opacity=1.0] {-10}; \addlegendentry{$i=s$};
-\addplot+ [blue, solid, opacity=1.0] {-10}; \addlegendentry{$i=e$};
+\addplot+ [red, solid, opacity=1.0] {-10}; \addlegendentry{$n_u$};
+\addplot+ [darkgreen, solid, opacity=1.0] {-10}; \addlegendentry{$n_d$};
+\addplot+ [purple, solid, opacity=1.0] {-10}; \addlegendentry{$n_s$};
+\addplot+ [blue, solid, opacity=1.0] {-10}; \addlegendentry{$n_e$};
 
 % 2-flavor
 \addplot+ [red,       solid, opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nu] {../code/data/MIT2F/eos_sigma_800.dat};
@@ -369,7 +368,7 @@ The bag constant can therefore be interpreted as the pressure difference between
 as illustrated in \cref{fig:mit:bag_constant}.
 
 As an analogy, imagine a swimming pool full of water representing the deconfined phase.
-It would cost an amount $BV$ of energy to expel water from a volume $V$ and create a vacuum in the pool,
+It would cost an amount $BV$ of energy to expel water from a volume $V$ and create a confined vacuum in the pool,
 and a plastic bag enclosing this volume would have to generate some internal pressure to survive against the pressure from the surrounding water.
 
 Despite the common interpretation of $B$ as a confinement mechanism,
@@ -377,11 +376,11 @@ it is very important to note that the quark stars we will model
 will be integrated from a positive central pressure to a vanishing pressure at the surface,
 and therefore have \emph{non-negative pressure} everywhere and only contain \emph{deconfined} quark matter.
 The integration of the Tolman-Oppenheimer-Volkoff equation stops when it reaches the surface defined by $P=0$,
-so the confinement-interpretable part of the equation of state with negative pressure due to the shift \eqref{eq:mit:bag_shift} is \emph{unused} in a quark star.
+so the confinement-interpretable part of the equation of state with negative pressure that arises due to the shift \eqref{eq:mit:bag_shift} is \emph{unused} in a quark star!
 We should therefore not take the confinement interpretation too literally in our case,
 and it is perhaps better to think of $B$ only as a phenomenological parameter that we can vary to adjust the normalization of the grand potential
 and -- as we will see shortly -- a parameter that determines 
-the stability of the quark matter is compared to hadronic matter.
+the stability of quark matter compared to hadronic matter.
 
 What values can the bag constant take?
 Let us perform a heuristic calculation where we picture quarks to be confined in a spherical bag of radius $R$, as depicted in \cref{fig:mit:bag-constant-confined}.
@@ -442,7 +441,7 @@ the program in \cref{sec:num:qstars2f} solves inequality \eqref{eq:mit:bag_stabi
 It calculates the baryon density $n_B = (n_u+n_d+n_s)/3$
 and performs the shift \eqref{eq:mit:bag_shift} of the pressure and energy density for different bag constants $B$
 until it finds the one for which the inequality is barely satisfied.
-For the two-flavor and three-flavor equations of state in \cref{fig:mit:eos}, it reports the bag window
+For the two-flavor and three-flavor equations of state in \cref{fig:mit:eos}, the program reports the bag window
 \begin{equation}
 	\SI{144.3}{\mega\electronvolt} \leq B^\frac14 \leq \SI{154.9}{\mega\electronvolt} .
 \label{eq:mit:bag_window}
@@ -456,8 +455,11 @@ In contrast, the upper bounds disagree due to the massless approximation being w
 \section{Mass-radius solutions}
 
 Different equations of state are now finally available to us by making the shift \eqref{eq:mit:bag_shift}
+of the ``unbagged'' equation of state in \cref{fig:mit:eos-eos}
 with multiple bag constants inside the established bag window \eqref{eq:mit:bag_window}.
-We then integrate the Tolman-Oppenheimer-Volkoff equation numerically as described in \cref{sec:master_intro:tov},
+We then integrate the Tolman-Oppenheimer-Volkoff equation numerically 
+with the program in \cref{sec:nstars:numtov}
+as described in \cref{sec:master_intro:tov},
 obtaining the quark stars in \cref{fig:mit:mass_radius}:
 \begin{figure}[t]
 \centering
@@ -502,30 +504,24 @@ obtaining the quark stars in \cref{fig:mit:mass_radius}:
 \end{tikzpicture}
 \caption{\label{fig:mit:mass_radius}%
 Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov} parametrized by the central pressure $P_c$,
-obtained with the two-flavor and three-flavor MIT bag model equations of state from \cref{fig:mit:eos-eos}
-modified by the bag shift \eqref{eq:mit:bag_shift} with three bag constants $\smash{B^\frac14} = \{145,150,155\} \, \si{\mega\electronvolt}$ in the bag window \eqref{eq:mit:bag_window}.
+using the two-flavor and three-flavor MIT bag model equations of state from \cref{fig:mit:eos-eos}
+modified by the bag shift \eqref{eq:mit:bag_shift} with three bag constants $B$ in the bag window \eqref{eq:mit:bag_window}.
 Lower bag constants correspond to greater maximum masses.
-\TODO{add bag constant labels?}
 }
 \end{figure}
 \begin{itemize}
 \item As mentioned in \cref{sec:master_intro:tov},
       stars with central pressure exceeding that of the maximum mass star are unstable against radial perturbations,
       so we cut off the curve not long after the mass peak.
-\item Using bag constants inside the bag window \eqref{eq:mit:bag_window},
-      the MIT bag model realizes quark stars with maximum masses
-      $1.7 \, M_\odot \leq M \leq 2.0 \, M_\odot$ with $N_f=2$ flavors
-      and $1.6 \, M_\odot \leq M \leq 1.9 \, M_\odot$ with $N_f=3$ flavors,
-      in both cases with corresponding radii $\SI{9}{\kilo\meter} \leq R \leq \SI{11}{\kilo\meter}$.
 \item The smaller the bag constant, the larger and more massive the star.
       The bag shift \eqref{eq:mit:bag_shift} lifts the equation of state in the $P$-$\epsilon$-diagram up and to the left
-      so that a (energy) density corresponds to a lower pressure.
+      so that a given (energy) density corresponds to a lower pressure.
       This makes the star easier to compress, so we say that the equation of state is \emph{softened}.
-      Conversely, an equation of state where a given (energy) density corresponds to a higher pressure,
-      for example obtained by decreasing the bag constant,
+      Conversely, an equation of state where a given (energy) density corresponds to a higher pressure
       describes material that is harder to compress and is said to be \emph{stiffer}.
-      In other words, lower bag constants produce stiffer equations of state,
-      corresponding to larger and more massive stars.
+      In other words, lower bag constants yield stiffer equations of state,
+      which in turn generate more massive stars.
+      Going forward, we therefore pay most attention to the lowest $B$.
 
       The increase in size is easy to understand:
       integrating the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov} from a fixed central pressure $P_c$,
@@ -539,15 +535,21 @@ Lower bag constants correspond to greater maximum masses.
       where the masses $M(B)$ and $M(B')$ and radii $R(B)$ and $R(B')$ corresponding to two different bag constants $B$ and $B'$
       are related by $M(B') = \sqrt{B/B'} \, M(B)$ and $R(B') = \sqrt{B/B'} \, R(B)$.
       These relations hold only approximately in our massive case.
+\item Using bag constants inside the bag window \eqref{eq:mit:bag_window},
+      the MIT bag model realizes quark stars with maximum masses
+      $1.7 \, M_\odot \leq M \leq 2.0 \, M_\odot$ with $N_f=2$ flavors
+      and $1.6 \, M_\odot \leq M \leq 1.9 \, M_\odot$ with $N_f=3$ flavors,
+      in both cases with corresponding radii $\SI{9}{\kilo\meter} \leq R \leq \SI{11}{\kilo\meter}$.
+      The two-flavor stars are more massive due to their stiffer equation of state in \cref{fig:mit:eos-eos}.
 \end{itemize}
 
 \section{Summary}
 
 In this chapter we have reviewed the simplest and most well-known model of quark stars
-as a free Fermi gas featuring a phenomenological bag constant $B$.
+as a free Fermi gas of deconfined quarks featuring a phenomenological bag constant $B$.
 We described a method of determining a window of acceptable bag constants by assuming that at zero pressure,
 two-flavor quark matter is unstable and can decay to hadronic matter,
-which in turn can decay to three-flavor quark matter according to the strange matter hypothesis.
+which in turn can decay to three-flavor quark matter if the strange matter hypothesis is true.
 By constraining the chemical potentials associated with each particle species,
 we saw how to determine the equation of state $\epsilon(P)$,
 which in turn was used to integrate the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov},
