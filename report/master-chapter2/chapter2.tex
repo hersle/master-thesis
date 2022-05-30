@@ -12,7 +12,6 @@ Quark stars consisting only of two-flavor quark matter are unlikely to be found 
 as two-flavor quark matter is observed to be unstable compared to hadronic matter.
 Nevertheless, they are a natural stepping stone for modeling possibly stable strange quark stars
 and dense hybrid neutron stars whose core could be made up of two-flavor quark matter.
-\TODO{ok?}
 
 The physical justification for this effective model of quantum chromodynamics is best made retrospectively after seeing exactly how it gives rise to chiral symmetry breaking.
 We will therefore take the model as granted from the start and try to justify it as we go along.
@@ -271,7 +270,7 @@ the divergent grand potential \eqref{eq:lsm:potential_divergent_logz0} becomes
 \label{eq:lsm:grand_potential_nonrenormalized}
 \end{equation}
 The renormalization has introduced a renormalization scale $\Lambda$ that we will determine later.
-It also exposes the Dirac sea vacuum divergence in the pole \textcolor{red}{$N_c N_f m_q^4 / 16 \pi^2 \epsilon$}.
+It also exposes the Dirac sea vacuum divergence in the $\epsilon$-pole \textcolor{red}{$N_c N_f m_q^4 / 16 \pi^2 \epsilon$}.
 Recalling that $m_q=g \avg{\sigma}$ and glancing back at the meson potential \eqref{eq:lsm:potential},
 we also see that this divergence can be removed by the term \textcolor{blue}{$\lambda \avg{\sigma}^4 / 24$} in $\pot(\avg{\sigma},\vec{0})$
 if the quartic coupling is shifted to
@@ -302,16 +301,15 @@ the particle densities are
 \label{eq:lsm:particle_densities}%
 \end{equation}%
 and the pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:master_intro:energy_density} follow at $T=0$.
-\TODO{next para ok?}
 
 % equivalent remark is made in Folkestad/Andersen 2019 "Thermodynamics and phase diagram of Polykaov-loop extended chiral models"
 % ("one-loop large-N_c limit")
 It can be argued that treating bosons and fermions to zero and one loops is \emph{inconsistent}.
 However, note that the fermionic contribution to the grand potential \eqref{eq:lsm:grand_potential} is of order $\bigo(N_c^1)$,
 while any purely bosonic contribution would necessarily only be of order $\bigo(N_c^0)$.
-Hence, we can also make a case for our approach being \emph{consistent} in the large-$N_c$ approximation scheme.
+Hence, we can also make a case for our approach being \emph{consistent} in the large-$N_c$ limit.
 Strictly speaking, this only holds if the number of loops is simultaneously restricted to one;
-otherwise the \emph{two}-loop and $\bigo(N_c^1)$ Feynman diagram due to the $\bar{q} \sigma q$ Yukawa interaction should also be included.
+with two loops, for example, the $\bigo(N_c^1)$ Feynman diagram due to the $\bar{q} \sigma q$ Yukawa interaction should also be included.
 Although only $N_c = 3$ in nature,
 the large-$N_c$ approximation is in fact a common and well-studied approximation scheme of quantum chromodynamics.
 \cite{ref:large_Nc_review}.
@@ -426,9 +424,9 @@ Three different values are used for $m_\sigma$, generating three different value
 Also note that we have treated bosons to tree level and fit parameters to their curvature masses \eqref{eq:lsm:mass_sigmapi},
 but handled fermions to one loop. 
 This is also inconsistent, as the physical pole masses would really receive radiative loop corrections in this case.
-In \cref{sec:lsm2f:refinement} we will investigate the effects of fitting the parameters consistently at one loop level,
+In \cref{sec:lsm2f:refinement} we will investigate the effects of fitting the parameters consistently at one loop level in the large-$N_c$-limit,
 and we will see that this also resolves the large discrepancy in the parameter $m_\sigma$.
-\TODO{ok?}
+\TODO{in LARGE-$N_c$ limit AND one-loop}
 
 \section{Equation of state}
 
@@ -1143,10 +1141,9 @@ but went back down when we saw that the chemical potential in the inspected maxi
 We found it difficult to fit measured values $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{550}{\mega\electronvolt}$ for the $\sigma$-meson without breaking the model and had to make do with larger values,
 but later regained trust in our results when we explained this with the inconsistency of fitting parameters at tree-level to a grand potential that is calculated to one fermion loop.
 
-Due to the instability of two-flavor quark matter with respect to hadronic matter,
-pure two-flavor quark stars is are unlikely to be realized in nature
-and are more likely to make up the quark core of a dense hybrid star.
-\TODO{ok?}
+Due to the previously discussed instability of two-flavor quark matter with respect to hadronic matter,
+pure two-flavor quark stars is are unlikely to be realized in nature.
+Nevertheless, their analysis is a natural stepping stone for discussing possibly stable strange quark stars and hybrid stars with quark matter in the core.
 
 %Acceptable bag constants $B$ were determined by assuming that two-flavor quark matter is unstable compared to hadronic matter at zero pressure.
 %Unfortunately, this also tells us that our model is inconsistent: the pure quark star consists of two-flavor quark matter all the way out to the surface \emph{where the pressure vanishes by definition}.
