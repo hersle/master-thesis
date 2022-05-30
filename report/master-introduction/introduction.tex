@@ -48,7 +48,7 @@
 }
 \end{figure}
 
-In \cref{chap:intro} and \cref{fig:intro:star_evolution} we studied how the currently known life cycle of a star
+In \cref{chap:intro} and \cref{fig:intro:star_evolution} we reviewed how the currently known life cycle of a star
 is more or less predetermined by the initial mass $M_0$ of the embryonic \textbf{protostar} born from its parent \textbf{giant molecular cloud}.
 Provided that $M_0 \gtrsim 0.08 M_\odot$, the temperature in a protostar reaches the point necessary to ignite fusion of hydrogen, and the star becomes a \textbf{main-sequence star} -- otherwise it retires early as a \textbf{brown dwarf}.
 If $0.08 M_\odot \lesssim M_0 \lesssim 8 M_\odot$, a main-sequence star eventually explodes in a \textbf{planetary nebula} and leaves behind a core that collapses under gravity until it stabilizes as a \textbf{white dwarf} (\cref{fig:master_intro:star_evolution_white_dwarf}) supported by the electron degeneracy pressure.
@@ -94,7 +94,7 @@ Based only on such measurements, it is difficult to determine the precise compos
 The recent observations \cite{ref:antoniadis,ref:arzoumanian,ref:fonseca}
 of the heavy pulsars PSR J0348$+$0432, PSR J1614$-$2230 and PSR J0740$+$6620
 with masses $M = \{2.01 \pm 0.04, 1.91 \pm 0.02, 2.08 \pm 0.07\} \, M_\odot$ 
-suggest that neutron stars indeed reach sufficient densities for the formation of quark cores in hybrid stars.
+suggest that neutron stars could indeed reach sufficient densities for the formation of quark cores in hybrid stars.
 Observed strange quark star candidates include 
 RX J185635$-$3754 \cite{ref:RXJ1856}, 
 3C58 \cite{ref:3c58}, 
@@ -102,7 +102,7 @@ ASASSN$-$15lh \cite{ref:ASASSN},
 PSR B0943$+$10 \cite{ref:PSRB0943}
 and the yet undiscovered SN1987A remnant \cite{ref:SN1987A_1,ref:SN1987A_2}.
 Moreover, the observation of a pulsar with a sub-millisecond rotation period would strongly suggest the existence of strange quark stars. \cite{ref:glendenning} % sec 10.3 (PDF)
-\TODO{new intro OK?} 
+\TODO{OK?} 
 
 Quarks and the mediators of the strong force between them -- gluons -- are described by the theory of \textbf{quantum chromodynamics}.
 Very roughly speaking, it predicts that quarks are confined in hadrons at low temperatures and densities due to a property called \textbf{color confinement},
@@ -153,7 +153,7 @@ This common property of mass-radius curves is the reason that we will focus our 
 To derive equations of state for quark matter, we will study quantum field theories whose dynamics is described by some Lagrangian density $\lagr$.
 In \cref{chap:tft} we showed that the partition function in the grand canonical ensemble corresponding to a Lagrangian including both a fermionic field $\psi$ and a bosonic field $\phi$ is given by the path integral
 \begin{equation}
-	Z(V, T, \mu_i) = \oint_- \pathintdif \bar{\psi} \oint_- \pathintdif \psi \oint_+ \pathintdif \phi \exp \Big\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \Big( \lagr_E\big[\bar{\psi}, \psi, \phi\big] + \sum_i \mu_i j^0_i \Big) \Big\} = e^{-\beta V \Omega} .
+	Z(V, T, \mu_i) = \oint_- \pathintdif \bar{\psi} \oint_- \pathintdif \psi \oint_+ \pathintdif \phi \exp \bigg\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \Big( \lagr_E\big[\bar{\psi}, \psi, \phi\big] + \sum_i \mu_i j^0_i \Big) \bigg\} = e^{-\beta V \Omega} .
 \label{eq:master_intro:partition_function}
 \end{equation}
 Here it is the Euclidean Lagrangian density $\lagr_E$ that enters,
@@ -169,6 +169,7 @@ After computing (the logarithm of) the partition function, it is straightforward
 \end{equation}
 The volume dependence of the partition function is eliminated by division, turning the extensive quantity $\log Z$ into the intensive quantity $\Omega$.
 From the grand potential density, we can calculate the relevant thermodynamic quantities:
+\TODO{source, $S$ or $s$, $TS$ or $Ts$?}
 \begin{subequations}
 \begin{align}
 	\text{pressure} \quad P(T, \mu_i) &= -\Omega, \label{eq:master_intro:pressure} \\
@@ -180,7 +181,7 @@ From the grand potential density, we can calculate the relevant thermodynamic qu
 Our goal is to connect a given pressure $P$ to some energy density $\epsilon$ so that we can solve the Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov}.
 This is greatly simplified in compact stars, where it is common to employ the \textbf{zero-temperature approximation} $T=0$.
 We justified this approximation for neutron stars in \cref{sec:nstars:eos} due to the temperature being far lower than the Fermi temperature $T_f$.
-With $T = 0$, only the dependence on chemical potentials remain in
+With $T = 0$, only the dependence on the chemical potentials remains in
 \begin{equation}
 	P(\mu_i) = -\Omega
 	\qquad \text{and} \qquad
@@ -195,11 +196,10 @@ We then need \emph{three} additional relations to constrain the \emph{four} chem
 \subsection*{Chemical equilibrium of weak interaction processes}
 
 We can find two relations between the chemical potentials by assuming that the nuclear processes in the star are in chemical equilibrium.
-According to \cite{ref:quark_star_processes}, quark stars may be formed as hadronic matter in a neutron star decays to quark matter through \textbf{Urca processes} like%
+According to \cite{ref:quark_star_processes}, quark stars may be formed as hadronic matter in a neutron star decays to quark matter through \textbf{Urca processes}%
 \footnote{%
-	Such processes which emit neutrinos and cool neutron stars are called \textbf{Urca processes},
-	named after its discoverers George Gamow and Mário Schenberg met at the famous Casino de Urca in Rio de Janeiro in Brazil.
-	They
+	\textbf{Urca processes} are a general class of processes that emit neutrinos and cool neutron stars.
+	They are named after their discoverers George Gamow and Mário Schenberg met at the famous Casino de Urca in Rio de Janeiro in Brazil, who
 	``called it the Urca Process, partially to commemorate the casino in
 	which we first met, and partially because the Urca Process
 	results in a rapid disappearance of thermal energy from
@@ -207,15 +207,16 @@ According to \cite{ref:quark_star_processes}, quark stars may be formed as hadro
 	money from the pockets of the gamblers on the Casino da
 	Urca.'' \cite{ref:urca}
 }
+like
 \begin{equation}
 u + e^- \rightarrow d + \nu_e
-\qquad \text{and} \qquad
+\quad\qquad \text{and} \quad\qquad
 u + e^- \rightarrow s + \nu_e .
 \end{equation}
-Over time, neutrinos are emitted from the star and cools it.
-We therefore set $\mu_{\nu_e}=0$, so chemical equilibrium of these two processes implies the two independent \textbf{$\beta$-equilibrium} relations
+Over time, neutrinos are emitted from the star, thereby cooling it.
+Setting $\mu_{\nu_e}=0$, chemical equilibrium of these two processes implies the two independent \textbf{$\beta$-equilibrium} relations
 \begin{equation}
-\mu_d = \mu_s = \mu_u + \mu_e .
+\mu_u + \mu_e = \mu_d = \mu_s .
 \label{eq:lsm:chemical_equilibrium}
 \end{equation}
 
@@ -260,14 +261,14 @@ eliminating the chemical potentials at any radius according to
 	\sum_i q_i \, n_i(\mu_i) = 0
 \label{eq:lsm:charge_neutrality}
 \end{equation}
+As shown in \cite{ref:global_neutrality}, for example, the stronger assumption of local charge neutrality can in fact modify masses and radii of stars within an order of magnitude of solar masses,
+but the differences become smaller as one approaches the maximum mass star.
+Our choice $\rho(r)=0$ is therefore the simplest choice, but not necessarily the most accurate and physical one.
+
 The three relations \eqref{eq:lsm:chemical_equilibrium} and \eqref{eq:lsm:charge_neutrality}
 constrain the four chemical potentials $\mu_u$, $\mu_d$, $\mu_s$ and $\mu_e$
 to a single one that is eliminated from $P(\mu_i)$ and $\epsilon(\mu_i)$
 to yield the equation of state $\epsilon(P)$.
-
-As shown in \cite{ref:global_neutrality}, for example, the stronger assumption of local charge neutrality can in fact modify masses and radii of stars within an order of magnitude of solar masses,
-but the differences become smaller as one approaches the maximum mass star.
-Our choice $\rho(r)=0$ is therefore the simplest choice, but not necessarily the most accurate and physical one.
 
 \section{Quantum chromodynamics}
 \label{sec:master_intro:qcd}
@@ -277,7 +278,7 @@ Our choice $\rho(r)=0$ is therefore the simplest choice, but not necessarily the
 %\includegraphics[width=0.9\textwidth]{figures/qcd-phase-diagram.pdf}
 \includegraphics[width=0.6\textwidth]{figures/qcd-phase-diagram.png}
 \caption{%
-	Slice of the phase diagram of quantum chromodynamics with zero isospin and strangeness.
+	The $\mu_B$-$T$-slice of the phase diagram of quantum chromodynamics with zero isospin and strangeness.
 	%\credit{CERN / Antonin Maire}{https://cds.cern.ch/record/2025215}
 	\credit{R.S. Bhalerao}{https://commons.wikimedia.org/wiki/File:PhasDiagQGP.png}
 }
@@ -304,11 +305,11 @@ the $N_f = 3$ flavors $f \in \{u,d,s\}$,
 the $N_c = 3$ colors $c \in \{r,g,b\}$ and
 $4$ Dirac spinor indices $\alpha \in \{0,1,2,3\}$,
 and we will take a flavor index $f$ with the shorthand $f = q_{f,c,\alpha}(x)$.
-The gamma matrices \eqref{eq:tft:gamma_dirac_basis} act in spinor space,
+The gamma matrices \eqref{eq:tft:gamma_dirac_basis} (in the Dirac basis) act in spinor space,
 the mass matrix $m = \diag(m_u, m_d, m_s)$ in flavor space,
 and there are suppressed identity matrices in spinor, flavor and color space wherever needed for the Lagrangian to be a scalar.
 The covariant derivative is $D_\mu = \partial_\mu - i g A_\mu^a T^a$ and couples the gluon gauge fields $A_\mu^a$ to the quarks with strength $g$.
-Finally, the Gell-Mann matrices $T^a$ are the $N_f^2 - 1$ generators of the symmetry group $SU(N_f)$
+Finally, the Gell-Mann matrices $T^a$ are the $\smash{N_f^2} - 1$ generators of the symmetry group $SU(N_f)$
 conventionally normalized to $\trace[T^a T^b] = \delta^{ab}/2$,
 and whose structure constants $f^{abc}$ can be determined from the commutators $\comm{T^a}{T^b} = i f^{abc} T^c$,
 
@@ -358,23 +359,23 @@ Inverting these relations for the individual quark chemical potentials give
 	\mu_s = \mu - \mu_S .
 \label{eq:master_intro:chemical_potentials_particles}
 \end{equation}
-By the chain rule we can derive that the suitably named common quark chemical potential $\mu$ corresponds to the total quark density
+By the chain rule and equation \eqref{eq:master_intro:densities} we can derive that the suitably named common quark chemical potential $\mu$ corresponds to the total quark density
 \begin{equation}
-	n_Q = -\pdv{\Omega}{\mu} =
+	n = -\pdv{\Omega}{\mu} =
 	-\pdv{\Omega}{\mu_u} \pdv{\mu_u}{\mu}
 	-\pdv{\Omega}{\mu_d} \pdv{\mu_d}{\mu}
 	-\pdv{\Omega}{\mu_s} \pdv{\mu_s}{\mu} =
 	n_u + n_d + n_s.
 \end{equation}
-Some authors rather prefer to talk about the baryon chemical potential $\mu_B = 3 \mu$ and the baryon density $n_B = n_Q / 3$.
-Although mapping out the phase diagram is an active area of research, a rough qualitative picture is known, and the $\mu_B-T$-slice with $\mu_I = \mu_S = 0$ is shown in \cref{fig:qcd:phase_diagram}.
-We have already argued that one can set $T=0$ in compact stars,
-and we will later see that the additional constraints of chemical equilibrium \eqref{eq:lsm:chemical_equilibrium} and charge neutrality \eqref{eq:lsm:charge_neutrality} entail that
-the state of quark matter in compact stars is parametrized by a curve in the diagram that lies close to the $\mu$-axis.
+Some authors rather prefer to talk about the baryon chemical potential $\mu_B = 3 \mu$ and the baryon density $n_B = n / 3$.
+Although mapping out the phase diagram is an active area of research, a rough qualitative picture is known, and the $\mu_B$-$T$-slice with $\mu_I = \mu_S = 0$ is shown in \cref{fig:qcd:phase_diagram}.
+In compact stars we have already argued that it is a good approximation to set $T=0$,
+and we will later see that the additional constraints \eqref{eq:lsm:chemical_equilibrium} and \eqref{eq:lsm:charge_neutrality}
+parametrizes a curve for the state of charge-neutral quark matter in $\beta$-equilibrium that lies close to the $\mu$-axis.
 We will shortly discuss the most important qualitative properties of quantum chromodynamics and relate them to this phase diagram.
 
 The general theory of quantum chromodynamics is notorious for being very difficult to work with,
-and its elegance and practicality stops not longer after writing down its Lagrangian \eqref{eq:qcd:lagrangian}.
+and its elegance and practicality stops not long after writing down its Lagrangian \eqref{eq:qcd:lagrangian}.
 To explore the phase diagram, one must therefore turn to alternative techniques:
 \begin{itemize}
 \item \textbf{Perturbation theory} can be used to study quantum chromodynamics analytically at \emph{high} energy, perhaps contrary to what one might expect.
@@ -384,13 +385,13 @@ To explore the phase diagram, one must therefore turn to alternative techniques:
       In the regime of high baryon density and low temperature, however, it is plagued by the so-called sign problem that refers to the difficulty of calculating integrals of highly oscillatory functions.
       This is precisely the region of the phase diagram that is relevant for compact stars.
 \item The \textbf{$\bm{N_c}$ approximation scheme} or \textbf{large $\bm{N_c}$-limit} is a scheme in which one makes expansions in the assumed small parameter $1/N_c$.
-      Although there are only $N_c = 3$ colors in nature, this scheme has indeed been used to make accurate predictions.
+      Although there are only $N_c = 3$ colors in nature, this scheme has indeed been used to make accurate predictions. \cite{ref:large_Nc_review}
       We will refer to this approximation to justify some of our later calculations.
 \item \textbf{Effective theories and models} can be used to study quantum chromodynamics in some regimes of interest.
       The most important requirements of such a theory or model is that it includes the correct degrees of freedom (particles) and exhibits the same symmetries and symmetry breaking patterns as the theory it aims to describe in the targeted regime.
       Due to \cite{ref:weinberg_eft}, the philosophy is then to ``write down the most general possible theory involving fields for these particles, including all possible interactions consistent with the symmetries''.
-      Chiral perturbation theory ($\chi$PT) is an example of an effective low-energy theory obtained systematically in this way,
-      and the Nambu-Jona-Lasinio (NJL) model and the quark-extended linear sigma model (LSM), also known as the quark-meson (QM) model, are effective models in the same regime.
+      Chiral perturbation theory ($\chi$PT) is an example of an effective low-energy \emph{theory} obtained systematically in this way,
+      and the Nambu-Jona-Lasinio (NJL) model and the quark-extended linear sigma model (LSM), also known as the quark-meson (QM) model, are effective \emph{models} in the same regime.
       This approach is applicable along the $\mu$-axis and hence in compact stars, and is the one we will take.
 \end{itemize}
 
@@ -429,7 +430,7 @@ To explore the phase diagram, one must therefore turn to alternative techniques:
 One fundamental feature of quantum chromodynamics is \textbf{color confinement}.
 Quarks can be color-charged \textcolor{red}{\textbf{red}}, \textcolor{green}{\textbf{green}} and \textcolor{blue}{\textbf{blue}},
 while antiquarks can have the complementary anticolors \textcolor{cyan}{\textbf{antired}}, \textcolor{magenta}{\textbf{antigreen}} and \textcolor{yellow}{\textbf{antiblue}}.
-At low temperature and density, experiments and lattice simulations show that quarks never appear in isolation, but are always confined in hadrons that have no overall color.
+At low temperature and density, experiments and lattice simulations show that colored quarks never appear alone, but are always confined in hadrons that have no overall color.
 As the distance between color-charged quarks increases, the strong force between them remains \emph{constant} -- the quarks are  effectively ``glued'' together by mediating gluons.
 For example, a meson consists of one quark of any color and one antiquark of its complementary color, making the meson itself colorless or ``white''.
 Similarly, a(n) (anti)baryon consists of one (anti)red, one (anti)green and one (anti)blue quark and is also ``white''.
@@ -442,13 +443,13 @@ in colorless hadronic matter that make up the present world around us.
 
 In the opposite extreme of high temperature or density in \cref{fig:qcd:phase_diagram}, quantum chromodynamics displays the property of \textbf{asymptotic freedom}.
 As the energy scale of quark interactions increases, or equivalently its length scale decreases, the interaction strength \emph{decreases} and quarks become \emph{deconfined}.
-With increasing temperature, experiments and calculations have shown that the deconfined phase is a \textbf{quark-gluon plasma} of free color charges and gluons.
+With high temperature, experiments and calculations have shown that the deconfined phase is a \textbf{quark-gluon plasma} of free color charges and gluons.
 It is believed that the universe passed through this phase during the first $\SI{20}{\micro\second}$ after the Big Bang, after which it transitioned to the present phase of hadronic matter.
-The situation with low temperature and increasing baryon density is more uncertain:
+The situation with low temperature and high baryon density is more uncertain:
 no human-made laboratory can recreate the extreme densities required for quark matter,
 and calculations are difficult and suggest qualitative features that depend on the model used.
 Only in the extreme limit of infinite baryon density, where perturbation theory applies,
-it is known that the deconfined phase turns into a \textbf{color-flavor-locked phase} of superconducting color charges.
+it is known that the deconfined phase turns into a \textbf{color-flavor-locked phase} of superconducting color charges. \cite{ref:qcd_phase_diagram_dense}
 Asymptotic freedom was first discovered by \cite{ref:asymptotic_freedom_gross_wilczek,ref:asymptotic_freedom_politzer}, who were recognized with the Nobel Prize in 2004.
 
 The \emph{Polyakov loop} is an approximate order parameter of confinement in quantum chromodynamics.
@@ -469,8 +470,11 @@ The Lagrangian \eqref{eq:qcd:lagrangian} has some interesting global symmetries,
 The simplest symmetry is the $U(1)_V$ \textbf{vector symmetry} $q \rightarrow e^{i \theta} q$, giving rise to the conserved vector current $j^\mu = \bar{q} \gamma^\mu q$ representing quark number densities.
 In the grand canonical ensemble, we will later couple one such conserved current to a chemical potential for each quark flavor.
 In the massless case $m = 0$, the Lagrangian also has the $U(1)_A$ \textbf{axial symmetry} $q \rightarrow e^{i \theta \gamma^5} q$ with the conserved axial current $j^\mu = \bar{q} \gamma^\mu \gamma^5 q$.
+
 As its proof assumes the action to be extremized, Noether's theorem is inherently \emph{classical}.
 Unlike the vector current, the axial current is in fact no longer conserved under the influence of quantum effects, and is therefore said to be \emph{anomalous}.
+\cite[equation (28.20)]{ref:schwartz}
+%\cite[chapter 3]{ref:lsm_notes}
 
 Using the projection operator $P_\pm = \frac12 (1 \pm \gamma^5)$, we can introduce the left-handed ($-$) and right-handed ($+$) chiral fields $q_\pm = P_\pm q$.
 One can then show that $q = q_- + q_+$, $\bar{q}_\pm q_\pm = 0$ and $\bar{q}_\pm \gamma^\mu D_\mu q_\mp = 0$, so that the Lagrangian \eqref{eq:qcd:lagrangian} can be written
@@ -496,7 +500,7 @@ We therefore say that quantum chromodynamics exhibits \textbf{chiral symmetry br
 \label{eq:qcd:symmetry_breaking_pattern}
 \end{equation}
 Goldstone's theorem then predicts that one massless Goldstone boson arises from every broken symmetry generator.
-Hence, chiral symmetry breaking gives rise to $2 \times (N_f^2 - 1) - (N_f^2 - 1) = N_f^2 - 1$ Goldstone bosons.
+Hence, chiral symmetry breaking gives rise to $2 \times (\smash{N_f^2} - 1) - (\smash{N_f^2} - 1) = \smash{N_f^2} - 1$ Goldstone bosons.
 With $N_f = 2$ and $N_f = 3$ flavors, these are the three pions and the eight pseudoscalar mesons.
 
 In the real world, however, the quarks have different masses and cause the chiral symmetry to be only \emph{approximately} broken.
