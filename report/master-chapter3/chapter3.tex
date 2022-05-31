@@ -886,7 +886,7 @@ This is one of the reasons for why we operate with two renormalization scales he
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$ },
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
-	title = {$m_\sigma = \SI{600}{\mega\electronvolt}$ \\ $B^\frac14 = \{111,131,151\} \, \si{\mega\electronvolt}$},
+	title = {\subcaption{\label{fig:lsm:3-flavor-mass-radius-600}$m_\sigma = \SI{600}{\mega\electronvolt}$} $B^\frac14 = \{111,131,151\} \, \si{\mega\electronvolt}$},
 ];
 \addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_131.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -900,7 +900,7 @@ This is one of the reasons for why we operate with two renormalization scales he
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	yticklabels={,,},
-	title = {$m_\sigma = \SI{700}{\mega\electronvolt}$ \\ $B^\frac14 = \{68,88,108\} \, \si{\mega\electronvolt}$},
+	title = {\subcaption{\label{fig:lsm:3-flavor-mass-radius-700}$m_\sigma = \SI{700}{\mega\electronvolt}$} $B^\frac14 = \{68,88,108\} \, \si{\mega\electronvolt}$},
 	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.5,-0.3)}, anchor=north, xticklabel pos=lower},
 ];
 \addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -915,7 +915,7 @@ This is one of the reasons for why we operate with two renormalization scales he
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	yticklabels={,,},
-	title = {$m_\sigma = \SI{800}{\mega\electronvolt}$ \\ $B^\frac14 = \{27,47,67\} \, \si{\mega\electronvolt}$},
+	title = {\subcaption{\label{fig:lsm:3-flavor-mass-radius-800}$m_\sigma = \SI{800}{\mega\electronvolt}$} $B^\frac14 = \{27,47,67\} \, \si{\mega\electronvolt}$},
 ];
 \addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_47.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};

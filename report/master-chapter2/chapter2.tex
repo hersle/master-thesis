@@ -724,7 +724,7 @@ We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
-	title = {$m_\sigma = \SI{600}{\mega\electronvolt }$ \\ $B^\frac14 = \{111,131,151\} \, \si{\mega\electronvolt}$},
+	title = {\subcaption{\label{fig:lsm:2-flavor-mass-radius-600}$m_\sigma = \SI{600}{\mega\electronvolt }$} $B^\frac14 = \{111,131,151\} \, \si{\mega\electronvolt}$},
 ];
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_131.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -733,7 +733,7 @@ We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	yticklabels={,,},
-	title = {$m_\sigma = \SI{700}{\mega\electronvolt}$ \\ $B^\frac14 = \{68,88,108\} \, \si{\mega\electronvolt}$},
+	title = {\subcaption{\label{fig:lsm:2-flavor-mass-radius-700}$m_\sigma = \SI{700}{\mega\electronvolt}$} $B^\frac14 = \{68,88,108\} \, \si{\mega\electronvolt}$},
 	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.5,-0.3)}, anchor=north, xticklabel pos=lower},
 ];
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_68.dat};  % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -743,7 +743,7 @@ We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	yticklabels={,,},
-	title = {$m_\sigma = \SI{800}{\mega\electronvolt}$ \\ $B^\frac14 = \{27,47,67\} \, \si{\mega\electronvolt}$},
+	title = {\subcaption{\label{fig:lsm:2-flavor-mass-radius-800}$m_\sigma = \SI{800}{\mega\electronvolt}$} $B^\frac14 = \{27,47,67\} \, \si{\mega\electronvolt}$},
 ];
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_47.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -1066,7 +1066,7 @@ and $m_\sigma = \{500,600\} \, \si{\mega\electronvolt}$.
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
-	title = {$m_\sigma = \SI{400}{\mega\electronvolt}$ \\ $B^\frac14 = \{107,127,147\} \, \si{\mega\electronvolt}$ },
+	title = {\subcaption{\label{fig:lsm:2-flavor-mass-radius-ref-400}$m_\sigma = \SI{400}{\mega\electronvolt}$} $B^\frac14 = \{107,127,147\} \, \si{\mega\electronvolt}$ },
 ];
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_400_B14_107.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_400_B14_127.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -1075,7 +1075,7 @@ and $m_\sigma = \{500,600\} \, \si{\mega\electronvolt}$.
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	yticklabels={,,},
-	title = {$m_\sigma = \SI{500}{\mega\electronvolt}$ \\ $B^\frac14 = \{84,104,124\} \, \si{\mega\electronvolt}$},
+	title = {\subcaption{\label{fig:lsm:2-flavor-mass-radius-ref-500}$m_\sigma = \SI{500}{\mega\electronvolt}$} $B^\frac14 = \{84,104,124\} \, \si{\mega\electronvolt}$},
 	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.5,-0.3)}, anchor=north, xticklabel pos=lower},
 ];
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_500_B14_84.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
@@ -1085,7 +1085,7 @@ and $m_\sigma = \{500,600\} \, \si{\mega\electronvolt}$.
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
 	yticklabels={,,},
-	title = {$m_\sigma = \SI{600}{\mega\electronvolt}$ \\ $B^\frac14 = \{27,47,67\} \, \si{\mega\electronvolt}$},
+	title = {\subcaption{\label{fig:lsm:2-flavor-mass-radius-ref-600}$m_\sigma = \SI{600}{\mega\electronvolt}$} $B^\frac14 = \{27,47,67\} \, \si{\mega\electronvolt}$},
 ];
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_600_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC/stars_sigma_600_B14_47.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
