@@ -22,7 +22,7 @@ only for stars that have a large central pressure and thus large chemical potent
 
 \section{Lagrangian, vacuum and symmetry breaking}
 
-The Lagrangian density of the three-flavor model is \cite{ref:lsm3f,ref:lsm3f_details}
+The Lagrangian density of the three-flavor quark-meson model is \cite{ref:lsm3f,ref:lsm3f_details}
 \begin{equation}
 	\lagr = \bar{q} \Big[ i \slashed\partial + \mu \gamma^0 - g \big(\sigma_a + i \gamma^5 \pi_a\big) T_a \Big] q + \trace\Big[(\partial_\mu \phi)^\dagger (\partial^\mu \phi)\Big] - \pot(\sigma, \pi)
 \label{eq:lsm:lagrangian3f}
@@ -35,7 +35,7 @@ with the meson potential
 The quark fields $q$ and chemical potentials $\mu$ now have $N_f=3$ flavors $\{u,d,s\}$,
 while $\sigma_a$ and $\pi_a$ are members of the scalar $J^P=0^+$ and pseudoscalar $J^P=0^-$ meson nonets,
 packed into the $N_f \times N_f$ matrix $\phi = \phi_a T_a = (\sigma_a + i \pi_a) T_a$.
-The eight $SU(3)$ generators $T_a = \lambda_a/2$ are extended with the identity with the common normalization $\trace[T_a T_b] = \delta_{ab}/2$ of the Gell-Mann matrices
+The eight $SU(3)$ generators $T_a = \lambda_a/2$ are extended with the identity in the common normalization $\trace[T_a T_b] = \delta_{ab}/2$ of the Gell-Mann matrices
 \begin{equation}
 \begin{NiceMatrixBlock}[auto-columns-width]
 \setlength{\arraycolsep}{0pt}
@@ -59,8 +59,8 @@ Like before, the Lagrangian has $U(1)_V \times U(1)_A \times SU(N_f)_L \times SU
 in the absence of the explicit symmetry breakers $h_a$ in the matrix $H = h_a T_a$.
 Moreover, there are now \emph{two} quartic couplings $\lambda_1$ and $\lambda_2$,
 not to be confused with the Gell-Mann matrices \eqref{eq:lsm:gell_mann_matrices}.
-This can be understood from the \emph{Hamilton-Caley theorem} \cite[equation 1 and 2]{ref:hamilton_caley},
-which links the $N$ traces $\trace A, \ldots, \trace A^N$ for any $N \times N$ matrix $A$.
+This can be understood from the \emph{Hamilton-Caley theorem} \cite[equation (1) and (2)]{ref:hamilton_caley},
+which links the $N$ traces $\trace A, \ldots, \trace A^N$ of any $N \times N$ matrix $A$.
 With three flavors we can therefore form \emph{two} independent coupling terms
 $\lambda_1 \trace[(\phi^\dagger \phi)]^2$ and $\lambda_2 \trace[(\phi^\dagger \phi)^2]$ up to quadratic order%
 \footnote{That precisely fourth order is the target implies that the theory is renormalizable,
@@ -70,12 +70,12 @@ and would make the theory non-renormalizable.}
 in the fields, while only one can be constructed with two flavors.
 Every other feature of the Lagrangian is identical to or a natural generalization of that in the corresponding two-flavor Lagrangian \eqref{eq:lsm:lagrangian}.
 
-This general form of the model has thirteen undetermined parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$ and $h_0,\ldots,h_8$.
+This general form of the model has thirteen undetermined parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$ and $\{h_0,\,\ldots,\,h_8\}$.
 We continue to neglect pion condensation by setting $\avg{\pi_a}=0$,
-so a nonzero symmetry breaker $h_a$ creates a non-vanishing vacuum expectation value of the corresponding field $\avg{\sigma_a}$,
+so a nonzero symmetry breaker $h_a$ creates a non-vanishing vacuum expectation value of the corresponding scalar field $\avg{\sigma_a}$,
 which in turn creates a nonzero quark condensate $\avg{\bar{q} \, T_a q}$ in vacuum through the Yukawa interaction in the Lagrangian \eqref{eq:lsm:lagrangian3f}.
 In particular, this vacuum expectation value should have the same vanishing electrical charge as the vacuum.
-We therefore only allow for flavor-like charge-neutral condensates such as $\avg{\bar{u} u}$,
+We therefore only allow for flavor-like charge-neutral condensates such as $\avg{\bar{u} u}$ in the vacuum,
 and no mixed-flavor charged condensates like $\avg{\bar{u} d}$.
 To accomplish this, we set all symmetry breakers to zero \emph{except} those that correspond to diagonal flavor-space matrices \eqref{eq:lsm:gell_mann_matrices},
 or $T_a$,
@@ -89,14 +89,14 @@ Including all three symmetry breakers with $h_3 \neq 0$, too, the fourth matrix 
 These different symmetry breaking patterns are discussed in more detail in \cite[section III]{ref:lsm3f_details}.
 Since we treated up and down quarks with degenerate mass in \cref{chap:lsm2f},
 we will set $h_3 = 0$ and keep $\{h_0,h_8\} \neq 0$ to account for the heavier strange quark separately from the non-strange quarks.
-This leaves six unknown parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_0$, $h_8$ that must be fit to as many experimental values.
+This leaves six unknown parameters $g$, $m^2$, $\lambda_1$, $\lambda_2$, $h_0$, $h_8$ that will later be fit to as many experimental values.
 
-The explicit symmetry breakers $\{h_0,h_8\}\neq 0$ dig a global minimum for the vacuum and the classical ground state at
+The explicit symmetry breakers $\{h_0,h_8\}\neq 0$ dig a global minimum for the vacuum at
 \begin{equation}
 	\sigma_a = \avg{\sigma_a} \quad \text{and} \quad \pi_a = \avg{\pi_a} = 0, \quad \text{where only $\avg{\sigma_0} \neq 0$ and $\avg{\sigma_8} \neq 0$ are nonzero.}
 \label{eq:lsm:ground_state_3f}
 \end{equation}
-Once again, we jump down into the hole \eqref{eq:lsm:ground_state_3f} and study the quantum fluctuations $\tilde{\sigma}_a$ and $\tilde{\pi}_a$ of the meson fields by writing
+Like before, we jump down into the hole \eqref{eq:lsm:ground_state_3f} and study the quantum fluctuations $\tilde{\sigma}_a$ and $\tilde{\pi}_a$ of the meson fields by writing
 \begin{equation}
 	\sigma_a = \avg{\sigma_a} + \tilde{\sigma}_a
 	\qquad \text{and} \qquad
@@ -108,13 +108,13 @@ Coupled to the nonzero expectation values, the Yukawa term in the Lagrangian \eq
 \begin{equation}
 \begin{split}
 	  & -g \bar{q} \big( \avg{\sigma_0} T_0 + \avg{\sigma_8} T_8 \big) q \\
-	= & -g \begin{bNiceMatrix} \vphantom{\sqrt{\frac13}} u^\dagger \gamma_0 \\ \vphantom{\sqrt{\frac13}} d^\dagger \gamma_0 \\ \vphantom{\sqrt{\frac13}} s^\dagger \gamma_0 \end{bNiceMatrix}^T \begin{bNiceMatrix} \sqrt{\frac23} \avg{\sigma_0} + \frac{1}{\sqrt{3}} \avg{\sigma_8} & 0 & 0 \\ 0 & \sqrt{\frac23} \avg{\sigma_0} + \frac{1}{\sqrt{3}} \avg{\sigma_8} & 0 \\ 0 & 0 & \sqrt{\frac23} \avg{\sigma_0} - \frac{2}{\sqrt{3}} \avg{\sigma_8} \end{bNiceMatrix} \begin{bNiceMatrix} \vphantom{\sqrt{\frac13}} u \\ \vphantom{\sqrt{\frac13}} d \\ \vphantom{\sqrt{\frac13}} s \end{bNiceMatrix} , \\
+	= & -g \begin{bNiceMatrix} \vphantom{\sqrt{\frac13}} u^\dagger \gamma_0 \\ \vphantom{\sqrt{\frac13}} d^\dagger \gamma_0 \\ \vphantom{\sqrt{\frac13}} s^\dagger \gamma_0 \end{bNiceMatrix}^T \begin{bNiceMatrix} \sqrt{\frac23} \avg{\sigma_0} + \frac{1}{\sqrt{3}} \avg{\sigma_8} & 0 & 0 \\ 0 & \sqrt{\frac23} \avg{\sigma_0} + \frac{1}{\sqrt{3}} \avg{\sigma_8} & 0 \\ 0 & 0 & \sqrt{\frac23} \avg{\sigma_0} - \frac{2}{\sqrt{3}} \avg{\sigma_8} \end{bNiceMatrix} \begin{bNiceMatrix} \vphantom{\sqrt{\frac13}} u \\ \vphantom{\sqrt{\frac13}} d \\ \vphantom{\sqrt{\frac13}} s \end{bNiceMatrix} . \\
 \end{split}
 \label{eq:lsm:yukawa3f}
 \end{equation}
-mixing $\sigma_0$ and $\sigma_8$ interactions with each quark.
+In particular, it mixes $\sigma_0$ and $\sigma_8$ interactions with all three quarks.
 For conceptual cleanliness,
-we seek a unitary transformation from the mixed $\sigma_0\text{-}\sigma_8$-basis to a segregated $\sigma_x\text{-}\sigma_y$-basis
+we seek a unitary transformation from the mixed $\sigma_0\text{-}\sigma_8$-basis to a strangeness-separated $\sigma_x\text{-}\sigma_y$-basis
 in which the up and down quarks couple only to $\sigma_x$ and the strange quark only to $\sigma_y$.
 This is accomplished by
 \begin{equation}
@@ -122,10 +122,13 @@ This is accomplished by
 	%\quad \text{or} \quad
 	%\begin{bmatrix} \sigma_0 \\ \sigma_8 \end{bmatrix} = M \begin{bmatrix} \sigma_x \\ \sigma_y \end{bmatrix},
 	\qquad \text{where} \qquad
-	M = M^{-1} = \frac{1}{\sqrt{3}} \begin{bmatrix} \sqrt{2} & 1 \\ 1 & -\sqrt{2} \end{bmatrix}.
+	M = M^{-1} = M^T = \frac{1}{\sqrt{3}} \begin{bmatrix} \sqrt{2} & 1 \\ 1 & -\sqrt{2} \end{bmatrix}.
 \label{eq:lsm:strange_basis}
 \end{equation}
-We also define the transformed symmetry breakers $h_x$ and $h_y$ from $h_0$ and $h_8$ using the same transformation.
+We also define the transformed symmetry breakers 
+$[h_x,h_y]^T = M [h_0,h_8]^T$
+%$h_x$ and $h_y$ from $h_0$ and $h_8$ 
+using the same transformation.
 In the new basis \eqref{eq:lsm:strange_basis}, the Yukawa coupling \eqref{eq:lsm:yukawa3f} takes our sought-after form
 \begin{equation}
 	- \smashoperator{\sum_{f=\{u,d,s\}}} m_f \bar{q}_f q_f
@@ -136,13 +139,22 @@ In the new basis \eqref{eq:lsm:strange_basis}, the Yukawa coupling \eqref{eq:lsm
 \label{eq:lsm:quark_masses_3f}
 \end{equation}
 
-Finally, we examine how the meson potential \eqref{eq:lsm:potential3f} behaves in and around the vacuum
+Finally, we examine how the meson potential \eqref{eq:lsm:potential3f} behaves in and around the minimum \eqref{eq:lsm:ground_state_3f}
 by looking for its mass-generating expansion
 \begin{equation}
 	\pot(\sigma,\pi) \taylor \pot(\avg{\sigma},\avg{\pi}) + \frac12 \big(m^2_{\sigma\sigma}\big)_{ab} \tilde{\sigma}_a \tilde{\sigma}_b + \frac12 \big(m^2_{\pi\pi}\big)_{ab} \tilde{\pi}_a \tilde{\pi}_b.
 \label{eq:lsm3f:potential_before_diagonalization}
 \end{equation}
-To do so, we need to evaluate the traces
+Like in \cref{chap:lsm2f},
+we will use $\pot(\avg{\sigma},\avg{\pi})$ in the grand potential,
+relate $\pdv{\pot}/{\sigma_{x}}=\pdv{\pot}/{\sigma_{y}}=0$
+to the minima $\{\avg{\sigma_x},\avg{\sigma_y}\}$ and $\{h_x,h_y\}$,
+and fit the curvature masses
+$\pdv{\pot}/{\sigma_a, \sigma_b} = \smash{\big(m^2_{\sigma\sigma}\big)_{ab}}$
+and
+$\pdv{\pot}/{\pi_a, \pi_b} = \smash{\big(m^2_{\pi\pi}\big)_{ab}}$
+to particle masses.
+To do so, we need the flavor-space traces
 \begin{subequations}
 \begin{align}
 	\trace\big[\phi^\dagger \phi\big]     &= (\sigma_a - i \pi_a) (\sigma_b + i \pi_b) \trace \big[ T_a T_b \big] = \frac12 \big(\sigma_a^2+\pi_a^2\big) , \\
@@ -167,25 +179,27 @@ by bootstrapping traces of the Gell-Mann matrices like
 	                                 \equalexplbelow{\smash[b]{use \eqref{eq:lsm3f:trace3}}} \frac{1}{2^3} \Big( i f_{cde} + d_{cde} \Big) \Big( i f_{bea} + d_{bea} \Big). \label{eq:lsm3f:trace4}
 \end{align}
 \end{subequations}
-However, with our explicit knowledge \eqref{eq:lsm:gell_mann_matrices} of the matrices
+However, with our explicit knowledge \eqref{eq:lsm:gell_mann_matrices} of the matrices,
 it is easier and less error-prone to simply calculate all the traces by brute force with a symbolic computer program.
 Using the program in \cref{chap:lsm3fpotential},
-we create a 559-term-long explicit representation of $\pot(\sigma,\pi)$ for arbitrary $h_a$.
+we create a long explicit representation of $\pot(\sigma,\pi)$.
 Evaluated in the minimum \eqref{eq:lsm:ground_state_3f}, its value is
 \begin{equation}
 	\pot(\avg{\sigma},\avg{\pi}) = \frac{m^2}{2} \Big[ \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \Big] + \frac{\lambda_1}{4} \Big[ \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \Big]^2 + \frac{\lambda_2}{8} \Big[ \avg{\sigma_x}^4 + 2 \avg{\sigma_y}^4 \Big] - h_x \avg{\sigma_x} - h_y \avg{\sigma_y}.
 \label{eq:lsm:potential_tree_3f}
 \end{equation}
-The location of the nonzero minima fields $\avg{\sigma_x}$ and $\avg{\sigma_y}$ is determined
-by taking first derivatives of the 559 terms and evaluating them in the minimum \eqref{eq:lsm:ground_state_3f}:
+The locations of the nonzero minima $\avg{\sigma_x}$ and $\avg{\sigma_y}$ are determined
+by taking first derivatives of the explicit representation before evaluating it in the minimum \eqref{eq:lsm:ground_state_3f}.
+We find that all $\pdv{\pot}/{\pi_a}=0$
+and $\pdv{\pot}/{\sigma_a} = -h_a = 0$ for $a \neq \{0,8\}$ vanish by themselves,
+while we demand
 \begin{subequations}
 \begin{align}
-	0 &= \pdv{\pot}{\sigma_x} = \avg{\sigma_x} \Big[ m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \frac{\lambda_2}{2} \avg{\sigma_x}^2 \Big] - h_x, \\
-	0 &= \pdv{\pot}{\sigma_y} = \avg{\sigma_y} \Big[ m^2 + \lambda_1 \big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \big) + \lambda_2 \avg{\sigma_y}^2 \Big] - h_y.
+	0 &= \pdv{\pot}{\sigma_x} = \avg{\sigma_x} \Big[ m^2 + \lambda_1 \Big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \Big) + \frac{\lambda_2}{2} \avg{\sigma_x}^2 \Big] - h_x, \\
+	0 &= \pdv{\pot}{\sigma_y} = \avg{\sigma_y} \Big[ m^2 + \lambda_1 \Big( \avg{\sigma_x}^2 + \avg{\sigma_y}^2 \Big) + \lambda_2 \avg{\sigma_y}^2 \Big] - h_y.
 \end{align}
 \label{eq:lsm3f:symmetry_breakers}%
 \end{subequations}
-Note also that $\pdv{\pot}/{\sigma_a} = -h_a = 0$ for $a \neq \{0,8\}$ and $\pdv{\pot}/{\pi_a}=0$ for all $a$ indeed vanish in the minimum \eqref{eq:lsm:ground_state_3f}.
 
 Things get messier and our computational approach really comes in handy when evaluating the mass-generating second derivatives
 \begin{equation}
@@ -193,9 +207,10 @@ Things get messier and our computational approach really comes in handy when eva
 	\qquad \text{and} \qquad
 	\big(m^2_{\pi\pi}\big)_{ab}       = \pdv{\pot}{\pi_a, \pi_b}
 \end{equation}
-in the vacuum \eqref{eq:lsm:ground_state_3f}.
-All mixed partial derivatives $\pdv{\pot}/{\sigma_a,\pi_b} = 0$ vanish and are therefore left out.
-The nonzero entries of the scalar mass matrix are
+in the minimum \eqref{eq:lsm:ground_state_3f}.
+All mixed derivatives $\pdv{\pot}/{\sigma_a,\pi_b} = 0$ automatically vanish.
+Grouped by common values, the nonzero entries of the scalar mass matrix are
+\begin{subequations}
 \begin{equation}
 \begin{NiceMatrixBlock}[]
 \NiceMatrixOptions{cell-space-limits=1pt}
@@ -204,29 +219,29 @@ The nonzero entries of the scalar mass matrix are
 	\begin{NiceArray}{c}
 	\big(m^2_{\sigma\sigma}\big)_{00} \\
 	\end{NiceArray}
-	& = m^2 + \smash{\frac{\lambda_1}{3}} \big(4 \sqrt{2} \avg{\sigma_x} \avg{\sigma_y} + 7 \avg{\sigma_x}^2 + 5 \avg{\sigma_y}^2\big) + \lambda_2 \big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big), \\
+	& = m^2 + \smash{\frac{\lambda_1}{3}} \Big(4 \sqrt{2} \avg{\sigma_x} \avg{\sigma_y} + 7 \avg{\sigma_x}^2 + 5 \avg{\sigma_y}^2\Big) + \lambda_2 \Big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\Big), \\
 	\begin{NiceArray}{c}
 	\big(m^2_{\sigma\sigma}\big)_{11} \\
 	\big(m^2_{\sigma\sigma}\big)_{22} \\
 	\big(m^2_{\sigma\sigma}\big)_{33} \\
 	\end{NiceArray} \custombracketr{\}}{0.9cm}
-	& = m^2 + \lambda_1 \big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big) + \smash{\frac32} \lambda_2 \avg{\sigma_x}^2, \\
+	& = m^2 + \lambda_1 \Big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\Big) + \smash{\frac32} \lambda_2 \avg{\sigma_x}^2, \\
 	\begin{NiceArray}{c}
 	\big(m^2_{\sigma\sigma}\big)_{44} \\
 	\big(m^2_{\sigma\sigma}\big)_{55} \\
 	\big(m^2_{\sigma\sigma}\big)_{66} \\
 	\big(m^2_{\sigma\sigma}\big)_{77} \\
 	\end{NiceArray} \custombracketr{\}}{1.2cm}
-	& = m^2 + \lambda_1 \big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big) + \smash{\frac{\lambda_2}{2}} \big(\sqrt{2} \avg{\sigma_x} \avg{\sigma_y} + \avg{\sigma_x}^2 + 2 \avg{\sigma_y}^2\big), \\
+	& = m^2 + \lambda_1 \Big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\Big) + \smash{\frac{\lambda_2}{2}} \Big(\sqrt{2} \avg{\sigma_x} \avg{\sigma_y} + \avg{\sigma_x}^2 + 2 \avg{\sigma_y}^2\Big), \\
 	\begin{NiceArray}{c}
 	\big(m^2_{\sigma\sigma}\big)_{88} \\
 	\end{NiceArray}
-	&= m^2 - \smash{\frac{\lambda_1}{3}} \big(4 \sqrt{2} \avg{\sigma_x} \avg{\sigma_y} - 5 \avg{\sigma_x}^2 - 7 \avg{\sigma_y}^2\big) + \smash{\frac{\lambda_2}{2}} \big(\avg{\sigma_x}^2 + 4 \avg{\sigma_y}^2\big), \\
+	&= m^2 - \smash{\frac{\lambda_1}{3}} \Big(4 \sqrt{2} \avg{\sigma_x} \avg{\sigma_y} - 5 \avg{\sigma_x}^2 - 7 \avg{\sigma_y}^2\Big) + \smash{\frac{\lambda_2}{2}} \Big(\avg{\sigma_x}^2 + 4 \avg{\sigma_y}^2\Big), \\
 	\begin{NiceArray}{c}
 	\big(m^2_{\sigma\sigma}\big)_{08} \\
 	\big(m^2_{\sigma\sigma}\big)_{80} \\
 	\end{NiceArray} \custombracketr{\}}{0.7cm}
-	& = \smash{\frac23} \lambda_1 \big(\sqrt{2} \avg{\sigma_x}^2 - \sqrt{2} \avg{\sigma_y}^2 - \avg{\sigma_x} \avg{\sigma_y}\big) + \smash{\frac{\lambda_2}{\sqrt{2}}} \big(\avg{\sigma_x}^2 - 2 \avg{\sigma_y}^2\big),\\[0.1cm]
+	& = \smash{\frac23} \lambda_1 \Big(\sqrt{2} \avg{\sigma_x}^2 - \sqrt{2} \avg{\sigma_y}^2 - \avg{\sigma_x} \avg{\sigma_y}\Big) + \smash{\frac{\lambda_2}{\sqrt{2}}} \Big(\avg{\sigma_x}^2 - 2 \avg{\sigma_y}^2\Big),\\[0.1cm]
 \end{array}
 \end{NiceMatrixBlock}
 \label{eq:lsm3f:mass_sigma_sigma}
@@ -240,74 +255,85 @@ and the nonzero entries of the pseudoscalar mass matrix are
 	\begin{NiceArray}{c}
 	\big(m^2_{\pi\pi}\big)_{00} \\
 	\end{NiceArray}
-	&= m^2 + \lambda_1 \big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big) + \smash{\frac{\lambda_2}{3}} \big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big), \\
+	&= m^2 + \lambda_1 \Big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\Big) + \smash{\frac{\lambda_2}{3}} \Big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\Big), \\
 	\begin{NiceArray}{c}
 	\big(m^2_{\pi\pi}\big)_{11} \\
 	\big(m^2_{\pi\pi}\big)_{22} \\
 	\big(m^2_{\pi\pi}\big)_{33} \\
 	\end{NiceArray} \custombracketr{\}}{0.9cm}
-	&= m^2 + \lambda_1 \big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big) + \smash{\frac{\lambda_2}{2}} \avg{\sigma_x}^2, \\
+	&= m^2 + \lambda_1 \Big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\Big) + \smash{\frac{\lambda_2}{2}} \avg{\sigma_x}^2, \\
 	\begin{NiceArray}{c}
 	\big(m^2_{\pi\pi}\big)_{44} \\
 	\big(m^2_{\pi\pi}\big)_{55} \\
 	\big(m^2_{\pi\pi}\big)_{66} \\
 	\big(m^2_{\pi\pi}\big)_{77} \\
 	\end{NiceArray} \custombracketr{\}}{1.2cm}
-	&= m^2 + \lambda_1 \big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big) - \smash{\frac{\lambda_2}{2}} \big(\sqrt{2} \avg{\sigma_x} \avg{\sigma_y} - \avg{\sigma_x}^2 - 2 \avg{\sigma_y}^2\big), \\
+	&= m^2 + \lambda_1 \Big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\Big) - \smash{\frac{\lambda_2}{2}} \Big(\sqrt{2} \avg{\sigma_x} \avg{\sigma_y} - \avg{\sigma_x}^2 - 2 \avg{\sigma_y}^2\Big), \\
 	\begin{NiceArray}{c}
 	\big(m^2_{\pi\pi}\big)_{88} \\
 	\end{NiceArray}
-	&= m^2 + \lambda_1 \big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\big) + \smash{\frac{\lambda_2}{6}} \big(\avg{\sigma_x}^2 + 4 \avg{\sigma_y}^2\big), \\ 
+	&= m^2 + \lambda_1 \Big(\avg{\sigma_x}^2 + \avg{\sigma_y}^2\Big) + \smash{\frac{\lambda_2}{6}} \Big(\avg{\sigma_x}^2 + 4 \avg{\sigma_y}^2\Big), \\ 
 	\begin{NiceArray}{c}
 	\big(m^2_{\pi\pi}\big)_{08} \\
 	\big(m^2_{\pi\pi}\big)_{80} \\
 	\end{NiceArray} \custombracketr{\}}{0.7cm}
-	&= \smash{\frac{\lambda_2}{6}} \big(\sqrt{2} \avg{\sigma_x}^2 - 2 \sqrt{2} \avg{\sigma_y}^2\big).
+	&= \smash{\frac{\lambda_2}{6}} \Big(\sqrt{2} \avg{\sigma_x}^2 - 2 \sqrt{2} \avg{\sigma_y}^2\Big).
 \end{array}
 \end{NiceMatrixBlock}
 \label{eq:lsm3f:mass_pi_pi}
-\end{equation}
-Notice that both matrices are non-diagonal with nonzero entries in all four corners.
+\end{equation}%
+\label{eq:lsm3f:mass_matrices}%
+\end{subequations}%
+Notice that both matrices are non-diagonal due to the nonzero $\{08,80\}$ corner entries.
 However, it is only fields corresponding to diagonal masses that represent true mass eigenstates of physically propagating particles: \cite{ref:lsm3f_details}
 %As we summarizing the identification of different scalar and pseudoscalar meson species made in this reference,
 %we will therefore rotate the $0$-$8$ field pairs (or $x$-$y$ pairs) to new bases that diagonalizes the $0$-$8$-sector of the mass matrices.
 \begin{itemize}
-\item The three diagonal masses $\smash{\big(m^2_{\sigma\sigma}\big)_{11} = \big(m^2_{\sigma\sigma}\big)_{22} = \big(m^2_{\sigma\sigma}\big)_{33}}$ correspond to one degenerate mass $m^2_{a_0}$
-      of the three $\sigma_1$, $\sigma_2$ and $\sigma_3$ fields,
-      or alternatively of the two charged $a_0^\pm = (\sigma_1 \pm i \sigma_2) / \sqrt{2}$ mesons and the neutral $a_0^0 = \sigma_3$ meson.
-      Likewise, $\smash{\big(m^2_{\pi\pi}\big)_{11}} = \smash{\big(m^2_{\pi\pi}\big)_{22}} = \smash{\big(m^2_{\pi\pi}\big)_{33}}$ correspond to one mass $m^2_\pi$
-      of the $\pi_1$, $\pi_2$ and $\pi_3$ fields,
-      or of the charged $\pi^\pm = (\pi_1 \pm i \pi_2) / \sqrt{2}$ mesons and the neutral $\pi^0 = \pi_3$ meson.
-\item The four diagonal masses $\smash{\big(m^2_{\sigma\sigma}\big)_{44} = \big(m^2_{\sigma\sigma}\big)_{55} = \big(m^2_{\sigma\sigma}\big)_{66} = \big(m^2_{\sigma\sigma}\big)_{77}}$ correspond to one degenerate mass $m^2_\kappa$
-      of the four $\sigma_4$, $\sigma_5$, $\sigma_6$ and $\sigma_7$ fields,
-      or alternatively of the two charged $\kappa^\pm = (\sigma_4 \pm i \sigma_5) / \sqrt{2}$ mesons and the two neutral $\kappa^0 = (\sigma_6 + i \sigma_7) / \sqrt{2}$ and $\bar{\kappa}^0 = (\sigma_6 - i \sigma_7) / \sqrt{2}$ mesons.
-      Likewise, $\smash{\big(m^2_{\pi\pi}\big)_{44}} = \smash{\big(m^2_{\pi\pi}\big)_{55}} = \smash{\big(m^2_{\pi\pi}\big)_{66}} = \smash{\big(m^2_{\pi\pi}\big)_{77}}$ correspond to one mass $m^2_K$
-      of the $\pi_4$, $\pi_5$, $\pi_6$ and $\pi_7$ fields,
-      or of the charged $K^\pm = (\pi_4 \pm i \pi_5) / \sqrt{2}$ mesons and the neutral $K^0 = (\pi_6 + i \pi_7) / \sqrt{2}$ and $\bar{K}^0 = (\pi_6 - i \pi_7) / \sqrt{2}$ mesons.
-\item The \emph{diagonalization} of the non-diagonal matrix sector with elements $\smash{\big(m^2_{\sigma\sigma}\big)_{00}}$, $\smash{\big(m^2_{\sigma\sigma}\big)_{88}}$ and $\smash{\big(m^2_{\sigma\sigma}\big)_{08} = \big(m^2_{\sigma\sigma}\big)_{80}}$ correspond to two different masses of the $\sigma$ and $f_0$ mesons.
-      Likewise, the diagonalization of $\smash{\big(m^2_{\pi\pi}\big)_{00}}$, $\smash{\big(m^2_{\pi\pi}\big)_{88}}$ and $\smash{\big(m^2_{\pi\pi}\big)_{08} = \big(m^2_{\pi\pi}\big)_{80}}$ correspond to masses of the $\eta$ and $\eta'$ mesons.
-      The diagonalizations are achieved by two rotations
-      \begin{equation}
-          \begin{bmatrix} f_0 \\ \sigma \\ \end{bmatrix} = \begin{bmatrix} \phantom{-} \cos \theta_\sigma & -\sin \theta_\sigma \\ \phantom{-} \sin \theta_\sigma & \phantom{-} \cos \theta_\sigma \\ \end{bmatrix} \begin{bmatrix} \sigma_8 \\ \sigma_0 \\ \end{bmatrix}
-          \qquad \text{and} \qquad
-          \begin{bmatrix} \eta \\ \eta' \\ \end{bmatrix} = \begin{bmatrix} \phantom{-} \cos \theta_\pi & -\sin \theta_\pi \\ \phantom{-} \sin \theta_\pi & \phantom{-} \cos \theta_\pi \\ \end{bmatrix} \begin{bmatrix} \pi_8 \\ \pi_0 \\ \end{bmatrix}
-      \label{eq:lsm3f:diagonalization_transformation}
-      \end{equation}
-      of the $\sigma_0$, $\sigma_8$, $\pi_0$ and $\pi_8$ fields, parametrized by two mixing angles $\theta_\sigma$ and $\theta_\pi$.
+\item The three diagonal masses $\smash{\big(m^2_{\sigma\sigma}\big)_{11} = \big(m^2_{\sigma\sigma}\big)_{22} = \big(m^2_{\sigma\sigma}\big)_{33} = m^2_{a_0}}$
+      correspond to one degenerate mass 
+      of the charged $a_0^\pm = (\sigma_1 \pm i \sigma_2) / \sqrt{2}$ and neutral $a_0^0 = \sigma_3$ mesons.
+\item The three diagonal masses $\smash{\big(m^2_{\pi\pi}\big)_{11}} = \smash{\big(m^2_{\pi\pi}\big)_{22}} = \smash{\big(m^2_{\pi\pi}\big)_{33} = m^2_\pi}$
+      correspond to one degenerate mass 
+      of the charged $\pi^\pm = (\pi_1 \pm i \pi_2) / \sqrt{2}$ and neutral $\pi^0 = \pi_3$ mesons.
+\item The four diagonal masses $\smash{\big(m^2_{\sigma\sigma}\big)_{44} = \big(m^2_{\sigma\sigma}\big)_{55} = \big(m^2_{\sigma\sigma}\big)_{66} = \big(m^2_{\sigma\sigma}\big)_{77} = m^2_\kappa}$
+      correspond to one degenerate mass
+      of the charged $\kappa^\pm = (\sigma_4 \pm i \sigma_5) / \sqrt{2}$ and neutral $\kappa^0 = (\sigma_6 + i \sigma_7) / \sqrt{2}$ and $\bar{\kappa}^0 = (\sigma_6 - i \sigma_7) / \sqrt{2}$ mesons.
+\item The four diagonal masses $\smash{\big(m^2_{\pi\pi}\big)_{44}} = \smash{\big(m^2_{\pi\pi}\big)_{55}} = \smash{\big(m^2_{\pi\pi}\big)_{66}} = \smash{\big(m^2_{\pi\pi}\big)_{77}} = m^2_K$
+      correspond to one degenerate mass
+      of the charged $K^\pm = (\pi_4 \pm i \pi_5) / \sqrt{2}$ and neutral $K^0 = (\pi_6 + i \pi_7) / \sqrt{2}$ and $\bar{K}^0 = (\pi_6 - i \pi_7) / \sqrt{2}$ mesons.
+\item The \emph{diagonalization}
+      $\big\{m_\sigma, m_{f_0}\big\}$
+      of the non-diagonal matrix sector 
+      $\big\{\smash{\big(m^2_{\sigma\sigma}\big)_{00}}, \smash{\big(m^2_{\sigma\sigma}\big)_{88}}, \allowbreak \smash{\big(m^2_{\sigma\sigma}\big)_{08}}, \smash{\big(m^2_{\sigma\sigma}\big)_{80}}\big\}$
+      corresponds to two different masses of the $f_0$ and $\sigma$ mesons.
+\item The \emph{diagonalization}
+      $\big\{m_\eta, m_{\eta'}\big\}$
+      of the non-diagonal matrix sector 
+      $\big\{\smash{\big(m^2_{\pi\pi}\big)_{00}}, \smash{\big(m^2_{\pi\pi}\big)_{88}}, \allowbreak \smash{\big(m^2_{\pi\pi}\big)_{08}}, \smash{\big(m^2_{\pi\pi}\big)_{80}}\big\}$
+      corresponds to two different masses of the $\eta$ and $\eta'$ mesons.
 \end{itemize}
 
-To find the diagonalizing pseudoscalar mixing angle $\theta_\pi$,
+The diagonalizations are achieved by two rotations
+\begin{equation}
+	\begin{bmatrix} f_0 \\ \sigma \\ \end{bmatrix} = \begin{bmatrix} \cos \theta_\sigma & -\sin \theta_\sigma \\ \sin \theta_\sigma & \phantom{-} \cos \theta_\sigma \\ \end{bmatrix} \begin{bmatrix} \sigma_8 \\ \sigma_0 \\ \end{bmatrix}
+	\qquad \text{and} \qquad
+	\begin{bmatrix} \eta \\ \eta' \\ \end{bmatrix} = \begin{bmatrix} \cos \theta_\pi & -\sin \theta_\pi \\ \sin \theta_\pi & \phantom{-} \cos \theta_\pi \\ \end{bmatrix} \begin{bmatrix} \pi_8 \\ \pi_0 \\ \end{bmatrix}
+	\label{eq:lsm3f:diagonalization_transformation}
+\end{equation}
+of the $\{\sigma_0, \sigma_8\}$ and $\{\pi_0, \pi_8\}$ fields parametrized by two mixing angles $\{\theta_\sigma, \theta_\pi\}$.
+To find the pseudoscalar angle $\theta_\pi$, for example,
 we invert transformation \eqref{eq:lsm3f:diagonalization_transformation} and use the trigonometric identities $\cos^2 \theta_\pi - \sin^2 \theta_\pi = \cos 2 \theta_\pi$ and $2 \sin\theta_\pi \cos\theta_\pi = \sin 2 \theta_\pi$ to expand
 \begin{equation}
 \begin{split}
-	\smash{\smashoperator{\sum_{a,b=\{0,8\}}}} \big(m^2_{\pi\pi}\big)_{ab} \tilde{\pi}_a \tilde{\pi}_b &= \Big\{ \big(m^2_{\pi\pi}\big)_{00} \sin^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{88} \cos^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{08} \sin 2 \theta_\pi \Big\} \, \tilde{\eta}^2 \\
-	                                                                                                   &+ \Big\{ \big(m^2_{\pi\pi}\big)_{00} \cos^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{88} \sin^2 \theta_\pi - \big(m^2_{\pi\pi}\big)_{08} \sin 2 \theta_\pi \Big\} \, \tilde{\eta}'^2 \\
-	                                                                                                   &+ \smash{\underbrace{\Big\{ 2 \Big[ \big(m^2_{\pi\pi}\big)_{00} - \big(m^2_{\pi\pi}\big)_{88} \Big] \sin 2 \theta_\pi + 2 \big(m^2_{\pi\pi}\big)_{08} \cos 2 \theta_\pi \Big\}}_{\text{$0$ by demand}}} \, \tilde{\eta} \tilde{\eta}' ,
+	\smash{\smashoperator{\sum_{\substack{a=\{0,8\}\\b=\{0,8\}}}}} \big(m^2_{\pi\pi}\big)_{ab} \tilde{\pi}_a \tilde{\pi}_b &= \Big\{ \big(m^2_{\pi\pi}\big)_{00} \sin^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{88} \cos^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{08} \sin 2 \theta_\pi \Big\} \, \tilde{\eta}^2 \\
+	                                                                                                                       &+ \Big\{ \big(m^2_{\pi\pi}\big)_{00} \cos^2 \theta_\pi + \big(m^2_{\pi\pi}\big)_{88} \sin^2 \theta_\pi - \big(m^2_{\pi\pi}\big)_{08} \sin 2 \theta_\pi \Big\} \, \tilde{\eta}'^2 \\
+	                                                                                                                       &+ \underbrace{\Big\{ 2 \Big[ \big(m^2_{\pi\pi}\big)_{00} - \big(m^2_{\pi\pi}\big)_{88} \Big] \sin 2 \theta_\pi + 2 \big(m^2_{\pi\pi}\big)_{08} \cos 2 \theta_\pi \Big\}}_{\text{$0$ by demand}} \, \tilde{\eta} \tilde{\eta}' ,
 \end{split}
 \label{eq:lsm3f:diagonalization_sum}
 \end{equation}
-and then require the coefficient of $\tilde{\eta} \tilde{\eta}'$ to vanish.
-The scalar angle $\theta_\sigma$ is determined in the same way, only with $m^2_{\pi\pi} \rightarrow m^2_{\sigma\sigma}$, $\eta \rightarrow f_0$ and $\eta' \rightarrow \sigma$.
+and then require the indicated coefficient of $\tilde{\eta} \tilde{\eta}'$ to vanish.
+The scalar angle $\theta_\sigma$ is determined in the same way, only with
+$\{m^2_{\pi\pi}, \eta, \eta'\} \rightarrow \{m^2_{\sigma\sigma}, f_0, \sigma\}$.
 We can then solve for the mixing angles
 \begin{equation}
 	\theta_\sigma = \frac12 \arctan \Bigg[ \frac{2\big(m^2_{\sigma\sigma}\big)_{08}}{\big(m^2_{\sigma\sigma}\big)_{88} - \big(m^2_{\sigma\sigma}\big)_{00}} \Bigg]
@@ -315,8 +341,9 @@ We can then solve for the mixing angles
 	\theta_\pi = \frac12 \arctan \Bigg[ \frac{2\big(m^2_{\pi\pi}\big)_{08}}{\big(m^2_{\pi\pi}\big)_{88} - \big(m^2_{\pi\pi}\big)_{00}} \Bigg],
 \label{eq:lsm3f:mixing_angles}
 \end{equation}
-which in turn fixes the masses of $\eta$ and $\eta'$ as the coefficients of their squares in the sum \eqref{eq:lsm3f:diagonalization_sum}, and analogously for the $f_0$ and $\sigma$ masses.
-Explicitly, the diagonalized meson potential \eqref{eq:lsm3f:potential_before_diagonalization} is
+which in turn fixes the squared curvature masses of $\{\eta,\eta'\}$ as their coefficients in the sum \eqref{eq:lsm3f:diagonalization_sum},
+and analogously for the scalar $\{f_0,\sigma\}$ particles.
+Explicitly, the diagonalized mass-generating meson potential \eqref{eq:lsm3f:potential_before_diagonalization} can now be written
 \begin{equation}
 \begin{split}
 	\hspace{-2cm} \pot(\sigma,\pi) = \pot(\avg{\sigma},\avg{\pi}) &+ \frac12 m^2_{f_0} \tilde{f_0}^2  + \frac12 m^2_{\sigma} \tilde{\sigma}^2 \,\, + \frac12 m^2_{a_0} \sum_{\mathrlap{\!\!a_0 = \{a_0^+,a_0^-,a_0^0\}}} \tilde{a}_0^2               \,\, + \, \frac12 m^2_{\kappa} \sum_{\mathrlap{\!\!\kappa = \{\kappa^+,\kappa^-,\kappa^0,\bar{\kappa}^0\}}} \tilde{\kappa}^2 \\
@@ -324,8 +351,8 @@ Explicitly, the diagonalized meson potential \eqref{eq:lsm3f:potential_before_di
 \end{split}
 \label{eq:lsm3f:potential_after_diagonalization}
 \end{equation}
-This shows very elaborately how the three couplings $m^2$, $\lambda_1$ and $\lambda_2$,
-through the mass matrices \eqref{eq:lsm3f:mass_sigma_sigma} and \eqref{eq:lsm3f:mass_pi_pi} and the mixing angles \eqref{eq:lsm3f:mixing_angles},
+This shows very elaborately how the three couplings $\{m^2, \lambda_1, \lambda_2\}$,
+through the mass matrices \eqref{eq:lsm3f:mass_matrices} and the mixing angles \eqref{eq:lsm3f:mixing_angles},
 generate the eight scalar and pseudoscalar particle masses
 \begin{subequations}
 \begin{align}
@@ -345,32 +372,33 @@ These relations will come in handy when we fit the parameters of the model in \c
 
 \section{Grand potential}
 
-Let us calculate the grand potential $\Omega$ in the same way as in \cref{sec:lsm:grand_potential},
-integrating over one fermion loop while
-neglecting pion condensation by keeping $\avg{\pi}=0$
-and using the mean-field approximation for $\avg{\sigma_x}$ and $\avg{\sigma_y}$,
-determining them in retrospect according to the self-consistency equations
+Let us calculate the grand potential $\Omega$ in the same way as with two flavors in \cref{sec:lsm:grand_potential},
+integrating over one fermion loop and
+neglecting pion condensation by setting $\avg{\pi}=0$
+while using the mean-field approximation for $\avg{\sigma_x}$ and $\avg{\sigma_y}$,
+determining them retrospectively according to the self-consistency equations
 \begin{equation}
 	\pdv{\Omega}{\avg{\sigma_x}} =
 	\pdv{\Omega}{\avg{\sigma_y}} = 0.
 \end{equation}
 As explained in \cref{chap:lsm2f},
 this is inconsistent in terms of the number of loops considered for the fermionic and bosonic fields,
-but consistent in the large-$N_c$ approximation scheme.
+but consistent in the one-loop large-$N_c$ limit.
 
 The calculation proceeds more or less identically up to the non-renormalized grand potential \eqref{eq:lsm:grand_potential_nonrenormalized},
-only with a different vacuum potential $\pot(\avg{\sigma},0)$, $N_f=3$ flavors and $m_u = m_d \neq m_s$.
+only with a different vacuum potential $\pot(\avg{\sigma},0)$, $N_f=3$ flavors and $m_u = m_d = m_x \neq m_y = m_s$.
 In addition, instead of using one common renormalization scale,
 we operate with two separate scales $\Lambda_x$ and $\Lambda_y$ for the non-strange and strange quarks.
 We comment on this in the next section.
-Before removing the vacuum divergence, we then have the divergent grand potential
+This gives the divergent grand potential
 \begin{equation}
 \begin{split}
 	\Omega(\avg{\sigma},\mu) &= \pot(\avg{\sigma},0) + \frac{N_c m_x^4}{8 \pi^2} \Bigg[ \textcolor{red}{\frac{1}{\epsilon}} + \frac{3}{2} + \log\bigg(\frac{\Lambda_x^2}{m_x^2}\bigg) \Bigg] + \frac{N_c m_y^4}{16 \pi^2} \Bigg[ \textcolor{red}{\frac{1}{\epsilon}} + \frac{3}{2} + \log\bigg(\frac{\Lambda_y^2}{m_y^2}\bigg) \Bigg] \\ % + N_c \smashoperator{\sum_{\vphantom{\big|}f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right] \\
-	                         &-\smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right]. \\
+	                         &-\smashoperator{\sum_{f=1}^{N_c}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right]. \\
 \end{split}
 \end{equation}
 The divergence $\textcolor{red}{N_c (2 m_x^4 + m_y^2) / 16 \pi^2 \epsilon} = \textcolor{red}{N_c g^4 (\avg{\sigma_x}^4 + 2\avg{\sigma_y}^4) / 128 \epsilon}$
+from the pole in $\epsilon$
 %\begin{equation}
 %	\textcolor{red}{
 %	N_c \frac{2 m_x^4 + m_y^4}{16 \pi^2 \epsilon} = \frac{N_c g^4}{16 \pi^2} \frac{\avg{\sigma_x}^4 + 2 \avg{\sigma_y}^4}{8 \epsilon}
@@ -382,13 +410,13 @@ in the meson potential \eqref{eq:lsm:potential_tree_3f} if we shift
 	\lambda_2 \rightarrow \lambda_2 + \textcolor{blue}{\delta\lambda_2} \qquad \text{with the counterterm} \qquad \textcolor{blue}{\delta\lambda_2 = -\frac{N_c g^4}{16 \pi^2 \epsilon}}.
 \end{equation}
 Then $\textcolor{red}{N_c (2 m_x^4 + m_y^2) / 16 \pi^2 \epsilon} + \textcolor{blue}{\delta\lambda_2 (\avg{\sigma_x}^4+2\avg{\sigma_y}^4)} = 0$,
-and the theory is again renormalizable.
-Adding electrons, we obtain the natural generalization of the two-flavor grand potential \eqref{eq:lsm:grand_potential},
+so this theory is also renormalizable.
+Adding electrons, we obtain the natural generalization of the renormalized and finite two-flavor grand potential \eqref{eq:lsm:grand_potential},
 \begin{equation}
 \begin{split}
-	\Omega(\avg{\sigma},\vec{\mu}) &= \pot(\avg{\sigma},0) + N_c \frac{m_x^4}{8 \pi^2} \Bigg[ \frac{3}{2} + \log\bigg(\frac{\Lambda_x^2}{m_x^2}\bigg) \Bigg] + N_c \frac{m_y^4}{16 \pi^2} \Bigg[ \frac{3}{2} + \log\bigg(\frac{\Lambda_y^2}{m_y^2}\bigg) \Bigg] \\ % + N_c \smashoperator{\sum_{\vphantom{\big|}f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right] \\
-	                               &-\smashoperator{\sum_{\vphantom{\big|} f=\{u,d,s\}}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right] \\
-	                               &-\phantom{\sum} \, \frac{1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} \, + 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_{\smash{e}}^2}{m_e^2}-1} \right) \right].
+	\Omega(\avg{\sigma},\mu) &= \pot(\avg{\sigma},0) + N_c \frac{m_x^4}{8 \pi^2} \Bigg[ \frac{3}{2} + \log\bigg(\frac{\Lambda_x^2}{m_x^2}\bigg) \Bigg] + N_c \frac{m_y^4}{16 \pi^2} \Bigg[ \frac{3}{2} + \log\bigg(\frac{\Lambda_y^2}{m_y^2}\bigg) \Bigg] \\ % + N_c \smashoperator{\sum_{\vphantom{\big|}f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right] \\
+	                         &-\smashoperator{\sum_{f=1}^{N_c}} \frac{N_c}{24 \pi^2} \left[ \left( 2 \mu_f^2 - 5 m_f^2 \right) \mu_f \sqrt{\mu_f^2 - m_f^2} + 3 m_f^4 \asinh \left( \sqrt{\frac{\mu_{\smash{f}}^2}{m_f^2}-1} \right) \right] \\
+	                         &-\phantom{\sum} \, \frac{1}{24 \pi^2} \left[ \left( 2 \mu_e^2 - 5 m_e^2 \right) \mu_e \sqrt{\mu_e^2 - m_e^2} \, + 3 m_e^4 \asinh \left( \sqrt{\frac{\mu_{\smash{e}}^2}{m_e^2}-1} \right) \right].
 \end{split}
 \label{eq:lsm3f:grand_potential}
 \end{equation}
@@ -411,23 +439,23 @@ In vacuum, the pion and kaon decay constants $f_\pi$ and $f_K$ are related to th
 \end{equation}
 With vacuum measurements of the two decay constants and one of the quark masses \eqref{eq:lsm:quark_masses_3f},
 we determine the parameter $g$, then use it to predict the other quark masses.
-Likewise, we use vacuum measurements of three of the meson masses \eqref{eq:lsm:mass_system_3f} to determine the three parameters $m^2$, $\lambda_1$ and $\lambda_2$,
+Likewise, we use vacuum measurements of three of the meson masses \eqref{eq:lsm:mass_system_3f} to determine the three parameters $\{m^2, \lambda_1, \lambda_2\}$,
 then use them to predict the remaining meson masses.
 It is then straightforward to calculate the two symmetry breakers $h_x$ and $h_y$ from equation \eqref{eq:lsm3f:symmetry_breakers}.
 
 \Cref{tab:lsm3f:parameters} shows values for the fitted and predicted particle masses.
-In general there are $8!/3!5! = 56$ possible choices for selecting three of the eight meson masses,
-each returning different values for $m^2$, $\lambda_1$ and $\lambda_2$.
+In general there are $8!/3!5! = 56$ possible choices for selecting three of the eight meson masses \eqref{eq:lsm:mass_system_3f},
+each returning different values for $\{m^2,\lambda_1,\lambda_2\}$.
 We keep using $m_\sigma$ and $m_\pi$ for continuity from \cref{chap:lsm2f}
 and include $m_K$ as the third mass, thereby obtaining the unique selection of mesons with lowest mass and energy.
 This is the same selection used by \cite{ref:lsm3f} and \cite{ref:lsm3f_details}, for example.
 
 Note the particularly large discrepancy between the modeled and experimental $\eta'$ mass.
-This can be improved by including a term $c \, (\tdet{\phi} + \tdet{\phi^\dagger})$ in the Lagrangian that accounts for the anomalous axial $U(1)_A$ symmetry of quantum chromodynamics discussed in \cref{sec:master_intro:qcd},
-also shown in \cite{ref:lsm3f} and \cite{ref:lsm3f_details}.
-In order to keep the two-flavor and three-flavor models as similar and comparable as possible,
-we do not include it here.
-In particular, they find that it drives the chiral transition closer to being a discontinuous phase transition rather than a crossover.
+This can be improved by including a term $c \, (\tdet{\phi} + \tdet{\phi^\dagger})$ in the Lagrangian
+that models the anomalous axial $U(1)_A$ current of quantum chromodynamics discussed in \cref{sec:master_intro:qcd}.
+How to do so is also shown in \cite{ref:lsm3f} and \cite{ref:lsm3f_details},
+but we leave it out in order to keep the two-flavor and three-flavor models as similar and comparable as possible.
+In particular, they find that it drives the chiral transition closer to a discontinuous phase transition than a crossover.
 
 Like in \cref{sec:lsm:parameter_fit},
 we keep all parameters fixed except $m_\sigma$, due to its large experimental uncertainty.
@@ -449,15 +477,16 @@ Like \cite{ref:master_berge},
 we could rather operate with one common scale $\Lambda = \Lambda_x = \Lambda_y$ in the grand potential,
 for example chosen as the flavor-weighted average $\Lambda = (2 \cdot \SI{182.0}{\mega\electronvolt} + \SI{260.2}{\mega\electronvolt}) / 3 = \SI{208.0}{\mega\electronvolt}$ of the two we have found.
 In particular, this means that the minimum of $\Omega$ in vacuum is no longer at the minimum of $\pot$.
-This is unsatisfying and has surprising consequences
-For example, if $\Omega$ is fit to some vacuum quark mass $m_x = g f_\pi/2$,
-\emph{its minimum $\avg{\sigma_x} \neq f_\pi$ moves away} and generates a \emph{different} mass $m_x = g \avg{\sigma_x} / 2$.
+This is unsatisfying and has surprising consequences.
+For example, if $\Omega$ is fit to some quark mass $m_x = g f_\pi /2$,
+its minimum $\avg{\sigma_x} \neq f_\pi$ moves \emph{away} from $f_\pi$ because $\pdv{\Omega}/{\avg{\sigma_x}} \neq 0$ at $f_\pi$,
+in turn generating a \emph{different} vacuum quark mass $g \avg{\sigma_x} / 2 \neq g f_\pi / 2$ than the one that was fitted!
 Of course, our approach also has its caveats, as it is not apparent how to interpret the presence of two different renormalization scales, let alone one.
-But it does not behave in this unpredictable way, and it also permits using the same values of $m_\sigma$ as in \cref{chap:lsm2f} without breaking the potential.
+But it does not behave in this unpredictable way, and it permits using the same values of $m_\sigma$ as in \cref{chap:lsm2f} without breaking the potential.
 Ideally, a more consistent calculation such as the one presented in \cref{sec:lsm2f:refinement} should be done anyway,
 where one preferable renormalization scale appears, and we even saw that it dropped out in that specific case.
-It is hard to say which approach is better,
-and this is another reason to at the very least explore the other approach than the one \cite{ref:master_berge} takes.
+It is hard to say whether our or \cite{ref:master_berge}'s approach is better,
+but this is only another argument to at the very least take the unexplored path over an already paved way.
 
 \begin{table}
 \centering
@@ -555,10 +584,10 @@ offset by constants into a human-digestible lasagna.
 
 Recall from the consistently fit two-flavor model in \cref{sec:lsm2f:refinement}
 that our way of fitting parameters at tree-level to a grand potential calculated to one loop is really inconsistent.
-However, we know of no similar consistent calculation done with three flavors.
+However, we know of consistent calculation with three flavors like the one presented there.
 The lesson we learned back there was that inconsistently fit $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$
 is representative of physically measured masses $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{600}{\mega\electronvolt}$,
-so we can only hope that the same remains true with three flavors.
+so we can only hope that the same is true with three flavors.
 
 \section{Equation of state}
 
@@ -648,7 +677,7 @@ so we can only hope that the same remains true with three flavors.
 \addplot+ [black, solid] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
 \addplot+ [gray, densely dashed] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (uncorrected)};
 \addplot+ [black, densely dashed] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (corrected)};
-\addplot+ [black, dotted, domain=0:3.0] {3*x}; \addlegendentry{massless};
+\addplot+ [black, dotted, domain=0:3.0] {3*x}; \addlegendentry{massless };
 \coordinate (zoomplot) at (0.55, 0.0);
 \end{groupplot}
 \node [anchor=south west] at (zoomplot) {
@@ -736,29 +765,29 @@ the solutions, particle densities and equation of state shown in \cref{fig:lsm:3
 \begin{itemize}
 \item There is a non-strange crossover (for $m_\sigma \geq \SI{800}{\mega\electronvolt}$)
       or discontinuous phase transition (for $m_\sigma < \SI{800}{\mega\electronvolt}$)
-      at $\mu=\SI{300}{\mega\electronvolt}$, like in the two-flavor case in \cref{fig:lsm:2-flavor-eos}.
+      after $\mu=\SI{300}{\mega\electronvolt}$, as in the two-flavor case in \cref{fig:lsm:2-flavor-eos}.
       Even the strange minimum $\avg{\sigma_y}$ moves a bit during this transition
-      due to the cross term $\lambda_1 \avg{\sigma_x}^2 \avg{\sigma_y}^2 / 2$ in the meson potential \eqref{eq:lsm:potential3f} changing.
+      due to the cross term $\lambda_1 \avg{\sigma_x}^2 \avg{\sigma_y}^2 / 2$ in the meson potential \eqref{eq:lsm:potential_tree_3f} changing.
       Accordingly, the equations of state for the two-flavor and three-flavors models are quite similar up to $P \leq \SI{0.05}{\giga\electronvolt\per\femto\meter\cubed}$.
-\item There is a strange crossover at $\mu = \SI{429}{\mega\electronvolt}$ for all values of $m_\sigma$.
-      It is never a phase transition, is significantly slower than the non-strange transition,
+\item There is a strange crossover from roughly $\mu \approx \SI{370}{\mega\electronvolt}$ (for $m_\sigma=\SI{800}{\mega\electronvolt}$).
+      It begins at a value of $\mu_s = m_y = \SI{410}{\mega\electronvolt}$ (for $m_\sigma=\SI{800}{\mega\electronvolt}$)
+      \emph{below} its vacuum mass $\SI{429}{\mega\electronvolt}$
+      because \emph{both} $m_x$ and $m_y$ drop after $\mu > \SI{300}{\mega\electronvolt}$ exceeds the non-strange vacuum masses.
+      Moreover, it is always a crossover and never a phase transition,
+      is significantly slower than the non-strange transition,
       and the strange quark retains a noticeable mass when the non-strange quarks have lost theirs.
       During this crossover, the equation of state gently ramps up from the two-flavor level to a second plateau
       and softens compared to the two-flavor equation of state.
-\item Whereas the up and down quark densities become nonzero at their vacuum mass $\mu = \SI{300}{\mega\electronvolt}$,
-      the strange quark density does so at a value $\mu < \SI{429}{\mega\electronvolt}$ \emph{below} its vacuum mass.
-      The explanation (for $m_\sigma=\SI{800}{\mega\electronvolt}$) is that $m_x$ remains at its vacuum value up to $\mu = \SI{300}{\mega\electronvolt}$,
-      beyond which $m_x$ and $m_y$ \emph{both} fall.
-      By the time it intersects $\mu_s$ at $\mu = \SI{375}{\mega\electronvolt}$,
-      the effective strange mass has fallen to $m_y = \SI{410}{\mega\electronvolt}$.
+      \TODO{no bullets?}
 \item In the massless limit $\avg{\sigma_x} \rightarrow \avg{\sigma_y} \rightarrow 0$, the ultra-relativistic solution \eqref{eq:mit:chemical_potentials_massless_3f} is recovered.
 \item After spreading before the strange crossover, $\mu_u$ and $\mu_d$ find back to each other in the ultra-relativistic limit,
       so the isospin chemical potential $\mu_I=(\mu_u-\mu_d)/2$ never exceeds half the pion mass.
       In contrast to the two-flavor case, neglecting pion condensation is therefore a consistent assumption with three flavors.
 \item As confirmed by \cref{fig:lsm3f:3-flavor-density-ratios}, each quark density converges towards a third of the total baryon density as the density increases.
       At low densities the strange quark is absent and there are twice as many down quarks as up quarks, as in the two-flavor case,
-      and the strange quark enters as the density exceeds $4 \, n_\text{sat}$.
+      and the strange quark enters as the density exceeds $4 n_\text{sat}$.
       The fraction of up quarks is the same at all densities.
+      \TODO{add 600 or use instead of 700}
 \item After the strange crossover, the strange quark provides charge neutrality and wipes out the already small electron density,
       consistent with the ultra-relativistic solution \eqref{eq:mit:chemical_potentials_massless_3f}.
 \item Like before, the equation of state always satisfies the microscopic stability criteria \eqref{eq:nstars:stability_speed_of_sound} and \eqref{eq:nstars:stability_pressure_energy_density}.
@@ -787,6 +816,7 @@ whereas the potential is broken for $m_\sigma=\SI{600}{\mega\electronvolt}$.
 These $m_\sigma=\{600,700\}\,\si{\mega\electronvolt}$-results
 are impossible to reconcile with the lower bag bounds \eqref{eq:lsm:bag_lower_bound}.
 This is one of the reasons for why we operate with two renormalization scales here.
+\TODO{EOS 2f compare}
 
 \pgfplotsset{
 	mesh line legend/.style={legend image code/.code=\meshlinelegend#1},
@@ -901,7 +931,7 @@ This is one of the reasons for why we operate with two renormalization scales he
 \node [anchor=south, yshift=+1.5cm] at (group c2r1.north) {Three-flavor quark-meson model quark stars};
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-mass-radius}%
-	Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:tov:tovsys} parametrized by the central pressure $P_c$, obtained with the equations of state for three-flavor quark matter in \cref{fig:lsm:3-flavor-eos-eos} modified by a range of bag constants above the bounds \eqref{eq:lsm:bag_lower_bound}.
+	Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov} parametrized by the central pressure $P_c$, using the equations of state for three-flavor quark matter in \cref{fig:lsm:3-flavor-eos-eos} modified by a range of bag constants above the bounds \eqref{eq:lsm:bag_lower_bound}.
 }
 
 \bigskip
@@ -956,7 +986,7 @@ This is one of the reasons for why we operate with two renormalization scales he
 	cumulative mass $m$,
 	quark chemical potential $\mu$,
 	particle densities $n_i$
-	and baryon density $n_B = (n_u+n_d)/3$
+	and baryon density $n_B = (n_u+n_d+n_s)/3$
 	for the maximum mass three-flavor quark star \goldenstar in \cref{fig:lsm:3-flavor-mass-radius}.
 }
 
@@ -972,8 +1002,8 @@ we obtain the mass-radius solutions displayed in \cref{fig:lsm:3-flavor-mass-rad
       Then the three-flavor equation of state and mass-radius curve track the two-flavor versions almost perfectly.
       As the two models use different vacuum potentials, it is somewhat surprising that the correspondence is so good.
 \item For stars with greater central pressure, $\mu$ reaches sufficient levels and the strange quark is present in the core.
-      Exactly at the threshold, we see that the mass-radius curve grows apart from the two-flavor curve into a new branch with lower stellar masses.
-      This is caused by the softening of the equation of state as it ramps up during the strange crossover.
+      Exactly at the threshold, we see that the mass-radius curve grows apart from the two-flavor curve into a new branch.
+      This branch has lower masses because of the softening of the equation of state as it ramps up during the strange crossover.
 \item The masses and radii are comparable to the two-flavor results, except that the mass is lowered for stars with strange quarks.
       For stars that just satisfy the lower bag bound and hence respect instability of two-flavor quark matter with respect to hadronic matter,
       we find maximum masses $1.6 \, M_\odot\leq M \leq 1.8 \, M_\odot$ and corresponding radii $\SI{11}{\kilo\meter} \leq R \leq \SI{12}{\kilo\meter}$ depending on the precise mass $m_\sigma$.
@@ -983,13 +1013,14 @@ we obtain the mass-radius solutions displayed in \cref{fig:lsm:3-flavor-mass-rad
 In \cref{fig:lsm:3-flavor-star} we take a more detailed look at the maximum mass star that has no phase transition and respects the strange matter hypothesis:
 \begin{itemize}
 \item Apart from the presence of strange quarks, many features are similar to that of the two-flavor star we discussed on page \pageref{list:lsm:2-flavor-star-discussion}.
-\item The star is composed of three-flavor quark matter including strange quarks for $r \leq \SI{6.5}{\kilo\meter}$ and two-flavor quark matter out to the surface.
+\item The star is composed of three-flavor quark matter including strange quarks for $r \leq \SI{6.5}{\kilo\meter}$
+      and two-flavor quark matter for $r \geq \SI{6.5}{\kilo\meter}$ out to the surface $R=\SI{11.6}{\kilo\meter}$.
 \item With a maximum chemical potential $\mu=\SI{465}{\mega\electronvolt}$, the strange quark is much heavier than the up and down quarks at the center, as seen from \cref{fig:lsm:3-flavor-eos-parametrization}.
       Thus, the star is far from realizing ultra-relativistic three-flavor quark matter.
 \item The maximum central chemical potential is comparable in the two-flavor and three-flavor models.
       If we assert that this carries over to a four-flavor model that also includes the charm quark with a constituent mass $m_c \approx \SI{1550}{\mega\electronvolt}$,
       we would expect it to be present only for extreme central pressures far beyond that of the maximum mass star.
-      For physical and stable stars, we therefore only need to include the three lightest quarks.
+      This is why we only need to include the three lightest quarks $\{u,d,s\}$ when studying physical stars.
 %\item If the core of this star is used to model the core of a hybrid neutron star with a quark model for $n_B > 4 n_\text{sat}$,
       %this core would extend for $R'=\SI{5}{\kilo\meter}$, weigh in at $M' = m(R') = 0.4 \, M_\odot$, have a central pressure $P_c'=p(R')=\SI{0.12}{\giga\electronvolt\per\femto\meter\cubed}$ and be entirely composed of three-flavor quark matter.
 \end{itemize}
@@ -1007,8 +1038,9 @@ Now look at $P(\mu)$ in \cref{fig:lsm:3-flavor-pressure};
 for $P(\mu \gtrsim \SI{350}{\mega\electronvolt})=0$, we need to shift $P(\mu) \rightarrow P(\mu) - B$
 with $\smash{B^\frac14} \gtrsim \SI{120}{\mega\electronvolt}$.
 This is the minimum required bag constant for the strange quark to appear out to the surface with all $m_\sigma$.
-Unfortunately, this \emph{exceeds} the upper bound \eqref{eq:lsm3f:bag_upper_bound}, which was \emph{also} calculated with the strange matter hypothesis.
-\emph{This means that it is not possible to self-consistently describe pure strange quark stars with this model!}
+Unfortunately, this \emph{exceeds} even the greatest upper bound \eqref{eq:lsm3f:bag_upper_bound_600},
+\emph{which was calculated precisely with the strange matter hypothesis}.
+This means that \emph{it is not possible to self-consistently describe pure strange quark stars with this model!}
 
 \begin{figure}[b!]
 \centering
@@ -1042,26 +1074,27 @@ Unfortunately, this \emph{exceeds} the upper bound \eqref{eq:lsm3f:bag_upper_bou
 In this chapter we have modeled quark stars with the three-flavor quark-meson model.
 We found that the addition of the strange quark lowered the maximum masses to $1.6 \, M_\odot \leq M \leq 1.8 \, M_\odot$
 with corresponding radii $\SI{11}{\kilo\meter} \leq R \leq \SI{12}{\kilo\meter}$,
-using $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$ and the lowest instability-respecting bag constants.
+using $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$ and the lowest instability-respecting bag constants \eqref{eq:lsm3f:bag_upper_bound}.
 As with the two-flavor model, chiral symmetry restoration happens in a crossover for $m_\sigma \geq \SI{800}{\mega\electronvolt}$,
 but a first-order phase transition for $m_\sigma < \SI{800}{\mega\electronvolt}$.
 If the strange matter hypothesis is violated, one can use greater bag constants and produce arbitrarily smaller and less massive stars.
-The three-flavor stars are less massive than their two-flavor counterparts.
+The three-flavor stars are less massive than their two-flavor counterparts
+due to their softer equations of state.
 Only close to the maximum mass star does the pressure and density become sufficiently high
 to activate the presence of the strange quark.
 
-By fitting parameters at tree-level, it was again impossible to use physical values of $m_\sigma$ without breaking the grand potential.
+At tree-level, it was again impossible to fit measured masses $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{550}{\mega\electronvolt}$ without breaking the grand potential.
 Ideally, a consistent calculation like the one presented in \cref{sec:lsm2f:refinement}
 should be carried out also for the three-flavor model,
 where one takes loop effects into account when fitting the parameters of the grand potential.
 Unfortunately, no such calculation has been done yet,
-and we rely on the lesson learned in \cref{sec:lsm2f:refinement}:
+and we rely on the lesson learned in back there:
 that inconsistently fit $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$
-roughly correspond to physically measured masses $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{550}{\mega\electronvolt}$.
+are representative of consistently fit masses $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{600}{\mega\electronvolt}$,
+which roughly correspond to measurements.
 
-Unfortunately, we fail to model entirely strange quark stars with this model.
+Unfortunately, we fail to model pure strange quark stars with this model.
 The stars we found consisted of unstable two-flavor quark matter out to the surface.
-For them to be stable, the strange quark must exist out to the surface and the strange matter hypothesis must be true.
-This could only be achieved in this model by
-increasing the bag constant beyond its upper bound that is \emph{also} calculated with the strange matter hypothesis,
-hence contradicting it.
+For them to be stable, the strange matter hypothesis must be true and the strange quark must exist out to the surface.
+This could only be achieved with this model by
+increasing the bag constant beyond its upper bound that was \emph{also calculated with the strange matter hypothesis}.
