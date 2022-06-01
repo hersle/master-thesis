@@ -114,20 +114,20 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyfoot[LE,RO]{\textbf{\thepage}}
-\fancyhead[LE]{\textsc{\nouppercase\rightmark}}
-\fancyhead[RO]{\textsc{\nouppercase\leftmark}}
+\fancyfoot[LE,RO]{\large\textbf{\thepage}}
+\fancyhead[RO]{\large\textsc{\nouppercase\rightmark}}
+\fancyhead[LE]{\large\textsc{\nouppercase\leftmark}}
 \fancyfoot[CE,CO]{}
 \renewcommand\headrulewidth{1pt}
 \renewcommand\footrulewidth{1pt}
 % https://tex.stackexchange.com/a/623939
-\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter: ~ \ #1}{}} %chapter oben ohne Nummer
-\renewcommand{\sectionmark}[1]{\markright{Section \thesection: ~ \ #1}} 
+\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter: #1}{}} %chapter oben ohne Nummer
+\renewcommand{\sectionmark}[1]{\markright{Section \thesection: #1}} 
 
 % make consistent style also on chapter first pages, bibliography etc. (see https://tex.stackexchange.com/a/10046)
 \fancypagestyle{plain}{
 	\fancyhf{}
-	\fancyfoot[LE,RO]{\textbf{\thepage}}
+	\fancyfoot[LE,RO]{\large\textbf{\thepage}}
 	\renewcommand\headrulewidth{0pt}
 }
 
