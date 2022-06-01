@@ -803,18 +803,22 @@ the solutions, particle densities and equation of state shown in \cref{fig:lsm:3
       and the strange quark retains a noticeable mass when the non-strange quarks have lost theirs.
       During this crossover, the equation of state gently ramps up from the two-flavor level to a second plateau
       and softens compared to the two-flavor equation of state.
-\item In the massless limit $\avg{\sigma_x} \rightarrow \avg{\sigma_y} \rightarrow 0$, the ultra-relativistic solution \eqref{eq:mit:chemical_potentials_massless_3f} is recovered.
-\item After spreading before the strange crossover, $\mu_u$ and $\mu_d$ find back to each other in the ultra-relativistic limit,
-      so the isospin chemical potential $\mu_I=(\mu_u-\mu_d)/2$ never exceeds half the pion mass.
-      In contrast to the two-flavor case, neglecting pion condensation is therefore a consistent assumption with three flavors.
+\item Before the strange crossover, the up and down quark chemical potentials $\mu_u$ and $\mu_d$
+      spread in order to ensure charge neutrality together with the electrons.
+      After the strange crossover, the strange quark kicks out the electron
+      and provides charge neutrality together with the up and down quarks,
+      as $\mu_u$ and $\mu_d$ find back to each other in the ultra-relativistic limit $\mu_u \rightarrow \mu_d = \mu_s$.
+      In contrast to the two-flavor case,
+      the isospin chemical potential $\mu_I=(\mu_u-\mu_d)/2$ never exceeds half the pion mass,
+      so neglecting pion condensation is a consistent assumption with three flavors.
 \item As confirmed by \cref{fig:lsm3f:3-flavor-density-ratios}, each quark density converges towards a third of the total baryon density as the density increases.
       At low densities the strange quark is absent and there are twice as many down quarks as up quarks, as in the two-flavor case,
       and the strange quark enters as the density exceeds $4 n_\text{sat}$.
       The fraction of up quarks is the same at all densities.
       \TODO{no bullets?}
-\item After the strange crossover, the strange quark provides charge neutrality and wipes out the already small electron density,
-      consistent with the ultra-relativistic solution \eqref{eq:mit:chemical_potentials_massless_3f}.
-\item Like before, the equation of state always satisfies the microscopic stability criteria \eqref{eq:nstars:stability_speed_of_sound} and \eqref{eq:nstars:stability_pressure_energy_density}.
+\item In the massless limit $\avg{\sigma_x} \rightarrow \avg{\sigma_y} \rightarrow 0$, the ultra-relativistic solution \eqref{eq:mit:chemical_potentials_massless_3f} is recovered.
+\item Like before, the equation of state always satisfies the causality condition \eqref{eq:nstars:stability_speed_of_sound}
+      and the microscopic stability criterion \eqref{eq:nstars:stability_pressure_energy_density}.
 \end{itemize}
 
 Once again, we modify the equation of state with bag constants $B$ according to the shift \eqref{eq:mit:bag_shift}
@@ -840,7 +844,6 @@ whereas the potential is broken for $m_\sigma=\SI{600}{\mega\electronvolt}$.
 These $m_\sigma=\{600,700\}\,\si{\mega\electronvolt}$-results
 are impossible to reconcile with the lower bag bounds \eqref{eq:lsm:bag_lower_bound}.
 This is one of the reasons for why we operate with two renormalization scales here.
-\TODO{EOS 2f compare}
 
 \pgfplotsset{
 	mesh line legend/.style={legend image code/.code=\meshlinelegend#1},
