@@ -595,6 +595,11 @@ so we can only hope that the same is true with three flavors.
 \centering
 \tikzsetnextfilename{3-flavor-eos}
 \begin{tikzpicture}
+\tikzset{declare function={
+	nq3(\mu)=3/(3*pi^2)*(\mu)^3;
+	ne3(\mu)=1/(3*pi^2)*(\mu)^3;
+	nconv=1.29619e-7;
+}};
 \begin{groupplot}[
 	group style={group size={1 by 3}, vertical sep=1.9cm},
 	width=13cm, height=7cm,
@@ -612,72 +617,88 @@ so we can only hope that the same is true with three flavors.
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-parametrization}Parametrization of solutions}},
 	legend cell align=left, legend pos=north west, legend columns=5, legend transposed,
 ];
-\addplot+ [orange, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {0};
-\addplot+ [yellow, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {0};
-\addplot+ [red, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {x};
-\addplot+ [darkgreen, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {x};
-\addplot+ [blue, dotted, semithick, opacity=0.7, forget plot, domain=0:800] {x};
+\addplot+ [blue, solid, very thick, opacity=0.4, forget plot, domain=0:800] {0};
+\addplot+ [orange, solid, very thick, opacity=0.4, forget plot, domain=0:800] {0};
+\addplot+ [yellow, dashed, very thick, opacity=0.4, forget plot, domain=0:800] {0};
+\addplot+ [red, solid, very thick, opacity=0.4, forget plot, domain=0:800] {x};
+\addplot+ [darkgreen, dashed, very thick, opacity=0.4, forget plot, domain=0:800] {x};
 
 \addplot+ [orange,    solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_x$};
 \addplot+ [orange,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [orange,    densely dotted, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_600.dat};
 \addplot+ [yellow,    solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_y$};
 \addplot+ [yellow,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [yellow,    densely dotted, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_600.dat};
 \addplot+ [red,       solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_u$};
 \addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [red,       densely dotted, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_600.dat};
 \addplot+ [darkgreen, solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_d=\mu_s$};
 \addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [darkgreen, densely dotted, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_600.dat};
 \addplot+ [darkgreen, solid,          opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_800.dat}; %\addlegendentry{$\mu_s$};
 \addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [darkgreen, densely dotted, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_600.dat};
 \addplot+ [blue,      solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_e$};
 \addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [blue,      densely dotted, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_600.dat};
 
 \addplot+ [black, solid] {-100}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
 \addplot+ [black, densely dashed] {-100}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
-\addplot+ [black, dotted] {-100}; \addlegendentry{massless};
-\addlegendimage{empty legend}; % ???
-\addlegendimage{empty legend}; % ???
-\addplot+ {-50}; \addlegendimage{empty legend} \addlegendentry{}
-\addplot+ {-50}; \addlegendimage{empty legend} \addlegendentry{}
+\addplot+ [black, densely dotted] {-100}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
+\addplot+ [black, solid, very thick, opacity=0.4] {-100}; \addlegendentry{$m_{\phantom{\sigma}}=0$};
+\addlegendimage{empty legend} \addlegendentry{}
 
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
 	xmin=0, xmax=700, xtick distance=100, minor x tick num=9,
 	ymin=-0.01, ymax=4.0, ytick distance=1.0, minor y tick num=9, restrict y to domain=-10:10,
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-density}Particle number densities}},
-	legend cell align=left, legend pos=north west, legend columns=4, legend transposed, reverse legend,
+	legend cell align=left, legend pos=north west, legend columns=4, legend transposed,
 ];
 %\coordinate (zoomplot) at (232, 1.32);
 %\draw [draw=none, fill=gray!50] (250, -0.005) rectangle (350, 0.02);
 %\draw [-Latex, gray] (300,0.03) to [out=90, in=0] (232, 0.75);
-%\addplot+ [red,       densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(muu(x))*nconv};
-%\addplot+ [darkgreen, densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {nq(mud(x))*nconv};
-%\addplot+ [blue,      densely dashed, semithick, opacity=0.4, forget plot, domain=0:600] {ne(mue(x))*nconv};
-\addplot+ [black] {-1}; \addlegendimage{empty legend}; \addlegendentry{\vphantom{$m = \SI{0}{\mega\electronvolt}$}};
-\addplot+ [black, dotted] {-1}; \addlegendentry{massless};
-\addplot+ [black, densely dashed] {-1}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
-\addplot+ [black, solid] {-1}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
-\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [blue,      solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_e$};
-\addplot+ [purple,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [purple,    solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_s$};
-\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [darkgreen, solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_d$};
-\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [blue,      solid, very thick, opacity=0.4, forget plot, domain=0:700] {0};
+\addplot+ [red,       solid, very thick, opacity=0.4, forget plot, domain=0:700] {nq3(x)*nconv};
+\addplot+ [purple,    dashed, very thick, opacity=0.4, forget plot, domain=0:700] {nq3(x)*nconv};
+\addplot+ [darkgreen, dotted, very thick, opacity=0.4, forget plot, domain=0:700] {nq3(x)*nconv};
+
 \addplot+ [red,       solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_u$};
+\addplot+ [red,       densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [red,       densely dotted, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [darkgreen, solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_d$};
+\addplot+ [darkgreen, densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [darkgreen, densely dotted, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [purple,    solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_s$};
+\addplot+ [purple,    densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [purple,    densely dotted, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [blue,      solid,          opacity=0.7,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_e$};
+\addplot+ [blue,      densely dashed, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [blue,      densely dotted, opacity=0.7, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_600.dat};
+
+\addplot+ [black, solid] {-1}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+\addplot+ [black, densely dashed] {-1}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
+\addplot+ [black, densely dotted] {-1}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
+\addplot+ [black, solid, very thick, opacity=0.4] {-1}; \addlegendentry{$m_{\phantom{\sigma}}=0$};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	xmin=-0.005, xmax=0.8, ymin=0, ymax=3.5, xtick distance=0.1, ytick distance=1.0, minor y tick num=9, restrict y to domain=-10:+10,
 	title={\subcaption{\label{fig:lsm:3-flavor-eos-eos}Equation of state}},
-	legend cell align=left, legend pos=north west,
+	legend cell align=left, legend pos=north west, legend columns=4, legend transposed,
 ];
 %\addplot+ [black!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=P, y expr={3*\thisrow{P}+4*0.07774628475613433}] {../code/data/LSM2F/eos.dat}; % +4*P0, since both ϵ and P modified by P0
 %\addplot+ [black, densely dashed, opacity=0.4, domain=0:0.1, forget plot] {3*x}; % +4*P0, since both ϵ and P modified by P0
-\addplot+ [black, solid] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
-\addplot+ [gray, densely dashed] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (uncorrected)};
-\addplot+ [black, densely dashed] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$ (corrected)};
-\addplot+ [black, dotted, domain=0:3.0] {3*x}; \addlegendentry{massless };
+\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+\addplot+ [gray, densely dashed, opacity=0.7, forget plot] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [black, densely dashed, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
+\addplot+ [gray, densely dotted, opacity=0.7, forget plot] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [black, densely dotted, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_600.dat}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
+\addplot+ [black, solid, very thick, opacity=0.4, domain=0:3.0] {3*x}; \addlegendentry{$m_{\phantom{\sigma}}=0$};
+\addplot+ [gray, solid, domain=0:0.01] {-0.01}; \addlegendentry{uncorrected}
+\addplot+ [black, solid, domain=0:0.01] {-0.01}; \addlegendentry{\phantom{un}corrected}
+\addlegendimage{empty legend} \addlegendentry{}
 \coordinate (zoomplot) at (0.55, 0.0);
 \end{groupplot}
 \node [anchor=south west] at (zoomplot) {
@@ -685,23 +706,26 @@ so we can only hope that the same is true with three flavors.
 	\begin{axis}[
 		width=4cm, height=4cm,
 		axis background/.style={fill=white},
-		xmin=-0.002, xmax=+0.01, xtick distance=0.01, restrict x to domain=-0.03:+0.03,
+		xmin=-0.004, xmax=+0.01, xtick distance=0.01, restrict x to domain=-0.03:+0.03,
 		ymin=0, ymax=0.3, restrict y to domain=-1:+1,
 	]
 	\addplot+ [black, solid, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat};
 	\addplot+ [gray, densely dashed, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat};
 	\addplot+ [black, densely dashed, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat};
+	\addplot+ [gray, densely dotted, opacity=0.7] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_600.dat};
+	\addplot+ [black, densely dotted, opacity=0.7] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_600.dat};
 	\addplot+ [black, dotted, opacity=0.7, domain=0:0.05] {3*x};
 	\end{axis}
 	\end{tikzpicture}
 };
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-eos}%
-Properties of electrically charge neutral three-flavor quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
+Properties of electrically charge neutral quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$ in the three-flavor quark meson model.
 Upper panel \subref{fig:lsm:3-flavor-eos-parametrization} shows solutions to equation \eqref{eq:lsm3f:minsys},
 middle panel \subref{fig:lsm:3-flavor-eos-density} the corresponding particle number densities \eqref{eq:lsm3f:particle_densities} and
-lower panel \subref{fig:lsm:3-flavor-eos-eos} the corresponding equation of state $\epsilon(P)$ corrected with the Maxwell construction.
-Dotted lines show the massless solutions \eqref{eq:mit:densities_massless}, \eqref{eq:mit:eos_ur} and \eqref{eq:mit:chemical_potentials_massless_3f}.
+lower panel \subref{fig:lsm:3-flavor-eos-eos} the corresponding equation of state $\epsilon(P)$ \textbf{\textcolor{gray}{before}} and \textbf{after} the Maxwell construction.
+Three different values of $m_\sigma$ are used,
+and the thickest lines show the massless solutions \eqref{eq:mit:densities_massless}, \eqref{eq:mit:eos_ur} and \eqref{eq:mit:chemical_potentials_massless_3f}.
 }
 \end{figure}
 
@@ -769,16 +793,16 @@ the solutions, particle densities and equation of state shown in \cref{fig:lsm:3
       Even the strange minimum $\avg{\sigma_y}$ moves a bit during this transition
       due to the cross term $\lambda_1 \avg{\sigma_x}^2 \avg{\sigma_y}^2 / 2$ in the meson potential \eqref{eq:lsm:potential_tree_3f} changing.
       Accordingly, the equations of state for the two-flavor and three-flavors models are quite similar up to $P \leq \SI{0.05}{\giga\electronvolt\per\femto\meter\cubed}$.
-\item There is a strange crossover from roughly $\mu \approx \SI{370}{\mega\electronvolt}$ (for $m_\sigma=\SI{800}{\mega\electronvolt}$).
-      It begins at a value of $\mu_s = m_y = \SI{410}{\mega\electronvolt}$ (for $m_\sigma=\SI{800}{\mega\electronvolt}$)
-      \emph{below} its vacuum mass $\SI{429}{\mega\electronvolt}$
+\item There is a strange crossover after the non-strange crossover or phase transition.
+      For example, for $m_\sigma=\SI{800}{\mega\electronvolt}$, it starts at roughly $\mu \approx \SI{370}{\mega\electronvolt}$ 
+      or $\mu_s = m_y = \SI{410}{\mega\electronvolt}$.
+      This is \emph{below} the fitted vacuum mass $m_s=\SI{429}{\mega\electronvolt}$
       because \emph{both} $m_x$ and $m_y$ drop after $\mu > \SI{300}{\mega\electronvolt}$ exceeds the non-strange vacuum masses.
       Moreover, it is always a crossover and never a phase transition,
       is significantly slower than the non-strange transition,
       and the strange quark retains a noticeable mass when the non-strange quarks have lost theirs.
       During this crossover, the equation of state gently ramps up from the two-flavor level to a second plateau
       and softens compared to the two-flavor equation of state.
-      \TODO{no bullets?}
 \item In the massless limit $\avg{\sigma_x} \rightarrow \avg{\sigma_y} \rightarrow 0$, the ultra-relativistic solution \eqref{eq:mit:chemical_potentials_massless_3f} is recovered.
 \item After spreading before the strange crossover, $\mu_u$ and $\mu_d$ find back to each other in the ultra-relativistic limit,
       so the isospin chemical potential $\mu_I=(\mu_u-\mu_d)/2$ never exceeds half the pion mass.
@@ -787,7 +811,7 @@ the solutions, particle densities and equation of state shown in \cref{fig:lsm:3
       At low densities the strange quark is absent and there are twice as many down quarks as up quarks, as in the two-flavor case,
       and the strange quark enters as the density exceeds $4 n_\text{sat}$.
       The fraction of up quarks is the same at all densities.
-      \TODO{add 600 or use instead of 700}
+      \TODO{no bullets?}
 \item After the strange crossover, the strange quark provides charge neutrality and wipes out the already small electron density,
       consistent with the ultra-relativistic solution \eqref{eq:mit:chemical_potentials_massless_3f}.
 \item Like before, the equation of state always satisfies the microscopic stability criteria \eqref{eq:nstars:stability_speed_of_sound} and \eqref{eq:nstars:stability_pressure_energy_density}.
