@@ -384,7 +384,7 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 
 \TODO{subfigure references are shaky! control this before handing in! fix by regenerating figure to which the reference is wrong.}
 
-\cleartoevenpage % make sure back cover is at even page for proper folding
+\cleartoevenpage[\thispagestyle{empty}] % make sure back cover is at even page for proper folding (from nextpage package, see https://texfaq.org/FAQ-reallyblank)
 %\begin{titlepage} % DO NOT USE, this forces cover to start on ODD page
 \includepdf[pages={3}]{cover-optimized.pdf}
 %\end{titlepage}
