@@ -1,5 +1,5 @@
 *.swp
-thesis.pdf
+thesis*.pdf
 cover-optimized.pdf
 .cachelatex
 .cacheminted
