@@ -459,7 +459,7 @@ In particular, they find that it drives the chiral transition closer to a discon
 
 Like in \cref{sec:lsm:parameter_fit},
 we keep all parameters fixed except $m_\sigma$, due to its large experimental uncertainty.
-As shown in the lasagne of different vacuum potentials in \cref{fig:lsm3f:potential_sigma_mass},
+As shown in the lasagna of different vacuum potentials in \cref{fig:lsm3f:potential_sigma_mass},
 they still admit minima only for $m_\sigma \geq \SI{600}{\mega\electronvolt}$,
 so we continue to use $m_\sigma=\{600,700,800\} \, \si{\mega\electronvolt}$.
 
@@ -550,7 +550,7 @@ generating three different values of $\lambda_1$ and $m^2$.
 	restrict x to domain=-510:+510, xmin=-500, xmax=+500, xtick distance = 150, minor x tick num=14,
 	restrict y to domain=-610:+610, ymin=-600, ymax=+600, ytick distance = 150, minor y tick num=14,
 	%ymin=-11, ymax=+6, ytick distance=5, minor y tick num=4,
-	xlabel = {$m_x \, / \, \si{\mega\electronvolt}$}, ylabel = {$m_y \, / \, \si{\mega\electronvolt}$}, zlabel = {$\Omega(\avg{\sigma},0) \, / \, f_\pi^4$},
+	xlabel = {$m_x \, / \, \si{\mega\electronvolt}$ }, ylabel = {$m_y \, / \, \si{\mega\electronvolt}$}, zlabel = {$\Omega(\avg{\sigma},0) \, / \, f_\pi^4$},
 	%legend style = {at={(0.5,1.03)}, anchor=south}, transpose legend, legend columns=2,
 	%cycle list/YlOrRd-9,
 	grid = major,
@@ -685,7 +685,7 @@ so we can only hope that the same is true with three flavors.
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	xmin=-0.005, xmax=0.8, ymin=0, ymax=3.5, xtick distance=0.1, ytick distance=1.0, minor y tick num=9, restrict y to domain=-10:+10,
-	title={\subcaption{\label{fig:lsm:3-flavor-eos-eos}Equation of state}},
+	title={\subcaption{\label{fig:lsm:3-flavor-eos-eos}Equation of state} },
 	legend cell align=left, legend pos=north west, legend columns=4, legend transposed,
 ];
 %\addplot+ [black!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=P, y expr={3*\thisrow{P}+4*0.07774628475613433}] {../code/data/LSM2F/eos.dat}; % +4*P0, since both ϵ and P modified by P0
@@ -960,9 +960,9 @@ This is one of the reasons for why we operate with two renormalization scales he
 \caption{\label{fig:lsm:3-flavor-mass-radius}%
 	Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov} parametrized by the central pressure $P_c$, using the equations of state for three-flavor quark matter in \cref{fig:lsm:3-flavor-eos-eos} modified by a range of bag constants above the bounds \eqref{eq:lsm:bag_lower_bound}.
 }
+\end{figure}
 
-\bigskip
-
+\begin{figure}
 \tikzsetnextfilename{3-flavor-extreme-star}
 \begin{tikzpicture}
 \begin{groupplot}[
