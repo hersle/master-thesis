@@ -115,7 +115,7 @@ We then invert $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to obtain
 	xmin=0, xmax=700, xtick distance=100, minor x tick num=9,
 	ymin=0, ymax=700, ytick distance=100, 
 	%ymax=600, 
-	title={\subcaption{\label{fig:mit:eos-parametrization}Parametrization of solutions}},
+	title={\subcaption{\label{fig:mit:eos-parametrization}Parametrization of solutions} },
 	legend cell align=left, legend pos=north west,
 ];
 % fake legend
@@ -127,15 +127,15 @@ We then invert $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to obtain
 \addplot+ [blue, solid, opacity=1.0] {-100}; \addlegendentry{$\mu_e$};
 
 % 2-flavor
-\addplot+ [red,       solid,  opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=muu] {../code/data/MIT2F/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid,  opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mud] {../code/data/MIT2F/eos_sigma_800.dat};
-\addplot+ [blue,      solid,  opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mue] {../code/data/MIT2F/eos_sigma_800.dat};
+\addplot+ [red,       solid,  opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=muu] {../code/data/MIT2F/eos_sigma_0.dat};
+\addplot+ [darkgreen, solid,  opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mud] {../code/data/MIT2F/eos_sigma_0.dat};
+\addplot+ [blue,      solid,  opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mue] {../code/data/MIT2F/eos_sigma_0.dat};
 
 % 3-flavor
-\addplot+ [red,       solid,  opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=muu] {../code/data/MIT3F/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid,  opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mud] {../code/data/MIT3F/eos_sigma_800.dat};
-\addplot+ [purple,    dashed, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mus] {../code/data/MIT3F/eos_sigma_800.dat};
-\addplot+ [blue,      solid,  opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mue] {../code/data/MIT3F/eos_sigma_800.dat};
+\addplot+ [red,       solid,  opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=muu] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [darkgreen, solid,  opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mud] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [purple,    dashed, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mus] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [blue,      solid,  opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mue] {../code/data/MIT3F/eos_sigma_0.dat};
 
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
@@ -153,15 +153,15 @@ We then invert $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to obtain
 \addplot+ [blue, solid, opacity=1.0] {-10}; \addlegendentry{$n_e$};
 
 % 2-flavor
-\addplot+ [red,       solid, opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nu] {../code/data/MIT2F/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid, opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nd] {../code/data/MIT2F/eos_sigma_800.dat};
-\addplot+ [blue,      solid, opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=ne] {../code/data/MIT2F/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nu] {../code/data/MIT2F/eos_sigma_0.dat};
+\addplot+ [darkgreen, solid, opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nd] {../code/data/MIT2F/eos_sigma_0.dat};
+\addplot+ [blue,      solid, opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=ne] {../code/data/MIT2F/eos_sigma_0.dat};
 
 % 3-flavor
-\addplot+ [red,       solid, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nu] {../code/data/MIT3F/eos_sigma_800.dat};
-\addplot+ [darkgreen, solid, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nd] {../code/data/MIT3F/eos_sigma_800.dat};
-\addplot+ [purple,    solid, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=ns] {../code/data/MIT3F/eos_sigma_800.dat};
-\addplot+ [blue,      solid, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=ne] {../code/data/MIT3F/eos_sigma_800.dat};
+\addplot+ [red,       solid, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nu] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [darkgreen, solid, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nd] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [purple,    solid, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=ns] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [blue,      solid, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=ne] {../code/data/MIT3F/eos_sigma_0.dat};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
@@ -170,8 +170,8 @@ We then invert $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to obtain
 	title={\subcaption{\label{fig:mit:eos-eos}Equation of state}},
 	legend cell align=left, legend pos=north west,
 ];
-\addplot+ [black, solid, opacity=0.3] table [x=P,y=epsilon] {../code/data/MIT2F/eos_sigma_800.dat}; \addlegendentry{$N_f=2$};
-\addplot+ [black, solid, opacity=0.8] table [x=P,y=epsilon] {../code/data/MIT3F/eos_sigma_800.dat}; \addlegendentry{$N_f=3$};
+\addplot+ [black, solid, opacity=0.3] table [x=P,y=epsilon] {../code/data/MIT2F/eos_sigma_0.dat}; \addlegendentry{$N_f=2$};
+\addplot+ [black, solid, opacity=0.8] table [x=P,y=epsilon] {../code/data/MIT3F/eos_sigma_0.dat}; \addlegendentry{$N_f=3$};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:mit:eos}%

@@ -1806,7 +1806,7 @@ We make a total of four sweeps for the mass-radius diagram in \cref{fig:nstars:m
 \section{Equations of state for quark stars and hybrid stars}
 \label{sec:num:qstars2f}
 
-This program finds all equations of state and stellar solutions in chapters \ref{chap:mit}, \ref{chap:lsm2f}, \ref{chap:lsm3f} and \ref{chap:hybrid}.
+These programs finds all equations of state and stellar solutions in chapters \ref{chap:mit}, \ref{chap:lsm2f}, \ref{chap:lsm3f} and \ref{chap:hybrid}.
 In order to increase reusability of common code and decrease its maintenance burden,
 the models inherit functionality from each other according to the following class diagram:
 
@@ -1863,8 +1863,24 @@ For each model, the program performs the following tasks:
 
 For readability, self-documentation and one-to-one correspondence,
 the code uses Unicode variable names that resemble the variables and equations in the main text.
-\TODO{split into files for each model?}
 
-\pagebreak
+\subsubsection{Common code}
+This file contains common code for all quark and hybrid star models
+in \cref{chap:mit,chap:lsm2f,chap:lsm3f,chap:hybrid}:
+\codefile{python}{../code/quark_hybrid_stars_common.py}{quark\_hybrid\_stars\_common.py}
 
-\codefile{python}{../code/quark_stars.py}{quark\_stars.py}
+\subsubsection{MIT bag model}
+This file contains code for the MIT bag model quark stars
+in \cref{chap:mit}:
+\codefile{python}{../code/quark_stars_mit.py}{quark\_stars\_mit.py}
+
+\subsubsection{Quark-meson model}
+This file contains code for the quark-meson model quark stars
+in \cref{chap:lsm2f,chap:lsm3f}:
+\codefile{python}{../code/quark_stars_lsm.py}{quark\_stars\_lsm.py}
+
+\subsubsection{Hybrid model}
+This file contains code for the hybrid model
+joining the Akmal-Pandharipande-Ravenhall (APR) hadronic equation of state from \cite{ref:apr,ref:apr_data}
+with the quark-meson models in \cref{chap:lsm2f,chap:lsm3f}:
+\codefile{python}{../code/hybrid_stars_apr_lsm.py}{hybrid\_stars\_apr\_lsm.py}
