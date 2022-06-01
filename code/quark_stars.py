@@ -875,15 +875,6 @@ if __name__ == "__main__":
     #LSM3FlavorModel(mσ=800).star(0.000937590625, 27, write=True)
     #exit()
 
-    # strange quark stars (need B^(1/4) ≳ 145 MeV in all models)
-    # TODO: finish considering this
-    #LSM3FlavorModel(mσ=800).eos(B=0**4, plot=True)
-    #LSM3FlavorModel(mσ=600).star(1e-3, 145, plot=True)
-    #for mσ in (600, 700, 800):
-        #LSM3FlavorModel(mσ=mσ).stars(145, (1e-7, 1e-2), write=True)
-        #LSM3FlavorModel(mσ=mσ).stars(165, (1e-7, 1e-2), write=True)
-        #LSM3FlavorModel(mσ=mσ).stars(185, (1e-7, 1e-2), write=True)
-
     # hybrid model (2-flavor quark-meson model + APR hadronic EOS)
     #Hybrid2FlavorModel(mσ=600).eos(B=111**4, plot=True, write=True)
     #Hybrid2FlavorModel(mσ=700).eos(B=68**4, plot=True, write=True)
