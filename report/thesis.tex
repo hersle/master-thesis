@@ -121,8 +121,8 @@
 \renewcommand\headrulewidth{1pt}
 \renewcommand\footrulewidth{1pt}
 % https://tex.stackexchange.com/a/623939
-\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter: #1}{}} %chapter oben ohne Nummer
 \renewcommand{\sectionmark}[1]{\markright{Section \thesection: #1}} 
+\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter: #1}{Chapter \thechapter: #1}}
 
 % make consistent style also on chapter first pages, bibliography etc. (see https://tex.stackexchange.com/a/10046)
 \fancypagestyle{plain}{
