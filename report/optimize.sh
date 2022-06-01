@@ -1,1 +1,1 @@
-gs -sDEVICE=pdfwrite -dPDFSETTINGS=/ebook -q -o "$2" "$1"
+gs -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -q -o "$2" "$1"
