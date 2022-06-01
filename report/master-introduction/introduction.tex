@@ -161,21 +161,20 @@ The volume of the system is $V$, while its ``temporal'' extent is the system's i
 Sign subscripts are placed on closed path integral signs to remind us of an important property that we showed: bosonic fields must be \emph{periodic} in inverse temperature time, while fermionic fields must be \emph{anti-periodic}.
 We also saw that we could couple any conserved Noether charge densities $j^0_i$ arising from symmetries of the Lagrangian to chemical potentials $\mu_i$.
 
-After computing (the logarithm of) the partition function, it is straightforward to find the grand potential density
-\TODO{grand potential vs free energy: grand potential probably ok}
+After computing (the logarithm of) the partition function, it is straightforward to find the grand potential (density)
 \begin{equation}
 	\Omega(T, \mu_i) = -\frac{\log Z}{\beta V}.
 \label{eq:master_intro:grand_potential}
 \end{equation}
 The volume dependence of the partition function is eliminated by division, turning the extensive quantity $\log Z$ into the intensive quantity $\Omega$.
 From the grand potential density, we can calculate the relevant thermodynamic quantities:
-\TODO{source, $S$ or $s$, $TS$ or $Ts$?}
+\cite[section 4.9]{ref:kardar}
 \begin{subequations}
 \begin{align}
 	\text{pressure} \quad P(T, \mu_i) &= -\Omega, \label{eq:master_intro:pressure} \\
 	\text{number densities} \quad n_i(T, \mu_i) &= -\pdv{\Omega}{\mu_i}, \label{eq:master_intro:densities} \\
-	\text{entropy} \quad S(T, \mu_i) &= -\pdv{\Omega}{T} = \beta^2 \pdv{\Omega}{\beta}, \label{eq:master_intro:entropy} \\
-	\text{energy density} \quad \epsilon(T, \mu_i) &= \sum_i \mu_i n_i + \pdv{(\beta \Omega)}{\beta} = \sum_i \mu_i n_i - P + T S. \label{eq:master_intro:energy_density}
+	\text{entropy density} \quad s(T, \mu_i) &= -\pdv{\Omega}{T} = \beta^2 \pdv{\Omega}{\beta}, \label{eq:master_intro:entropy} \\
+	\text{energy density} \quad \epsilon(T, \mu_i) &= \sum_i \mu_i n_i + \pdv{(\beta \Omega)}{\beta} = \sum_i \mu_i n_i - P + T s. \label{eq:master_intro:energy_density}
 \end{align}
 \end{subequations}
 Our goal is to connect a given pressure $P$ to some energy density $\epsilon$ so that we can solve the Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov}.
