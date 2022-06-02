@@ -82,7 +82,6 @@ def search(r, Π, Q, W, N, p1, p2, plot=False, progress=False, outfile=""):
         if plot:
             for i in range(0, len(us)):
                 plt.plot(r, us[i], color=(i/len(us), 0, 0))
-
             ymax = np.max(np.abs(cut_divergence(u, r)))
             plt.ylim(-2*ymax, +2*ymax)
             plt.show()
@@ -104,7 +103,6 @@ def search(r, Π, Q, W, N, p1, p2, plot=False, progress=False, outfile=""):
         # ω20 is a lower bound, search for an upper bound
         ω21 = ω20
         ω22 = increaseuntil(ω20, lambda u, n: n > N)
-
     ω2, u, n = bisectuntil(ω21, ω22)
     return ω2, u, n
 
@@ -113,13 +111,11 @@ def coeffs(r, m, P, α, ϵ):
     dPdϵ = np.gradient(P, ϵ)
     β = -1/2*np.log(1-2*G*m/r) # β(0) = 0, avoid division by 0, already dimensionless
     Γ = (P + ϵ) / P * dPdϵ # already dimensionless
-
     Π = np.exp(β+3*α)/r**2 * Γ * P
     Q  = -4*np.exp(β+3*α)/r**3*dPdr 
     Q -= (8*π*G/(4*π/3))*np.exp(3*β+3*α)/r**2*P*(ϵ+P) 
     Q += np.exp(β+3*α)*dPdr**2 / (r**2*(ϵ+P))
     W = np.exp(3*β+α)*(ϵ+P)/r**2
-
     return Π, Q, W
 
 def eigenmode(

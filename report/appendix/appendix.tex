@@ -1371,6 +1371,76 @@ After some simplification, we obtain
 \end{equation}
 Recall that the upper and lower signs hold for bosons and fermions, respectively.
 
+
+\chapter{Renormalization of the Dirac Sea}
+\label{chap:diracsea}
+
+In the calculation of the grand potential \eqref{eq:lsm:potential_divergent_logz0} of the quark-meson model,
+we encountered the ultraviolet-divergent Dirac sea vacuum contribution % ref:lsm3f calls it this
+\begin{equation}
+	\Omega_0 = -2 \int \frac{\dif^3 p}{(2 \pi)^3} E(\vec{p})
+	\qquad \text{with dispersion relation} \qquad
+	E(\vec{p}) = \sqrt{p^2+m^2} .
+\label{eq:diracsea:infinite}
+\end{equation}
+Here we renormalize this infinite contribution from negative energy states using dimensional regularization in the (modified) minimal subtraction scheme.
+In $d = 3 - 2 \epsilon$ spatial dimensions, it can be written
+\begin{equation}
+	\Omega_0 = -2 \Lambda^{3-d} \int \frac{\dif^d p}{(2 \pi)^d} \sqrt{p^2 + m^2}
+	         = -2 \Lambda^{3-d} \frac{2 \pi^{d/2}}{\Gamma(d/2)} \int_0^\infty \frac{\dif p \, p^{d-1}}{(2 \pi)^d} \sqrt{p^2 + m^2} .
+\label{eq:diracsea:ddim}
+\end{equation}
+%\TODO{what happens to the dimensions of the potential $V$ (as consequence of requiring $\log Z$ to be dimensionless)? $V \rightarrow V \lambda^{-2\epsilon}$?}
+We have multiplied the integral by $\Lambda^{3-d} = \Lambda^{2\epsilon}$ where $\Lambda$ a \emph{renormalization scale} with $\unit{\Lambda} = \unit{p}$,
+so that $\unit{\lambda^{3-d} \dif^d p} = \unit{\dif^3 p}$ and $\Omega_0$ is well-defined with the correct physical dimension of a potential in all spatial dimensions.
+Nothing stops us from doing so,
+as the new integral \eqref{eq:diracsea:ddim} still reduces to the old integral \eqref{eq:diracsea:infinite} when we send $\epsilon \rightarrow 0$.
+The $d$-dimensional momentum integral can be written as an analytical continuation of the \emph{Beta function} \cite{ref:beta_function}
+\begin{equation}
+	B(x,y) = \int_0^\infty \dif t \, \frac{t^{x-1}}{(1+t)^{x+y}} = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)}
+\end{equation}
+if we substitute $t = p^2/m^2$ with $\dif t = 2 p \dif p / m^2$.
+We then find
+\begin{equation}
+\begin{split}
+	\Omega_0 &= -\Lambda^{3-d} m^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \int_0^\infty \dif t \, \frac{t^{d/2-1}}{(1+t)^{-1/2}} \\
+	         &= -\Lambda^{3-d} m^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \frac{\Gamma\big(\frac{d}{2}\big) \Gamma\big( \textstyle{-\frac{d+1}{2}} \big)}{\Gamma\big( \textstyle{-\frac{1}{2}} \big)} .
+\end{split}
+\end{equation}
+We now cancel the two factors $\Gamma(d/2)$ and replace $\Gamma(-1/2) = -2\sqrt{\pi}$.
+Then we insert $d = 3 - 2 \epsilon$ back and use the property $\Gamma(z) = \Gamma(z+1) / z$ twice to transport the argument of the Gamma function infinitesimally close to its pole at $0$,
+where we use its asymptotic expansion $\Gamma(\epsilon) = 1/\epsilon + \gamma + \bigo(\epsilon)$ upon arrival.
+Expanding everything to zeroth order in $\epsilon$ then yields
+\begin{equation}
+	\Omega_0 =       \frac{m^4}{8 \pi^2} \left( 4 \pi \frac{\Lambda^2}{m^2} \right)^\epsilon \Gamma(-2 + \epsilon)
+	         \taylor \frac{m^4}{16 \pi^2} \left( \frac{1}{\epsilon} + \log \frac{\Lambda^2}{m^2} + \frac32 - \gamma + \log 4 \pi \right)
+	         \qquad \big( \text{MS} \big).
+\label{eq:diracsea:pole_expansion}
+\end{equation}
+The pole in $\epsilon$ exposes the ultraviolet divergence and can be removed by a counterterm in a renormalizable theory.
+In the \emph{minimal subtraction} ($\text{MS}$) \emph{scheme} only this divergent term is absorbed.
+In the \emph{modified minimal subtraction} ($\overline{\text{MS}}$) \emph{scheme},
+the terms $-\gamma + \log 4 \pi$ that \emph{always} arise in dimensional regularization is also absorbed.
+This is equivalent to rescaling $\Lambda^2 \rightarrow \Lambda^2 e^\gamma / 4 \pi$,
+and one there finds
+\begin{equation}
+	\Omega_0 \taylor \frac{m^4}{16 \pi^2} \left( \frac{1}{\epsilon} + \log \frac{\Lambda^2}{m^2} + \frac32 \right)
+	\qquad \big( \overline{\text{MS}} \big) .
+\label{eq:diracsea:pole_expansion_modified}
+\end{equation}
+
+
+\chapter{Calculation of the Three-Flavor Meson Potential}
+\label{chap:lsm3fpotential}
+
+The following program, written in the SAGE computer algebra system,
+symbolically calculates a 559-term-long explicit representation of the meson potential \eqref{eq:lsm:potential3f} in the three-flavor quark-meson model in terms of the fields $\sigma$ and $\pi$.
+It then evaluates it and its first and second derivatives in the nonzero minima $\avg{\sigma_x}$ and $\avg{\sigma_y}$,
+returning its minimum value \eqref{eq:lsm:potential_tree_3f}, the first derivatives \eqref{eq:lsm3f:symmetry_breakers} and the second derivatives \eqref{eq:lsm3f:mass_sigma_sigma} and \eqref{eq:lsm3f:mass_pi_pi}.
+
+\codefile{python}{../code/lsm3f_meson_potential.sage}{lsm3f\_meson\_potential.sage}
+
+
 \chapter{Integrals}
 \label{chap:integrals}
 
@@ -1514,73 +1584,6 @@ Recall that the upper and lower signs hold for bosons and fermions, respectively
 	\end{equation*}
 }
 
-\chapter{Renormalization of the Dirac Sea}
-\label{chap:diracsea}
-
-In the calculation of the grand potential \eqref{eq:lsm:potential_divergent_logz0} of the quark-meson model,
-we encountered the ultraviolet-divergent Dirac sea vacuum contribution % ref:lsm3f calls it this
-\begin{equation}
-	\Omega_0 = -2 \int \frac{\dif^3 p}{(2 \pi)^3} E(\vec{p})
-	\qquad \text{with dispersion relation} \qquad
-	E(\vec{p}) = \sqrt{p^2+m^2} .
-\label{eq:diracsea:infinite}
-\end{equation}
-Here we renormalize this infinite contribution from negative energy states using dimensional regularization in the (modified) minimal subtraction scheme.
-In $d = 3 - 2 \epsilon$ spatial dimensions, it can be written
-\begin{equation}
-	\Omega_0 = -2 \Lambda^{3-d} \int \frac{\dif^d p}{(2 \pi)^d} \sqrt{p^2 + m^2}
-	         = -2 \Lambda^{3-d} \frac{2 \pi^{d/2}}{\Gamma(d/2)} \int_0^\infty \frac{\dif p \, p^{d-1}}{(2 \pi)^d} \sqrt{p^2 + m^2} .
-\label{eq:diracsea:ddim}
-\end{equation}
-%\TODO{what happens to the dimensions of the potential $V$ (as consequence of requiring $\log Z$ to be dimensionless)? $V \rightarrow V \lambda^{-2\epsilon}$?}
-We have multiplied the integral by $\Lambda^{3-d} = \Lambda^{2\epsilon}$ where $\Lambda$ a \emph{renormalization scale} with $\unit{\Lambda} = \unit{p}$,
-so that $\unit{\lambda^{3-d} \dif^d p} = \unit{\dif^3 p}$ and $\Omega_0$ is well-defined with the correct physical dimension of a potential in all spatial dimensions.
-Nothing stops us from doing so,
-as the new integral \eqref{eq:diracsea:ddim} still reduces to the old integral \eqref{eq:diracsea:infinite} when we send $\epsilon \rightarrow 0$.
-The $d$-dimensional momentum integral can be written as an analytical continuation of the \emph{Beta function} \cite{ref:beta_function}
-\begin{equation}
-	B(x,y) = \int_0^\infty \dif t \, \frac{t^{x-1}}{(1+t)^{x+y}} = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)}
-\end{equation}
-if we substitute $t = p^2/m^2$ with $\dif t = 2 p \dif p / m^2$.
-We then find
-\begin{equation}
-\begin{split}
-	\Omega_0 &= -\Lambda^{3-d} m^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \int_0^\infty \dif t \, \frac{t^{d/2-1}}{(1+t)^{-1/2}} \\
-	         &= -\Lambda^{3-d} m^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \frac{\Gamma\big(\frac{d}{2}\big) \Gamma\big( \textstyle{-\frac{d+1}{2}} \big)}{\Gamma\big( \textstyle{-\frac{1}{2}} \big)} .
-\end{split}
-\end{equation}
-We now cancel the two factors $\Gamma(d/2)$ and replace $\Gamma(-1/2) = -2\sqrt{\pi}$.
-Then we insert $d = 3 - 2 \epsilon$ back and use the property $\Gamma(z) = \Gamma(z+1) / z$ twice to transport the argument of the Gamma function infinitesimally close to its pole at $0$,
-where we use its asymptotic expansion $\Gamma(\epsilon) = 1/\epsilon + \gamma + \bigo(\epsilon)$ upon arrival.
-Expanding everything to zeroth order in $\epsilon$ then yields
-\begin{equation}
-	\Omega_0 =       \frac{m^4}{8 \pi^2} \left( 4 \pi \frac{\Lambda^2}{m^2} \right)^\epsilon \Gamma(-2 + \epsilon)
-	         \taylor \frac{m^4}{16 \pi^2} \left( \frac{1}{\epsilon} + \log \frac{\Lambda^2}{m^2} + \frac32 - \gamma + \log 4 \pi \right)
-	         \qquad \big( \text{MS} \big).
-\label{eq:diracsea:pole_expansion}
-\end{equation}
-The pole in $\epsilon$ exposes the ultraviolet divergence and can be removed by a counterterm in a renormalizable theory.
-In the \emph{minimal subtraction} ($\text{MS}$) \emph{scheme} only this divergent term is absorbed.
-In the \emph{modified minimal subtraction} ($\overline{\text{MS}}$) \emph{scheme},
-the terms $-\gamma + \log 4 \pi$ that \emph{always} arise in dimensional regularization is also absorbed.
-This is equivalent to rescaling $\Lambda^2 \rightarrow \Lambda^2 e^\gamma / 4 \pi$,
-and one there finds
-\begin{equation}
-	\Omega_0 \taylor \frac{m^4}{16 \pi^2} \left( \frac{1}{\epsilon} + \log \frac{\Lambda^2}{m^2} + \frac32 \right)
-	\qquad \big( \overline{\text{MS}} \big) .
-\label{eq:diracsea:pole_expansion_modified}
-\end{equation}
-
-\chapter{Calculation of the Three-Flavor Meson Potential}
-\label{chap:lsm3fpotential}
-
-The following program, written in the SAGE computer algebra system,
-symbolically calculates a 559-term-long explicit representation of the meson potential \eqref{eq:lsm:potential3f} in the three-flavor quark-meson model in terms of the fields $\sigma$ and $\pi$.
-It then evaluates it and its first and second derivatives in the nonzero minima $\avg{\sigma_x}$ and $\avg{\sigma_y}$,
-returning its minimum value \eqref{eq:lsm:potential_tree_3f}, the first derivatives \eqref{eq:lsm3f:symmetry_breakers} and the second derivatives \eqref{eq:lsm3f:mass_sigma_sigma} and \eqref{eq:lsm3f:mass_pi_pi}.
-
-\codefile{python}{../code/lsm3f_meson_potential.sage}{lsm3f\_meson\_potential.sage}
-
 \chapter{Numerical Implementations}
 \label{chap:code}
 
@@ -1590,7 +1593,9 @@ but could be taken down from there at any time.
 
 \section{Natural dimensionless quantities for compact stars}
 
-In order to avoid issues with numerical instability, it is wise to eliminate physical scales from problems that we will solve numerically, so floating-point numbers can be kept as close to $1$ as possible.
+In order to avoid numerical instability when integrating the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov:tovsys},
+it is wise to eliminate physical scales from the problem,
+so floating-point numbers can be kept as close to $1$ as possible.
 To this end, we define the dimensionless
 \begin{subequations}
 \begin{align}
@@ -1604,8 +1609,7 @@ To this end, we define the dimensionless
 \end{subequations}%
 The precise values of $r_0$ and $m_0$ are chosen to be natural scales for radii and masses of compact stars, and the values of the remaining quantities follow from these and fundamental physical constants.
 In short, any variable in this appendix that wears a hat $\, \hat{} \, $ is the dimensionless version of its hatless dimensionful sibling, obtained by dividing the latter by whichever constant in \cref{eq:numtov:dimensionless_variables} that has the same dimension.
-
-We define the constants we require in a separate file:
+We define the constants in a separate file:
 
 \codefile{python}{../code/constants.py}{constants.py}
 
@@ -1793,12 +1797,6 @@ Here is our implementation of the shooting method in Python based on this descri
 
 \codefile{python}{../code/stability.py}{stability.py}
 
-\section{Utilities}
-
-We also write a few utility functions for data management:
-
-\codefile{python}{../code/utils.py}{utils.py}
-
 \section{Equations of state for ideal neutron stars}
 \label{sec:num:nstars}
 
@@ -1811,8 +1809,7 @@ We make a total of four sweeps for the mass-radius diagram in \cref{fig:nstars:m
 \label{sec:num:qstars2f}
 
 These programs finds all equations of state and stellar solutions in chapters \ref{chap:mit}, \ref{chap:lsm2f}, \ref{chap:lsm3f} and \ref{chap:hybrid}.
-In order to increase reusability of common code and decrease its maintenance burden,
-the models inherit functionality from each other according to the following class diagram:
+The models are organized according to the following class diagram:
 
 \begin{center}
 \tikzsetnextfilename{quark-star-class-hierarchy}
@@ -1844,6 +1841,7 @@ the models inherit functionality from each other according to the following clas
 \end{tikzpicture}
 \end{center}
 
+\pagebreak
 For each model, the program performs the following tasks:
 \begin{itemize}
 \item It numerically fits parameters to the grand potential \eqref{eq:master_intro:grand_potential} at zero temperature
@@ -1865,26 +1863,23 @@ For each model, the program performs the following tasks:
       producing both mass-radius diagrams and radial profiles for various quantities in individual stars.
 \end{itemize}
 
-For readability, self-documentation and one-to-one correspondence,
-the code uses Unicode variable names that resemble the variables and equations in the main text.
+%For readability, self-documentation and one-to-one correspondence,
+%the code uses Unicode variable names that resemble the variables and equations in the main text.
 
-\subsubsection{Common code}
-This file contains common code for all quark and hybrid star models
-in \cref{chap:mit,chap:lsm2f,chap:lsm3f,chap:hybrid}:
+\subsubsection{Common code for all quark and hybrid star models (\cref{chap:mit,chap:lsm2f,chap:lsm3f,chap:hybrid})}
 \codefile{python}{../code/quark_hybrid_stars_common.py}{quark\_hybrid\_stars\_common.py}
 
-\subsubsection{MIT bag model}
-This file contains code for the MIT bag model quark stars
-in \cref{chap:mit}:
+\subsubsection{MIT bag model (\cref{chap:mit})}
 \codefile{python}{../code/quark_stars_mit.py}{quark\_stars\_mit.py}
 
-\subsubsection{Quark-meson model}
-This file contains code for the quark-meson model quark stars
-in \cref{chap:lsm2f,chap:lsm3f}:
+\subsubsection{Quark-meson model (\cref{chap:lsm2f,chap:lsm3f})}
 \codefile{python}{../code/quark_stars_lsm.py}{quark\_stars\_lsm.py}
 
-\subsubsection{Hybrid model}
-This file contains code for the hybrid model
-joining the Akmal-Pandharipande-Ravenhall (APR) hadronic equation of state from \cite{ref:apr,ref:apr_data}
-with the quark-meson models in \cref{chap:lsm2f,chap:lsm3f}:
+\subsubsection{Hybrid quark-hadron model (\cref{chap:hybrid})}
 \codefile{python}{../code/hybrid_stars_apr_lsm.py}{hybrid\_stars\_apr\_lsm.py}
+
+\section{Utilities}
+
+We also write a utility function for data management:
+
+\codefile{python}{../code/utils.py}{utils.py}

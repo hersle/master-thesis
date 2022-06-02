@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 
 from quark_hybrid_stars_common import *
-import os
-os.environ["XDG_SESSION_TYPE"] = "x11" # for mayavi to work
+import os; os.environ["XDG_SESSION_TYPE"] = "x11" # for mayavi to work
 import mayavi.mlab as mlab
 
 mu0 = 300 # constituent masses (i.e. with gluons)
@@ -22,11 +21,7 @@ class LSMModel(Model):
     def eossolve(self, N):
         Δx = np.linspace(self.mu, 0, N)[:-1] # shave off erronous 0
         Δy = np.empty_like(Δx)
-        μQ = np.empty_like(Δx)
-        μu = np.empty_like(Δx)
-        μd = np.empty_like(Δx)
-        μs = np.empty_like(Δx)
-        μe = np.empty_like(Δx)
+        μQ, μu, μd, μs, μe = Δy, Δy, Δy, Δy, Δy # copy
 
         for i in range(0, len(Δx)):
             mu, md ,ms = self.vacuum_masses()
@@ -50,7 +45,6 @@ class LSMModel(Model):
         return Δx0, Δx0, Δy0
 
     def vacuum_potential(self, Δx, Δy, write=False):
-        #fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
         fig, axl = plt.subplots()
         axr = axl.twinx()
         ΔxΔx, ΔyΔy = np.meshgrid(Δx, Δy)
@@ -123,8 +117,7 @@ class LSM2FlavorModel(LSMModel):
             μQ, Δy, μe = μQ_Δy_μe # unpack variables
             μu, μd, _ = μelim(μQ, μe)
             μs = 0
-            # hack to give Δy = 0
-            return (self.dΩ(Δx, Δx, 0, μu, μd, 0, μe), Δy,
+            return (self.dΩ(Δx, Δx, 0, μu, μd, 0, μe), Δy, # hack to give Δy = 0
                     charge(Δx, Δx, 0, μu, μd, 0, μe))
         sol = scipy.optimize.root(system, guess, method="lm") # lm and krylov works
         assert sol.success, f"{sol.message} (Δx = {Δx})"
@@ -191,8 +184,7 @@ class LSM3FlavorModel(LSMModel):
         common_renormalization_scale = False
         if common_renormalization_scale:
             Λ = (2*Λx+Λy)/3
-            Λx = Λ # set common, averaged renormalization scale
-            Λy = Λ
+            Λx, Λy = Λ, Λ # set common, averaged renormalization scale
         print(f"m2 = {np.sign(m2)}*({np.sqrt(np.abs(m2))} MeV)^2 ")
         print(f"λ1 = {λ1}")
         print(f"λ2 = {λ2}")
@@ -297,8 +289,7 @@ if __name__ == "__main__": # uncomment lines/blocks to run
         LSM3FlavorModel(mσ=mσ).vacuum_potential(Δ, Δ, write=True)
     """
 
-    # 2-flavor quark-meson model
-    LSM2FlavorModel(mσ=600).eos(write=True)
+    #LSM2FlavorModel(mσ=600).eos(write=True)
     #LSM2FlavorModel(mσ=700).eos(write=True)
     #LSM2FlavorModel(mσ=800).eos(write=True)
     #LSM2FlavorModel(mσ=600).stars(111, (1e-7, 1e-2), write=True)
@@ -312,7 +303,6 @@ if __name__ == "__main__": # uncomment lines/blocks to run
     #LSM2FlavorModel(mσ=800).stars(67,  (1e-7, 1e-2), write=True)
     #LSM2FlavorModel(mσ=800).star(0.0012500875, 27, write=True)
 
-    # 2-flavor consistent quark-meson model
     #LSM2FlavorConsistentModel(mσ=400).eos(plot=False, write=True)
     #LSM2FlavorConsistentModel(mσ=500).eos(plot=False, write=True)
     #LSM2FlavorConsistentModel(mσ=600).eos(plot=False, write=True)
@@ -326,7 +316,6 @@ if __name__ == "__main__": # uncomment lines/blocks to run
     #LSM2FlavorConsistentModel(mσ=600).stars(47,  (1e-7, 1e-2), write=True)
     #LSM2FlavorConsistentModel(mσ=600).stars(67,  (1e-7, 1e-2), write=True)
 
-    # 3-flavor quark-meson model
     #LSM3FlavorModel(mσ=600).eos(plot=False, write=True)
     #LSM3FlavorModel(mσ=700).eos(plot=False, write=True)
     #LSM3FlavorModel(mσ=800).eos(plot=False, write=True)

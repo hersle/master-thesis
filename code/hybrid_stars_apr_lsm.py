@@ -1,14 +1,12 @@
 #!/usr/bin/python3
 
 from quark_hybrid_stars_common import *
-from quark_stars_lsm \
-import LSM2FlavorModel, LSM2FlavorConsistentModel, LSM3FlavorModel
+import quark_stars_lsm
 
 class HybridModel(Model):
     def eos(self, N=1000, B=111**4, hybrid=True, plot=False, write=False):
         arr = np.loadtxt("data/APR/eos.dat")
-        #mn = 939.56542052 # MeV / c^2
-        mn = 900
+        mn = 900 # MeV
         nB = arr[:,0]
         P_over_nB = arr[:,1]
         μB_over_mn_minus_one = arr[:,3]
@@ -33,7 +31,6 @@ class HybridModel(Model):
             ax1.plot(μB2, P1, "-r.")
             ax2.plot(μB1, nB1/0.165, "-b.")
             ax2.plot(μB1, nB2/0.165, "-r.")
-            #plt.scatter(nB0, P0)
             plt.show()
 
         # find intersecting nB (from top)
@@ -69,7 +66,6 @@ class HybridModel(Model):
             plt.show()
 
         # hack: exploit nu=nd=ns=nB for density interpolation
-        nB1 = nB1 # already have from data set
         nB2 = (nu2int(P2)+nd2int(P2)+ns2int(P2)) / 3 # compute with P2 instead of P1
         nB = np.concatenate((nB1[P1<P0], [np.interp(P0, P1, nB1)], nB2))
         nu = np.concatenate((nB1[P1<P0], [np.interp(P0, P1, nB1)], nu2int(P2)))
@@ -94,9 +90,6 @@ class HybridModel(Model):
         nsint = scipy.interpolate.interp1d(P, ns)
         μBint = scipy.interpolate.interp1d(P, μB)
 
-        # ignore electrons
-        zerofunc = lambda x: 0*x # works for scalars and arrays
-
         if write:
             nB2 = (nu2int(P)+nd2int(P)+ns2int(P)) / 3 # compute with P instead
             μB2 = μQ2int(P) * 3 # compute with P instead
@@ -112,28 +105,27 @@ class HybridModel(Model):
             utils.writecols(cols, heads, outfile)
 
         μQint = lambda P: μBint(P) / 3
-        return ϵint, nuint, ndint, nsint, zerofunc, μQint
+        return ϵint, nuint, ndint, nsint, lambda x: 0*x, μQint # ignore electrons
 
 class Hybrid2FlavorModel(HybridModel):
     def __init__(self, mσ=600):
         self.name = "LSM2F_APR"
         self.mσ = mσ
-        self.quarkmodel = LSM2FlavorModel
+        self.quarkmodel = quark_stars_lsm.LSM2FlavorModel
 
 class Hybrid3FlavorModel(HybridModel):
     def __init__(self, mσ=600):
         self.name = "LSM3F_APR"
         self.mσ = mσ
-        self.quarkmodel = LSM3FlavorModel
+        self.quarkmodel = quark_stars_lsm.LSM3FlavorModel
 
 class Hybrid2FlavorConsistentModel(HybridModel):
     def __init__(self, mσ=600):
         self.name = "LSM2FC_APR"
         self.mσ = mσ
-        self.quarkmodel = LSM2FlavorConsistentModel
+        self.quarkmodel = quark_stars_lsm.LSM2FlavorConsistentModel
 
 if __name__ == "__main__": # uncomment lines/blocks to run
-    # hybrid model (2-flavor quark-meson model + APR hadronic EOS)
     #Hybrid2FlavorModel(mσ=600).eos(B=111**4, plot=True, write=True)
     #Hybrid2FlavorModel(mσ=700).eos(B=68**4, plot=True, write=True)
     #Hybrid2FlavorModel(mσ=800).eos(B=27**4, plot=True, write=True)
@@ -142,7 +134,6 @@ if __name__ == "__main__": # uncomment lines/blocks to run
     #Hybrid2FlavorModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True)
     #Hybrid2FlavorModel(mσ=600).star(0.001180703125, 111, write=True)
 
-    # hybrid model (3-flavor quark-meson model + APR hadronic EOS)
     #Hybrid3FlavorModel(mσ=600).eos(B=111**4, plot=True, write=True)
     #Hybrid3FlavorModel(mσ=700).eos(B=68**4, plot=True, write=True)
     #Hybrid3FlavorModel(mσ=800).eos(B=27**4, plot=True, write=True)
@@ -151,7 +142,6 @@ if __name__ == "__main__": # uncomment lines/blocks to run
     #Hybrid3FlavorModel(mσ=800).stars(27,  (1e-5, 1e-2), write=True)
     #Hybrid3FlavorModel(mσ=600).star(0.0008160778808593749, 111, write=True)
 
-    # consistent hybrid model (2-flavor consistent quark-meson omdel + APR hadronic EOS)
     #Hybrid2FlavorConsistentModel(mσ=400).eos(B=107**4, plot=True, write=True)
     #Hybrid2FlavorConsistentModel(mσ=500).eos(B=84**4, plot=True, write=True)
     #Hybrid2FlavorConsistentModel(mσ=600).eos(B=27**4, plot=True, write=True)
