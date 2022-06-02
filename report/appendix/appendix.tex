@@ -189,7 +189,7 @@ Similarly, we can use the inverse metric $g^{\mu \nu}$ to raise indices.
 %As this argument only relied on the defining transformation law \eqref{eq:tensor_transformation}, it is clear that any tensor of rank $(2,0)$ or $(0,2)$ would suffice to raise or lower indices.
 %But the metric is the most natural choice, as it is inherent to the manifold and always available to us.
 
-\subsection{Line element and volume}
+\subsection{Line and volume elements}
 
 From the metric tensor, one defines the \textbf{line element}
 \begin{subequations}
@@ -211,7 +211,7 @@ Similarly, one can compute the \textbf{volume} of a region
 where $\gamma$ is the induced metric on the surface and $\det{\gamma} < 0$ its determinant.
 The factor $\sqrt{-\det{\gamma}}$ arises to make the volume element $\dif^n x \sqrt{-\det{\gamma}}$ invariant under coordinate transformations.
 
-\subsection{Covariant derivatives and connection coefficients}
+\subsection{Covariant derivative and connection coefficients}
 
 Knowing how vectors and general tensors transform, let us generalize the concept of derivatives to curved space.
 By the transformation rules we have found so far and the product rule, the normal partial derivative of a vector transforms like
@@ -314,7 +314,7 @@ However, general relativity is concerned with describing \emph{macroscopic} obje
 \end{align}
 \fi
 
-\subsection{Parallel transport and geodesic equation}
+\subsection{Parallel transport and the geodesic equation}
 \label{sec:geodesic}
 
 \begin{figure}
@@ -595,7 +595,7 @@ we uncover the \textbf{Einstein field equations in the presence of matter},
 	\label{eq:einstein_derivation:einstein_matter}
 \end{equation}
 
-\section{Newtonian limit}
+\section{The Newtonian limit}
 \label{sec:weak_field_limit}
 
 %TODO: move everything about interpretation of mass, energy density integral etc. to one section which has one thing in common: we look at the weak-field limit
@@ -666,7 +666,7 @@ The inverse metric $g\indices{^\mu^\nu}$ should satisfy $g\indices{^\mu^\nu} g\i
 \end{subequations}%
 where we raise indices of the perturbation $h\indices{^\mu^\nu} = \eta\indices{^\mu^\rho} \eta\indices{^\nu^\sigma} h\indices{_\rho_\sigma}$ with the \emph{Minkowski} metric $\eta^{\mu\nu}$.
 
-\subsection{The response of matter to the field}
+\subsection{Matter's response to the field}
 
 In general relativity, matter responds to the gravitational field by moving along geodesics $x(\tau)$ that satisfy the geodesic equation
 \begin{equation}
@@ -707,7 +707,7 @@ In conclusion, we have showed that a weak relativistic gravitational field with
 \end{equation}
 describes Newtonian motion in the gravitational potential $V$!
 
-\subsection{The response of the field to matter}
+\subsection{The field's response to matter}
 \label{sec:einstein_to_poisson}
 
 In general relativity, the gravitational field is produced by matter that enter the Einstein field equations \eqref{eq:einstein_derivation:einstein_matter} on the right.
@@ -762,7 +762,9 @@ Using the Christoffel symbols \eqref{eq:weak_field_limit:static_christoffel_symb
 
 Inserting $h_{00} = 2V/c^2$ from \cref{eq:weak_field_limit:metric_with_potential} and comparing the result to \cref{eq:weak_field_limit:ricci_from_energy_momentum}, we see that the Einstein field equations yield the Poisson equation \eqref{eq:interpretation_m:poisson} in the Newtonian limit!
 
-\section{CAS derivation of Tolman-Oppenheimer-Volkoff equations}
+\section{\texorpdfstring%
+{\textls[-13]{CAS derivation of the Tolman-Oppenheimer-Volkoff equation}}%
+{CAS derivation of the Tolman-Oppenheimer-Volkoff equation}} % force on one line
 \label{sec:tov_cas_derivation}
 
 When we derived the Tolman-Oppenheimer-Volkoff equation \eqref{eq:tov} analytically, we made use of energy-momentum conservation $\nabla_\mu T\indices{^\mu^\nu} = 0$ instead of using the last Einstein field equation \cref{eq:einstein_to_tov:thetatheta}.
@@ -873,7 +875,7 @@ In the Newtonian limit, $u^\mu = (c, \vec{v})$ and the vanishing divergence \cre
 	\pdv{n}{t} - \vec{\nabla} \cdot \left( n \vec{v} \right) = 0.
 \end{equation}
 
-\section{Conservation of energy and Euler equation}
+\section{Conservation of energy and the Euler equation}
 
 The conservation of energy-momentum $\nabla_\mu T^{\mu \nu} = 0$ implies
 \begin{align}
@@ -975,7 +977,7 @@ By repeated application of the product rule and substitution of baryon number co
 This is in the form we wanted.
 \fi
 
-\subsection{Euler equation}
+\subsection{The Euler equation}
 
 Second, let us inspect the component of $\nabla_\mu T^{\mu \nu}$ orthogonal to $u^\mu$.
 Multiplying \cref{eq:relfluid:conservation_energy_momentum} by the orthogonal projection tensor \eqref{eq:relfluid:projection_tensors},
@@ -1586,7 +1588,7 @@ In this appendix, we explain and list all Python code used to produce the result
 The code is also available online at \url{https://github.com/hersle/master-thesis} for convenience,
 but could be taken down from there at any time.
 
-\section{Elimination of dimensionful quantities}
+\section{Natural dimensionless quantities for compact stars}
 
 In order to avoid issues with numerical instability, it is wise to eliminate physical scales from problems that we will solve numerically, so floating-point numbers can be kept as close to $1$ as possible.
 To this end, we define the dimensionless
@@ -1652,7 +1654,7 @@ Optionally, the program checks the stability of stars using the numerical method
 
 \codefile{python}{../code/tov.py}{tov.py}
 
-\section{Stability analysis with the shooting method}
+\section{Stellar stability analysis with the shooting method}
 \label{sec:numerics:shooting_method}
 
 In \cref{sec:nstars:stability_general}, we showed that the stability of a star could be determined by checking the sign of the lowest squared eigenvalue of a Sturm-Liouville problem.
