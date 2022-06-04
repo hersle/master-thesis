@@ -314,7 +314,7 @@ and hence the zero-point energy and pressure, and the equation of state.
     }
 }
 
-\subcaptionbox{\label{fig:mit:bag-constant-confined}confined phase}{
+%\subcaptionbox{\label{fig:mit:bag-constant-confined}confined phase}{
 \centering
 \tikzsetnextfilename{bag-constant-confined}
 \begin{tikzpicture}
@@ -336,57 +336,89 @@ and hence the zero-point energy and pressure, and the equation of state.
 	\draw [very thick, -Latex] (150:2.6) -- (150:2.1);
 	\draw [very thick, -Latex] (270:2.6) -- (270:2.1);
 %\end{scope}
-\node at (0, -0.25) {$P_\text{vac}=-B$};
-\node [anchor=south west] at (-2.7, -2.7) {$P_\text{vac}=0$};
+%\node at (0, -0.25) {$P=-B$};
+\node at (0, 1.3) {$P=-B$};
+\node [anchor=south west] at (-2.7, -2.7) {$P=0$};
 
-\node at (90:1.3) {  confined vacuum};
-\node at (90:2.5) {deconfined vacuum};
+%\node at (90:1.3) {  confined vacuum};
+%\node at (90:2.5) {deconfined vacuum};
+\node at (90:2.5) [text width=5cm] {\subcaption{\label{fig:mit:bag-constant-confined}confined phase} };
+%\subcaptionbox{\label{fig:mit:bag-constant-deconfined}deconfined phase}{
 
 \end{tikzpicture}
-}
-\subcaptionbox{\label{fig:mit:bag-constant-deconfined}deconfined phase}{
+%}
+%\subcaptionbox{\label{fig:mit:bag-constant-deconfined}deconfined phase}{
 \centering
 \tikzsetnextfilename{bag-constant-deconfined}
 \begin{tikzpicture}
+\clip (-3, -3) rectangle (+3, +3);
 \draw [draw=black, fill=gray] (-3, -3) rectangle (+3, +3);
-\pgfmathsetseed{93209302}
-\node at (90:2.5) {deconfined vacuum};
+\draw [draw=black, fill=white] (0, 0) circle (3.6);
+\draw [draw=black, opacity=0.3, loosely dashed] (+6, 0) circle (3.6);
+\draw [draw=black, opacity=0.3, loosely dashed] (-6, 0) circle (3.6);
+\draw [draw=black, opacity=0.3, loosely dashed] (0, +6) circle (3.6);
+\draw [draw=black, opacity=0.3, loosely dashed] (0, -6) circle (3.6);
+%\pgfmathsetseed{93209302}
+\pgfmathsetseed{93209303}
+%\node at (90:2.5) {deconfined vacuum};
+\node [anchor=south] at (0, -2.7) {$P \rightarrow \infty$};
+\node at (90:2.5) [text width=5cm] {\phantomsubcaption\subcaption{\label{fig:mit:bag-constant-deconfined}deconfined phase}};
 \fillrandomly{-2.6}{-2.6}{5.2}{4.5}{0.40}{80}
 \end{tikzpicture}
-}
+%}
 \caption{\label{fig:mit:bag_constant}%
+	The bag constant $B$ allows for negative pressure and is often interpreted as a confinement mechanism.
+	A negative internal pressure is equivalent to a positive external pressure
+	that effectively traps quarks in a hadron-resembling \emph{bag} or \emph{balloon}
+	in the confined phase \subref{fig:mit:bag-constant-confined}.
+	At large positive pressure, the balloon inflates and merges with adjacent balloons,
+	effectively bursting as the quarks escape to take part in the deconfined quark matter phase \subref{fig:mit:bag-constant-deconfined}.
+	\iffalse
 	The bag constant $B$ can be interpreted as the pressure difference between two deconfined and confined vacuum phases.
 	In the confined phase \subref{fig:mit:bag-constant-confined},
-	the surrounding quark-forbidden deconfined medium may pressurize hadronic ``bags''
+	a surrounding quark-forbidden deconfined medium may pressurize hadronic ``bags''
 	inside which quarks are trapped and stabilize the bag by exerting a counteracting kinetic pressure.
+	For large internal pressures, the bag 
 	In the deconfined phase \subref{fig:mit:bag-constant-deconfined} there is no bag pressure,
 	so the bags open up and the quarks break free into deconfined quark matter.
-	\TODO{reinterpret: $P < 0$, $P=0$, $P > 0$, balloon burst}
+	\fi
 }
 \end{figure}
 
+As illustrated in \cref{fig:mit:bag_constant},
+a positive vacuum constant $B$ creates a negative pressure $P = -B$ in the vacuum.
+This is commonly interpreted as an external pressure or mechanism that \emph{confines} quarks to \emph{bags} or \emph{balloons} that resemble hadrons,
+so $B$ is often called the \textbf{bag constant}%
+%\footnote{Interpreting the effects of the bag constant $B$ as a balloon, it could certainly be called the \emph{balloonstant}!}%
+.
+With rising density, the quarks in the bag exert a counteracting outwards pressure that stabilizes the hadron at $P=0$,
+like a balloon that has reached equilibrium with its surroundings.
+With large positive pressures $P \rightarrow \infty$, the balloon inflates and merges with nearby balloons,
+effectively bursting as the quarks escape to take part in a phase of deconfined quark matter.
 
-A positive vacuum constant $B$ creates a negative pressure $P = -B$ in vacuum.
+\iffalse
+A positive vacuum constant $B$ creates a negative pressure $P = -B$ in the vacuum.
 In a sense, it can therefore be interpreted as a mechanism that \emph{confines} the quarks to ``bags'' that resemble hadrons.
 Due to this common physical interpretation, $B$ is often called the \textbf{bag constant}.
 The quarks in the bag exert an outwards kinetic pressure that counteracts the external bag pressure and stabilizes the hadron.
 %From inside the bag, the quarks exert an outwards kinetic pressure that counteracts the external bag pressure and stabilizes the hadron.
 The bag constant can therefore be interpreted as the pressure difference between two phases of confined and deconfined vacuum,
 as illustrated in \cref{fig:mit:bag_constant}.
+\fi
 
-As an analogy, imagine a swimming pool full of water representing the deconfined phase.
+As another analogy, imagine a swimming pool full of water representing the gray quark-forbidden medium.
 It would cost an amount $BV$ of energy to expel water from a volume $V$ and create a confined vacuum in the pool,
 and a plastic bag enclosing this volume would have to generate some internal pressure to survive against the pressure from the surrounding water.
 
 Despite the common interpretation of $B$ as a confinement mechanism,
 it is very important to note that the quark stars we will model 
 will be integrated from a positive central pressure to a vanishing pressure at the surface,
-and therefore have \emph{non-negative pressure} everywhere and only contain \emph{deconfined} quark matter.
+and therefore have \emph{non-negative pressure} everywhere and more or less only contain \emph{deconfined} quark matter.
 As explained in \cref{sec:master_intro:tov}, the integration of the Tolman-Oppenheimer-Volkoff equation stops when it reaches the surface defined by $P=0$,
 so the confinement-interpretable part of the equation of state with negative pressure that arises due to the shift \eqref{eq:mit:bag_shift} is \emph{unused} in a quark star!
-We should therefore not take the confinement interpretation too literally in our case,
-but $B$ nevertheless affects the equation of state even in the deconfined regime,
-and it is perhaps better to think of it only as a phenomenological parameter that we can vary to adjust the normalization of the grand potential
+We should therefore not take the confinement interpretation too literally in our case.
+Nevertheless, the bag shift \eqref{eq:mit:bag_shift} affects the equation of state even in the deconfined regime,
+so it is perhaps better to think of $B$ only as a phenomenological parameter that we can vary to adjust the normalization of the grand potential
 and -- as we will see shortly -- a parameter that determines 
 the stability of quark matter compared to hadronic matter.
 
