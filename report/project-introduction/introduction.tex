@@ -243,14 +243,14 @@ In this thesis, we first develop the fundamental theoretical tools that are nece
 
 In \textbf{\cref{chap:intro}}, you already know that we have presented the life cycle of stars and the history of the proposition and discovery of neutron stars.
 
-In \textbf{\cref{chap:tov}}, we derive the \textbf{Tolman-Oppenheimer-Volkoff system of equations}
+In \textbf{\cref{chap:tov}}, we derive the \textbf{Tolman-Oppenheimer-Volkoff equation}
 \begin{align*}
 	\odv{P}{r} &= -\frac{G m \epsilon}{r^2 c^2} \left( 1 + \frac{P}{\epsilon} \right) \left( 1 + \frac{4 \pi r^3 P}{m c^2} \right) \left( 1 - \frac{2 G m}{r c^2} \right)^{-1} , \\
 	\odv{m}{r} &= \frac{4 \pi r^2 \epsilon}{c^2} ,
 	%\odv{\alpha}{r} &= -\frac{1}{\epsilon(P)+P} \odv{P}{r} ,
 \end{align*}
 from the Einstein field equations of general relativity.
-This is a system of two differential equations for the unknown pressure $P(r)$, mass $m(r)$ and energy density $\epsilon(r)$ at radius $r$ from the center of a star composed of a \emph{perfect fluid} in \emph{equilibrium}.
+It is a system of two differential equations for the unknown pressure $P(r)$, mass $m(r)$ and energy density $\epsilon(r)$ at radius $r$ from the center of a star composed of a \emph{perfect fluid} in \emph{equilibrium}.
 An additional equation of state $\epsilon = \epsilon(P)$ that allows computation of the energy density corresponding to a given pressure is needed to solve the system.
 This is outside the scope of general relativity and belongs to the field of quantum theory and statistical mechanics.
 Given the equation of state, however, one may impose the boundary condition $m(0) = 0$ and any central pressure $P(0) = P_c$ and solve the system for the pressure profile $P(r)$ and mass profile $m(r)$ in the star.
@@ -296,4 +296,4 @@ In \textbf{\cref{chap:integrals}}, we give concise derivations of all \textbf{in
 Whenever we encounter difficult integrals in the main text, we will always write the result directly and refer back to this appendix for readers who wish to investigate them in more detail.
 
 In \textbf{\cref{chap:code}}, we describe implementations of \textbf{numerical methods and algorithms}.
-Here, we present dimensionless forms of the Tolman-Oppenheimer-Volkoff equations from \cref{chap:tov} and the equations of stellar instability in \cref{chap:nstars}, and solve them with Runge-Kutta methods and the shooting method, respectively.
+Here, we present dimensionless forms of the Tolman-Oppenheimer-Volkoff equation from \cref{chap:tov} and the equations of stellar instability in \cref{chap:nstars}, and solve them with Runge-Kutta methods and the shooting method, respectively.
