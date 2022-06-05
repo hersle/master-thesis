@@ -62,10 +62,11 @@ The quark fields behave as in the MIT bag model Lagrangian \eqref{eq:mit:lagrang
 However, they are now seemingly massless and coupled to a $\sigma$ meson and three pions $\vec\pi = [\pi^+, \pi^-, \pi^0]^T$ with a Yukawa coupling $g$ and the Pauli matrices \eqref{eq:tft:pauli_matrices}.
 The meson potential features three couplings $m^2<0$, $\lambda>0$ and $h>0$.
 
-Like quantum chromodynamics, the quark-meson model Lagrangian \eqref{eq:lsm:lagrangian} has a vector $U(1)_V$ and an axial $U(1)_A$ symmetry shown in \cref{sec:master_intro:qcd}.
-In contrast to the mass-\emph{conditional} chiral symmetry of quantum chromodynamics, however,
-the Lagrangian \eqref{eq:lsm:lagrangian} is \emph{unconditionally} invariant under a $SU(2)_L \times SU(2)_R$ transformation when $h=0$ and $\mu = 0$.
-To see this, first express the Yukawa coupling with left-handed and right-handed chiral fields $q_\pm = P_\pm q$:
+\pagebreak
+Like quantum chromodynamics, the quark-meson model Lagrangian \eqref{eq:lsm:lagrangian} has the vector $U(1)_V$ and the axial $U(1)_A$ symmetry shown in \cref{sec:master_intro:qcd}.
+But how does the quark-meson model give rise to the chiral symmetry breaking of quantum chromodynamics?
+
+First, express the Yukawa coupling with right-handed and left-handed chiral fields $q_\pm = P_\pm q$:
 \begin{equation}
 \begin{aligned}
 	\bar{q} \big[\sigma + i \gamma^5 \vec{\tau} \cdot \vec{\pi}\big] q &= \bar{q} \big[ (P_+ + P_-) \sigma + (P_+ - P_-) i \vec{\tau} \cdot \vec{\pi}\big] q && \; \big( P_\pm = \tfrac{1}{2} (1 \pm \gamma^5) \big) \\
@@ -73,7 +74,7 @@ To see this, first express the Yukawa coupling with left-handed and right-handed
 	                                                           &= \bar{q} \big[ P_+ \phi + P_- \phi^\dagger\big] q && \; \big( \text{define } \phi=\sigma+i\vec{\tau}\cdot\vec{\pi} \big) \\
 	                                                           %&= \bar{q} \big[ P_+^2 \phi + P_-^2 \phi^\dagger\big] q && \; \big( \text{$P_\pm=P_\pm^2$ lives in spinor-space} \big) \\
 	                                                           &= \bar{q} \big[ P_+ \phi + P_- \phi^\dagger\big] \big[ P_+ + P_- \big] q && \; \big( P_+ + P_- = 1 \big) \\
-	                                                           &= \bar{q} \big[ P_+ \phi P_+ + P_- \phi^\dagger P_-\big] q && \; \big( \text{$P_\pm q = q_\pm$, $P_\pm P_\mp = 0$} \big)\\
+	                                                           &= \bar{q} \big[ P_+ \phi P_+ + P_- \phi^\dagger P_-\big] q && \; \big( \text{$P_\pm P_\mp = 0$} \big)\\
 	                                                           &= \bar{q}_- \phi \, q_+ + \bar{q}_+ \phi^\dagger q_- && \; \big( \text{$P_\pm q = q_\pm$, $\bar{q} P_\pm = \bar{q}_\mp$} \big).\\
 \end{aligned}
 \label{eq:lsm:yukawa_symmetry}
@@ -84,7 +85,6 @@ Second, note that the meson potential \eqref{eq:lsm:potential} with $h=0$ only d
 \label{eq:lsm:meson_symmetry}
 \end{equation}
 Under the $SU(2)_L \times SU(2)_R$ transformation 
-\TODO{mass-conditionalness bullshit?}
 \begin{equation}
 	%q_+ \rightarrow U_+ q_+, \qquad
 	%q_- \rightarrow U_- q_-
@@ -95,18 +95,16 @@ Under the $SU(2)_L \times SU(2)_R$ transformation
 \end{equation}
 the Yukawa interaction \eqref{eq:lsm:yukawa_symmetry},
 the meson potential argument \eqref{eq:lsm:meson_symmetry}
-and hence the Lagrangian \eqref{eq:lsm:lagrangian} are invariant.
-This proves the claimed unconditional $SU(2)_L \times SU(2)_R$ symmetry when $h=0$ and $\mu=0$.
+and hence the Lagrangian \eqref{eq:lsm:lagrangian} are invariant when $U_-=U_+$,
+similarly to quantum chromodynamics.
+This shows that in the absence of the parameter $h$,
+the quark-meson model has $SU(2)_L \times SU(2)_R$ symmetry in the vacuum.
+
 Since the group $SU(2)_L \times SU(2)_R$ is isomorphic to $O(4)$,
 the symmetry can equivalently be understood by considering the meson fields as a four-vector $[\sigma, \vec{\pi}]^T$
-and noting that the meson potential \eqref{eq:lsm:potential} is invariant under rotation of this vector in four-space.
+and noting that the meson potential \eqref{eq:lsm:potential} with $h=0$ is invariant under rotation of this vector in four-space.
 
-What can be the relevance of this unconditional symmetry,
-when it was precisely the \emph{breaking} of it that led to the chiral symmetry breaking \eqref{eq:qcd:symmetry_breaking_pattern} of quantum chromodynamics in \cref{sec:master_intro:qcd}?
-The short answer is that at the end of the day,
-the different mathematical symmetries give rise to the \emph{same} physical consequences.
-The longer answer follows below.
-
+Is this symmetry also spontaneously broken in the vacuum, like in quantum chromodynamics?
 In the vacuum, the fermions do not contribute to the grand potential,
 and the ground state values $\sigma = \avg{\sigma}$ and $\vec{\pi} = \avg{\vec{\pi}}$
 are given by minima of the meson potential $\pot(\avg{\sigma},\avg{\vec{\pi}})$ illustrated in \cref{fig:lsm:potential}.
@@ -122,7 +120,7 @@ we see that they are given by
 	\pdv{\pot}{\sigma} = \avg{\sigma} \Big[ m^2 + \frac{\lambda}{6} \big(\avg{\sigma}^2 + \avg{\vec{\pi}}^2\big) \Big] - h = 0.
 \label{eq:lsm:ground_state_implicit}
 \end{equation}
-The qualitative nature of the solutions depend on whether $h$ vanishes:
+The qualitative nature of the solutions depends on whether $h$ vanishes:
 \begin{itemize}
 \item In the \textbf{chiral limit} $h=0$,
       the ground state solutions are a degenerate range of minima along the circle $\avg{\sigma}^2+\avg{\vec{\pi}}^2=-6m^2/\lambda$,
@@ -131,7 +129,7 @@ The qualitative nature of the solutions depend on whether $h$ vanishes:
 \item At the \textbf{physical point} $h \neq 0$,
       the ground state of the potential is a unique global minimum at $\avg{\sigma} \neq 0$ and $\avg{\vec{\pi}}=0$ determined implicitly by equation \eqref{eq:lsm:ground_state_implicit}.
 \end{itemize}
-Note how the oppositely signed parameters $m^2<0$ and $\lambda > 0$ are needed for the minimum $\avg{\sigma} \neq 0$ to exist,
+Note how the oppositely signed parameters $m^2<0$ and $\lambda > 0$ are needed for the minimum $\avg{\sigma} = \sqrt{-6m^2/\lambda} \neq 0$ to exist,
 and that $\avg{\vec{\pi}} = 0$ in both cases.
 To account for quantum fluctuations $\tilde{\sigma}$ and $\tilde{\vec{\pi}}$ of $\sigma$ and $\vec{\pi}$ around the ground states $\avg{\sigma}$ and $\avg{\vec{\pi}}$,
 let us write
@@ -143,10 +141,10 @@ let us write
 Up to second order in the quantum fluctuations,
 the Lagrangian \eqref{eq:lsm:lagrangian} becomes
 \begin{equation}
-	\lagr \taylor \sum_{f=1}^{\smash{N_f}} \sum_{c=1}^{N_c} \bar{q} \Big[ i \slashed\partial + \mu \gamma^0 - m_q \Big] q
+	\lagr \taylor \smashoperator{\sum_{f=1}^{\smash{N_f}}} \smashoperator{\sum_{c=1}^{N_c}} \bar{q} \Big[ i \slashed\partial + \mu \gamma^0 - m_q \Big] q
 	      +       \frac12 \Big[ \big( \partial_\mu \tilde{\sigma} \big) \big( \partial^\mu \tilde{\sigma} \big) + \big( \partial_\mu \tilde{\vec\pi} \big) \big( \partial^\mu \tilde{\vec\pi} \big) \Big] - \pot(\sigma,\vec\pi) , %\pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) ,
 \end{equation}
-where the meson potential \eqref{eq:lsm:potential} to second order is
+where the meson potential \eqref{eq:lsm:potential} to the same order is
 \begin{equation}
 	\pot(\sigma,\vec\pi) = \pot(\avg{\sigma},\avg{\vec\pi}) + h \tilde{\sigma} + \frac12 m_\sigma^2 \tilde{\sigma}^2 + \frac12 m_\pi^2 \tilde{\pi}^2.
 \end{equation}
@@ -159,9 +157,8 @@ Here the quark and meson fields have acquired the effective masses
 \end{align}%
 \label{eq:lsm:mass_sigmapi}%
 \end{subequations}%
-
 Note that the up and down quarks share the degenerate mass $m_u = m_d = m_q$.
-In nature, isospin symmetry is seemingly only slightly broken, and the up and down quark masses are indeed almost equal.
+In nature isospin symmetry is only slightly broken, and the up and down quark masses are indeed almost equal.
 The meson masses $m_\sigma$ and $m_\pi$ are called \emph{curvature masses}
 due to their relation with the second derivative of the potential.
 They coincide with the physical pole masses of the particles' propagators
@@ -182,7 +179,7 @@ The qualitative nature of the pions depends on whether $h$ vanishes:
       Correspondingly, the pions are pseudo-Goldstone bosons with small masses \eqref{eq:lsm:mass_pi}.
 \end{itemize}
 \label{elaborate on mexican hat analogy, brim, tip/tilt, etc.}
-Unlike the resulting pions, the $\sigma$ particle is the \emph{cause} of the symmetry breaking,
+Unlike the resulting massless pions, the $\sigma$ particle is the \emph{cause} of the symmetry breaking,
 and there is no reason for its mass \eqref{eq:lsm:mass_sigma} to vanish.
 Speaking brutally to get our point across, the $\sigma$ meson is merely a means to an end
 to generate the chiral symmetry breaking and the pions,
@@ -193,12 +190,12 @@ To summarize: although the linear sigma model symmetry breaking pattern
 	SU(2) \times SU(2) \simeq O(4) \qquad \longrightarrow \qquad O(3)
 \end{equation}
 is \emph{different} from the quantum chromodynamics symmetry breaking pattern \eqref{eq:qcd:symmetry_breaking_pattern} ``under the hood'',
-it gives rise to exactly the \emph{same} pion degrees of freedom ``on the outside''.
-Practically speaking, the two different symmetry breaking patterns are equivalent and indistinguishable.
+they qualitatively give rise to the \emph{same} spontaneous chiral symmetry breaking and pion degrees of freedom ``on the outside''.
+Practically speaking, the patterns are indistinguishable and equivalent.
 According to Weinberg's philosophy presented in \cref{sec:master_intro:qcd},
-the quark-meson model is then an appropriate effective model of quantum chromodynamics at low energy.
-The parameter $h \neq 0$ only serves to explicitly break the exact symmetry into an approximate one,
-just like the quark masses explicitly break the chiral symmetry of quantum chromodynamics.
+the quark-meson model is thus an appropriate effective model of quantum chromodynamics at low energy.
+The explicit symmetry breaker $h \neq 0$ only turns the exact symmetry into an approximate one,
+just like the different quark masses explicitly break the chiral symmetry of quantum chromodynamics.
 This is the physical justification of the quark-meson model.
 
 \section{Grand potential}
