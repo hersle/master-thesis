@@ -2,7 +2,7 @@
 \label{chap:lsm2f}
 
 At low energy the effective degrees of freedom of quantum chromodynamics are not individual quarks,
-but nucleons composed of up and down quarks and the three pions that we saw arose from the spontaneous chiral symmetry breaking pattern \eqref{eq:qcd:symmetry_breaking_pattern}.
+but baryons composed of up and down quarks and the three pions that we saw arose from the spontaneous chiral symmetry breaking pattern \eqref{eq:qcd:symmetry_breaking_pattern}.
 The MIT bag model that we discussed in \cref{chap:mit} modeled quark stars as a deconfined Fermi gas of quarks with a bag constant $B$.
 We will now crank up the difficulty and investigate the \textbf{linear sigma model}, which also takes chiral symmetry breaking and the pions into account by introducing an ``ad--hoc'' $\sigma$ particle.
 The linear sigma model was originally introduced by \cite{ref:lsm_original} as an effective model for nucleons interacting with pions and scalar mesons,
@@ -11,9 +11,9 @@ but the fermions have since been interpreted as quarks in what is commonly refer
 Quark stars consisting only of two-flavor quark matter are unlikely to be found in nature,
 as two-flavor quark matter is observed to be unstable compared to hadronic matter.
 Nevertheless, they are a natural stepping stone for modeling possibly stable strange quark stars
-and dense hybrid neutron stars whose core could be made up of two-flavor quark matter.
+and dense hybrid neutron stars whose core could contain two-flavor quark matter.
 
-The physical justification for this effective model of quantum chromodynamics is best made retrospectively after seeing exactly how it gives rise to chiral symmetry breaking.
+The physical justification for this effective model of quantum chromodynamics is best made retrospectively after seeing how it gives rise to chiral symmetry breaking.
 We will therefore take the model as granted from the start and try to justify it as we go along.
 
 \textit{This chapter is inspired by references \cite{ref:lsm_2f}, \cite{ref:lsm_notes} and \cite{ref:jo_lsm_consistent_physical}.}
@@ -38,9 +38,9 @@ We will therefore take the model as granted from the start and try to justify it
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:potential}%
-	A two-dimensional realization of the potential \eqref{eq:lsm:potential} looks like a Mexican hat, tilted along the $\sigma$-axis by the explicit symmetry breaking parameter $h$.
-	If $h = 0$, the hat is upright with a continuous range of minima around $\sigma^2 + \vec\pi^2 = -6m^2 / \lambda$;
-	while if $h \neq 0$, the hat is tilted and has a unique global minimum determined by equation \eqref{eq:lsm:ground_state_implicit}.
+	A two-dimensional realization of the meson potential \eqref{eq:lsm:potential} with $m^2<0$, $\lambda>0$ and $h \geq 0$ looks like a Mexican hat, tilted along the $\sigma$-axis by the explicit symmetry breaking parameter $h$.
+	If $h = 0$, the hat is upright with a continuous range of minima around the brim $\sigma^2 + \vec\pi^2 = -6m^2 / \lambda$;
+	while if $h \neq 0$, the hat is respectfully tipped towards a unique global minimum determined by equation \eqref{eq:lsm:ground_state_implicit}.
 }
 \end{figure}
 
@@ -63,17 +63,18 @@ However, they are now seemingly massless and coupled to a $\sigma$ meson and thr
 The meson potential features three couplings $m^2<0$, $\lambda>0$ and $h>0$.
 
 Like quantum chromodynamics, the quark-meson model Lagrangian \eqref{eq:lsm:lagrangian} has a vector $U(1)_V$ and an axial $U(1)_A$ symmetry shown in \cref{sec:master_intro:qcd}.
-In contrast to the mass-conditional chiral symmetry of quantum chromodynamics, however,
+In contrast to the mass-\emph{conditional} chiral symmetry of quantum chromodynamics, however,
 the Lagrangian \eqref{eq:lsm:lagrangian} is \emph{unconditionally} invariant under a $SU(2)_L \times SU(2)_R$ transformation when $h=0$ and $\mu = 0$.
-To see this, first express the Yukawa coupling term with left-handed and right-handed chiral fields $q_\pm = P_\pm q$:
+To see this, first express the Yukawa coupling with left-handed and right-handed chiral fields $q_\pm = P_\pm q$:
 \begin{equation}
 \begin{aligned}
 	\bar{q} \big[\sigma + i \gamma^5 \vec{\tau} \cdot \vec{\pi}\big] q &= \bar{q} \big[ (P_+ + P_-) \sigma + (P_+ - P_-) i \vec{\tau} \cdot \vec{\pi}\big] q && \; \big( P_\pm = \tfrac{1}{2} (1 \pm \gamma^5) \big) \\
 	                                                           %&= \bar{q} \big[ P_+ (\sigma + i \vec{\tau} \cdot \vec{\pi}) + P_- (\sigma - i \vec{\tau} \cdot \vec{\pi}) \big] q && \; \big( \text{distributivity} \big)\\
 	                                                           &= \bar{q} \big[ P_+ \phi + P_- \phi^\dagger\big] q && \; \big( \text{define } \phi=\sigma+i\vec{\tau}\cdot\vec{\pi} \big) \\
-	                                                           &= \bar{q} \big[ P_+^2 \phi + P_-^2 \phi^\dagger\big] q && \; \big( \text{$P_\pm=P_\pm^2$ lives in spinor-space} \big) \\
-	                                                           &= \bar{q} \big[ P_+ \phi P_+ + P_- \phi^\dagger P_-\big] q && \; \big( \text{$\phi$ lives in flavor-space} \big)\\
-	                                                           &= \bar{q}_- \phi \, q_+ + \bar{q}_+ \phi^\dagger q_- && \; \big( \text{$P_\pm q = q_\pm$, $\bar{q} P_\pm = (P_\mp q)^\dagger \gamma^0 = \bar{q}_\mp$} \big).\\
+	                                                           %&= \bar{q} \big[ P_+^2 \phi + P_-^2 \phi^\dagger\big] q && \; \big( \text{$P_\pm=P_\pm^2$ lives in spinor-space} \big) \\
+	                                                           &= \bar{q} \big[ P_+ \phi + P_- \phi^\dagger\big] \big[ P_+ + P_- \big] q && \; \big( P_+ + P_- = 1 \big) \\
+	                                                           &= \bar{q} \big[ P_+ \phi P_+ + P_- \phi^\dagger P_-\big] q && \; \big( \text{$P_\pm q = q_\pm$, $P_\pm P_\mp = 0$} \big)\\
+	                                                           &= \bar{q}_- \phi \, q_+ + \bar{q}_+ \phi^\dagger q_- && \; \big( \text{$P_\pm q = q_\pm$, $\bar{q} P_\pm = \bar{q}_\mp$} \big).\\
 \end{aligned}
 \label{eq:lsm:yukawa_symmetry}
 \end{equation}
@@ -83,9 +84,11 @@ Second, note that the meson potential \eqref{eq:lsm:potential} with $h=0$ only d
 \label{eq:lsm:meson_symmetry}
 \end{equation}
 Under the $SU(2)_L \times SU(2)_R$ transformation 
+\TODO{mass-conditionalness bullshit?}
 \begin{equation}
-	q_+ \rightarrow U_+ q_+, \qquad
-	q_- \rightarrow U_- q_-
+	%q_+ \rightarrow U_+ q_+, \qquad
+	%q_- \rightarrow U_- q_-
+	q_\pm \rightarrow U_\pm q_\pm
 	\qquad \text{and} \qquad
 	\phi   \rightarrow U_- \phi U_+^\dagger,
 \label{eq:lsm:symmetry_transformation}
@@ -128,7 +131,8 @@ The qualitative nature of the solutions depend on whether $h$ vanishes:
 \item At the \textbf{physical point} $h \neq 0$,
       the ground state of the potential is a unique global minimum at $\avg{\sigma} \neq 0$ and $\avg{\vec{\pi}}=0$ determined implicitly by equation \eqref{eq:lsm:ground_state_implicit}.
 \end{itemize}
-Note that $\avg{\vec{\pi}} = 0$ in both cases.
+Note how the oppositely signed parameters $m^2<0$ and $\lambda > 0$ are needed for the minimum $\avg{\sigma} \neq 0$ to exist,
+and that $\avg{\vec{\pi}} = 0$ in both cases.
 To account for quantum fluctuations $\tilde{\sigma}$ and $\tilde{\vec{\pi}}$ of $\sigma$ and $\vec{\pi}$ around the ground states $\avg{\sigma}$ and $\avg{\vec{\pi}}$,
 let us write
 \begin{equation}
@@ -139,46 +143,50 @@ let us write
 Up to second order in the quantum fluctuations,
 the Lagrangian \eqref{eq:lsm:lagrangian} becomes
 \begin{equation}
-	\lagr = \sum_{f=1}^{\smash{N_f}} \sum_{c=1}^{N_c} \bar{q} \Big[ i \slashed\partial + \mu \gamma^0 - m_q \Big] q
-	      + \frac12 \Big[ \big( \partial_\mu \tilde{\sigma} \big) \big( \partial^\mu \tilde{\sigma} \big) + \big( \partial_\mu \tilde{\vec\pi} \big) \big( \partial^\mu \tilde{\vec\pi} \big) \Big] - \pot(\sigma,\vec\pi) , %\pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) ,
+	\lagr \taylor \sum_{f=1}^{\smash{N_f}} \sum_{c=1}^{N_c} \bar{q} \Big[ i \slashed\partial + \mu \gamma^0 - m_q \Big] q
+	      +       \frac12 \Big[ \big( \partial_\mu \tilde{\sigma} \big) \big( \partial^\mu \tilde{\sigma} \big) + \big( \partial_\mu \tilde{\vec\pi} \big) \big( \partial^\mu \tilde{\vec\pi} \big) \Big] - \pot(\sigma,\vec\pi) , %\pot(\avg{\sigma}+\tilde{\sigma},\avg{\vec\pi}+\tilde{\vec\pi}) ,
 \end{equation}
-with the second-order meson potential \eqref{eq:lsm:potential}
+where the meson potential \eqref{eq:lsm:potential} to second order is
 \begin{equation}
-	\pot(\sigma,\vec\pi) = \pot(\avg{\sigma},\avg{\vec\pi}) + h \tilde{\sigma} + \frac12 m_\sigma^2 \tilde{\sigma}^2 + \frac12 m_\pi^2 \tilde{\pi}^2,
+	\pot(\sigma,\vec\pi) = \pot(\avg{\sigma},\avg{\vec\pi}) + h \tilde{\sigma} + \frac12 m_\sigma^2 \tilde{\sigma}^2 + \frac12 m_\pi^2 \tilde{\pi}^2.
 \end{equation}
-where the quark and meson fields have acquired the effective masses
+Here the quark and meson fields have acquired the effective masses
 \begin{subequations}
 \begin{align}
 	m_q &= g \avg{\sigma}, \label{eq:lsm:mass_quark} \\
-	m_\sigma^2 &= \pdv[2]{\pot}{\sigma}\iffalse_{\substack{\sigma=\avg{\sigma}\\\vec{\pi}=\avg{\vec{\pi}}}}\fi    = m^2 + \frac{\lambda}{2} \avg{\sigma}^2 \equalexplabove{\smash[t]{\text{ by \eqref{eq:lsm:ground_state_implicit}}}} \frac{3h}{\avg{\sigma}} - 2 m^2 , \label{eq:lsm:mass_sigma} \\
-	m_\pi^2    &= \pdv[2]{\pot}{\vec{\pi}}\iffalse_{\substack{\sigma=\avg{\sigma}\\\vec{\pi}=\avg{\vec{\pi}}}}\fi = m^2 + \frac{\lambda}{6} \avg{\sigma}^2 \equalexplbelow{\smash[b]{\text{ by \eqref{eq:lsm:ground_state_implicit}}}} \frac{h}{\avg{\sigma}} . \label{eq:lsm:mass_pi}
+	m_\sigma^2 &= \pdv[2]{\pot}{\sigma}\iffalse_{\substack{\sigma=\avg{\sigma}\\\vec{\pi}=\avg{\vec{\pi}}}}\fi    = m^2 + \frac{\lambda}{2} \avg{\sigma}^2 \equalexplabove{\smash[t]{\text{ by \eqref{eq:lsm:ground_state_implicit} with $\avg{\vec{\pi}}=0$}}} \frac{3h}{\avg{\sigma}} - 2 m^2 , \label{eq:lsm:mass_sigma} \\
+	m_\pi^2    &= \pdv[2]{\pot}{\vec{\pi}}\iffalse_{\substack{\sigma=\avg{\sigma}\\\vec{\pi}=\avg{\vec{\pi}}}}\fi = m^2 + \frac{\lambda}{6} \avg{\sigma}^2 \equalexplbelow{\smash[b]{\text{ by \eqref{eq:lsm:ground_state_implicit} with $\avg{\vec{\pi}}=0$}}} \frac{h}{\avg{\sigma}} . \label{eq:lsm:mass_pi}
 \end{align}%
 \label{eq:lsm:mass_sigmapi}%
 \end{subequations}%
 
-Note that the up and down quarks have a degenerate mass $m_u = m_d = m_q$.
+Note that the up and down quarks share the degenerate mass $m_u = m_d = m_q$.
 In nature, isospin symmetry is seemingly only slightly broken, and the up and down quark masses are indeed almost equal.
-The (squared) meson masses $m_\sigma^2$ and $m_\pi^2$ are called (squared) \emph{curvature masses}
+The meson masses $m_\sigma$ and $m_\pi$ are called \emph{curvature masses}
 due to their relation with the second derivative of the potential.
 They coincide with the physical pole masses of the particles' propagators
 only at tree level, where loop effects are neglected.
 
 The qualitative nature of the pions depends on whether $h$ vanishes:
 \begin{itemize}
-\item In the \textbf{chiral limit} $h = 0$ the $SU(2)_L \times SU(2)_R$ symmetry \eqref{eq:lsm:symmetry_transformation} is exact,
-      and we saw above that there is a vacuum manifold of ground states.
-      Upon committing to the minimum above with $\avg{\sigma} \neq 0$ and $\avg{\vec{\pi}} = 0$, the $O(4)$ rotation symmetry of the four original meson fields $[\sigma,\vec\pi]^T$ is spontaneously broken
-      to rotation of only the three pion quantum fluctuations $\tilde{\vec\pi}$ in $O(3)$.
-      Accordingly, the pion mass \eqref{eq:lsm:mass_pi} vanishes and the three pions are indeed Goldstone bosons associated with spontaneous symmetry breaking.
-\item At the \textbf{physical point} $h \neq 0$, the $SU(2)_L \times SU(2)_R$ symmetry \eqref{eq:lsm:meson_symmetry} is explicitly broken,
+\item In the \textbf{chiral limit} $h = 0$,
+      the $SU(2)_L \times SU(2)_R$ symmetry under the transformation \eqref{eq:lsm:symmetry_transformation} is exact,
+      and we saw that there is a manifold of ground states.
+      Upon committing to the minimum $\avg{\sigma} = \sqrt{-6m^2/\lambda} \neq 0$ and $\avg{\vec{\pi}} = 0$,
+      the $O(4)$ rotation symmetry of the four original meson fields $[\sigma,\vec\pi]^T$ is spontaneously broken
+      to rotation of only the three pion quantum fluctuations $\vec{\pi} = \tilde{\vec\pi}$ in $O(3)$.
+      Correspondingly, the pions are Goldstone bosons with vanishing masses \eqref{eq:lsm:mass_pi} associated with spontaneous symmetry breaking.
+\item At the \textbf{physical point} $h \neq 0$,
+      the $SU(2)_L \times SU(2)_R$ symmetry under the transformation \eqref{eq:lsm:symmetry_transformation} is explicitly broken,
       and we saw above that there is a unique ground state.
-      Accordingly, the pions gain small masses \eqref{eq:lsm:mass_pi} and are pseudo-Goldstone bosons.
+      Correspondingly, the pions are pseudo-Goldstone bosons with small masses \eqref{eq:lsm:mass_pi}.
 \end{itemize}
 \label{elaborate on mexican hat analogy, brim, tip/tilt, etc.}
 Unlike the resulting pions, the $\sigma$ particle is the \emph{cause} of the symmetry breaking,
 and there is no reason for its mass \eqref{eq:lsm:mass_sigma} to vanish.
-Speaking brutally to make a point, the $\sigma$ meson is only a mere means to an end to generate the chiral symmetry breaking and three pions,
-which are our favorite spoiled children in this group of four meson siblings.
+Speaking brutally to get our point across, the $\sigma$ meson is merely a means to an end
+to generate the chiral symmetry breaking and the pions,
+which are our three favorite spoiled children in this group of four meson siblings.
 
 To summarize: although the linear sigma model symmetry breaking pattern
 \begin{equation}
@@ -186,10 +194,10 @@ To summarize: although the linear sigma model symmetry breaking pattern
 \end{equation}
 is \emph{different} from the quantum chromodynamics symmetry breaking pattern \eqref{eq:qcd:symmetry_breaking_pattern} ``under the hood'',
 it gives rise to exactly the \emph{same} pion degrees of freedom ``on the outside''.
-Practically speaking, the two different symmetry breaking patterns are therefore indistinguishable,
-and according to Weinberg's philosophy presented in \cref{sec:master_intro:qcd}
-the quark-meson model is an appropriate effective model of quantum chromodynamics at low energy.
-The parameter $h \neq 0$ only serves to explicitly break the symmetry into an approximate one,
+Practically speaking, the two different symmetry breaking patterns are equivalent and indistinguishable.
+According to Weinberg's philosophy presented in \cref{sec:master_intro:qcd},
+the quark-meson model is then an appropriate effective model of quantum chromodynamics at low energy.
+The parameter $h \neq 0$ only serves to explicitly break the exact symmetry into an approximate one,
 just like the quark masses explicitly break the chiral symmetry of quantum chromodynamics.
 This is the physical justification of the quark-meson model.
 
@@ -199,10 +207,11 @@ This is the physical justification of the quark-meson model.
 With our recently gained faith in the quark-meson model,
 we set out to calculate its grand potential \eqref{eq:master_intro:grand_potential}.
 With the quark fields $q$, the meson fields $\sigma$ and $\vec\pi$
-and the coupling of conserved currents $j^\mu = \bar{q} \gamma^\mu q$ to chemical potentials $\mu$ already baked into the Lagrangian \eqref{eq:lsm:lagrangian},
+and the coupling of conserved currents $j^\mu_f = \bar{q}_f \gamma^\mu q_f$ to chemical potentials $\mu$ already baked into the Lagrangian \eqref{eq:lsm:lagrangian},
 the partition function \eqref{eq:master_intro:partition_function} is
 \begin{equation}
 	Z = \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \oint_+ \pathintdif \sigma \oint_+ \pathintdif \vec\pi \exp \left\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \lagr_E[\bar{q}, q, \sigma, \vec\pi]  \right\} .
+\label{eq:lsm:partition_function_initial}
 \end{equation}
 To calculate it we will use the \textbf{mean-field approximation} for the bosonic fields,
 replacing them by their \emph{yet unknown} expectation values $\avg{\sigma}$ and $\avg{\vec\pi}$ in the classical ground state
@@ -218,16 +227,18 @@ their precise values are found \emph{self-consistently} with the original assump
 We call this the \textbf{self-consistency equation} for the mean fields.
 For example, the mean-field approximation is also famously used in the Bardeen-Cooper-Schrieffer theory of superconductivity to determine an energy gap.
 There it is called the \textbf{gap equation}, 
-and it can be useful to know that this name lives on as a relic in completely different applications, too.
+and many authors continue to use this name as a relic even in other applications, such as this model.
+%and it can be useful to know that this name lives on as a relic in completely different applications, too.
 
-In our treatment we will also neglect pion condensation and assume that $\avg{\vec\pi}=0$ \emph{always} vanishes,
-so that only $\avg{\sigma}$ needs to be determined.
+In our treatment we will also neglect pion condensation and assume that $\avg{\vec\pi}=0$ \emph{always} vanishes.
 As shown by \cite{ref:jo_lsm_pion_condensation,ref:jo_lsm_consistent}, for example,
 this is known to be true at $T=0$ when the isospin chemical potential \eqref{eq:master_intro:chemical_potentials_transformed} does not exceed half the pion mass.
 This assumption is subject to a self-consistency check later.
-In the bosonic mean-field approximation, the partition function of the Lagrangian \eqref{eq:lsm:lagrangian} reads
+It is then only $\avg{\sigma}$ that needs to be determined by the self-consistency equation \eqref{eq:lsm:gap_equation}.
+
+With bosonic mean fields, the partition function \eqref{eq:lsm:partition_function_initial} with the Lagrangian \eqref{eq:lsm:lagrangian} reads
 \begin{equation}
-	Z = \oint_- \pathintdif \bar{q} \oint_- \pathintdif q \exp \bigg\{ \int_0^{\beta} \dif \tau \! \int_V \dif^3 x \Big[ \bar{q} \big( i \slashed\partial - m_q + \mu_f \gamma^0 \big) q - \pot(\avg{\sigma},\vec{0}) \Big] \bigg\}.
+	Z = \oint_- \pathintdif \bar{q} \! \oint_- \pathintdif q \exp \bigg\{ \int_0^{\beta} \dif \tau \int_V \dif^3 x \Big[ \bar{q} \big( i \slashed\partial + \mu \gamma^0 - m_q \big) q - \pot(\avg{\sigma},\vec{0}) \Big] \bigg\}.
 \end{equation}
 The meson potential is independent of the fields and can be pulled out of the integrals,
 while the fermionic contribution decouples into a product of identical integrals.
@@ -236,13 +247,13 @@ We therefore have
 \begin{split}
 	%\log Z &= -\frac12 \beta V m^2 \avg{\sigma}^2 - \frac{\lambda}{4!} \beta V \avg{\sigma}^4 + \beta V h \avg{\sigma} \\
 	       %&+ \sum_{f=1}^{N_f} \sum_{c=1}^{N_c} \log \oint_- \pathintdif \bar{q}_f^c \oint_- \pathintdif q_f^c \exp \left\{ \int_0^\beta \dif \tau \int_V \dif^3 x \, \bar{q}_f^c (i \slashed\partial + \mu_f \gamma^0 - m_q) q_f^c \right\} .
-	\log Z = -\pot(\avg{\sigma},\vec{0}) + \sum_{f=1}^{\smash{N_f}} \sum_{c=1}^{N_c} \log \oint_- \!\! \pathintdif \bar{q}_{f,c} \oint_- \!\! \pathintdif q_{f,c} \exp \bigg\{ \! \int_0^\beta \! \dif \tau \int_V \! \dif^3 x \, \bar{q}_{f,c} \big(i \slashed\partial + \mu_f \gamma^0 - m_q\big) q_{f,c} \! \bigg\} .
+	\log Z = -\beta V \, \pot(\avg{\sigma},\vec{0}) + \sum_{f=1}^{\smash{N_f}} \sum_{c=1}^{N_c} \log \oint_- \!\!\! \pathintdif \bar{q}_{f,c} \! \oint_- \!\!\! \pathintdif q_{f,c} \exp \bigg\{ \! \int_0^\beta \!\!\! \dif \tau \! \int_V \!\!\! \dif^3 x \, \bar{q}_{f,c} \big(i \slashed\partial \!+\! \mu_f \gamma^0 \!-\! m_f \big) q_{f,c} \! \bigg\} .
 \end{split}
 \end{equation}
 We have already calculated the path integral in the last term
 from equation \eqref{eq:tft:dirac_partition_function_first} to equation \eqref{eq:tft:dirac_partition_function}.
-Here we get a factor $\sum_{c=1}^{N_c} = N_c$ from the color sum because the summand is independent of $c$,
-while the flavor sum $\sum_{f=1}^{\smash{N_f}}$ yields $N_f$ terms that differ only by the chemical potential $\mu_f$ associated with each quark flavor. 
+As $q_{f,c}$ is integrated over, the color sum gives an additional factor $\sum_{c=1}^{N_c} = N_c$ because its summand is independent of $c$,
+while the flavor sum $\sum_{f=1}^{\smash{N_f}}$ yields $N_f$ terms that differ only by the chemical potential $\mu_f$ associated with each flavor.
 Thus, the grand potential \eqref{eq:master_intro:grand_potential} is
 \begin{equation}
 \begin{split}
@@ -254,13 +265,13 @@ Thus, the grand potential \eqref{eq:master_intro:grand_potential} is
 \end{equation}
 with the dispersion relation $E(\vec{p}) = \sqrt{\smash[b]{p^2 + m_q^2}}$.
 We work in the zero-temperature approximation $T=0$ and choose positive chemical potentials,
-so the anti-particle contribution from the last term in curly brackets vanishes.
-The integral of the middle term in curly brackets was calculated in the zero-temperature pressure $P=-\Omega$ in equation \eqref{eq:nstars:pressure_zeroT}.
-This time we also include and renormalize the infinite vacuum contribution from the integral of the first term in curly brackets.
-It is called the \emph{Dirac sea}, and we renormalize it in the modified minimal subtraction scheme in \cref{chap:diracsea}.
-Reinstating $x_f = p_f / m_q = \sqrt{\smash[b]{\mu_f^2-m_q^2}} / m_q$ into expression \eqref{eq:nstars:pressure_zeroT}
-and including the renormalized Dirac sea \eqref{eq:diracsea:pole_expansion_modified},
-the divergent grand potential \eqref{eq:lsm:potential_divergent_logz0} becomes
+so the anti-particle contribution from the third term in $\{\ldots\}$ vanishes.
+The integral of the second term in $\{\ldots\}$ was calculated in the zero-temperature pressure $P=-\Omega$ in equation \eqref{eq:nstars:pressure_zeroT}.
+This time we also include and renormalize the infinite vacuum contribution from the integral of the first term in $\{\ldots\}$.
+It is called the \emph{Dirac sea}, and we renormalize it in the modified minimal subtraction scheme in \cref{chap:diracsea},
+arriving at expression \eqref{eq:diracsea:pole_expansion_modified}.
+We also reinstate $x_f = p_f / m_q = \sqrt{\smash[b]{\mu_f^2-m_q^2}} / m_q$ into expression \eqref{eq:nstars:pressure_zeroT}.
+Pulling all this together, the divergent grand potential \eqref{eq:lsm:potential_divergent_logz0} becomes
 \begin{equation}
 \begin{split}
 	\Omega &= \pot(\avg{\sigma},\vec{0}) + N_c N_f \frac{m_q^4}{16 \pi^2} \Bigg[ \textcolor{red}{\frac{1}{\epsilon}} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_q^2}\right) \Bigg] \\
@@ -303,80 +314,57 @@ and the pressure \eqref{eq:master_intro:pressure} and energy density \eqref{eq:m
 
 % equivalent remark is made in Folkestad/Andersen 2019 "Thermodynamics and phase diagram of Polykaov-loop extended chiral models"
 % ("one-loop large-N_c limit")
-It can be argued that treating bosons and fermions to zero and one loops is \emph{inconsistent}.
+On one side, it can be argued that treating bosons and fermions to zero and one loops is \emph{inconsistent}.
 However, note that the fermionic contribution to the grand potential \eqref{eq:lsm:grand_potential} is of order $\bigo(N_c^1)$,
-while any purely bosonic contribution would necessarily only be of order $\bigo(N_c^0)$.
-Hence, we can also make a case for our approach being \emph{consistent} in the large-$N_c$ limit.
-Strictly speaking, this only holds if the number of loops is simultaneously restricted to one;
-with two loops, for example, the $\bigo(N_c^1)$ Feynman diagram due to the $\bar{q} \sigma q$ Yukawa interaction should also be included.
-Although only $N_c = 3$ in nature,
-the large-$N_c$ approximation is in fact a common and well-studied approximation scheme of quantum chromodynamics.
-\cite{ref:large_Nc_review}.
+while any bosonic contribution with one loop would only be of order $\bigo(N_c^0)$.
+On the other side, then, we can argue that our approach is \emph{consistent} in the \textbf{one-loop large-$N_c$ limit}.
+The number of loops must be restricted to one, for with two loops, for example,
+the $\bigo(N_c^1)$ Feynman diagram due to the $\bar{q} \sigma q$ Yukawa interaction should also be included.
+Despite there only being $N_c=3$ colors in nature,
+we briefly mentioned the success of the large-$N_c$ approximation in \cref{sec:master_intro:qcd}.
+We will come back to this matter of consistency later.
 
 \section{Parameter fit at tree-level}
 \label{sec:lsm:parameter_fit}
 
-To determine the four paremeters $g$, $m^2$, $\lambda$ and $h$ in the Lagrangian \eqref{eq:lsm:lagrangian},
-we use measured values of the ground state $\avg{\sigma}=f_\pi$ and curvature masses $m_\sigma$, $m_\pi$ and $m_q$ in vacuum.
-Inverting equations \eqref{eq:lsm:ground_state_implicit} and \eqref{eq:lsm:mass_sigmapi}, we then find the parameters
+To determine the four paremeters $g$, $m^2$, $\lambda$ and $h$ in the grand potential \eqref{eq:lsm:grand_potential},
+we use measured values of $\avg{\sigma}$ and the curvature masses $ m_\sigma$, $m_\pi$ and $m_q$ in vacuum.
+Inverting equations \eqref{eq:lsm:ground_state_implicit} and \eqref{eq:lsm:mass_sigmapi},
+we can express the parameters entirely in terms of these variables as
 \begin{equation}
-	g       = \frac{m_q}{f_\pi}, \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
-	h       = m_\pi^2 f_\pi, \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_pi})} , \\
+	g       = \frac{m_q}{\avg{\sigma}}, \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
+	h       = m_\pi^2 \avg{\sigma}, \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_pi})} , \\
 	m^2     = \frac{3m_\pi^2 - m_\sigma^2}{2} \quad \text{and} \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_sigma})} , \\
-	\lambda = \frac{3 m_\sigma^2 - 3 m_\pi^2}{f_\pi^2} .    % &\qquad& \text{(by \eqref{eq:lsm:ground_state_implicit})} .
+	\lambda = \frac{3 m_\sigma^2 - 3 m_\pi^2}{\avg{\sigma}^2} .    % &\qquad& \text{(by \eqref{eq:lsm:ground_state_implicit})} .
 \label{eq:lsm:parameters}
 \end{equation}
-According to \cite{ref:pdg_review_2021}, in vacuum the mean field $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$ is the pion decay constant,
-$m_\pi = \SI{138}{\mega\electronvolt}$ is the average mass of the three pions
+According to \cite{ref:pdg_review_2021}, in vacuum the mean field is the pion decay constant $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$,
+the average mass of the three pions is $m_\pi = \SI{138}{\mega\electronvolt}$
 and the up and down quarks have almost equal masses $m_u \approx m_d \approx \SI{300}{\mega\electronvolt}$.
-All of these quantities have low uncertainty.
+All these quantities have low uncertainty.
 
-
-\begin{figure}
-\centering
-\tikzsetnextfilename{2-flavor-potential-vacuum}
-\begin{tikzpicture}
-\begin{axis}[
-	width = 15cm, height = 7cm,
-	xmin=-500, xmax=+500, xtick distance = 100, minor x tick num=9,
-	ymin=-11, ymax=+6, ytick distance=5, minor y tick num=4,
-	xlabel = {$m_q \, / \, \si{\mega\electronvolt}$ }, ylabel = {$\Omega \, / \, f_\pi^4$},
-	legend style = {at={(0.5,1.03)}, anchor=south}, legend columns=4,
-	cycle list/YlOrRd-6,
-]
-\pgfplotsset{cycle list shift=+2} % skip weakest line
-\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma500.dat}; \addlegendentry{$m_\sigma = \SI{500}{\mega\electronvolt}$};
-%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma550.dat}; \addlegendentry{$m_\sigma = \SI{550}{\mega\electronvolt}$};
-\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma600.dat}; \addlegendentry{$m_\sigma = \SI{600}{\mega\electronvolt}$};
-%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma650.dat}; \addlegendentry{$m_\sigma = \SI{650}{\mega\electronvolt}$};
-\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma700.dat}; \addlegendentry{$m_\sigma = \SI{700}{\mega\electronvolt}$};
-%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma750.dat}; \addlegendentry{$m_\sigma = \SI{750}{\mega\electronvolt}$};
-\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma800.dat}; \addlegendentry{$m_\sigma = \SI{800}{\mega\electronvolt}$};
-%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma850.dat}; \addlegendentry{$m_\sigma = \SI{850}{\mega\electronvolt}$};
-\end{axis}
-\end{tikzpicture}
-\caption{\label{fig:lsm:potential_sigma_mass}
-Two-flavor grand potential \eqref{eq:lsm:grand_potential} in vacuum with $\vec{\mu}=\vec{0}$ for different $m_\sigma$.}
-\end{figure}
 
 On the other hand, the mass $m_\sigma$ is very uncertain and hard to choose.
 Even in 2002, according to the $\sigma$ meson status update \cite{ref:sigma_meson_status},
 it was only known to lie in the huge uncertainty range $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{1200}{\mega\electronvolt}$.
 Today \cite{ref:pdg_review_2021} places it in the tighter range $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{550}{\mega\electronvolt}$.
 Ideally we would like to use a value within this range, but there are several problems.
-First, the vacuum potential $\pot(\avg{\sigma},\vec{0})$ plotted in \cref{fig:lsm:potential_sigma_mass} does not have a minimum and is therefore useless for $m_\sigma \lesssim \SI{500}{\mega\electronvolt}$,
+First, the vacuum potential $\pot(\avg{\sigma},\vec{0})$ plotted in \cref{fig:lsm:potential_sigma_mass} does not have a minimum and is therefore useless for $m_\sigma \leq \SI{500}{\mega\electronvolt}$,
 and the same happens with the three-flavor model in \cref{chap:lsm3f}.
-We therefore operate with the three values $m_\sigma = \{600,700,800\} \, \si{\mega\electronvolt}$ in the two models.
-The different values will illustrate qualitatively different behaviors of the chiral phase transition.
-This is the best we can do and must be regarded as a shortcoming of our model.
-Since the $\sigma$ particle was introduced in an ad-hoc manner and as a mere means to an end for the pions anyway,
-we argue that it is the most legitimate candidate for discrimination
-and that a discrepancy in this parameter is tolerable and that of least evil.
+We therefore operate with the three common values $m_\sigma = \{600,700,800\} \, \si{\mega\electronvolt}$ in both of the two models.
+%The different values will illustrate qualitatively different behaviors of the chiral phase transition.
+This is the best we can do and must be regarded as a shortcoming of the model.
+Since the $\sigma$ particle was introduced in an ad-hoc manner
+as a mere means to an end for the pions anyway,
+we argue that it is the most legitimate candidate for discrimination.
+%and that a discrepancy in this parameter is tolerable and that of least evil.
 
-\Cref{tab:lsm2f:parameters} summarizes the chosen input values for $\avg{\sigma}$, $m_\pi$, $m_\sigma$ and $m_q$ in vacuum and the corresponding output parameters $m^2$, $\lambda$, $g$ and $h$.
+\Cref{tab:lsm2f:parameters} summarizes the chosen input values for $\avg{\sigma}=f_\pi$, $m_\pi$, $m_\sigma$ and $m_q=m_u=m_d$ in vacuum
+and the corresponding output parameters $m^2$, $\lambda$, $g$ and $h$.
+\TODO{order $g, m^2, \lambda, h$}
 
-Note that the renormalization procedure also introduced an unknown parameter $\Lambda$.
-To determine it, we require that the minimum of the grand potential \eqref{eq:lsm:grand_potential} in vacuum with $\vec{\mu}=0$
+The renormalization procedure also introduced an undetermined renormalization scale $\Lambda$.
+To determine it, we require that the minimum of the grand potential \eqref{eq:lsm:grand_potential} in vacuum, where $\vec{\mu}=0$,
 remains at the minimum $\avg{\sigma} = f_\pi$ of the vacuum potential $\pot(\avg{\sigma},\vec{0})$.
 Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumption, we only need
 \begin{equation}
@@ -387,12 +375,13 @@ Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumpt
 \label{eq:lsm:potential_vacuum_minimum}
 \end{equation}
 
-\begin{table}[t]
+\begin{table}[b]
 \centering
 \caption{\label{tab:lsm2f:parameters}%
 The variables in the left table are used as input to determine the model parameters in the right table.
 Experimental values are taken from \cite{ref:pdg_review_2021}.
 Three different values are used for $m_\sigma$, generating three different values of both $\lambda$ and $m^2$.
+\TODO{table lines?}
 }
 \begin{tabular}{ l r r }
 	\toprule
@@ -420,12 +409,41 @@ Three different values are used for $m_\sigma$, generating three different value
 \end{tabular}
 \end{table}
 
-Also note that we have treated bosons to tree level and fit parameters to their curvature masses \eqref{eq:lsm:mass_sigmapi},
-but handled fermions to one loop. 
-This is also inconsistent, as the physical pole masses would really receive radiative loop corrections in this case.
-In \cref{sec:lsm2f:refinement} we will investigate the effects of fitting the parameters consistently at one loop level in the large-$N_c$-limit,
-and we will see that this also resolves the large discrepancy in the parameter $m_\sigma$.
+\begin{figure}
+\centering
+\tikzsetnextfilename{2-flavor-potential-vacuum}
+\begin{tikzpicture}
+\begin{axis}[
+	width = 15cm, height = 7cm,
+	xmin=-500, xmax=+500, xtick distance = 100, minor x tick num=9,
+	ymin=-11, ymax=+6, ytick distance=5, minor y tick num=4,
+	xlabel = {$m_q \, / \, \si{\mega\electronvolt}$ }, ylabel = {$\Omega \, / \, f_\pi^4$},
+	legend style = {at={(0.5,1.03)}, anchor=south}, legend columns=4,
+	cycle list/YlOrRd-6,
+]
+\pgfplotsset{cycle list shift=+2} % skip weakest line
+\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma500.dat}; \addlegendentry{$m_\sigma = \SI{500}{\mega\electronvolt}$};
+%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma550.dat}; \addlegendentry{$m_\sigma = \SI{550}{\mega\electronvolt}$};
+\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma600.dat}; \addlegendentry{$m_\sigma = \SI{600}{\mega\electronvolt}$};
+%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma650.dat}; \addlegendentry{$m_\sigma = \SI{650}{\mega\electronvolt}$};
+\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma700.dat}; \addlegendentry{$m_\sigma = \SI{700}{\mega\electronvolt}$};
+%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma750.dat}; \addlegendentry{$m_\sigma = \SI{750}{\mega\electronvolt}$};
+\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma800.dat}; \addlegendentry{$m_\sigma = \SI{800}{\mega\electronvolt}$};
+%\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma850.dat}; \addlegendentry{$m_\sigma = \SI{850}{\mega\electronvolt}$};
+\end{axis}
+\end{tikzpicture}
+\caption{\label{fig:lsm:potential_sigma_mass}
+Two-flavor grand potential \eqref{eq:lsm:grand_potential} in vacuum, where $\vec{\mu}=\vec{0}$, for different $m_\sigma$.}
+\end{figure}
 
+As mentioned at the end of \cref{sec:lsm:grand_potential},
+our calculation of the grand potential can only be viewed as fully consistent in the one-loop large-$N_c$ limit,
+so it is really inconsistent to fit parameters at tree-level using the curvature masses \eqref{eq:lsm:mass_sigmapi}.
+The physical pole masses would really receive radiative loop corrections.
+In \cref{sec:lsm2f:refinement} we will fit parameters consistently in the one-loop large-$N_c$ limit
+and see that this resolves the large discrepancy in $m_\sigma$.
+
+\pagebreak
 \section{Equation of state}
 
 Before finding the general charge neutral equation of state,
@@ -438,17 +456,19 @@ Although we defined $\Omega$ as a function of $\avg{\sigma}$, we will discuss th
 as it is easier to compare to the chemical potentials $\mu_f$.
 We see that:
 \begin{itemize}
-\item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$ the grand potential is independent of $\mu$,
+\item For $\mu < \SI{300}{\mega\electronvolt} = m_q(f_\pi)$,
+      the grand potential is independent of $\mu$,
       and we are in vacuum where only the first line of the grand potential \eqref{eq:lsm:grand_potential} contributes.
       By construction, the minimum lies at $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$.
       The feature that a \emph{range} of chemical potentials characterizes the vacuum is sometimes called the \emph{Silver Blaze property}.
-      Chiral symmetry is spontaneously broken in vacuum, as discussed in \cref{sec:lsm:vacuum}.
+      Chiral symmetry is spontaneously broken in vacuum, as demonstrated in \cref{sec:lsm:vacuum}.
 \item For $\SI{300}{\mega\electronvolt} \leq \mu \lesssim \SI{400}{\mega\electronvolt}$,
-      the quarks in the second line of the grand potential \eqref{eq:lsm:grand_potential} begin to contribute as we leave the vacuum state during the chiral transition.
-      For $m_\sigma = \SI{700}{\mega\electronvolt}$ the minimum jumps \emph{discontinuously}, corresponding to a \emph{first-order phase transition}.
-      On the other hand, for $m_\sigma = \SI{800}{\mega\electronvolt}$ its value changes considerably and quickly but still \emph{continuously},
-      and there is \emph{no phase transition} -- this behavior is referred to as a \emph{crossover}.
-\item For $\mu \gtrsim \SI{400}{\mega\electronvolt}$ the minimum approaches the ultra-relativistic limit $\avg{\sigma} \rightarrow 0$ asymptotically,
+      the quarks in the second line of the grand potential \eqref{eq:lsm:grand_potential} begin to contribute as we leave the vacuum during the chiral transition.
+      For $m_\sigma <    \SI{800}{\mega\electronvolt}$ the minimum jumps \emph{discontinuously}, corresponding to a \emph{first-order phase transition}.
+      For $m_\sigma \geq \SI{800}{\mega\electronvolt}$ its value changes fast and furiously but nevertheless \emph{continuously},
+      and there is \emph{no phase transition}, only what is referred to as a rapid \emph{crossover}.
+\item For $\mu \gtrsim \SI{400}{\mega\electronvolt}$,
+      the minimum approaches the \emph{ultra-relativistic} or \emph{massless} limit $\avg{\sigma} \rightarrow 0$ asymptotically,
       but never quite reaches it,
       as chiral symmetry is gradually restored.
 \end{itemize}
@@ -482,7 +502,7 @@ We see that:
 \nextgroupplot[
 	ylabel = {$\mu \, / \, \si{\mega\electronvolt}$},
 	%zlabel = {$\Omega(m_q, \mu) \, / \, (\SI{100}{\mega\electronvolt})^4$},
-	zlabel = {$\Omega(m_q, \mu)$},
+	zlabel = {$\Omega$},
 	title = {\subcaption{\label{fig:lsm:grand-potential-noisospin-sigma700}$m_\sigma=\SI{700}{\mega\electronvolt}$}},
 ];
 \addplot3 [surf, very thin, mesh/ordering=x varies, point meta={abs(\thisrow{Delta})}] table [x=Delta, y=mu, z=Omega] {../code/data/LSM2F/potential_noisospin_sigma_700.dat};
@@ -501,38 +521,40 @@ We see that:
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:grand-potential-noisospin}%
-	The grand potential \eqref{eq:lsm:grand_potential} with zero isospin, or $\mu_u = \mu_d = \mu$ and $\mu_e=0$, for $m_\sigma=\{700,800\} \, \si{\mega\electronvolt}$.
+	The grand potential \eqref{eq:lsm:grand_potential} to some arbitrary scale with zero isospin, or $\mu_u = \mu_d = \mu$ and $\mu_e=0$, for $m_\sigma=\{700,800\} \, \si{\mega\electronvolt}$.
 	The \textcolor{blue}{blue line} and its \textcolor{gray}{gray projection} show the minima $m_q = g \avg{\sigma}$ determined by the self-consistency equation \eqref{eq:lsm:gap_equation}.
 }
 \end{figure}
 
 Our objective, however, is to determine the equation of state $\epsilon(P)$
-when the chemical potentials are constrained by the conditions 
-of $\beta$-equilibrium \eqref{eq:lsm:chemical_equilibrium}
-and charge neutrality \eqref{eq:lsm:charge_neutrality}.
+when the chemical potentials are constrained by
+the charge neutrality condition \eqref{eq:lsm:charge_neutrality}
+in addition to the $\beta$-equilibrium condition \eqref{eq:lsm:chemical_equilibrium}.
 This means that we must not solve only the self-consistency equation \eqref{eq:lsm:gap_equation},
 but the \emph{system} of equations
 \begin{subequations}
 \begin{align}
 	0 &= \pdv{\Omega}{\avg{\sigma}} , \label{eq:lsm:minsys_min} \\
 	%0 &= +\frac23 n_u - \frac13 n_d - n_e , \label{eq:lsm:minsys_charge} \\
-	0 &= 2 \Big(\mu_u^2-m_q^2\Big)^\frac32 - \Big(\mu_d^2-m_q^2\Big)^\frac32 - \Big(\mu_e^2-m_e^2\Big)^\frac32 \label{eq:lsm:minsys_charge} \\
+	0 &= 2 \big(\mu_u^2-m_q^2\big)^\frac32 - \big(\mu_d^2-m_q^2\big)^\frac32 - \big(\mu_e^2-m_e^2\big)^\frac32 , \label{eq:lsm:minsys_charge} \\
 	\mu_d &= \mu_u + \mu_e .
 \end{align}%
 \label{eq:lsm:minsys}%
 \end{subequations}%
+
+\pagebreak
 This is a system of three equations for the four unknowns $\avg{\sigma}$, $\mu_u$, $\mu_d$ and $\mu_e$.
-Remember that $m_q = g \avg{\sigma}$.
+Do not forget that $m_q = g \avg{\sigma}$.
 We parametrize solutions with one free variable, 
-and calculate the densities \eqref{eq:lsm:particle_densities}, pressure \eqref{eq:master_intro:pressure}, energy density \eqref{eq:master_intro:energy_density}
+and calculate the pressure \eqref{eq:master_intro:pressure}, densities \eqref{eq:master_intro:densities}, energy density \eqref{eq:master_intro:energy_density}
 and the equation of state $\epsilon(P)$ like in \cref{chap:mit}.
 
 In particular, we now use $\avg{\sigma}$ as the free variable instead of $\mu$.
 As revealed by peeking ahead at the results in \cref{fig:lsm:2-flavor-eos-parametrization},
 the possible presence of a phase transition implies that
 one $\mu$ can correspond to multiple $\avg{\sigma}$,
-while all $\avg{\sigma}$ correspond to only one $\mu$ (outside vacuum).
-It is therefore only the parametrization with $\avg{\sigma}$ that can capture the multiple solutions.
+while all $\avg{\sigma}$ correspond to only one $\mu$ (except in the vacuum).
+It is therefore only the parametrization with $\avg{\sigma}$ that captures the multiple solutions.
 
 How should we normalize the pressure this time?
 With the grand potential \eqref{eq:lsm:grand_potential},
@@ -545,7 +567,7 @@ First, we therefore compute the pressure \emph{relative to} vacuum by shifting
 Second, and like with the MIT bag model in \cref{chap:mit},
 we allow for a bag constant $B$ by making the shift \eqref{eq:mit:bag_shift}.
 After both shifts,
-the pressure in vacuum is $P(\mu \leq \SI{300}{\mega\electronvolt}) = -B$
+the pressure in the vacuum is $P(\mu \leq \SI{300}{\mega\electronvolt}) = -B$
 and the non-quark contribution to the general pressure is
 \begin{equation}
 	-B(\avg{\sigma}) = -\big[B+\pot(\avg{\sigma},\vec{0})-\pot(f_\pi,\vec{0})\big]
@@ -553,8 +575,8 @@ and the non-quark contribution to the general pressure is
 \end{equation}
 from the first line of the grand potential \eqref{eq:lsm:grand_potential}.
 Unlike the constant $B$ in the MIT bag model,
-we can interpret $B(\avg{\sigma})$ as an dynamic bag pressure that ranges from $-B(f_\pi)=-B$ in vacuum to $-B(0) = -\big[B-\pot(f_\pi,\vec{0})\big]$ in the ultra-relativistic limit.
-We will shortly come back to the minimum allowed bag constant, determined by solving the two-flavor inequality \eqref{eq:mit:bag_stability}.
+we can interpret $B(\avg{\sigma})$ as an dynamic bag pressure that ranges from $-B(f_\pi)=-B$ in the vacuum to $-B(0) = -\big[B-\pot(f_\pi,\vec{0})\big]$ in the ultra-relativistic limit.
+We will come back to allowed values of the bag constant after we have found the equation of state with $B=0$.
 
 \begin{figure}
 \centering
@@ -652,39 +674,45 @@ We will shortly come back to the minimum allowed bag constant, determined by sol
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos}%
-Properties of electrically charge neutral quark matter in $\beta$-equilibrium parametrized by the quark chemical potential $\mu = (\mu_u+\mu_d)/2$ in the two-flavor quark-meson model.
+Properties of electrically charge neutral quark matter in $\beta$-equilibrium in the two-flavor quark-meson model.
 Upper panel \subref{fig:lsm:2-flavor-eos-parametrization} shows solutions to equation \eqref{eq:lsm:minsys},
 middle panel \subref{fig:lsm:2-flavor-eos-density} the corresponding particle number densities \eqref{eq:lsm:particle_densities} and
 lower panel \subref{fig:lsm:2-flavor-eos-eos} the corresponding equation of state $\epsilon(P)$ \textbf{\textcolor{gray}{before}} and \textbf{after} the Maxwell construction.
 Three different values of $m_\sigma$ are used,
 and the thickest lines show the massless solutions \eqref{eq:mit:densities_massless}, \eqref{eq:mit:eos_ur} and \eqref{eq:mit:chemical_potentials_massless_2f}.
+\TODO{fix all plots, see print notes}
 }
 \end{figure}
 
-The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
-We find the equation of state shown in \cref{fig:lsm:2-flavor-eos}:
+\pagebreak
+The numerical implementation in \cref{sec:num:qstars2f}
+gives the equation of state in \cref{fig:lsm:2-flavor-eos}:
 \begin{itemize}
-\item The phase transition or crossover behaves similarly as in \cref{fig:lsm:grand-potential-noisospin}:
-      the grand potential \eqref{eq:lsm:grand_potential} and its minimum $\avg{\sigma}=m_q/g$ is independent of $\mu$ in vacuum where $\mu < \SI{300}{\mega\electronvolt}$;
+\item The phase transition or crossover behaves similarly to how it did in \cref{fig:lsm:grand-potential-noisospin}:
+      the grand potential \eqref{eq:lsm:grand_potential} and its minimum $\avg{\sigma}=m_q/g$ is independent of $\mu=(\mu_u+\mu_d)/2$ in vacuum where $\mu < \SI{300}{\mega\electronvolt}$;
       undergoes a crossover (with $m_\sigma \geq \SI{800}{\mega\electronvolt}$) or a first-order phase transition (with $m_\sigma < \SI{800}{\mega\electronvolt}$) for $\SI{300}{\mega\electronvolt} < \mu \lesssim \SI{400}{\mega\electronvolt}$;
       and approaches the ultra-relativistic limit $\avg{\sigma}\rightarrow 0$ for $\mu \gtrsim \SI{400}{\mega\electronvolt}$.
 \item The isospin chemical potential $\mu_I=(\mu_u-\mu_d)/2$ increases with no bound as $\mu_u$ and $\mu_d$ grow apart,
-      and its magnitude exceeds the half pion mass $m_\pi/2 = \SI{69}{\mega\electronvolt}$ at $\mu = \SI{575}{\mega\electronvolt}$.
+      and its magnitude exceeds the half pion mass $m_\pi/2 = \SI{69}{\mega\electronvolt}$ for $\mu \geq \SI{575}{\mega\electronvolt}$.
       \emph{This means that our assumption of neglecting pion condensation is inconsistent!}
       A more detailed study should therefore take it into account, but this is outside our scope.
 \item With $m_\sigma < \SI{800}{\mega\electronvolt}$ and the resulting phase transition,
-      the parametrized $P$-$\epsilon$-curve corresponds to an \emph{ambiguous equation of state}.
-      For very low pressures, one pressure corresponds to multiple energy densities.
-      In this case we use the Maxwell construction described in \cite[equation 4.69]{ref:master_francesco} to produce an invertible and hence usable equation of state.
+      the parametrized $P$-$\epsilon$-curve corresponds to an \emph{ambiguous equation of state}
+      where a low pressure corresponds to \emph{multiple} energy densities.
+      In this case we use the Maxwell construction to produce a well-defined invertible equation of state,
+      as described in \cite[equation 4.69]{ref:master_francesco}.
       With $m_\sigma \geq \SI{800}{\mega\electronvolt}$ and the crossover we do not need to think about this.
 \item The ultra-relativistic solution obtained in \cref{sec:mit:eos} is restored as $\avg{\sigma} \rightarrow 0$.
-      In particular, the slopes $\odv{\epsilon}/{P} = 3$ of the equations of state agree.
-      Their relative offset is accounted for by making the bag shift \eqref{eq:mit:bag_shift}.
+      In particular, the slopes $\odv{\epsilon}/{P} = 3$ of the equations of state there and here agree,
+      while their different relative offsets are accounted for by the bag shift \eqref{eq:mit:bag_shift}.
 \item The equation of state always satisfies the causality condition \eqref{eq:nstars:stability_speed_of_sound}
       and the microscopic stability criterion \eqref{eq:nstars:stability_pressure_energy_density}.
-\item Although the electrons have an appreciable chemical potential $\mu_e$, their \emph{density} $n_e$ is hardly noticeable compared to the quark densities $n_u$ and $n_d$.
-      Just like in \cref{chap:mit} the density is nonzero, only several orders of magnitude below the quark densities.
-      Their main job is to ensure charge neutrality is met.
+\item Although the electrons have an appreciable chemical potential $\mu_e$,
+      their density $n_e$ is several orders of magnitude below the quark densities $n_u$ and $n_d$ and is hardly noticeable,
+      like in \cref{chap:mit}.
+      Their main job is to ensure that the charge neutrality condition \eqref{eq:lsm:charge_neutrality} is met.
+      Coupled with the $\beta$-equilibrium condition \eqref{eq:lsm:chemical_equilibrium},
+      it is what causes the isospin imbalance as $\mu_u$ and $\mu_d$ grow apart.
 \end{itemize}
 
 Moreover, the program in \cref{sec:num:qstars2f} solves the two-flavor inequality \eqref{eq:mit:bag_stability} numerically
@@ -701,16 +729,21 @@ In the next chapter we study the three-flavor generalization of this model
 and find the complementing upper bounds \eqref{eq:lsm3f:bag_upper_bound}
 due to the strange matter hypothesis.
 Note that these upper bounds almost coincide with the lower bounds,
-so the inequalities can be squeezed into equalities \emph{if} the strange matter hypothesis is true.
-The \emph{lower} bounds, on the other hand, are based on instability of two-flavor quark matter compared to hadronic matter and are trustworthy.
-We focus our attention on the bag constants that lie \emph{at} the lower bounds \eqref{eq:lsm:bag_lower_bound},
-as we saw in \cref{fig:mit:eos} that they generate stiffer equations of state and hence greater maximum masses,
+so the inequalities can practically speaking be squeezed into equalities \emph{if} the strange matter hypothesis is true.
+On the other hand, 
+the lower bounds are based on instability of two-flavor quark matter and are certain.
+We focus on the bag constants that lie \emph{at} the lower bounds \eqref{eq:lsm:bag_lower_bound},
+as we saw in \cref{chap:mit} that they generate stiffer equations of state and hence greater maximum masses,
 and greater bag constants would be forbidden anyway \emph{if} the strange matter hypothesis holds.
+The main takeaway is that $B$ can violate the upper bounds \eqref{eq:lsm3f:bag_upper_bound},
+but certainly not the lower bounds \eqref{eq:lsm:bag_lower_bound}.
 
-As pointed out by \cite[section IV-B]{ref:quark_star_review}, it is generally meaningless to compare bag constants across models.
-Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bagless}, it is the bounds of $B-\pot(f_\pi,\vec{0})$, not $B$, that are comparable to the MIT bag model lower bound \eqref{eq:mit:bag_window}.
-
-\section{Quark star solutions}
+Also note that it is the bounds of $B-\pot(f_\pi,\vec{0})$, not $B$,
+that are comparable to the MIT bag model bound \eqref{eq:mit:bag_window}.
+This is because we have seen that the quark-meson model
+approaches the MIT bag model only in the ultra-relativistic limit $\avg{\sigma} \rightarrow 0$.
+Hence the same goes for the dynamic bag pressure \eqref{eq:lsm:bag_pressure},
+which evaluates to $-B(0)=-[B-\pot(f_\pi,\vec{0})]$ in this limit.
 
 \begin{figure}[p]
 \centering
@@ -763,7 +796,7 @@ Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bag
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-mass-radius}%
 	Mass-radius solutions of the Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov} parametrized by the central pressure $P_c$,
-	using the equations of state for two-flavor quark matter in \cref{fig:lsm:2-flavor-eos-eos} modified by bag constants above the bounds \eqref{eq:lsm:bag_lower_bound}.
+	using equations of state for two-flavor quark matter in \cref{fig:lsm:2-flavor-eos-eos} modified by the bag shift \eqref{eq:mit:bag_shift} with bag constants at and above the bounds \eqref{eq:lsm:bag_lower_bound}.
 }
 \end{figure}
 
@@ -820,25 +853,30 @@ Anyway, note that because of the vacuum normalization \eqref{eq:lsm:pressure_bag
 	particle densities $n_i$
 	and baryon density $n_B = (n_u+n_d)/3$
 	for the maximum mass two-flavor quark star \goldenstar in \cref{fig:lsm:2-flavor-mass-radius}.
+	\TODO{$n_{sat}$ def where?}
 }
 \end{figure}
 
-With the equation of state, we now solve the Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov} with multiple bag pressures above the lower bounds \eqref{eq:lsm:bag_lower_bound}.
+
+\section{Quark star solutions}
+
+Having found the minimum allowed bag constants,
+we now modify the equation of state
+with the shift \eqref{eq:mit:bag_shift}
+using bag constants at and above the lower bounds \eqref{eq:lsm:bag_lower_bound}
+and solve the corresponding Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov}.
 We find the mass-radius relations in \cref{fig:lsm:2-flavor-mass-radius}:
 \begin{itemize}
-\item For bag constants that just satisfy the lower bound \eqref{eq:lsm:bag_lower_bound},
-      stars have maximum masses $1.7 \, M_\odot \leq M \leq 2.0 \, M_\odot$ and corresponding radii $R \approx \SI{11}{\kilo\meter}$
-      depending on the value chosen for $m_\sigma$.
+\item For bag constants that just satisfy the lower bounds \eqref{eq:lsm:bag_lower_bound} for $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$,
+      stars have maximum masses $1.7 \, M_\odot \leq M \leq 2.0 \, M_\odot$ and corresponding radii $R \approx \SI{11}{\kilo\meter}$.
       The heaviest star has an average mass density of $\rho = M / (4 \pi R^3/3) = \SI{7e14}{\kilo\gram\per\liter}$!
 \item For greater bag constants,
-      the strange matter hypothesis is violated and both masses and radii decrease.
-      With a sufficiently high $B$ one can cover any mass and radii below the greatest ones,
-      and we therefore pay special attention to the lowest instability-respecting bag constants.
+      the strange matter hypothesis and corresponding upper bounds \eqref{eq:lsm3f:bag_upper_bound}
+      are violated.
+      We pay special attention to the lowest bag constants that respect both the lower and upper bounds,
+      as the stellar masses and radii decrease with increasing bag constants anyway.
 \item As $m_\sigma$ increases,
       the maximum mass decreases and becomes more resilient to changes in $B$, and stars tend to inflate up to larger sizes for low pressures.
-      It therefore seems important to press $m_\sigma$ as close as possible 
-      to its measured values $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{550}{\mega\electronvolt}$
-      in order to produce more massive stars.
 \item The results are generally comparable to the MIT bag model solutions in \cref{fig:mit:mass_radius}.
 \end{itemize}
 
@@ -881,19 +919,21 @@ Hopefully, this remark will save someone from enduring this painful realization 
 \section{Consistent parameter fit in the one-loop large-\texorpdfstring{$N_c$}{Nc} limit}
 \label{sec:lsm2f:refinement}
 
-As we remarked at the end of \cref{sec:lsm:parameter_fit},
-fitting parameters from tree-level relations is inconsistent because we calculated the grand potential \eqref{eq:lsm:grand_potential} to one-loop in the quarks.
-This is, however, the conventional approach often taken in the literature.
+As explained at the end of \cref{sec:lsm:parameter_fit},
+fitting parameters at tree-level is inconsistent
+because our calculation of the grand potential \eqref{eq:lsm:grand_potential}
+can only be considered consistent in the one-loop large-$N_c$ limit.
+In a fully consistent treatment, the parameters should be fit at the same level to which the grand potential is calculated.
+The inconsistent method is, however, the conventional approach taken in the literature.
 \cite{ref:lsm2f_nuclear,ref:lsm_2f,ref:lsm3f,ref:lsm3f_compact_stars}.
-In a consistent treatment, the parameters should be fitted at the same level to which the grand potential is calculated.
 
 To conclude this chapter we examine the effects of using such a consistent approach.
 In the chiral limit $h=0$,
-\cite{ref:jo_lsm_consistent_chiral} has consistently matched the parameters at one-loop level in the large-$N_c$ limit
+\cite{ref:jo_lsm_consistent_chiral} has consistently matched the parameters in the one-loop large-$N_c$ limit
 by relating the physical masses to the pion decay constant and running couplings with the minimal subtraction renormalization scheme.
 Their work is generalized to the physical point $h \neq 0$ that we consider here in \cite{ref:jo_lsm_consistent_physical},
-where they consider an inhomogeneous chiral condensate $q$ that simply be set to $q=0$ to recover our homogeneous condensate.
-In appendix C, they find the grand potential
+where their generalized inhomogeneous chiral condensate $q$ can simply be set to $q=0$ to recover our homogeneous condensate.
+They find the grand potential
 \begin{equation}
 \begin{split}
 	\Omega &= \frac12 \frac{m_R^2(\lambda)}{g_R^2(\lambda)} \Delta^2 + \frac{\lambda_R(\lambda)}{24 g_R(\lambda)^4} \Delta^4 - \frac{h_R(\lambda)}{g_R(\lambda)} \Delta + \frac{N_c N_f}{16 \pi^2} \Delta^4 \bigg[ \frac32 + \log \frac{\Lambda^2}{\Delta^2} \bigg] + \Omega_q + \Omega_e,
@@ -902,7 +942,8 @@ In appendix C, they find the grand potential
 \end{equation}
 where $\Omega_q+\Omega_e$ is the same contribution from quarks and electrons as in the two last lines of our grand potential \eqref{eq:lsm:grand_potential}.
 Here all the couplings $m_R^2(\Lambda)$, $\lambda_R(\Lambda)$, $g_R(\Lambda)$ and $h_R(\Lambda)$ run with the renormalization scale $\Lambda$.
-After solving their renormalization group equations and inserting their solutions into the above expression, they find the following explicit grand potential in equation (7):
+After solving their renormalization group equations and inserting their solutions into the above expression,
+they find the following explicit grand potential in equation (7):
 \begin{equation}
 \begin{split}
 	\Omega &= \frac{3 m_\pi^2 f_\pi^2}{4} \Bigg\{ 1 - \frac{4 m_q^2 N_c}{(4\pi)^2 f_\pi^2} m_\pi^2 F'(m_\pi^2) \Bigg\} \frac{\Delta^2}{m_q^2} \\
@@ -920,7 +961,7 @@ where they have defined
 	r = \sqrt{\frac{4 m_q^2}{p^2}-1} .
 \end{equation}
 Note that in contrast to our dynamic masses \eqref{eq:lsm:mass_sigmapi},
-their $m_q$, $m_\pi$ and $m_\sigma$ refers exclusively to \emph{vacuum masses},
+their $m_q$, $m_\pi$ and $m_\sigma$ refer exclusively to \emph{vacuum masses},
 and the dynamic quark mass is denoted $\Delta$, equivalent to our $m_q=g\avg{\sigma}$.
 In our opinion, it is easiest to simply adopt their convention temporarily in this section,
 as any attempt to reconcile it with our convention
@@ -959,8 +1000,8 @@ Also note that the renormalization scale $\Lambda$ has coincidentally disappeare
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:potential_sigma_mass_ref}
-Consistently fit two-flavor grand potential \eqref{eq:lsm2f:grand_potential_consistent} in vacuum with $\vec{\mu}=\vec{0}$ for different $m_\sigma$
-compared to the inconsistently fit grand potential from \cref{fig:lsm:potential_sigma_mass}.
+Consistently fit two-flavor grand potential \eqref{eq:lsm2f:grand_potential_consistent} in vacuum, where $\vec{\mu}=\vec{0}$, for different $m_\sigma$
+compared to the inconsistently fit grand potential in \cref{fig:lsm:potential_sigma_mass}.
 }
 \end{figure}
 
@@ -1067,6 +1108,7 @@ This allows us to set $m_\sigma$ to values within its measured range $\SI{400}{\
 \caption{\label{fig:lsm:2-flavor-eos-ref}%
 Results like those in \cref{fig:lsm:2-flavor-eos} with the consistently fit one-loop and large-$N_c$ grand potential \eqref{eq:lsm2f:grand_potential_consistent}
 and $m_\sigma = \{400,500,600\} \, \si{\mega\electronvolt}$.
+\TODO{fix all figs}
 }
 \end{figure}
 
@@ -1141,9 +1183,9 @@ The ``consistent'' results with $m_\sigma=\{400,500,600\} \, \si{\mega\electronv
 virtually identical to the ``inconsistent'' results with $m_\sigma=\{600,700,800\} \, \si{\mega\electronvolt}$.
 This can be seen by comparing the individual features in \cref{fig:lsm:2-flavor-eos-ref,fig:lsm:2-flavor-mass-radius-ref}
 to those in \cref{fig:lsm:2-flavor-eos,fig:lsm:2-flavor-mass-radius},
-or more easily by noting that the vacuum potentials in \cref{fig:lsm:potential_sigma_mass_ref}
--- \emph{which is the only difference between the two approaches} --
-more or less coincides with those in \cref{fig:lsm:potential_sigma_mass} that have about $\SI{200}{\mega\electronvolt}$ larger values of $m_\sigma$.
+or more easily by noting that the vacuum potentials in \cref{fig:lsm:potential_sigma_mass_ref},
+\emph{which is the only difference between the two approaches},
+more or less coincide with those in \cref{fig:lsm:potential_sigma_mass} that have about $\SI{200}{\mega\electronvolt}$ larger values of $m_\sigma$.
 
 This approach shows the importance of fitting the parameters of the model consistently
 in order to achieve correspondence between experimental and model parameters.
@@ -1157,17 +1199,18 @@ fitting values of $m_\sigma$ at tree-level that are about $\SI{200}{\mega\electr
 
 In this chapter we have modeled pure quark stars consisting of deconfined up and down quarks with the two-flavor quark-meson model.
 Our main results were the equation of state in \cref{fig:lsm:2-flavor-eos}, mass-radius solutions in \cref{fig:lsm:2-flavor-mass-radius} and the radial profile of a representative maximum mass star in \cref{fig:lsm:2-flavor-star}.
-Chiral symmetry was restored in a crossover for $m_\sigma \geq \SI{800}{\mega\electronvolt}$ and a discontinuous phase transition for $m_\sigma < \SI{800}{\mega\electronvolt}$.
-For $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$ and corresponding bag constants that respect instability of two-flavor quark matter,
+For $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$ and the corresponding lowest bag constants that respect the lower bounds \eqref{eq:lsm:bag_lower_bound} and hence instability of two-flavor quark matter,
 we obtained quark stars with maximum masses $1.7 \, M_\odot \leq M \leq 2.0 \, M_\odot$ and corresponding radii $R \approx \SI{11}{\kilo\meter}$.
 
-Our heart rates increased momentarily when we saw that neglecting pion condensation was an inconsistent approximation for $\mu > \SI{575}{\mega\electronvolt}$,
-but went back down when we saw that the chemical potential in the inspected maximum mass star did not exceed this.
-We found it difficult to fit measured values $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{550}{\mega\electronvolt}$ for the $\sigma$-meson without breaking the model and had to make do with larger values,
+Chiral symmetry was restored in a crossover for $m_\sigma \geq \SI{800}{\mega\electronvolt}$
+and in a discontinuous phase transition for $m_\sigma < \SI{800}{\mega\electronvolt}$.
+Our heart rates increased momentarily when we saw that neglecting pion condensation was an inconsistent approximation for $\mu \geq \SI{575}{\mega\electronvolt}$,
+but stabilized when we saw that the chemical potential in the inspected maximum mass star did not exceed this.
+We found it difficult to fit measured values $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{550}{\mega\electronvolt}$ for the $\sigma$ meson without breaking the model and had to make do with larger values,
 but later regained trust in our results when we explained this with the inconsistency of fitting parameters at tree-level to a grand potential that is calculated to one fermion loop.
 
 Due to the previously discussed instability of two-flavor quark matter with respect to hadronic matter,
-pure two-flavor quark stars is are unlikely to be realized in nature.
+pure two-flavor quark stars are unlikely to be realized in nature.
 Nevertheless, their analysis is a natural stepping stone for discussing possibly stable strange quark stars and hybrid stars with quark matter in the core.
 
 %Acceptable bag constants $B$ were determined by assuming that two-flavor quark matter is unstable compared to hadronic matter at zero pressure.
