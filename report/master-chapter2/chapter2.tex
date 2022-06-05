@@ -330,9 +330,10 @@ Inverting equations \eqref{eq:lsm:ground_state_implicit} and \eqref{eq:lsm:mass_
 we can express the parameters entirely in terms of these variables as
 \begin{equation}
 	g       = \frac{m_q}{\avg{\sigma}}, \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_quark})} , \\
-	h       = m_\pi^2 \avg{\sigma}, \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_pi})} , \\
-	m^2     = \frac{3m_\pi^2 - m_\sigma^2}{2} \quad \text{and} \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_sigma})} , \\
-	\lambda = \frac{3 m_\sigma^2 - 3 m_\pi^2}{\avg{\sigma}^2} .    % &\qquad& \text{(by \eqref{eq:lsm:ground_state_implicit})} .
+	m^2     = \frac{3m_\pi^2 - m_\sigma^2}{2}, \quad % &\qquad& \text{(by \eqref{eq:lsm:mass_sigma})} , \\
+	\lambda = \frac{3 m_\sigma^2 - 3 m_\pi^2}{\avg{\sigma}^2} % &\qquad& \text{(by \eqref{eq:lsm:ground_state_implicit})} .
+	\quad \text{and} \quad
+	h       = m_\pi^2 \avg{\sigma}. % &\qquad& \text{(by \eqref{eq:lsm:mass_pi})} , \\
 \label{eq:lsm:parameters}
 \end{equation}
 According to \cite{ref:pdg_review_2021}, in vacuum the mean field is the pion decay constant $\avg{\sigma} = f_\pi = \SI{93}{\mega\electronvolt}$,
@@ -358,7 +359,6 @@ we argue that it is the most legitimate candidate for discrimination.
 
 \Cref{tab:lsm2f:parameters} summarizes the chosen input values for $\avg{\sigma}=f_\pi$, $m_\pi$, $m_\sigma$ and $m_q=m_u=m_d$ in vacuum
 and the corresponding output parameters $m^2$, $\lambda$, $g$ and $h$.
-\TODO{order $g, m^2, \lambda, h$}
 
 The renormalization procedure also introduced an undetermined renormalization scale $\Lambda$.
 To determine it, we require that the minimum of the grand potential \eqref{eq:lsm:grand_potential} in vacuum, where $\vec{\mu}=0$,
@@ -398,8 +398,8 @@ Three different values are used for $m_\sigma$, generating three different value
 	Parameter   & Model                                 \\
 	\midrule
 	$g$         & $\SI{3.23}{}$                         \\
-	$\lambda$   & $\{118,163,215\}$                        \\
 	$m^2$       & $-(\{389,465,540\} \, \si{\mega\electronvolt})^2$ \\
+	$\lambda$   & $\{118,163,215\}$                        \\
 	$h$         & $(\SI{121}{\mega\electronvolt})^3$  \\
 	%$\Lambda$   & $\SI{182}{\mega\electronvolt}$ \\
 	\bottomrule
