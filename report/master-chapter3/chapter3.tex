@@ -106,11 +106,10 @@ Like before, we jump down into the hole \eqref{eq:lsm:ground_state_3f} and study
 
 We will shortly come back to the precise location of the vacuum, but first examine how it couples to the quarks.
 Coupled to the nonzero expectation values \eqref{eq:lsm:ground_state_3f}, the Yukawa term in the Lagrangian \eqref{eq:lsm:lagrangian3f} reads
-\TODO{transpose $T \rightarrow \text{T}$}
 \begin{equation}
 \begin{split}
 	  & -g \bar{q} \big( \avg{\sigma_0} T_0 + \avg{\sigma_8} T_8 \big) q \\
-	= & -\frac{g}{2} \begin{bNiceMatrix} \vphantom{\sqrt{\frac13}} u^\dagger \gamma^0 \\ \vphantom{\sqrt{\frac13}} d^\dagger \gamma^0 \\ \vphantom{\sqrt{\frac13}} s^\dagger \gamma^0 \end{bNiceMatrix}^T \begin{bNiceMatrix} \sqrt{\frac23} \avg{\sigma_0} + \frac{1}{\sqrt{3}} \avg{\sigma_8} & 0 & 0 \\ 0 & \sqrt{\frac23} \avg{\sigma_0} + \frac{1}{\sqrt{3}} \avg{\sigma_8} & 0 \\ 0 & 0 & \sqrt{\frac23} \avg{\sigma_0} - \frac{2}{\sqrt{3}} \avg{\sigma_8} \end{bNiceMatrix} \begin{bNiceMatrix} \vphantom{\sqrt{\frac13}} u \\ \vphantom{\sqrt{\frac13}} d \\ \vphantom{\sqrt{\frac13}} s \end{bNiceMatrix} . \\
+	= & -\frac{g}{2} \begin{bNiceMatrix} \vphantom{\sqrt{\frac13}} u^\dagger \gamma^0 \\ \vphantom{\sqrt{\frac13}} d^\dagger \gamma^0 \\ \vphantom{\sqrt{\frac13}} s^\dagger \gamma^0 \end{bNiceMatrix}^\mathsf{T} \begin{bNiceMatrix} \sqrt{\frac23} \avg{\sigma_0} + \frac{1}{\sqrt{3}} \avg{\sigma_8} & 0 & 0 \\ 0 & \sqrt{\frac23} \avg{\sigma_0} + \frac{1}{\sqrt{3}} \avg{\sigma_8} & 0 \\ 0 & 0 & \sqrt{\frac23} \avg{\sigma_0} - \frac{2}{\sqrt{3}} \avg{\sigma_8} \end{bNiceMatrix} \begin{bNiceMatrix} \vphantom{\sqrt{\frac13}} u \\ \vphantom{\sqrt{\frac13}} d \\ \vphantom{\sqrt{\frac13}} s \end{bNiceMatrix} . \\
 \end{split}
 \label{eq:lsm:yukawa3f}
 \end{equation}
@@ -124,11 +123,11 @@ This is accomplished by
 	%\quad \text{or} \quad
 	%\begin{bmatrix} \sigma_0 \\ \sigma_8 \end{bmatrix} = M \begin{bmatrix} \sigma_x \\ \sigma_y \end{bmatrix},
 	\qquad \text{where} \qquad
-	M = M^{-1} = M^T = \frac{1}{\sqrt{3}} \begin{bmatrix} \sqrt{2} & 1 \\ 1 & -\sqrt{2} \end{bmatrix}.
+	M = M^{-1} = M^\mathsf{T} = \frac{1}{\sqrt{3}} \begin{bmatrix} \sqrt{2} & 1 \\ 1 & -\sqrt{2} \end{bmatrix}.
 \label{eq:lsm:strange_basis}
 \end{equation}
 We also define the transformed symmetry breakers 
-$[h_x,h_y]^T = M [h_0,h_8]^T$
+$[h_x,h_y]^\mathsf{T} = M [h_0,h_8]^\mathsf{T}$
 %$h_x$ and $h_y$ from $h_0$ and $h_8$ 
 using the same transformation.
 In the new basis \eqref{eq:lsm:strange_basis}, the Yukawa coupling \eqref{eq:lsm:yukawa3f} takes our sought-after form
