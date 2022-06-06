@@ -32,7 +32,7 @@ with the meson potential
 	\pot(\sigma, \pi) = m^2 \trace\Big[\phi^\dagger \phi\Big] + \lambda_1 \Big[\trace(\phi^\dagger \phi)\Big]^2 + \lambda_2 \trace\Big[(\phi^\dagger \phi)^2\Big] - \trace\Big[H(\phi+\phi^\dagger)\Big].
 \label{eq:lsm:potential3f}
 \end{equation}
-The quark fields $q$ and chemical potentials $\mu_f$ now have $N_f=3$ flavors $\{u,d,s\}$,
+The quark fields $q$ and chemical potential matrix $\mu = \diag(\mu_u,\mu_d,\mu_s)$ now have the $N_f=3$ flavors $\{u,d,s\}$,
 while $\sigma_a$ and $\pi_a$ are members of the scalar ($J^P=0^+$) and pseudoscalar ($J^P=0^-$) meson nonets,
 packed into the $N_f \times N_f$ meson matrix $\phi = \phi_a T_a = (\sigma_a + i \pi_a) T_a$.
 The eight $SU(3)$ generators $T_a = \lambda_a/2$ in flavor space
@@ -413,7 +413,6 @@ in the meson potential \eqref{eq:lsm:potential_tree_3f} if we shift
 Then $\textcolor{red}{N_c (2 m_x^4 + m_y^2) / 16 \pi^2 \epsilon} + \textcolor{blue}{\delta\lambda_2 (\avg{\sigma_x}^4+2\avg{\sigma_y}^4)} = 0$,
 so this theory is also renormalizable.
 Adding electrons, we obtain the natural three-flavor generalization of the renormalized and finite grand potential \eqref{eq:lsm:grand_potential},
-\TODO{$\mu$ is not $\mu=(\mu_u+\mu_d)/2$}
 \begin{equation}
 \begin{split}
 	\Omega(\avg{\sigma},\vec{\mu}) &= \pot(\avg{\sigma},0) + N_c \frac{m_x^4}{8 \pi^2} \Bigg[ \frac{3}{2} + \log\bigg(\frac{\Lambda_x^2}{m_x^2}\bigg) \Bigg] + N_c \frac{m_y^4}{16 \pi^2} \Bigg[ \frac{3}{2} + \log\bigg(\frac{\Lambda_y^2}{m_y^2}\bigg) \Bigg] \\ % + N_c \smashoperator{\sum_{\vphantom{\big|}f=\{u,d,s\}}} \frac{m_f^4}{16 \pi^2} \left[ \frac{1}{\epsilon} + \frac{3}{2} + \log\left(\frac{{\Lambda}^2}{m_f^2}\right) \right] \\
