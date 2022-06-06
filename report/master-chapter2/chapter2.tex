@@ -300,7 +300,7 @@ Adding free electrons to the mix, the finite and renormalized grand potential is
 \label{eq:lsm:grand_potential}
 \end{equation}
 As in the MIT bag model,
-the particle densities are
+the particle densities \eqref{eq:master_intro:densities} are
 \begin{equation}
 	n_f = -\pdv{\Omega}{\mu_f} = \frac{N_c}{3 \pi^2} \Big( \mu_f^2 - m_q^2 \Big)^{\frac32}
 	\qquad \text{and} \qquad
@@ -368,17 +368,17 @@ Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumpt
 	\pdv{\Omega}{\avg{\sigma}} =
 	\pdv*{\Bigg[ N_c N_f \frac{m_q^4}{16 \pi^2} \bigg( \frac32 + \log \frac{\Lambda^2}{m_q^2} \bigg) \Bigg] }{\avg{\sigma}} = 0,
 	\quad \text{yielding} \quad
-	\Lambda = \frac{g f_\pi}{\sqrt{e}} = \SI{182.0}{\mega\electronvolt}.
+	\Lambda = \frac{m_q}{\sqrt{e}} = \frac{g f_\pi}{\sqrt{e}} = \SI{182.0}{\mega\electronvolt}.
 \label{eq:lsm:potential_vacuum_minimum}
 \end{equation}
 
 \begin{table}[b]
 \centering
 \caption{\label{tab:lsm2f:parameters}%
-The variables in the left table are used as input to determine the model parameters in the right table.
+The variables in the left table are used as input to determine the model parameters in the right table
+from equation \eqref{eq:lsm:parameters}.
 Experimental values are taken from \cite{ref:pdg_review_2021}.
 Three different values are used for $m_\sigma$, generating three different values of both $\lambda$ and $m^2$.
-\TODO{table lines?}
 }
 \begin{tabular}{ l r r }
 	\toprule
@@ -414,7 +414,7 @@ Three different values are used for $m_\sigma$, generating three different value
 	width = 15cm, height = 7cm,
 	xmin=-500, xmax=+500, xtick distance = 100, minor x tick num=9,
 	ymin=-11, ymax=+6, ytick distance=5, minor y tick num=4,
-	xlabel = {$m_q \, / \, \si{\mega\electronvolt}$ }, ylabel = {$\Omega \, / \, f_\pi^4$},
+	xlabel = {$m_q \, / \, \si{\mega\electronvolt}$ }, ylabel = {$\Omega(\vec{\mu}=0) \, / \, f_\pi^4$},
 	legend style = {at={(0.5,1.03)}, anchor=south}, legend columns=4,
 	cycle list/YlOrRd-6,
 ]
@@ -439,6 +439,7 @@ so it is really inconsistent to fit parameters at tree-level using the curvature
 The physical pole masses would really receive radiative loop corrections.
 In \cref{sec:lsm2f:refinement} we will fit parameters consistently in the one-loop large-$N_c$ limit
 and see that this resolves the large discrepancy in $m_\sigma$.
+\TODO{table lines?}
 
 \pagebreak
 \section{Equation of state}
@@ -697,7 +698,7 @@ gives the equation of state in \cref{fig:lsm:2-flavor-eos}:
       the parametrized $P$-$\epsilon$-curve corresponds to an \emph{ambiguous equation of state}
       where a low pressure corresponds to \emph{multiple} energy densities.
       In this case we use the Maxwell construction to produce a well-defined invertible equation of state,
-      as described in \cite[equation 4.69]{ref:master_francesco}.
+      as described in \cite[equation (4.69)]{ref:master_francesco}.
       With $m_\sigma \geq \SI{800}{\mega\electronvolt}$ and the crossover we do not need to think about this.
 \item The ultra-relativistic solution obtained in \cref{sec:mit:eos} is restored as $\avg{\sigma} \rightarrow 0$.
       In particular, the slopes $\odv{\epsilon}/{P} = 3$ of the equations of state there and here agree,
@@ -856,12 +857,13 @@ which evaluates to $-B(0)=-[B-\pot(f_\pi,\vec{0})]$ in this limit.
 
 
 \section{Quark star solutions}
+\label{sec:lsm:stars}
 
 Having found the minimum allowed bag constants,
 we now modify the equation of state
 with the shift \eqref{eq:mit:bag_shift}
 using bag constants at and above the lower bounds \eqref{eq:lsm:bag_lower_bound}
-and solve the corresponding Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov}.
+and solve the corresponding Tolman-Oppenheimer-Volkoff equations \eqref{eq:master_intro:tov}.
 We find the mass-radius relations in \cref{fig:lsm:2-flavor-mass-radius}:
 \begin{itemize}
 \item For bag constants that just satisfy the lower bounds \eqref{eq:lsm:bag_lower_bound} for $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$,
@@ -974,7 +976,7 @@ Also note that the renormalization scale $\Lambda$ has coincidentally disappeare
 	width = 15cm, height = 7cm,
 	xmin=-500, xmax=+500, xtick distance = 100, minor x tick num=9,
 	ymin=-11, ymax=+6, ytick distance=5, minor y tick num=4,
-	xlabel = {$\Delta \, / \, \si{\mega\electronvolt}$ }, ylabel = {$\Omega \, / \, f_\pi^4$},
+	xlabel = {$\Delta \, / \, \si{\mega\electronvolt}$ }, ylabel = {$\Omega(\vec{\mu}=0) \, / \, f_\pi^4$},
 	legend style = {at={(0.5,1.03)}, anchor=south}, legend columns=4,
 	cycle multi list={
 		YlOrRd-6\nextlist
