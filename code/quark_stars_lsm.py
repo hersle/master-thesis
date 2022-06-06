@@ -158,20 +158,37 @@ class LSM2FlavorConsistentModel(LSM2FlavorModel):
 
 class LSM3FlavorModel(LSMModel):
     def __init__(self, mσ=mσ, mπ=mπ, mK=mK):
+        def mesonmasses(m2, λ1, λ2):
+            rt2 = np.sqrt(2)
+
+            m2σσ00 = m2+λ1/3*(4*rt2*σx0*σy0+7*σx0**2+5*σy0**2)+λ2*(σx0**2+σy0**2)
+            m2σσ11 = m2+λ1*(σx0**2+σy0**2)+3/2*λ2*σx0**2
+            m2σσ44 = m2+λ1*(σx0**2+σy0**2)+λ2/2*(rt2*σx0*σy0+σx0**2+2*σy0**2)
+            m2σσ88 = m2-λ1/3*(4*rt2*σx0*σy0-5*σx0**2-7*σy0**2)+λ2/2*(σx0**2+4*σy0**2)
+            m2σσ08 = 2/3*λ1*(rt2*σx0**2-rt2*σy0**2-σx0*σy0)+λ2/rt2*(σx0**2-2*σy0**2)
+
+            m2ππ00 = m2+λ1*(σx0**2+σy0**2)+λ2/3*(σx0**2+σy0**2)
+            m2ππ11 = m2+λ1*(σx0**2+σy0**2)+λ2/2*σx0**2
+            m2ππ44 = m2+λ1*(σx0**2+σy0**2)-λ2/2*(rt2*σx0*σy0-σx0**2-2*σy0**2)
+            m2ππ88 = m2+λ1*(σx0**2+σy0**2)+λ2/6*(σx0**2+4*σy0**2)
+            m2ππ08 = λ2/6*(rt2*σx0**2-2*rt2*σy0**2)
+
+            θσ = np.arctan(2*m2σσ08 / (m2σσ88-m2σσ00)) / 2
+            θπ = np.arctan(2*m2ππ08 / (m2ππ88-m2ππ00)) / 2
+
+            m2f0 = m2σσ00*np.sin(θσ)**2 + m2σσ88*np.cos(θσ)**2 + m2σσ08*np.sin(2*θσ)
+            m2σ  = m2σσ00*np.cos(θσ)**2 + m2σσ88*np.sin(θσ)**2 - m2σσ08*np.sin(2*θσ)
+            m2a0 = m2σσ11
+            m2κ  = m2σσ44
+            m2η  = m2ππ00*np.sin(θπ)**2 + m2ππ88*np.cos(θπ)**2 + m2ππ08*np.sin(2*θπ)
+            m2ηp = m2ππ00*np.cos(θπ)**2 + m2ππ88*np.sin(θπ)**2 - m2ππ08*np.sin(2*θπ)
+            m2π  = m2ππ11
+            m2K  = m2ππ44
+            return m2f0, m2σ, m2a0, m2κ, m2η, m2ηp, m2π, m2K
+
         def system(m2_λ1_λ2):
             m2, λ1, λ2 = m2_λ1_λ2
-            m2σσ00 = m2 + λ1/3*(4*np.sqrt(2)*σx0*σy0+7*σx0**2+5*σy0**2) + \
-                     λ2*(σx0**2+σy0**2)
-            m2σσ88 = m2 - λ1/3*(4*np.sqrt(2)*σx0*σy0-5*σx0**2-7*σy0**2) + \
-                     λ2/2*(σx0**2+4*σy0**2)
-            m2σσ08 = 2/3*λ1*(np.sqrt(2)*σx0**2-np.sqrt(2)*σy0**2-σx0*σy0) + \
-                     λ2/np.sqrt(2)*(σx0**2-2*σy0**2)
-            m2ππ11 = m2 + λ1*(σx0**2+σy0**2) + λ2/2*σx0**2
-            m2ππ44 = m2 + λ1*(σx0**2+σy0**2) - λ2/2*(np.sqrt(2)*σx0*σy0-σx0**2-2*σy0**2)
-            θσ = np.arctan(2*m2σσ08 / (m2σσ88-m2σσ00)) / 2
-            m2σ = m2σσ00*np.cos(θσ)**2 + m2σσ88*np.sin(θσ)**2 - m2σσ08*np.sin(2*θσ)
-            m2π = m2ππ11
-            m2K = m2ππ44
+            _, m2σ, _, _, _, _, m2π, m2K = mesonmasses(m2, λ1, λ2)
             return (m2σ - mσ**2, m2π - mπ**2, m2K - mK**2)
 
         sol = scipy.optimize.root(system, (-100, -10, +100), method="hybr")
@@ -195,6 +212,17 @@ class LSM3FlavorModel(LSMModel):
         print(f"Λy = {Λy} MeV")
         print(f"mx = {g*σx0/2} MeV")
         print(f"my = {g*σy0/np.sqrt(2)} MeV")
+
+        # predict (remaining) meson masses
+        m2f0, m2σ, m2a0, m2κ, m2η, m2ηp, m2π, m2K = mesonmasses(m2, λ1, λ2)
+        print(f"mf0 = {np.sqrt(m2f0):.0f} MeV")
+        print(f"mσ  = {np.sqrt(m2σ):.0f} MeV")
+        print(f"ma0 = {np.sqrt(m2a0):.0f} MeV")
+        print(f"mκ  = {np.sqrt(m2κ):.0f} MeV")
+        print(f"mη  = {np.sqrt(m2η):.0f} MeV")
+        print(f"mηp = {np.sqrt(m2ηp):.0f} MeV")
+        print(f"mπ  = {np.sqrt(m2π):.0f} MeV")
+        print(f"mK  = {np.sqrt(m2K):.0f} MeV")
 
         Δx, Δy, μu, μd, μs, μe = sp.symbols("Δ_x Δ_y μ_u μ_d μ_s μ_e", complex=True)
         σx = 2*Δx/g
