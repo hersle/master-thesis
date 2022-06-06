@@ -500,50 +500,32 @@ which in turn are used to generate the remaining non-bold masses in the left tab
 with the same equations.
 Experimental values are taken from \cite{ref:pdg_review_2021}.
 Three different values are used for $m_\sigma$,
-generating three different values of $\lambda_1$, $m^2$ and $m^2_{f_0}$.
-\TODO{better table w subcols (+2F)}
+generating three parameter sets with different $m^2$, $\lambda_1$ and $m^2_{f_0}$.
 }
-\begin{tabular}{ l r r }
-	\toprule
-	\makebox[1.5cm][l]{Variable}  & Model                                   & Experimental                            \\
-	\midrule
-	$f_\pi$           & $\textbf{\SI{93}{\mega\electronvolt}}$  & \SI{92}{}-\SI{93}{\mega\electronvolt}            \\
-	$f_K$             & $\textbf{\SI{113}{\mega\electronvolt}}$ & \SI{113}{\mega\electronvolt}                     \\
-	\midrule
-	$m_u$             & $\textbf{\SI{300}{\mega\electronvolt}}$ & \approx \, \SI{300}{\mega\electronvolt}          \\
-	$m_d$             & $\textbf{\SI{300}{\mega\electronvolt}}$ & \approx \, \SI{300}{\mega\electronvolt}          \\
-	$m_s$             & $\SI{429}{\mega\electronvolt}$          & \approx \, \SI{500}{\mega\electronvolt}          \\
-	\midrule
-	$m_{f_0}$         & $\{1294,1315,1347\}\si{\mega\electronvolt}$       & \SI{1200}{}-\SI{1500}{\mega\electronvolt}        \\
-	$m_\sigma$        & $\textbf{\{600,700,800\}\si{\mega\electronvolt}}$ & \SI{400}{}-\SI{550}{\mega\electronvolt}          \\
-	$m_{a_0}$         & $\SI{870}{\mega\electronvolt}$          & \SI{980}{\mega\electronvolt}                     \\
-	$m_\kappa$        & $\SI{1141}{\mega\electronvolt}$         & \SI{1414}{\mega\electronvolt}                    \\
-	$m_\eta$          & $\SI{636}{\mega\electronvolt}$          & \SI{548}{\mega\electronvolt}                     \\
-	$m_{\eta'}$       & $\SI{138}{\mega\electronvolt}$          & \SI{958}{\mega\electronvolt}                     \\
-	$m_\pi$           & $\textbf{\SI{138}{\mega\electronvolt}}$ & \SI{138}{\mega\electronvolt}                     \\
-	$m_K$             & $\textbf{\SI{496}{\mega\electronvolt}}$ & \SI{496}{\mega\electronvolt}                     \\
-	\bottomrule
-\end{tabular}
-\hfill
-\begin{tabular}{ l r }
-	\toprule
-	\makebox[1.5cm][l]{Parameter}   & Model                                 \\
-	\midrule
-	$g$         & $\SI{6.45}{}$                         \\
-	$m^2$       & $-(\{178,351,492\}\si{\mega\electronvolt})^2$ \\
-	$\lambda_1$ & $-\{18.2,13.0,6.2\}$                        \\
-	$\lambda_2$ & $ \SI{85.3}{}$                        \\
-	$h_x$       & $(\SI{121}{\mega\electronvolt})^3$  \\
-	$h_y$       & $(\SI{336}{\mega\electronvolt})^3$  \\
-	\\
-	\\
-	\\
-	\\
-	\\
-	\\
-	\\
-	\vspace{-2pt} \\ % align with bottomrule of left table
-	\bottomrule 
+\begin{tabular}{ l r r r r c l r r r}
+\toprule
+\multicolumn{5}{c}{Physical variables} & & \multicolumn{4}{c}{Model parameters} \\
+\cmidrule(lr){1-5} \cmidrule(lr){7-10}
+\multirow{2}[1]{*}{Variable} & \multicolumn{3}{c}{Modeled} & \multirow{2}[1]{*}{Measured} & & \multirow{2}[1]{*}{Parameter} & \multicolumn{3}{c}{Modeled} \\
+\cmidrule(lr){2-4} \cmidrule(lr){8-10}
+& Set 1 & Set 2 & Set 3 & & & & Set 1 & Set 2 & Set 3 \\
+\midrule
+%\cmidrule(lr){1-5} \cmidrule(lr){6-9}
+%& $m_\sigma=\SI{600}{\mega\electronvolt} & $m_\sigma=\SI{700}{\mega\electronvolt} & $m_\sigma=\SI{800}{\mega\electronvolt} & & & $m_\sigma=\SI{600}{\mega\electronvolt} & $m_\sigma=\SI{700}{\mega\electronvolt} & $m_\sigma=\SI{800}{\mega\electronvolt} \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{f_\pi}     \,/\, \si{\mega\electronvolt}$ & $\textbf{\SI{93}{}}$ & $\textbf{\SI{93}{}}$ & $\textbf{\SI{93}{}}$ & \SI{92}{}-\SI{93}{} & & $g$ & $\SI{6.45}{}^{\phantom{1}}$ & $\SI{6.45}{}^{\phantom{1}}$ & $\SI{6.45}{}^{\phantom{1}}$ \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{f_K}       \,/\, \si{\mega\electronvolt}$ & $\textbf{\SI{113}{}}$ & $\textbf{\SI{113}{}}$ & $\textbf{\SI{113}{}}$ & \SI{113}{} & & $m^2 \,/\, (\si{\mega\electronvolt})^2$ & $-\SI{178}{}^2$ & $-\SI{351}{}^2$ & $-\SI{492}{}^2$ \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_u}       \,/\, \si{\mega\electronvolt}$ & $\textbf{\SI{300}{}}$ & $\textbf{\SI{300}{}}$ & $\textbf{\SI{300}{}}$ & \approx \, \SI{300}{} & & $\lambda_1$ & $\SI{-18.2}{}^{\phantom{1}}$ & $\SI{-13.0}{}^{\phantom{1}}$ & $\SI{-6.2}{}^{\phantom{1}}$ \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_d}       \,/\, \si{\mega\electronvolt}$ & $\textbf{\SI{300}{}}$ & $\textbf{\SI{300}{}}$ & $\textbf{\SI{300}{}}$ & \approx \, \SI{300}{} & & $\lambda_2$ & $\SI{85.3}{}^{\phantom{1}}$ & $\SI{85.3}{}^{\phantom{1}}$ & $\SI{85.3}{}^{\phantom{1}}$ \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_s}       \,/\, \si{\mega\electronvolt}$ & $\SI{429}{}$ & $\SI{429}{}$ & $\SI{429}{}$ & \approx \, \SI{500}{} & & $\mathmakebox[\widthof{$m^2$}][l]{h_x} \,/\, (\si{\mega\electronvolt})^3$ & $\SI{121}{}^3$ & $\SI{121}{}^3$ & $\SI{121}{}^3$ \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_{f_0}}   \,/\, \si{\mega\electronvolt}$ & $\SI{1294}{}$ & $\SI{1315}{}$ & $\SI{1347}{}$ & \SI{1200}{}-\SI{1500}{} & & $\mathmakebox[\widthof{$m^2$}][l]{h_y} \,/\, (\si{\mega\electronvolt})^3$ & $\SI{336}{}^3$ & $\SI{336}{}^3$ & $\SI{336}{}^3$ \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_\sigma}  \,/\, \si{\mega\electronvolt}$ & $\textbf{\SI{600}{}}$ & $\textbf{\SI{700}{}}$ & $\textbf{\SI{800}{}}$ & \SI{400}{}-\SI{550}{} \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_{a_0}}   \,/\, \si{\mega\electronvolt}$ & $\SI{870}{}$ & $\SI{870}{}$ & $\SI{870}{}$ & \SI{980}{} \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_\kappa}  \,/\, \si{\mega\electronvolt}$ & $\SI{1141}{}$ & $\SI{1141}{}$ & $\SI{1141}{}$ & \SI{1414}{} \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_\eta}    \,/\, \si{\mega\electronvolt}$ & $\SI{636}{}$ & $\SI{636}{}$ & $\SI{636}{}$ & \SI{548}{} \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_{\eta'}} \,/\, \si{\mega\electronvolt}$ & $\SI{138}{}$ & $\SI{138}{}$ & $\SI{138}{}$ & \SI{958}{} \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_\pi}     \,/\, \si{\mega\electronvolt}$ & $\textbf{\SI{138}{}}$ & $\textbf{\SI{138}{}}$ & $\textbf{\SI{138}{}}$ & \SI{138}{} \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_K}       \,/\, \si{\mega\electronvolt}$ & $\textbf{\SI{496}{}}$ & $\textbf{\SI{496}{}}$ & $\textbf{\SI{496}{}}$ & \SI{496}{} \\
+\bottomrule
 \end{tabular}
 \end{table}
 
