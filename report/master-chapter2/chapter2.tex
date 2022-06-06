@@ -378,31 +378,24 @@ Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumpt
 The variables in the left table are used as input to determine the model parameters in the right table
 from equation \eqref{eq:lsm:parameters}.
 Experimental values are taken from \cite{ref:pdg_review_2021}.
-Three different values are used for $m_\sigma$, generating three different values of both $\lambda$ and $m^2$.
+Three different values are used for $m_\sigma$, generating three parameter sets with different $m^2$ and $\lambda$.
 }
-\begin{tabular}{ l r r }
-	\toprule
-	Variable & Model                                   & Experimental       \\
-	\midrule
-	$\avg{\sigma}=f_\pi$ & $\textbf{\SI{93}{\mega\electronvolt}}$  & \SI{92}{}-\SI{93}{\mega\electronvolt} \\
-	%\midrule
-	$m_u=m_d$            & $\textbf{\SI{300}{\mega\electronvolt}}$ & \approx \, \SI{300}{\mega\electronvolt} \\
-	%\midrule
-	$m_\sigma$           & $\textbf{\{600,700,800\}\,\si{\mega\electronvolt}}$ & \SI{400}{}-\SI{550}{\mega\electronvolt}          \\
-	$m_\pi$              & $\textbf{\SI{138}{\mega\electronvolt}}$ & \SI{138}{\mega\electronvolt}                     \\
-	\bottomrule
-\end{tabular}
-\hfill
-\begin{tabular}{ l r }
-	\toprule
-	Parameter   & Model                                 \\
-	\midrule
-	$g$         & $\SI{3.23}{}$                         \\
-	$m^2$       & $-(\{389,465,540\} \, \si{\mega\electronvolt})^2$ \\
-	$\lambda$   & $\{118,163,215\}$                        \\
-	$h$         & $(\SI{121}{\mega\electronvolt})^3$  \\
-	%$\Lambda$   & $\SI{182}{\mega\electronvolt}$ \\
-	\bottomrule
+\begin{tabular}{ l r r r r c l r r r}
+\toprule
+\multicolumn{5}{c}{Physical variables} & & \multicolumn{4}{c}{Model parameters} \\
+\cmidrule(lr){1-5} \cmidrule(lr){7-10}
+\multirow{2}[1]{*}{Variable} & \multicolumn{3}{c}{Modeled} & \multirow{2}[1]{*}{Measured} & & \multirow{2}[1]{*}{Parameter} & \multicolumn{3}{c}{Modeled} \\
+\cmidrule(lr){2-4} \cmidrule(lr){8-10}
+& Set 1 & Set 2 & Set 3 & & & & Set 1 & Set 2 & Set 3 \\
+\midrule
+%\cmidrule(lr){1-5} \cmidrule(lr){6-9}
+%& $m_\sigma=\SI{600}{\mega\electronvolt} & $m_\sigma=\SI{700}{\mega\electronvolt} & $m_\sigma=\SI{800}{\mega\electronvolt} & & & $m_\sigma=\SI{600}{\mega\electronvolt} & $m_\sigma=\SI{700}{\mega\electronvolt} & $m_\sigma=\SI{800}{\mega\electronvolt} \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{f_\pi}     \,/\, \si{\mega\electronvolt}$ & $\textbf{\SI{93}{}}$ & $\textbf{\SI{93}{}}$ & $\textbf{\SI{93}{}}$ & \SI{92}{}-\SI{93}{} & & $g$ & $\SI{3.23}{}^{\phantom{1}}$ & $\SI{3.23}{}^{\phantom{1}}$ & $\SI{3.23}{}^{\phantom{1}}$ \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_u}       \,/\, \si{\mega\electronvolt}$ & $\textbf{\SI{300}{}}$ & $\textbf{\SI{300}{}}$ & $\textbf{\SI{300}{}}$ & \approx \, \SI{300}{} & & $m^2 \,/\, (\si{\mega\electronvolt})^2$ & $-\SI{389}{}^2$ & $-\SI{465}{}^2$ & $-\SI{540}{}^2$ \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_d}       \,/\, \si{\mega\electronvolt}$ & $\textbf{\SI{300}{}}$ & $\textbf{\SI{300}{}}$ & $\textbf{\SI{300}{}}$ & \approx \, \SI{300}{} & & $\lambda$ & $\SI{118}{}^{\phantom{1}}$ & $\SI{163}{}^{\phantom{1}}$ & $\SI{215}{}^{\phantom{1}}$ \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_\sigma}  \,/\, \si{\mega\electronvolt}$ & $\textbf{\SI{600}{}}$ & $\textbf{\SI{700}{}}$ & $\textbf{\SI{800}{}}$ & \SI{400}{}-\SI{550}{} & & $\mathmakebox[\widthof{$m^2$}][l]{h} \,/\, (\si{\mega\electronvolt})^3$ & $\SI{121}{}^3$ & $\SI{121}{}^3$ & $\SI{121}{}^3$ \\
+$\mathmakebox[\widthof{$m_{f_0}$}][l]{m_\pi}     \,/\, \si{\mega\electronvolt}$ & $\textbf{\SI{138}{}}$ & $\textbf{\SI{138}{}}$ & $\textbf{\SI{138}{}}$ & \SI{138}{} \\
+\bottomrule
 \end{tabular}
 \end{table}
 
