@@ -13,6 +13,14 @@
 \newcommand\TODO[1]{\textcolor{red}{(\textbf{TODO:} #1)}}
 \newcommand\TODOM[1]{\marginpar{\TODO{#1}}}
 
+\usepackage{titlesec}
+\titleformat{\chapter}[display] % custom Veelo-like style for numbered chapters
+{\normalfont\huge\bfseries\filleft}
+{\chaptertitlename\  \smash{\resizebox{!}{40pt}{\thechapter}} \makebox[0pt][l]{\smash{\rule{20mm}{\heightof{\resizebox{!}{40pt}{\thechapter}}}}}}{20pt}{\Huge}
+\titleformat{\part}[display]
+{\normalfont\huge\bfseries\centering}
+{\partname\  \resizebox{!}{40pt}{\thepart}}{50pt}{\fontsize{30}{40}\selectfont \thispagestyle{empty}}
+
 \usepackage{ifdraft}
 \usepackage[svgnames]{xcolor}
 %\usepackage[utf8]{inputenc} % ignored with lualatex / xelatex (which are utf8-based)
@@ -358,22 +366,23 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 \input{prologue/prologue.tex}
 
 \mainmatter
-\part[Preliminaries to Compact Stars (project thesis)]%
-{Preliminaries to Compact Stars \\ \ \\ (project thesis)} \label{part:project}
+\part[Preliminaries to Compact Stars \texorpdfstring{\hfill}{}\normalfont(project thesis)\ ]%
+{Preliminaries to \\ Compact Stars \\ \vspace{50pt}\normalfont\huge(project thesis)} \label{part:project}
 \input{project-introduction/introduction.tex}
 \input{project-chapter1/chapter1.tex}
 \input{project-chapter2/chapter2.tex}
 \input{project-chapter3/chapter3.tex}
 \input{project-conclusion/conclusion.tex}
-\part[Quark and Hybrid Stars with the Quark-Meson Model (master thesis)]%
-{Quark and Hybrid Stars with the Quark-Meson Model \\ \ \\ (master thesis)} \label{part:master}
+\part[Quark and Hybrid Stars with the Quark-Meson Model \texorpdfstring{\hfill}{}\normalfont(master thesis)\ ]%
+{Quark and Hybrid Stars \\ with the Quark-Meson Model \\ \vspace{50pt}\normalfont\huge(master thesis)} \label{part:master}
 \input{master-introduction/introduction.tex}
 \input{master-chapter1/chapter1.tex}
 \input{master-chapter2/chapter2.tex}
 \input{master-chapter3/chapter3.tex}
 \input{master-chapter4/chapter4.tex}
 \input{master-conclusion/conclusion.tex}
-\part{Appendices} \label{part:appendices}
+\part[Appendices \texorpdfstring{\hfill}{}\normalfont(project and master thesis)\ ]%
+{Appendices \\ \vspace{50pt}\normalfont\huge(project and master thesis)} \label{part:appendices}
 \input{appendix/appendix.tex}
 
 \backmatter
