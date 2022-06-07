@@ -513,8 +513,9 @@ In contrast, the upper bounds disagree due to the massless approximation being w
 Different equations of state are now finally available to us by making the shift \eqref{eq:mit:bag_shift}
 of the ``unbagged'' equation of state in \cref{fig:mit:eos-eos}
 with multiple bag constants inside the established bag window \eqref{eq:mit:bag_window}.
-We then integrate the Tolman-Oppenheimer-Volkoff equation numerically 
-with the program in \cref{sec:nstars:numtov}
+From the numerical implementation in \cref{sec:num:qstars2f},
+we then integrate the Tolman-Oppenheimer-Volkoff equation numerically 
+by calling upon the program in \cref{sec:nstars:numtov}
 as described in \cref{sec:master_intro:tov},
 obtaining the quark stars in \cref{fig:mit:mass_radius}:
 \begin{figure}[t]
@@ -566,7 +567,7 @@ Lower bag constants correspond to greater maximum masses.
 }
 \end{figure}
 \begin{itemize}
-\item As mentioned in \cref{sec:master_intro:tov},
+\item As mentioned in \cref{sec:master_intro:tov} and studied in \cref{sec:nstars:stability},
       stars with central pressure exceeding that of the maximum mass star are unstable against radial perturbations,
       so we cut off the curve not long after the mass peak.
 \item The smaller the bag constant, the larger and more massive the star.
