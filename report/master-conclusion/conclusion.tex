@@ -32,7 +32,6 @@ as summarized in \cref{fig:conclusion:mass-radius}.
 \begin{figure}[t!]
 \centering
 \tikzsetnextfilename{summary-mass-radius}
-\pgfplotsset{cycle list/Set1-9}
 \begin{tikzpicture}
 \newcommand\ploteverything{
 \addplot [name path=J0748lo, draw=none, forget plot, domain=0:40] {2.08 - 0.07};
@@ -88,7 +87,7 @@ as summarized in \cref{fig:conclusion:mass-radius}.
 	xmin=7, xmax=16, ymin=0.0, ymax=2.5, xtick distance=1, ytick distance=0.5, minor x tick num=9, minor y tick num=4,
 	grid=both, minor grid style={ultra thin, gray!10!white},
 	legend transposed, legend columns=6, legend cell align = left, legend style={font=\small, anchor=north, at={(0.5, -0.15)}},
-	title = {Quark and hybrid star mass-radius relations for all models},
+	title = {Quark and hybrid star mass-radius relations for all models },
 	restrict y to domain=0.2:3.0,
 ];
 \ploteverything

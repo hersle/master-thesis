@@ -108,10 +108,13 @@ We then invert $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to obtain
 	nconv=1.29619e-7;
 }};
 \begin{groupplot}[
-	group style={group size={1 by 3}, vertical sep=2.0cm},
-	width=13cm, height=7cm,
+	group style={group size={1 by 3}, vertical sep=1.1cm},
+	width=13cm, height=8cm,
 	extra tick style={grid=major, grid style={dashed}},
 	minor tick num=9,
+	xlabel style={yshift=+0.1cm},
+	legend style={xshift=-0.2cm, yshift=-0.5cm, fill=none},
+	every axis title/.style={anchor=west, at={(0.01, 0.95)}, align=left, text width=5.0cm},
 ]
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$\mu_i \, / \, \si{\mega\electronvolt}$},
@@ -119,70 +122,70 @@ We then invert $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to obtain
 	xmin=0, xmax=700, xtick distance=100, minor x tick num=9,
 	ymin=0, ymax=700, ytick distance=100, 
 	%ymax=600, 
-	title={\subcaption{\label{fig:mit:eos-parametrization}Parametrization of solutions} },
+	title={\subcaption{\label{fig:mit:eos-parametrization}\makebox[\widthof{Parametrization of solutions}][l]{Parametrization of solutions}}},
 	legend cell align=left, legend pos=north west,
 ];
 % fake legend
-\addplot+ [black, solid, opacity=0.3] {-100}; \addlegendentry{$N_f=2$};
-\addplot+ [black, solid, opacity=0.8] {-100}; \addlegendentry{$N_f=3$};
-\addplot+ [red, solid, opacity=1.0] {-100}; \addlegendentry{$\mu_u$};
-\addplot+ [darkgreen, solid, opacity=1.0] {-100}; \addlegendentry{$\mu_d$};
-\addplot+ [purple, solid, opacity=1.0] {-100}; \addlegendentry{$\mu_s$};
-\addplot+ [blue, solid, opacity=1.0] {-100}; \addlegendentry{$\mu_e$};
+\addplot+ [black, solid, very thick, opacity=0.5] {-100}; \addlegendentry{$N_f=2$};
+\addplot+ [black, solid, very thick, opacity=1.0] {-100}; \addlegendentry{$N_f=3$};
+\addplot+ [index of colormap={0 of Set1-9}, solid, very thick, opacity=1.0] {-100}; \addlegendentry{$\mu_u$};
+\addplot+ [index of colormap={2 of Set1-9}, solid, very thick, opacity=1.0] {-100}; \addlegendentry{$\mu_d$};
+\addplot+ [index of colormap={6 of Set1-9}, solid, very thick, opacity=1.0] {-100}; \addlegendentry{$\mu_s$};
+\addplot+ [index of colormap={1 of Set1-9}, solid, very thick, opacity=1.0] {-100}; \addlegendentry{$\mu_e$};
 
 % 2-flavor
-\addplot+ [red,       solid,  opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=muu] {../code/data/MIT2F/eos_sigma_0.dat};
-\addplot+ [darkgreen, solid,  opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mud] {../code/data/MIT2F/eos_sigma_0.dat};
-\addplot+ [blue,      solid,  opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mue] {../code/data/MIT2F/eos_sigma_0.dat};
+\addplot+ [index of colormap={0 of Set1-9}, solid,  very thick, opacity=0.5] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=muu] {../code/data/MIT2F/eos_sigma_0.dat};
+\addplot+ [index of colormap={2 of Set1-9}, solid,  very thick, opacity=0.5] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mud] {../code/data/MIT2F/eos_sigma_0.dat};
+\addplot+ [index of colormap={1 of Set1-9}, solid,  very thick, opacity=0.5] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mue] {../code/data/MIT2F/eos_sigma_0.dat};
 
 % 3-flavor
-\addplot+ [red,       solid,  opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=muu] {../code/data/MIT3F/eos_sigma_0.dat};
-\addplot+ [darkgreen, solid,  opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mud] {../code/data/MIT3F/eos_sigma_0.dat};
-\addplot+ [purple,    dashed, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mus] {../code/data/MIT3F/eos_sigma_0.dat};
-\addplot+ [blue,      solid,  opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mue] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [index of colormap={0 of Set1-9}, solid,  very thick, opacity=1.0] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=muu] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [index of colormap={2 of Set1-9}, solid,  very thick, opacity=1.0] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mud] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [index of colormap={6 of Set1-9}, dashed, very thick, opacity=1.0] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mus] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [index of colormap={1 of Set1-9}, solid,  very thick, opacity=1.0] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=mue] {../code/data/MIT3F/eos_sigma_0.dat};
 
 \nextgroupplot[
 	xlabel={$\mu \, / \, \si{\mega\electronvolt}$}, ylabel={$n_i \, / \, (1/\si{\femto\meter\cubed})$},
 	xmin=0, xmax=700, xtick distance=100, minor x tick num=9,
 	ymin=-0.2, ymax=5.0, ytick distance=1.0, minor y tick num=4, restrict y to domain=-10:10,
-	title={\subcaption{\label{fig:mit:eos-density}Particle number densities}},
+	title={\subcaption{\label{fig:mit:eos-density}\makebox[\widthof{Parametrization of solutions}][l]{Particle number densities}}},
 	legend cell align=left, legend pos=north west,
 ];
 % fake legend
-\addplot+ [black, solid, opacity=0.3] {-10}; \addlegendentry{$N_f=2$};
-\addplot+ [black, solid, opacity=0.8] {-10}; \addlegendentry{$N_f=3$};
-\addplot+ [red, solid, opacity=1.0] {-10}; \addlegendentry{$n_u$};
-\addplot+ [darkgreen, solid, opacity=1.0] {-10}; \addlegendentry{$n_d$};
-\addplot+ [purple, solid, opacity=1.0] {-10}; \addlegendentry{$n_s$};
-\addplot+ [blue, solid, opacity=1.0] {-10}; \addlegendentry{$n_e$};
+\addplot+ [black, solid, very thick, opacity=0.5] {-10}; \addlegendentry{$N_f=2$};
+\addplot+ [black, solid, very thick, opacity=1.0] {-10}; \addlegendentry{$N_f=3$};
+\addplot+ [index of colormap={0 of Set1-9}, solid, very thick, opacity=1.0] {-10}; \addlegendentry{$n_u$};
+\addplot+ [index of colormap={2 of Set1-9}, solid, very thick, opacity=1.0] {-10}; \addlegendentry{$n_d$};
+\addplot+ [index of colormap={6 of Set1-9}, solid, very thick, opacity=1.0] {-10}; \addlegendentry{$n_s$};
+\addplot+ [index of colormap={1 of Set1-9}, solid, very thick, opacity=1.0] {-10}; \addlegendentry{$n_e$};
 
 % 2-flavor
-\addplot+ [red,       solid, opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nu] {../code/data/MIT2F/eos_sigma_0.dat};
-\addplot+ [darkgreen, solid, opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nd] {../code/data/MIT2F/eos_sigma_0.dat};
-\addplot+ [blue,      solid, opacity=0.3] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=ne] {../code/data/MIT2F/eos_sigma_0.dat};
+\addplot+ [index of colormap={0 of Set1-9}, solid, very thick, opacity=0.5] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nu] {../code/data/MIT2F/eos_sigma_0.dat};
+\addplot+ [index of colormap={2 of Set1-9}, solid, very thick, opacity=0.5] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nd] {../code/data/MIT2F/eos_sigma_0.dat};
+\addplot+ [index of colormap={1 of Set1-9}, solid, very thick, opacity=0.5] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=ne] {../code/data/MIT2F/eos_sigma_0.dat};
 
 % 3-flavor
-\addplot+ [red,       solid, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nu] {../code/data/MIT3F/eos_sigma_0.dat};
-\addplot+ [darkgreen, solid, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nd] {../code/data/MIT3F/eos_sigma_0.dat};
-\addplot+ [purple,    solid, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=ns] {../code/data/MIT3F/eos_sigma_0.dat};
-\addplot+ [blue,      solid, opacity=0.8] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=ne] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [index of colormap={0 of Set1-9}, solid, very thick, opacity=1.0] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nu] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [index of colormap={2 of Set1-9}, solid, very thick, opacity=1.0] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nd] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [index of colormap={6 of Set1-9}, solid, very thick, opacity=1.0] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=ns] {../code/data/MIT3F/eos_sigma_0.dat};
+\addplot+ [index of colormap={1 of Set1-9}, solid, very thick, opacity=1.0] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=ne] {../code/data/MIT3F/eos_sigma_0.dat};
 
 \nextgroupplot[
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	xmin=0, xmax=0.30, ymin=0, ymax=1.0, xtick distance=0.10, minor x tick num=9, ytick distance=0.5, minor y tick num=4, restrict y to domain=-1:+1,
-	title={\subcaption{\label{fig:mit:eos-eos}Equation of state}},
+	title={\subcaption{\label{fig:mit:eos-eos}\makebox[\widthof{Parametrization of solutions}][l]{Equation of state}}},
 	legend cell align=left, legend pos=north west,
 ];
-\addplot+ [black, solid, opacity=0.3] table [x=P,y=epsilon] {../code/data/MIT2F/eos_sigma_0.dat}; \addlegendentry{$N_f=2$};
-\addplot+ [black, solid, opacity=0.8] table [x=P,y=epsilon] {../code/data/MIT3F/eos_sigma_0.dat}; \addlegendentry{$N_f=3$};
+\addplot+ [black, solid, very thick, opacity=0.5] table [x=P,y=epsilon] {../code/data/MIT2F/eos_sigma_0.dat}; \addlegendentry{$N_f=2$};
+\addplot+ [black, solid, very thick, opacity=1.0] table [x=P,y=epsilon] {../code/data/MIT3F/eos_sigma_0.dat}; \addlegendentry{$N_f=3$};
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:mit:eos}%
-Properties of electrically charge neutral two-flavor (weak lines) and three-flavor (strong lines) MIT bag model quark matter in $\beta$-equilibrium parametrized by the common quark chemical potential $\mu = (\mu_u+\mu_d)/2$.
+Properties of charge neutral two-flavor (weak lines) and three-flavor (strong lines) quark matter in $\beta$-equilibrium in the MIT bag model.
 Upper panel \subref{fig:mit:eos-parametrization} shows the relations between chemical potentials due to the constraints \eqref{eq:lsm:chemical_equilibrium} and \eqref{eq:lsm:charge_neutrality},
-middle panel \subref{fig:mit:eos-density} the corresponding particle number densities \eqref{eq:mit:particle_densities} and
-lower panel \subref{fig:mit:eos-eos} the resulting equation of state \TODO{fix}.
+middle panel \subref{fig:mit:eos-density} the particle number densities \eqref{eq:mit:particle_densities} and
+lower panel \subref{fig:mit:eos-eos} the equation of state \TODO{fix. all very thick? captions. two legend columns?}.
 }
 \end{figure}
 

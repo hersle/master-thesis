@@ -378,7 +378,7 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
 	xmin=5, xmax=35, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
 	legend columns=5, legend pos=south east, legend cell align=right, legend transposed,
-	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.8,-0.3)}, anchor=north, xticklabel pos=lower},
+	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.8,-0.2)}, anchor=north, xticklabel pos=lower},
 ];
 \addplot [name path=J0748lo, draw=none, forget plot, domain=0:40] {2.08 - 0.07};
 \addplot [name path=J0748hi, draw=none, forget plot, domain=0:40] {2.08 + 0.07};
@@ -455,8 +455,8 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	ymax=1.5, ytick distance=0.5, minor y tick num=4,
 	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$ },
 ];
-\addplot+ [blue] table [x=r, y=epsilon] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$\epsilon$};
-\addplot+ [red] table [x=r, y=P] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$P$};
+\addplot+ [index of colormap={1 of Set1-9}] table [x=r, y=epsilon] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$\epsilon$};
+\addplot+ [index of colormap={0 of Set1-9}] table [x=r, y=P] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$P$};
 \nextgroupplot[
 	ylabel=$m \, / \, M_\odot$,
 	xticklabels={,,},
@@ -474,8 +474,8 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	ylabel=$n_i \, / \, n_\text{sat}$,
 	ymax=15, ytick distance=5, minor y tick num=4,
 ];
-\addplot+ [red, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=nu] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_u$};
-\addplot+ [darkgreen, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=nd] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_d$};
+\addplot+ [index of colormap={0 of Set1-9}, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=nu] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_u$};
+\addplot+ [index of colormap={2 of Set1-9}, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=nd] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_d$};
 %\addplot+ [purple, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=ns] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_s$};
 %\addplot+ [blue, x filter/.expression={\thisrow{r}<3.14}] table [x=r, y=ne] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_e$};
 \addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
@@ -502,8 +502,8 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	ymax=1.5, ytick distance=0.5, minor y tick num=4,
 	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$ },
 ];
-\addplot+ [blue] table [x=r, y=epsilon] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$\epsilon$};
-\addplot+ [red] table [x=r, y=P] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$P$};
+\addplot+ [index of colormap={1 of Set1-9}] table [x=r, y=epsilon] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$\epsilon$};
+\addplot+ [index of colormap={0 of Set1-9}] table [x=r, y=P] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$P$};
 \nextgroupplot[
 	ylabel=$m \, / \, M_\odot$,
 	xticklabels={,,},
@@ -521,9 +521,9 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	ylabel=$n_i \, / \, n_\text{sat}$,
 	ymax=15, ytick distance=5, minor y tick num=4,
 ];
-\addplot+ [red, x filter/.expression={\thisrow{r}<1.64 ? x : nan}] table [x=r, y=nu] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_u$};
-\addplot+ [darkgreen, x filter/.expression={\thisrow{r}<1.64 ? x : nan}] table [x=r, y=nd] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_d$};
-\addplot+ [purple, x filter/.expression={\thisrow{r}<1.64 ? x : nan}] table [x=r, y=ns] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_s$};
+\addplot+ [index of colormap={0 of Set1-9}, x filter/.expression={\thisrow{r}<1.64 ? x : nan}] table [x=r, y=nu] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_u$};
+\addplot+ [index of colormap={2 of Set1-9}, x filter/.expression={\thisrow{r}<1.64 ? x : nan}] table [x=r, y=nd] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_d$};
+\addplot+ [index of colormap={6 of Set1-9}, x filter/.expression={\thisrow{r}<1.64 ? x : nan}] table [x=r, y=ns] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_s$};
 %\addplot+ [blue, x filter/.expression={\thisrow{r}<1.64}] table [x=r, y=ne] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_e$};
 \addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat};
 \addplot+ [black, solid, forget plot, x filter/.expression={\thisrow{r}>=1.64 ? x : nan}] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat};
@@ -658,7 +658,7 @@ We inspect maximum mass stars on hybrid branches with both two and three flavors
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
 	xmin=5, xmax=35, ymin=0.5, ymax=2.5, xtick distance=5, ytick distance=0.5, minor tick num=4, grid=major,
 	legend columns=5, legend pos=south east, legend cell align=right, legend transposed,
-	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.8,-0.3)}, anchor=north, xticklabel pos=lower},
+	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.8,-0.2)}, anchor=north, xticklabel pos=lower},
 ];
 \addplot [name path=J0748lo, draw=none, forget plot, domain=0:40] {2.08 - 0.07};
 \addplot [name path=J0748hi, draw=none, forget plot, domain=0:40] {2.08 + 0.07};
@@ -733,8 +733,8 @@ We inspect maximum mass stars on hybrid branches with both two and three flavors
 	ymax=1.5, ytick distance=0.5, minor y tick num=4,
 	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$ },
 ];
-\addplot+ [blue] table [x=r, y=epsilon] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$\epsilon$};
-\addplot+ [red] table [x=r, y=P] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$P$};
+\addplot+ [index of colormap={1 of Set1-9}] table [x=r, y=epsilon] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$\epsilon$};
+\addplot+ [index of colormap={0 of Set1-9}] table [x=r, y=P] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$P$};
 \nextgroupplot[
 	ylabel=$m \, / \, M_\odot$,
 	xticklabels={,,},
@@ -752,8 +752,8 @@ We inspect maximum mass stars on hybrid branches with both two and three flavors
 	ylabel=$n_i \, / \, n_\text{sat}$,
 	ymax=15, ytick distance=5, minor y tick num=4,
 ];
-\addplot+ [red, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=nu] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_u$};
-\addplot+ [darkgreen, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=nd] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_d$};
+\addplot+ [index of colormap={0 of Set1-9}, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=nu] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_u$};
+\addplot+ [index of colormap={2 of Set1-9}, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=nd] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_d$};
 %\addplot+ [purple, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=ns] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_s$};
 %\addplot+ [blue, x filter/.expression={\thisrow{r}<3.22}] table [x=r, y=ne] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_e$};
 \addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
