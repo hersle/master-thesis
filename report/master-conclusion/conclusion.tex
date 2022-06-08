@@ -2,34 +2,7 @@
 
 \section{Conclusions}
 
-\begin{table}[b!]
-\centering
-\caption{\label{tab:master_conclusion:results}%
-Maximum masses and corresponding radii obtained using all models in this thesis,
-as summarized in \cref{fig:conclusion:mass-radius}.
-}
-{\setlength{\tabcolsep}{4pt} % affect only this table
-\begin{tabular}{ c l l c c c }
-	\toprule
-	Flavors & Chapter & Model & Maximum masses & Corresponding radii                            \\
-	\midrule
-	%\Cref{chap:mit} & MIT bag model ($N_f\!=\!2$) & $1.76 \, M_\odot \leq M \leq 2.00 \, M_\odot$ & $\hphantom{1}\SI{9.70}{\kilo\meter} \leq R \leq \SI{10.83}{\kilo\meter}$ \\
-	%\Cref{chap:mit} & MIT bag model ($N_f\!=\!3$) & $1.63 \, M_\odot \leq M \leq 1.85 \, M_\odot$ & $\hphantom{1}\SI{9.21}{\kilo\meter} \leq R \leq \SI{10.25}{\kilo\meter}$ \\
-	%\Cref{chap:lsm2f} & Quark-meson model ($N_f\!=\!2$) & $1.77 \, M_\odot \leq M \leq 2.02 \, M_\odot$ & $\SI{10.91}{\kilo\meter} \leq R \leq \SI{10.98}{\kilo\meter}$ \\
-	%\Cref{chap:lsm3f} & Quark-meson model ($N_f\!=\!3$) & $1.63 \, M_\odot \leq M \leq 1.81 \, M_\odot$ & $\SI{10.82}{\kilo\meter} \leq R \leq \SI{11.57}{\kilo\meter}$ \\
-	%\Cref{chap:hybrid} & Hybrid model & $1.89 \, M_\odot \leq M \leq 2.06 \, M_\odot$ & $\SI{11.23}{\kilo\meter} \leq R \leq \SI{11.48}{\kilo\meter}$ \\
-	$N_f=2$ & \Cref{chap:mit} & MIT bag model & $1.7 \, M_\odot \leq M \leq 2.0 \, M_\odot$ & $\hphantom{1}\SI{9.6}{\kilo\meter} \leq R \leq \SI{11.0}{\kilo\meter}$ \\
-	$N_f=2$ & \Cref{chap:lsm2f} & Quark-meson model & $1.8 \, M_\odot \leq M \leq 2.0 \, M_\odot$ & $\SI{10.9}{\kilo\meter} \leq R \leq \SI{11.2}{\kilo\meter}$ \\
-	$N_f=2$ & \Cref{chap:hybrid} & Hybrid model & $2.0 \, M_\odot \leq M \leq 2.1 \, M_\odot$ & $\SI{11.2}{\kilo\meter} \leq R \leq \SI{11.2}{\kilo\meter}$ \\
-	\midrule
-	$N_f=3$ & \Cref{chap:mit} & MIT bag model & $1.6 \, M_\odot \leq M \leq 1.9 \, M_\odot$ & $\hphantom{1}\SI{9.0}{\kilo\meter} \leq R \leq \SI{10.3}{\kilo\meter}$ \\
-	$N_f=3$ & \Cref{chap:lsm3f} & Quark-meson model & $1.6 \, M_\odot \leq M \leq 1.8 \, M_\odot$ & $\SI{11.0}{\kilo\meter} \leq R \leq \SI{11.6}{\kilo\meter}$ \\
-	$N_f=3$ & \Cref{chap:hybrid} & Hybrid model & $1.9 \, M_\odot \leq M \leq 2.1 \, M_\odot$ & $\SI{11.2}{\kilo\meter} \leq R \leq \SI{11.5}{\kilo\meter}$ \\
-	\bottomrule
-\end{tabular}}
-\end{table}
-
-\begin{figure}[t!]
+\begin{figure}[p]
 \centering
 \tikzsetnextfilename{summary-mass-radius}
 \begin{tikzpicture}
@@ -87,7 +60,7 @@ as summarized in \cref{fig:conclusion:mass-radius}.
 	xmin=7, xmax=16, ymin=0.0, ymax=2.5, xtick distance=1, ytick distance=0.5, minor x tick num=9, minor y tick num=4,
 	grid=both, minor grid style={ultra thin, gray!10!white},
 	legend transposed, legend columns=6, legend cell align = left, legend style={font=\small, anchor=north, at={(0.5, -0.15)}},
-	title = {Quark and hybrid star mass-radius relations for all models },
+	title = {Summary of all modeled quark and hybrid stars},
 	restrict y to domain=0.2:3.0,
 ];
 \ploteverything
@@ -121,56 +94,92 @@ as summarized in \cref{fig:conclusion:mass-radius}.
 	of the heavy pulsars \textcolor{green}{PSR J0348$+$0432}, \textcolor{yellow}{PSR J1614$-$2230} and \textcolor{red}{PSR J0740$+$6620}
 	from \cite{ref:antoniadis,ref:arzoumanian,ref:fonseca}.
 	For clearer presentations of the results with each model,
-	please look at \cref{fig:mit:mass_radius,fig:lsm:2-flavor-mass-radius,fig:lsm:3-flavor-mass-radius,fig:hybrid:mass-radius}.
+	please consult \cref{fig:mit:mass_radius,fig:lsm:2-flavor-mass-radius,fig:lsm:3-flavor-mass-radius,fig:hybrid:mass-radius}.
 }
 \end{figure}
 
+\begin{table}[p]
+\centering
+\caption{\label{tab:master_conclusion:results}%
+Maximum masses and corresponding radii of the stellar sequences in \cref{fig:conclusion:mass-radius}.
+}
+{\setlength{\tabcolsep}{4pt} % affect only this table
+\begin{tabular}{ c l l c c c }
+	\toprule
+	Flavors & Chapter & Model & Maximum masses & Corresponding radii                            \\
+	\midrule
+	%\Cref{chap:mit} & MIT bag model ($N_f\!=\!2$) & $1.76 \, M_\odot \leq M \leq 2.00 \, M_\odot$ & $\hphantom{1}\SI{9.70}{\kilo\meter} \leq R \leq \SI{10.83}{\kilo\meter}$ \\
+	%\Cref{chap:mit} & MIT bag model ($N_f\!=\!3$) & $1.63 \, M_\odot \leq M \leq 1.85 \, M_\odot$ & $\hphantom{1}\SI{9.21}{\kilo\meter} \leq R \leq \SI{10.25}{\kilo\meter}$ \\
+	%\Cref{chap:lsm2f} & Quark-meson model ($N_f\!=\!2$) & $1.77 \, M_\odot \leq M \leq 2.02 \, M_\odot$ & $\SI{10.91}{\kilo\meter} \leq R \leq \SI{10.98}{\kilo\meter}$ \\
+	%\Cref{chap:lsm3f} & Quark-meson model ($N_f\!=\!3$) & $1.63 \, M_\odot \leq M \leq 1.81 \, M_\odot$ & $\SI{10.82}{\kilo\meter} \leq R \leq \SI{11.57}{\kilo\meter}$ \\
+	%\Cref{chap:hybrid} & Hybrid model & $1.89 \, M_\odot \leq M \leq 2.06 \, M_\odot$ & $\SI{11.23}{\kilo\meter} \leq R \leq \SI{11.48}{\kilo\meter}$ \\
+	$N_f=2$ & \Cref{chap:mit} & MIT bag model & $1.7 \, M_\odot \leq M \leq 2.0 \, M_\odot$ & $\hphantom{1}\SI{9.6}{\kilo\meter} \leq R \leq \SI{11.0}{\kilo\meter}$ \\
+	$N_f=2$ & \Cref{chap:lsm2f} & Quark-meson model & $1.8 \, M_\odot \leq M \leq 2.0 \, M_\odot$ & $\SI{10.9}{\kilo\meter} \leq R \leq \SI{11.2}{\kilo\meter}$ \\
+	$N_f=2$ & \Cref{chap:hybrid} & Hybrid model & $2.0 \, M_\odot \leq M \leq 2.1 \, M_\odot$ & $\SI{11.2}{\kilo\meter} \leq R \leq \SI{11.2}{\kilo\meter}$ \\
+	\midrule
+	$N_f=3$ & \Cref{chap:mit} & MIT bag model & $1.6 \, M_\odot \leq M \leq 1.9 \, M_\odot$ & $\hphantom{1}\SI{9.0}{\kilo\meter} \leq R \leq \SI{10.3}{\kilo\meter}$ \\
+	$N_f=3$ & \Cref{chap:lsm3f} & Quark-meson model & $1.6 \, M_\odot \leq M \leq 1.8 \, M_\odot$ & $\SI{11.0}{\kilo\meter} \leq R \leq \SI{11.6}{\kilo\meter}$ \\
+	$N_f=3$ & \Cref{chap:hybrid} & Hybrid model & $1.9 \, M_\odot \leq M \leq 2.1 \, M_\odot$ & $\SI{11.2}{\kilo\meter} \leq R \leq \SI{11.5}{\kilo\meter}$ \\
+	\bottomrule
+\end{tabular}}
+\end{table}
+
 In this thesis we have modeled quark stars using the MIT bag model and the quark-meson model with two and three flavors,
-and finally hybrid stars by combining the quark-meson model and hadronic Akmal-Pandharipande-Ravenhall equation of state.
-All the resulting mass-radius relations are summarized in \cref{fig:conclusion:mass-radius},
-and their maximum masses and corresponding radii are gathered in \cref{tab:master_conclusion:results}.
+and finally hybrid stars by joining the quark-meson models with the hadronic Akmal-Pandharipande-Ravenhall equation of state from \cite{ref:apr,ref:apr_data}.
+All resulting mass-radius relations, their maximum masses and corresponding radii
+are summarized in \cref{fig:conclusion:mass-radius} and \cref{tab:master_conclusion:results}.
 
 With the quark-meson model we could create pure quark stars with two flavors up to $M \leq 2.0 \, M_\odot$ and with three flavors up to $M \leq 1.8 \, M_\odot$.
 Due to their softer equations of state, we saw that three-flavor stars are generally less massive than two-flavor stars.
-Due to the instability of two-flavor quark matter compared to hadronic matter,
+As two-flavor quark matter is unstable compared to hadronic matter,
 pure two-flavor quark stars are unlikely to be found in nature.
-However, if the strange matter hypothesis is true,
-strange quark stars consisting of three-flavor quark matter out to the surface are stable and could exist.
-We failed to model strange quark stars self-consistently with the three-flavor quark-meson model,
-as the bag constant must exceed its upper bound due to the strange matter hypothesis if the strange quark is to exist at surface.
+However, \emph{if} the strange matter hypothesis of \cite{ref:strange_hypothesis_bodmer,ref:strange_hypothesis_witten} is true,
+strange quark stars consisting of three-flavor quark matter out to the surface would be stable and could exist.
+We fail to model strange quark stars self-consistently with the three-flavor quark-meson model,
+as the bag constant must exceed its upper bound calculated precisely by \emph{assuming} the strange matter hypothesis if the strange quark is to exist out to surface.
 
-The parameter space of the quark-meson model is particularly plagued by the ``ad-hoc'' $\sigma$ meson,
-whose mass is only known to lie within $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{550}{\mega\electronvolt}$.
+We calculated the grand potential of the quark-meson models to tree-level in bosons and one-loop in fermions.
+This is \emph{inconsistent} in terms of the number of loops, but can be regarded \emph{consistent} in the one-loop large-$N_c$ limit.
+The equations of state were then found at zero temperature, in $\beta$-equilibrium and subject to local electrical charge neutrality.
+
+In particular, the parameter space of the quark-meson model is plagued by the ``ad-hoc'' $\sigma$ meson,
+whose mass is only known to lie in $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{550}{\mega\electronvolt}$. \cite{ref:pdg_review_2021}
 Depending on its value, we saw that chiral symmetry restoration occurred in a rapid crossover for $m_\sigma \geq \SI{800}{\mega\electronvolt}$,
 but a discontinuous phase transition for $m_\sigma < \SI{800}{\mega\electronvolt}$.
 Moreover, we could only fit masses $m_\sigma \geq \SI{600}{\mega\electronvolt}$ that exceed the measurements
-to prevent the ground state of the grand potential from vanishing in vacuum.
-We nailed this problem down to the inconsistency of fitting parameters at tree-level to a potential that is calculated to one loop.
-Repeating our calculation with a consistently fit potential in the large-$N_c$ limit found by Adhikari and others,
-we learned that we could still trust our results,
-as if inconsistently fit masses $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$
-corresponds to consistently fit masses $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{600}{\mega\electronvolt}$.
-Such a consistently fit grand potential has only been found for the two-flavor model, however.
+to prevent the minimum of the grand potential from disappearing in the vacuum phase.
+With two flavors,
+we nailed this problem down to the inconsistency of fitting parameters at tree-level to a potential that is calculated in the one-loop large-$N_c$ limit.
+Repeating our calculation with a consistently fit potential in this limit found by \cite{ref:jo_lsm_consistent_chiral,ref:jo_lsm_consistent_physical},
+we learned that we could still trust our original results,
+as if inconsistently fit $\SI{600}{\mega\electronvolt} \leq m_\sigma \leq \SI{800}{\mega\electronvolt}$
+correspond to consistently fit $\SI{400}{\mega\electronvolt} \leq m_\sigma \leq \SI{600}{\mega\electronvolt}$.
 
-Using the quark-meson model in the core, we could also form short ranges of stable hybrid stars up to $M \leq 2.1 \, M_\odot$.
-They contained very small quark cores no more massive than $0.12 M_\odot$ and $0.02 M_\odot$ with two and three flavors, respectively.
-This resonates with the general view in \cite{ref:quark_star_review} that hybrid star quark cores are small.
-Denser hybrid stars beyond the maximum mass are unstable against radial perturbations due to the discontinuous phase transition between the quark and hadronic phases.
-We find it possible to model hybrid stars with small quark cores around the recent mass observations \cite{ref:antoniadis,ref:arzoumanian,ref:fonseca}
+Using the quark-meson models in the core, we could also form short ranges of stable hybrid stars up to $M \leq 2.1 \, M_\odot$
+with both two and three flavors, where the two-flavor stars are generally somewhat heavier due to their stiffer equations of state.
+The hybrid stars contained very small quark cores no more massive than $0.12 M_\odot$ and $0.02 M_\odot$ with two and three flavors, respectively.
+This resonates with the claim in \cite{ref:quark_star_review} that hybrid star quark cores are very small, if they exist at all.
+Beyond the maximum mass star,
+the discontinuous phase transition between the quark and hadronic phases becomes so severe
+that it destabilizes stars with larger quark cores against radial perturbations.
+We succeed in modeling hybrid stars with small quark cores
+around the recent mass observations \cite{ref:antoniadis,ref:arzoumanian,ref:fonseca}
 of the heavy pulsars PSR J1614$-$2230, PSR J0348$+$0432 and PSR J0748$+$6620 around and above $2 M_\odot$.
 
-The fact that hybrid stars seem to exhibit very small quark cores
-make it very easy to mistake them for neutron stars.
-It is difficult to decide whether a pulsar has a tiny quark core based on measurements made lightyears away from it.
+The indication that hybrid stars can have only small quark cores
+suggests that they are hard to observe decisively in nature.
 With future advances in our theoretical understanding and observational techniques,
-many observed neutron stars could really turn out to be hybrid stars.
+such as the \textbf{N}eutron \textbf{S}tar \textbf{I}nterior \textbf{C}omposition \textbf{E}xplore\textbf{r} (\textbf{NICER}) mission \cite{ref:nicer},
+heavy observed neutron stars could one day turn out to have quark cores.
+
 
 In earlier work, \cite{ref:lsm3f_compact_stars} have modeled pure quark stars with a vector meson-extended three-flavor quark-meson model,
 and this was incorporated into hybrid stars in \cite{ref:lsm3f_hybrid_stars}.
 With the vector meson interaction turned off and using parameters comparable to ours,
-they find hybrid stars with similar maximum masses $M \lesssim 1.9 M_\odot$ in \cite[figure 8]{ref:lsm3f_hybrid_stars}. % only B differs?
+they find hybrid stars with similar maximum masses $M \leq 1.9 M_\odot$, % only B differs?
+and greater masses can be reached if this interaction is enabled.
 Quark stars have also been modeled with the Nambu-Jona-Lasinio model in \cite{ref:quark_star_njl} and generalized to hybrid stars in \cite{ref:hybrid_stars_njl}, for example.
-In \cite[figure 3]{ref:hybrid_stars_njl}, they also find maximum hybrid star masses $1.9 M_\odot \leq M \leq 2.1 M_\odot$ with reasonable parameter choices.
+They also find maximum hybrid star masses $1.9 M_\odot \leq M \leq 2.1 M_\odot$ with reasonable parameter choices.
 Even \cite{ref:quark_hybrid_additional_ref} find hybrid stars in the band $2.0 M_\odot \leq M \leq 2.1 M_\odot$
 using a non-perturbative functional renormalization group approach with the quark-meson model.
 Despite using different models for both the quark and hadronic phases,
@@ -179,34 +188,42 @@ our results are in good agreement with these works.
 \section{Outlook}
 
 A natural extension of our work would be to
-explore the parameter space more thoroughly.
+explore the parameter space of the quark-meson model more thoroughly.
 Our philosophy has been to keep almost all parameters fixed,
-but vary the most uncertain parameter $m_\sigma$ and focus on the corresponding lowest instability-respecting $B$
-because it generates greater maximum masses.
+but vary the most uncertain parameter $m_\sigma$ and focus on the corresponding lowest instability-respecting bag constants $B$
+because it generates stiffer equations of state and thus greater maximum masses.
 A more detailed treatment could also vary the quark masses,
 other meson masses and use larger bag constants.
 For example, \cite{ref:lsm3f_compact_stars}
 find that the maximum mass increases with the quark masses $m_u=m_d$
-with a variation of our model mentioned.
+in the variation of our model mentioned above.
+One can also include more parameters by adding terms describing the axial anomaly of quantum chromodynamics
+and studying more complex symmetry breaking patterns, as described at length in \cite{ref:lsm3f_details}.
 
-Our treatment of bosons to tree-level and fermions to one loop was inconsistent in terms of loops,
-but consistent in the one-loop large-$N_c$ limit.
-We also saw that fitting parameters at tree-level to a one-loop grand potential was inconsistent
-and performed a consistent fit in the one-loop large-$N_c$ limit of the two-flavor model using the results of \cite{ref:jo_lsm_consistent_chiral,ref:jo_lsm_consistent_physical}.
-Such a consistently fit grand potential has only been found for the two-flavor model,
-so it would be interesting to find one for three-flavor model and see if its ability to fit experimental values of $m_\sigma$ carries over.
+A consistent parameter fitting method in the one-loop large-$N_c$ limit is
+only available for the two-flavor quark-meson model.
+It would be interesting to generalize it to the three-flavor model
+and see if the ability to fit experimental values of $m_\sigma$ carries over from the two-flavor case.
 
-Different and more sophisticated effective models could also be examined.
+It is natural to expect that our greatest source of error
+lies neither in the calculation of the grand potential nor its parameter fitting,
+but in the quark-meson model \emph{itself}.
+First-principle approaches of studying quark matter from quantum chromodynamics remains difficult,
+as the sign problem plagues lattice calculations at finite baryon chemical potentials 
+and perturbation theory is applicable only at high energies.
+Of course, other and more sophisticated effective models could be examined.
 For example, confinement could be incorporated with Polyakov-loop extended quark-meson models (PQM models, see for example \cite{ref:pqm_2f,ref:pqm_3f,ref:master_folkestad}) and NJL models (PNJL models, see for example \cite{ref:pnjl_2f,ref:pnjl_3f,ref:pnjl_3f_zeroT}).
-It would also be interesting to see the effects of modeling the color-superconducting phase of the phase diagram in \cref{fig:qcd:phase_diagram}.
+One could also examine the effects of modeling the color-superconducting phase of the phase diagram in \cref{fig:qcd:phase_diagram}.
 
-More effort could also be put into handling the phase transition in the hybrid stars more carefully.
-For example, one could use interpolation techniques described in \cite{ref:quark_star_review}
-near the intersection point of the transition,
+More effort could also be put into handling the phase transition in hybrid stars more carefully.
+For example, the interpolation techniques described in \cite{ref:quark_star_review}
+can be used near the intersection point of the transition,
 where both the quark and hadronic equations of state are unreliable.
-The interpolation is severely constrained by several physical requirements,
-such as the speed of sound $v = c \sqrt{\odv{P}/{\epsilon}}$ not exceeding that of light.
+This method constructs a unified equation of state
+that bridges the gap between the two phases,
+constrained by physical requirements like retaining a causal speed of sound.
 
-One could also refine calculations to nonzero temperature and beyond bosonic mean fields,
+One can also refine calculations to nonzero temperature and beyond mean fields,
 investigate effects of non-local charge neutrality,
-and consider rotating stars that are more representative of observed pulsars than the static Tolman-Oppenheimer-Volkoff equation by using a different spacetime metric.
+and solve the axially symmetric generalization of the spherically symmetric Tolman-Oppenheimer-Volkoff
+to model realistic spinning pulsars.
