@@ -2,13 +2,12 @@
 
 from quark_hybrid_stars_common import *
 
-# current/lone/free masses (i.e. without gluons)
-muf = 5
+muf = 5 # current/lone/free masses (i.e. without gluons)
 mdf = 7
 msf = 150
 
 class MITModel(Model):
-    pass
+    pass # will only inherit
 
 class MIT2FlavorModel(MITModel):
     def __init__(self):

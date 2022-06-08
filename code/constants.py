@@ -1,5 +1,4 @@
 import scipy.constants
-
 π = scipy.constants.pi
 ħ = scipy.constants.hbar
 c = scipy.constants.c

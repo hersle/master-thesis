@@ -1610,7 +1610,7 @@ in the minimum \eqref{eq:lsm:ground_state_3f}.
 \chapter{Numerical Implementations}
 \label{chap:code}
 
-In this appendix, we explain and list all Python code used to produce the results of this thesis.
+In this appendix, we explain and lay out all Python code used to produce the results of this thesis.
 The code is also available online at \url{https://github.com/hersle/master-thesis} for convenience,
 but could be taken down from there at any time.
 
@@ -1831,17 +1831,17 @@ We make a total of four sweeps for the mass-radius diagram in \cref{fig:nstars:m
 \section{Equations of state for quark stars and hybrid stars}
 \label{sec:num:qstars2f}
 
-These programs finds all equations of state and stellar solutions in chapters \ref{chap:mit}, \ref{chap:lsm2f}, \ref{chap:lsm3f} and \ref{chap:hybrid}.
-The models are organized according to the following class diagram:
+These programs find all equations of state and stellar solutions in chapters \ref{chap:mit}, \ref{chap:lsm2f}, \ref{chap:lsm3f} and \ref{chap:hybrid}.
+The models are organized as classes according to the following diagram:
 
 \begin{center}
 \tikzsetnextfilename{quark-star-class-hierarchy}
 \begin{tikzpicture}[
 	every node/.style={rectangle, fill=blue!20, draw=black, thick, font=\small, align=center}, % ellipse is too wide
 	grow'=right,
-	level distance=4cm,
+	level distance=2.9cm,
 	level 1/.style={sibling distance=3.5cm},
-	level 2/.style={sibling distance=1.5cm},
+	level 2/.style={sibling distance=1.5cm, anchor=west},
 ]
 \node {Model}
 	child {node {MITModel \\ \scriptsize \textcolor{darkgray}{(chapter 7)}}
@@ -1865,25 +1865,31 @@ The models are organized according to the following class diagram:
 \end{center}
 
 \pagebreak
-For each model, the program performs the following tasks:
+For all the models, the program performs the following tasks:
 \begin{itemize}
-\item It numerically fits parameters to the grand potential \eqref{eq:master_intro:grand_potential} at zero temperature
+\item It numerically fits parameters to the grand potential
+      \eqref{eq:mit:grand_potential}, \eqref{eq:lsm:grand_potential}, \eqref{eq:lsm2f:grand_potential_consistent} or \eqref{eq:lsm3f:grand_potential}
       and evaluates it and its derivatives with respect to any mean fields that are present.
 \item It finds the equation of state $\epsilon(P)$.
-      First, pressures \eqref{eq:master_intro:pressure} and energy densities \eqref{eq:master_intro:energy_density} are parametrized with one independent mean field or chemical potential.
-      Simultaneously, other mean fields and chemical potentials are determined by solving a system of equations that consist of the constraints \eqref{eq:lsm:chemical_equilibrium} and \eqref{eq:lsm:charge_neutrality} and self-consistency equations \eqref{eq:lsm:gap_equation} for any mean fields that are present.
-      Finally, the independent variable is eliminated numerically to yield the equation of state.
-      Numerically, the function $\epsilon(P)$ is implemented with splines as a linearly interpolating function between the parametrized points.
+      First, from the grand potential \eqref{eq:master_intro:grand_potential},
+      it parametrizes pressures \eqref{eq:master_intro:pressure}, densities \eqref{eq:master_intro:densities} and energy densities \eqref{eq:master_intro:energy_density} at zero temperature
+      with one independent mean field or chemical potential.
+      Simultaneously, the other mean fields and chemical potentials are determined by solving the system of equations
+      \eqref{eq:mit:eos_system}, \eqref{eq:lsm:minsys} or \eqref{eq:lsm3f:minsys}.
+      Finally, the independent variable is eliminated numerically to yield the equation of state $\epsilon(P)$.
+      Numerically, the function $\epsilon(P)$ is implemented as a linearly interpolating spline between the parametrized points.
+      For the hybrid model,
+      the equation of state is constructed as described in \cref{sec:hybrid:construction}.
 \item If the equation of state exhibits a phase transition,
       it is corrected with the Maxwell construction
       by establishing one vapor pressure at which the transition takes place,
-      as explained in \cite[equation 4.69]{ref:master_francesco}.
+      as explained in \cite[equation (4.69)]{ref:master_francesco}.
 \item It establishes upper or lower bounds for the bag constant $B$
       by making shifts \eqref{eq:mit:bag_shift} with different bag constants
       and solving the side of inequality \eqref{eq:mit:bag_stability} that matches the number of flavors in the model.
 \item It integrates the Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov}
       using the program in \cref{sec:nstars:numtov},
-      producing both mass-radius diagrams and radial profiles for various quantities in individual stars.
+      producing mass-radius relations for stellar sequences and radial profiles for various quantities in individual stars.
 \end{itemize}
 
 %For readability, self-documentation and one-to-one correspondence,
