@@ -1377,25 +1377,26 @@ Recall that the upper and lower signs hold for bosons and fermions, respectively
 \label{chap:diracsea}
 
 In the calculation of the grand potential \eqref{eq:lsm:potential_divergent_logz0} of the quark-meson model,
-we encountered the ultraviolet-divergent Dirac sea vacuum contribution % ref:lsm3f calls it this
+we encountered ($N_c$ copies of) the ultraviolet-divergent Dirac sea vacuum contribution % ref:lsm3f calls it this
 \begin{equation}
 	\Omega_0 = -2 \int \frac{\dif^3 p}{(2 \pi)^3} E(\vec{p})
-	\qquad \text{with dispersion relation} \qquad
-	E(\vec{p}) = \sqrt{p^2+m^2} .
+	         = -2 \int \frac{\dif^3 p}{(2 \pi)^3} \sqrt{p^2+m^2}.
+	%\qquad \text{with dispersion relation} \qquad
+	%E(\vec{p}) = \sqrt{p^2+m^2} .
 \label{eq:diracsea:infinite}
 \end{equation}
-Here we renormalize this infinite contribution from negative energy states using dimensional regularization in the (modified) minimal subtraction scheme.
-In $d = 3 - 2 \epsilon$ spatial dimensions, it can be written
+This can be interpreted as an infinite contribution from all negative energy states.
+Here we renormalize it with dimensional regularization in the (modified) minimal subtraction scheme.
+In $d = 3 - 2 \epsilon$ spatial dimensions, it can be regularized as
 \begin{equation}
 	\Omega_0 = -2 \Lambda^{3-d} \int \frac{\dif^d p}{(2 \pi)^d} \sqrt{p^2 + m^2}
 	         = -2 \Lambda^{3-d} \frac{2 \pi^{d/2}}{\Gamma(d/2)} \int_0^\infty \frac{\dif p \, p^{d-1}}{(2 \pi)^d} \sqrt{p^2 + m^2} .
 \label{eq:diracsea:ddim}
 \end{equation}
 %\TODO{what happens to the dimensions of the potential $V$ (as consequence of requiring $\log Z$ to be dimensionless)? $V \rightarrow V \lambda^{-2\epsilon}$?}
-We have multiplied the integral by $\Lambda^{3-d} = \Lambda^{2\epsilon}$ where $\Lambda$ a \emph{renormalization scale} with $\unit{\Lambda} = \unit{p}$,
-so that $\unit{\lambda^{3-d} \dif^d p} = \unit{\dif^3 p}$ and $\Omega_0$ is well-defined with the correct physical dimension of a potential in all spatial dimensions.
-Nothing stops us from doing so,
-as the new integral \eqref{eq:diracsea:ddim} still reduces to the old integral \eqref{eq:diracsea:infinite} when we send $\epsilon \rightarrow 0$.
+We have multiplied the integral by $\Lambda^{3-d} = \Lambda^{2\epsilon}$ where $\Lambda$ is a \emph{renormalization scale} with $\unit{\Lambda} = \unit{p} = \si{\mega\electronvolt}$,
+so that $\unit{\lambda^{3-d} \dif^d p} = \unit{\dif^3 p}$ and $\Omega_0$ is well-defined with the correct physical dimension of a potential in all spatial dimensions $d$.
+The new integral \eqref{eq:diracsea:ddim} reduces to the old integral \eqref{eq:diracsea:infinite} when we send $\epsilon \rightarrow 0$.
 The $d$-dimensional momentum integral can be written as an analytical continuation of the \emph{Beta function} \cite{ref:beta_function}
 \begin{equation}
 	B(x,y) = \int_0^\infty \dif t \, \frac{t^{x-1}}{(1+t)^{x+y}} = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x+y)}
@@ -1404,32 +1405,38 @@ if we substitute $t = p^2/m^2$ with $\dif t = 2 p \dif p / m^2$.
 We then find
 \begin{equation}
 \begin{split}
-	\Omega_0 &= -\Lambda^{3-d} m^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \int_0^\infty \dif t \, \frac{t^{d/2-1}}{(1+t)^{-1/2}} \\
-	         &= -\Lambda^{3-d} m^{d+1} \frac{2 (4 \pi)^{-d/2}}{\Gamma\big(\frac{d}{2}\big)} \frac{\Gamma\big(\frac{d}{2}\big) \Gamma\big( \textstyle{-\frac{d+1}{2}} \big)}{\Gamma\big( \textstyle{-\frac{1}{2}} \big)} .
+	\Omega_0 &= -\frac{2\Lambda^{3-d} m^{d+1}}{(4 \pi)^{d/2}\,\Gamma\big(\frac{d}{2}\big)} \int_0^\infty \dif t \, \frac{t^{d/2-1}}{(1+t)^{-1/2}} \\
+	         &= -\frac{2\Lambda^{3-d} m^{d+1}}{(4 \pi)^{d/2}\,\Gamma\big(\frac{d}{2}\big)} \frac{\Gamma\big(\frac{d}{2}\big) \Gamma\big( \textstyle{-\frac{d+1}{2}} \big)}{\Gamma\big( \textstyle{-\frac{1}{2}} \big)} .
 \end{split}
 \end{equation}
-We now cancel the two factors $\Gamma(d/2)$ and replace $\Gamma(-1/2) = -2\sqrt{\pi}$.
-Then we insert $d = 3 - 2 \epsilon$ back and use the property $\Gamma(z) = \Gamma(z+1) / z$ twice to transport the argument of the Gamma function infinitesimally close to its pole at $0$,
-where we use its asymptotic expansion $\Gamma(\epsilon) = 1/\epsilon + \gamma + \bigo(\epsilon)$ upon arrival.
-Expanding everything to zeroth order in $\epsilon$ then yields
-\begin{equation}
+We now cancel $\Gamma\big(\frac{d}{2}\big)$ and replace $\Gamma\big(\textstyle{-\frac12}\big) = -2\sqrt{\pi}$.
+Then we restore $d = 3 - 2 \epsilon$
+and apply the property $\Gamma(z) = \Gamma(z+1) / z$ twice to transport the argument of the gamma function
+$\Gamma\big(\textstyle{-\frac{d+1}{2}}\big) = \Gamma\big(\textstyle{-2+\epsilon}\big)$
+infinitesimally close to its pole at $0$,
+using its asymptotic expansion $\Gamma(\epsilon) = 1/\epsilon - \gamma + \bigo(\epsilon)$ upon arrival.
+Expanding everything to zeroth order in $\epsilon$ then leaves
+\begin{subequations}
+\begin{flalign}
+	&&
 	\Omega_0 =       \frac{m^4}{8 \pi^2} \left( 4 \pi \frac{\Lambda^2}{m^2} \right)^\epsilon \Gamma(-2 + \epsilon)
 	         \taylor \frac{m^4}{16 \pi^2} \left( \frac{1}{\epsilon} + \log \frac{\Lambda^2}{m^2} + \frac32 - \gamma + \log 4 \pi \right)
-	         \qquad \big( \text{MS} \big).
+	&& \big( \text{MS} \big). \,\,
 \label{eq:diracsea:pole_expansion}
-\end{equation}
+\end{flalign}
 The pole in $\epsilon$ exposes the ultraviolet divergence and can be removed by a counterterm in a renormalizable theory.
 In the \emph{minimal subtraction} ($\text{MS}$) \emph{scheme} only this divergent term is absorbed.
 In the \emph{modified minimal subtraction} ($\overline{\text{MS}}$) \emph{scheme},
-the terms $-\gamma + \log 4 \pi$ that \emph{always} arise in dimensional regularization is also absorbed.
+the terms $-\gamma + \log 4 \pi$ that \emph{always} arise in dimensional regularization calculations are also absorbed.
 This is equivalent to rescaling $\Lambda^2 \rightarrow \Lambda^2 e^\gamma / 4 \pi$,
-and one there finds
-\begin{equation}
+so in this scheme one finds
+\begin{flalign}
+	&&
 	\Omega_0 \taylor \frac{m^4}{16 \pi^2} \left( \frac{1}{\epsilon} + \log \frac{\Lambda^2}{m^2} + \frac32 \right)
-	\qquad \big( \overline{\text{MS}} \big) .
+	&& \big( \overline{\text{MS}} \big). \,\,
 \label{eq:diracsea:pole_expansion_modified}
-\end{equation}
-
+\end{flalign}
+\end{subequations}
 
 \chapter{Calculation of the Three-Flavor Meson Potential}
 \label{chap:lsm3fpotential}
