@@ -1478,6 +1478,8 @@ in the minimum \eqref{eq:lsm:ground_state_3f}.
 	\end{equation*}
 }
 
+\bigskip
+
 \formulawithproof{Second rational integral for incompressible star}{
 \begin{equation}
 	\int \frac{\dif x}{ax^2 + bx} = -\frac{1}{b} \log \left( a + \frac{b}{x} \right) + C .
@@ -1491,10 +1493,11 @@ in the minimum \eqref{eq:lsm:ground_state_3f}.
 		  &= \frac{2}{b} \int \frac{\dif z}{z^2 - 1} & \qquad & \Big( \text{substitute } z = 2 \sqrt{a} y / b \Big) \\
 		  &= \frac{1}{b} \left( \int \frac{\dif z}{z-1} - \int \frac{\dif z}{z+1} \right) & \qquad & \Big( \text{partial fraction decomposition} \Big) \\
 		  &= \frac{1}{b} \log \left( \frac{z-1}{z+1} \right) + C \\
-		  &= -\frac{1}{b} \log \left( a + \frac{b}{x} \right) + C + \frac{\log a}{b} & \qquad & \Big( \text{reexpress $z$ in terms of $x$} \Big) . \\
+		  &= -\frac{1}{b} \log \left( a + \frac{b}{x} \right) + C + \frac{\log a}{b} & \qquad & \Big( \text{reexpress $z$ in terms of $x$} \Big) .
 	\end{align*}
 }
 
+\pagebreak
 \formulawithproof{Gaussian integral over one real number}{
 	\begin{equation}
 		\int_{-\infty}^{+\infty} \dif x \, e^{-ax^2} = \sqrt{\frac{\pi}{a}} .
@@ -1507,9 +1510,11 @@ in the minimum \eqref{eq:lsm:ground_state_3f}.
 		&= \frac{1}{a} \left[ \int_{-\infty}^{+\infty} \dif x \, e^{-x^2} \right]^2 & \quad & \Big( \text{rescale } x \rightarrow \sqrt{a} x \Big) \\
 		&= \frac{1}{a} \int_{-\infty}^{+\infty} \dif x \int_{-\infty}^{+\infty} \dif y \, e^{-(x^2 + y^2)} \\
 		&= \frac{1}{a} \int_{0}^{2 \pi} \dif \theta \int_{0}^{\infty} \dif r \, r e^{-r^2} & \quad & \Big( \text{convert to polar coordinates } (r, \theta) \Big) \\
-		&= \frac{2 \pi}{a} \left[ -\frac12 e^{-r^2} \right]_{r=0}^{r=\infty} = \frac{\pi}{a} . \\
+		&= \frac{2 \pi}{a} \left[ -\frac12 e^{-r^2} \right]_{r=0}^{r=\infty} = \frac{\pi}{a} .
 	\end{align*}
 }
+
+\bigskip
 
 \formulawithproof{Gaussian integral over one pair of Grassmann numbers}{
 	\begin{equation}
@@ -1526,6 +1531,8 @@ in the minimum \eqref{eq:lsm:ground_state_3f}.
 	\end{split}
 	\end{equation*}
 }
+
+\bigskip
 
 \formulawithproof{Gaussian integral over multiple pairs of Grassmann numbers}{
 	\begin{equation}
@@ -1545,11 +1552,12 @@ in the minimum \eqref{eq:lsm:ground_state_3f}.
 	\begin{split}
 		\int \dif \psi^\dagger \int \dif \psi \, e^{-\psi^\dagger A \psi} &= \int \dif \tilde\psi^\dagger \int \dif \tilde\psi \, e^{-\tilde\psi^\dagger D \tilde\psi} \\
 		                                                                  &= \prod_i \int \dif \tilde\psi^*_i \int \dif \tilde\psi_i \, e^{-\tilde\psi^*_i \lambda_i \tilde\psi_i} \\ 
-																		  &= \prod_i \lambda_i = \tdet A . \\
+																		  &= \prod_i \lambda_i = \tdet A .
 	\end{split}
 	\end{equation*}
 }
 
+\pagebreak
 \formulawithproof{Degenerate Fermi gas energy density integral}{
 	\begin{equation}
 		\int_0^{x_F} \dif x \, x^2 \sqrt{x^2 + 1} = \frac{1}{8} \left[ \left( 2 x_F^3 + x_F \right) \sqrt{x_F^2 + 1} - \log \left( x_F + \sqrt{x_F^2 + 1} \right) \right] .
@@ -1572,6 +1580,8 @@ in the minimum \eqref{eq:lsm:ground_state_3f}.
 		I = \frac{1}{8} \left[ \left( 2 x_F^3 + x_F \right) \sqrt{x_F^2 + 1} - \log \left( x_F + \sqrt{x_F^2 + 1} \right) \right] .
 	\end{equation*}
 }
+
+\bigskip
 
 \formulawithproof{Degenerate Fermi gas pressure integral}{
 	\begin{equation}
