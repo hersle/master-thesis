@@ -1442,9 +1442,14 @@ so in this scheme one finds
 \label{chap:lsm3fpotential}
 
 The following program, written in the SAGE computer algebra system,
-symbolically calculates a 559-term-long explicit representation of the meson potential \eqref{eq:lsm:potential3f} in the three-flavor quark-meson model in terms of the fields $\sigma$ and $\pi$.
-It then evaluates it and its first and second derivatives in the nonzero minima $\avg{\sigma_x}$ and $\avg{\sigma_y}$,
-returning its minimum value \eqref{eq:lsm:potential_tree_3f}, the first derivatives \eqref{eq:lsm3f:symmetry_breakers} and the second derivatives \eqref{eq:lsm3f:mass_sigma_sigma} and \eqref{eq:lsm3f:mass_pi_pi}.
+symbolically calculates a long explicit representation of the meson potential \eqref{eq:lsm:potential3f}
+in the three-flavor quark-meson model
+by brute-force calculation of the traces \eqref{eq:lsm3f:traces}
+from the identity-extended Gell-Mann matrices \eqref{eq:lsm:gell_mann_matrices}.
+It then evaluates its value \eqref{eq:lsm:potential_tree_3f},
+first derivatives \eqref{eq:lsm3f:symmetry_breakers} and
+second derivatives \eqref{eq:lsm3f:mass_matrices}
+in the minimum \eqref{eq:lsm:ground_state_3f}.
 
 \codefile{python}{../code/lsm3f_meson_potential.sage}{lsm3f\_meson\_potential.sage}
 

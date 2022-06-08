@@ -37,6 +37,7 @@ eqs08 = [
 ]
 avgeqs = [σ[a]==0 for a in range(1, 8)] + [π[a]==0 for a in range(0, 9)]
 
+
 # Compute potential symbolically with brute force
 trϕϕ, trϕϕϕϕ, trHϕ = 0, 0, 0
 for a in range(0, 9):
