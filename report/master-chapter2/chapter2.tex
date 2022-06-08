@@ -8,13 +8,22 @@ We will now crank up the difficulty and investigate the \textbf{linear sigma mod
 The linear sigma model was originally introduced by \cite{ref:lsm_original} as an effective model for nucleons interacting with pions and scalar mesons,
 but the fermions have since been interpreted as quarks in what is commonly referred to as a \textbf{quark-meson model}.
 
+We will take the quark-meson model as granted.
+As it combines \emph{independent} quarks and mesons,
+the latter of which are fundamentally bound quark states,
+it may appear strange.
+A hypothetical first-principles approach from quantum chromodynamics
+would naturally give rise to hadrons by binding quarks with gluons.
+We cannot expect this from an effective model that excludes the gluons,
+in a sense trading the binding \emph{mechanism} with the bound \emph{product}.
+It is not our primary concern here to give a full physical justification of the model,
+but we will justify it to some extent by seeing how it gives rise to chiral symmetry breaking.
+To better understand its theoretical origin, we recommend studying \cite{ref:master_resch,ref:master_folkestad,ref:lsm_notes}.
+
 Quark stars consisting only of two-flavor quark matter are unlikely to be found in nature,
 as two-flavor quark matter is observed to be unstable compared to hadronic matter.
 Nevertheless, they are a natural stepping stone for modeling possibly stable strange quark stars
 and dense hybrid neutron stars whose core could contain two-flavor quark matter.
-
-The physical justification for this effective model of quantum chromodynamics is best made retrospectively after seeing how it gives rise to chiral symmetry breaking.
-We will therefore take the model as granted from the start and try to justify it as we go along.
 
 \textit{This chapter is inspired by references \cite{ref:lsm_2f}, \cite{ref:lsm_notes} and \cite{ref:jo_lsm_consistent_physical}.}
 
@@ -58,8 +67,9 @@ with the meson potential
 	\pot(\sigma, \vec\pi) = \frac{m^2}{2} \big( \sigma^2 + \vec\pi^2 \big) + \frac{\lambda}{4!} \big( \sigma^2 + \vec\pi^2 \big)^2 - h \sigma .
 \label{eq:lsm:potential}
 \end{equation}
-The quark fields behave as in the MIT bag model Lagrangian \eqref{eq:mit:lagrangian} with $N_f=2$ flavor indices $\{u,d\}$, $N_c=3$ color indices and four Dirac spinor indices, and are coupled to two quark chemical potentials with the flavor-space matrix $\mu = \diag (\mu_u, \mu_d)$.
-However, they are now seemingly massless and coupled to a $\sigma$ meson and three pions $\vec\pi = [\pi^+, \pi^-, \pi^0]^\mathsf{T}$ with a Yukawa coupling $g$ and the Pauli matrices \eqref{eq:tft:pauli_matrices}.
+The quarks $q$ behave as in the QCD Lagrangian \eqref{eq:qcd:lagrangian} with $N_f=2$ flavor indices $\{u,d\}$, $N_c=3$ color indices and four Dirac spinor indices.
+They are coupled to two quark chemical potentials $\mu = \diag (\mu_u, \mu_d)$ in flavor space,
+but are now seemingly massless and coupled to a $\sigma$ meson and three pions $\vec\pi = [\pi^+, \pi^-, \pi^0]^\mathsf{T}$ with a Yukawa coupling $g$ and the Pauli matrices \eqref{eq:tft:pauli_matrices}.
 The meson potential features three couplings $m^2<0$, $\lambda>0$ and $h>0$.
 
 \pagebreak
@@ -196,7 +206,7 @@ According to Weinberg's philosophy presented in \cref{sec:master_intro:qcd},
 the quark-meson model is thus an appropriate effective model of quantum chromodynamics at low energy.
 The explicit symmetry breaker $h \neq 0$ only turns the exact symmetry into an approximate one,
 just like the different quark masses explicitly break the chiral symmetry of quantum chromodynamics.
-This is the physical justification of the quark-meson model.
+This is our physical justification of the quark-meson model.
 
 \section{Grand potential}
 \label{sec:lsm:grand_potential}
