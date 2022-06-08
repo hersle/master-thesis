@@ -540,7 +540,7 @@ but the \emph{system} of equations
 	0 &= \pdv{\Omega}{\avg{\sigma}} , \label{eq:lsm:minsys_min} \\
 	%0 &= +\frac23 n_u - \frac13 n_d - n_e , \label{eq:lsm:minsys_charge} \\
 	0 &= 2 \big(\mu_u^2-m_q^2\big)^\frac32 - \big(\mu_d^2-m_q^2\big)^\frac32 - \big(\mu_e^2-m_e^2\big)^\frac32 , \label{eq:lsm:minsys_charge} \\
-	\mu_d &= \mu_u + \mu_e .
+	\mu_d &= \mu_u + \mu_e . \label{eq:lsm:minsys_chem}
 \end{align}%
 \label{eq:lsm:minsys}%
 \end{subequations}%
@@ -716,8 +716,8 @@ gives the equation of state in \cref{fig:lsm:2-flavor-eos}:
 \item Although the electrons have an appreciable chemical potential $\mu_e$,
       their density $n_e$ is several orders of magnitude below the quark densities $n_u$ and $n_d$ and is hardly noticeable,
       like in \cref{chap:mit}.
-      Their main job is to ensure that the charge neutrality condition \eqref{eq:lsm:charge_neutrality} is met.
-      Coupled with the $\beta$-equilibrium condition \eqref{eq:lsm:chemical_equilibrium},
+      Their main job is to ensure that the charge neutrality condition \eqref{eq:lsm:minsys_charge} is met.
+      Coupled with the $\beta$-equilibrium condition \eqref{eq:lsm:minsys_chem},
       it is what causes the isospin imbalance as $\mu_u$ and $\mu_d$ grow apart.
 \end{itemize}
 
