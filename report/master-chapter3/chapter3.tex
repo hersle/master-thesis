@@ -734,14 +734,14 @@ in the massless limit $m=0$.
 	declare function={sat=0.165;},
 	legend cell align=left, legend columns=4, legend transposed,
 ]
-\addplot [index of colormap={1 of Set1-9}, very thick] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{ne}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
-\addlegendentry{$n_e$};
 \addplot [index of colormap={0 of Set1-9}, very thick] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{nu}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
 \addlegendentry{$n_u$};
 \addplot [index of colormap={2 of Set1-9}, very thick] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{nd}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
 \addlegendentry{$n_d$};
 \addplot [index of colormap={6 of Set1-9}, very thick] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{ns}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
 \addlegendentry{$n_s$};
+\addplot [index of colormap={1 of Set1-9}, very thick] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{ne}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
+\addlegendentry{$n_e$};
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm3f:3-flavor-density-ratios}%
