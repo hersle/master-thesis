@@ -257,12 +257,16 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 }
 
 % urldate=long and dateabbrev=false for full date, language=british for getting 17th September 2001 format (in biblatex, without affecting rest of document)
-\usepackage[style=alphabetic,sorting=nyvt,giveninits=true,maxnames=10,block=space,date=iso,urldate=iso,seconds=true,language=british,maxalphanames=1]{biblatex} 
+\usepackage[style=alphabetic,sorting=anyvt,giveninits=true,maxnames=3,minnames=3,block=space,date=iso,urldate=iso,seconds=true,language=british,maxalphanames=1]{biblatex} 
 % for avoiding URLs running into margin: use block=ragged OR block=space in combination with penalities below
 \setcounter{biburlnumpenalty}{9000} % avoid URLs running into margin
 \setcounter{biburlucpenalty}{9000} % avoid URLs running into margin
 \setcounter{biburllcpenalty}{9000} % avoid URLs running into margin
 \DeclareFieldFormat*{title}{\mkbibemph{#1}}
+\DeclareFieldFormat*[book]{title}{\mkbibemph{#1}\iffieldundef{edition}{}{\nopunct}} % remove punctuation after title for books (to have edition in parentheses)
+\DeclareFieldFormat{date}{\mkbibbold{#1}} % date (year) in bold
+\DeclareFieldFormat{edition}{\mkbibparens{\mkbibordinal{#1} \bibstring{edition}}} % 1st/2nd/3rd... edition in parentheses
+\DeclareDelimFormat[bib,biblist]{nametitledelim}{\addcolon\space} % colon between author and title
 \DefineBibliographyStrings{british}{%
 	volume = {volume},
 	edition = {edition},
@@ -270,6 +274,7 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 	pages = {pages},
 	mathesis = {master's thesis},
 	urlseen = {downloaded},
+	andothers = {and others},
 }
 \AtEveryBibitem{
 	\clearfield{day} \clearfield{month} % only show year
@@ -289,6 +294,51 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 		%\clearlist{location}
 	%}
 }
+
+% originals, see: /usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+\renewbibmacro*{journal+issuetitle}{%
+  \usebibmacro{journal}%
+  \setunit*{\addspace}%
+  \iffieldundef{series}
+    {}
+    {\newunit
+     \printfield{series}%
+     \setunit{\addspace}}%
+  \usebibmacro{volume+number+eid}%
+  %\setunit{\addspace}%
+  %\usebibmacro{issue+date}% % remove date from being printed with issue+date
+  \setunit{\addcolon\space}%
+  \usebibmacro{issue}%
+  \newunit}
+\renewbibmacro*{note+pages}{%
+  \printfield{note}%
+  \setunit{\bibpagespunct}%
+  \printfield{pages}%
+  \setunit{\addcomma\space}%
+  \usebibmacro{date}% % print date after pages (and before URL/DOI)
+  \newunit}
+
+% edition after title (in books etc.)
+\renewbibmacro*{maintitle+title}{%
+  \iffieldsequal{maintitle}{title}
+    {\clearfield{maintitle}%
+     \clearfield{mainsubtitle}%
+     \clearfield{maintitleaddon}}
+    {\iffieldundef{maintitle}
+       {}
+       {\usebibmacro{maintitle}%
+        \newunit\newblock
+        \iffieldundef{volume}
+          {}
+          {\printfield{volume}%
+           \printfield{part}%
+           \setunit{\addcolon\space}}}}%
+  \usebibmacro{title}%
+  \iffieldundef{edition}{}{% print (edition) after title
+    \printfield{edition}%
+    \clearfield{edition}%
+  }%
+  \newunit}
 
 \addbibresource{thesis.bib}
 
@@ -388,6 +438,7 @@ external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --i
 
 \backmatter
 \printbibliography[heading=bibintoc, title={References}]
+% workaround to fix math export from Zotero: https://github.com/retorquere/zotero-better-bibtex/issues/113#issuecomment-60535459
 
 % \TODO{front cover: should be A4 (using my extraction script) or slightly bigger correct printing?}
 % printing: see
