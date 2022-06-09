@@ -125,7 +125,7 @@ After also inserting the energy-momentum tensor on the right and simplifying, we
 \end{subequations}
 The fourth equation $G_{33} = (8 \pi G / c^4 ) T_{33}$ turns out proportional to the third.
 
-\subsubsection{Exterior solution}
+\subsection*{Exterior solution}
 
 First, let us quickly review the Schwarzschild solution outside the star, where there is no pressure nor energy density and all right sides vanish.
 Adding equation \eqref{eq:einstein_to_tov:tt} and \eqref{eq:einstein_to_tov:rr} then yields $(\alpha + \beta)' = 0$, so $\alpha + \beta = C$ for some constant $C$.
@@ -147,7 +147,7 @@ No event occurring inside $r < R_S$ can ever affect an event occurring outside $
 In other words, nothing that crosses into the horizon can ever come back out -- not even light!
 If a star is so small and massive that its Schwarzschild radius $R_S > R$ lies \emph{outside} the surface, it is invisible from the outside, and we say the star has collapsed to a \textbf{black hole}.
 
-\subsubsection{Interior solution}
+\subsection*{Interior solution}
 
 We now return to the analysis inside the star.
 To imitate the Schwarzschild metric element $g_{11}$, let us define the function $m(r)$ by
@@ -234,7 +234,7 @@ to match the Schwarzschild metric element \eqref{eq:tov:schwarzschild_metric_00_
 This is completely equivalent to instead setting $\alpha(R) = \log \left(1 - 2 G M / R c^2 \right) / 2$ and integrating $\odv{\alpha(r)}/{r}$ backwards from the surface $r=R$ into the center $r=0$, but the former method can be more natural to implement from a numerical perspective.
 \fi
 
-\subsubsection{Interpretation of mass}
+\subsection*{Interpretation of mass}
 
 One matter that deserves comment is our definition of the star's mass $M = m(R)$.
 We should be a little careful about this, since it is not obvious how to think of ``mass'' in relativistic terms.
@@ -268,7 +268,7 @@ From definition \eqref{eq:einstein_to_tov:def_m}, we then have
 	\frac{G m(r)}{rc^2} \ll 1 .
 	\label{eq:weak_field_limit:small_gmr}
 \end{equation}
-Using the Taylor expansion $(1 - x)^{-1/2} = 1 + x/2$, we then get
+Using the Taylor expansion $(1 - x)^{-1/2} = 1 + x/2$, we get
 \begin{equation}
 	\bar{M} c^2 - M c^2 \taylor \integral{4 \pi r^2 \frac{\epsilon(r)}{c^2} \frac{G m(r)}{r}}{r}{0}{R}
 	                    =       \integral{4 \pi r^2 \rho(r) \frac{G m(r)}{r}}{r}{0}{R} .

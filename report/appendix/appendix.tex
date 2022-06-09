@@ -110,7 +110,7 @@ Oppositely, we define an $n$-dimensional \textbf{contravariant vector} as an $n$
 	V^{\mu'} = \pdv{x^{\mu'}}{x^\mu} V_\mu .
 	\label{eq:contravariant_transformation}
 \end{equation}
-More generally, we define a $n$-dimensional \textbf{tensor} of rank $(r,s)$ as an array composed of $r$ $n$-dimensional contravariant indices and $s$ $n$-dimensional covariant indices that transforms as
+More generally, we define an $n$-dimensional \textbf{tensor} of rank $(r,s)$ as an array composed of $r$ $n$-dimensional contravariant indices and $s$ $n$-dimensional covariant indices that transforms as
 \begin{equation}
 	T^{\mu_1' \dots \mu_r'}_{\nu_1' \dots \nu_s'} = \pdv{x^{\mu_1'}}{x^{\mu_1}} \cdots \pdv{x^{\mu_r'}}{x^{\mu_r}}
 	                                                \pdv{x^{\nu_1}}{x^{\nu_1'}} \cdots \pdv{x^{\nu_s}}{x^{\nu_s'}}
@@ -1210,7 +1210,7 @@ Importantly, they have simple poles at all imaginary Matsubara frequencies $z = 
 	\draw[thick, red, decoration={markings, mark=at position 0.125 with {\arrow{>}}}, postaction={decorate}] (0,{\y}) circle [radius=\w];
 }
 \end{tikzpicture}
-\caption{\label{fig:matsum:contourA}Contour $C^A_N$}
+\caption{\label{fig:matsum:contourA}Contour $C^A_N$.}
 \end{subfigure}
 \begin{subfigure}{0.32\textwidth}
 \centering
@@ -1233,7 +1233,7 @@ Importantly, they have simple poles at all imaginary Matsubara frequencies $z = 
 	mark=at position 0.125 with {\arrowreversed{>}},
 }, postaction={decorate}] (0, 0) circle [radius=\r+\w];
 \end{tikzpicture}
-\caption{\label{fig:matsum:contourB}Contour $C^B_N$}
+\caption{\label{fig:matsum:contourB}Contour $C^B_N$.}
 \end{subfigure}
 \begin{subfigure}{0.32\textwidth}
 \centering
@@ -1256,7 +1256,7 @@ Importantly, they have simple poles at all imaginary Matsubara frequencies $z = 
 	thick, red
 ] (-\w, {+\r}) -- (-\w, {-\r}) arc [start angle=270, end angle=90, radius={\r}];
 \end{tikzpicture}
-\caption{\label{fig:matsum:contourC}Contour $C^C_N$}
+\caption{\label{fig:matsum:contourC}Contour $C^C_N$.}
 \end{subfigure}
 \caption{\label{fig:matsum:contours}%
 	To evaluate a Matsubara energy sum $S_N = \sum_{n=-N}^N s(E_n)$ in the limit $N \rightarrow \infty$, we can use the residue theorem to transform it into a complex integral $\oint \dif z \, s(-iz) n_\pm(z)$ along the contour $C^A_N$ that encloses some of the infinitely many poles of $n_\pm(z)$.
@@ -1697,7 +1697,7 @@ Here, we describe how we use the shooting method to determine the eigenvalues $\
 with the coefficient functions \eqref{eq:nstars:sturm_liouville_coefficients}.
 We recommend reading this explanation in parallel with \cref{fig:nstars:shooting_convergence}, which illustrates how this method finds the mode $n=0$ for such a Sturm-Liouville problem.
 
-\subsubsection{Description}
+\subsection*{Description}
 \label{sec:numerics:shooting_method_description}
 
 The shooting method finds any \emph{one} eigenvalue $\omega_n^2$ and its corresponding eigenfunction $U_n(r)$ with the following strategy:
@@ -1753,7 +1753,7 @@ To make it fast, our actual implementation carries out the search in the followi
 \end{enumerate}
 This algorithm runs \emph{logarithmically fast}, because the interval $[\omega_-^2, \, \omega_+^2]$ is enlarged \emph{exponentially} in step \ref{item:shooting:bounds} and \emph{halved} at every iteration of step \ref{item:shooting:newguess}.
 
-\subsubsection{Implementation}
+\subsection*{Implementation}
 
 The coefficient functions \eqref{eq:nstars:sturm_liouville_coefficients} of the Sturm-Liouville problem \eqref{eq:shooting:sturm_liouville_problem} are to be calculated from the output of the program in \cref{sec:nstars:numtov}.
 We therefore recast the problem to dimensionless form by making use of the dimensionless quantities \eqref{eq:numtov:dimensionless_variables}.
@@ -1895,16 +1895,16 @@ For all the models, the program performs the following tasks:
 %For readability, self-documentation and one-to-one correspondence,
 %the code uses Unicode variable names that resemble the variables and equations in the main text.
 
-\subsubsection{Common code for all quark and hybrid star models (\cref{chap:mit,chap:lsm2f,chap:lsm3f,chap:hybrid})}
+\subsection*{Common code for all quark and hybrid star models (\cref{chap:mit,chap:lsm2f,chap:lsm3f,chap:hybrid})}
 \codefile{python}{../code/quark_hybrid_stars_common.py}{quark\_hybrid\_stars\_common.py}
 
-\subsubsection{MIT bag model (\cref{chap:mit})}
+\subsection*{MIT bag model (\cref{chap:mit})}
 \codefile{python}{../code/quark_stars_mit.py}{quark\_stars\_mit.py}
 
-\subsubsection{Quark-meson model (\cref{chap:lsm2f,chap:lsm3f})}
+\subsection*{Quark-meson model (\cref{chap:lsm2f,chap:lsm3f})}
 \codefile{python}{../code/quark_stars_lsm.py}{quark\_stars\_lsm.py}
 
-\subsubsection{Hybrid quark-hadron model (\cref{chap:hybrid})}
+\subsection*{Hybrid quark-hadron model (\cref{chap:hybrid})}
 \codefile{python}{../code/hybrid_stars_apr_lsm.py}{hybrid\_stars\_apr\_lsm.py}
 
 \section{Utilities}

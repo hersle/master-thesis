@@ -193,7 +193,7 @@ lower panel \subref{fig:mit:eos-eos} the equation of state \TODO{fix. all very t
 }
 \end{figure}
 
-\subsubsection{Ultra-relativistic limit}
+\subsection*{Ultra-relativistic limit}
 
 Before tackling the general solution numerically,
 it is instructive and in fact not far from accurate to solve this problem analytically in the ultra-relativistic limit $m_i = 0$.
@@ -256,7 +256,7 @@ It has the very simple solution $n_u = n_d = n_s$ with
 \end{subequations}%
 As $\mu_e = \mu_d - \mu_u = 0$, neglecting the electron contribution is exact in this case.
 
-\subsubsection{General solution}
+\subsection*{General solution}
 
 We now calculate the general solution with massive quarks using the program in \cref{sec:num:qstars2f},
 solving equation \eqref{eq:mit:eos_system} numerically for different quark chemical potentials $\mu$.
@@ -407,16 +407,6 @@ like a balloon that has reached equilibrium with its surroundings.
 With large positive pressures $P \rightarrow \infty$, the balloon inflates and merges with nearby balloons,
 effectively bursting as the quarks escape to take part in a phase of deconfined quark matter.
 
-\iffalse
-A positive vacuum constant $B$ creates a negative pressure $P = -B$ in the vacuum.
-In a sense, it can therefore be interpreted as a mechanism that \emph{confines} the quarks to ``bags'' that resemble hadrons.
-Due to this common physical interpretation, $B$ is often called the \textbf{bag constant}.
-The quarks in the bag exert an outwards kinetic pressure that counteracts the external bag pressure and stabilizes the hadron.
-%From inside the bag, the quarks exert an outwards kinetic pressure that counteracts the external bag pressure and stabilizes the hadron.
-The bag constant can therefore be interpreted as the pressure difference between two phases of confined and deconfined vacuum,
-as illustrated in \cref{fig:mit:bag_constant}.
-\fi
-
 As another analogy, imagine a swimming pool full of water representing the gray quark-forbidden medium.
 It would cost an amount $BV$ of energy to expel water from a volume $V$ and create a confined vacuum in the pool,
 and a plastic bag enclosing this volume would have to generate some internal pressure to survive against the pressure from the surrounding water.
@@ -468,7 +458,7 @@ imply the double inequality
 \end{equation}
 We will now see that this yields a range of bag constants that we call a \textbf{bag window}.
 
-\subsubsection{Ultra-relativistic bag window}
+\subsection*{Ultra-relativistic bag window}
 
 Let us first examine how the ultra-relativistic equation of state is affected by the addition of a bag constant,
 and how inequality \eqref{eq:mit:bag_stability} generates a corresponding bag window.
@@ -492,7 +482,7 @@ it becomes exactly solvable and gives the bag window
 \label{eq:mit:bag_window_ur}
 \end{equation}
 
-\subsubsection{General bag window}
+\subsection*{General bag window}
 
 Returning to the general case with nonzero masses,
 the program in \cref{sec:num:qstars2f} solves inequality \eqref{eq:mit:bag_stability} numerically.
@@ -593,7 +583,7 @@ Lower bag constants correspond to greater maximum masses.
       so the surface $P(R)=0$ is reached at a greater radius.
       The increase in mass can then only be explained by the effects of the greater radius outweighing those of the smaller mass gradient.
 \item Notice the qualitatively similar shapes of mass-radius curves corresponding to different bag constants.
-      As mentionde in \cite[equation 8.29]{ref:glendenning},
+      As mentioned in \cite[equation 8.29]{ref:glendenning},
       it is in fact possible to show that with the bagged ultra-relativistic equation of state $\epsilon = 3P + 4B$,
       the Tolman-Oppenheimer-Volkoff equation \eqref{eq:master_intro:tov} admits scaling solutions
       where the masses $M(B)$ and radii $R(B)$ corresponding to two different bag constants $B=\{B_1,B_2\}$
