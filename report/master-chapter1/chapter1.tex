@@ -127,15 +127,17 @@ We then invert $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to obtain
 	ymin=0, ymax=700, ytick distance=100, 
 	%ymax=600, 
 	title={\subcaption{\label{fig:mit:eos-parametrization}\makebox[\widthof{Parametrization of solutions}][l]{Parametrization of solutions}}},
-	legend cell align=left, legend pos=north west,
+	legend cell align=left, legend pos=north west, legend transposed, legend columns=4,
 ];
 % fake legend
-\addplot+ [black, solid, very thick, opacity=0.5] {-100}; \addlegendentry{$N_f=2$};
-\addplot+ [black, solid, very thick, opacity=1.0] {-100}; \addlegendentry{$N_f=3$};
 \addplot+ [index of colormap={0 of Set1-9}, solid, very thick, opacity=1.0] {-100}; \addlegendentry{$\mu_u$};
 \addplot+ [index of colormap={2 of Set1-9}, solid, very thick, opacity=1.0] {-100}; \addlegendentry{$\mu_d$};
 \addplot+ [index of colormap={6 of Set1-9}, solid, very thick, opacity=1.0] {-100}; \addlegendentry{$\mu_s$};
 \addplot+ [index of colormap={1 of Set1-9}, solid, very thick, opacity=1.0] {-100}; \addlegendentry{$\mu_e$};
+\addplot+ [black, solid, very thick, opacity=0.5] {-100}; \addlegendentry{$N_f=2$};
+\addplot+ [black, solid, very thick, opacity=1.0] {-100}; \addlegendentry{$N_f=3$};
+\addlegendimage{empty legend} \addlegendentry{}
+\addlegendimage{empty legend} \addlegendentry{}
 
 % 2-flavor
 \addplot+ [index of colormap={0 of Set1-9}, solid,  very thick, opacity=0.5] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=muu] {../code/data/MIT2F/eos_sigma_0.dat};
@@ -153,15 +155,17 @@ We then invert $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to obtain
 	xmin=0, xmax=700, xtick distance=100, minor x tick num=9,
 	ymin=-0.2, ymax=5.0, ytick distance=1.0, minor y tick num=4, restrict y to domain=-10:10,
 	title={\subcaption{\label{fig:mit:eos-density}\makebox[\widthof{Parametrization of solutions}][l]{Particle number densities}}},
-	legend cell align=left, legend pos=north west,
+	legend cell align=left, legend pos=north west, legend transposed, legend columns=4,
 ];
 % fake legend
-\addplot+ [black, solid, very thick, opacity=0.5] {-10}; \addlegendentry{$N_f=2$};
-\addplot+ [black, solid, very thick, opacity=1.0] {-10}; \addlegendentry{$N_f=3$};
 \addplot+ [index of colormap={0 of Set1-9}, solid, very thick, opacity=1.0] {-10}; \addlegendentry{$n_u$};
 \addplot+ [index of colormap={2 of Set1-9}, solid, very thick, opacity=1.0] {-10}; \addlegendentry{$n_d$};
 \addplot+ [index of colormap={6 of Set1-9}, solid, very thick, opacity=1.0] {-10}; \addlegendentry{$n_s$};
 \addplot+ [index of colormap={1 of Set1-9}, solid, very thick, opacity=1.0] {-10}; \addlegendentry{$n_e$};
+\addplot+ [black, solid, very thick, opacity=0.5] {-10}; \addlegendentry{$N_f=2$};
+\addplot+ [black, solid, very thick, opacity=1.0] {-10}; \addlegendentry{$N_f=3$};
+\addlegendimage{empty legend} \addlegendentry{}
+\addlegendimage{empty legend} \addlegendentry{}
 
 % 2-flavor
 \addplot+ [index of colormap={0 of Set1-9}, solid, very thick, opacity=0.5] table [x expr={muQ(\thisrow{muu},\thisrow{mud})}, y=nu] {../code/data/MIT2F/eos_sigma_0.dat};
@@ -189,7 +193,7 @@ We then invert $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to obtain
 Properties of charge neutral two-flavor (weak lines) and three-flavor (strong lines) quark matter in $\beta$-equilibrium in the MIT bag model.
 Upper panel \subref{fig:mit:eos-parametrization} shows the relations between chemical potentials due to the constraints \eqref{eq:mit:eos_system},
 middle panel \subref{fig:mit:eos-density} the particle number densities \eqref{eq:mit:particle_densities} and
-lower panel \subref{fig:mit:eos-eos} the equation of state \TODO{fix. all very thick? captions. two legend columns?}.
+lower panel \subref{fig:mit:eos-eos} the equation of state \TODO{check captions}.
 }
 \end{figure}
 
@@ -540,9 +544,9 @@ obtaining the quark stars in \cref{fig:mit:mass_radius}:
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
 	title = {\subcaption{\label{fig:mit:mass_radius_2}Two-flavor MIT bag model quark stars} $B^\frac14 = \{145,150,155\}\,\si{\mega\electronvolt}$}, title style={text width=7.5cm},
 ];
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_sigma_800_B14_145.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_sigma_800_B14_150.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_sigma_800_B14_155.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_sigma_800_B14_145.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_sigma_800_B14_150.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT2F/stars_sigma_800_B14_155.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 
 \nextgroupplot[
 	xlabel={$R \, / \, \si{\kilo\meter}$},
@@ -550,9 +554,9 @@ obtaining the quark stars in \cref{fig:mit:mass_radius}:
 	title = {\subcaption{\label{fig:mit:mass_radius_3}Three-flavor MIT bag model quark stars} $B^\frac14 = \{145,150,155\}\,\si{\mega\electronvolt}$}, title style={text width=7.5cm},
 	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.87,-0.25)}, anchor=north east, xticklabel pos=lower},
 ];
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_145.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_150.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_155.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_145.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_150.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/MIT3F/stars_sigma_800_B14_155.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 
 \end{groupplot}
 \end{tikzpicture}

@@ -554,9 +554,9 @@ $\mathmakebox[\widthof{$m_{f_0}$}][l]{m_K}       \,/\, \si{\mega\electronvolt}$ 
 \addplot3 [surf, thin, point meta=explicit] table [x=Deltax, y=Deltay, z expr={\thisrow{Omega} +120}, meta expr={\thisrow{Omega}}] {../code/data/LSM3F/potential_vacuum_sigma800.dat};% \addlegendentry{$m_\sigma = \SI{800}{\mega\electronvolt}$};
 
 \addplot3 coordinates {(300,429,-33.0)} node [above, xshift=-0.0cm, yshift=-0.0cm, black, font=\footnotesize] {no minimum}; % 500
-\addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=0.5pt] coordinates {(300,429,+7.0)} node [above, font=\footnotesize] {minimum}; % 600
-\addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=0.5pt] coordinates {(300,429,+41.6)} node [above, font=\footnotesize] {minimum}; % 700
-\addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=0.5pt] coordinates {(300,429,+74.7)} node [above, font=\footnotesize] {minimum}; % 800
+\addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=1.0pt] coordinates {(300,429,+7.0)} node [above, font=\footnotesize] {minimum}; % 600
+\addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=1.0pt] coordinates {(300,429,+41.6)} node [above, font=\footnotesize] {minimum}; % 700
+\addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=1.0pt] coordinates {(300,429,+74.7)} node [above, font=\footnotesize] {minimum}; % 800
 
 \addplot3 coordinates {(450,0,0)} node [black, rotate=-30, yshift=+0.5cm] {$m_\sigma = \SI{500}{\mega\electronvolt}$};
 \addplot3 coordinates {(450,0,40)} node [black, rotate=-30, yshift=+0.5cm] {$m_\sigma = \SI{600}{\mega\electronvolt}$};
@@ -615,28 +615,28 @@ so we can only hope that the same is true with three flavors.
 \addplot+ [index of colormap={0 of Set1-9}, solid, very thick, opacity=0.2, forget plot, domain=0:800] {x};
 \addplot+ [index of colormap={2 of Set1-9}, solid, very thick, opacity=0.2, forget plot, domain=0:800] {x};
 
-\addplot+ [index of colormap={4 of Set1-9}, solid,          opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_x$};
-\addplot+ [index of colormap={4 of Set1-9}, densely dashed, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [index of colormap={4 of Set1-9}, densely dotted, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_600.dat};
-\addplot+ [index of colormap={6 of Set1-9}, solid,          opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_y$};
-\addplot+ [index of colormap={6 of Set1-9}, densely dashed, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [index of colormap={6 of Set1-9}, densely dotted, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_600.dat};
-\addplot+ [index of colormap={0 of Set1-9}, solid,          opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_u$};
-\addplot+ [index of colormap={0 of Set1-9}, densely dashed, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [index of colormap={0 of Set1-9}, densely dotted, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_600.dat};
-\addplot+ [index of colormap={2 of Set1-9}, solid,          opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_d=\mu_s$};
-\addplot+ [index of colormap={2 of Set1-9}, densely dashed, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [index of colormap={2 of Set1-9}, densely dotted, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_600.dat};
-\addplot+ [index of colormap={2 of Set1-9}, solid,          opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_800.dat}; %\addlegendentry{$\mu_s$};
-\addplot+ [index of colormap={2 of Set1-9}, densely dashed, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [index of colormap={2 of Set1-9}, densely dotted, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_600.dat};
-\addplot+ [index of colormap={1 of Set1-9}, solid,          opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_e$};
-\addplot+ [index of colormap={1 of Set1-9}, densely dashed, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [index of colormap={1 of Set1-9}, densely dotted, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [index of colormap={4 of Set1-9}, solid,          very thick, opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_x$};
+\addplot+ [index of colormap={4 of Set1-9}, densely dashed, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [index of colormap={4 of Set1-9}, densely dotted, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mu]  {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [index of colormap={6 of Set1-9}, solid,          very thick, opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_y$};
+\addplot+ [index of colormap={6 of Set1-9}, densely dashed, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [index of colormap={6 of Set1-9}, densely dotted, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ms]  {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [index of colormap={0 of Set1-9}, solid,          very thick, opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_u$};
+\addplot+ [index of colormap={0 of Set1-9}, densely dashed, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [index of colormap={0 of Set1-9}, densely dotted, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=muu] {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [index of colormap={2 of Set1-9}, solid,          very thick, opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_d=\mu_s$};
+\addplot+ [index of colormap={2 of Set1-9}, densely dashed, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [index of colormap={2 of Set1-9}, densely dotted, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mud] {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [index of colormap={2 of Set1-9}, solid,          very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_800.dat}; %\addlegendentry{$\mu_s$};
+\addplot+ [index of colormap={2 of Set1-9}, densely dashed, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [index of colormap={2 of Set1-9}, densely dotted, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mus] {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [index of colormap={1 of Set1-9}, solid,          very thick, opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$\mu_e$};
+\addplot+ [index of colormap={1 of Set1-9}, densely dashed, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [index of colormap={1 of Set1-9}, densely dotted, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=mue] {../code/data/LSM3F/eos_sigma_600.dat};
 
-\addplot+ [black, solid] {-100}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
-\addplot+ [black, densely dashed] {-100}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
-\addplot+ [black, densely dotted] {-100}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
+\addplot+ [black, solid, very thick] {-100}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+\addplot+ [black, densely dashed, very thick] {-100}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
+\addplot+ [black, densely dotted, very thick] {-100}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
 \addplot+ [black, solid, very thick, opacity=0.2] {-100}; \addlegendentry{$m_{\phantom{\sigma}}=0$};
 \addlegendimage{empty legend} \addlegendentry{}
 
@@ -655,22 +655,22 @@ so we can only hope that the same is true with three flavors.
 \addplot+ [index of colormap={6 of Set1-9}, solid, very thick, opacity=0.2, forget plot, domain=0:700] {nq3(x)*nconv};
 \addplot+ [index of colormap={2 of Set1-9}, solid, very thick, opacity=0.2, forget plot, domain=0:700] {nq3(x)*nconv};
 
-\addplot+ [index of colormap={0 of Set1-9}, solid,          opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_u$};
-\addplot+ [index of colormap={0 of Set1-9}, densely dashed, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [index of colormap={0 of Set1-9}, densely dotted, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_600.dat};
-\addplot+ [index of colormap={2 of Set1-9}, solid,          opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_d$};
-\addplot+ [index of colormap={2 of Set1-9}, densely dashed, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [index of colormap={2 of Set1-9}, densely dotted, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_600.dat};
-\addplot+ [index of colormap={6 of Set1-9}, solid,          opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_s$};
-\addplot+ [index of colormap={6 of Set1-9}, densely dashed, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [index of colormap={6 of Set1-9}, densely dotted, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_600.dat};
-\addplot+ [index of colormap={1 of Set1-9}, solid,          opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_e$};
-\addplot+ [index of colormap={1 of Set1-9}, densely dashed, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [index of colormap={1 of Set1-9}, densely dotted, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [index of colormap={0 of Set1-9}, solid,          very thick, opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_u$};
+\addplot+ [index of colormap={0 of Set1-9}, densely dashed, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [index of colormap={0 of Set1-9}, densely dotted, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nu] {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [index of colormap={2 of Set1-9}, solid,          very thick, opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_d$};
+\addplot+ [index of colormap={2 of Set1-9}, densely dashed, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [index of colormap={2 of Set1-9}, densely dotted, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=nd] {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [index of colormap={6 of Set1-9}, solid,          very thick, opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_s$};
+\addplot+ [index of colormap={6 of Set1-9}, densely dashed, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [index of colormap={6 of Set1-9}, densely dotted, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ns] {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [index of colormap={1 of Set1-9}, solid,          very thick, opacity=1.0,            ] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$n_e$};
+\addplot+ [index of colormap={1 of Set1-9}, densely dashed, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [index of colormap={1 of Set1-9}, densely dotted, very thick, opacity=1.0, forget plot] table [x expr={(\thisrow{muu}+\thisrow{mud})/2}, y=ne] {../code/data/LSM3F/eos_sigma_600.dat};
 
-\addplot+ [black, solid] {-1}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
-\addplot+ [black, densely dashed] {-1}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
-\addplot+ [black, densely dotted] {-1}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
+\addplot+ [black, solid, very thick] {-1}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+\addplot+ [black, densely dashed, very thick] {-1}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
+\addplot+ [black, densely dotted, very thick] {-1}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
 \addplot+ [black, solid, very thick, opacity=0.2] {-1}; \addlegendentry{$m_{\phantom{\sigma}}=0$};
 
 \nextgroupplot[
@@ -682,14 +682,14 @@ so we can only hope that the same is true with three flavors.
 ];
 %\addplot+ [black!50!white, densely dashed, semithick, opacity=0.7, forget plot] table [x=P, y expr={3*\thisrow{P}+4*0.07774628475613433}] {../code/data/LSM2F/eos.dat}; % +4*P0, since both ϵ and P modified by P0
 %\addplot+ [black, densely dashed, opacity=0.4, domain=0:0.1, forget plot] {3*x}; % +4*P0, since both ϵ and P modified by P0
-\addplot+ [black, solid, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
-\addplot+ [gray,  densely dashed, opacity=1.0, forget plot] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat};
-\addplot+ [black, densely dashed, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
-\addplot+ [gray,  densely dotted, opacity=1.0, forget plot] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_600.dat};
-\addplot+ [black, densely dotted, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_600.dat}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
+\addplot+ [black, solid, very thick, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+\addplot+ [gray,  densely dashed, very thick, opacity=1.0, forget plot] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat};
+\addplot+ [black, densely dashed, very thick, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
+\addplot+ [gray,  densely dotted, very thick, opacity=1.0, forget plot] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_600.dat};
+\addplot+ [black, densely dotted, very thick, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_600.dat}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
 \addplot+ [black, solid, very thick, opacity=0.2, domain=0:3.0] {3*x}; \addlegendentry{$m_{\phantom{\sigma}}=0$};
-\addplot+ [gray,  solid, domain=0:0.01] {-0.01}; \addlegendentry{uncorrected}
-\addplot+ [black, solid, domain=0:0.01] {-0.01}; \addlegendentry{\phantom{un}corrected}
+\addplot+ [gray,  solid, very thick, domain=0:0.01] {-0.01}; \addlegendentry{uncorrected}
+\addplot+ [black, solid, very thick, domain=0:0.01] {-0.01}; \addlegendentry{\phantom{un}corrected}
 \addlegendimage{empty legend} \addlegendentry{}
 \coordinate (zoomplot) at (0.55, 0.0);
 \end{groupplot}
@@ -701,12 +701,12 @@ so we can only hope that the same is true with three flavors.
 		xmin=-0.004, xmax=+0.01, xtick distance=0.01, restrict x to domain=-0.03:+0.03,
 		ymin=0, ymax=0.3, restrict y to domain=-1:+1,
 	]
-	\addplot+ [black, solid, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat};
-	\addplot+ [gray, densely dashed, opacity=1.0] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat};
-	\addplot+ [black, densely dashed, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat};
-	\addplot+ [gray, densely dotted, opacity=1.0] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_600.dat};
-	\addplot+ [black, densely dotted, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_600.dat};
-	\addplot+ [black, solid, very thick, opacity=0.2, domain=0:0.05] {3*x};
+	\addplot+ [black, solid, very thick, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_800.dat};
+	\addplot+ [gray, densely dashed, very thick, opacity=1.0] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_700.dat};
+	\addplot+ [black, densely dashed, very thick, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_700.dat};
+	\addplot+ [gray, densely dotted, very thick, opacity=1.0] table [x=Porg,y=epsilonorg] {../code/data/LSM3F/eos_sigma_600.dat};
+	\addplot+ [black, densely dotted, very thick, opacity=1.0] table [x=P,y=epsilon] {../code/data/LSM3F/eos_sigma_600.dat};
+	\addplot+ [black, solid, very thick, very thick, opacity=0.2, domain=0:0.05] {3*x};
 	\end{axis}
 	\end{tikzpicture}
 };
@@ -734,13 +734,13 @@ in the massless limit $m=0$.
 	declare function={sat=0.165;},
 	legend cell align=left, legend columns=4, legend transposed,
 ]
-\addplot [index of colormap={1 of Set1-9}] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{ne}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
+\addplot [index of colormap={1 of Set1-9}, very thick] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{ne}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
 \addlegendentry{$n_e$};
-\addplot [index of colormap={0 of Set1-9}] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{nu}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
+\addplot [index of colormap={0 of Set1-9}, very thick] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{nu}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
 \addlegendentry{$n_u$};
-\addplot [index of colormap={2 of Set1-9}] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{nd}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
+\addplot [index of colormap={2 of Set1-9}, very thick] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{nd}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
 \addlegendentry{$n_d$};
-\addplot [index of colormap={6 of Set1-9}] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{ns}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
+\addplot [index of colormap={6 of Set1-9}, very thick] table [x expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/sat/3}, y expr={3*\thisrow{ns}/(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})}] {../code/data/LSM3F/eos.dat};
 \addlegendentry{$n_s$};
 \end{axis}
 \end{tikzpicture}
@@ -912,13 +912,13 @@ and is one of the reasons for why we choose to go with two separate renormalizat
 	ylabel={$M \, / \, M_\odot$}, %title={Mass-radius diagram for 2-flavor quark stars }, title style={yshift=2.0cm},
 	title = {\subcaption{\label{fig:lsm:3-flavor-mass-radius-600}$m_\sigma = \SI{600}{\mega\electronvolt}$} $B^\frac14 = \{111,131,151\} \, \si{\mega\electronvolt}$},
 ];
-\addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_131.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_151.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, very thick, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, very thick, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_131.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, very thick, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_600_B14_151.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addlegendentry{$N_f \!=\! 2$};
-\addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_600_B14_131.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_600_B14_151.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, very thick, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, very thick, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_600_B14_131.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, very thick, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_600_B14_151.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addlegendentry{$N_f \!=\! 3$};
 
 \nextgroupplot[
@@ -927,13 +927,13 @@ and is one of the reasons for why we choose to go with two separate renormalizat
 	title = {\subcaption{\label{fig:lsm:3-flavor-mass-radius-700}$m_\sigma = \SI{700}{\mega\electronvolt}$} $B^\frac14 = \{68,88,108\} \, \si{\mega\electronvolt}$},
 	colorbar horizontal, colormap name=plasmarev, colorbar style={width=11cm, ylabel=$\log_{10} (P_c \, / \, \si{\pascal})$, ylabel style={rotate=-90}, xtick distance=1, minor x tick num=9, at={(0.5,-0.3)}, anchor=north, xticklabel pos=lower},
 ];
-\addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_88.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_108.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, very thick, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, very thick, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_88.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, very thick, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_700_B14_108.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addlegendentry{$N_f=2$};
-\addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_68.dat};  % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_88.dat};  % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_108.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, very thick, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_68.dat};  % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, very thick, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_88.dat};  % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, very thick, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_700_B14_108.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addlegendentry{$N_f=3$};
 
 \nextgroupplot[
@@ -941,13 +941,13 @@ and is one of the reasons for why we choose to go with two separate renormalizat
 	yticklabels={,,},
 	title = {\subcaption{\label{fig:lsm:3-flavor-mass-radius-800}$m_\sigma = \SI{800}{\mega\electronvolt}$} $B^\frac14 = \{27,47,67\} \, \si{\mega\electronvolt}$},
 ];
-\addplot+ [solid, gray, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_47.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, gray, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_67.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, very thick, opacity=0.5] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, very thick, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_47.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, gray, very thick, opacity=0.5, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F/stars_sigma_800_B14_67.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addlegendentry{$N_f=2$};
-\addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_47.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_67.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, very thick, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, very thick, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_47.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, mesh, very thick, forget plot] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F/stars_sigma_800_B14_67.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \addlegendentry{$N_f=3$};
 \node[scale=0.75] at (11.565, 1.630) {\goldenstar};
 
@@ -975,32 +975,32 @@ and is one of the reasons for why we choose to go with two separate renormalizat
 	ymax=1.5, ytick distance=0.5, minor y tick num=4,
 	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 ];
-\addplot+ [index of colormap={1 of Set1-9}] table [x=r, y=epsilon] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$\epsilon$};
-\addplot+ [index of colormap={0 of Set1-9}] table [x=r, y=P] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$P$};
+\addplot+ [index of colormap={1 of Set1-9}, very thick] table [x=r, y=epsilon] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$\epsilon$};
+\addplot+ [index of colormap={0 of Set1-9}, very thick] table [x=r, y=P] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$P$};
 \nextgroupplot[
 	ylabel=$m \, / \, M_\odot$,
 	xticklabels={,,},
 	ymax=2, ytick distance=0.5, minor y tick num=4,
 ];
-\addplot+ [black] table [x=r, y=m] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat};
+\addplot+ [black, very thick] table [x=r, y=m] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat};
 \nextgroupplot[
 	xlabel=$r \, / \, \si{\kilo\meter}$,
 	ylabel=$\mu \, / \, \si{\mega\electronvolt}$,
 	ymin=300, ymax=500, ytick distance=50, minor y tick num=4,
 ];
-\addplot+ [black] table [x=r, y=muQ] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat};
+\addplot+ [black, very thick] table [x=r, y=muQ] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat};
 \nextgroupplot[
 	xlabel=$r \, / \, \si{\kilo\meter}$,
 	ylabel=$n_i \, / \, n_\text{sat}$,
 	ymax=15, ytick distance=5, minor y tick num=4,
 ];
-\addplot+ [index of colormap={0 of Set1-9}] table [x=r, y=nu] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_u$};
-\addplot+ [index of colormap={2 of Set1-9}] table [x=r, y=nd] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_d$};
-\addplot+ [index of colormap={6 of Set1-9}] table [x=r, y=ns] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_s$};
-\addplot+ [index of colormap={1 of Set1-9}] table [x=r, y=ne] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_e$};
-\addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat};
+\addplot+ [index of colormap={0 of Set1-9}, very thick] table [x=r, y=nu] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_u$};
+\addplot+ [index of colormap={2 of Set1-9}, very thick] table [x=r, y=nd] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_d$};
+\addplot+ [index of colormap={6 of Set1-9}, very thick] table [x=r, y=ns] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_s$};
+\addplot+ [index of colormap={1 of Set1-9}, very thick] table [x=r, y=ne] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_e$};
+\addplot+ [black, dashed, very thick, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat};
 % cheat legend
-\addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_B$};
+\addplot+ [draw=none, black, solid, very thick] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F/star_sigma_800_B14_27_Pc_0.0009376.dat}; \addlegendentry{$n_B$};
 \end{groupplot}
 \node (title) at ($(group c1r1.north)!0.5!(group c2r1.north)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}] {\goldenstar Maximum mass star ($m_\sigma=\SI{800}{\mega\electronvolt}$, $B^\frac14 = \SI{27}{\mega\electronvolt}$, $P_c=10^{34.60} \, \si{\pascal}$)};
 \end{tikzpicture}
@@ -1014,7 +1014,6 @@ and is one of the reasons for why we choose to go with two separate renormalizat
 	and baryon density $n_B = (n_u+n_d+n_s)/3$
 	for the maximum mass three-flavor quark star \goldenstar in \cref{fig:lsm:3-flavor-mass-radius}.
 	The nuclear saturation density is $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$.
-	\TODO{\goldenstar color}
 }
 
 \end{figure}
@@ -1086,9 +1085,9 @@ This means that \emph{it is not possible to self-consistently describe pure stra
 	declare function = {conv = 1.3061920575081208e-10;},
 	legend pos = south east,
 ]
-\addplot+ [black, densely dotted] table [x expr={(\thisrow{muu}+\thisrow{mud}) / 2}, y expr={sign(\thisrow{Porg})*abs(\thisrow{Porg}/conv)^0.25}] {../code/data/LSM3F/eos_sigma_600.dat}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
-\addplot+ [black, densely dashed] table [x expr={(\thisrow{muu}+\thisrow{mud}) / 2}, y expr={sign(\thisrow{Porg})*abs(\thisrow{Porg}/conv)^0.25}] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
-\addplot+ [black, solid]          table [x expr={(\thisrow{muu}+\thisrow{mud}) / 2}, y expr={sign(\thisrow{Porg})*abs(\thisrow{Porg}/conv)^0.25}] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
+\addplot+ [black, very thick, densely dotted] table [x expr={(\thisrow{muu}+\thisrow{mud}) / 2}, y expr={sign(\thisrow{Porg})*abs(\thisrow{Porg}/conv)^0.25}] {../code/data/LSM3F/eos_sigma_600.dat}; \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$};
+\addplot+ [black, very thick, densely dashed] table [x expr={(\thisrow{muu}+\thisrow{mud}) / 2}, y expr={sign(\thisrow{Porg})*abs(\thisrow{Porg}/conv)^0.25}] {../code/data/LSM3F/eos_sigma_700.dat}; \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$};
+\addplot+ [black, very thick, solid]          table [x expr={(\thisrow{muu}+\thisrow{mud}) / 2}, y expr={sign(\thisrow{Porg})*abs(\thisrow{Porg}/conv)^0.25}] {../code/data/LSM3F/eos_sigma_800.dat}; \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$};
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-pressure}%

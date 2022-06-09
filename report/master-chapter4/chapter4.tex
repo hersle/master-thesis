@@ -212,21 +212,21 @@ to the hadronic Akmal-Pandharipande-Ravenhall equation of state from \cite{ref:a
 	title = {\subcaption{\label{fig:hybrid:eos-all-2}Two-flavor hybrid equations of state}},
 	ylabel = {$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 ];
-\addplot [red, solid] table [x=P, y=epsilon] {../code/data/LSM2F_APR/eos_sigma_600.dat};
+\addplot [red, very thick, solid] table [x=P, y=epsilon] {../code/data/LSM2F_APR/eos_sigma_600.dat};
 \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$, $\vphantom{\big)} \smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
-\addplot [darkgreen, dashed] table [x=P, y=epsilon] {../code/data/LSM2F_APR/eos_sigma_700.dat};
+\addplot [darkgreen, very thick, dashed] table [x=P, y=epsilon] {../code/data/LSM2F_APR/eos_sigma_700.dat};
 \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$, $\vphantom{\big)} \smash{B^\frac14} = \phantom{0}\SI{68}{\mega\electronvolt}$};
-\addplot [blue, dotted] table [x=P, y=epsilon] {../code/data/LSM2F_APR/eos_sigma_800.dat};
+\addplot [blue, very thick, dotted] table [x=P, y=epsilon] {../code/data/LSM2F_APR/eos_sigma_800.dat};
 \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$, $\vphantom{\big)} \smash{B^\frac14} = \phantom{0}\SI{27}{\mega\electronvolt}$};
 
 \nextgroupplot[
 	title = {\subcaption{\label{fig:hybrid:eos-all-3}Three-flavor hybrid equations of state}},
 ];
-\addplot [red, solid] table [x=P, y=epsilon] {../code/data/LSM3F_APR/eos_sigma_600.dat};
+\addplot [red, very thick, solid] table [x=P, y=epsilon] {../code/data/LSM3F_APR/eos_sigma_600.dat};
 \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$, $\vphantom{\big)} \smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
-\addplot [darkgreen, dashed] table [x=P, y=epsilon] {../code/data/LSM3F_APR/eos_sigma_700.dat};
+\addplot [darkgreen, very thick, dashed] table [x=P, y=epsilon] {../code/data/LSM3F_APR/eos_sigma_700.dat};
 \addlegendentry{$m_\sigma=\SI{700}{\mega\electronvolt}$, $\vphantom{\big)} \smash{B^\frac14} = \phantom{0}\SI{68}{\mega\electronvolt}$};
-\addplot [blue, dotted] table [x=P, y=epsilon] {../code/data/LSM3F_APR/eos_sigma_800.dat};
+\addplot [blue, very thick, dotted] table [x=P, y=epsilon] {../code/data/LSM3F_APR/eos_sigma_800.dat};
 \addlegendentry{$m_\sigma=\SI{800}{\mega\electronvolt}$, $\vphantom{\big)} \smash{B^\frac14} = \phantom{0}\SI{27}{\mega\electronvolt}$};
 \end{groupplot}
 \end{tikzpicture}
@@ -316,10 +316,10 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
 \addplot [yellow, opacity=0.4] fill between [of=J1614lo and J1614hi]; \addlegendentry{PSR J1614$-$2230};
 
-\addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
-\addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
+\addplot+ [solid, very thick, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \draw [Latex-] (11.4,2.09) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
 \draw [Latex-] (11.5,2.00) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
 \draw [Latex-] (11.5,1.98) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
@@ -343,10 +343,10 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
 \addplot [yellow, opacity=0.4] fill between [of=J1614lo and J1614hi];
 
-\addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \draw [Latex-] (11.4,2.09) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
 \draw [Latex-] (11.5,2.00) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
 \draw [Latex-] (11.5,1.98) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
@@ -392,10 +392,10 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
 \addplot [yellow, opacity=0.4] fill between [of=J1614lo and J1614hi]; \addlegendentry{PSR J1614$-$2230};
 
-\addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
-\addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
+\addplot+ [solid, very thick, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; \addlegendentry{hybrid stars};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \draw [Latex-] (11.45,2.08) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
 \draw [Latex-] (11.55,1.97) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
 \draw [Latex-] (11.65,1.90) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
@@ -419,10 +419,10 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
 \addplot [yellow, opacity=0.4] fill between [of=J1614lo and J1614hi];
 
-\addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_600_B14_111.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_700_B14_68.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_sigma_800_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \draw [Latex-] (11.45,2.08) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{800}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
 \draw [Latex-] (11.55,1.97) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{700}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{68}{\mega\electronvolt}$};
 \draw [Latex-] (11.65,1.90) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{111}{\mega\electronvolt}$};
@@ -455,33 +455,33 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	ymax=1.5, ytick distance=0.5, minor y tick num=4,
 	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$ },
 ];
-\addplot+ [index of colormap={1 of Set1-9}] table [x=r, y=epsilon] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$\epsilon$};
-\addplot+ [index of colormap={0 of Set1-9}] table [x=r, y=P] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$P$};
+\addplot+ [index of colormap={1 of Set1-9}, very thick] table [x=r, y=epsilon] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$\epsilon$};
+\addplot+ [index of colormap={0 of Set1-9}, very thick] table [x=r, y=P] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$P$};
 \nextgroupplot[
 	ylabel=$m \, / \, M_\odot$,
 	xticklabels={,,},
 	ymax=2.1, ytick distance=0.5, minor y tick num=4,
 ];
-\addplot+ [black] table [x=r, y=m] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
+\addplot+ [black, very thick] table [x=r, y=m] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
 \nextgroupplot[
 	xlabel=$r \, / \, \si{\kilo\meter}$,
 	ylabel=$\mu_B \, / \, \si{\giga\electronvolt}$,
 	ymin=0.9, ymax=1.5, ytick distance=0.1, minor y tick num=4, % restrict y to domain=0.8:1.6,
 ];
-\addplot+ [black] table [x=r, y expr={\thisrow{muQ}*3.0/1000.0}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
+\addplot+ [black, very thick] table [x=r, y expr={\thisrow{muQ}*3.0/1000.0}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
 \nextgroupplot[
 	xlabel=$r \, / \, \si{\kilo\meter}$,
 	ylabel=$n_i \, / \, n_\text{sat}$,
 	ymax=15, ytick distance=5, minor y tick num=4,
 ];
-\addplot+ [index of colormap={0 of Set1-9}, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=nu] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_u$};
-\addplot+ [index of colormap={2 of Set1-9}, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=nd] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_d$};
+\addplot+ [index of colormap={0 of Set1-9}, very thick, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=nu] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_u$};
+\addplot+ [index of colormap={2 of Set1-9}, very thick, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=nd] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_d$};
 %\addplot+ [purple, x filter/.expression={\thisrow{r}<3.14 ? x : nan}] table [x=r, y=ns] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_s$};
 %\addplot+ [blue, x filter/.expression={\thisrow{r}<3.14}] table [x=r, y=ne] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_e$};
-\addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
-\addplot+ [black, solid, forget plot, x filter/.expression={\thisrow{r}>=3.14 ? x : nan}] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
+\addplot+ [black, dashed, very thick, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
+\addplot+ [black, solid, very thick, forget plot, x filter/.expression={\thisrow{r}>=3.14 ? x : nan}] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat};
 % cheat legend
-\addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_B$};
+\addplot+ [draw=none, black, solid, very thick] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2F_APR/star_sigma_600_B14_111_Pc_0.0011807.dat}; \addlegendentry{$n_B$};
 \end{groupplot}
 \node (title) at (group c2r1.north east) [above, anchor=south east, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}, text width=15cm] {\subcaption{\label{fig:hybrid:star-2}\goldenstar Two-flavor maximum mass star ($m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$, $P_c=10^{34.59} \, \si{\pascal}$)}};
 \end{tikzpicture}
@@ -502,33 +502,33 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	ymax=1.5, ytick distance=0.5, minor y tick num=4,
 	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$ },
 ];
-\addplot+ [index of colormap={1 of Set1-9}] table [x=r, y=epsilon] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$\epsilon$};
-\addplot+ [index of colormap={0 of Set1-9}] table [x=r, y=P] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$P$};
+\addplot+ [index of colormap={1 of Set1-9}, very thick] table [x=r, y=epsilon] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$\epsilon$};
+\addplot+ [index of colormap={0 of Set1-9}, very thick] table [x=r, y=P] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$P$};
 \nextgroupplot[
 	ylabel=$m \, / \, M_\odot$,
 	xticklabels={,,},
 	ymax=2.1, ytick distance=0.5, minor y tick num=4,
 ];
-\addplot+ [black] table [x=r, y=m] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat};
+\addplot+ [black, very thick] table [x=r, y=m] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat};
 \nextgroupplot[
 	xlabel=$r \, / \, \si{\kilo\meter}$,
 	ylabel=$\mu_B \, / \, \si{\giga\electronvolt}$,
 	ymin=0.9, ymax=1.5, ytick distance=0.1, minor y tick num=4, % restrict y to domain=0.8:1.6,
 ];
-\addplot+ [black] table [x=r, y expr={\thisrow{muQ}*3.0/1000.0}] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat};
+\addplot+ [black, very thick] table [x=r, y expr={\thisrow{muQ}*3.0/1000.0}] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat};
 \nextgroupplot[
 	xlabel=$r \, / \, \si{\kilo\meter}$,
 	ylabel=$n_i \, / \, n_\text{sat}$,
 	ymax=15, ytick distance=5, minor y tick num=4,
 ];
-\addplot+ [index of colormap={0 of Set1-9}, x filter/.expression={\thisrow{r}<1.64 ? x : nan}] table [x=r, y=nu] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_u$};
-\addplot+ [index of colormap={2 of Set1-9}, x filter/.expression={\thisrow{r}<1.64 ? x : nan}] table [x=r, y=nd] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_d$};
-\addplot+ [index of colormap={6 of Set1-9}, x filter/.expression={\thisrow{r}<1.64 ? x : nan}] table [x=r, y=ns] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_s$};
+\addplot+ [index of colormap={0 of Set1-9}, very thick, x filter/.expression={\thisrow{r}<1.64 ? x : nan}] table [x=r, y=nu] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_u$};
+\addplot+ [index of colormap={2 of Set1-9}, very thick, x filter/.expression={\thisrow{r}<1.64 ? x : nan}] table [x=r, y=nd] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_d$};
+\addplot+ [index of colormap={6 of Set1-9}, very thick, x filter/.expression={\thisrow{r}<1.64 ? x : nan}] table [x=r, y=ns] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_s$};
 %\addplot+ [blue, x filter/.expression={\thisrow{r}<1.64}] table [x=r, y=ne] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_e$};
-\addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat};
-\addplot+ [black, solid, forget plot, x filter/.expression={\thisrow{r}>=1.64 ? x : nan}] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat};
+\addplot+ [black, dashed, very thick, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat};
+\addplot+ [black, solid, very thick, forget plot, x filter/.expression={\thisrow{r}>=1.64 ? x : nan}] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat};
 % cheat legend
-\addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_B$};
+\addplot+ [draw=none, black, very thick, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM3F_APR/star_sigma_600_B14_111_Pc_0.0008161.dat}; \addlegendentry{$n_B$};
 \end{groupplot}
 \node (title) at (group c2r1.north east) [above, anchor=south east, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}, text width=15cm] {\phantomsubcaption\subcaption{\label{fig:hybrid:star-3}\goldenstar Three-flavor maximum mass star ($m_\sigma=\SI{600}{\mega\electronvolt}$, $B^\frac14 = \SI{111}{\mega\electronvolt}$, $P_c=10^{34.51} \, \si{\pascal}$)}};
 \end{tikzpicture}
@@ -601,7 +601,6 @@ We inspect maximum mass stars on hybrid branches with both two and three flavors
       %are notably lower in the two-flavor hybrid stars.
 \item The hadronic phase dominates with both $N_f=\{2,3\}$, 
       making up $\{98.0,99.7\} \, \si{\percent}$ of the stars' volumes and $\{94,99\} \, \si{\percent}$ of their masses.
-      \TODO{Gray on top?}
 \end{itemize}
 
 \begin{figure}[t!]
@@ -622,11 +621,11 @@ We inspect maximum mass stars on hybrid branches with both two and three flavors
 	title = {Consistently fit two-flavor equations of state}, title style={text width=12cm},
 	ylabel = {$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 ];
-\addplot [red, solid] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_400.dat};
+\addplot [red, very thick, solid] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_400.dat};
 \addlegendentry{$m_\sigma=\SI{400}{\mega\electronvolt}$, $\vphantom{\big)}\smash{B^\frac14} = \SI{107}{\mega\electronvolt}$};
-\addplot [darkgreen, dashed] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_500.dat};
+\addplot [darkgreen, very thick, dashed] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_500.dat};
 \addlegendentry{$m_\sigma=\SI{500}{\mega\electronvolt}$, $\vphantom{\big)}\smash{B^\frac14} = \phantom{0}\SI{84}{\mega\electronvolt}$};
-\addplot [blue, dotted] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_600.dat};
+\addplot [blue, very thick, dotted] table [x=P, y=epsilon] {../code/data/LSM2FC_APR/eos_sigma_600.dat};
 \addlegendentry{$m_\sigma=\SI{600}{\mega\electronvolt}$, $\vphantom{\big)}\smash{B^\frac14} = \phantom{0}\SI{27}{\mega\electronvolt}$};
 \end{groupplot}
 \end{tikzpicture}
@@ -672,10 +671,10 @@ We inspect maximum mass stars on hybrid branches with both two and three flavors
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
 \addplot [yellow, opacity=0.4] fill between [of=J1614lo and J1614hi]; \addlegendentry{PSR J1614$-$2230};
 
-\addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
-\addplot+ [solid, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_400_B14_107.dat}; \addlegendentry{hybrid stars};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_500_B14_84.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_600_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; \addlegendentry{neutron stars};
+\addplot+ [solid, very thick, mesh, mesh line legend] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_400_B14_107.dat}; \addlegendentry{hybrid stars};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_500_B14_84.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_600_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \draw [Latex-] (11.4,2.09) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
 \draw [Latex-] (11.5,2.00) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{500}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{84}{\mega\electronvolt}$};
 \draw [Latex-] (11.5,1.98) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{400}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{107}{\mega\electronvolt}$};
@@ -699,10 +698,10 @@ We inspect maximum mass stars on hybrid branches with both two and three flavors
 \addplot [name path=J1614hi, draw=none, forget plot, domain=0:40] {1.91 + 0.02};
 \addplot [yellow, opacity=0.4] fill between [of=J1614lo and J1614hi];
 
-\addplot+ [solid, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_400_B14_107.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_500_B14_84.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
-\addplot+ [solid, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_600_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, gray] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM3F_APR/stars_hadron.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_400_B14_107.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_500_B14_84.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
+\addplot+ [solid, very thick, mesh] table [x=R, y=M, meta expr={log10(\thisrow{P}*e0)}] {../code/data/LSM2FC_APR/stars_sigma_600_B14_27.dat}; % node [Bpin, pos=0.920] {$B = (\SI{27}{\mega\electronvolt})^4$};
 \draw [Latex-] (11.4,2.09) -- (15.0,2.20) node [anchor=west] {$m_\sigma=\SI{600}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{27}{\mega\electronvolt}$};
 \draw [Latex-] (11.5,2.00) -- (15.0,2.00) node [anchor=west] {$m_\sigma=\SI{500}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{84}{\mega\electronvolt}$};
 \draw [Latex-] (11.5,1.98) -- (15.0,1.80) node [anchor=west] {$m_\sigma=\SI{400}{\mega\electronvolt}$, $\smash{B^\frac14} = \SI{107}{\mega\electronvolt}$};
@@ -733,33 +732,33 @@ We inspect maximum mass stars on hybrid branches with both two and three flavors
 	ymax=1.5, ytick distance=0.5, minor y tick num=4,
 	ylabel={$\{\epsilon,P\} \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$ },
 ];
-\addplot+ [index of colormap={1 of Set1-9}] table [x=r, y=epsilon] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$\epsilon$};
-\addplot+ [index of colormap={0 of Set1-9}] table [x=r, y=P] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$P$};
+\addplot+ [index of colormap={1 of Set1-9}, very thick] table [x=r, y=epsilon] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$\epsilon$};
+\addplot+ [index of colormap={0 of Set1-9}, very thick] table [x=r, y=P] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$P$};
 \nextgroupplot[
 	ylabel=$m \, / \, M_\odot$,
 	xticklabels={,,},
 	ymax=2.1, ytick distance=0.5, minor y tick num=4,
 ];
-\addplot+ [black] table [x=r, y=m] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
+\addplot+ [black, very thick] table [x=r, y=m] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
 \nextgroupplot[
 	xlabel=$r \, / \, \si{\kilo\meter}$,
 	ylabel=$\mu_B \, / \, \si{\giga\electronvolt}$,
 	ymin=0.9, ymax=1.5, ytick distance=0.1, minor y tick num=4, % restrict y to domain=0.8:1.6,
 ];
-\addplot+ [black] table [x=r, y expr={\thisrow{muQ}*3.0/1000.0}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
+\addplot+ [black, very thick] table [x=r, y expr={\thisrow{muQ}*3.0/1000.0}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
 \nextgroupplot[
 	xlabel=$r \, / \, \si{\kilo\meter}$,
 	ylabel=$n_i \, / \, n_\text{sat}$,
 	ymax=15, ytick distance=5, minor y tick num=4,
 ];
-\addplot+ [index of colormap={0 of Set1-9}, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=nu] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_u$};
-\addplot+ [index of colormap={2 of Set1-9}, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=nd] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_d$};
+\addplot+ [index of colormap={0 of Set1-9}, very thick, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=nu] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_u$};
+\addplot+ [index of colormap={2 of Set1-9}, very thick, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=nd] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_d$};
 %\addplot+ [purple, x filter/.expression={\thisrow{r}<3.22 ? x : nan}] table [x=r, y=ns] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_s$};
 %\addplot+ [blue, x filter/.expression={\thisrow{r}<3.22}] table [x=r, y=ne] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_e$};
-\addplot+ [black, dashed, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
-\addplot+ [black, solid, forget plot, x filter/.expression={\thisrow{r}>=3.22 ? x : nan}] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
+\addplot+ [black, dashed, very thick, forget plot] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
+\addplot+ [black, solid, very thick, forget plot, x filter/.expression={\thisrow{r}>=3.22 ? x : nan}] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat};
 % cheat legend
-\addplot+ [draw=none, black, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_B$};
+\addplot+ [draw=none, black, very thick, solid] table [x=r, y expr={(\thisrow{nu}+\thisrow{nd}+\thisrow{ns})/3}] {../code/data/LSM2FC_APR/star_sigma_400_B14_107_Pc_0.0011807.dat}; \addlegendentry{$n_B$};
 \end{groupplot}
 \node (title) at ($(group c1r1.north west)!0.5!(group c2r1.north east)$) [above, yshift=\pgfkeysvalueof{/pgfplots/every axis title shift}, align=center] {\goldenstar Consistently fit two-flavor maximum mass star\\($m_\sigma=\SI{400}{\mega\electronvolt}$, $B^\frac14 = \SI{107}{\mega\electronvolt}$, $P_c=10^{34.59} \, \si{\pascal}$)};
 \end{tikzpicture}
