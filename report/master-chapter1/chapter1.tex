@@ -182,7 +182,7 @@ We then invert $P(\mu)$ to $\mu(P)$ and insert it into $\epsilon(\mu)$ to obtain
 	xlabel={$P        \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	xmin=0, xmax=0.30, ymin=0, ymax=1.0, xtick distance=0.10, minor x tick num=9, ytick distance=0.5, minor y tick num=4, restrict y to domain=-1:+1,
-	title={\subcaption{\label{fig:mit:eos-eos}\makebox[\widthof{Parametrization of solutions}][l]{Equation of state}}},
+	title={\subcaption{\label{fig:mit:eos-eos}\makebox[\widthof{Parametrization of solutions}][l]{Equation of state}} },
 	legend cell align=left, legend pos=north west,
 ];
 \addplot+ [black, solid, very thick, opacity=0.5] table [x=P,y=epsilon] {../code/data/MIT2F/eos_sigma_0.dat}; \addlegendentry{$N_f=2$};
@@ -357,7 +357,7 @@ and hence the zero-point energy and pressure, and the equation of state.
 
 %\node at (90:1.3) {  confined vacuum};
 %\node at (90:2.5) {deconfined vacuum};
-\node at (90:2.5) [text width=5cm] {\subcaption{\label{fig:mit:bag-constant-confined}confined phase} };
+\node at (90:2.5) [text width=5cm] {\subcaption{\label{fig:mit:bag-constant-confined}confined phase}};
 %\subcaptionbox{\label{fig:mit:bag-constant-deconfined}deconfined phase}{
 
 \end{tikzpicture}
