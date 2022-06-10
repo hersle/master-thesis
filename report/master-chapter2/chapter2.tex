@@ -430,6 +430,12 @@ $\mathmakebox[\widthof{$m_{f_0}$}][l]{m_\pi}     \,/\, \si{\mega\electronvolt}$ 
 %\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma750.dat}; \addlegendentry{$m_\sigma = \SI{750}{\mega\electronvolt}$};
 \addplot+ [very thick] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma800.dat}; \addlegendentry{$m_\sigma = \SI{800}{\mega\electronvolt}$};
 %\addplot+ [] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma850.dat}; \addlegendentry{$m_\sigma = \SI{850}{\mega\electronvolt}$};
+
+\addplot                                                                            coordinates {(300,-2.38)} node [above, yshift=+0.1cm, font=\footnotesize, black] {no minimum!}; % 500
+\addplot [every axis plot post/.append style={only marks, mark=*}, mark size=1.0pt] coordinates {(300,-3.97)} node [above, yshift=+0.1cm, font=\footnotesize] {minimum}; % 600
+\addplot [every axis plot post/.append style={only marks, mark=*}, mark size=1.0pt] coordinates {(300,-5.85)} node [above, yshift=+0.1cm, font=\footnotesize] {minimum}; % 700
+\addplot [every axis plot post/.append style={only marks, mark=*}, mark size=1.0pt] coordinates {(300,-8.02)} node [above, yshift=+0.1cm, font=\footnotesize] {minimum}; % 800
+
 \end{axis}
 \end{tikzpicture}
 \caption{\label{fig:lsm:potential_sigma_mass}
