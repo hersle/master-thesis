@@ -169,9 +169,9 @@ Effectively, $\epsilon_H(P \leq P^0)$ and $\epsilon_Q(P > P^0)$ are concatenated
 	xmin=900, xmax=1700, restrict x to domain=800:2100, 
 	ymin=0, ymax=10, ytick distance=1, restrict y to domain=-1:12,
 ];
-\addplot+ [red, solid, very thick] table [x=muB,y expr={\thisrow{nB2}/0.165}] {../code/data/LSM3F_APR/eos_sigma_600.dat};
-\addplot+ [blue!50!cyan, solid, very thick] table [x=muB1,y expr={\thisrow{nB1}/0.165}] {../code/data/LSM3F_APR/eos_sigma_600.dat};
-\addplot+ [black, dashed, very thick] table [x=muB,y expr={\thisrow{nB}/0.165}] {../code/data/LSM3F_APR/eos_sigma_600.dat};
+\addplot+ [red, solid, very thick] table [x=muB,y expr={\thisrow{nB2}/0.165}] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{quark phase \quad};
+\addplot+ [blue!50!cyan, solid, very thick] table [x=muB1,y expr={\thisrow{nB1}/0.165}] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{hadronic phase \quad};
+\addplot+ [black, dashed, very thick] table [x=muB,y expr={\thisrow{nB}/0.165}] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{hybrid phase \quad};
 \node at (1307, 0.693/0.165) [circle, fill, inner sep=1.5pt, label={[anchor=north west, font=\small]below:$\big(\mu_B^0,n_{BH}^0\big)$}] {};
 \node at (1307, 0.918/0.165) [circle, fill, inner sep=1.5pt, label={[anchor=south east, font=\small]above:$\big(\mu_B^0,n_{BQ}^0\big)$}] {};
 
@@ -180,9 +180,9 @@ Effectively, $\epsilon_H(P \leq P^0)$ and $\epsilon_Q(P > P^0)$ are concatenated
 	ylabel={$\epsilon \, / \, (\si{\giga\electronvolt\per\femto\meter\cubed})$},
 	xmin=0, xmax=0.4, ymin=0, ymax=2.0, xtick distance=0.1, ytick distance=1.0, minor y tick num=9, restrict x to domain=0:5, restrict y to domain=0:5,
 ];
-\addplot+ [red, solid, very thick] table [x=P,y=epsilon2] {../code/data/LSM3F_APR/eos_sigma_600.dat};
-\addplot+ [blue!50!cyan, solid, very thick] table [x=P1,y=epsilon1] {../code/data/LSM3F_APR/eos_sigma_600.dat};
-\addplot+ [black, dashed, very thick] table [x=P,y=epsilon] {../code/data/LSM3F_APR/eos_sigma_600.dat};
+\addplot+ [red, solid, very thick] table [x=P,y=epsilon2] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{quark phase \quad};
+\addplot+ [blue!50!cyan, solid, very thick] table [x=P1,y=epsilon1] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{hadronic phase \quad};
+\addplot+ [black, dashed, very thick] table [x=P,y=epsilon] {../code/data/LSM3F_APR/eos_sigma_600.dat}; \addlegendentry{hybrid phase \quad};
 \node at (0.202, 0.713) [circle, fill, inner sep=1.5pt, label={[anchor=north west, font=\small]below:$\big(P^0,\epsilon_H^0\big)$}] {};
 \node at (0.202, 1.020) [circle, fill, inner sep=1.5pt, label={[anchor=south east, font=\small]above:$\big(P^0,\epsilon_Q^0\big)$}] {};
 \end{groupplot}
@@ -537,10 +537,10 @@ The detailed numerical implementation can be found in \cref{sec:num:qstars2f}.
 	pressure $P$,
 	energy density $\epsilon$,
 	cumulative mass $m$,
-	baryon chemical potential $\mu_B$
-	and particle densities $n_i$
+	baryon chemical potential $\mu_B$,
+	particle densities $n_i$
+	and baryon density $n_B=(n_u+n_d+n_s)/3$
 	for the maximum mass hybrid stars \goldenstar in \cref{fig:hybrid:mass-radius}.
-	The nuclear saturation density is $n_\text{sat} = \SI{0.165}{\per\femto\meter\cubed}$.
 }
 
 \end{figure}

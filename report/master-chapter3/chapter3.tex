@@ -498,9 +498,9 @@ Variables in the left table are used as \textbf{input} to determine the six mode
 from equations \eqref{eq:lsm:quark_masses_3f}, \eqref{eq:lsm3f:symmetry_breakers} and \eqref{eq:lsm:mass_system_3f},
 which in turn are used to predict the remaining non-bold masses in the left table
 with the same equations.
-Three different values are used for $m_\sigma$,
-generating three parameter sets with different $m^2$, $\lambda_1$ and $m^2_{f_0}$.
-Experimental values are taken from \cite{ref:pdg_review_2021}.
+Three values are used for $m_\sigma$,
+generating three parameter sets with different $m^2$, $\lambda_1$ and $m_{f_0}$.
+Experimental measurements are taken from \cite{ref:pdg_review_2021}.
 }
 \begin{tabular}{ l r r r r c l r r r}
 \toprule
@@ -553,7 +553,7 @@ $\mathmakebox[\widthof{$m_{f_0}$}][l]{m_K}       \,/\, \si{\mega\electronvolt}$ 
 \addplot3 [surf, thin, point meta=explicit] table [x=Deltax, y=Deltay, z expr={\thisrow{Omega} + 80}, meta expr={\thisrow{Omega}}] {../code/data/LSM3F/potential_vacuum_sigma700.dat};% \addlegendentry{$m_\sigma = \SI{700}{\mega\electronvolt}$};
 \addplot3 [surf, thin, point meta=explicit] table [x=Deltax, y=Deltay, z expr={\thisrow{Omega} +120}, meta expr={\thisrow{Omega}}] {../code/data/LSM3F/potential_vacuum_sigma800.dat};% \addlegendentry{$m_\sigma = \SI{800}{\mega\electronvolt}$};
 
-\addplot3 coordinates {(300,429,-33.0)} node [above, xshift=-0.0cm, yshift=-0.0cm, black, font=\footnotesize] {no minimum}; % 500
+\addplot3 coordinates {(300,429,-33.0)} node [above, xshift=-0.0cm, yshift=-0.0cm, black, font=\footnotesize] {no minimum!}; % 500
 \addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=1.0pt] coordinates {(300,429,+7.0)} node [above, font=\footnotesize] {minimum}; % 600
 \addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=1.0pt] coordinates {(300,429,+41.6)} node [above, font=\footnotesize] {minimum}; % 700
 \addplot3 [every axis plot post/.append style={only marks, mark=*}, mark size=1.0pt] coordinates {(300,429,+74.7)} node [above, font=\footnotesize] {minimum}; % 800
@@ -567,8 +567,10 @@ $\mathmakebox[\widthof{$m_{f_0}$}][l]{m_K}       \,/\, \si{\mega\electronvolt}$ 
 \caption{\label{fig:lsm3f:potential_sigma_mass}%
 The three-flavor grand potential \eqref{eq:lsm3f:grand_potential},
 here offset by constants into a human-digestible lasagna,
-admits minima for the quark masses $m_x$ and $m_y$ only for $m_\sigma \geq \SI{600}{\mega\electronvolt}$
-in vacuum, where $\vec{\mu}=0$.
+admits minima for the quark masses $m_x=g\avg{\sigma_x}/2$ and $m_y=g\avg{\sigma_y}/\sqrt{2}$
+in vacuum, where $\vec{\mu}=0$,
+only when fit to $m_\sigma \geq \SI{600}{\mega\electronvolt}$ at tree-level.
+\TODO{add dots and text in 2F-plot}
 }
 \end{figure}
 
@@ -712,7 +714,7 @@ so we can only hope that the same is true with three flavors.
 };
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-eos}%
-Properties of charge neutral quark matter in $\beta$-equilibrium in the three-flavor quark meson model.
+Properties of charge-neutral quark matter in $\beta$-equilibrium in the three-flavor quark meson model.
 Upper panel \subref{fig:lsm:3-flavor-eos-parametrization} shows solutions to equation \eqref{eq:lsm3f:minsys},
 middle panel \subref{fig:lsm:3-flavor-eos-density} the particle number densities \eqref{eq:lsm3f:particle_densities} and
 lower panel \subref{fig:lsm:3-flavor-eos-eos} the equation of state $\epsilon(P)$ \textbf{\textcolor{gray}{before}} and \textbf{after} the Maxwell construction.
@@ -1092,7 +1094,7 @@ This means that \emph{it is not possible to self-consistently describe pure stra
 \end{tikzpicture}
 \caption{\label{fig:lsm:3-flavor-pressure}%
 	Signed fourth root of the pressure $P(\mu)$ as a function of the quark chemical potential $\mu$
-	corresponding to the equations of state in \cref{fig:lsm:3-flavor-eos-eos},
+	for the equations of state in \cref{fig:lsm:3-flavor-eos-eos},
 	before the Maxwell construction and the bag shift \eqref{eq:mit:bag_shift}.
 	The funny behavior in the lower left is caused by the phase transition,
 	and is corrected with a boring straight line after the Maxwell construction.

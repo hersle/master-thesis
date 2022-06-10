@@ -387,8 +387,8 @@ Since $\pdv{\pot}/{\avg{\sigma}} = 0$ at $\avg{\sigma}=f_\pi$ already by assumpt
 \caption{\label{tab:lsm2f:parameters}%
 The variables in the left table are used as \textbf{input} to determine the model parameters in the right table
 from equation \eqref{eq:lsm:parameters}.
-Three different values are used for $m_\sigma$, generating three parameter sets with different $m^2$ and $\lambda$.
-Experimental values are taken from \cite{ref:pdg_review_2021}.
+Three values are used for $m_\sigma$, generating three parameter sets with different $m^2$ and $\lambda$.
+Experimental measurements are taken from \cite{ref:pdg_review_2021}.
 }
 \begin{tabular}{ l r r r r c l r r r}
 \toprule
@@ -434,8 +434,8 @@ $\mathmakebox[\widthof{$m_{f_0}$}][l]{m_\pi}     \,/\, \si{\mega\electronvolt}$ 
 \end{tikzpicture}
 \caption{\label{fig:lsm:potential_sigma_mass}
 The two-flavor grand potential \eqref{eq:lsm:grand_potential}
-admits minima for the quark mass $m_q$ only for $m_\sigma \geq \SI{600}{\mega\electronvolt}$
-in vacuum, where $\vec{\mu}=\vec{0}$.
+admits minima for the quark mass $m_q = g \avg{\sigma}$ in vacuum, where $\vec{\mu}=\vec{0}$,
+only when fit to $m_\sigma \geq \SI{600}{\mega\electronvolt}$ at tree-level.
 }
 \end{figure}
 
@@ -492,7 +492,6 @@ We see that:
 	title style={text width={5cm}},
 	xlabel style={sloped}, 
 	ylabel style={sloped, xshift=-0.5cm}, yticklabel style={anchor=east},
-	zticklabels={,,},
 	title style={sloped like x axis},
 %
 	zmin=-40, zmax=+10,
@@ -505,7 +504,8 @@ We see that:
 \nextgroupplot[
 	ylabel = {$\mu \, / \, \si{\mega\electronvolt}$},
 	%zlabel = {$\Omega(m_q, \mu) \, / \, (\SI{100}{\mega\electronvolt})^4$},
-	zlabel = {$\Omega$},
+	zlabel = {$\Omega \, / \, (\SI{100}{\mega\electronvolt})^4$},
+	zlabel style={yshift=-9pt}, zticklabel style={xshift=+3pt},
 	title = {\subcaption{\label{fig:lsm:grand-potential-noisospin-sigma700}$m_\sigma=\SI{700}{\mega\electronvolt}$}},
 ];
 \addplot3 [surf, very thin, mesh/ordering=x varies, point meta={abs(\thisrow{Delta})}] table [x=Delta, y=mu, z=Omega]       {../code/data/LSM2F/potential_noisospin_sigma_700.dat};
@@ -524,8 +524,10 @@ We see that:
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:grand-potential-noisospin}%
-	The grand potential \eqref{eq:lsm:grand_potential} to some arbitrary scale with zero isospin, or $\mu_u = \mu_d = \mu$ and $\mu_e=0$, for $m_\sigma=\{700,800\} \, \si{\mega\electronvolt}$.
-	The \textcolor{blue}{blue line} and its \textcolor{gray}{gray projection} show the minima $m_q = g \avg{\sigma}$ determined by the self-consistency equation \eqref{eq:lsm:gap_equation}.
+	The \textcolor{blue}{minimum} and its \textcolor{gray}{projection} $m_q(\mu)=g \avg{\sigma}(\mu)$ of the grand potential \eqref{eq:lsm:grand_potential} with zero isospin, or $\mu_u = \mu_d = \mu$ and $\mu_e=0$,
+	determined from the self-consistency equation \eqref{eq:lsm:gap_equation}.
+	For \subref{fig:lsm:grand-potential-noisospin-sigma700} $m_\sigma <    \SI{800}{\mega\electronvolt}$ it jumps in a \emph{discontinuous phase transition}, while
+	for \subref{fig:lsm:grand-potential-noisospin-sigma800} $m_\sigma \geq \SI{800}{\mega\electronvolt}$ it moves quickly and continuously in a \emph{crossover} and there is no phase transition.
 }
 \end{figure}
 
@@ -989,13 +991,13 @@ Also note that the renormalization scale $\Lambda$ has coincidentally disappeare
 	legend style = {at={(0.5,1.03)}, anchor=south}, legend columns=4,
 	cycle multi list={
 		YlOrRd-7\nextlist
-		solid, dashed
+		dashed, solid
 	},
 	transpose legend, legend columns=2, legend cell align=left,
 ]
 \pgfplotsset{cycle list shift=+6} % skip weakest line
-\addplot+ [very thick, black, solid] {-12}; \addlegendentry{``Consistent''};
-\addplot+ [very thick, black, dashed] {-12}; \addlegendentry{``Inconsistent''};
+\addplot+ [very thick, black, dashed] {-12}; \addlegendentry{``Consistent''};
+\addplot+ [very thick, black, solid]  {-12}; \addlegendentry{``Inconsistent''};
 \addplot+ [very thick] table [x=Deltax, y=Omega] {../code/data/LSM2FC/potential_vacuum_sigma400.dat}; \addlegendentry{$m_\sigma = \SI{400}{\mega\electronvolt}$};
 \addplot+ [very thick] table [x=Deltax, y=Omega] {../code/data/LSM2F/potential_vacuum_sigma600.dat};  \addlegendentry{$m_\sigma = \SI{600}{\mega\electronvolt}$};
 \addplot+ [very thick] table [x=Deltax, y=Omega] {../code/data/LSM2FC/potential_vacuum_sigma500.dat}; \addlegendentry{$m_\sigma = \SI{500}{\mega\electronvolt}$};
@@ -1118,7 +1120,7 @@ This allows us to set $m_\sigma$ to values within its measured range $\SI{400}{\
 \end{groupplot}
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-eos-ref}%
-Results like those in \cref{fig:lsm:2-flavor-eos} with the consistently fit one-loop and large-$N_c$ grand potential \eqref{eq:lsm2f:grand_potential_consistent}
+Results like those in \cref{fig:lsm:2-flavor-eos}, but with the consistently fit one-loop and large-$N_c$ grand potential \eqref{eq:lsm2f:grand_potential_consistent}
 and $m_\sigma = \{400,500,600\} \, \si{\mega\electronvolt}$.
 }
 \end{figure}
@@ -1172,7 +1174,8 @@ and $m_\sigma = \{400,500,600\} \, \si{\mega\electronvolt}$.
 \node [anchor=south, yshift=+1.5cm] at (group c2r1.north) {Two-flavor consistently fit quark-meson model quark stars};
 \end{tikzpicture}
 \caption{\label{fig:lsm:2-flavor-mass-radius-ref}%
-Results like those in \cref{fig:lsm:2-flavor-mass-radius} with the consistently fit one-loop and large-$N_c$ grand potential \eqref{eq:lsm2f:grand_potential_consistent}
+Results like those in \cref{fig:lsm:2-flavor-mass-radius},
+but with the equations of state in \cref{fig:lsm:2-flavor-eos-eos} from the consistently fit one-loop and large-$N_c$ grand potential \eqref{eq:lsm2f:grand_potential_consistent}
 and $m_\sigma = \{400,500,600\} \, \si{\mega\electronvolt}$.
 }
 \end{figure}
