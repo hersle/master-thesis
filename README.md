@@ -1,6 +1,6 @@
 ![Cover image](report/thesis-first-page.png)
 
-**PDF:** [PDF](report/thesis.pdf)
+**PDF:** [PDF](report/thesis.pdf?raw=1)
 
 **Title:** Quark and Hybrid Stars with the Quark-Meson Model – Including Preliminaries to Compact Stars 
 
