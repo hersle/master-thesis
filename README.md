@@ -1,6 +1,8 @@
 ![Cover image](report/thesis-first-page.png)
 
-### Quark and Hybrid Stars with the Quark-Meson Model – Including Preliminaries to Compact Stars 
+**PDF:** [PDF](report/thesis.pdf)
+
+**Title:** Quark and Hybrid Stars with the Quark-Meson Model – Including Preliminaries to Compact Stars 
 
 **Astract:** According to quantum chromodynamics, hadron-confined quarks break free into a state of deconfined quark matter at high density.
 Recent observations of the massive *2 M_⊙*-pulsars PSR J1614−2230, PSR J0348+0432 and PSR J0740+6620 suggest that the density in neutron stars could reach sufficiently high levels for formation of small cores of deconfined quark matter in what is then referred to as hybrid stars.
